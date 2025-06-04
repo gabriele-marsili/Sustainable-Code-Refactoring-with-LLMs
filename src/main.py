@@ -1,3 +1,5 @@
+# main.py
+
 #!/usr/bin/env python3
 """
 Script di configurazione per la creazione del dataset codice-test
@@ -7,13 +9,13 @@ import argparse
 import os
 from pathlib import Path
 import sys
+import csv 
 
-# Aggiungi il modulo principale
 sys.path.append(str(Path(__file__).parent))
 from datasetCreator import CodeTestDatasetCreator
 
 def setup_github_token():
-    """Aiuta l'utente a configurare il token GitHub"""
+    """Configurarazione token GitHub"""
     print("=== Configurazione Token GitHub ===")
     print("Per un rate limiting migliore, è consigliato usare un token GitHub.")
     print("1. Vai su https://github.com/settings/tokens")
@@ -46,8 +48,8 @@ def main():
     parser.add_argument(
         '--languages', '-l', 
         nargs='+', 
-        default=['python', 'java', 'javascript'],
-        help='Linguaggi da processare (default: python java javascript). Supportati: python, java, javascript, cpp, c, go, rust, csharp, ruby, php'
+        default=['python', 'java', 'javascript', 'typescript','rust','go'],
+        help='Linguaggi da processare (default: python java javascript typescript rust go). Supportati: python, java, javascript, typescript, cpp, c, go, rust, csharp, ruby, php'
     )
     parser.add_argument(
         '--output-dir', '-o',
@@ -62,8 +64,18 @@ def main():
     parser.add_argument(
         '--sources', '-s',
         nargs='+',
-        default=['exercism', 'pyleet', 'codewars'],
-        choices=['exercism', 'pyleet', 'codewars'],
+        default=[ # Aggiunte le nuove fonti ai default
+            'exercism', 'pyleet', 'codewars', 
+            'larrybotha', 'jainmohit2001', 'mathusanm6', 
+            'donnemartin', 'MTrajK', 'warycat', 
+            'codedge', 'TheRenegadeCoder'
+        ],
+        choices=[ # Aggiornati i choices con tutte le nuove fonti
+            'exercism', 'pyleet', 'codewars',
+            'larrybotha', 'jainmohit2001', 'mathusanm6',
+            'donnemartin', 'MTrajK', 'warycat',
+            'codedge', 'TheRenegadeCoder'
+        ],
         help='Fonti da utilizzare (default: tutte)'
     )
     parser.add_argument(
@@ -84,7 +96,7 @@ def main():
     if args.list_languages:
         print("Linguaggi supportati:")
         supported_langs = [
-            'python', 'java', 'javascript', 'cpp', 'c', 
+            'python', 'java', 'javascript', 'typescript', 'cpp', 'c', 
             'go', 'rust', 'csharp', 'ruby', 'php'
         ]
         for lang in supported_langs:
@@ -111,12 +123,19 @@ def main():
     print(f"Directory output: {args.output_dir}")
     print(f"Token GitHub: {'Configurato' if token else 'Non configurato (rate limiting limitato)'}")
     
-    # Informazioni sulle fonti
+    # Informazioni sulle fonti aggiornate
     source_info = {
         'exercism': 'Esercizi multi-linguaggio con soluzioni umane',
-        'pyleet': 'Soluzioni Python per problemi LeetCode',
-        'codewars': 'Kata JavaScript con test',
-        'pytest-cases': 'Esempi pytest con casi di test parametrizzati'
+        'pyleet': 'Soluzioni Python per problemi LeetCode (huajianmao/pyleet)',
+        'codewars': 'Kata JavaScript con test (WMattWood/codewars)',
+        'larrybotha': 'Soluzioni TypeScript da HackerRank (larrybotha/coding-challenge-solutions)',
+        'jainmohit2001': 'Soluzioni TypeScript per coding challenges (jainmohit2001/coding-challenges)',
+        'mathusanm6': 'Soluzioni Python LeetCode (mathusanm6/LeetCode)',
+        'donnemartin': 'Coding challenges interattive Python (donnemartin/interactive-coding-challenges)',
+        'MTrajK': 'Problemi di coding Python (MTrajK/coding-problems)',
+        'warycat': 'Soluzioni Rust Advent of Code (warycat/rustgym)',
+        'codedge': 'Coding challenges Go (codedge/coding-challenges)',
+        'TheRenegadeCoder': 'Programmi campione multi-linguaggio con test (TheRenegadeCoder/sample-programs)'
     }
     
     print("\nFonti selezionate:")
@@ -135,33 +154,30 @@ def main():
     try:
         creator.run_full_extraction(args.sources, args.languages)
         
-        # Statistiche finali
+        # Statistiche finali aggiornate per usare self.processed_ids e self.language_counts
         csv_file = Path(args.output_dir) / "dataset.csv"
         if csv_file.exists():
-            with open(csv_file, 'r') as f:
-                lines = f.readlines()
-                line_count = len(lines) - 1  # -1 per header
-            
             print(f"\n=== Completato! ===")
-            print(f"Coppie codice-test create: {line_count}")
+            print(f"Coppie codice-test create (totale): {len(creator.processed_ids)}")
             print(f"File CSV: {csv_file}")
             
-            # Statistiche per linguaggio
-            languages_count = {}
-            sources_count = {}
-            
-            for line in lines[1:]:  # Salta header
-                parts = line.strip().split(',')
-                if len(parts) >= 6:
-                    lang = parts[5]
-                    source = parts[6]
-                    languages_count[lang] = languages_count.get(lang, 0) + 1
-                    sources_count[source] = sources_count.get(source, 0) + 1
-            
-            if languages_count:
+            # Statistiche per linguaggio e fonte basate sui dati interni del creator
+            if creator.language_counts:
                 print("\nDistribuzione per linguaggio:")
-                for lang, count in sorted(languages_count.items()):
+                for lang, count in sorted(creator.language_counts.items()):
                     print(f"  - {lang}: {count} coppie")
+            
+            # Per le statistiche per fonte, dovremmo re-leggere il CSV
+            # o modificare `add_to_csv` per aggiornare anche un `sources_count` interno
+            # Per semplicità, qui rileggiamo il CSV per la fonte
+            sources_count = {}
+            with open(csv_file, 'r', encoding='utf-8') as f:
+                reader = csv.reader(f)
+                next(reader, None) # Salta header
+                for row in reader:
+                    if len(row) >= 7: # Assicurati che la riga abbia abbastanza colonne
+                        source_name = row[6] # La fonte è nella settima colonna
+                        sources_count[source_name] = sources_count.get(source_name, 0) + 1
             
             if sources_count:
                 print("\nDistribuzione per fonte:")
