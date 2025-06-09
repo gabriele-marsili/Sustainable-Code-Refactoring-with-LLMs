@@ -64,17 +64,11 @@ def main():
     parser.add_argument(
         '--sources', '-s',
         nargs='+',
-        default=[ # Aggiunte le nuove fonti ai default
-            'exercism', 'pyleet', 'codewars', 
-            'larrybotha', 'jainmohit2001', 'mathusanm6', 
-            'donnemartin', 'MTrajK', 'warycat', 
-            'codedge', 'TheRenegadeCoder'
+        default=[
+            'java-thomasZumsteg'
         ],
-        choices=[ # Aggiornati i choices con tutte le nuove fonti
-            'exercism', 'pyleet', 'codewars',
-            'larrybotha', 'jainmohit2001', 'mathusanm6',
-            'donnemartin', 'MTrajK', 'warycat',
-            'codedge', 'TheRenegadeCoder'
+        choices=[
+            'java-thomasZumsteg'
         ],
         help='Fonti da utilizzare (default: tutte)'
     )
@@ -124,18 +118,8 @@ def main():
     print(f"Token GitHub: {'Configurato' if token else 'Non configurato (rate limiting limitato)'}")
     
     # Informazioni sulle fonti aggiornate
-    source_info = {
-        'exercism': 'Esercizi multi-linguaggio con soluzioni umane',
-        'pyleet': 'Soluzioni Python per problemi LeetCode (huajianmao/pyleet)',
-        'codewars': 'Kata JavaScript con test (WMattWood/codewars)',
-        'larrybotha': 'Soluzioni TypeScript da HackerRank (larrybotha/coding-challenge-solutions)',
-        'jainmohit2001': 'Soluzioni TypeScript per coding challenges (jainmohit2001/coding-challenges)',
-        'mathusanm6': 'Soluzioni Python LeetCode (mathusanm6/LeetCode)',
-        'donnemartin': 'Coding challenges interattive Python (donnemartin/interactive-coding-challenges)',
-        'MTrajK': 'Problemi di coding Python (MTrajK/coding-problems)',
-        'warycat': 'Soluzioni Rust Advent of Code (warycat/rustgym)',
-        'codedge': 'Coding challenges Go (codedge/coding-challenges)',
-        'TheRenegadeCoder': 'Programmi campione multi-linguaggio con test (TheRenegadeCoder/sample-programs)'
+    source_info = { 
+        'java-thomasZumsteg': 'Java exercism by an user'
     }
     
     print("\nFonti selezionate:")
