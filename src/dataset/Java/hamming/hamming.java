@@ -1,12 +1,17 @@
-public class Hamming {
-    public static Integer compute(String dna_a, String dna_b) {
-        Integer distance = 0;
-        if(dna_a.length() != dna_b.length())
-            throw new IllegalArgumentException();
-        for(int i = 0; i < dna_a.length(); i++) {
-            if(dna_a.charAt(i) != dna_b.charAt(i))
-                distance++;
-        }
-        return distance;
-    } 
+class Hamming {
+  private int distance;
+
+  Hamming(String leftStrand, String rightStrand) {
+    if (leftStrand.length() != rightStrand.length())
+      throw new IllegalArgumentException("leftStrand and rightStrand must be of equal length.");
+
+    for (int i = 0; i < leftStrand.length(); i++) {
+      if (leftStrand.charAt(i) != rightStrand.charAt(i)) distance++;
+    }
+  }
+
+  int getHammingDistance() {
+    return distance;
+  }
+
 }

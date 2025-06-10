@@ -1,53 +1,95 @@
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
-
+import org.junit.Ignore;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+
+import static org.junit.Assert.assertEquals;
+
 
 public class HammingTest {
-    
+
+    @Rule
+    public ExpectedException expectedException = ExpectedException.none();
+
     @Test
-    public void testNoDifferenceBetweenIdenticalStrands() {
-        assertThat(Hamming.compute("A", "A"), is(0));
+    public void testNoDistanceBetweenEmptyStrands() {
+        assertEquals(0, new Hamming("", "").getHammingDistance());
     }
 
     @Test
-    public void testCompleteHammingDistanceOfForSingleNucleotideStrand() {
-        assertThat(Hamming.compute("A", "G"), is(1));
+    public void testNoDistanceBetweenShortIdenticalStrands() {
+        assertEquals(0, new Hamming("A", "A").getHammingDistance());
     }
 
     @Test
-    public void testCompleteHammingDistanceForSmallStrand() {
-        assertThat(Hamming.compute("AG", "CT"), is(2)); 
+    public void testNoDistanceBetweenLongIdenticalStrands() {
+        assertEquals(0, new Hamming("GGACTGA", "GGACTGA").getHammingDistance());
     }
 
     @Test
-    public void testSmallHammingDistance() {
-        assertThat(Hamming.compute("AT", "CT"), is(1));
+    public void testCompleteDistanceInSingleNucleotideStrand() {
+        assertEquals(1, new Hamming("A", "G").getHammingDistance());
     }
 
     @Test
-    public void testSmallHammingDistanceInLongerStrand() {
-        assertThat(Hamming.compute("GGACG", "GGTCG"), is(1));
+    public void testCompleteDistanceInSmallStrand() {
+        assertEquals(2, new Hamming("AG", "CT").getHammingDistance());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
+    public void testSmallDistanceInSmallStrand() {
+        assertEquals(1, new Hamming("AT", "CT").getHammingDistance());
+    }
+
+    @Test
+    public void testSmallDistanceInMediumStrand() {
+        assertEquals(1, new Hamming("GGACG", "GGTCG").getHammingDistance());
+    }
+
+    @Test
+    public void testSmallDistanceInLongStrand() {
+        assertEquals(2, new Hamming("ACCAGGG", "ACTATGG").getHammingDistance());
+    }
+
+    @Test
+    public void testNonUniqueCharacterInFirstStrand() {
+        assertEquals(1, new Hamming("AAG", "AAA").getHammingDistance());
+    }
+
+    @Test
+    public void testNonUniqueCharacterInSecondStrand() {
+        assertEquals(1, new Hamming("AAA", "AAG").getHammingDistance());
+    }
+
+    @Test
+    public void testSameNucleotidesInDifferentPositions() {
+        assertEquals(2, new Hamming("TAG", "GAT").getHammingDistance());
+    }
+
+    @Test
+    public void testLargeDistanceInPermutedStrand() {
+        assertEquals(4, new Hamming("GATACA", "GCATAA").getHammingDistance());
+    }
+
+    @Test
+    public void testLargeDistanceInOffByOneStrand() {
+        assertEquals(9, new Hamming("GGACGGATTCTG", "AGGACGGATTCT").getHammingDistance());
+    }
+
+    @Test
     public void testValidatesFirstStrandNotLonger() {
-        Hamming.compute("AAAG", "AAA");
-    }
+        expectedException.expect(IllegalArgumentException.class);
+        expectedException.expectMessage("leftStrand and rightStrand must be of equal length.");
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testValidatesOtherStrandNotLonger() {
-        Hamming.compute("AAA", "AAAG");
-    }
-
-    @Test
-    public void testLargeHammingDistance() {
-        assertThat(Hamming.compute("GATACA", "GCATAA"), is(4));
+        new Hamming("AATG", "AAA");
     }
 
     @Test
-    public void testHammingDistanceInVeryLongStrand() {
-        assertThat(Hamming.compute("GGACGGATTCTG", "AGGACGGATTCT"), is(9));
+    public void testValidatesSecondStrandNotLonger() {
+        expectedException.expect(IllegalArgumentException.class);
+        expectedException.expectMessage("leftStrand and rightStrand must be of equal length.");
+
+        new Hamming("ATA", "AGTG");
     }
 
 }

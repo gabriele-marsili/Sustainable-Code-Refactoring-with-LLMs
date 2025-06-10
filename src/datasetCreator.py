@@ -472,7 +472,243 @@ class CodeTestDatasetCreator:
                 json.dump(self.dataset_content, f, indent=4)
         except Exception as e:
             print(f"Errore nel salvare il file JSON: {e}")
+     
+    def run_full_extraction(self, sources: List[str] = None, languages: List[str] = None):
+        """Esegue l'estrazione completa del dataset"""
+        if sources is None:
+            sources = [
+                'java-thomasZumsteg'
+            ]
+        if languages is None:
+            languages = ['python', 'java', 'javascript', 'typescript', 'cpp', 'go', 'rust', 'csharp', 'ruby', 'php']
 
+        self.target_languages = [lang.lower() for lang in languages]
+
+        self.setup_directories()
+        self.init_json_dataset() # Ora carica anche gli ID esistenti e il contenuto JSON
+
+        print("=== Inizio creazione dataset con soluzioni umane ===")
+        print(f"Linguaggi target: {', '.join(self.target_languages)}")
+
+        try:            
+            if "mandarussell" in sources:
+                self.process_mandarussell()
+            #if "blogscot" in sources:
+            #    self.process_blogscot()
+            #if "RinatMambetov" in sources:
+            #    self.process_RinatMambetov()
+            #if "LauriESB" in sources:
+            #    self.process_LauriESB()
+            #if "java-exercism-shyvum" in sources:
+            #    self.process_shyvum()
+            #if 'java-thomasZumsteg' in sources:
+            #    self.process_thomasZumsteg()            
+
+        except Exception as e:
+            print(f"Errore durante l'estrazione: {e}")
+            import traceback
+            traceback.print_exc()
+
+        print(f"\n=== Dataset completato! ===")
+        print(f"File JSON: {self.jsonDataset_file}")
+
+        # Statistiche (ora basate su self.processed_ids e self.language_counts)
+        print(f"Coppie codice-test create (totale): {len(self.processed_ids)}")
+        print("\nDistribuzione per linguaggio (totale):")
+        for lang, count in sorted(self.language_counts.items()):
+            print(f"  - {lang}: {count} coppie")
+
+    
+    def process_mandarussell(self):
+        repo = "mandarussell/Exercism-Java-Solutions"
+       
+        print("\nProcessing mandarussell exercism (Java)")        
+        repo_contents = self.get_github_contents(repo,"java")
+        for item in repo_contents :
+            if item["type"] == "dir" and item["name"] != ".idea":
+                file_name = item["name"]
+                print(f"\nProcessing filename : {file_name}")
+                
+                main_path = "java/"+file_name+"/src/main/java"
+                test_path = "java/"+file_name+"/src/test/java"
+                
+                if file_name == "lasagna": test_path+="/utils"
+                
+                main_conent = self.get_github_contents(repo, main_path)
+                test_conent = self.get_github_contents(repo, test_path)
+                
+                main_file = None
+                for f_item in main_conent:
+                    if f_item['type'] == "file": 
+                        main_file = f_item
+                        break
+                
+                test_file = None
+                for f_item in test_conent:
+                    if f_item['type'] == "file": 
+                        test_file = f_item
+                        break
+                    
+                if test_file and main_file : 
+                    print(f"Creating pair for file : {file_name}")                    
+                    self.create_single_code_test_pair(repo,main_file,test_file,"Java",file_name,"exercism-java-mandarussell")
+       
+    #repositories already processed
+    """
+    def process_blogscot(self):
+        repo = "blogscot/exercism-java"
+       
+        print("\nProcessing blogscot exercism (Java)")        
+        repo_contents = self.get_github_contents(repo)
+        for item in repo_contents :
+            if item["type"] == "dir" and item["name"] != ".idea":
+                file_name = item["name"]
+                print(f"\nProcessing filename : {file_name}")
+                
+                main_path = file_name+"/src/main/java"
+                test_path = file_name+"/src/test/java"
+                
+                if file_name == "lasagna": test_path+="/utils"
+                
+                main_conent = self.get_github_contents(repo, main_path)
+                test_conent = self.get_github_contents(repo, test_path)
+                
+                main_file = None
+                for f_item in main_conent:
+                    if f_item['type'] == "file": 
+                        main_file = f_item
+                        break
+                
+                test_file = None
+                for f_item in test_conent:
+                    if f_item['type'] == "file": 
+                        test_file = f_item
+                        break
+                    
+                if test_file and main_file : 
+                    print(f"Creating pair for file : {file_name}")                    
+                    self.create_single_code_test_pair(repo,main_file,test_file,"Java",file_name,"exercism-java-blogscot")
+    
+    def process_RinatMambetov(self):
+        repo = "RinatMambetov/exercism-java"
+       
+        print("\nProcessing RinatMambetov exercism (Java)")        
+        repo_contents = self.get_github_contents(repo)
+        for item in repo_contents :
+            if item["type"] == "dir" and item["name"] != ".idea":
+                file_name = item["name"]
+                print(f"\nProcessing filename : {file_name}")
+                
+                main_path = file_name+"/src/main/java"
+                test_path = file_name+"/src/test/java"
+                
+                if file_name == "lasagna": test_path+="/utils"
+                
+                main_conent = self.get_github_contents(repo, main_path)
+                test_conent = self.get_github_contents(repo, test_path)
+                
+                main_file = None
+                for f_item in main_conent:
+                    if f_item['type'] == "file": 
+                        main_file = f_item
+                        break
+                
+                test_file = None
+                for f_item in test_conent:
+                    if f_item['type'] == "file": 
+                        test_file = f_item
+                        break
+                    
+                if test_file and main_file : 
+                    print(f"Creating pair for file : {file_name}")                    
+                    self.create_single_code_test_pair(repo,main_file,test_file,"Java",file_name,"exercism-java-RinatMambetov")
+   
+    
+    def process_LauriESB(self):
+        repo = "LauriESB/exercism-java"
+       
+        print("\nProcessing LauriESB exercism (Java)")        
+        repo_contents = self.get_github_contents(repo,"solutions")
+        for item in repo_contents :
+            if item["type"] == "dir" :
+                file_name = item["name"]
+                print(f"\nProcessing filename : {file_name}")
+                
+                main_path = "solutions/"+file_name+"/src/main/java"
+                test_path = "solutions/"+file_name+"/src/test/java"
+                
+                if file_name == "lasagna": test_path+="/utils"
+                
+                main_conent = self.get_github_contents(repo, main_path)
+                test_conent = self.get_github_contents(repo, test_path)
+                
+                main_file = None
+                for f_item in main_conent:
+                    if f_item['type'] == "file": 
+                        main_file = f_item
+                        break
+                
+                test_file = None
+                for f_item in test_conent:
+                    if f_item['type'] == "file": 
+                        test_file = f_item
+                        break
+                    
+                if test_file and main_file : 
+                    print(f"Creating pair for file : {file_name}")                    
+                    self.create_single_code_test_pair(repo,main_file,test_file,"Java",file_name,"exercism-java-LauriESB")
+     
+     
+    def process_shyvum(self):   
+        repo = "shyvum/Exercism"
+       
+        print("\nProcessing shyvum exercism (Java)")        
+        repo_contents = self.get_github_contents(repo,"java")
+        for item in repo_contents :
+            if item["type"] == "dir" and item["name"] != ".idea":
+                file_name = item["name"]
+                print(f"\nProcessing filename : {file_name}")
+                
+                main_path = "java/"+file_name+"/src/main/java"
+                test_path = "java/"+file_name+"/src/test/java"
+                
+                main_conent = self.get_github_contents(repo, main_path)
+                test_conent = self.get_github_contents(repo, test_path)
+                
+                main_file = None
+                for f_item in main_conent:
+                    if f_item['type'] == "file": main_file = f_item
+                
+                test_file = None
+                for f_item in test_conent:
+                    if f_item['type'] == "file": test_file = f_item
+                    
+                if test_file and main_file : 
+                    print(f"Creating pair for file : {file_name}")                    
+                    self.create_single_code_test_pair(repo,main_file,test_file,"Java",file_name,"exercism-java-shyvum")
+       
+       
+        #js:
+        print("\nProcessing shyvum exercism (js)")
+        repo_contents = self.get_github_contents(repo,"javascript")
+        for item in repo_contents:
+            if item["type"] == "dir" :
+                file_name = item["name"]
+                print(f"\nProcessing file : {file_name} (js)")
+                dir_content = self.get_github_contents(repo, "javascript/"+file_name)
+                code_file = None
+                test_file = None
+                for file in dir_content:
+                    if file_name in str(file["name"]):
+                        if "spec" in str(file["name"]): #test
+                            test_file = file
+                        else: 
+                            code_file = file
+                
+                if code_file and test_file:
+                    print(f"Creating pair for file : {file_name}")                    
+                    self.create_single_code_test_pair(repo,code_file,test_file,"javascript",file_name,"exercism-javascript-shyvum")
+                                    
     def process_thomasZumsteg(self):
         repo = "ThomasZumsteg/exercism-java"
         print("\nProcessing ThomasZumsteg exercism (Java)")
@@ -500,43 +736,8 @@ class CodeTestDatasetCreator:
                     print(f"Creating pair for file : {file_name}")
                     
                     self.create_single_code_test_pair(repo,main_file,test_file,"Java",file_name,"exercism-java-ThomasZumsteg")
-        
-            
-    
-    def run_full_extraction(self, sources: List[str] = None, languages: List[str] = None):
-        """Esegue l'estrazione completa del dataset"""
-        if sources is None:
-            sources = [
-                'java-thomasZumsteg'
-            ]
-        if languages is None:
-            languages = ['python', 'java', 'javascript', 'typescript', 'cpp', 'go', 'rust', 'csharp', 'ruby', 'php']
-
-        self.target_languages = [lang.lower() for lang in languages]
-
-        self.setup_directories()
-        self.init_json_dataset() # Ora carica anche gli ID esistenti e il contenuto JSON
-
-        print("=== Inizio creazione dataset con soluzioni umane ===")
-        print(f"Linguaggi target: {', '.join(self.target_languages)}")
-
-        try:
-            if 'java-thomasZumsteg' in sources:
-                self.process_thomasZumsteg()            
-
-        except Exception as e:
-            print(f"Errore durante l'estrazione: {e}")
-            import traceback
-            traceback.print_exc()
-
-        print(f"\n=== Dataset completato! ===")
-        print(f"File JSON: {self.jsonDataset_file}")
-
-        # Statistiche (ora basate su self.processed_ids e self.language_counts)
-        print(f"Coppie codice-test create (totale): {len(self.processed_ids)}")
-        print("\nDistribuzione per linguaggio (totale):")
-        for lang, count in sorted(self.language_counts.items()):
-            print(f"  - {lang}: {count} coppie")
+    """
+   
 
 # Utilizzo per test rapidi (rimuovere o commentare in produzione)
 if __name__ == "__main__":
@@ -546,7 +747,12 @@ if __name__ == "__main__":
     # Esegui l'estrazione con tutti i linguaggi e le nuove fonti
     creator.run_full_extraction(
         sources=[
-           'java-thomasZumsteg'
+           #'java-thomasZumsteg'
+           #"java-exercism-shyvum"
+           #"LauriESB"
+           #"RinatMambetov"
+           #"blogscot"
+           "mandarussell"
         ],
         languages=[
             'python', 'javascript', 'java', 'cpp', 'go', 'rust', 'typescript',

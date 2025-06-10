@@ -1,29 +1,41 @@
+import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
-import java.util.HashSet;
 
-public class Robot {
+class Robot {
     private String name = "";
-    private static Set<String> namesInUse = new HashSet<String>();
+    private static final Set<String> names = new HashSet<>();
 
-    public Robot() {
-        reset();
+    private int getRandomNumber(int min, int max) {
+        Random random = new Random();
+        return random.nextInt(max - min + 1) + min;
     }
 
-    public String getName() {
-        return this.name;
-    }
-
-    public void reset() {
-        String oldName = this.name;
-        while(this.name.isEmpty() || namesInUse.contains(this.name)) {
-            Random r = new Random();
-            this.name = "";
-            this.name += (char)(r.nextInt(26) + 65);
-            this.name += (char)(r.nextInt(26) + 65);
-            this.name += Integer.toString(r.nextInt(1000));
+    private void makeName() {
+        char firstChar = (char) getRandomNumber(65, 90);
+        char secondChar = (char) getRandomNumber(65, 90);
+        int firstNum = getRandomNumber(0, 9);
+        int secondNum = getRandomNumber(0, 9);
+        int thirdNum = getRandomNumber(0, 9);
+        var name = new StringBuilder();
+        name.append(firstChar).append(secondChar).append(firstNum).append(secondNum).append(thirdNum);
+        if (names.contains(name.toString())) {
+            makeName();
+        } else {
+            this.name = name.toString();
+            names.add(name.toString());
         }
-        namesInUse.add(this.name);
-        namesInUse.remove(oldName);
     }
+
+    String getName() {
+        if (name.isEmpty()) {
+            makeName();
+        }
+        return name;
+    }
+
+    void reset() {
+        name = "";
+    }
+
 }

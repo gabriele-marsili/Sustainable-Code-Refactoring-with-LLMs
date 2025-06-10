@@ -1,61 +1,111 @@
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class DequeTest {
-    private Deque<Integer> subject;
-
-    @Before
-    public void setUp() {
-        subject = new Deque<>();
-    }
+public class DoublyLinkedListTest {
 
     @Test
-    public void testPushPop() {
-        subject.push(10);
-        subject.push(20);
-        assertThat(subject.pop()).isEqualTo(20);
-        assertThat(subject.pop()).isEqualTo(10);
+    public void popGetsElementFromTheList() {
+        DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
+
+        list.push(7);
+
+        assertThat(list.pop()).isEqualTo(7);
     }
 
+    //    @Ignore("Remove to run test")
     @Test
-    public void testPushShift() {
-        subject.push(10);
-        subject.push(20);
-        assertThat(subject.shift()).isEqualTo(10);
-        assertThat(subject.shift()).isEqualTo(20);
+    public void pushAndPopRespectivelyAddsAndRemovesAtEndOfList() {
+        DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
+
+        list.push(11);
+        list.push(13);
+
+        assertThat(list.pop()).isEqualTo(13);
+        assertThat(list.pop()).isEqualTo(11);
     }
 
+    //    @Ignore("Remove to run test")
     @Test
-    public void testUnshiftShift() {
-        subject.unshift(10);
-        subject.unshift(20);
-        assertThat(subject.shift()).isEqualTo(20);
-        assertThat(subject.shift()).isEqualTo(10);
+    public void shiftGetsAnElementFromTheList() {
+        DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
+
+        list.push(17);
+
+        assertThat(list.shift()).isEqualTo(17);
     }
 
+    //    @Ignore("Remove to run test")
     @Test
-    public void testUnshiftPop() {
-        subject.unshift(10);
-        subject.unshift(20);
-        assertThat(subject.pop()).isEqualTo(10);
-        assertThat(subject.pop()).isEqualTo(20);
+    public void shiftGetsFirstElementFromTheList() {
+        DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
+
+        list.push(23);
+        list.push(5);
+
+        assertThat(list.shift()).isEqualTo(23);
+        assertThat(list.shift()).isEqualTo(5);
     }
 
+    //    @Ignore("Remove to run test")
     @Test
-    public void testExample() {
-        subject.push(10);
-        subject.push(20);
-        assertThat(subject.pop()).isEqualTo(20);
+    public void unshiftAddsElementAtStartOfTheList() {
+        DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
 
-        subject.push(30);
-        assertThat(subject.shift()).isEqualTo(10);
+        list.unshift(23);
+        list.unshift(5);
 
-        subject.unshift(40);
-        subject.push(50);
-        assertThat(subject.shift()).isEqualTo(40);
-        assertThat(subject.pop()).isEqualTo(50);
-        assertThat(subject.shift()).isEqualTo(30);
+        assertThat(list.shift()).isEqualTo(5);
+        assertThat(list.shift()).isEqualTo(23);
+    }
+
+    //    @Ignore("Remove to run test")
+    @Test
+    public void popPushShiftUnshiftCanBeUsedInAnyOrder() {
+        DoublyLinkedList<String> list = new DoublyLinkedList<>();
+
+        list.push("one");
+        list.push("two");
+
+        assertThat(list.pop()).isEqualTo("two");
+
+        list.push("three");
+
+        assertThat(list.shift()).isEqualTo("one");
+
+        list.unshift("four");
+        list.push("five");
+
+        assertThat(list.shift()).isEqualTo("four");
+        assertThat(list.pop()).isEqualTo("five");
+        assertThat(list.shift()).isEqualTo("three");
+    }
+
+    //    @Ignore("Remove to run test")
+    @Test
+    public void poppingToEmptyDoesNotBreakTheList() {
+        DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
+
+        list.push(41);
+        list.push(59);
+        list.pop();
+        list.pop();
+        list.push(47);
+
+        assertThat(list.pop()).isEqualTo(47);
+    }
+
+    //    @Ignore("Remove to run test")
+    @Test
+    public void shiftingToEmptyDoesNotBreakTheList() {
+        DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
+
+        list.push(41);
+        list.push(59);
+        list.shift();
+        list.shift();
+        list.push(47);
+
+        assertThat(list.shift()).isEqualTo(47);
     }
 }

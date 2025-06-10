@@ -1,76 +1,169 @@
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.List;
-import org.junit.Test;
+import java.util.Collections;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class AnagramTest {
 
     @Test
     public void testNoMatches() {
         Anagram detector = new Anagram("diaper");
-        assertThat(detector.match(Arrays.asList("hello", "world", "zombies", "pants"))).isEmpty();
+
+        assertThat(
+                detector.match(
+                        Arrays.asList("hello", "world", "zombies", "pants")))
+                .isEmpty();
     }
 
+    //    @Ignore("Remove to run test")
     @Test
-    public void testSimpleAnagram() {
-        Anagram detector = new Anagram("ant");
-        List<String> anagram = detector.match(Arrays.asList("tan", "stand", "at"));
-        assertThat(anagram).containsExactly("tan");
+    public void testDetectsTwoAnagrams() {
+        Anagram detector = new Anagram("solemn");
+
+        assertThat(detector.match(Arrays.asList("lemons", "cherry", "melons")))
+                .containsExactlyInAnyOrder("lemons", "melons");
     }
 
-    @Test
-    public void testDetectMultipleAnagrams() {
-        Anagram detector = new Anagram("master");
-        List<String> anagrams = detector.match(Arrays.asList("stream", "pigeon", "maters"));
-        assertThat(anagrams).contains("maters", "stream");
-    }
-
-    @Test
-    public void testDoesNotConfuseDifferentDuplicates() {
-        Anagram detector = new Anagram("galea");
-        List<String> anagrams = detector.match(Arrays.asList("eagle"));
-        assertThat(anagrams).isEmpty();
-    }
-
-    @Test
-    public void testIdenticalWordIsNotAnagram() {
-        Anagram detector = new Anagram("corn");
-        List<String> anagrams = detector.match(Arrays.asList("corn", "dark", "Corn", "rank", "CORN", "cron", "park"));
-        assertThat(anagrams).containsExactly("cron");
-    }
-
-    @Test
-    public void testEliminateAnagramsWithSameChecksum() {
-        Anagram detector = new Anagram("mass");
-        assertThat(detector.match(Arrays.asList("last")).isEmpty());
-    }
-
+    //    @Ignore("Remove to run test")
     @Test
     public void testEliminateAnagramSubsets() {
         Anagram detector = new Anagram("good");
+
         assertThat(detector.match(Arrays.asList("dog", "goody"))).isEmpty();
     }
 
+    //    @Ignore("Remove to run test")
     @Test
-    public void testDetectAnagrams() {
+    public void testDetectLongerAnagram() {
         Anagram detector = new Anagram("listen");
-        List<String> anagrams = detector.match(Arrays.asList("enlists", "google", "inlets", "banana"));
-        assertThat(anagrams).contains("inlets");
+
+        assertThat(
+                detector.match(
+                        Arrays.asList("enlists", "google", "inlets", "banana")))
+                .containsExactlyInAnyOrder("inlets");
     }
 
+    //    @Ignore("Remove to run test")
     @Test
-    public void testMultipleAnagrams() {
+    public void testDetectMultipleAnagramsForLongerWord() {
         Anagram detector = new Anagram("allergy");
-        List<String> anagrams = detector.match(Arrays.asList("gallery", "ballerina", "regally", "clergy", "largely", "leading"));
-        assertThat(anagrams).contains("gallery", "largely", "regally");
+        assertThat(
+                detector.match(
+                        Arrays.asList(
+                                "gallery",
+                                "ballerina",
+                                "regally",
+                                "clergy",
+                                "largely",
+                                "leading")))
+                .containsExactlyInAnyOrder("gallery", "regally", "largely");
     }
 
+    //    @Ignore("Remove to run test")
     @Test
-    public void testAnagramsAreCaseInsensitive() {
+    public void testDetectsMultipleAnagramsWithDifferentCase() {
+        Anagram detector = new Anagram("nose");
+
+        assertThat(detector.match(Arrays.asList("Eons", "ONES")))
+                .containsExactlyInAnyOrder("Eons", "ONES");
+    }
+
+    //    @Ignore("Remove to run test")
+    @Test
+    public void testEliminateAnagramsWithSameChecksum() {
+        Anagram detector = new Anagram("mass");
+
+        assertThat(detector.match(Collections.singletonList("last")))
+                .isEmpty();
+    }
+
+    //    @Ignore("Remove to run test")
+    @Test
+    public void testCaseInsensitiveWhenBothAnagramAndSubjectStartWithUpperCaseLetter() {
         Anagram detector = new Anagram("Orchestra");
-        List<String> anagrams = detector.match(Arrays.asList("cashregister", "Carthorse", "radishes"));
-        assertThat(anagrams).contains("Carthorse");
+
+        assertThat(
+                detector.match(
+                        Arrays.asList("cashregister", "Carthorse", "radishes")))
+                .containsExactlyInAnyOrder("Carthorse");
+    }
+
+    //    @Ignore("Remove to run test")
+    @Test
+    public void testCaseInsensitiveWhenSubjectStartsWithUpperCaseLetter() {
+        Anagram detector = new Anagram("Orchestra");
+
+        assertThat(
+                detector.match(
+                        Arrays.asList("cashregister", "carthorse", "radishes")))
+                .containsExactlyInAnyOrder("carthorse");
+    }
+
+    //    @Ignore("Remove to run test")
+    @Test
+    public void testCaseInsensitiveWhenAnagramStartsWithUpperCaseLetter() {
+        Anagram detector = new Anagram("orchestra");
+
+        assertThat(
+                detector.match(
+                        Arrays.asList("cashregister", "Carthorse", "radishes")))
+                .containsExactlyInAnyOrder("Carthorse");
+    }
+
+    //    @Ignore("Remove to run test")
+    @Test
+    public void testIdenticalWordRepeatedIsNotAnagram() {
+        Anagram detector = new Anagram("go");
+
+        assertThat(detector.match(Collections.singletonList("goGoGO")))
+                .isEmpty();
+    }
+
+    //    @Ignore("Remove to run test")
+    @Test
+    public void testAnagramMustUseAllLettersExactlyOnce() {
+        Anagram detector = new Anagram("tapper");
+
+        assertThat(detector.match(Collections.singletonList("patter")))
+                .isEmpty();
+    }
+
+    //    @Ignore("Remove to run test")
+    @Test
+    public void testWordsAreNotAnagramsOfThemselvesCaseInsensitive() {
+        Anagram detector = new Anagram("BANANA");
+
+        assertThat(detector.match(Collections.singletonList("BANANA")))
+                .isEmpty();
+    }
+
+    //    @Ignore("Remove to run test")
+    @Test
+    public void testWordsAreNotAnagramsOfThemselvesEvenIfLetterCaseIsPartiallyDifferent() {
+        Anagram detector = new Anagram("BANANA");
+
+        assertThat(detector.match(Collections.singletonList("Banana")))
+                .isEmpty();
+    }
+
+    //    @Ignore("Remove to run test")
+    @Test
+    public void testWordsAreNotAnagramsOfThemselvesEvenIfLetterCaseIsCompletelyDifferent() {
+        Anagram detector = new Anagram("BANANA");
+
+        assertThat(detector.match(Collections.singletonList("banana")))
+                .isEmpty();
+    }
+
+    //    @Ignore("Remove to run test")
+    @Test
+    public void testWordsOtherThanThemselvesCanBeAnagrams() {
+        Anagram detector = new Anagram("LISTEN");
+
+        assertThat(detector.match(Arrays.asList("LISTEN", "Silent")))
+                .containsExactlyInAnyOrder("Silent");
     }
 
 }

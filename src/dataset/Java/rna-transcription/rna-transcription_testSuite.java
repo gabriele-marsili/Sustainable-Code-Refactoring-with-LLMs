@@ -1,35 +1,45 @@
-import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class RnaTranscriptionTest {
 
-    @Test
-    public void testRnaTranscriptionOfEmptyDnaIsEmptyRna() {
-        Assert.assertEquals("", RnaTranscription.ofDna(""));
-    }
+  private RnaTranscription rnaTranscription;
 
-    @Test
-    public void testRnaTranscriptionOfCytosineIsGuanine() {
-        Assert.assertEquals("G", RnaTranscription.ofDna("C"));
-    }
+  @Before
+  public void setUp() {
+    rnaTranscription = new RnaTranscription();
+  }
 
-    @Test
-    public void testRnaTranscriptionOfGuanineIsCytosine() {
-        Assert.assertEquals("C", RnaTranscription.ofDna("G"));
-    }
+  @Test
+  public void testEmptyRnaSequence() {
+    assertEquals("", rnaTranscription.transcribe(""));
+  }
 
-    @Test
-    public void testRnaTranscriptionOfThymineIsAdenine() {
-        Assert.assertEquals("A", RnaTranscription.ofDna("T"));
-    }
+  @Test
+  public void testRnaTranscriptionOfCytosineIsGuanine() {
+    assertEquals("G", rnaTranscription.transcribe("C"));
+  }
 
-    @Test
-    public void testRnaTranscriptionOfAdenineIsUracil() {
-        Assert.assertEquals("U", RnaTranscription.ofDna("A"));
-    }
+  @Test
+  public void testRnaTranscriptionOfGuanineIsCytosine() {
+    assertEquals("C", rnaTranscription.transcribe("G"));
+  }
 
-    @Test
-    public void testRnaTranscription() {
-        Assert.assertEquals("UGCACCAGAAUU", RnaTranscription.ofDna("ACGTGGTCTTAA"));
-    }
+  @Test
+  public void testRnaTranscriptionOfThymineIsAdenine() {
+    assertEquals("A", rnaTranscription.transcribe("T"));
+  }
+
+  @Test
+  public void testRnaTranscriptionOfAdenineIsUracil() {
+    assertEquals("U", rnaTranscription.transcribe("A"));
+  }
+
+  @Test
+  public void testRnaTranscription() {
+    assertEquals("UGCACCAGAAUU", rnaTranscription.transcribe("ACGTGGTCTTAA"));
+  }
+
 }

@@ -1,26 +1,22 @@
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Arrays;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-public class PigLatin {
-    public static String translate(String input) {
-        return Stream.of(input.split(" "))
-            .map(w -> translateWord(w))
-            .collect(Collectors.joining(" "));
-    }
+class PigLatinTranslator {
 
-    private static String translateWord(String input) {
-        Matcher quMatch = Pattern.compile("([^aeio]*qu)(.*)").matcher(input);
-        Matcher yMatch = Pattern.compile("^y[^aeiou]").matcher(input);
-        Matcher defaultMacher = Pattern.compile("(.*?)([aeoiu].*)").matcher(input);
+  String translate(String phrase) {
+    return Arrays
+        .stream(phrase.split(" "))
+        .map(this::translateWord)
+        .collect(Collectors.joining(" "));
+  }
 
-        if(quMatch.find())
-            return quMatch.group(2) + quMatch.group(1) + "ay";
+  private String translateWord(String word) {
 
-        if(!yMatch.find() && defaultMacher.find() && 
-            !input.equals(defaultMacher.group(1) + "ay"))
-            return defaultMacher.group(2) + defaultMacher.group(1) + "ay";
-        return input + "ay";
-    }
+    if (word.matches("(yt|xr|[aeiou]|[aeiou]qu).*")) return word + "ay";
+    else if (word.matches("(thr|sch|[^aeiou]qu).*")) return word.substring(3) + word.substring(0, 3) + "ay";
+    else if (word.matches("(ch|qu|th|rh).*")) return word.substring(2) + word.substring(0, 2) + "ay";
+
+    return word.substring(1) + word.charAt(0) + "ay";
+  }
+
 }

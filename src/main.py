@@ -65,10 +65,20 @@ def main():
         '--sources', '-s',
         nargs='+',
         default=[
-            'java-thomasZumsteg'
+            #'java-thomasZumsteg'
+            #"java-exercism-shyvum"
+            #"LauriESB"
+            #"RinatMambetov"
+            #"blogscot"
+            "mandarussell"
         ],
         choices=[
-            'java-thomasZumsteg'
+            #'java-thomasZumsteg'
+            #"java-exercism-shyvum"
+            #"LauriESB"
+            #"RinatMambetov"
+            #"blogscot"
+            "mandarussell"
         ],
         help='Fonti da utilizzare (default: tutte)'
     )

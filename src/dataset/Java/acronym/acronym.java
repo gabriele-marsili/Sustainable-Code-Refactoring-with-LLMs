@@ -1,16 +1,24 @@
-public class Acronym {
-    //Acronym shortens words to indecipherable shorter versions
-    public static String generate(String phrase) {
-        //generate creates an acronym from a word base on capitilization
-       String[] words = phrase.split("\\W+");
-       String acronym = "";
-       for(String word: words) {
-           acronym += Character.toUpperCase(word.charAt(0));
-           String remainer = word.substring(1, word.length());
-           String upperCaseRemainer = remainer.replaceAll("[^A-Z]", "");
-           if(upperCaseRemainer != "" && upperCaseRemainer != remainer)
-               acronym += upperCaseRemainer;
-       }
-       return acronym;
-    }
-} 
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+
+import static java.util.Objects.requireNonNull;
+
+class Acronym {
+  private final String acronym;
+
+  Acronym(String phrase) {
+    requireNonNull(phrase);
+
+    acronym = Pattern.compile("\\W+")
+        .splitAsStream(phrase.replace("'", ""))
+        .map(word -> word.charAt(0))
+        .map(Character::toUpperCase)
+        .map(c -> Character.toString(c))
+        .collect(Collectors.joining());
+  }
+
+  String getAcronym() {
+    return acronym;
+  }
+
+}

@@ -1,19 +1,26 @@
-public class RnaTranscription {
-    public static String ofDna(String dna) {
-        String rna = "";
-        for(Character c: dna.toCharArray()) {
-            rna += fromDnaToRna(c);
-        }
-        return rna;
-    }
+import java.util.stream.Collectors;
 
-    private static String fromDnaToRna(Character dna) {
-        switch(dna) {
-            case 'C': return "G";
-            case 'G': return "C";
-            case 'T': return "A";
-            case 'A': return "U";
-            default: return "";
-        }
+class RnaTranscription {
+
+  String transcribe(String dnaStrand) {
+    return dnaStrand
+        .chars()
+        .mapToObj(c -> transcribeRNA(Character.toString(c)))
+        .collect(Collectors.joining());
+  }
+
+  private String transcribeRNA(String rna) {
+    switch (rna) {
+      case "C":
+        return "G";
+      case "G":
+        return "C";
+      case "T":
+        return "A";
+      case "A":
+        return "U";
     }
+    return "";
+  }
+
 }

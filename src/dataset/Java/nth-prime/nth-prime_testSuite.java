@@ -1,30 +1,42 @@
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertThrows;
+
+import org.junit.Ignore;
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+public class PrimeCalculatorTest {
 
-public class PrimeTest {
+    private PrimeCalculator primeCalculator = new PrimeCalculator();
+
     @Test
     public void testFirstPrime() {
-        assertThat(Prime.nth(1)).isEqualTo(2);
+        assertThat(primeCalculator.nth(1)).isEqualTo(2);
     }
 
+    @Ignore("Remove to run test")
     @Test
     public void testSecondPrime() {
-        assertThat(Prime.nth(2)).isEqualTo(3);
+        assertThat(primeCalculator.nth(2)).isEqualTo(3);
     }
 
+    @Ignore("Remove to run test")
     @Test
     public void testSixthPrime() {
-        assertThat(Prime.nth(6)).isEqualTo(13);
+        assertThat(primeCalculator.nth(6)).isEqualTo(13);
     }
 
+    @Ignore("Remove to run test")
     @Test
     public void testBigPrime() {
-        assertThat(Prime.nth(10001)).isEqualTo(104743);
+        assertThat(primeCalculator.nth(10001)).isEqualTo(104743);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Ignore("Remove to run test")
+    @Test
     public void testUndefinedPrime() {
-        Prime.nth(0);
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> primeCalculator.nth(0));
     }
+
 }

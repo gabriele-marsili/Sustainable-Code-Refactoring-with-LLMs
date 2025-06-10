@@ -1,12 +1,10 @@
-public class Pangrams {
-    public static boolean isPangram(String words) {
-        /* isPangram checks if all letters of the alphabet are present */
-        words = words.toLowerCase();
-        for(char c = 'a'; c <= 'z'; c++) {
-            if (words.indexOf(c) < 0) {
-                return false;
-            }
-        }
-        return true;
-    }
+import java.util.stream.IntStream;
+
+class PangramChecker {
+
+  boolean isPangram(String input) {
+    var text = input.toLowerCase();
+    return IntStream.rangeClosed('a', 'z').allMatch(letter -> text.indexOf(letter) != -1);
+  }
+
 }

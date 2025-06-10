@@ -1,23 +1,17 @@
 public class Bob {
-    public String hey(String greeting) {
-        greeting = greeting.trim();
-        if( greeting.isEmpty() ) {
-            return "Fine. Be that way!";
-        } else if( Bob.shouting(greeting)) {
-            return "Whoa, chill out!";
-        } else if( greeting.charAt(greeting.length() - 1) == '?') {
-            return "Sure.";
-        } else {
-            return "Whatever.";
-        }
-    }
 
-    private static boolean shouting(String greeting) {
-        boolean hasUppercase = false;
-        for(char c: greeting.toCharArray()) {
-            if( Character.isLowerCase(c)) return false;
-            hasUppercase |= Character.isUpperCase(c);
-        }
-        return hasUppercase;
-    }
+  private boolean isShouting(String text) {
+    return text.toUpperCase().equals(text) &&
+        text.codePoints().mapToObj(i -> (char) i).anyMatch(Character::isLetter);
+  }
+
+  String hey(String text) {
+    var letters = text.replaceAll("([^\\w?])", "");
+    if (isShouting(letters) && letters.endsWith("?")) return "Calm down, I know what I'm doing!";
+    if (isShouting(letters)) return "Whoa, chill out!";
+    if (letters.endsWith("?")) return "Sure.";
+    if (letters.isBlank()) return "Fine. Be that way!";
+    return "Whatever.";
+  }
+
 }
