@@ -1,60 +1,75 @@
-var Luhn = require('./luhn');
+import { valid } from './luhn';
 
-describe('Luhn',function() {
-
-  it('check digit',function() {
-    var luhn = new Luhn(34567);
-    expect(luhn.checkDigit).toEqual(7);
+describe('Luhn', () => {
+  test('single digit strings can not be valid', () => {
+    expect(valid('1')).toEqual(false);
   });
 
-  it('check digit again',function() {
-    var luhn = new Luhn(91370);
-    expect(luhn.checkDigit).toEqual(0);
+  test('a single zero is invalid', () => {
+    expect(valid('0')).toEqual(false);
   });
 
-  it('addends',function() {
-    var luhn = new Luhn(12121);
-    expect(luhn.addends).toEqual([1, 4, 1, 4, 1]);
+  test('a simple valid SIN that remains valid if reversed', () => {
+    expect(valid('059')).toEqual(true);
   });
 
-  it('too large added',function() {
-    var luhn = new Luhn(8631);
-    expect(luhn.addends).toEqual([7, 6, 6, 1]);
+  test('a simple valid SIN that becomes invalid if reversed', () => {
+    expect(valid('59')).toEqual(true);
   });
 
-  it('checksum',function() {
-    var luhn = new Luhn(4913);
-    expect(luhn.checksum).toEqual(22);
+  test('a valid Canadian SIN', () => {
+    expect(valid('055 444 285')).toEqual(true);
   });
 
-  it('checksum again',function() {
-    var luhn = new Luhn(201773);
-    expect(luhn.checksum).toEqual(21);
+  test('invalid Canadian SIN', () => {
+    expect(valid('055 444 286')).toEqual(false);
   });
 
-  it('invalid number',function() {
-    var luhn = new Luhn(738);
-    expect(luhn.valid).toEqual(false);
+  test('invalid credit card', () => {
+    expect(valid('8273 1232 7352 0569')).toEqual(false);
   });
 
-  it('invalid number',function() {
-    var luhn = new Luhn(8739567);
-    expect(luhn.valid).toEqual(true);
+  test('invalid long number with an even remainder', () => {
+    expect(valid('1 2345 6789 1234 5678 9012')).toEqual(false);
   });
 
-  it('create valid number',function() {
-    var number = Luhn.create(123);
-    expect(number).toEqual(1230);
+  test('valid number with an even number of digits', () => {
+    expect(valid('095 245 88')).toEqual(true);
   });
 
-  it('create other valid number',function() {
-    var number = Luhn.create(873956);
-    expect(number).toEqual(8739567);
+  test('valid number with an odd number of spaces', () => {
+    expect(valid('234 567 891 234')).toEqual(true);
   });
 
-  it('create yet another valid number',function() {
-    var number = Luhn.create(837263756);
-    expect(number).toEqual(8372637564);
+  test('valid strings with a non-digit added at the end invalid', () => {
+    expect(valid('059a')).toEqual(false);
   });
 
+  test('valid strings with punctuation included become invalid', () => {
+    expect(valid('055-444-285')).toEqual(false);
+  });
+
+  test('valid strings with symbols included become invalid', () => {
+    expect(valid('055# 444$ 285')).toEqual(false);
+  });
+
+  test('single zero with space is invalid', () => {
+    expect(valid(' 0')).toEqual(false);
+  });
+
+  test('more than a single zero is valid', () => {
+    expect(valid('0000 0')).toEqual(true);
+  });
+
+  test('input digit 9 is correctly converted to output digit 9', () => {
+    expect(valid('091')).toEqual(true);
+  });
+
+  test("using ascii value for non-doubled non-digit isn't allowed", () => {
+    expect(valid('055b 444 285')).toEqual(false);
+  });
+
+  test("using ascii value for doubled non-digit isn't allowed", () => {
+    expect(valid(':9')).toEqual(false);
+  });
 });

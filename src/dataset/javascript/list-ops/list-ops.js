@@ -1,47 +1,95 @@
-class List {
-    constructor(values=[]) {
-        this.values = values;
-        this.push = function(value) { this.values.push(value); return this };
-    };
+export class List {
+  constructor(items) {
+    this.items = items || [];
+  }
 
-    append(list) {
-        Array.prototype.push.apply(this.values, list.values);
-        return this;
-    };
-    
-    concat(list) { return this.append(list); };
+  get values() {
+    return this.items;
+  }
 
-    filter(func) {
-        return this.foldl(
-            function(val, acc) { return func(val) ? acc.push(val) : acc },
-            new List());
-    };
-
-    map(func) {
-        return this.foldl(
-            function(val, acc) { return acc.push(func(val)); },
-            new List());
+  _duplicate(array) {
+    const result = [];
+    for (let i = 0; i < array.length; i++) {
+      result[i] = array[i];
     }
+    return result;
+  }
 
-    foldl(func, acc) {
-        for(var i = 0; i < this.values.length; i++) {
-            acc = func(this.values[i], acc);
-        }
-        return acc;
+  _flatten(array, result = []) {
+    for (let i = 0, length = array.length; i < length; i++) {
+      const value = array[i];
+      if (Array.isArray(value)) {
+        this._flatten(value, result);
+      } else {
+        result.push(value);
+      }
     }
+    return result;
+  }
 
-    foldr(func, acc) {
-        for(var i = this.values.length-1; i >= 0; i--) {
-            acc = func(this.values[i], acc);
-        }
-        return acc;
+  append(list) {
+    for (let appendIndex = 0, itemsIndex = this.items.length; appendIndex < list.items.length; appendIndex++) {
+      this.items[itemsIndex] = list.items[appendIndex];
+      itemsIndex++;
     }
+    return this;
+  }
 
-    reverse() {
-        return this.foldr( function(val, acc) { return acc.push(val) }, new List());
+  concat(list) {
+    const concatenated = this._duplicate(this.items);
+    for (let index = 0; index < list.items.length; index++) {
+      const itemOrList = list.items[index];
+      concatenated[index + concatenated.length] = itemOrList instanceof List ? itemOrList.items : itemOrList;
     }
+    const flattened = this._flatten(concatenated);
+    return new List(flattened).filter(item => typeof item !== 'undefined');
+  }
 
-    length() { return this.values.length; }
-};
+  filter(validateFn) {
+    const filtered = [];
+    for (let filteredIndex = 0, itemsIndex = 0; itemsIndex < this.items.length; itemsIndex++) {
+      if (validateFn(this.items[itemsIndex])) {
+        filtered[filteredIndex] = this.items[itemsIndex];
+        filteredIndex++;
+      }
+    }
+    return new List(filtered);
+  }
 
-module.exports = List;
+  map(modifierFn) {
+    const mapped = [];
+    for (let index = 0; index < this.items.length; index++) {
+      mapped[index] = modifierFn(this.items[index]);
+    }
+    return new List(mapped);
+  }
+
+  length() {
+    return this.items.length;
+  }
+
+  foldl(foldFn, initialValue) {
+    let accumulator = initialValue;
+    for (let index = 0; index < this.items.length; index++) {
+      accumulator = foldFn(accumulator, this.items[index]);
+    }
+    return accumulator;
+  }
+
+  foldr(foldFn, initialValue) {
+    let accumulator = initialValue;
+    for (let index = this.items.length - 1; index >= 0; index--) {
+      accumulator = foldFn(accumulator, this.items[index]);
+    }
+    return accumulator;
+  }
+
+  reverse() {
+    const reversed = [];
+    for (let itemsIndex = this.items.length - 1, reversedIndex = 0; reversedIndex < this.items.length; itemsIndex--) {
+      reversed[reversedIndex] = this.items[itemsIndex];
+      reversedIndex++;
+    }
+    return new List(reversed);
+  }
+}

@@ -1,7 +1,7 @@
 import { hello } from './hello-world';
 
 describe('Hello World', () => {
-  test('Say Hi!', () => {
+  test('says hello', () => {
     expect(hello()).toEqual('Hello, World!');
   });
 });

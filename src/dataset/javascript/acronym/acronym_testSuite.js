@@ -1,28 +1,52 @@
-var Acronyms = require('./acronym');
+import { parse } from './acronym';
 
-describe('Acronyms are produced from', function(){
-  it('title cased phrases', function() {
-    expect(Acronyms.parse('Portable Network Graphics')).toEqual('PNG');
+describe('Acronyms are produced from', () => {
+  // basic
+  test('title cased phrases', () => {
+    expect(parse('Portable Network Graphics')).toEqual('PNG');
   });
 
-  it('other title cased phrases', function(){
-    expect(Acronyms.parse('Ruby on Rails')).toEqual('ROR');
+  // lowercase words
+  test('other title cased phrases', () => {
+    expect(parse('Ruby on Rails')).toEqual('ROR');
   });
 
-  it('inconsistently cased phrases', function(){
-    expect(Acronyms.parse('HyperText Markup Language')).toEqual('HTML');
+  // punctuation
+  test('phrases with punctuation', () => {
+    expect(parse('First In, First Out')).toEqual('FIFO');
   });
 
-  it('phrases with punctuation', function() {
-    expect(Acronyms.parse('First In, First Out')).toEqual('FIFO');
+  // all caps word
+  test('phrases with all uppercase words', () => {
+    expect(parse('GNU Image Manipulation Program')).toEqual('GIMP');
   });
 
-  it('other phrases with punctuation', function() {
-    expect(Acronyms.parse('PHP: Hypertext Preprocessor')).toEqual('PHP');
+  // punctuation without whitespace
+  test('phrases with punctuation without whitespace', () => {
+    expect(parse('Complementary metal-oxide semiconductor')).toEqual('CMOS');
   });
 
-  it('phrases with punctuation and sentence casing', function() {
-    expect(Acronyms.parse('Complementary metal-oxide semiconductor')).toEqual('CMOS');
+  // very long abbreviation
+  test('long phrases', () => {
+    expect(
+      parse(
+        'Rolling On The Floor Laughing So Hard That My Dogs Came Over And Licked Me'
+      )
+    ).toEqual('ROTFLSHTMDCOALM');
+  });
+
+  // consecutive delimiters
+  test('phrases with consecutive delimiters', () => {
+    expect(parse('Something - I made up from thin air')).toEqual('SIMUFTA');
+  });
+
+  // apostrophes
+  test('phrases with apostrophes', () => {
+    expect(parse("Halley's Comet")).toEqual('HC');
+  });
+
+  // underscore emphasis
+  test('phrases with underscore emphasis', () => {
+    expect(parse('The Road _Not_ Taken')).toEqual('TRNT');
   });
 });
-

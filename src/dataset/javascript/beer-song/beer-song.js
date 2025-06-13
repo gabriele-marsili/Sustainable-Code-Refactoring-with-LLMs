@@ -1,30 +1,54 @@
-var BeerSong = function() {}
+//@ts-check
 
+/**
+ * @param {number} num
+ * @param {boolean} [lowercase]
+ * @returns {string}
+ */
+function count(num, lowercase) {
+  return num === 0 ? `${lowercase ? 'n' : 'N'}o more` : num === -1 ? '99' : num.toString();
+}
 
-BeerSong.prototype.verse = function( verseNum ) {
-	/* Sings a verse of "bottles of beer on the wall" */
-	// Special cases for verses that include 0 (no more) and 1 (bottle[s])
-	var specialLines = {
-		0: "No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n",
-		1: "1 bottle of beer on the wall, 1 bottle of beer.\nTake it down and pass it around, no more bottles of beer on the wall.\n",
-		2: "2 bottles of beer on the wall, 2 bottles of beer.\nTake one down and pass it around, 1 bottle of beer on the wall.\n",
-	};
-	// A normal verse
-	var normalLine = "%d bottles of beer on the wall, %d bottles of beer.\nTake one down and pass it around, %d bottles of beer on the wall.\n";
-	var sprintf = require('util').format;
-	return verseNum in specialLines ? specialLines[verseNum] : sprintf(normalLine, verseNum, verseNum, verseNum - 1);
-};
+/**
+ * @param {number} num
+ * @param {boolean} [extended]
+ * @returns {string}
+ */
+function bottle(num, extended) {
+  return `bottle${num !== 1 ? 's' : ''} of beer${extended ? ' on the wall' : ''}`;
+}
 
-BeerSong.prototype.sing = function( start, stop) {
-	/* Sings a set of verses of "Bottle of beer on the wall" */
-	// Default
-	stop || (stop = 0);
-	var song = [];
-	for(var verseNum = start; verseNum >= stop; verseNum--) {
-		song.push(this.verse(verseNum));
-	}
-	return song.join("\n");
-};
+/**
+ * @param {number} num
+ * @returns {string}
+ */
+function take(num) {
+  return num === 0 ? 'Go to the store and buy some more' : `Take ${num === 1 ? 'it' : 'one'} down and pass it around`;
+}
 
+/**
+ * @param {number} num
+ * @returns {string[]}
+ */
+function verse(num) {
+  return [
+    `${count(num)} ${bottle(num, true)}, ${count(num, num === 0)} ${bottle(num)}.`,
+    `${take(num)}, ${count(num - 1, num === 1)} ${bottle(num - 1, true)}.`,
+    '',
+  ];
+}
 
-module.exports = BeerSong;
+/**
+ * @param {number} begin
+ * @param {number} times
+ * @returns {string[]}
+ */
+export function recite(begin = 99, times = 0) {
+  /** @type {string[]} */
+  const verses = [];
+  for (let i = 0; i < times; i++) {
+    verses.push(...verse(begin - i));
+  }
+  verses.pop();
+  return verses;
+}

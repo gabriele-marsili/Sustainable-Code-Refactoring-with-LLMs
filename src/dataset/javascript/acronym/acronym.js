@@ -1,15 +1,12 @@
-module.exports = {
-    parse: parse
-};
+//@ts-check
 
-function parse(phrase) {
-    return phrase.split(/\W+/)
-        .map(function(word) {
-            firstChar = word.charAt(0).toUpperCase();
-            if(word.match(/^[A-Z]+$/)) {
-                return firstChar;
-            }
-            return firstChar + word.slice(1).replace(/[^A-Z]/g,"");
-        })
-        .join('');
-};
+/**
+ * @param {string} text
+ * @returns {string}
+ */
+export function parse(text) {
+  return text
+    .split(/[a-z](?=[A-Z])|[-_ ]/)
+    .reduce((result, word) => (result += word.charAt(0)), '')
+    .toUpperCase();
+}

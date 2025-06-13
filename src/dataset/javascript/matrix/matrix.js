@@ -1,18 +1,28 @@
+//
+// This is only a SKELETON file for the 'Matrix' exercise. It's been provided as a
+// convenience to get you started writing code faster.
+//
+
 export class Matrix {
-  constructor(matrixTable) {
-    this.table = matrixTable
-      .split("\n")
-      .map(row => row.split(" ").map(i => Number(i)));
-  }
+	#rows;
+	#columns;
 
-  get rows() {
-    return this.table;
-  }
+	constructor(matrix) {
+		this.matrix = matrix.split("\n");
+	}
 
-  get columns() {
-    const columns = this.table[0].map((input, index) =>
-      this.table.map(row => row[index])
-    );
-    return columns;
-  }
+	get rows() {
+		if (!this.#rows)
+			this.#rows = this.matrix.map(row => row.split(" ").map(Number));
+		return this.#rows;
+	}
+
+	get columns() {
+		if (!this.#columns)
+			this.#columns = this.rows[0].map((row, index) =>
+				this.rows.map(row => row[index])
+			);
+
+		return this.#columns;
+	}
 }

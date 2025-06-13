@@ -1,19 +1,23 @@
-var anagram = function( word ) { return new Anagram(word); };
+//@ts-check
 
-/* Class for finding anagrams */
-function Anagram(word) { this.word = word.toLowerCase(); };
+/**
+ * @param {string} word
+ * @returns {string}
+ */
+function sort(word) {
+  return [...word.toLowerCase()].sort().join('');
+}
 
-Anagram.prototype.matches = function( wordList) {
-	/* Finds all anagrams of the word */
-	if(! (wordList  instanceof Array)) {
-		// If the arguments aren't in list form
-		var myArgs = arguments;
-		wordList = Object.keys(myArgs).map(function(key) {return myArgs[key] } );
-	}
-	var makeLetters = function(word) { return word.toLowerCase().split('').sort().join('') };
-	var letters = makeLetters(this.word), anagram = this.word;
-	var anagrams = function(word) { return makeLetters(word) === letters && word.toLowerCase() !== anagram };
-	return wordList.filter( anagrams );
-};
-
-module.exports = anagram;
+/**
+ * @param {string} word
+ * @param {string[]} matches
+ * @returns {string[]}
+ */
+export function findAnagrams(word, matches) {
+  return matches.reduce((/** @type string[] */ result, matchTest) => {
+    if (word.toLowerCase() !== matchTest.toLowerCase() && sort(word) === sort(matchTest)) {
+      result.push(matchTest);
+    }
+    return result;
+  }, []);
+}

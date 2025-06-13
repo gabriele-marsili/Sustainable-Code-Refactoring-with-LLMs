@@ -1,28 +1,39 @@
-var Robot = function() { this.name = getName() }
+//@ts-check
 
-Robot.prototype.reset = function() {
-	/* Give the robot a new name */
-	var oldName = this.name;
-	this.name = getName();
-};
+/** @type {Record<string, boolean>} */
+let _usedNames = {};
 
-// Keeps track of robot names in use
-var namesInUse = new Set();
+export class Robot {
+  constructor() {
+    this.reset();
+  }
 
-function getName() {
-	/* Generates a robot name */
-	// Functions for different parts of the name
-	var rand = function(max, min) { return Math.floor(Math.random() * (max - min + 1) + min)};
-	var letter = function() { return rand('Z'.charCodeAt(0), 'A'.charCodeAt(0)) };
-	var digit = function() { return rand('9'.charCodeAt(0), '0'.charCodeAt(0)) };
-	// Gets name that is not in use
-	// Potential for infinite loop if there are lots (676000) of robots
-	do {
-		var name = String.fromCharCode(letter(), letter(), digit(), digit(), digit());
-	} while( namesInUse.has(name) );
+  /**
+   * @private
+   * @returns {string}
+   */
+  _generateName() {
+    const randomString = () => String.fromCharCode(Math.floor(Math.random() * 25) + 65);
+    const num = Math.floor(Math.random() * 899) + 100;
+    const name = `${randomString()}${randomString()}${num}`;
 
-	namesInUse.add(name);
-	return name;
+    if (typeof _usedNames[name] === 'undefined') {
+      _usedNames[name] = true;
+      return name;
+    }
+
+    return this._generateName();
+  }
+
+  static releaseNames() {
+    _usedNames = {};
+  }
+
+  get name() {
+    return this._name;
+  }
+
+  reset() {
+    this._name = this._generateName();
+  }
 }
-
-module.exports = Robot;

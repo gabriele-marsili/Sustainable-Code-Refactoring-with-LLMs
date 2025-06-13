@@ -1,39 +1,63 @@
-var RLE = require('./run-length-encoding');
+import { encode, decode } from './run-length-encoding';
 
-describe('Run-length encoding', function () {
-  it('encode empty string', function () {
-    expect(RLE.encode('')).toEqual('');
+describe('run-length encode a string', () => {
+  test('encode empty string', () => {
+    expect(encode('')).toEqual('');
   });
 
-  it('encode single characters only', function () {
-    expect(RLE.encode('XYZ')).toEqual('XYZ');
+  test('single characters only are encoded without count', () => {
+    expect(encode('XYZ')).toEqual('XYZ');
   });
 
-  it('decode empty string', function () {
-    expect(RLE.decode('')).toEqual('');
+  test('encode string with no single characters', () => {
+    expect(encode('AABBBCCCC')).toEqual('2A3B4C');
   });
 
-  it('decode single characters only', function () {
-    expect(RLE.decode('XYZ')).toEqual('XYZ');
+  test('encode string with single characters mixed with repeated characters', () => {
+    expect(
+      encode('WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB')
+    ).toEqual('12WB12W3B24WB');
   });
 
-  it('encode simple', function () {
-    expect(RLE.encode('AABBBCCCC')).toEqual('2A3B4C');
+  test('encode string with multiple whitespaces', () => {
+    expect(encode('  hsqq qww  ')).toEqual('2 hs2q q2w2 ');
   });
 
-  it('decode simple', function () {
-    expect(RLE.decode('2A3B4C')).toEqual('AABBBCCCC');
+  test('encode string with lowercase characters', () => {
+    expect(encode('aabbbcccc')).toEqual('2a3b4c');
+  });
+});
+
+describe('run-length decode a string', () => {
+  test('decode empty string', () => {
+    expect(decode('')).toEqual('');
   });
 
-  it('encode with single values', function () {
-    expect(RLE.encode('WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB')).toEqual('12WB12W3B24WB');
+  test('decode string with single characters only', () => {
+    expect(decode('XYZ')).toEqual('XYZ');
   });
 
-  it('decode with single values', function () {
-    expect(RLE.decode('12WB12W3B24WB')).toEqual('WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB');
+  test('decode string with no single characters', () => {
+    expect(decode('2A3B4C')).toEqual('AABBBCCCC');
   });
 
-  it('decode(encode(...))combination', function () {
-    expect(RLE.decode(RLE.encode('zzz ZZ  zZ'))).toEqual('zzz ZZ  zZ');
+  test('decode string with single characters mixed with repeated characters', () => {
+    expect(decode('12WB12W3B24WB')).toEqual(
+      'WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB'
+    );
+  });
+
+  test('decode string with multiple whitespaces', () => {
+    expect(decode('2 hs2q q2w2 ')).toEqual('  hsqq qww  ');
+  });
+
+  test('decode string with lowercase characters', () => {
+    expect(decode('2a3b4c')).toEqual('aabbbcccc');
+  });
+});
+
+describe('run-length encode and then decode', () => {
+  test('encode followed by decode gives original string', () => {
+    expect(decode(encode('zzz ZZ  zZ'))).toEqual('zzz ZZ  zZ');
   });
 });

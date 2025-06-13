@@ -1,16 +1,13 @@
-module.exports = function(start) {
-    const max_col = start.reduce((max, row) => Math.max(max, row.length), 0);
-    result = [];
-    for(var c = 0; c < max_col; c++) {
-        var prefix = true;
-        result.push([]);
-        for(var r = 0; r < start.length; r++) {
-            result[c][r] = start[r][c];
-            if(prefix && result[c][r] == undefined)
-                result[c][r] = ' ';
-            else
-                prefix = false;
-        }
-    }
-    return result.map(row => row.join(''));
+function trimTrailing(array) {
+  const trailingUndefinedCount = [...array].reverse().findIndex(element => element !== undefined);
+  return array.slice(0, array.length - trailingUndefinedCount);
 }
+
+export const transpose = lines => {
+  const longestLine = Math.max(0, ...lines.map(line => line.length));
+  return [...Array(longestLine).keys()].map(col =>
+    trimTrailing(lines.map((_, row) => lines[row][col]))
+      .map(char => char || ' ')
+      .join('')
+  );
+};

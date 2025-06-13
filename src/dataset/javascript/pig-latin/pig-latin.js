@@ -1,13 +1,24 @@
-function translate(phrase) {
-	/* Translates a phrase into piglatin */
-	return phrase.split(' ').map(pigize).join(' ');
+/**
+ *
+ * @param {string} input
+ * @returns string
+ */
+export function translate(input) {
+  return input
+    .split(' ')
+    .map(word => {
+      const vowelBeginning = /^([aeoui]|xr|yt)/.test(word);
+      if (vowelBeginning) {
+        return `${word}ay`;
+      }
+
+      const [, c1, c2] = /^(ch|rh|thr?|sch|[^aeoui]?qu)(.*)/.exec(word) || [];
+
+      if (c1 && c2) {
+        return `${c2}${c1}ay`;
+      }
+
+      return `${word.slice(1)}${word.slice(0, 1)}ay`;
+    })
+    .join(' ');
 }
-
-function pigize(word) {
-	/* Turns a word into piglatin */
-	var matches = word.match(/^([^aeioy]*qu)(.*)$/) ||
-		word.match(/^(.*?)([aeiouy].*)$/)
-	return matches ? matches[2] + matches[1] + "ay" : word;
-};
-
-module.exports = { translate: translate }

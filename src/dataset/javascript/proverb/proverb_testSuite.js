@@ -1,78 +1,94 @@
-var Proverb = require('./proverb');
+import { proverb } from './proverb';
 
-describe('Proverb Test Suite', function () {
-  it('tests a single consequence', function () {
-    var proverb = new Proverb('nail', 'shoe');
+describe('Proverb', () => {
+  test('zero pieces', () => {
+    const result = proverb();
 
-    expect(proverb.toString()).toEqual(
-      'For want of a nail the shoe was lost.\n' +
-      'And all for the want of a nail.');
+    expect(result).toEqual('');
   });
 
+  test('one piece', () => {
+    const result = proverb('nail');
 
-  it('tests a short chain of consequences', function () {
-    var proverb = new Proverb('nail', 'shoe', 'horse');
-
-    expect(proverb.toString()).toEqual(
-      'For want of a nail the shoe was lost.\n' +
-      'For want of a shoe the horse was lost.\n' +
-      'And all for the want of a nail.');
+    expect(result).toEqual('And all for the want of a nail.');
   });
 
-  it('tests a longer chain of consequences', function () {
-    var proverb = new Proverb('nail', 'shoe', 'horse', 'rider');
+  test('two pieces', () => {
+    const result = proverb('nail', 'shoe');
 
-    expect(proverb.toString()).toEqual(
-      'For want of a nail the shoe was lost.\n' +
-     'For want of a shoe the horse was lost.\n' +
-     'For want of a horse the rider was lost.\n' +
-     'And all for the want of a nail.');
+    expect(result).toEqual(
+      `For want of a nail the shoe was lost.
+And all for the want of a nail.`
+    );
   });
 
+  test('three pieces', () => {
+    const result = proverb('nail', 'shoe', 'horse');
 
-  it('tests Proverb class does not hard code the rhyme dictionary',
-    function () {
-      var proverb = new Proverb('key', 'value');
-
-      expect(proverb.toString()).toEqual(
-        'For want of a key the value was lost.\n' +
-      'And all for the want of a key.');
-    });
-
-  it('tests the whole proveb', function () {
-    var proverb = new Proverb('nail', 'shoe', 'horse', 'rider',
-      'message', 'battle', 'kingdom');
-
-    expect(proverb.toString()).toEqual(
-      'For want of a nail the shoe was lost.\n' +
-      'For want of a shoe the horse was lost.\n' +
-      'For want of a horse the rider was lost.\n' +
-      'For want of a rider the message was lost.\n' +
-      'For want of a message the battle was lost.\n' +
-      'For want of a battle the kingdom was lost.\n' +
-      'And all for the want of a nail.');
+    expect(result).toEqual(
+      `For want of a nail the shoe was lost.
+For want of a shoe the horse was lost.
+And all for the want of a nail.`
+    );
   });
 
+  test('the whole proverb', () => {
+    const result = proverb(
+      'nail',
+      'shoe',
+      'horse',
+      'rider',
+      'message',
+      'battle',
+      'kingdom'
+    );
 
-  it('tests the use of an optional qualifier in the final consequence',
-    function () {
-      var proverb = new Proverb('nail', 'shoe', 'horse', 'rider',
-        'message', 'battle', 'kingdom',
-        { qualifier: 'horseshoe' });
+    expect(result).toEqual(
+      `For want of a nail the shoe was lost.
+For want of a shoe the horse was lost.
+For want of a horse the rider was lost.
+For want of a rider the message was lost.
+For want of a message the battle was lost.
+For want of a battle the kingdom was lost.
+And all for the want of a nail.`
+    );
+  });
 
-      expect(proverb.toString()).toEqual(
-        'For want of a nail the shoe was lost.\n' +
-     'For want of a shoe the horse was lost.\n' +
-     'For want of a horse the rider was lost.\n' +
-     'For want of a rider the message was lost.\n' +
-     'For want of a message the battle was lost.\n' +
-     'For want of a battle the kingdom was lost.\n' +
-     'And all for the want of a horseshoe nail.');
-    });
+  test('proverb is the same each time', () => {
+    expect(proverb('nail', 'shoe')).toEqual(proverb('nail', 'shoe'));
+  });
 
-  it('tests the proverb is the same each time', function () {
-    var proverb = new Proverb('nail', 'shoe');
+  test('four pieces modernized', () => {
+    const result = proverb('pin', 'gun', 'soldier', 'battle');
 
-    expect(proverb.toString()).toEqual(proverb.toString());
+    expect(result).toEqual(
+      `For want of a pin the gun was lost.
+For want of a gun the soldier was lost.
+For want of a soldier the battle was lost.
+And all for the want of a pin.`
+    );
+  });
+
+  test('the use of an optional qualifier in the final consequence', () => {
+    const result = proverb(
+      'nail',
+      'shoe',
+      'horse',
+      'rider',
+      'message',
+      'battle',
+      'kingdom',
+      { qualifier: 'horseshoe' }
+    );
+
+    expect(result).toEqual(
+      `For want of a nail the shoe was lost.
+For want of a shoe the horse was lost.
+For want of a horse the rider was lost.
+For want of a rider the message was lost.
+For want of a message the battle was lost.
+For want of a battle the kingdom was lost.
+And all for the want of a horseshoe nail.`
+    );
   });
 });

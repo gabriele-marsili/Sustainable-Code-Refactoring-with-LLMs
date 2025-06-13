@@ -74,7 +74,11 @@ def main():
             #"uzilan"
             #"robiworks"
             #"ThomasZumsteg-js"
-            "oguzsh"
+            #"oguzsh"
+            #"ffflorian"
+            #"programmiri"
+            #"irvingbennett"
+            "PhymasSC"
         ],
         choices=[
             #'java-thomasZumsteg'
@@ -86,7 +90,11 @@ def main():
             #"uzilan"
             #"robiworks"
             #"ThomasZumsteg-js"
-            "oguzsh"
+            #"oguzsh"
+            #"ffflorian"
+            #"programmiri"
+            #"irvingbennett"
+            "PhymasSC"
         ],
         help='Fonti da utilizzare (default: tutte)'
     )

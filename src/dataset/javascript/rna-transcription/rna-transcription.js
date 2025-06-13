@@ -1,12 +1,16 @@
-export const toRna = (data = "") => {
-  var dna_rna_complement = {
-    G: "C",
-    C: "G",
-    T: "A",
-    A: "U"
-  };
+//
+// This is only a SKELETON file for the 'RNA Transcription' exercise. It's been provided as a
+// convenience to get you started writing code faster.
+//
 
-  var rna_strands = "";
-  for (var x in data) rna_strands += dna_rna_complement[data[x]];
-  return rna_strands;
+const DNA_TO_RNA = {
+	G: "C",
+	C: "G",
+	T: "A",
+	A: "U"
+};
+
+export const toRna = dnaSequence => {
+	if (!dnaSequence) return "";
+	return [...dnaSequence].map(char => DNA_TO_RNA[char]).join("");
 };

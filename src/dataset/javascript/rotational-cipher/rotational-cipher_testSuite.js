@@ -1,55 +1,73 @@
-var RotationalCipher = require('./rotational-cipher');
+import { rotate } from './rotational-cipher';
 
-describe('RotationalCipher', function () {
-  var rotationalCipher = new RotationalCipher();
+describe('Rotational cipher', () => {
+  test('rotate a by 0, same output as input', () => {
+    const expected = 'a';
+    const actual = rotate('a', 0);
 
-  it('rotate a by 0, same output as input', function () {
-    var expected = 'a';
-    expect(rotationalCipher.rotate('a', 0)).toEqual(expected);
+    expect(actual).toEqual(expected);
   });
 
-  it('rotate a by 1', function () {
-    var expected = 'b';
-    expect(rotationalCipher.rotate('a', 1)).toEqual(expected);
+  test('rotate a by 1', () => {
+    const expected = 'b';
+    const actual = rotate('a', 1);
+
+    expect(actual).toEqual(expected);
   });
 
-  it('rotate a by 26, same output as input', function () {
-    var expected = 'a';
-    expect(rotationalCipher.rotate('a', 26)).toEqual(expected);
+  test('rotate a by 26, same output as input', () => {
+    const expected = 'a';
+    const actual = rotate('a', 26);
+
+    expect(actual).toEqual(expected);
   });
 
-  it('rotate m by 13', function () {
-    var expected = 'z';
-    expect(rotationalCipher.rotate('m', 13)).toEqual(expected);
+  test('rotate m by 13', () => {
+    const expected = 'z';
+    const actual = rotate('m', 13);
+
+    expect(actual).toEqual(expected);
   });
 
-  it('rotate n by 13 with wrap around alphabet', function () {
-    var expected = 'a';
-    expect(rotationalCipher.rotate('n', 13)).toEqual(expected);
+  test('rotate n by 13 with wrap around alphabet', () => {
+    const expected = 'a';
+    const actual = rotate('n', 13);
+
+    expect(actual).toEqual(expected);
   });
 
-  it('rotate capital letters', function () {
-    var expected = 'TRL';
-    expect(rotationalCipher.rotate('OMG', 5)).toEqual(expected);
+  test('rotate capital letters', () => {
+    const expected = 'TRL';
+    const actual = rotate('OMG', 5);
+
+    expect(actual).toEqual(expected);
   });
 
-  it('rotate spaces', function () {
-    var expected = 'T R L';
-    expect(rotationalCipher.rotate('O M G', 5)).toEqual(expected);
+  test('rotate spaces', () => {
+    const expected = 'T R L';
+    const actual = rotate('O M G', 5);
+
+    expect(actual).toEqual(expected);
   });
 
-  it('rotate numbers', function () {
-    var expected = 'Xiwxmrk 1 2 3 xiwxmrk';
-    expect(rotationalCipher.rotate('Testing 1 2 3 testing', 4)).toEqual(expected);
+  test('rotate numbers', () => {
+    const expected = 'Xiwxmrk 1 2 3 xiwxmrk';
+    const actual = rotate('Testing 1 2 3 testing', 4);
+
+    expect(actual).toEqual(expected);
   });
 
-  it('rotate punctuation', function () {
-    var expected = 'Gzo\'n zvo, Bmviyhv!';
-    expect(rotationalCipher.rotate('Let\'s eat, Grandma!', 21)).toEqual(expected);
+  test('rotate punctuation', () => {
+    const expected = "Gzo'n zvo, Bmviyhv!";
+    const actual = rotate("Let's eat, Grandma!", 21);
+
+    expect(actual).toEqual(expected);
   });
 
-  it('rotate all letters', function () {
-    var expected = 'Gur dhvpx oebja sbk whzcf bire gur ynml qbt.';
-    expect(rotationalCipher.rotate('The quick brown fox jumps over the lazy dog.', 13)).toEqual(expected);
+  test('rotate all letters', () => {
+    const expected = 'Gur dhvpx oebja sbk whzcf bire gur ynml qbt.';
+    const actual = rotate('The quick brown fox jumps over the lazy dog.', 13);
+
+    expect(actual).toEqual(expected);
   });
 });

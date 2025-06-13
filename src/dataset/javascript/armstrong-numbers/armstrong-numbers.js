@@ -1,7 +1,17 @@
-function validate(number) {
-    var digits = number.toString().split('');
-    return number == digits.reduce((acc, num) =>
-        Math.pow(parseInt(num), digits.length) + acc, 0);
+function getDigitList(num) {
+  return num
+    .toString()
+    .split('')
+    .map(item => parseInt(item, 10));
 }
 
-module.exports = {validate: validate};
+export function validate(num) {
+  const digests = getDigitList(num);
+
+  const sum = digests.reduce((acc, curr) => {
+    const raised = curr ** digests.length;
+    return acc + raised;
+  }, 0);
+
+  return sum === num;
+}

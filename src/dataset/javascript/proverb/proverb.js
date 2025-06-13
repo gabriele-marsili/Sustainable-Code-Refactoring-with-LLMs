@@ -1,21 +1,16 @@
-class Proverb {
-    constructor() {
-        var args = Array.from(arguments);
-        this.words = args.filter(arg => typeof arg == 'string');
-        var nargs = args.filter(arg => typeof arg == 'object')[0];
-        this.qualifier = nargs && nargs.qualifier;
-    }
+export const proverb = (...inputs) => {
+  const words = inputs.filter(input => typeof input === 'string');
+  const qualifier = (inputs.find(input => typeof input === 'object') || {}).qualifier || '';
 
-    toString() {
-        var result = [];
-        for(var i = 1; i < this.words.length; i++) {
-            result.push( 'For want of a ' +  this.words[i-1] +
-                ' the ' +  this.words[i] + ' was lost.');
-        }
-        result.push('And all for the want of a ' +
-            (this.qualifier ? this.qualifier + ' ' : '') + this.words[0] + '.');
-        return result.join('\n');
-    }
-}
+  let result = '';
 
-module.exports = Proverb;
+  for (let index = 0; index < words.length; index++) {
+    const currentWord = words[index];
+    const nextWord = words[index + 1];
+    result += nextWord
+      ? `For want of a ${currentWord} the ${nextWord} was lost.\n`
+      : `And all for the want of a ${qualifier ? `${qualifier} ` : ''}${words[0]}.`;
+  }
+
+  return result;
+};

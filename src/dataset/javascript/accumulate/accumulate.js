@@ -1,9 +1,15 @@
-function accumulate(items, func) {
-	/* Applies a function to every item in a list */
-	var modified = [];
-	for(var i = 0; i < items.length; i++)
-		modified.push( func(items[i]) );
-	return modified;
-}
+//@ts-check
 
-module.exports = accumulate;
+/**
+ * @param {string[]} array
+ * @param {(input: string) => string} accumulator
+ * @returns {string[]}
+ */
+export const accumulate = (array, accumulator) => {
+  const result = [];
+  for (let index = 0; index < array.length; index++) {
+    const processedValue = accumulator(array[index]);
+    result.push(processedValue);
+  }
+  return result;
+};

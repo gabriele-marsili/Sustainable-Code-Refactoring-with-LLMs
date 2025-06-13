@@ -1,19 +1,28 @@
-/* A class to keep track of students in a school */
-var School = function() { this.class = {} };
+//
+// This is only a SKELETON file for the 'Grade School' exercise. It's been provided as a
+// convenience to get you started writing code faster.
+//
 
-// The entire school
-School.prototype.roster = function() { return this.class };
-// A grade level of the school
-School.prototype.grade = function(grade) { return this.class[grade] || [] };
+export class GradeSchool {
+	#listing = {};
 
-School.prototype.add = function(student, grade) {
-	/* Adds students to the school */
-	if( grade in this.class ) {
-		this.class[grade].push(student);
-		this.class[grade].sort();
+	roster() {
+		return this.#listing;
 	}
-	else
-		this.class[grade] = [student];
-};
 
-module.exports = School;
+	add(student, grade) {
+		let restStudent;
+		if (this.#listing[grade]) {
+			[...restStudent] = this.#listing[grade];
+			restStudent.push(student);
+		} else {
+			restStudent = [student];
+		}
+		this.#listing[grade] = restStudent;
+	}
+
+	grade(grade) {
+		if (!this.#listing[grade]) return [];
+		return [...this.#listing[grade].sort()].sort();
+	}
+}

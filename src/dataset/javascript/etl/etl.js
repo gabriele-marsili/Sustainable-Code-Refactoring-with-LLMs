@@ -1,10 +1,9 @@
-export const transform = oldData => {
-  let result = Object.entries(oldData).reduce((newData, [point, letters]) => {
-    letters.forEach(letter => {
-      newData[letter.toLowerCase()] = Number(point);
-    });
-    return newData;
-  }, {});
-
-  return result;
+export const transform = (s) => {
+  let scrabble = {}
+  for (let score in s) {
+    for (let l in s[score]) {
+      scrabble[s[score][l].toLowerCase()] = parseInt(score)
+    }
+  }
+  return scrabble
 };

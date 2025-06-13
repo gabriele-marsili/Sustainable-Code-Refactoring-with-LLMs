@@ -1,12 +1,12 @@
-import Zipper  from './zipper';
+import { Zipper } from './zipper';
 
 // Tests adapted from `problem-specifications/zipper/canonical-data.json` @ v1.0.0
 
 function bt(value, left, right) {
   return {
-    value: value,
-    left: left,
-    right: right
+    value,
+    left,
+    right,
   };
 }
 
@@ -28,11 +28,16 @@ describe('Zipper', () => {
   });
 
   test('data is retained', () => {
-    expect(zipper.toTree(t1)).toEqual(t1);
+    expect(zipper.toTree()).toEqual(t1);
   });
 
   test('left, right and value', () => {
-    expect(zipper.left().right().value()).toEqual(3);
+    expect(
+      zipper
+        .left()
+        .right()
+        .value()
+    ).toEqual(3);
   });
 
   test('dead end', () => {
@@ -40,7 +45,12 @@ describe('Zipper', () => {
   });
 
   test('tree from deep focus', () => {
-    expect(zipper.left().right().toTree()).toEqual(t1);
+    expect(
+      zipper
+        .left()
+        .right()
+        .toTree()
+    ).toEqual(t1);
   });
 
   test('traversing up from top', () => {
@@ -48,23 +58,54 @@ describe('Zipper', () => {
   });
 
   test('left, right and up', () => {
-    expect(zipper.left().up().right().up().left().right().value()).toEqual(3);
+    expect(
+      zipper
+        .left()
+        .up()
+        .right()
+        .up()
+        .left()
+        .right()
+        .value()
+    ).toEqual(3);
   });
 
   test('setValue', () => {
-    expect(zipper.left().setValue(5).toTree()).toEqual(t2);
+    expect(
+      zipper
+        .left()
+        .setValue(5)
+        .toTree()
+    ).toEqual(t2);
   });
 
   test('setValue after traversing up', () => {
-    expect(zipper.left().right().up().setValue(5).toTree()).toEqual(t2);
+    expect(
+      zipper
+        .left()
+        .right()
+        .up()
+        .setValue(5)
+        .toTree()
+    ).toEqual(t2);
   });
 
   test('setLeft with leaf', () => {
-    expect(zipper.left().setLeft(leaf(5)).toTree()).toEqual(t3);
+    expect(
+      zipper
+        .left()
+        .setLeft(leaf(5))
+        .toTree()
+    ).toEqual(t3);
   });
 
   test('setRight with null', () => {
-    expect(zipper.left().setRight(null).toTree()).toEqual(t4);
+    expect(
+      zipper
+        .left()
+        .setRight(null)
+        .toTree()
+    ).toEqual(t4);
   });
 
   test('setRight with subtree', () => {
@@ -72,6 +113,12 @@ describe('Zipper', () => {
   });
 
   test('setValue on deep focus', () => {
-    expect(zipper.left().right().setValue(5).toTree()).toEqual(t6);
+    expect(
+      zipper
+        .left()
+        .right()
+        .setValue(5)
+        .toTree()
+    ).toEqual(t6);
   });
 });

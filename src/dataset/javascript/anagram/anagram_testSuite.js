@@ -1,81 +1,83 @@
-var Anagram = require('./anagram');
+import { findAnagrams } from './anagram';
 
-describe('Anagram', function() {
-
-  it('no matches',function() {
-    var subject = new Anagram('diaper');
-    var matches = subject.matches([ 'hello', 'world', 'zombies', 'pants']);
-
-    expect(matches).toEqual([]);
+describe('Anagram', () => {
+  test('no matches', () => {
+    expect(
+      findAnagrams('diaper', ['hello', 'world', 'zombies', 'pants'])
+    ).toEqual([]);
   });
 
-  it('detects simple anagram',function() {
-    var subject = new Anagram('ant');
-    var matches = subject.matches(['tan', 'stand', 'at']);
-
-    expect(matches).toEqual(['tan']);
+  test('detects two anagrams', () => {
+    expect(findAnagrams('solemn', ['lemons', 'cherry', 'melons'])).toEqual([
+      'lemons',
+      'melons',
+    ]);
   });
 
-  it('does not detect false positives',function() {
-    var subject = new Anagram('galea');
-    var matches = subject.matches(['eagle']);
-
-    expect(matches).toEqual([]);
+  test('does not detect anagram subsets', () => {
+    expect(findAnagrams('good', ['dog', 'goody'])).toEqual([]);
   });
 
-  it('detects multiple anagrams',function() {
-    var subject = new Anagram('master');
-    var matches = subject.matches(['stream', 'pigeon', 'maters']);
-
-    expect(matches).toEqual(['stream', 'maters']);
+  test('detects anagram', () => {
+    expect(
+      findAnagrams('listen', ['enlists', 'google', 'inlets', 'banana'])
+    ).toEqual(['inlets']);
   });
 
-  it('does not detect anagram subsets',function() {
-    var subject = new Anagram('good');
-    var matches = subject.matches(['dog', 'goody']);
-
-    expect(matches).toEqual([]);
+  test('detects three anagrams', () => {
+    expect(
+      findAnagrams('allergy', [
+        'gallery',
+        'ballerina',
+        'regally',
+        'clergy',
+        'largely',
+        'leading',
+      ])
+    ).toEqual(['gallery', 'regally', 'largely']);
   });
 
-  it('detects anagram',function() {
-    var subject = new Anagram('listen');
-    var matches = subject.matches(['enlists', 'google', 'inlets', 'banana']);
-
-    expect(matches).toEqual(['inlets']);
+  test('detects multiple anagrams with different case', () => {
+    expect(findAnagrams('nose', ['Eons', 'ONES'])).toEqual(['Eons', 'ONES']);
   });
 
-  it('detects multiple anagrams',function() {
-    var subject = new Anagram('allergy');
-    var matches = subject.matches(['gallery', 'ballerina', 'regally', 'clergy', 'largely', 'leading']);
-
-    expect(matches).toEqual(['gallery', 'regally', 'largely']);
+  test('does not detect non-anagrams with identical checksum', () => {
+    expect(findAnagrams('mass', ['last'])).toEqual([]);
   });
 
-  it('detects anagrams case-insensitively',function() {
-    var subject = new Anagram('Orchestra');
-    var matches = subject.matches(['cashregister', 'Carthorse', 'radishes']);
-
-    expect(matches).toEqual(['Carthorse']);
+  test('detects anagrams case-insensitively', () => {
+    expect(
+      findAnagrams('Orchestra', ['cashregister', 'Carthorse', 'radishes'])
+    ).toEqual(['Carthorse']);
   });
 
-  it('does not detect a word as its own anagram',function() {
-    var subject = new Anagram('banana');
-    var matches = subject.matches(['Banana']);
-
-    expect(matches).toEqual([]);
+  test('detects anagrams using case-insensitive subject', () => {
+    expect(
+      findAnagrams('Orchestra', ['cashregister', 'carthorse', 'radishes'])
+    ).toEqual(['carthorse']);
   });
 
-  it('matches() accepts string arguments',function() {
-    var subject = new Anagram('ant');
-    var matches = subject.matches('stand', 'tan', 'at');
-
-    expect(matches).toEqual(['tan']);
+  test('detects anagrams using case-insensitive possible matches', () => {
+    expect(
+      findAnagrams('orchestra', ['cashregister', 'Carthorse', 'radishes'])
+    ).toEqual(['Carthorse']);
   });
 
-  it('matches() accepts single string argument',function() {
-    var subject = new Anagram('ant');
-    var matches = subject.matches('tan');
+  test('does not detect an anagram if the original word is repeated', () => {
+    expect(findAnagrams('go', ['go Go GO'])).toEqual([]);
+  });
 
-    expect(matches).toEqual(['tan']);
+  test('anagrams must use all letters exactly once', () => {
+    expect(findAnagrams('tapper', ['patter'])).toEqual([]);
+  });
+
+  test('words are not anagrams of themselves (case-insensitive)', () => {
+    expect(findAnagrams('BANANA', ['BANANA', 'Banana', 'banana'])).toEqual([]);
+  });
+
+  test('words other than themselves can be anagrams', () => {
+    expect(findAnagrams('LISTEN', ['Listen', 'Silent', 'LISTEN'])).toEqual([
+      'Silent',
+    ]);
   });
 });

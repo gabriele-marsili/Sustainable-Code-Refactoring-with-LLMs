@@ -1,29 +1,48 @@
-/* Decimal to Roman numeral mapping */
-var decToNum = {   1: "I",   4:"IV",   5: "V",   9:"IX",
-				  10: "X",  40:"XL",  50: "L",  90:"XC",
-				 100: "C", 400:"CD", 500: "D", 900:"CM",
-				1000: "M",
-				};
+const list = [
+  { letter: 'M', num: 1000 },
+  { letter: 'D', num: 500 },
+  { letter: 'C', num: 100 },
+  { letter: 'L', num: 50 },
+  { letter: 'X', num: 10 },
+  { letter: 'V', num: 5 },
+  { letter: 'I', num: 1 },
+];
 
-function toRoman(remainer) {
-	/* Convert a decimal number to a roman numeral */
-	
-	function appendNumerals(total, decimal) {
-		/* Appends as many roman numerals as possible */
-		while (remainer >= decimal) {
-			remainer -= decimal;
-			total += decToNum[decimal];
-		}
-		return total;
-	};
+const combinationsToShorten = [
+  { string: 'DCCCC', shortener: 'CM' },
+  { string: 'CCCC', shortener: 'CD' },
+  { string: 'LXXXX', shortener: 'XC' },
+  { string: 'XXXX', shortener: 'XL' },
+  { string: 'VIIII', shortener: 'IX' },
+  { string: 'IIII', shortener: 'IV' },
+];
 
-	var decimalNumbers = Object.keys(decToNum).sort(reverseNumeric);
-	return decimalNumbers.reduce( appendNumerals, '');
-};
+function shortenMultipleLetters(string) {
+  return combinationsToShorten.reduce((acc, curr) => {
+    return acc.replace(curr.string, curr.shortener);
+  }, string);
+}
 
-function reverseNumeric(a, b){
-	/* Reverse sort a numeric array */
-	return b - a;
-};
+export function toRoman(numToConvert) {
+  const result = list.reduce(
+    (acc, curr) => {
+      const multiple = Math.floor(acc.rest / curr.num);
 
-module.exports = toRoman;
+      const currNum = [];
+
+      if (acc.rest > 0 && multiple > 0) {
+        acc.rest -= curr.num * multiple;
+        [...Array(multiple)].forEach(() => {
+          currNum.push(curr.letter);
+        });
+        acc.list.push(currNum.join(''));
+      }
+      return acc;
+    },
+    {
+      rest: numToConvert,
+      list: [],
+    }
+  );
+  return shortenMultipleLetters(result.list.join(''));
+}

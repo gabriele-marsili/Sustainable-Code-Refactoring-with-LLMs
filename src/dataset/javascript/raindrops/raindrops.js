@@ -1,8 +1,20 @@
-export const convert = (number) => {
-  var output = "";
-  number % 3 === 0 ? (output += "Pling") : null;
-  number % 5 === 0 ? (output += "Plang") : null;
-  number % 7 === 0 ? (output += "Plong") : null;
+function modulo(number, factor) {
+	return number % factor === 0;
+}
 
-  return output + "" || number + "";
+export const convert = (input) => {
+	let result = '';
+
+	if (modulo(input, 3)) {
+		result = result + 'Pling';
+	}
+	if (modulo(input, 5)) {
+		result = result + 'Plang';
+	}
+	if (modulo(input, 7)) {
+		result = result + 'Plong';
+	}
+
+	if (result.length === 0) return input.toString();
+	return result;
 };

@@ -1,12 +1,25 @@
-var Hamming = function() {};
-
-Hamming.prototype.compute = function( dnaA, dnaB ) {
-  var sum = 0;
-  if (dnaA.length !== dnaB.length) { throw 'DNA strands must be of equal length.'}
-  for( var i = 0; i <= dnaA.length; i++) {
-    if (dnaA.charAt(i) !== dnaB.charAt(i)) {sum++}
-  }
-  return sum;
+function checkForErrors(leftStrand, rightStrand) {
+	if (leftStrand.length !== rightStrand.length) {
+		if (leftStrand.length === 0) {
+			throw Error('left strand must not be empty');
+		}
+		if (rightStrand.length === 0) {
+			throw Error('right strand must not be empty');
+		}
+		throw Error('left and right strands must be of equal length');
+	}
 }
 
-module.exports = Hamming;
+export const compute = (leftStrand, rightStrand) => {
+	const dnaStrand = leftStrand.split('');
+	const dnaStrandToCompare = rightStrand.split('');
+
+	checkForErrors(dnaStrand, dnaStrandToCompare);
+
+	return dnaStrand.reduce((acc, curr, index) => {
+		if (curr !== dnaStrandToCompare[index]) {
+			acc++;
+		}
+		return acc;
+	}, 0);
+};

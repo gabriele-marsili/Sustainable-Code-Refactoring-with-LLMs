@@ -1,69 +1,51 @@
-class Zipper {
-  constructor(tree, crumbs) {
+const Zipper = class {
+  constructor(tree, focus = null, parent = null) {
     this.tree = tree;
-    this.crumbs = crumbs || [];
+    this.parent = parent;
+    this.focus = focus || tree;
   }
-  toTree() {
-    var val = this
-    var next = this.up()
-    while (next != null) {
-      val = next;
-      next = val.up();
-    }
-    return val.tree;
-  }
-  left() {
-    if (!this.tree['left'])
-      return null;
-    return new Zipper(this.tree['left'],
-        [{ right: this.tree['right'], value: this.tree['value'] }, ...this.crumbs]);
-  }
-  right() {
-    if (!this.tree['right'])
-      return null;
-    return new Zipper(this.tree['right'],
-        [{ left: this.tree['left'], value: this.tree['value'] }, ...this.crumbs]);
-  }
-  value() {
-    return this.tree['value'];
-  }
-  up() {
-    if (this.crumbs.length <= 0)
-      return null;
-    let head = this.crumbs[0];
-    if (!('right' in head)) {
-      head.right = this.tree;
-    } 
-    if (!('left' in head)) {
-      head.left = this.tree;
-    }
-    return new Zipper(head, this.crumbs.slice(1));
-  }
-  setValue(val) {
-    return new Zipper({
-        value: val,
-        left: this.tree.left,
-        right: this.tree.right
-    }, this.crumbs);
-  }
-  setLeft(leaf) {
-    return new Zipper({
-        value: this.tree.value,
-        left: leaf,
-        right: this.tree.right
-    }, this.crumbs);
-  }
-  setRight(leaf) {
-    return new Zipper({
-        value: this.tree.value,
-        left: this.tree.left,
-        right: leaf
-    }, this.crumbs);
-  }
-}
 
-module.exports = {
-  fromTree(items) {
-    return new Zipper(items);
-  },
-}
+  static fromTree(tree) {
+    return new Zipper(JSON.parse(JSON.stringify(tree)));
+  }
+
+  toTree() {
+    return this.tree;
+  }
+
+  left() {
+    if (!this.focus.left) return null;
+    return new Zipper(this.tree, this.focus.left, this.focus);
+  }
+
+  right() {
+    if (!this.focus.right) return null;
+    return new Zipper(this.tree, this.focus.right, this.focus);
+  }
+
+  value() {
+    return this.focus.value;
+  }
+
+  up() {
+    if (!this.parent) return null;
+    return new Zipper(this.tree, this.parent, this.focus);
+  }
+
+  setValue(val) {
+    this.focus.value = val;
+    return new Zipper(this.tree, this.focus, this.parent);
+  }
+
+  setLeft(val) {
+    this.focus.left = val;
+    return new Zipper(this.tree, this.focus, this.parent);
+  }
+
+  setRight(val) {
+    this.focus.right = val;
+    return new Zipper(this.tree, this.focus, this.parent);
+  }
+};
+
+export { Zipper };

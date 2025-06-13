@@ -490,9 +490,17 @@ class CodeTestDatasetCreator:
         print("=== Inizio creazione dataset con soluzioni umane ===")
         print(f"Linguaggi target: {', '.join(self.target_languages)}")
 
-        try:                                               
-            if "oguzsh" in sources:
-                self.process_oguzsh()
+        try:                                                                         
+            if "PhymasSC" in sources:
+                self.process_PhymasSC()
+            #if "irvingbennett" in sources:
+            #    self.process_irvingbennett()
+            #if "programmiri" in sources:
+            #    self.process_programmiri()
+            #if "ffflorian" in sources:
+            #    self.process_ffflorian()
+            #if "oguzsh" in sources:
+            #    self.process_oguzsh()
             #if "ThomasZumsteg-js" in sources:
             #    self.process_ThomasZumsteg_js()
             #if "robiworks" in sources:
@@ -525,9 +533,121 @@ class CodeTestDatasetCreator:
         print("\nDistribuzione per linguaggio (totale):")
         for lang, count in sorted(self.language_counts.items()):
             print(f"  - {lang}: {count} coppie")
-
     
-    def process_oguzsh(self):
+    def process_PhymasSC(self):
+        repo = "PhymasSC/Exercism-Learning-Log"
+       
+        print("\nProcessing PhymasSC exercism (js)")        
+        repo_contents = self.get_github_contents(repo,"javascript")
+        for item in repo_contents :
+            if item["type"] == "dir" and item["name"] != ".gradle":
+                file_name = item["name"]
+                print(f"\nProcessing filename : {file_name}")
+                                                              
+                conent = self.get_github_contents(repo, "javascript/"+file_name)                
+                
+                main_file = None
+                test_file = None
+                for f_item in conent:
+                    if f_item['type'] == "file" and file_name in f_item["name"]: 
+                        if ".spec." in f_item["name"]:
+                            test_file = f_item
+                        else:
+                            main_file = f_item
+                        
+                
+                
+                if test_file and main_file : 
+                    print(f"Creating pair for file : {file_name}")                    
+                    self.create_single_code_test_pair(repo,main_file,test_file,"javascript",file_name,"exercism-javascript-PhymasSC")
+       
+    #repositories already processed
+    """
+    def process_irvingbennett(self):
+        repo = "irvingbennett/javascript"
+       
+        print("\nProcessing irvingbennett exercism (js)")        
+        repo_contents = self.get_github_contents(repo)
+        for item in repo_contents :
+            if item["type"] == "dir" and item["name"] != ".gradle":
+                file_name = item["name"]
+                print(f"\nProcessing filename : {file_name}")
+                                                              
+                conent = self.get_github_contents(repo, file_name)                
+                
+                main_file = None
+                test_file = None
+                for f_item in conent:
+                    if f_item['type'] == "file" and file_name in f_item["name"]: 
+                        if ".spec." in f_item["name"]:
+                            test_file = f_item
+                        else:
+                            main_file = f_item
+                        
+                
+                
+                if test_file and main_file : 
+                    print(f"Creating pair for file : {file_name}")                    
+                    self.create_single_code_test_pair(repo,main_file,test_file,"javascript",file_name,"exercism-javascript-irvingbennett")
+       
+    
+    
+    def process_programmiri(self):
+        repo = "programmiri/exercism-javascript"
+       
+        print("\nProcessing programmiri exercism (js)")        
+        repo_contents = self.get_github_contents(repo)
+        for item in repo_contents :
+            if item["type"] == "dir" and item["name"] != ".gradle":
+                file_name = item["name"]
+                print(f"\nProcessing filename : {file_name}")
+                                                              
+                conent = self.get_github_contents(repo, file_name)                
+                
+                main_file = None
+                test_file = None
+                for f_item in conent:
+                    if f_item['type'] == "file" and file_name in f_item["name"]: 
+                        if ".spec." in f_item["name"]:
+                            test_file = f_item
+                        else:
+                            main_file = f_item
+                        
+                
+                
+                if test_file and main_file : 
+                    print(f"Creating pair for file : {file_name}")                    
+                    self.create_single_code_test_pair(repo,main_file,test_file,"javascript",file_name,"exercism-javascript-programmiri")
+      
+    def process_ffflorian(self):
+        repo = "ffflorian/exercism"
+       
+        print("\nProcessing ffflorian exercism (js)")        
+        repo_contents = self.get_github_contents(repo,"javascript")
+        for item in repo_contents :
+            if item["type"] == "dir" and item["name"] != ".gradle":
+                file_name = item["name"]
+                print(f"\nProcessing filename : {file_name}")
+                                                              
+                conent = self.get_github_contents(repo, "javascript/"+file_name)                
+                
+                main_file = None
+                test_file = None
+                for f_item in conent:
+                    if f_item['type'] == "file" and file_name in f_item["name"]: 
+                        if ".spec." in f_item["name"]:
+                            test_file = f_item
+                        else:
+                            main_file = f_item
+                        
+                
+                
+                if test_file and main_file : 
+                    print(f"Creating pair for file : {file_name}")                    
+                    self.create_single_code_test_pair(repo,main_file,test_file,"javascript",file_name,"exercism-javascript-ffflorian")
+    
+
+     def process_oguzsh(self):
         repo = "oguzsh/exercism-js-problems"
        
         print("\nProcessing oguzsh exercism (js)")        
@@ -554,9 +674,8 @@ class CodeTestDatasetCreator:
                 if test_file and main_file : 
                     print(f"Creating pair for file : {file_name}")                    
                     self.create_single_code_test_pair(repo,main_file,test_file,"javascript",file_name,"exercism-javascript-oguzsh")
-       
-    #repositories already processed
-    """
+    
+    
     def process_ThomasZumsteg_js(self):
         repo = "ThomasZumsteg/exercism-javascript"
        
@@ -858,7 +977,11 @@ if __name__ == "__main__":
            #"uzilan"
            #"robiworks"
            #"ThomasZumsteg-js"
-           "oguzsh"
+           #"oguzsh"
+           #"ffflorian"
+           #"programmiri"
+           #"irvingbennett"
+           "PhymasSC"
         ],
         languages=[
             'python', 'javascript', 'java', 'cpp', 'go', 'rust', 'typescript',

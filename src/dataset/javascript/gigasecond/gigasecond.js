@@ -1,5 +1,4 @@
-export const gigasecond = startDate => {
-  var startTime = startDate.getTime();
-  var endDate = new Date(startTime + 1000000000000);
-  return endDate;
-};
+export function gigasecond(birthday) {
+  const sec = 1000000000;
+  return new Date(birthday.getTime() + sec * 1000);
+}

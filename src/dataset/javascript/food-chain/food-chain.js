@@ -1,43 +1,101 @@
-var FoodChain = function() {};
+//@ts-check
 
-FoodChain.prototype.verse = function( verseNum ) {
-	/* Sing a verse of a song */
-	var verse = lines.opening + lines.first[verseNum]
-	// She's dead of course
-	if (verseNum >= 8) { return verse }
-	return verse + lines.chorus.slice(0, verseNum).reverse().join('');
-};
+/**
+ * @typedef {{
+ *   catch?: string
+ *   end?: string;
+ *   last?: true;
+ *   message: string;
+ *   type: string;
+ *   why?: string;
+ * }} Verse
+ */
 
-FoodChain.prototype.verses = function(stop, start) {
-	/* Sings a set of verses of a song */
-	var verses = '';
-	for(var i = stop; i <= start; i++) {
-		verses += this.verse(i) + "\n";
-	} 
-	return verses;
-};
+export class Song {
+  constructor() {
+    /**
+     * @private
+     * @type {Verse[]}
+     */
+    this._verses = [
+      {
+        end: " Perhaps she'll die.\n",
+        message: '',
+        type: 'fly',
+      },
+      {
+        catch: 'fly',
+        message: 'It wriggled and jiggled and tickled inside her.\n',
+        type: 'spider',
+      },
+      {
+        catch: 'spider that wriggled and jiggled and tickled inside her',
+        message: 'How absurd to swallow a bird!\n',
+        type: 'bird',
+      },
+      {
+        catch: 'bird',
+        message: 'Imagine that, to swallow a cat!\n',
+        type: 'cat',
+      },
+      {
+        catch: 'cat',
+        message: 'What a hog, to swallow a dog!\n',
+        type: 'dog',
+      },
+      {
+        catch: 'dog',
+        message: 'Just opened her throat and swallowed a goat!\n',
+        type: 'goat',
+      },
+      {
+        catch: 'goat',
+        message: "I don't know how she swallowed a cow!\n",
+        type: 'cow',
+      },
+      {
+        last: true,
+        message: "She's dead, of course!\n",
+        type: 'horse',
+        why: 'catch',
+      },
+    ];
+  }
 
-var lines = {
-	/* The lines for the song "I know an old lady who swallowed a fly" */
-	opening : "I know an old lady who swallowed ",
-	first : [ "",
-			  "a fly.\n",
-			  "a spider.\nIt wriggled and jiggled and tickled inside her.\n",
-			  "a bird.\nHow absurd to swallow a bird!\n",
-			  "a cat.\nImagine that, to swallow a cat!\n",
-			  "a dog.\nWhat a hog, to swallow a dog!\n",
-			  "a goat.\nJust opened her throat and swallowed a goat!\n",
-			  "a cow.\nI don't know how she swallowed a cow!\n",
-			  "a horse.\nShe's dead, of course!\n",
-			],
-	chorus : ["I don't know why she swallowed the fly. Perhaps she'll die.\n",
-			  "She swallowed the spider to catch the fly.\n",
-			  "She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.\n",
-			  "She swallowed the cat to catch the bird.\n",
-			  "She swallowed the dog to catch the cat.\n",
-			  "She swallowed the goat to catch the dog.\n",
-			  "She swallowed the cow to catch the goat.\n",
-			 ],
-};
+  /**
+   * @param {number} index
+   * @returns {string}
+   */
+  verse(index) {
+    let verse = `I know an old lady who swallowed a ${this._verses[index - 1].type}.\n${
+      this._verses[index - 1].message
+    }`;
+    for (let i = index - 1; i >= 0; i--) {
+      const v = this._verses[i];
+      if (v.last === true) {
+        break;
+      }
+      verse += `${
+        v.catch
+          ? `She swallowed the ${v.type} to catch the ${v.catch}.\n`
+          : `I don't know why she swallowed the ${v.type}.`
+      }${v.end ? v.end : ''}`;
+    }
+    return `${verse}`;
+  }
 
-module.exports = FoodChain; 
+  /**
+   * @param {number} begin
+   * @param {number} end
+   * @returns {string}
+   */
+  verses(begin, end) {
+    let song = '';
+
+    for (let i = begin; i <= end; i++) {
+      song += `${this.verse(i)}\n`;
+    }
+
+    return song;
+  }
+}

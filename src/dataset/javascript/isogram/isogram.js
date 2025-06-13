@@ -1,11 +1,9 @@
-class Isogram {
-    constructor(word) {
-        this.word = word;
-    }
+//@ts-check
 
-    isIsogram() {
-        return !/([^-\s]).*\1/i.test(this.word);
-    }
+/**
+ * @param {string} word
+ * @returns {boolean}
+ */
+export function isIsogram(word) {
+  return !/([A-zÀ-ÿ]).*\1/i.test(word);
 }
-
-module.exports = Isogram;

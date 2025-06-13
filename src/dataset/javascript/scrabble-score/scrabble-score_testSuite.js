@@ -1,27 +1,47 @@
-var score = require('./scrabble-score');
+import { score } from './scrabble-score';
 
-describe('Scrabble', function() {
-  it('scores an empty word as zero',function() {
-    expect(score('')).toEqual(0);
-  });
-
-  it('scores a null as zero',function() {
-    expect(score(null)).toEqual(0);
-  });
-
-  it('scores a very short word',function() {
+describe('Scrabble', () => {
+  test('lowercase letter', () => {
     expect(score('a')).toEqual(1);
   });
 
-  it('scores the word by the number of letters',function() {
+  test('uppercase letter', () => {
+    expect(score('A')).toEqual(1);
+  });
+
+  test('valuable letter', () => {
+    expect(score('f')).toEqual(4);
+  });
+
+  test('short word', () => {
+    expect(score('at')).toEqual(2);
+  });
+
+  test('short, valuable word', () => {
+    expect(score('zoo')).toEqual(12);
+  });
+
+  test('medium word', () => {
     expect(score('street')).toEqual(6);
   });
 
-  it('scores more complicated words with more',function() {
+  test('medium, valuable word', () => {
     expect(score('quirky')).toEqual(22);
   });
 
-  it('scores case insensitive words',function() {
-    expect(score('MULTIBILLIONAIRE')).toEqual(20);
+  test('long, mixed-case word', () => {
+    expect(score('OxyphenButazone')).toEqual(41);
+  });
+
+  test('english-like word', () => {
+    expect(score('pinata')).toEqual(8);
+  });
+
+  test('empty input', () => {
+    expect(score('')).toEqual(0);
+  });
+
+  test('entire alphabet available', () => {
+    expect(score('abcdefghijklmnopqrstuvwxyz')).toEqual(87);
   });
 });

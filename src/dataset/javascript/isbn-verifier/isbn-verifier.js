@@ -1,19 +1,25 @@
-export default class ISBN {
-  constructor(digits) {
-    this.digits = digits;
+//@ts-check
+
+/**
+ * @param {string} input
+ * @returns {boolean}
+ */
+export const isValid = input => {
+  const withoutDashes = input.replace(/-/g, '');
+
+  if (!/^\d{0,9}[\dX]$/.test(withoutDashes)) {
+    return false;
   }
 
-  isValid() {
-    let sum = 0;
-    let digit = 10;
-    for (let d of this.digits.split('')) {
-      if (digit <= 0) { return false; }
-      if ((d >= '0' && d <= '9') ||
-          (digit === 1 && d === 'X')) {
-        sum += digit * (d === 'X' ? 10 : d - '0');
-        digit -= 1;
-      }
-    }
-    return digit === 0 && sum % 11 === 0;
+  const digits = [...withoutDashes].map(digit => (digit === 'X' ? 10 : Number(digit)));
+
+  let remainder = 0;
+  let sum = 0;
+
+  for (let i = 0; i < 10; i++) {
+    remainder += digits[i];
+    sum += remainder;
   }
-}
+
+  return sum % 11 === 0;
+};

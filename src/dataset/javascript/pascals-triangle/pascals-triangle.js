@@ -1,24 +1,32 @@
-var Triangle = function(nRows) {
-	/* Builds Pascals Triangle */
-	this.rows = [];
-	var row = [1];
-	for(var i = 0; i < nRows; i++ ) {
-		this.rows.push(row);
-		this.lastRow = row;
-		row = next_row(row);
-	}
-}
+//
+// This is only a SKELETON file for the 'Pascals Triangle' exercise. It's been provided as a
+// convenience to get you started writing code faster.
+//
 
-function next_row(current_row) {
-	/* Builds the next row of Pascals Triangle */
-	var row = []; 
-	var prev = 0;
-	for(var j = 0; j < current_row.length; j++) {
-		row.push(current_row[j] + prev);
-		prev = current_row[j];
-	}
-	row.push(prev);
-	return row;
-}
+const factorial = number => {
+	if (number <= 1) return 1;
+	let result = 1;
+	result = factorial(number - 1) * number;
+	return result;
+};
 
-module.exports = Triangle;
+const combination = (totalNumberOfObjects, numberOfCurrentObject) => {
+	let nFactorial = factorial(totalNumberOfObjects);
+	let rFactorial = factorial(numberOfCurrentObject);
+	return (
+		nFactorial /
+		(rFactorial * factorial(totalNumberOfObjects - numberOfCurrentObject))
+	);
+};
+
+export const rows = number => {
+	if (number <= 0) return [];
+	let res = new Array(number);
+	for (let row = 0; row < number; row++) {
+		res[row] = new Array(row + 1).fill(1);
+		for (let column = 2; column <= row; column++) {
+			res[row][column - 1] = combination(row, column - 1);
+		}
+	}
+	return res;
+};
