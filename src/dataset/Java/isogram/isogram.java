@@ -1,16 +1,16 @@
-import java.util.HashSet;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 class IsogramChecker {
 
-  boolean isIsogram(String phrase) {
-    var letters = phrase
-        .chars()
-        .mapToObj(Character::toLowerCase)
-        .filter(Character::isLetter)
-        .collect(Collectors.toList());
+    boolean isIsogram(String phrase) {
+        final Map<Character, Long> map = phrase
+                .codePoints()
+                .mapToObj(c -> Character.toLowerCase((char) c))
+                .filter(Character::isLetter)
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 
-    return letters.size() == new HashSet<>(letters).size();
-  }
-
+        return map.values().stream().noneMatch(i -> i > 1);
+    }
 }

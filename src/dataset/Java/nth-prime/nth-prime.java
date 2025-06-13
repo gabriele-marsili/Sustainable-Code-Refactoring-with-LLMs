@@ -1,22 +1,22 @@
+import static java.util.stream.IntStream.rangeClosed;
+
 class PrimeCalculator {
 
     int nth(int nth) {
-        if (nth == 0) throw new IllegalArgumentException();
-        int num, count, i;
-        num = 1;
-        count = 0;
-
-        while (count < nth) {
-            num = num + 1;
-            for (i = 2; i <= num; i++) {
-                if (num % i == 0) {
-                    break;
-                }
-            }
-            if (i == num) {
-                count = count + 1;
-            }
+        if (nth < 1) {
+            throw new IllegalArgumentException();
         }
-        return num;
+
+        return rangeClosed(2, Integer.MAX_VALUE)
+                .filter(this::isPrime)
+                .limit(nth)
+                .max()
+                .orElse(0);
+    }
+
+    private boolean isPrime(int number) {
+        return rangeClosed(2, number / 2)
+                .filter(i -> number % i == 0)
+                .count() == 0;
     }
 }

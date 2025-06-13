@@ -1,27 +1,35 @@
+import static java.lang.Character.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.IntStream.rangeClosed;
+
 class RotationalCipher {
-    private final int shiftKey;
+
+    private final String letters;
+    private final String rotated;
 
     RotationalCipher(int shiftKey) {
-        final int ALPHABET_LENGTH = 26;
-        this.shiftKey = shiftKey % ALPHABET_LENGTH;
+        letters = rangeClosed('a', 'z')
+                .mapToObj(cp -> "" + (char) cp)
+                .collect(joining(""));
+
+        rotated = letters.substring(shiftKey) + letters.substring(0, shiftKey);
     }
 
     String rotate(String data) {
-        String lowerAlph = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz";
-        String upperAlph = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < data.length(); i++) {
-            char ch = data.charAt(i);
-            if (Character.isAlphabetic(ch)) {
-                if (Character.isUpperCase(ch)) {
-                    result.append(upperAlph.charAt(upperAlph.indexOf(ch) + shiftKey));
-                } else {
-                    result.append(lowerAlph.charAt(lowerAlph.indexOf(ch) + shiftKey));
-                }
-            } else {
-                result.append(ch);
-            }
+        return data.codePoints()
+                .mapToObj(c -> "" + getRotatedLetter(c))
+                .collect(joining(""));
+    }
+
+    private char getRotatedLetter(int codePoint) {
+        final char ch = (char) codePoint;
+        if (!isLetter(ch)) {
+            return ch;
         }
-        return result.toString();
+
+        final int i = letters.indexOf(toLowerCase(ch));
+        final char c = rotated.charAt(i);
+
+        return isLowerCase(ch) ? c : toUpperCase(c);
     }
 }

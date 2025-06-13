@@ -1,20 +1,28 @@
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
-class Flattener {
-    @SuppressWarnings("unchecked")
-    <T> List<T> flatten(List<T> list) {
-        List<T> result = new ArrayList<>();
-        for (T item : list) {
-            if (item instanceof List<?> && ((List<?>) item).isEmpty()) {
-                continue;
-            }
-            if (item instanceof List<?>) {
-                result.addAll(flatten((List<T>) item));
-            } else if (item != null) {
-                result.add(item);
-            }
+import static java.util.stream.Collectors.toList;
+
+public class Flattener {
+
+    public List<?> flatten(List<?> list) {
+        return streamFlattener(list).collect(toList());
+    }
+
+    private Stream<?> streamFlattener(List<?> list) {
+        if (list == null || list.isEmpty()) {
+            return Stream.empty();
         }
-        return result;
+
+        return list.stream()
+                .flatMap(item -> {
+                    if (item == null) {
+                        return Stream.empty();
+                    }
+                    if (item instanceof List<?>) {
+                        return streamFlattener((List<?>) item);
+                    }
+                    return Stream.of(item);
+                });
     }
 }

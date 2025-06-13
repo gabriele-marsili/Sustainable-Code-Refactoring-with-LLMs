@@ -1,130 +1,116 @@
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.junit.Assert.assertEquals;
 
 public class BinarySearchTest {
 
     @Test
-    public void findsAValueInAnArrayWithOneElement() throws ValueNotFoundException {
-        List<Integer> listOfUnitLength = Collections.singletonList(6);
+    public void findsAValueInAnArrayWithOneElement() {
+        List<Character> listOfUnitLength = Collections.singletonList('6');
 
-        BinarySearch search = new BinarySearch(listOfUnitLength);
+        BinarySearch<Character> search = new BinarySearch<>(listOfUnitLength);
 
-        assertThat(search.indexOf(6)).isEqualTo(0);
+        assertEquals(0, search.indexOf('6'));
     }
 
-    //    @Ignore("Remove to run test")
     @Test
-    public void findsAValueInTheMiddleOfAnArray() throws ValueNotFoundException {
-        List<Integer> sortedList = List.of(1, 3, 4, 6, 8, 9, 11);
+    public void findsAValueInTheMiddleOfAnArray() {
+        List<String> sortedList = Collections.unmodifiableList(
+                Arrays.asList("1", "3", "4", "6", "8", "9", "11")
+        );
 
-        BinarySearch search = new BinarySearch(sortedList);
+        BinarySearch<String> search = new BinarySearch<>(sortedList);
 
-        assertThat(search.indexOf(6)).isEqualTo(3);
+        assertEquals(3, search.indexOf("6"));
     }
 
-    //    @Ignore("Remove to run test")
     @Test
-    public void findsAValueAtTheBeginningOfAnArray() throws ValueNotFoundException {
-        List<Integer> sortedList = List.of(1, 3, 4, 6, 8, 9, 11);
+    public void findsAValueAtTheBeginningOfAnArray() {
+        List<Integer> sortedList = Collections.unmodifiableList(
+                Arrays.asList(1, 3, 4, 6, 8, 9, 11)
+        );
 
-        BinarySearch search = new BinarySearch(sortedList);
+        BinarySearch<Integer> search = new BinarySearch<>(sortedList);
 
-        assertThat(search.indexOf(1)).isEqualTo(0);
+        assertEquals(0, search.indexOf(1));
     }
 
-    //    @Ignore("Remove to run test")
     @Test
-    public void findsAValueAtTheEndOfAnArray() throws ValueNotFoundException {
-        List<Integer> sortedList = List.of(1, 3, 4, 6, 8, 9, 11);
+    public void findsAValueAtTheEndOfAnArray() {
+        List<Integer> sortedList = Collections.unmodifiableList(
+                Arrays.asList(1, 3, 4, 6, 8, 9, 11)
+        );
 
-        BinarySearch search = new BinarySearch(sortedList);
+        BinarySearch<Integer> search = new BinarySearch<>(sortedList);
 
-        assertThat(search.indexOf(11)).isEqualTo(6);
+        assertEquals(6, search.indexOf(11));
     }
 
-    //    @Ignore("Remove to run test")
     @Test
-    public void findsAValueInAnArrayOfOddLength() throws ValueNotFoundException {
-        List<Integer> sortedListOfOddLength = List.of(1, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 634);
+    public void findsAValueInAnArrayOfOddLength() {
+        List<Integer> sortedListOfOddLength = Collections.unmodifiableList(
+                Arrays.asList(1, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 634)
+        );
 
-        BinarySearch search = new BinarySearch(sortedListOfOddLength);
+        BinarySearch<Integer> search = new BinarySearch<>(sortedListOfOddLength);
 
-        assertThat(search.indexOf(144)).isEqualTo(9);
+        assertEquals(9, search.indexOf(144));
     }
 
-    //    @Ignore("Remove to run test")
     @Test
-    public void findsAValueInAnArrayOfEvenLength() throws ValueNotFoundException {
-        List<Integer> sortedListOfEvenLength = List.of(1, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377);
+    public void findsAValueInAnArrayOfEvenLength() {
+        List<Integer> sortedListOfEvenLength = Collections.unmodifiableList(
+                Arrays.asList(1, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377)
+        );
 
-        BinarySearch search = new BinarySearch(sortedListOfEvenLength);
+        BinarySearch<Integer> search = new BinarySearch<>(sortedListOfEvenLength);
 
-        assertThat(search.indexOf(21)).isEqualTo(5);
+        assertEquals(5, search.indexOf(21));
     }
 
-    //    @Ignore("Remove to run test")
     @Test
-    public void identifiesThatAValueIsNotFoundInTheArray() {
-        List<Integer> sortedList = List.of(1, 3, 4, 6, 8, 9, 11);
+    public void identifiesThatAValueIsNotIncludedInTheArray() {
+        List<String> sortedList = Collections.unmodifiableList(
+                Arrays.asList("1", "3", "4", "6", "8", "9", "11")
+        );
 
-        BinarySearch search = new BinarySearch(sortedList);
+        BinarySearch<String> search = new BinarySearch<>(sortedList);
 
-        assertThatExceptionOfType(ValueNotFoundException.class)
-                .isThrownBy(() -> search.indexOf(7))
-                .withMessage("Value not in array");
+        assertEquals(-1, search.indexOf("7"));
     }
 
-    //    @Ignore("Remove to run test")
     @Test
-    public void aValueSmallerThanTheArraysSmallestValueIsNotFound() {
-        List<Integer> sortedList = List.of(1, 3, 4, 6, 8, 9, 11);
+    public void aValueSmallerThanTheArraysSmallestValueIsNotIncluded() {
+        List<Integer> sortedList = Collections.unmodifiableList(
+                Arrays.asList(1, 3, 4, 6, 8, 9, 11)
+        );
 
-        BinarySearch search = new BinarySearch(sortedList);
+        BinarySearch<Integer> search = new BinarySearch<>(sortedList);
 
-        assertThatExceptionOfType(ValueNotFoundException.class)
-                .isThrownBy(() -> search.indexOf(0))
-                .withMessage("Value not in array");
+        assertEquals(-1, search.indexOf(0));
     }
 
-    //    @Ignore("Remove to run test")
     @Test
-    public void aValueLargerThanTheArraysSmallestValueIsNotFound() throws ValueNotFoundException {
-        List<Integer> sortedList = List.of(1, 3, 4, 6, 8, 9, 11);
+    public void aValueLargerThanTheArraysSmallestValueIsNotIncluded() {
+        List<Integer> sortedList = Collections.unmodifiableList(
+                Arrays.asList(1, 3, 4, 6, 8, 9, 11)
+        );
 
-        BinarySearch search = new BinarySearch(sortedList);
+        BinarySearch<Integer> search = new BinarySearch<>(sortedList);
 
-        assertThatExceptionOfType(ValueNotFoundException.class)
-                .isThrownBy(() -> search.indexOf(13))
-                .withMessage("Value not in array");
+        assertEquals(-1, search.indexOf(13));
     }
 
-    //    @Ignore("Remove to run test")
     @Test
-    public void nothingIsFoundInAnEmptyArray() throws ValueNotFoundException {
+    public void nothingIsIncludedInAnEmptyArray() {
         List<Integer> emptyList = Collections.emptyList();
 
-        BinarySearch search = new BinarySearch(emptyList);
+        BinarySearch<Integer> search = new BinarySearch<>(emptyList);
 
-        assertThatExceptionOfType(ValueNotFoundException.class)
-                .isThrownBy(() -> search.indexOf(1))
-                .withMessage("Value not in array");
+        assertEquals(-1, search.indexOf(1));
     }
-
-    //    @Ignore("Remove to run test")
-    @Test
-    public void nothingIsFoundWhenTheLeftAndRightBoundCross() throws ValueNotFoundException {
-        List<Integer> sortedList = List.of(1, 2);
-
-        BinarySearch search = new BinarySearch(sortedList);
-
-        assertThatExceptionOfType(ValueNotFoundException.class)
-                .isThrownBy(() -> search.indexOf(0))
-                .withMessage("Value not in array");
-    }
-
 }

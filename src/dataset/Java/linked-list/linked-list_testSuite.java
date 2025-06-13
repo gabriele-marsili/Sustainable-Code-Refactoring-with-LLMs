@@ -1,111 +1,73 @@
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 public class DoublyLinkedListTest {
 
     @Test
-    public void popGetsElementFromTheList() {
+    public void testPushPop() {
         DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
 
-        list.push(7);
+        list.push(10);
+        list.push(20);
 
-        assertThat(list.pop()).isEqualTo(7);
+        assertThat(list.pop(), is(20));
+        assertThat(list.pop(), is(10));
     }
 
-    //    @Ignore("Remove to run test")
     @Test
-    public void pushAndPopRespectivelyAddsAndRemovesAtEndOfList() {
-        DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
-
-        list.push(11);
-        list.push(13);
-
-        assertThat(list.pop()).isEqualTo(13);
-        assertThat(list.pop()).isEqualTo(11);
-    }
-
-    //    @Ignore("Remove to run test")
-    @Test
-    public void shiftGetsAnElementFromTheList() {
-        DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
-
-        list.push(17);
-
-        assertThat(list.shift()).isEqualTo(17);
-    }
-
-    //    @Ignore("Remove to run test")
-    @Test
-    public void shiftGetsFirstElementFromTheList() {
-        DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
-
-        list.push(23);
-        list.push(5);
-
-        assertThat(list.shift()).isEqualTo(23);
-        assertThat(list.shift()).isEqualTo(5);
-    }
-
-    //    @Ignore("Remove to run test")
-    @Test
-    public void unshiftAddsElementAtStartOfTheList() {
-        DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
-
-        list.unshift(23);
-        list.unshift(5);
-
-        assertThat(list.shift()).isEqualTo(5);
-        assertThat(list.shift()).isEqualTo(23);
-    }
-
-    //    @Ignore("Remove to run test")
-    @Test
-    public void popPushShiftUnshiftCanBeUsedInAnyOrder() {
+    public void testPushShift() {
         DoublyLinkedList<String> list = new DoublyLinkedList<>();
 
-        list.push("one");
-        list.push("two");
+        list.push("10");
+        list.push("20");
 
-        assertThat(list.pop()).isEqualTo("two");
-
-        list.push("three");
-
-        assertThat(list.shift()).isEqualTo("one");
-
-        list.unshift("four");
-        list.push("five");
-
-        assertThat(list.shift()).isEqualTo("four");
-        assertThat(list.pop()).isEqualTo("five");
-        assertThat(list.shift()).isEqualTo("three");
+        assertThat(list.shift(), is("10"));
+        assertThat(list.shift(), is("20"));
     }
 
-    //    @Ignore("Remove to run test")
     @Test
-    public void poppingToEmptyDoesNotBreakTheList() {
+    public void testUnshiftShift() {
+        DoublyLinkedList<Character> list = new DoublyLinkedList<>();
+
+        list.unshift('1');
+        list.unshift('2');
+
+        assertThat(list.shift(), is('2'));
+        assertThat(list.shift(), is('1'));
+    }
+
+    @Test
+    public void testUnshiftPop() {
         DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
 
-        list.push(41);
-        list.push(59);
-        list.pop();
-        list.pop();
-        list.push(47);
+        list.unshift(10);
+        list.unshift(20);
 
-        assertThat(list.pop()).isEqualTo(47);
+        assertThat(list.pop(), is(10));
+        assertThat(list.pop(), is(20));
     }
 
-    //    @Ignore("Remove to run test")
     @Test
-    public void shiftingToEmptyDoesNotBreakTheList() {
-        DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
+    public void testExample() {
+        DoublyLinkedList<String> list = new DoublyLinkedList<>();
 
-        list.push(41);
-        list.push(59);
-        list.shift();
-        list.shift();
-        list.push(47);
+        list.push("ten");
+        list.push("twenty");
 
-        assertThat(list.shift()).isEqualTo(47);
+        assertThat(list.pop(), is("twenty"));
+
+        list.push("thirty");
+
+        assertThat(list.shift(), is("ten"));
+
+        list.unshift("forty");
+        list.push("fifty");
+
+        assertThat(list.shift(), is("forty"));
+        assertThat(list.pop(), is("fifty"));
+        assertThat(list.shift(), is("thirty"));
     }
+
 }

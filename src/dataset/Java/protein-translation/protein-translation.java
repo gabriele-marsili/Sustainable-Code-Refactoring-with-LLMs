@@ -1,44 +1,59 @@
-import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 class ProteinTranslator {
 
-  private Map<String, String> codons =
-      Stream.of(new String[][]{
-          {"AUG", "Methionine"},
-          {"UUU", "Phenylalanine"},
-          {"UUC", "Phenylalanine"},
-          {"UUA", "Leucine"},
-          {"UUG", "Leucine"},
-          {"UCU", "Serine"},
-          {"UCC", "Serine"},
-          {"UCA", "Serine"},
-          {"UCG", "Serine"},
-          {"UAU", "Tyrosine"},
-          {"UAC", "Tyrosine"},
-          {"UGU", "Cysteine"},
-          {"UGC", "Cysteine"},
-          {"UGG", "Tryptophan"}
-      }).collect(Collectors.toMap(data -> data[0], data -> data[1]));
+    List<String> translate(String rnaSequence) {
+        final int codonCount = rnaSequence.length() / 3;
 
-  private List<String> stopCodons = List.of("UAA", "UAG", "UGA");
+        final List<String> codons = IntStream.range(0, codonCount)
+                .mapToObj(i -> rnaSequence.substring(i * 3, (i + 1) * 3))
+                .collect(Collectors.toList());
 
-  List<String> translate(String rnaSequence) {
-    List<String> output = new ArrayList<>();
+        final Stream<Integer> stopCodonsIndexes =
+                Stream.of(codons.indexOf("UAA"),
+                        codons.indexOf("UAG"),
+                        codons.indexOf("UGA"));
 
-    while (rnaSequence.length() > 0) {
+        final List<String> codonsUntilStop = stopCodonsIndexes
+                .filter(i -> i > -1)
+                .min(Comparator.comparing(Integer::valueOf))
+                .map(s -> codons.subList(0, s))
+                .orElse(codons);
 
-      var nextCodon = rnaSequence.substring(0, 3);
-      rnaSequence = rnaSequence.substring(3);
-
-      if (stopCodons.contains(nextCodon)) {
-        break;
-      }
-      output.add(codons.get(nextCodon));
+        return codonsUntilStop.stream()
+                .map(ProteinTranslator::translateCodon)
+                .collect(Collectors.toList());
     }
-    return output;
-  }
+
+    private static String translateCodon(String codon) {
+        switch (codon) {
+            case "AUG":
+                return "Methionine";
+            case "UUU":
+            case "UUC":
+                return "Phenylalanine";
+            case "UUA":
+            case "UUG":
+                return "Leucine";
+            case "UCU":
+            case "UCC":
+            case "UCA":
+            case "UCG":
+                return "Serine";
+            case "UAU":
+            case "UAC":
+                return "Tyrosine";
+            case "UGU":
+            case "UGC":
+                return "Cysteine";
+            case "UGG":
+                return "Tryptophan";
+            default:
+                return "";
+        }
+    }
 }

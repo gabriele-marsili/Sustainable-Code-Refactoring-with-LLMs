@@ -1,10 +1,8 @@
-import java.util.stream.IntStream;
+public class PangramChecker {
 
-class PangramChecker {
-
-  boolean isPangram(String input) {
-    var text = input.toLowerCase();
-    return IntStream.rangeClosed('a', 'z').allMatch(letter -> text.indexOf(letter) != -1);
-  }
-
+    public boolean isPangram(String input) {
+        final String lowercaseInput = input.toLowerCase();
+        return "abcdefghijklmnopqrstuvwxyz".codePoints()
+                .allMatch(c -> lowercaseInput.indexOf(c) > -1);
+    }
 }

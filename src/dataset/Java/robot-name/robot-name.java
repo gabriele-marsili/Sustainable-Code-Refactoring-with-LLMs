@@ -1,41 +1,40 @@
-import java.util.HashSet;
 import java.util.Random;
-import java.util.Set;
 
-class Robot {
-    private String name = "";
-    private static final Set<String> names = new HashSet<>();
+import static java.lang.String.format;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.IntStream.range;
+import static java.util.stream.IntStream.rangeClosed;
 
-    private int getRandomNumber(int min, int max) {
-        Random random = new Random();
-        return random.nextInt(max - min + 1) + min;
+public class Robot {
+
+    private String name;
+    private final Random random = new Random();
+    private final String atoz = rangeClosed('A', 'Z')
+            .mapToObj(i -> "" + (char) i)
+            .collect(joining(""));
+
+    public Robot() {
+        reset();
     }
 
-    private void makeName() {
-        char firstChar = (char) getRandomNumber(65, 90);
-        char secondChar = (char) getRandomNumber(65, 90);
-        int firstNum = getRandomNumber(0, 9);
-        int secondNum = getRandomNumber(0, 9);
-        int thirdNum = getRandomNumber(0, 9);
-        var name = new StringBuilder();
-        name.append(firstChar).append(secondChar).append(firstNum).append(secondNum).append(thirdNum);
-        if (names.contains(name.toString())) {
-            makeName();
-        } else {
-            this.name = name.toString();
-            names.add(name.toString());
-        }
-    }
-
-    String getName() {
-        if (name.isEmpty()) {
-            makeName();
-        }
+    public String getName() {
         return name;
     }
 
-    void reset() {
-        name = "";
+    public void reset() {
+
+        final String letters = range(0, 2)
+                .mapToObj(i -> nextLetter())
+                .collect(joining(""));
+
+        final String numbers = format("%3d", random.nextInt(1000))
+                .replaceAll(" ", "0");
+
+        name = letters + numbers;
     }
 
+    private String nextLetter() {
+        final int index = random.nextInt(atoz.length());
+        return atoz.substring(index, index + 1);
+    }
 }

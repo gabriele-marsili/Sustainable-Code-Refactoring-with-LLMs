@@ -1,78 +1,92 @@
 class Markdown {
 
     String parse(String markdown) {
-        String[] lines = markdown.split("\n");
-        String result = "";
+
+        final StringBuilder result = new StringBuilder();
+
         boolean activeList = false;
 
-        for (String line : lines) {
+        for (final String line : markdown.split("\n")) {
 
-            String theLine = parseHeader(line);
+            Line theLine = parseHeader(line);
 
-            if (theLine == null) {
+            if (theLine.lineType == LineType.MISSING) {
                 theLine = parseListItem(line);
             }
 
-            if (theLine == null) {
+            if (theLine.lineType == LineType.MISSING) {
                 theLine = parseParagraph(line);
             }
 
-            if (theLine.matches("(<li>).*") && !theLine.matches("(<h).*") && !theLine.matches("(<p>).*") && !activeList) {
+            if (theLine.lineType == LineType.LIST_ITEM && !activeList) {
                 activeList = true;
-                result = result + "<ul>";
-                result = result + theLine;
-            } else if (!theLine.matches("(<li>).*") && activeList) {
+                result.append("<ul>");
+                result.append(theLine.value);
+            } else if (activeList) {
                 activeList = false;
-                result = result + "</ul>";
-                result = result + theLine;
+                result.append(theLine.value);
+                result.append("</ul>");
             } else {
-                result = result + theLine;
+                result.append(theLine.value);
             }
-        }
 
-        if (activeList) {
-            result = result + "</ul>";
         }
-
-        return result;
+        return result.toString();
     }
 
-    private String parseHeader(String markdown) {
-        int count = 0;
-
-        for (int i = 0; i < markdown.length() && markdown.charAt(i) == '#'; i++) {
-            count++;
-        }
+    private Line parseHeader(String markdown) {
+        int count = (int) markdown.codePoints().takeWhile(cp -> cp == '#').count();
 
         if (count == 0) {
-            return null;
+            return Line.MISSING;
         }
 
-        return "<h" + Integer.toString(count) + ">" + markdown.substring(count + 1) + "</h" + Integer.toString(count) + ">";
+        return new Line(
+                "<h" + count + ">" + markdown.substring(count + 1) + "</h" + count + ">",
+                LineType.HEADER);
     }
 
-    private String parseListItem(String markdown) {
-        if (markdown.startsWith("*")) {
-            String skipAsterisk = markdown.substring(2);
-            String listItemString = parseSomeSymbols(skipAsterisk);
-            return "<li>" + listItemString + "</li>";
+    private Line parseListItem(String markdown) {
+        if (!markdown.startsWith("*")) {
+            return Line.MISSING;
         }
 
-        return null;
+        final String skipAsterisk = markdown.substring(2);
+        final String listItemString = parseSomeSymbols(skipAsterisk);
+        return new Line(
+                "<li>" + listItemString + "</li>",
+                LineType.LIST_ITEM);
+
     }
 
-    private String parseParagraph(String markdown) {
-        return "<p>" + parseSomeSymbols(markdown) + "</p>";
+    private Line parseParagraph(String markdown) {
+        return new Line(
+                "<p>" + parseSomeSymbols(markdown) + "</p>",
+                LineType.PARAGRAPH);
     }
 
     private String parseSomeSymbols(String markdown) {
+        final String strongRegex = "__(.+)__";
+        final String strongReplacement = "<strong>$1</strong>";
+        final String workingOn = markdown.replaceAll(strongRegex, strongReplacement);
 
-        String lookingFor = "__(.+)__";
-        String update = "<strong>$1</strong>";
-        String workingOn = markdown.replaceAll(lookingFor, update);
-
-        lookingFor = "_(.+)_";
-        update = "<em>$1</em>";
-        return workingOn.replaceAll(lookingFor, update);
+        final String emRegex = "_(.+)_";
+        final String emReplacement = "<em>$1</em>";
+        return workingOn.replaceAll(emRegex, emReplacement);
     }
+
+    private static class Line {
+
+        private final String value;
+        private final LineType lineType;
+
+        private static Line MISSING = new Line("", LineType.MISSING);
+
+        private Line(final String value, final LineType lineType) {
+            this.value = value;
+            this.lineType = lineType;
+        }
+    }
+
+    private enum LineType {HEADER, LIST_ITEM, PARAGRAPH, MISSING}
 }

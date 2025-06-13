@@ -1,22 +1,32 @@
-import java.util.HashMap;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 class RaindropConverter {
-  private static final HashMap<Integer, String> raindrops = new HashMap<>();
 
-  static {
-    raindrops.put(3, "Pling");
-    raindrops.put(5, "Plang");
-    raindrops.put(7, "Plong");
-  }
+    String convert(int number) {
 
-  String convert(int number) {
+        // Supplier is used here because count() is a collector and the stream cannot
+        // otherwise be reused by mapToObj().
+        // See http://www.baeldung.com/java-stream-operated-upon-or-closed-exception
+        final Supplier<IntStream> factors = () -> IntStream.of(3, 5, 7)
+                .filter(factor -> number % factor == 0);
 
-    return raindrops
-        .keySet()
-        .stream()
-        .filter(key -> number % key == 0)
-        .map(raindrops::get)
-        .reduce(String::concat)
-        .orElse(Integer.toString(number));
-  }
+        if (factors.get().count() == 0) {
+            return Integer.toString(number);
+        }
+
+        return factors.get().mapToObj(factor -> {
+            switch (factor) {
+                case 3:
+                    return "Pling";
+                case 5:
+                    return "Plang";
+                case 7:
+                    return "Plong";
+                default:
+                    return "";
+            }
+        }).collect(Collectors.joining());
+    }
 }

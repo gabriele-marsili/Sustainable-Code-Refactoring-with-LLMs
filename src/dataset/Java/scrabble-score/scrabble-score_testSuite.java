@@ -1,42 +1,75 @@
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-
-import java.util.Arrays;
-import java.util.Collection;
 
 import static org.junit.Assert.assertEquals;
 
-@RunWith(Parameterized.class)
 public class ScrabbleScoreTest {
 
-    private String input;
-    private int expectedOutput;
+    private Scrabble scrabble;
 
-    @Parameterized.Parameters
-    public static Collection<Object[]> data() {
-        return Arrays.asList(new Object[][]{
-                {"", 0},
-                {" \t\n", 0},
-                {null, 0},
-                {"a", 1},
-                {"f", 4},
-                {"street", 6},
-                {"quirky", 22},
-                {"oxyphenbutazone", 41},
-                {"alacrity", 13},
-        });
-    }
-
-    public ScrabbleScoreTest(String input, int expectedOutput) {
-        this.input = input;
-        this.expectedOutput = expectedOutput;
+    @Test
+    public void testALowerCaseLetter() {
+        scrabble = new Scrabble("a");
+        assertEquals(1, scrabble.getScore());
     }
 
     @Test
-    public void test() {
-        Scrabble scrabble = new Scrabble(input);
-
-        assertEquals(expectedOutput, scrabble.getScore());
+    public void testAUpperCaseLetter() {
+        scrabble = new Scrabble("A");
+        assertEquals(1, scrabble.getScore());
     }
+
+    @Test
+    public void testAValuableLetter() {
+        scrabble = new Scrabble("f");
+        assertEquals(4, scrabble.getScore());
+    }
+
+    @Test
+    public void testAShortWord() {
+        scrabble = new Scrabble("at");
+        assertEquals(2, scrabble.getScore());
+    }
+
+    @Test
+    public void testAShortValuableWord() {
+        scrabble = new Scrabble("zoo");
+        assertEquals(12, scrabble.getScore());
+    }
+
+    @Test
+    public void testAMediumWord() {
+        scrabble = new Scrabble("street");
+        assertEquals(6, scrabble.getScore());
+    }
+
+    @Test
+    public void testAMediumValuableWord() {
+        scrabble = new Scrabble("quirky");
+        assertEquals(22, scrabble.getScore());
+    }
+
+    @Test
+    public void testALongMixCaseWord() {
+        scrabble = new Scrabble("OxyphenButazone");
+        assertEquals(41, scrabble.getScore());
+    }
+
+    @Test
+    public void testAEnglishLikeWord() {
+        scrabble = new Scrabble("pinata");
+        assertEquals(8, scrabble.getScore());
+    }
+
+    @Test
+    public void testAnEmptyInput() {
+        scrabble = new Scrabble("");
+        assertEquals(0, scrabble.getScore());
+    }
+
+    @Test
+    public void testEntireAlphabetAvailable() {
+        scrabble = new Scrabble("abcdefghijklmnopqrstuvwxyz");
+        assertEquals(87, scrabble.getScore());
+    }
+
 }

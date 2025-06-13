@@ -1,9 +1,58 @@
+import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
 
-public class PascalsTriangleTest {
+public class PascalsTriangleGeneratorTest {
+
+    private PascalsTriangleGenerator pascalsTriangleGenerator;
+
+    @Before
+    public void setUp() {
+        pascalsTriangleGenerator = new PascalsTriangleGenerator();
+    }
+
+    @Rule
+    public ExpectedException expectedException = ExpectedException.none();
+
+    @Test
+    public void testTriangleWithZeroRows() {
+        int[][] expectedOutput = new int[][]{};
+
+        assertArrayEquals(expectedOutput, pascalsTriangleGenerator.generateTriangle(0));
+    }
+
+    @Test
+    public void testTriangleWithOneRow() {
+        int[][] expectedOutput = new int[][]{
+                {1}
+        };
+
+        assertArrayEquals(expectedOutput, pascalsTriangleGenerator.generateTriangle(1));
+    }
+
+    @Test
+    public void testTriangleWithTwoRows() {
+        int[][] expectedOutput = new int[][]{
+                {1},
+                {1, 1}
+        };
+
+        assertArrayEquals(expectedOutput, pascalsTriangleGenerator.generateTriangle(2));
+    }
+
+    @Test
+    public void testTriangleWithThreeRows() {
+        int[][] expectedOutput = new int[][]{
+                {1},
+                {1, 1},
+                {1, 2, 1}
+        };
+
+        assertArrayEquals(expectedOutput, pascalsTriangleGenerator.generateTriangle(3));
+    }
 
     @Test
     public void testTriangleWithFourRows() {
@@ -11,10 +60,23 @@ public class PascalsTriangleTest {
                 {1},
                 {1, 1},
                 {1, 2, 1},
-                {1, 3, 3, 1},
+                {1, 3, 3, 1}
         };
 
-        assertArrayEquals(expectedOutput, PascalsTriangle.computeTriangle(4));
+        assertArrayEquals(expectedOutput, pascalsTriangleGenerator.generateTriangle(4));
+    }
+
+    @Test
+    public void testTriangleWithFiveRows() {
+        int[][] expectedOutput = new int[][]{
+                {1},
+                {1, 1},
+                {1, 2, 1},
+                {1, 3, 3, 1},
+                {1, 4, 6, 4, 1}
+        };
+
+        assertArrayEquals(expectedOutput, pascalsTriangleGenerator.generateTriangle(5));
     }
 
     @Test
@@ -28,45 +90,31 @@ public class PascalsTriangleTest {
                 {1, 5, 10, 10, 5, 1}
         };
 
-        assertArrayEquals(expectedOutput, PascalsTriangle.computeTriangle(6));
+        assertArrayEquals(expectedOutput, pascalsTriangleGenerator.generateTriangle(6));
     }
 
     @Test
-    public void testExpectEmptyTriangle() {
+    public void testTriangleWithTenRows() {
         int[][] expectedOutput = new int[][]{
-
-        };
-
-        assertArrayEquals(expectedOutput, PascalsTriangle.computeTriangle(0));
-    }
-
-    @Test
-    public void testValidInput() {
-        int[][] input = new int[][]{
                 {1},
                 {1, 1},
                 {1, 2, 1},
                 {1, 3, 3, 1},
                 {1, 4, 6, 4, 1},
+                {1, 5, 10, 10, 5, 1},
+                {1, 6, 15, 20, 15, 6, 1},
+                {1, 7, 21, 35, 35, 21, 7, 1},
+                {1, 8, 28, 56, 70, 56, 28, 8, 1},
+                {1, 9, 36, 84, 126, 126, 84, 36, 9, 1}
         };
 
-        assertEquals(true, PascalsTriangle.isTriangle(input));
+        assertArrayEquals(expectedOutput, pascalsTriangleGenerator.generateTriangle(10));
     }
 
     @Test
-    public void testInvalidInput() {
-        int[][] input = new int[][]{
-                {1},
-                {1, 1},
-                {1, 2, 1},
-                {1, 4, 4, 1},
-        };
-
-        assertEquals(false, PascalsTriangle.isTriangle(input));
-    }
-
-    @Test(expected = IllegalArgumentException.class)
     public void testValidatesNotNegativeRows() {
-        PascalsTriangle.computeTriangle(-1);
+        expectedException.expect(IllegalArgumentException.class);
+        pascalsTriangleGenerator.generateTriangle(-1);
     }
+
 }

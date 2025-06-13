@@ -1,68 +1,77 @@
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.experimental.runners.Enclosed;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
-
-import java.util.Arrays;
-import java.util.Collection;
 
 import static org.junit.Assert.assertEquals;
 
-@RunWith(Enclosed.class)
 public class AtbashTest {
 
-    @RunWith(Parameterized.class)
-    public static class EncodeTest {
-        private String input;
-        private String expectedOutput;
+    private Atbash atbash;
 
-        @Parameters
-        public static Collection<Object[]> data() {
-            return Arrays.asList(new Object[][] {
-                    { "no", "ml" },
-                    { "yes", "bvh" },
-                    { "OMG", "lnt" },
-                    { "mindblowingly", "nrmwy oldrm tob" },
-                    { "Testing, 1 2 3, testing.", "gvhgr mt123 gvhgr mt" },
-                    { "Truth is fiction.", "gifgs rhurx grlm" },
-                    { "The quick brown fox jumps over the lazy dog.", "gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt" }
-            });
-        }
-
-        public EncodeTest(String input, String expectedOutput) {
-            this.input = input;
-            this.expectedOutput = expectedOutput;
-        }
-
-        @Test
-        public void test() {
-            assertEquals(expectedOutput, Atbash.encode(input));
-        }
+    @Before
+    public void setup() {
+        atbash = new Atbash();
     }
 
-    @RunWith(Parameterized.class)
-    public static class DecodeTest {
-        private String input;
-        private String expectedOutput;
-
-        @Parameters
-        public static Collection<Object[]> data() {
-            return Arrays.asList(new Object[][] {
-                    { "vcvix rhn", "exercism" },
-                    { "zmlyh gzxov rhlug vmzhg vkkrm thglm v", "anobstacleisoftenasteppingstone" },
-                    { "gvhgr mt123 gvhgr mt", "testing123testing" }
-            });
-        }
-
-        public DecodeTest(String input, String expectedOutput) {
-            this.input = input;
-            this.expectedOutput = expectedOutput;
-        }
-
-        @Test
-        public void test() {
-            assertEquals(expectedOutput, Atbash.decode(input));
-        }
+    @Test
+    public void testEncodeYes() {
+        assertEquals("bvh", atbash.encode("yes"));
     }
+
+    @Test
+    public void testEncodeNo() {
+        assertEquals("ml", atbash.encode("no"));
+    }
+
+    @Test
+    public void testEncodeOmgInCapital() {
+        assertEquals("lnt", atbash.encode("OMG"));
+    }
+
+    @Test
+    public void testEncodeOmgWithSpaces() {
+        assertEquals("lnt", atbash.encode("O M G"));
+    }
+
+    @Test
+    public void testEncodeMindBlowingly() {
+        assertEquals("nrmwy oldrm tob", atbash.encode("mindblowingly"));
+    }
+
+    @Test
+    public void testEncodeNumbers() {
+        assertEquals("gvhgr mt123 gvhgr mt", atbash.encode("Testing,1 2 3, testing."));
+    }
+
+    @Test
+    public void testEncodeDeepThought() {
+        assertEquals("gifgs rhurx grlm", atbash.encode("Truth is fiction."));
+    }
+
+    @Test
+    public void testEncodeAllTheLetters() {
+        assertEquals("gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt",
+                atbash.encode("The quick brown fox jumps over the lazy dog."));
+    }
+
+    @Test
+    public void testDecodeExercism() {
+        assertEquals("exercism", atbash.decode("vcvix rhn"));
+    }
+
+    @Test
+    public void testDecodeASentence() {
+        assertEquals("anobstacleisoftenasteppingstone", atbash.decode("zmlyh gzxov rhlug vmzhg vkkrm thglm v"));
+    }
+
+    @Test
+    public void testDecodeNumbers() {
+        assertEquals("testing123testing", atbash.decode("gvhgr mt123 gvhgr mt"));
+    }
+
+    @Test
+    public void testDecodeAllTheLetters() {
+        assertEquals("thequickbrownfoxjumpsoverthelazydog",
+                atbash.decode("gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt"));
+    }
+
 }

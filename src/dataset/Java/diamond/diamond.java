@@ -1,46 +1,41 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
+import static java.lang.String.format;
+import static java.util.Collections.reverseOrder;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.IntStream.range;
+import static java.util.stream.IntStream.rangeClosed;
 
 class DiamondPrinter {
 
-  List<String> printToList(char chr) {
-    var output = new ArrayList<String>();
-    var lineWidth = getLineWidth(chr);
+    List<String> printToList(char ch) {
+        final List<String> strings = rangeClosed('A', ch)
+                .mapToObj(i -> {
+                    final String outerSpace = spaceTimesX(ch - i);
+                    if (i == 'A') {
+                        return format("%sA%s", outerSpace, outerSpace);
+                    }
+                    final char c = ((char) i);
+                    final String innerSpace = spaceTimesX(2 * (i - 'A') - 1);
+                    return format("%s%c%s%c%s", outerSpace, c, innerSpace, c, outerSpace);
+                })
+                .collect(toList());
 
-    int start = lineWidth / 2;
-    var left = start;
-    var right = start;
-    var letter = 'A';
+        final List<String> copied = new ArrayList<>(strings);
+        final List<String> reversed = copied.subList(0, copied.size() - 1)
+                .stream()
+                .sorted(reverseOrder())
+                .collect(toList());
+        strings.addAll(reversed);
+        return strings;
 
-    while (left >= 0) {
-      var newLine = getNewLine(lineWidth);
-      newLine[left--] = letter;
-      newLine[right++] = letter++;
-      output.add(String.valueOf(newLine));
     }
 
-    // Don't repeat middle line
-    left++;
-    right--;
-    letter--;
-
-    while (left < start) {
-      var newLine = getNewLine(lineWidth);
-      newLine[++left] = --letter;
-      newLine[--right] = letter;
-      output.add(String.valueOf(newLine));
+    private String spaceTimesX(int count) {
+        return range(0, count)
+                .mapToObj(i -> " ")
+                .collect(joining(""));
     }
-    return output;
-  }
-
-  private int getLineWidth(char letter) {
-    return 1 + 2 * (letter - 'A');
-  }
-
-  private char[] getNewLine(int lineWidth) {
-    var line = new char[lineWidth];
-    Arrays.fill(line, ' ');
-    return line;
-  }
 }

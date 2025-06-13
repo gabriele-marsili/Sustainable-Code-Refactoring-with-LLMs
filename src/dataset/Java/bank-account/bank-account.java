@@ -1,60 +1,74 @@
-class BankAccount {
-    private boolean isOpened;
-    private int balance;
+public class BankAccount {
 
-    BankAccount() {
-        isOpened = false;
-        balance = 0;
-    }
+    private static final String WITHDRAWING_TOO_MUCH = "Cannot withdraw more money than is currently in the account";
+    private static final String EMPTY_ACCOUNT = "Cannot withdraw money from an empty account";
+    private static final String NEGATIVE_AMOUNT = "Cannot deposit or withdraw negative amount";
+    private static final String ACCOUNT_CLOSED = "Account closed";
+    private int account;
+    private boolean open;
 
-    void open() throws BankAccountActionInvalidException {
-        if (!isOpened) {
-            isOpened = true;
-            balance = 0;
-        } else {
-            throw new BankAccountActionInvalidException("Account already open");
+    public void open() {
+        synchronized (this) {
+            this.open = true;
         }
     }
 
-    void close() throws BankAccountActionInvalidException {
-        if (isOpened) {
-            this.isOpened = false;
-        } else {
-            throw new BankAccountActionInvalidException("Account not open");
+    public void close() {
+        synchronized (this) {
+            this.open = false;
         }
     }
 
-    synchronized int getBalance() throws BankAccountActionInvalidException {
-        if (isOpened) {
-            return balance;
-        } else {
-            throw new BankAccountActionInvalidException("Account closed");
+    public int getBalance() throws BankAccountActionInvalidException {
+        synchronized (this) {
+            checkIfAccountIsClosed(open);
+            return this.account;
         }
     }
 
-    synchronized void deposit(int amount) throws BankAccountActionInvalidException {
-        if (!isOpened) {
-            throw new BankAccountActionInvalidException("Account closed");
-        }
-        if (amount >= 0) {
-            balance += amount;
-        } else {
-            throw new BankAccountActionInvalidException("Cannot deposit or withdraw negative amount");
+    public void deposit(int amount) throws BankAccountActionInvalidException {
+        synchronized (this) {
+            checkIfAccountIsClosed(open);
+            checkForNegativeAmount(amount);
+            this.account += amount;
         }
     }
 
-    synchronized void withdraw(int amount) throws BankAccountActionInvalidException {
-        if (!isOpened) {
-            throw new BankAccountActionInvalidException("Account closed");
+    public void withdraw(int amount) throws BankAccountActionInvalidException {
+        synchronized (this) {
+            checkIfAccountIsClosed(open);
+            checkForNegativeAmount(amount);
+            checkIfAccountIsZero(account);
+            checkIfWithdrawingTooMuch(account, amount);
+            this.account -= amount;
         }
+    }
+
+    private static void checkIfWithdrawingTooMuch(int account, int amount)
+            throws BankAccountActionInvalidException {
+        if (account - amount < 0) {
+            throw new BankAccountActionInvalidException(WITHDRAWING_TOO_MUCH);
+        }
+    }
+
+    private static void checkIfAccountIsZero(int account)
+            throws BankAccountActionInvalidException {
+        if (account == 0) {
+            throw new BankAccountActionInvalidException(EMPTY_ACCOUNT);
+        }
+    }
+
+    private static void checkForNegativeAmount(int amount)
+            throws BankAccountActionInvalidException {
         if (amount < 0) {
-            throw new BankAccountActionInvalidException("Cannot deposit or withdraw negative amount");
-        }
-        if (balance >= amount) {
-            balance -= amount;
-        } else {
-            throw new BankAccountActionInvalidException("Cannot withdraw more money than is currently in the account");
+            throw new BankAccountActionInvalidException(NEGATIVE_AMOUNT);
         }
     }
 
+    private static void checkIfAccountIsClosed(boolean open)
+            throws BankAccountActionInvalidException {
+        if (!open) {
+            throw new BankAccountActionInvalidException(ACCOUNT_CLOSED);
+        }
+    }
 }

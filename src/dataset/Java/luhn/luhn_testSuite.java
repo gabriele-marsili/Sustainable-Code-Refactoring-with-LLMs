@@ -1,84 +1,96 @@
+import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-public class LuhnTest {
+public class LuhnValidatorTest {
 
-    @Test
-    public void checkDigitIsRightMostDigit() {
-        Luhn luhn = new Luhn(34567);
-        int expectedOutput = 7;
+    private LuhnValidator luhnValidator;
 
-        assertEquals(expectedOutput, luhn.getCheckDigit());
+    @Before
+    public void setUp() {
+        luhnValidator = new LuhnValidator();
     }
 
     @Test
-    public void addendsDoublesEveryOtherNumberFromRight() {
-        Luhn luhn = new Luhn(12121);
-        int[] expectedOutput = new int[]{1, 4, 1, 4, 1};
-
-        assertArrayEquals(expectedOutput, luhn.getAddends());
+    public void testSingleDigitStringInvalid() {
+        assertFalse(luhnValidator.isValid("1"));
     }
 
     @Test
-    public void addendsSubtracts9WhenDoubledNumberIsMoreThan9() {
-        Luhn luhn = new Luhn(8631);
-        int[] expectedOutput = new int[]{7, 6, 6, 1};
-
-        assertArrayEquals(expectedOutput, luhn.getAddends());
+    public void testSingleZeroIsInvalid() {
+        assertFalse(luhnValidator.isValid("0"));
     }
 
     @Test
-    public void checkSumAddsAddendsTogether1() {
-        Luhn luhn = new Luhn(4913);
-        int expectedOutput = 22;
-
-        assertEquals(expectedOutput, luhn.getCheckSum());
+    public void testSimpleValidSINReversedRemainsValid() {
+        assertTrue(luhnValidator.isValid("059"));
     }
 
     @Test
-    public void checkSumAddsAddendsTogether2() {
-        Luhn luhn = new Luhn(201773);
-        int expectedOutput = 21;
-
-        assertEquals(expectedOutput, luhn.getCheckSum());
+    public void testSimpleValidSINReversedBecomesInvalid() {
+        assertTrue(luhnValidator.isValid("59"));
     }
 
     @Test
-    public void numberIsValidWhenChecksumMod10IsZero1() {
-        Luhn luhn = new Luhn(738);
-        boolean expectedOutput = false;
-
-        assertEquals(expectedOutput, luhn.isValid());
+    public void testValidCanadianSINValid() {
+        assertTrue(luhnValidator.isValid("055 444 285"));
     }
 
     @Test
-    public void numberIsValidWhenChecksumMod10IsZero2() {
-        Luhn luhn = new Luhn(8739567);
-        boolean expectedOutput = true;
-
-        assertEquals(expectedOutput, luhn.isValid());
+    public void testInvalidCanadianSINInvalid() {
+        assertFalse(luhnValidator.isValid("055 444 286"));
     }
 
     @Test
-    public void luhnCanCreateSimpleNumbersWithValidCheckDigit() {
-        long expectedOutput = 1230;
-
-        assertEquals(expectedOutput, Luhn.create(123));
+    public void testInvalidCreditCardInvalid() {
+        assertFalse(luhnValidator.isValid("8273 1232 7352 0569"));
     }
 
     @Test
-    public void luhnCanCreateLargeNumbersWithValidCheckDigit() {
-        long expectedOutput = 8739567;
-
-        assertEquals(expectedOutput, Luhn.create(873956));
+    public void testStringsContainingNonDigitInvalid() {
+        assertFalse(luhnValidator.isValid("055a 444 285"));
     }
 
     @Test
-    public void luhnCanCreateHugeNumbersWithValidCheckDigit() {
-        long expectedOutput = 8372637564L;
+    public void testStringContainingPunctuationInvalid() {
+        assertFalse(luhnValidator.isValid("055-444-285"));
+    }
 
-        assertEquals(expectedOutput, Luhn.create(837263756));
+    @Test
+    public void testStringContainingSymbolsInvalid() {
+        assertFalse(luhnValidator.isValid("055£ 444$ 285"));
+    }
+
+    @Test
+    public void testSingleSpaceWithZeroInvalid() {
+        assertFalse(luhnValidator.isValid(" 0"));
+    }
+
+    @Test
+    public void testMoreThanSingleZeroValid() {
+        assertTrue(luhnValidator.isValid("0000 0"));
+    }
+
+    @Test
+    public void testDigitNineConvertedToOutputNine() {
+        assertTrue(luhnValidator.isValid("091"));
+    }
+
+    @Test
+    public void testStringsWithNonDigitsInvalid() {
+        assertFalse(luhnValidator.isValid(":9"));
+    }
+
+    /* The following test diverges from the canonical test data. This is because the corresponding canonical test does
+     * not account for Java specific functions (such as Character.getNumericValue()), which can be part of incorrect yet
+     * passing implementations. For more detail, check out issue #972 here:
+     * (https://github.com/exercism/java/issues/972).
+     */
+
+    @Test
+    public void testStringContainingSymbolsInvalidJavaTrackSpecific() {
+        assertFalse(luhnValidator.isValid("85&"));
     }
 }

@@ -1,32 +1,43 @@
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 class Matrix {
-    private final int[][] matrix;
+
+    private final List<List<Integer>> matrix;
 
     Matrix(String matrixAsString) {
-        String[] rows = matrixAsString.split("\n");
-        final int height = rows.length;
-        this.matrix = new int[height][];
-        int count = 0;
-        for (String row : rows) {
-            String[] strNums = row.split(" ");
-            final int width = strNums.length;
-            int[] intNums = new int[width];
-            for (int i = 0; i < width; i++) {
-                intNums[i] = Integer.parseInt(strNums[i]);
-            }
-            this.matrix[count] = intNums;
-            count++;
-        }
+        matrix = Arrays.stream(matrixAsString.split("\n"))
+                .map(this::parseRow)
+                .collect(Collectors.toList());
+    }
+
+    private List<Integer> parseRow(String row) {
+        return Arrays.stream(row.split(" "))
+                .mapToInt(Integer::parseInt)
+                .boxed()
+                .collect(Collectors.toList());
     }
 
     int[] getRow(int rowNumber) {
-        return matrix[rowNumber - 1].clone();
+        return matrix.get(rowNumber)
+                .stream()
+                .mapToInt(i -> i)
+                .toArray();
     }
 
     int[] getColumn(int columnNumber) {
-        int[] column = new int[this.matrix.length];
-        for (int i = 0; i < matrix.length; i++) {
-            column[i] = matrix[i][columnNumber - 1];
-        }
-        return column;
+        return matrix
+                .stream()
+                .mapToInt(r -> r.get(columnNumber))
+                .toArray();
+    }
+
+    int getRowsCount() {
+        return matrix.size();
+    }
+
+    int getColumnsCount() {
+        return matrix.get(0).size();
     }
 }

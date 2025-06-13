@@ -4,7 +4,7 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 
 public class WordCountTest {
 
@@ -18,16 +18,16 @@ public class WordCountTest {
         expectedWordCount = new HashMap<>();
     }
 
-
     @Test
     public void countOneWord() {
         expectedWordCount.put("word", 1);
 
         actualWordCount = wordCount.phrase("word");
-        assertThat(actualWordCount).isEqualTo(expectedWordCount);
+        assertEquals(
+                expectedWordCount, actualWordCount
+        );
     }
 
-    //    @Ignore("Remove to run test")
     @Test
     public void countOneOfEachWord() {
         expectedWordCount.put("one", 1);
@@ -35,10 +35,11 @@ public class WordCountTest {
         expectedWordCount.put("each", 1);
 
         actualWordCount = wordCount.phrase("one of each");
-        assertThat(actualWordCount).isEqualTo(expectedWordCount);
+        assertEquals(
+                expectedWordCount, actualWordCount
+        );
     }
 
-    //    @Ignore("Remove to run test")
     @Test
     public void multipleOccurrencesOfAWord() {
         expectedWordCount.put("one", 1);
@@ -48,10 +49,11 @@ public class WordCountTest {
         expectedWordCount.put("blue", 1);
 
         actualWordCount = wordCount.phrase("one fish two fish red fish blue fish");
-        assertThat(actualWordCount).isEqualTo(expectedWordCount);
+        assertEquals(
+                expectedWordCount, actualWordCount
+        );
     }
 
-    //    @Ignore("Remove to run test")
     @Test
     public void handlesCrampedLists() {
         expectedWordCount.put("one", 1);
@@ -59,10 +61,11 @@ public class WordCountTest {
         expectedWordCount.put("three", 1);
 
         actualWordCount = wordCount.phrase("one,two,three");
-        assertThat(actualWordCount).isEqualTo(expectedWordCount);
+        assertEquals(
+                expectedWordCount, actualWordCount
+        );
     }
 
-    //    @Ignore("Remove to run test")
     @Test
     public void handlesExpandedLists() {
         expectedWordCount.put("one", 1);
@@ -70,10 +73,11 @@ public class WordCountTest {
         expectedWordCount.put("three", 1);
 
         actualWordCount = wordCount.phrase("one,\ntwo,\nthree");
-        assertThat(actualWordCount).isEqualTo(expectedWordCount);
+        assertEquals(
+                expectedWordCount, actualWordCount
+        );
     }
 
-    //    @Ignore("Remove to run test")
     @Test
     public void ignorePunctuation() {
         expectedWordCount.put("car", 1);
@@ -83,11 +87,12 @@ public class WordCountTest {
         expectedWordCount.put("javascript", 1);
 
         actualWordCount = wordCount.phrase("car : carpet as java : javascript!!&@$%^&");
-        assertThat(actualWordCount).isEqualTo(expectedWordCount);
+        assertEquals(
+                expectedWordCount, actualWordCount
+        );
 
     }
 
-    //    @Ignore("Remove to run test")
     @Test
     public void includeNumbers() {
         expectedWordCount.put("testing", 2);
@@ -95,20 +100,22 @@ public class WordCountTest {
         expectedWordCount.put("2", 1);
 
         actualWordCount = wordCount.phrase("testing, 1, 2 testing");
-        assertThat(actualWordCount).isEqualTo(expectedWordCount);
+        assertEquals(
+                expectedWordCount, actualWordCount
+        );
     }
 
-    //    @Ignore("Remove to run test")
     @Test
     public void normalizeCase() {
         expectedWordCount.put("go", 3);
         expectedWordCount.put("stop", 2);
 
         actualWordCount = wordCount.phrase("go Go GO Stop stop");
-        assertThat(actualWordCount).isEqualTo(expectedWordCount);
+        assertEquals(
+                expectedWordCount, actualWordCount
+        );
     }
 
-    //    @Ignore("Remove to run test")
     @Test
     public void withApostrophes() {
         expectedWordCount.put("first", 1);
@@ -118,26 +125,11 @@ public class WordCountTest {
         expectedWordCount.put("cry", 1);
 
         actualWordCount = wordCount.phrase("First: don't laugh. Then: don't cry.");
-        assertThat(actualWordCount).isEqualTo(expectedWordCount);
+        assertEquals(
+                expectedWordCount, actualWordCount
+        );
     }
 
-    //    @Ignore("Remove to run test")
-    @Test
-    public void substringsFromTheBeginning() {
-        expectedWordCount.put("joe", 1);
-        expectedWordCount.put("can't", 1);
-        expectedWordCount.put("tell", 1);
-        expectedWordCount.put("between", 1);
-        expectedWordCount.put("app", 1);
-        expectedWordCount.put("apple", 1);
-        expectedWordCount.put("and", 1);
-        expectedWordCount.put("a", 1);
-
-        actualWordCount = wordCount.phrase("Joe can't tell between app, apple and a.");
-        assertThat(actualWordCount).isEqualTo(expectedWordCount);
-    }
-
-    //    @Ignore("Remove to run test")
     @Test
     public void withQuotations() {
         expectedWordCount.put("joe", 1);
@@ -148,28 +140,20 @@ public class WordCountTest {
         expectedWordCount.put("and", 1);
 
         actualWordCount = wordCount.phrase("Joe can't tell between 'large' and large.");
-        assertThat(actualWordCount).isEqualTo(expectedWordCount);
+        assertEquals(
+                expectedWordCount, actualWordCount
+        );
     }
 
-    //    @Ignore("Remove to run test")
     @Test
     public void multipleSpacesNotDetectedAsAWord() {
         expectedWordCount.put("multiple", 1);
         expectedWordCount.put("whitespaces", 1);
 
         actualWordCount = wordCount.phrase(" multiple   whitespaces");
-        assertThat(actualWordCount).isEqualTo(expectedWordCount);
-    }
-
-    //    @Ignore("Remove to run test")
-    @Test
-    public void alternatingWordSeperatorsNotDetectedAsAWord() {
-        expectedWordCount.put("one", 1);
-        expectedWordCount.put("two", 1);
-        expectedWordCount.put("three", 1);
-
-        actualWordCount = wordCount.phrase(",\n,one,\n ,two \n 'three'");
-        assertThat(actualWordCount).isEqualTo(expectedWordCount);
+        assertEquals(
+                expectedWordCount, actualWordCount
+        );
     }
 
 }

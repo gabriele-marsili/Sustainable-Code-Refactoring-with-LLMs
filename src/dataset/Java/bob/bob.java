@@ -1,17 +1,33 @@
 public class Bob {
 
-  private boolean isShouting(String text) {
-    return text.toUpperCase().equals(text) &&
-        text.codePoints().mapToObj(i -> (char) i).anyMatch(Character::isLetter);
-  }
+    String hey(String s) {
+        final String trimmed = s.trim();
 
-  String hey(String text) {
-    var letters = text.replaceAll("([^\\w?])", "");
-    if (isShouting(letters) && letters.endsWith("?")) return "Calm down, I know what I'm doing!";
-    if (isShouting(letters)) return "Whoa, chill out!";
-    if (letters.endsWith("?")) return "Sure.";
-    if (letters.isBlank()) return "Fine. Be that way!";
-    return "Whatever.";
-  }
+        if (trimmed.isEmpty()) {
+            return "Fine. Be that way!";
+        }
 
+        final boolean isQuestion = isQuestion(trimmed);
+
+        if (isUpperCase(trimmed)) {
+            if (isQuestion) {
+                return "Calm down, I know what I'm doing!";
+            } else {
+                return "Whoa, chill out!";
+            }
+        }
+        if (isQuestion) {
+            return "Sure.";
+        }
+        return "Whatever.";
+    }
+
+    private boolean isQuestion(String s) {
+        return s.endsWith("?");
+    }
+
+    private boolean isUpperCase(String s) {
+        final String onlyLetters = s.replaceAll("[^a-zA-Z]", "");
+        return onlyLetters.matches("[A-Z]+");
+    }
 }

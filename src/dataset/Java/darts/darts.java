@@ -1,16 +1,21 @@
 class Darts {
-  private final int score;
 
-  Darts(double x, double y) {
-    var distance = Math.sqrt(x * x + y * y);
+    private final double radius;
 
-    if (distance > 10) score = 0;
-    else if (distance > 5) score = 1;
-    else if (distance > 1) score = 5;
-    else score = 10;
-  }
+    Darts(double x, double y) {
+        radius = Math.sqrt(x * x + y * y);
+    }
 
-  int score() {
-    return score;
-  }
+    int score() {
+        if (radius > 10) {
+            return 0;
+        }
+        if (radius > 5) {
+            return 1;
+        }
+        if (radius > 1) {
+            return 5;
+        }
+        return 10;
+    }
 }

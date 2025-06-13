@@ -490,9 +490,17 @@ class CodeTestDatasetCreator:
         print("=== Inizio creazione dataset con soluzioni umane ===")
         print(f"Linguaggi target: {', '.join(self.target_languages)}")
 
-        try:            
-            if "mandarussell" in sources:
-                self.process_mandarussell()
+        try:                                               
+            if "oguzsh" in sources:
+                self.process_oguzsh()
+            #if "ThomasZumsteg-js" in sources:
+            #    self.process_ThomasZumsteg_js()
+            #if "robiworks" in sources:
+            #    self.process_robiworks()
+            #if "uzilan" in sources:
+            #    self.process_uzilan()
+            #if "mandarussell" in sources:
+            #    self.process_mandarussell()
             #if "blogscot" in sources:
             #    self.process_blogscot()
             #if "RinatMambetov" in sources:
@@ -519,6 +527,100 @@ class CodeTestDatasetCreator:
             print(f"  - {lang}: {count} coppie")
 
     
+    def process_oguzsh(self):
+        repo = "oguzsh/exercism-js-problems"
+       
+        print("\nProcessing oguzsh exercism (js)")        
+        repo_contents = self.get_github_contents(repo)
+        for item in repo_contents :
+            if item["type"] == "dir" and item["name"] != ".gradle":
+                file_name = item["name"]
+                print(f"\nProcessing filename : {file_name}")
+                                                              
+                conent = self.get_github_contents(repo, file_name)                
+                
+                main_file = None
+                test_file = None
+                for f_item in conent:
+                    if f_item['type'] == "file" and file_name in f_item["name"]: 
+                        if ".spec." in f_item["name"]:
+                            test_file = f_item
+                        else:
+                            main_file = f_item
+                        
+                
+                #print(f"-> test file fonud : {test_file != None}")
+                #print(f"-> main file fonud : {main_file != None}")
+                if test_file and main_file : 
+                    print(f"Creating pair for file : {file_name}")                    
+                    self.create_single_code_test_pair(repo,main_file,test_file,"javascript",file_name,"exercism-javascript-oguzsh")
+       
+    #repositories already processed
+    """
+    def process_ThomasZumsteg_js(self):
+        repo = "ThomasZumsteg/exercism-javascript"
+       
+        print("\nProcessing ThomasZumsteg_js exercism (js)")        
+        repo_contents = self.get_github_contents(repo)
+        for item in repo_contents :
+            if item["type"] == "dir" and item["name"] != ".gradle":
+                file_name = item["name"]
+                print(f"\nProcessing filename : {file_name}")
+                                                              
+                conent = self.get_github_contents(repo, file_name)                
+                
+                main_file = None
+                test_file = None
+                for f_item in conent:
+                    if f_item['type'] == "file" and file_name in f_item["name"]: 
+                        if ".spec." in f_item["name"]:
+                            test_file = f_item
+                        else:
+                            main_file = f_item
+                        
+                
+                #print(f"-> test file fonud : {test_file != None}")
+                #print(f"-> main file fonud : {main_file != None}")
+                if test_file and main_file : 
+                    print(f"Creating pair for file : {file_name}")                    
+                    self.create_single_code_test_pair(repo,main_file,test_file,"javascript",file_name,"exercism-javascript-ThomasZumsteg")
+    
+       
+    def process_robiworks(self):
+        repo = "robiworks/Exercism"
+       
+        print("\nProcessing robiworks exercism (Java)")        
+        repo_contents = self.get_github_contents(repo,"java")
+        for item in repo_contents :
+            if item["type"] == "dir" and item["name"] != ".gradle":
+                file_name = item["name"]
+                print(f"\nProcessing filename : {file_name}")
+                
+                main_path = "java/"+file_name+"/src/main/java"
+                test_path = "java/"+file_name+"/src/test/java"
+                
+                if file_name == "lasagna": test_path+="/utils"
+                
+                main_conent = self.get_github_contents(repo, main_path)
+                test_conent = self.get_github_contents(repo, test_path)
+                
+                main_file = None
+                for f_item in main_conent:
+                    if f_item['type'] == "file": 
+                        main_file = f_item
+                        break
+                
+                test_file = None
+                for f_item in test_conent:
+                    if f_item['type'] == "file": 
+                        test_file = f_item
+                        break
+                    
+                if test_file and main_file : 
+                    print(f"Creating pair for file : {file_name}")                    
+                    self.create_single_code_test_pair(repo,main_file,test_file,"Java",file_name,"exercism-java-uzilan")
+ 
+ 
     def process_mandarussell(self):
         repo = "mandarussell/Exercism-Java-Solutions"
        
@@ -553,8 +655,8 @@ class CodeTestDatasetCreator:
                     print(f"Creating pair for file : {file_name}")                    
                     self.create_single_code_test_pair(repo,main_file,test_file,"Java",file_name,"exercism-java-mandarussell")
        
-    #repositories already processed
-    """
+    
+    
     def process_blogscot(self):
         repo = "blogscot/exercism-java"
        
@@ -752,7 +854,11 @@ if __name__ == "__main__":
            #"LauriESB"
            #"RinatMambetov"
            #"blogscot"
-           "mandarussell"
+           #"mandarussell"
+           #"uzilan"
+           #"robiworks"
+           #"ThomasZumsteg-js"
+           "oguzsh"
         ],
         languages=[
             'python', 'javascript', 'java', 'cpp', 'go', 'rust', 'typescript',

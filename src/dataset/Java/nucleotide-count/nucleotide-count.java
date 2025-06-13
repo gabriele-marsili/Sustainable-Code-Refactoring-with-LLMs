@@ -1,25 +1,40 @@
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collector;
 
-public class DNA {
-    private final String sequence;
+import static java.util.function.Function.identity;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.reducing;
 
-    public DNA(String sequence) {
-        this.sequence = sequence;
-    }
+public class NucleotideCounter {
 
-    public Integer count(Character nucleotide) {
-        if("GTAC".indexOf(nucleotide) == -1)
-            throw new IllegalArgumentException();
-        String strNucleotide = Character.toString(nucleotide);
-        String sequenceWithoutNucletide = this.sequence.replace(strNucleotide, "");
-        return this.sequence.length() - sequenceWithoutNucletide.length();
+    private Map<Character, Integer> map = new HashMap<>();
+
+    public NucleotideCounter(String dna) {
+        if (!dna.matches("^[ACGT]*$")) {
+            throw new IllegalArgumentException("Alien DNA is not allowed!");
+        }
+
+        map.put('A', 0);
+        map.put('C', 0);
+        map.put('G', 0);
+        map.put('T', 0);
+
+        map.putAll(
+                dna.codePoints()
+                        .mapToObj(i -> (char) i)
+                        .collect(groupingBy(identity(), counting())));
     }
 
     public Map<Character, Integer> nucleotideCounts() {
-        final Map<Character, Integer> nucleotideCounts = new HashMap<Character, Integer>();        
-        for(char n: "ATGC".toCharArray())
-            nucleotideCounts.put(n, this.count(n));
-        return nucleotideCounts;
+        return map;
+    }
+
+    // adopted from Collectors.counting(), changed to count Integers instead of Longs
+    private Collector<Character, ?, Integer> counting() {
+        return reducing(0, e -> 1, Integer::sum);
     }
 }
+
+
+

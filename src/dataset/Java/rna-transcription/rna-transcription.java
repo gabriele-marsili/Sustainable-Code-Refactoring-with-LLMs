@@ -1,26 +1,23 @@
-import java.util.stream.Collectors;
-
 class RnaTranscription {
 
-  String transcribe(String dnaStrand) {
-    return dnaStrand
-        .chars()
-        .mapToObj(c -> transcribeRNA(Character.toString(c)))
-        .collect(Collectors.joining());
-  }
+    String transcribe(String dnaStrand) {
+        return dnaStrand.codePoints()
+                .map(c -> {
+                    switch (c) {
+                        case 'C':
+                            return 'G';
+                        case 'G':
+                            return 'C';
+                        case 'T':
+                            return 'A';
+                        case 'A':
+                            return 'U';
+                        default:
+                            return '?';
+                    }
 
-  private String transcribeRNA(String rna) {
-    switch (rna) {
-      case "C":
-        return "G";
-      case "G":
-        return "C";
-      case "T":
-        return "A";
-      case "A":
-        return "U";
+                })
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
     }
-    return "";
-  }
-
 }

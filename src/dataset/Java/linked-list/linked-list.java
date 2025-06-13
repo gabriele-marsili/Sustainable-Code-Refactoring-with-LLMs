@@ -1,63 +1,64 @@
-class DoublyLinkedList<T> {
-    private Element<T> first;
-    private Element<T> last;
+public class DoublyLinkedList<T> {
 
-    void push(T value) {
-        Element<T> node = new Element<>(value, last, null);
-        if (last == null) {
-            first = node;
+    private Node first;
+    private Node last;
+
+    public void push(T value) {
+        if (first == null) {
+            addFirst(value);
         } else {
-            last.next = node;
+            last.next = new Node(value, last, null);
+            last = last.next;
         }
-        last = node;
     }
 
-    T pop() {
+    public T pop() {
         if (last == null) {
             return null;
         }
-        T result = last.value;
-        last = last.prev;
-        if (last == null) {
-            first = null;
-        } else {
+        final T value = last.value;
+        last = last.previous;
+        if (last != null) {
             last.next = null;
         }
-        return result;
+        return value;
     }
 
-    void unshift(T value) {
-        Element<T> node = new Element<>(value, null, first);
-        if (first == null) {
-            last = node;
-        } else {
-            first.prev = node;
-        }
-        first = node;
-    }
-
-    T shift() {
+    public T shift() {
         if (first == null) {
             return null;
         }
-        T result = first.value;
+        final T value = first.value;
         first = first.next;
-        if (first == null) {
-            last = null;
-        } else {
-            first.prev = null;
+        if (first != null) {
+            first.previous = null;
         }
-        return result;
+        return value;
     }
 
-    private static final class Element<T> {
-        final T value;
-        Element<T> prev;
-        Element<T> next;
+    public void unshift(T value) {
+        if (first == null) {
+            addFirst(value);
+        } else {
+            first.previous = new Node(value, null, first);
+            first = first.previous;
+        }
+    }
 
-        Element(T value, Element<T> prev, Element<T> next) {
+    private void addFirst(T value) {
+        first = new Node(value, null, null);
+        last = first;
+    }
+
+    private class Node {
+
+        private T value;
+        private Node previous;
+        private Node next;
+
+        private Node(T value, Node previous, Node next) {
             this.value = value;
-            this.prev = prev;
+            this.previous = previous;
             this.next = next;
         }
     }

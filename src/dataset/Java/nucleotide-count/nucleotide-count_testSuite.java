@@ -1,83 +1,70 @@
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.entry;
-
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
-public class NucleotideTest {
-  @Test
-  public void testEmptyDnaStringHasNoAdenosine() {
-    DNA dna = new DNA("");
-    assertThat(dna.count('A')).isEqualTo(0);
-  }
+import java.util.Map;
 
-  @Test
-  public void testEmptyDnaStringHasNoNucleotides() {
-    DNA dna = new DNA("");
-    assertThat(dna.nucleotideCounts()).hasSize(4).contains(
-        entry('A', 0),
-        entry('C', 0),
-        entry('G', 0),
-        entry('T', 0)
-    );
-  }
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.hasEntry;
+import static org.junit.Assert.assertThat;
 
-  @Test
-  public void testRepetitiveCytidineGetsCounted() {
-    DNA dna = new DNA("CCCCC");
-    assertThat(dna.count('C')).isEqualTo(5);
-  }
+public class NucleotideCounterTest {
 
-  @Test
-  public void testRepetitiveSequenceWithOnlyGuanosine() {
-    DNA dna = new DNA("GGGGGGGG");
-    assertThat(dna.nucleotideCounts()).hasSize(4).contains(
-        entry('A', 0),
-        entry('C', 0),
-        entry('G', 8),
-        entry('T', 0)
-    );
-  }
+    @Rule
+    public ExpectedException expectedException = ExpectedException.none();
 
-  @Test
-  public void testCountsOnlyThymidine() {
-    DNA dna = new DNA("GGGGGTAACCCGG");
-    assertThat(dna.count('T')).isEqualTo(1);
-  }
+    @Test
+    public void testEmptyDnaStringHasNoNucleotides() {
+        NucleotideCounter nucleotideCounter = new NucleotideCounter("");
+        Map<Character, Integer> counts = nucleotideCounter.nucleotideCounts();
+        assertThat(counts, allOf(
+                hasEntry('A', 0),
+                hasEntry('C', 0),
+                hasEntry('G', 0),
+                hasEntry('T', 0)
+        ));
+    }
 
-  @Test
-  public void testCountsANucleotideOnlyOnce() {
-    DNA dna = new DNA("CGATTGGG");
-    dna.count('T');
-    assertThat(dna.count('T')).isEqualTo(2);
-  }
+    @Test
+    public void testDnaStringHasOneNucleotide() {
+        NucleotideCounter nucleotideCounter = new NucleotideCounter("G");
+        Map<Character, Integer> counts = nucleotideCounter.nucleotideCounts();
+        assertThat(counts, allOf(
+                hasEntry('A', 0),
+                hasEntry('C', 0),
+                hasEntry('G', 1),
+                hasEntry('T', 0)
+        ));
+    }
 
-  @Test
-  public void testDnaCountsDoNotChangeAfterCountingAdenosine() {
-    DNA dna = new DNA("GATTACA");
-    dna.count('A');
-    assertThat(dna.nucleotideCounts()).hasSize(4).contains(
-        entry('A', 3),
-        entry('C', 1),
-        entry('G', 1),
-        entry('T', 2)
-    );
-  }
+    @Test
+    public void testRepetitiveSequenceWithOnlyGuanine() {
+        NucleotideCounter nucleotideCounter = new NucleotideCounter("GGGGGGG");
+        Map<Character, Integer> counts = nucleotideCounter.nucleotideCounts();
+        assertThat(counts, allOf(
+                hasEntry('A', 0),
+                hasEntry('C', 0),
+                hasEntry('G', 7),
+                hasEntry('T', 0)
+        ));
+    }
 
-  @Test(expected = IllegalArgumentException.class)
-  public void testValidatesNucleotides() {
-    DNA dna = new DNA("GACT");
-    dna.count('X');
-  }
+    @Test
+    public void testDnaStringHasMultipleNucleotide() {
+        NucleotideCounter nucleotideCounter
+                = new NucleotideCounter("AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC");
+        Map<Character, Integer> counts = nucleotideCounter.nucleotideCounts();
+        assertThat(counts, allOf(
+                hasEntry('A', 20),
+                hasEntry('C', 12),
+                hasEntry('G', 17),
+                hasEntry('T', 21)
+        ));
+    }
 
-  @Test
-  public void testCountsAllNucleotides() {
-    String s = "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC";
-    DNA dna = new DNA(s);
-    assertThat(dna.nucleotideCounts()).hasSize(4).contains(
-        entry('A', 20),
-        entry('C', 12),
-        entry('G', 17),
-        entry('T', 21)
-    );
-  }
+    @Test
+    public void testDnaStringHasInvalidNucleotides() {
+        expectedException.expect(IllegalArgumentException.class);
+        NucleotideCounter nucleotideCounter = new NucleotideCounter("AGXXACT");
+    }
 }

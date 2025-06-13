@@ -1,35 +1,59 @@
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class PascalsTriangle {
-    public static int[][] computeTriangle(int rows) {
-        if(rows < 0)
-            throw new IllegalArgumentException();
-        int[][] triangle = new int[rows][];
-        for(int row = 0; row < rows; row++) {
-            triangle[row] = new int[row + 1];
-            for(int col = 0; col <= row; col++) {
-                 triangle[row][col] = binomial(row, col);
-            }
+public class PascalsTriangleGenerator {
+
+    private List<List<Integer>> triangle;
+
+    public int[][] generateTriangle(int rows) {
+        if (rows < 0) {
+            throw new IllegalArgumentException("Number of rows may not be negative");
         }
-        return triangle;
+
+        createTheTriangel(rows);
+        manipulateTriangleValues(rows);
+        return getTheTriangleAsDoubleArray();
     }
 
-    private static int binomial(int n, int k) {
-        return fact(n) / (fact(k) * fact(n - k));
+    private void createTheTriangel(int rows) {
+        triangle = IntStream.range(0, rows)
+                .mapToObj(row -> IntStream.rangeClosed(0, row)
+                        .map(col -> 1)
+                        .boxed()
+                        .collect(Collectors.toList()))
+                .collect(Collectors.toList());
     }
 
-    private static int fact(int n) {
-    	return IntStream.rangeClosed(1, n)
-    		.reduce(1, (total, x) -> total * x);
+    private void manipulateTriangleValues(int rows) {
+        IntStream
+                .range(0, rows)
+                .forEach(row -> IntStream
+                        .range(0, row)
+                        .forEach(col -> recalculateCellValue(row, col)));
     }
 
-    public static boolean isTriangle(int[][] triangle) {
-        for(int row = 0; row < triangle.length; row++) {
-            for(int col = 0; col < triangle[row].length; col++) {
-                if(triangle[row][col] != binomial(row, col))
-                    return false;
-            }
+    private int[][] getTheTriangleAsDoubleArray() {
+        return triangle.stream()
+                .map(row -> row.stream().mapToInt(i -> i).toArray())
+                .toArray(int[][]::new);
+    }
+
+    private void recalculateCellValue(int r, int c) {
+        triangle.get(r).set(c, addParentsValues(r, c));
+    }
+
+    private int addParentsValues(int row, int col) {
+        if (row == 0 && col == 0) {
+            return 1;
         }
-        return true;
+        return getAt(row - 1, col - 1) + getAt(row - 1, col);
+    }
+
+    private int getAt(int row, int col) {
+        if (row < 0 || col < 0 || col >= triangle.get(row).size()) {
+            return 0;
+        }
+        return triangle.get(row).get(col);
     }
 }

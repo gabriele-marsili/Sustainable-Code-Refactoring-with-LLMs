@@ -1,28 +1,54 @@
 import java.util.List;
 
-class BinarySearch {
-    private List<Integer> items;
-    private int delta;
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.IntStream.range;
 
-    BinarySearch(List<Integer> items) {
-        this.items = items;
+public class BinarySearch<T extends Comparable<T>> {
+
+    private final int NOT_FOUND = -1;
+    private List<Node> nodeList;
+
+    public BinarySearch(List<T> list) {
+        this.nodeList = range(0, list.size())
+                .mapToObj(i -> new Node(list.get(i), i))
+                .collect(toList());
     }
 
-    int indexOf(int item) throws ValueNotFoundException {
-        var length = items.size();
-        if (length == 0) {
-            throw new ValueNotFoundException("Value not in array");
+    public int indexOf(T item) {
+        return findInSubList(item, nodeList);
+    }
+
+    private int findInSubList(T s, List<Node> subList) {
+        if (subList.isEmpty()) {
+            return NOT_FOUND;
         }
-        var middleIndex = items.size() / 2;
-        if (items.get(middleIndex) == item) {
-            return middleIndex + delta;
-        } else if (items.get(middleIndex) > item) {
-            items = items.subList(0, middleIndex);
-            return indexOf(item);
-        } else {
-            items = items.subList(middleIndex + 1, length);
-            delta += middleIndex + 1;
-            return indexOf(item);
+
+        if (subList.size() == 1 && !subList.get(0).value.equals(s)) {
+            return NOT_FOUND;
         }
+
+        final int middle = subList.size() / 2;
+        final Node middleNode = subList.get(middle);
+
+        if (middleNode.value.equals(s)) {
+            return middleNode.index;
+        }
+
+        if (s.compareTo(middleNode.value) < 0) {
+            return findInSubList(s, subList.subList(0, middle));
+        }
+
+        return findInSubList(s, subList.subList(middle, subList.size()));
+    }
+
+    private class Node {
+
+        private Node(T value, int index) {
+            this.value = value;
+            this.index = index;
+        }
+
+        private T value;
+        private int index;
     }
 }

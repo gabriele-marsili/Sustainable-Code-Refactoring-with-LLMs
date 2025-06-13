@@ -1,26 +1,24 @@
-import java.util.HashMap;
 import java.util.Map;
 
-class WordCount {
-    public Map<String, Integer> phrase(String input) {
-        input = input.replaceAll("[,\n:!&@$%^.]", " ");
-        input = input.toLowerCase();
-        input = input.trim();
+import static java.util.Arrays.stream;
+import static java.util.function.Function.identity;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.summingInt;
 
-        Map<String, Integer> result = new HashMap<>();
-        String[] words = input.split("\s+");
-        for (String key : words) {
-            if (key.charAt(0) == '\'' && key.charAt(key.length() - 1) == '\'') {
-                key = key.substring(1, key.length() - 1);
-            }
+public class WordCount {
 
-            if (result.containsKey(key)) {
-                var value = result.get(key);
-                result.put(key, ++value);
-            } else {
-                result.put(key, 1);
-            }
-        }
-        return result;
+    public Map<String, Integer> phrase(String phrase) {
+
+        final String cleaned = phrase
+                .replaceAll("[,.:!&@$%\\^]", " ")
+                .replaceAll(" '|' ", " ")
+                .replaceAll("\\s+", " ")
+                .trim()
+                .toLowerCase();
+
+        final String[] split = cleaned.split(" ");
+
+        return stream(split)
+                .collect(groupingBy(identity(), summingInt(x -> 1)));
     }
 }

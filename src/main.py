@@ -70,7 +70,11 @@ def main():
             #"LauriESB"
             #"RinatMambetov"
             #"blogscot"
-            "mandarussell"
+            #"mandarussell"
+            #"uzilan"
+            #"robiworks"
+            #"ThomasZumsteg-js"
+            "oguzsh"
         ],
         choices=[
             #'java-thomasZumsteg'
@@ -78,7 +82,11 @@ def main():
             #"LauriESB"
             #"RinatMambetov"
             #"blogscot"
-            "mandarussell"
+            #"mandarussell"
+            #"uzilan"
+            #"robiworks"
+            #"ThomasZumsteg-js"
+            "oguzsh"
         ],
         help='Fonti da utilizzare (default: tutte)'
     )

@@ -1,23 +1,19 @@
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.math.BigInteger;
 
-public class Gigasecond {
-    private final LocalDateTime date;
-    private static final Long GIGASECOND = BigInteger
-        .valueOf(10)
-        .pow(9)
-        .longValue();
+class Gigasecond {
 
-    public Gigasecond(LocalDate date) {
-        this(date.atStartOfDay());
+    private final LocalDateTime gigatime;
+
+    Gigasecond(LocalDate birthDate) {
+        this(birthDate.atStartOfDay());
     }
 
-    public Gigasecond(LocalDateTime date) {
-        this.date = date;
+    Gigasecond(LocalDateTime birthDateTime) {
+        this.gigatime = birthDateTime.plusSeconds((long) 1E9);
     }
 
-    public LocalDateTime getDate() {
-        return date.plusSeconds(GIGASECOND);
+    LocalDateTime getDate() {
+        return gigatime;
     }
 }

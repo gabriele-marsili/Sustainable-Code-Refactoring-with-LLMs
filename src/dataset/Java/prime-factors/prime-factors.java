@@ -1,19 +1,23 @@
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.OptionalLong;
 
-public class PrimeFactors {
-    public static List<Long> getForNumber(long number) {
-        List<Long> primes = new ArrayList<>();
-        if(number <= 1L) return primes;
-        for(Long i = 2L; i * i <= number && number != 1;) {
-            if(number % i == 0) {
-                primes.add(i);
-                number /= i;
-            }
-            else 
-                i += i <= 2 ? 1 : 2;
+import static java.util.Collections.emptyList;
+import static java.util.stream.LongStream.rangeClosed;
+
+public class PrimeFactorsCalculator {
+
+    public List<Long> calculatePrimeFactorsOf(long number) {
+        final OptionalLong lowestPrime = rangeClosed(2, number)
+                .filter(i -> number % i == 0)
+                .findFirst();
+
+        if (lowestPrime.isPresent()) {
+            final List<Long> longs = new ArrayList<>();
+            longs.add(lowestPrime.getAsLong());
+            longs.addAll(calculatePrimeFactorsOf(number / lowestPrime.getAsLong()));
+            return longs;
         }
-        primes.add(number);
-        return primes;
+        return emptyList();
     }
 }

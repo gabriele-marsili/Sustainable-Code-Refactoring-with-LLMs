@@ -1,24 +1,18 @@
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-
-import static java.util.Objects.requireNonNull;
-
 class Acronym {
-  private final String acronym;
+    private String phrase;
 
-  Acronym(String phrase) {
-    requireNonNull(phrase);
+    Acronym(String phrase) {
+        this.phrase = phrase;
+    }
 
-    acronym = Pattern.compile("\\W+")
-        .splitAsStream(phrase.replace("'", ""))
-        .map(word -> word.charAt(0))
-        .map(Character::toUpperCase)
-        .map(c -> Character.toString(c))
-        .collect(Collectors.joining());
-  }
-
-  String getAcronym() {
-    return acronym;
-  }
+    String get() {
+        String abbreviation = "";
+        phrase = phrase.replaceAll("[^a-zA-Z']", " ").toUpperCase(); // regex to replace every non-alphabetical character except an apostrophe with a space
+        String[] words = phrase.split("\\s+"); // splits string into array even if it contains multiple spaces
+        for (int i = 0; i < words.length; i++) {
+            abbreviation += words[i].substring(0, 1);
+        }
+        return abbreviation;
+    }
 
 }

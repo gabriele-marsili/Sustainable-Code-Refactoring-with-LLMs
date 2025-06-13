@@ -1,29 +1,29 @@
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 class Proverb {
-  private String proverb = "";
 
-  Proverb(String[] words) {
-    if (words.length > 0) {
-      var causes = Arrays.stream(words).skip(1).collect(Collectors.toList());
-      var lastCause = words[0];
+    private String[] words;
 
-      var builder = new StringBuilder();
-      var previous = lastCause;
-
-      for (String cause : causes) {
-        builder.append(String.format("For want of a %s the %s was lost.\n", previous, cause));
-        previous = cause;
-      }
-
-      builder.append(String.format("And all for the want of a %s.", lastCause));
-      proverb = builder.toString();
+    Proverb(final String[] words) {
+        this.words = words;
     }
-  }
 
-  String recite() {
-    return proverb;
-  }
+    String recite() {
+        if (words.length == 0) {
+            return "";
+        }
 
+        final StringBuilder sb = new StringBuilder();
+        helper(sb, words);
+        sb.append(String.format("And all for the want of a %s.", words[0]));
+        return sb.toString();
+    }
+
+    private void helper(final StringBuilder sb, final String[] words) {
+        if (words.length < 2) {
+            return;
+        }
+        sb.append(String.format("For want of a %s the %s was lost.\n", words[0], words[1]));
+        helper(sb, Arrays.copyOfRange(words, 1, words.length));
+    }
 }
