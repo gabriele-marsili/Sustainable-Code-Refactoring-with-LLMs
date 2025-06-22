@@ -1,3 +1,7 @@
-export function twoFer(name) {
-  return `One for ${name || 'you'}, one for me.`;
+class TwoFer {
+  twoFer(name) {
+    return `One for ${name || 'you'}, one for me.`;
+  }
 }
+
+module.exports = TwoFer;

@@ -1,39 +1,42 @@
-//@ts-check
-
-/** @type {Record<string, boolean>} */
-let _usedNames = {};
-
-export class Robot {
+'use strict'
+const NAME_DB = [];
+class RobotName {
   constructor() {
-    this.reset();
+    this.name = this.randomName();
   }
 
-  /**
-   * @private
-   * @returns {string}
-   */
-  _generateName() {
-    const randomString = () => String.fromCharCode(Math.floor(Math.random() * 25) + 65);
-    const num = Math.floor(Math.random() * 899) + 100;
-    const name = `${randomString()}${randomString()}${num}`;
-
-    if (typeof _usedNames[name] === 'undefined') {
-      _usedNames[name] = true;
-      return name;
-    }
-
-    return this._generateName();
+  randomLetter() {
+    return 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')[this.randomInt(0, 25)];
   }
 
-  static releaseNames() {
-    _usedNames = {};
+  randomInt(low, high) {
+    const min = Math.ceil(low);
+    const max = Math.floor(high);
+
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  get name() {
-    return this._name;
+  randomName() {
+    return `${this.randomLetter()}${this.randomLetter()}${this.randomInt(0,9)}${this.randomInt(0,9)}${this.randomInt(0,9)}`;
   }
 
   reset() {
-    this._name = this._generateName();
+    let newname = this.returnUnique();
+
+    this.name = newname;
   }
+
+  returnUnique() {
+    let name = this.randomName();
+
+    if (NAME_DB.indexOf(name) > -1) {
+      return this.returnUnique();
+    }
+
+    NAME_DB.push(this.name);
+    return name;
+  }
+
 }
+
+module.exports = RobotName;

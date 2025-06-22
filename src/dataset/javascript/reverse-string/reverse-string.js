@@ -1,8 +1,9 @@
-export const reverseString = (s) => {
-  let letters = s.split("")
-  let reversed = ""
-  for (let x = letters.length-1; x >= 0; x-- ) {
-    reversed = reversed + letters[x]
+function reverseString(string) {
+  let outString = '';
+  for (let i = string.length -1; i > -1; i--) {
+    outString += string[i];
   }
-  return reversed
-};
+  return outString;
+}
+
+module.exports = reverseString;

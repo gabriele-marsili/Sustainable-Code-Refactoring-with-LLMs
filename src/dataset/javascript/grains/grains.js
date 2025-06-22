@@ -1,10 +1,27 @@
-var BigInt = require('./big-integer.js');
+'use strict'
+const bigInt = require('./big-integer.js');
 
-module.exports = function () {
-	/* Counts the number of grains of rice on squares of a chess board */
-	return {
-		// Grains start at 1 and double every square
-		square: function (n) { return BigInt(2).pow(n - 1).toString() },
-		total: function() { return BigInt(2).pow(64).prev().toString() },
-	}
+class Grains {
+  constructor() {
+    this.chessboard = Array.apply(null, Array(64));
+    this.chessboard.forEach((val, index) => {
+      this.chessboard[index] = index === 0 ? '1' : this.doubleInt(bigInt(this.chessboard[index -1]));
+    });
+  }
+
+  doubleInt(num) {
+    return bigInt(num).times(2).toString();
+  }
+
+  square(index) {
+    return bigInt(this.chessboard[index -1]).toString();
+  }
+
+  total() {
+    let total = bigInt(0);
+    this.chessboard.forEach(value => total = bigInt(total).add(bigInt(value)));
+    return total.toString();
+  }
 }
+
+module.exports = Grains;

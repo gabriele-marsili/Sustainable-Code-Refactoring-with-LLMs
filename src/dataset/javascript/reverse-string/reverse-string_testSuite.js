@@ -1,39 +1,33 @@
-import { reverseString } from './reverse-string';
+var reverseString = require('./reverse-string');
 
-describe('ReverseString', () => {
-  test('empty string', () => {
-    const expected = '';
-    const actual = reverseString('');
+describe('ReverseString', function () {
+  it('empty string', function () {
+    var expected = '';
+    var actual = reverseString('');
     expect(actual).toEqual(expected);
   });
 
-  test('a word', () => {
-    const expected = 'tobor';
-    const actual = reverseString('robot');
+  it('a word', function () {
+    var expected = 'tobor';
+    var actual = reverseString('robot');
     expect(actual).toEqual(expected);
   });
 
-  test('a capitalized word', () => {
-    const expected = 'nemaR';
-    const actual = reverseString('Ramen');
+  it('a capitalized word', function () {
+    var expected = 'nemaR';
+    var actual = reverseString('Ramen');
     expect(actual).toEqual(expected);
   });
 
-  test('a sentence with punctuation', () => {
-    const expected = '!yrgnuh ma I';
-    const actual = reverseString('I am hungry!');
+  it('a sentence with punctuation', function () {
+    var expected = '!yrgnuh ma I';
+    var actual = reverseString('I am hungry!');
     expect(actual).toEqual(expected);
   });
 
-  test('a palindrome', () => {
-    const expected = 'racecar';
-    const actual = reverseString('racecar');
-    expect(actual).toEqual(expected);
-  });
-
-  test('an even-sized word', () => {
-    const expected = 'reward';
-    const actual = reverseString('drawer');
+  it('a palindrome', function () {
+    var expected = 'racecar';
+    var actual = reverseString('racecar');
     expect(actual).toEqual(expected);
   });
 });

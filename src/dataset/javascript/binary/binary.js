@@ -1,17 +1,23 @@
-var Binary = function(binString) { this.binString = binString };
+class Binary {
+  constructor(string) {
+    this.number = string;
+  }
 
-Binary.prototype.toDecimal = function() {
-	/* Converts a binary string to decimal */
-	
-	// Validate string
-	if ( this.binString.match(/[^10]/) )
-		return 0;
+  toDecimal() {
+    const numberToArray = this.number.split('');
+    let numberAsDecimal = 0;
+    
+    for (let i = 0; i < numberToArray.length; i++) {
+      let currentDigit = Number(numberToArray[i]);
+      if (isNaN(currentDigit) || (currentDigit !== 0 && currentDigit !== 1))
+        return numberAsDecimal = 0;
 
-	return this.binString.split('').reverse().reduce(
-		function(total, bit, power) {
-			return total + bit * Math.pow(2, power);
-		}, 0
-	);
-};
+      let power = (numberToArray.length - 1) - i;
+      numberAsDecimal += currentDigit * Math.pow(2, power);
+    }
+    
+    return numberAsDecimal;
+  }
+}
 
 module.exports = Binary;

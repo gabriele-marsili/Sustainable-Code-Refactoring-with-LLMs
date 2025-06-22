@@ -1,28 +1,29 @@
-//
-// This is only a SKELETON file for the 'Grade School' exercise. It's been provided as a
-// convenience to get you started writing code faster.
-//
+'use strict'
+class School {
+  constructor() {
+    _this.fullroster = {};
+  }
 
-export class GradeSchool {
-	#listing = {};
+  roster() {
+    return this.fullroster;
+  }
 
-	roster() {
-		return this.#listing;
-	}
+  add(name, grade) {
+    // check for and add grade if not already in DB
+    if (!this.fullroster[grade]) {
+      this.fullroster[grade] = [];
+    }
+    this.fullroster[grade].push(name);
+    this.fullroster[grade] = this.fullroster[grade].sort(); // grades are to be kept in alphabetical order
+  }
 
-	add(student, grade) {
-		let restStudent;
-		if (this.#listing[grade]) {
-			[...restStudent] = this.#listing[grade];
-			restStudent.push(student);
-		} else {
-			restStudent = [student];
-		}
-		this.#listing[grade] = restStudent;
-	}
-
-	grade(grade) {
-		if (!this.#listing[grade]) return [];
-		return [...this.#listing[grade].sort()].sort();
-	}
+  grade(grade) {
+    const roster = this.fullroster[grade];
+    if (!roster) {
+      return [];
+    }
+    return roster.sort();
+  }
 }
+
+module.exports = School;

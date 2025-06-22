@@ -1,12 +1,22 @@
-//
-// This is only a SKELETON file for the 'Pangram' exercise. It's been provided as a
-// convenience to get you started writing code faster.
-//
+var Pangram = function (input) {
+  this.input = input;
+  this.alphabet = "abcdefghijklmnopqrstuvwxyz";
+  this.isPangram = function () {
+    var str = this.input.replace(" ","").toLowerCase();
+    var result = false;
+    if (str === "") return result;
 
-export const isPangram = sentence => {
-	const charMap = [];
-	const res = [...sentence.toLowerCase().replace(/[0-9\s\'\"\_\.!@#\$\%\^\&\*\(\)]/g, "")].forEach(char => {
-		if (!charMap.includes(char)) return charMap.push(char);
-	});
-	return charMap.length === 26;
-};
+    for (var i = 0; i < this.alphabet.length -1; i++) {
+      if (str.indexOf(this.alphabet[i]) < 0) {
+        result = false;
+        break;
+      } else {
+        result = true;
+      }
+    }
+
+    return result;
+  }
+}
+
+module.exports = Pangram;

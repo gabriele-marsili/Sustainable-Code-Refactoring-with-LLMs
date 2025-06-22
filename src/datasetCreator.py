@@ -491,8 +491,22 @@ class CodeTestDatasetCreator:
         print(f"Linguaggi target: {', '.join(self.target_languages)}")
 
         try:                                                                         
-            if "PhymasSC" in sources:
-                self.process_PhymasSC()
+            if "all_ts" in sources : 
+                repos = [
+                    {"repo" : "uzilan/exercism-solutions-typescript", "name" : "","tsInternalDirIsPresent":False, "source":"Exercism"},
+                    {"repo" : "thewanionly/exercism-typescript", "name" : "thewanionly","tsInternalDirIsPresent":False, "source":"Exercism"},
+                    {"repo" : "shybyte/exercism-typescript", "name" : "shybyte","tsInternalDirIsPresent":False, "source":"Exercism"},
+                    {"repo" : "chriswilding/exercism-typescript", "name" : "chriswilding","tsInternalDirIsPresent":False, "source":"Exercism"},
+                    {"repo" : "FilipeCerejo/exercism-typescript", "name" : "FilipeCerejo","tsInternalDirIsPresent":False, "source":"Exercism"},
+                    {"repo" : "alemarr/exercism-solutions-typescript", "name" : "alemarr","tsInternalDirIsPresent":False, "source":"Exercism"},                    
+                ]
+                self.process_all_ts(repos)
+            #if "samajammin" in sources:
+            #    self.process_samajammin()
+            #if "bearguns" in sources:
+            #    self.process_bearguns()
+            #if "PhymasSC" in sources:
+            #    self.process_PhymasSC()
             #if "irvingbennett" in sources:
             #    self.process_irvingbennett()
             #if "programmiri" in sources:
@@ -533,7 +547,109 @@ class CodeTestDatasetCreator:
         print("\nDistribuzione per linguaggio (totale):")
         for lang, count in sorted(self.language_counts.items()):
             print(f"  - {lang}: {count} coppie")
+     
+       
+    def process_all_ts(self, repos):
+        for r in repos:
+            repo = r["repo"]
+            name = r["name"]
+            ts_internal_dir = r["tsInternalDirIsPresent"]
+            source = r["source"]
+                        
+            counter = 0
+        
+            print(f"\nProcessing repo {repo} (ts) ({source})")  
+            if ts_internal_dir : repo_contents = self.get_github_contents(repo,"typescript")
+            else : repo_contents = self.get_github_contents(repo)
+            
+            for item in repo_contents :
+                if item["type"] == "dir" and item["name"] != ".gradle":
+                    file_name = item["name"]
+                    print(f"\nProcessing filename : {file_name}")
+                                                                
+                    if ts_internal_dir:
+                        conent = self.get_github_contents(repo, "typescript/"+file_name)
+                    else:
+                        conent = self.get_github_contents(repo, file_name)
+                    
+                    
+                    
+                    main_file = None
+                    test_file = None
+                    for f_item in conent:
+                        if f_item['type'] == "file" and file_name in f_item["name"]: 
+                            if ".test." in f_item["name"]:
+                                test_file = f_item
+                            else:
+                                main_file = f_item                                        
+                    
+                    if test_file and main_file : 
+                        print(f"Creating pair for file : {file_name}")                    
+                        self.create_single_code_test_pair(repo,main_file,test_file,"typescript",file_name,f"{source}-typescript-{name}")
+                        counter +=1
+                        
+            print(f"\nProcessed {counter} typescript pairs for repo {repo} | {name} | {source}")
     
+        
+    #repositories already processed
+    """
+     def process_samajammin(self):
+        repo = "samajammin/exercism"
+        counter = 0
+       
+        print("\nProcessing samajammin exercism (js)")        
+        repo_contents = self.get_github_contents(repo,"typescript")
+        for item in repo_contents :
+            if item["type"] == "dir" and item["name"] != ".gradle":
+                file_name = item["name"]
+                print(f"\nProcessing filename : {file_name}")
+                                                              
+                conent = self.get_github_contents(repo, "typescript/"+file_name)
+                #conent = self.get_github_contents(repo, "typescript/"+file_name)
+                
+                
+                main_file = None
+                test_file = None
+                for f_item in conent:
+                    if f_item['type'] == "file" and file_name in f_item["name"]: 
+                        if ".test." in f_item["name"]:
+                            test_file = f_item
+                        else:
+                            main_file = f_item                                        
+                
+                if test_file and main_file : 
+                    print(f"Creating pair for file : {file_name}")                    
+                    self.create_single_code_test_pair(repo,main_file,test_file,"typescript",file_name,"exercism-javascript-samajammin")
+                    counter +=1
+                    
+        print(f"\nProcessed {counter} typescript pairs for repo {repo}")
+   
+    def process_bearguns(self):
+        repo = "bearguns/exercism-js"
+       
+        print("\nProcessing bearguns exercism (js)")        
+        repo_contents = self.get_github_contents(repo)
+        for item in repo_contents :
+            if item["type"] == "dir" and item["name"] != ".gradle":
+                file_name = item["name"]
+                print(f"\nProcessing filename : {file_name}")
+                                                              
+                conent = self.get_github_contents(repo, file_name)                
+                
+                main_file = None
+                test_file = None
+                for f_item in conent:
+                    if f_item['type'] == "file" and file_name in f_item["name"]: 
+                        if ".spec." in f_item["name"]:
+                            test_file = f_item
+                        else:
+                            main_file = f_item                                        
+                
+                if test_file and main_file : 
+                    print(f"Creating pair for file : {file_name}")                    
+                    self.create_single_code_test_pair(repo,main_file,test_file,"javascript",file_name,"exercism-javascript-bearguns")
+   
+     
     def process_PhymasSC(self):
         repo = "PhymasSC/Exercism-Learning-Log"
        
@@ -560,9 +676,8 @@ class CodeTestDatasetCreator:
                 if test_file and main_file : 
                     print(f"Creating pair for file : {file_name}")                    
                     self.create_single_code_test_pair(repo,main_file,test_file,"javascript",file_name,"exercism-javascript-PhymasSC")
-       
-    #repositories already processed
-    """
+   
+   
     def process_irvingbennett(self):
         repo = "irvingbennett/javascript"
        
@@ -981,7 +1096,10 @@ if __name__ == "__main__":
            #"ffflorian"
            #"programmiri"
            #"irvingbennett"
-           "PhymasSC"
+            #"PhymasSC"
+            #"bearguns"
+            #"samajammin"
+            "all_ts"
         ],
         languages=[
             'python', 'javascript', 'java', 'cpp', 'go', 'rust', 'typescript',

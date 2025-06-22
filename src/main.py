@@ -78,7 +78,10 @@ def main():
             #"ffflorian"
             #"programmiri"
             #"irvingbennett"
-            "PhymasSC"
+            #"PhymasSC"
+            #"bearguns"
+            #"samajammin"
+            "all_ts"
         ],
         choices=[
             #'java-thomasZumsteg'
@@ -94,7 +97,10 @@ def main():
             #"ffflorian"
             #"programmiri"
             #"irvingbennett"
-            "PhymasSC"
+            #"PhymasSC"
+            #"bearguns"
+            #"samajammin"
+            "all_ts"
         ],
         help='Fonti da utilizzare (default: tutte)'
     )
