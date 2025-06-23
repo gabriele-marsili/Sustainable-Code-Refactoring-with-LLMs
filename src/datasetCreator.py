@@ -10,7 +10,7 @@ import re
 from typing import List, Dict, Tuple, Optional
 import time
 import base64
-from fileMetadata import FileMetadata
+from fileMetadata import Metadata
 
 class CodeTestDatasetCreator:
     def __init__(self, root_dir: str = "dataset"):
@@ -103,9 +103,10 @@ class CodeTestDatasetCreator:
             local_path.parent.mkdir(parents=True, exist_ok=True)
             with open(local_path, 'w', encoding='utf-8') as f:
                 f.write(content)
+            #print(f"saved file in path {local_path}")
             return True
         except Exception as e:
-            print(f"Errore nel salvare {local_path}:\n{e}")
+            print(f"Errore nel salvare content {content} in {local_path}:\n{e}")
             return False
 
     def process_language_directory(self, repo: str, language: str, path: str, source: str):
@@ -152,24 +153,19 @@ class CodeTestDatasetCreator:
             dirContent = self.get_github_contents(repo,dirFile["path"])
             for f in dirContent:
                 if f['type'] == "dir": self.recursive_dir_solver(f,sub_dir, repo)
-                elif f['type'] == "file":
+                elif f['type'] == "file" and "." in f['name']:
                     file_content = self.get_file_content(repo, f['path'])
-                    if not self.save_file_content(file_content,sub_dir): raise Exception(f"Error saving file {f['name']} in dir {sub_dir}")
+                    complete_path = sub_dir / f['name']
+                    if not self.save_file_content(file_content,complete_path): raise Exception(f"Error saving file {f['name']} in dir {sub_dir} (recursive dir solver)")
     
-    def create_code_pair_by_dir(self, repo:str, srcDir:Dict, testDir:Dict, language:str, exercise_name:str, source:str, makeFile:Dict|None):
+    def create_code_pair_by_dir(self, repo:str, srcDir:List[Dict], testDir:List[Dict], language:str, exercise_name:str, source:str, makeFile:Dict|None, license:str):
         file_id = f"{language}_{exercise_name}_{source}"
         if file_id in self.processed_ids:
-            # print(f"      Saltando: {file_id} (già presente)")
+            print(f"      Saltando: {file_id} (già presente)")
             return
     
-        src_dir_content = self.get_github_contents(repo, srcDir['path'])
-        test_dir_content = self.get_github_contents(repo, testDir['path'])
         
-        if not src_dir_content or not test_dir_content:
-            print(f"      Impossibile ottenere contenuti per {exercise_name}")
-            return
-    
-        for f in test_dir_content:
+        for f in testDir:
             if "test" in f["name"] and ".c" in f['name']:
                 test_file = self.get_file_content(repo,f['path'])
                 if not self.is_implemented_code(test_file, language):
@@ -177,54 +173,70 @@ class CodeTestDatasetCreator:
                     return
                 
         # Crea la struttura delle directory
+        source_for_path = source.replace(" ","_")
+        source_for_path = source_for_path.replace("(","")
+        source_for_path = source_for_path.replace(")","")
         lang_dir = self.root_dir / language
-        code_dir = lang_dir / exercise_name
+        code_dir = lang_dir / (exercise_name+"_"+source_for_path)
         code_dir.mkdir(parents=True, exist_ok=True)
         
         if makeFile : #save makefile
             makeFile_content = self.get_file_content(repo,makeFile['path'])
-            self.save_file_content(makeFile_content,code_dir)
+            complete_path = code_dir / makeFile['name']
+            self.save_file_content(makeFile_content,complete_path)
         
         src_dir = code_dir / "src"
         test_dir = code_dir / "test"
         src_dir.mkdir(parents=True, exist_ok=True)        
         test_dir.mkdir(parents=True, exist_ok=True)
 
-        
+        # Nomi dei file
+        code_filename = f"{exercise_name}.{self.get_file_extension(language)}"
+        test_filename = f"{exercise_name}_testSuite.{self.get_file_extension(language)}"
+
+
         #save test dir in local
-        for file in test_dir_content:
+        for file in testDir:
             if file['type'] == "dir": 
                 try:
                     self.recursive_dir_solver(file, test_dir, repo)
-                except Exception as e:                    
+                except Exception as e:       
+                    print(f"Error in recursive dir solver:\n{e}")             
                     shutil.rmtree(code_dir,True)
                     raise e
-            elif file['type'] == "file":                                
+            elif file['type'] == "file" and not str(file['name']).endswith(".json") and "." in file['name']:
                 fileContent = self.get_file_content(repo, file['path'])
-                if not self.save_file_content(fileContent,test_dir):                     
+                complete_path = test_dir / file['name']
+                if not self.save_file_content(fileContent,complete_path):                     
                     shutil.rmtree(code_dir,True)
-                    raise Exception(f"Error saving file {file['name']} in dir {test_dir}")
+                    raise Exception(f"\nError saving file {file['name']} in dir {test_dir}")
                 
         #save src dir in local
-        for file in src_dir_content:
+        mainFile = None
+        for file in srcDir:
             if file['type'] == "dir": 
                 try:
                     self.recursive_dir_solver(file, src_dir, repo)
                 except Exception as e:                    
                     shutil.rmtree(code_dir,True)
                     raise e
-            elif file['type'] == "file":                                
+            elif file['type'] == "file" and not str(file['name']).endswith(".json") and "." in file['name']:
+                if exercise_name in file['name'] and ".c" in file['name']:
+                    mainFile = file
+                    
                 fileContent = self.get_file_content(repo, file['path'])
-                if not self.save_file_content(fileContent,src_dir):                     
+                complete_path = src_dir / file['name']
+                if not self.save_file_content(fileContent,complete_path):                     
                     shutil.rmtree(code_dir,True)
                     raise Exception(f"Error saving file {file['name']} in dir {src_dir}")
              
-        # Nomi dei file
-        code_filename = f"{exercise_name}.{self.get_file_extension(language)}"
-        test_filename = f"{exercise_name}_testSuite.{self.get_file_extension(language)}"
 
         try:
-            self.add_to_json_dataset_v2(file_id,code_filename,test_filename,src_dir,test_dir,language,source)   
+            if mainFile : localFilePath = src_dir / mainFile['name']
+            else : localFilePath = src_dir / (exercise_name+".c")
+            
+
+            self.add_to_json_dataset_v2(file_id,code_filename,test_filename,src_dir,test_dir,language,source, localFilePath, license)   
             self.processed_ids.add(file_id) # Aggiungi l'ID al set degli ID processati
             self.language_counts[language] = self.language_counts.get(language, 0) + 1 # Incrementa il contatore del linguaggio
 
@@ -235,10 +247,10 @@ class CodeTestDatasetCreator:
             raise e
         
 
-    def create_code_pair_by_array(self, repo:str, srcDirArr:List[Dict], testDirArr:List[Dict], language:str, exercise_name:str, source:str, makeFile:Dict|None):
+    def create_code_pair_by_array(self, repo:str, srcDirArr:List[Dict], testDirArr:List[Dict], language:str, exercise_name:str, source:str, makeFile:Dict|None, license:str):
         file_id = f"{language}_{exercise_name}_{source}"
         if file_id in self.processed_ids:
-            # print(f"      Saltando: {file_id} (già presente)")
+            print(f"      Saltando: {file_id} (già presente)")
             return
     
         for f in testDirArr:
@@ -249,13 +261,17 @@ class CodeTestDatasetCreator:
                     return
                 
         # Crea la struttura delle directory
+        source_for_path = source.replace(" ","_")
+        source_for_path = source_for_path.replace("(","")
+        source_for_path = source_for_path.replace(")","")
         lang_dir = self.root_dir / language
-        code_dir = lang_dir / exercise_name
+        code_dir = lang_dir / (exercise_name+"_"+source_for_path)
         code_dir.mkdir(parents=True, exist_ok=True)
         
         if makeFile : #save makefile
             makeFile_content = self.get_file_content(repo,makeFile['path'])
-            self.save_file_content(makeFile_content,code_dir)
+            complete_path = code_dir / makeFile['name']
+            self.save_file_content(makeFile_content,complete_path)
         
         src_dir = code_dir / "src"
         test_dir = code_dir / "test"
@@ -268,16 +284,20 @@ class CodeTestDatasetCreator:
             if file['type'] == "dir": 
                 try:
                     self.recursive_dir_solver(file, test_dir, repo)
-                except Exception as e:                    
+                except Exception as e:     
+                    print(f"err recursive:\n{e}")
                     shutil.rmtree(code_dir,True)
                     raise e
-            elif file['type'] == "file":                                
+            elif file['type'] == "file" and not str(file['name']).endswith(".json") and "." in file['name']:
                 fileContent = self.get_file_content(repo, file['path'])
-                if not self.save_file_content(fileContent,test_dir):                     
+                complete_path = test_dir / file['name']
+                if not self.save_file_content(fileContent,complete_path):    
+                    print(f"Error saving file {file['name']} in dir {test_dir} (test file)")
                     shutil.rmtree(code_dir,True)
                     raise Exception(f"Error saving file {file['name']} in dir {test_dir}")
                 
         #save src dir in local
+        mainFile = None
         for file in srcDirArr:
             if file['type'] == "dir": 
                 try:
@@ -285,9 +305,13 @@ class CodeTestDatasetCreator:
                 except Exception as e:                    
                     shutil.rmtree(code_dir,True)
                     raise e
-            elif file['type'] == "file":                                
+            elif file['type'] == "file" and not str(file['name']).endswith(".json") and "." in file['name']:
+                if exercise_name in file['name'] and ".c" in file['name']:
+                    mainFile = file
+                    
                 fileContent = self.get_file_content(repo, file['path'])
-                if not self.save_file_content(fileContent,src_dir):                     
+                complete_path = src_dir / file['name']
+                if not self.save_file_content(fileContent,complete_path):                     
                     shutil.rmtree(code_dir,True)
                     raise Exception(f"Error saving file {file['name']} in dir {src_dir}")
              
@@ -296,7 +320,11 @@ class CodeTestDatasetCreator:
         test_filename = f"{exercise_name}_testSuite.{self.get_file_extension(language)}"
 
         try:
-            self.add_to_json_dataset_v2(file_id,code_filename,test_filename,src_dir,test_dir,language,source)   
+            if mainFile : localFilePath = src_dir / mainFile['name']
+            else : localFilePath = src_dir / exercise_name
+                        
+            
+            self.add_to_json_dataset_v2(file_id,code_filename,test_filename,src_dir,test_dir,language,source,localFilePath,license)   
             self.processed_ids.add(file_id) # Aggiungi l'ID al set degli ID processati
             self.language_counts[language] = self.language_counts.get(language, 0) + 1 # Incrementa il contatore del linguaggio
 
@@ -307,9 +335,6 @@ class CodeTestDatasetCreator:
             raise e
         
 
-    
-            
-
     def create_single_code_test_pair(self, repo: str, code_file: Dict, test_file: Dict,
                                    language: str, exercise_name: str, source: str):
         """Crea una singola coppia codice-test e la aggiunge al dataset"""
@@ -318,14 +343,14 @@ class CodeTestDatasetCreator:
 
         # Controlla se l'ID è già stato processato
         if file_id in self.processed_ids:
-            # print(f"      Saltando: {file_id} (già presente)")
+            print(f"      Saltando: {file_id} (già presente)")
             return
 
         # Applica il limite di file per linguaggio, se impostato
         if self.max_files_per_language is not None:
             current_count = self.language_counts.get(language, 0)
             if current_count >= self.max_files_per_language:
-                # print(f"      Limite raggiunto per {language}, saltando {exercise_name}")
+                print(f"      Limite raggiunto per {language}, saltando {exercise_name}")
                 return
 
         # Ottieni i contenuti dei file
@@ -642,7 +667,7 @@ class CodeTestDatasetCreator:
             
     
     def get_file_metadata(self, filePath:str, fileName:str):
-        metadata = FileMetadata(filePath,fileName)
+        metadata = Metadata(filePath,fileName)
         return {
             'downloadDate':metadata.download_date(),
             'characterQuantity':metadata.character_count(),
@@ -650,7 +675,7 @@ class CodeTestDatasetCreator:
         }
     
     def add_to_json_dataset_v2(self, file_id: str, code_name: str, test_name: str,
-                           code_path: str, test_path: str, language: str, source: str):
+                           code_path: str, test_path: str, language: str, source: str, localFilePath:Path,license:str):
         """Aggiunge una entry al dataset JSON e lo salva"""
         if file_id in self.processed_ids:
             print(f"  ID {file_id} già processato, saltando l'aggiunta al JSON.")
@@ -660,17 +685,22 @@ class CodeTestDatasetCreator:
         if lang_lower not in self.dataset_content:
             self.dataset_content[lang_lower] = []
 
-
+        parsedPath = str(localFilePath)
+        if not parsedPath.endswith(".c") : parsedPath += ".c"
+        parsedPath = Path(__file__).parent / parsedPath        
+        parsedPath = str(parsedPath.resolve())
+        
 
         new_entry = {
             "id": file_id, # Aggiunto l'ID per facilitare il tracking
             "filename": code_name,
             "language": language,
             "source": source,
-            "codeSnippetFilePath": code_path,
-            "testUnitFilePath": test_path,           
+            "codeSnippetFilePath": str(code_path),
+            "testUnitFilePath": str(test_path),   
+            "licenseType":license        
         }
-        new_entry.update(self.get_file_metadata(code_path,code_name))
+        new_entry.update(self.get_file_metadata(parsedPath,code_name))
         
         
         self.dataset_content[lang_lower].append(new_entry)
@@ -681,7 +711,7 @@ class CodeTestDatasetCreator:
             with open(self.jsonDataset_file, 'w', encoding='utf-8') as f:
                 json.dump(self.dataset_content, f, indent=4)
         except Exception as e:
-            print(f"Errore nel salvare il file JSON: {e}")
+            print(f"Errore nel salvare il file JSON (v2): {e}")
      
     def run_full_extraction(self, sources: List[str] = None, languages: List[str] = None):
         """Esegue l'estrazione completa del dataset"""
@@ -703,10 +733,10 @@ class CodeTestDatasetCreator:
         try:   
             if "all_c" in sources : 
                 repos = [
-                    {"repo" : "", "name" : "","internalDirIsPresent":False, "source":"Exercism","licenseType":""},
-                    {"repo" : "", "name" : "","internalDirIsPresent":False, "source":"Exercism","licenseType":""},
-                    {"repo" : "", "name" : "","internalDirIsPresent":False, "source":"Exercism","licenseType":""},
-                    {"repo" : "", "name" : "","internalDirIsPresent":False, "source":"Exercism","licenseType":""},
+                    {"repo" : "HeitorMP/exercism-C", "name" : "HeitorMP","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
+                    {"repo" : "ThomasZumsteg/exercism-c", "name" : "ThomasZumsteg","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
+                    #{"repo" : "", "name" : "","internalDirIsPresent":False, "source":"Exercism","licenseType":""},
+                    #{"repo" : "", "name" : "","internalDirIsPresent":False, "source":"Exercism","licenseType":""},
                 ]
                 self.process_all_c(repos)                                                                      
 
@@ -778,7 +808,8 @@ class CodeTestDatasetCreator:
             ts_internal_dir = r["internalDirIsPresent"]
             source = r["source"]
             licenseType = r["licenseType"]
-                        
+            if not name in source : 
+                source += f" ({name})"
             counter = 0
         
             print(f"\nProcessing repo {repo} (c) ({source})")  
@@ -795,7 +826,7 @@ class CodeTestDatasetCreator:
                     else:
                         conent = self.get_github_contents(repo, file_name)
                         
-                    file_name.replace("-","_")
+                    file_name = file_name.replace("-","_")
                     print(f"\nProcessing filename : {file_name}")
                     
                     
@@ -818,7 +849,7 @@ class CodeTestDatasetCreator:
                             
                             for f in dirContent:
                                 if is_test_dir : test_dir_fileArr.append(f)
-                                else : src_dir_content.append(f)
+                                else : src_dir_fileArr.append(f)
                         
                         if f_item['type'] == "file" and file_name in f_item["name"]: 
                             if "test" in f_item["name"]:
@@ -827,12 +858,12 @@ class CodeTestDatasetCreator:
                                 src_dir_fileArr.append(f_item)     
                     
                     if src_dir_content and test_dir_content :
-                        print(f"Creating pair for file : {file_name}")
-                        self.create_code_pair_by_dir(repo,src_dir_content,test_dir_content, "c",file_name, source, makeFile)
+                        print(f"Creating pair for file : {file_name} (by dir)")
+                        self.create_code_pair_by_dir(repo,src_dir_content,test_dir_content, "c",file_name, source, makeFile,licenseType)
                         counter +=1
                     elif len(src_dir_fileArr) > 0 and len(test_dir_fileArr) > 0:
-                        print(f"Creating pair for file : {file_name}")                    
-                        self.create_code_pair_by_array(repo,src_dir_fileArr,test_dir_fileArr, "c",file_name, source, makeFile)
+                        print(f"Creating pair for file : {file_name} (by arr)")                    
+                        self.create_code_pair_by_array(repo,src_dir_fileArr,test_dir_fileArr, "c",file_name, source, makeFile,licenseType)
                         counter +=1
                     
                         
