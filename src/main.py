@@ -81,7 +81,10 @@ def main():
             #"PhymasSC"
             #"bearguns"
             #"samajammin"
-            "all_ts"
+            #"all_ts"
+            "all_c",
+            #"all_c++",
+            #"all_go"
         ],
         choices=[
             #'java-thomasZumsteg'
@@ -100,7 +103,10 @@ def main():
             #"PhymasSC"
             #"bearguns"
             #"samajammin"
-            "all_ts"
+            #"all_ts"
+            "all_c",
+            #"all_c++",
+            #"all_go"
         ],
         help='Fonti da utilizzare (default: tutte)'
     )

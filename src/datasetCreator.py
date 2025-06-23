@@ -10,6 +10,7 @@ import re
 from typing import List, Dict, Tuple, Optional
 import time
 import base64
+from fileMetadata import FileMetadata
 
 class CodeTestDatasetCreator:
     def __init__(self, root_dir: str = "dataset"):
@@ -142,6 +143,172 @@ class CodeTestDatasetCreator:
                 repo, code_files, test_files, language,
                 exercise_name, source
             )
+
+    def recursive_dir_solver(self, dirFile:Dict, dirPath:Path, repo:str):
+        """Save a dir and it's content in dirPath"""
+        if dirFile["type"] == "dir":
+            sub_dir:Path = dirPath / dirFile["name"]
+            sub_dir.mkdir(parents=True, exist_ok=True)
+            dirContent = self.get_github_contents(repo,dirFile["path"])
+            for f in dirContent:
+                if f['type'] == "dir": self.recursive_dir_solver(f,sub_dir, repo)
+                elif f['type'] == "file":
+                    file_content = self.get_file_content(repo, f['path'])
+                    if not self.save_file_content(file_content,sub_dir): raise Exception(f"Error saving file {f['name']} in dir {sub_dir}")
+    
+    def create_code_pair_by_dir(self, repo:str, srcDir:Dict, testDir:Dict, language:str, exercise_name:str, source:str, makeFile:Dict|None):
+        file_id = f"{language}_{exercise_name}_{source}"
+        if file_id in self.processed_ids:
+            # print(f"      Saltando: {file_id} (già presente)")
+            return
+    
+        src_dir_content = self.get_github_contents(repo, srcDir['path'])
+        test_dir_content = self.get_github_contents(repo, testDir['path'])
+        
+        if not src_dir_content or not test_dir_content:
+            print(f"      Impossibile ottenere contenuti per {exercise_name}")
+            return
+    
+        for f in test_dir_content:
+            if "test" in f["name"] and ".c" in f['name']:
+                test_file = self.get_file_content(repo,f['path'])
+                if not self.is_implemented_code(test_file, language):
+                    print(f"      Codice non implementato per {exercise_name}, saltando...")
+                    return
+                
+        # Crea la struttura delle directory
+        lang_dir = self.root_dir / language
+        code_dir = lang_dir / exercise_name
+        code_dir.mkdir(parents=True, exist_ok=True)
+        
+        if makeFile : #save makefile
+            makeFile_content = self.get_file_content(repo,makeFile['path'])
+            self.save_file_content(makeFile_content,code_dir)
+        
+        src_dir = code_dir / "src"
+        test_dir = code_dir / "test"
+        src_dir.mkdir(parents=True, exist_ok=True)        
+        test_dir.mkdir(parents=True, exist_ok=True)
+
+        
+        #save test dir in local
+        for file in test_dir_content:
+            if file['type'] == "dir": 
+                try:
+                    self.recursive_dir_solver(file, test_dir, repo)
+                except Exception as e:                    
+                    shutil.rmtree(code_dir,True)
+                    raise e
+            elif file['type'] == "file":                                
+                fileContent = self.get_file_content(repo, file['path'])
+                if not self.save_file_content(fileContent,test_dir):                     
+                    shutil.rmtree(code_dir,True)
+                    raise Exception(f"Error saving file {file['name']} in dir {test_dir}")
+                
+        #save src dir in local
+        for file in src_dir_content:
+            if file['type'] == "dir": 
+                try:
+                    self.recursive_dir_solver(file, src_dir, repo)
+                except Exception as e:                    
+                    shutil.rmtree(code_dir,True)
+                    raise e
+            elif file['type'] == "file":                                
+                fileContent = self.get_file_content(repo, file['path'])
+                if not self.save_file_content(fileContent,src_dir):                     
+                    shutil.rmtree(code_dir,True)
+                    raise Exception(f"Error saving file {file['name']} in dir {src_dir}")
+             
+        # Nomi dei file
+        code_filename = f"{exercise_name}.{self.get_file_extension(language)}"
+        test_filename = f"{exercise_name}_testSuite.{self.get_file_extension(language)}"
+
+        try:
+            self.add_to_json_dataset_v2(file_id,code_filename,test_filename,src_dir,test_dir,language,source)   
+            self.processed_ids.add(file_id) # Aggiungi l'ID al set degli ID processati
+            self.language_counts[language] = self.language_counts.get(language, 0) + 1 # Incrementa il contatore del linguaggio
+
+            print(f"      ✓ Aggiunta coppia: {exercise_name} ({language}) da {source}. Totale per {language}: {self.language_counts[language]}")
+
+        except Exception as e:
+            shutil.rmtree(code_dir,True)
+            raise e
+        
+
+    def create_code_pair_by_array(self, repo:str, srcDirArr:List[Dict], testDirArr:List[Dict], language:str, exercise_name:str, source:str, makeFile:Dict|None):
+        file_id = f"{language}_{exercise_name}_{source}"
+        if file_id in self.processed_ids:
+            # print(f"      Saltando: {file_id} (già presente)")
+            return
+    
+        for f in testDirArr:
+            if "test" in f["name"] and ".c" in f['name']:
+                test_file = self.get_file_content(repo,f['path'])
+                if not self.is_implemented_code(test_file, language):
+                    print(f"      Codice non implementato per {exercise_name}, saltando...")
+                    return
+                
+        # Crea la struttura delle directory
+        lang_dir = self.root_dir / language
+        code_dir = lang_dir / exercise_name
+        code_dir.mkdir(parents=True, exist_ok=True)
+        
+        if makeFile : #save makefile
+            makeFile_content = self.get_file_content(repo,makeFile['path'])
+            self.save_file_content(makeFile_content,code_dir)
+        
+        src_dir = code_dir / "src"
+        test_dir = code_dir / "test"
+        src_dir.mkdir(parents=True, exist_ok=True)        
+        test_dir.mkdir(parents=True, exist_ok=True)
+
+        
+        #save test dir in local
+        for file in testDirArr:
+            if file['type'] == "dir": 
+                try:
+                    self.recursive_dir_solver(file, test_dir, repo)
+                except Exception as e:                    
+                    shutil.rmtree(code_dir,True)
+                    raise e
+            elif file['type'] == "file":                                
+                fileContent = self.get_file_content(repo, file['path'])
+                if not self.save_file_content(fileContent,test_dir):                     
+                    shutil.rmtree(code_dir,True)
+                    raise Exception(f"Error saving file {file['name']} in dir {test_dir}")
+                
+        #save src dir in local
+        for file in srcDirArr:
+            if file['type'] == "dir": 
+                try:
+                    self.recursive_dir_solver(file, src_dir, repo)
+                except Exception as e:                    
+                    shutil.rmtree(code_dir,True)
+                    raise e
+            elif file['type'] == "file":                                
+                fileContent = self.get_file_content(repo, file['path'])
+                if not self.save_file_content(fileContent,src_dir):                     
+                    shutil.rmtree(code_dir,True)
+                    raise Exception(f"Error saving file {file['name']} in dir {src_dir}")
+             
+        # Nomi dei file
+        code_filename = f"{exercise_name}.{self.get_file_extension(language)}"
+        test_filename = f"{exercise_name}_testSuite.{self.get_file_extension(language)}"
+
+        try:
+            self.add_to_json_dataset_v2(file_id,code_filename,test_filename,src_dir,test_dir,language,source)   
+            self.processed_ids.add(file_id) # Aggiungi l'ID al set degli ID processati
+            self.language_counts[language] = self.language_counts.get(language, 0) + 1 # Incrementa il contatore del linguaggio
+
+            print(f"      ✓ Aggiunta coppia: {exercise_name} ({language}) da {source}. Totale per {language}: {self.language_counts[language]}")
+
+        except Exception as e:
+            shutil.rmtree(code_dir,True)
+            raise e
+        
+
+    
+            
 
     def create_single_code_test_pair(self, repo: str, code_file: Dict, test_file: Dict,
                                    language: str, exercise_name: str, source: str):
@@ -472,6 +639,49 @@ class CodeTestDatasetCreator:
                 json.dump(self.dataset_content, f, indent=4)
         except Exception as e:
             print(f"Errore nel salvare il file JSON: {e}")
+            
+    
+    def get_file_metadata(self, filePath:str, fileName:str):
+        metadata = FileMetadata(filePath,fileName)
+        return {
+            'downloadDate':metadata.download_date(),
+            'characterQuantity':metadata.character_count(),
+            'wordQuantity':metadata.word_count()
+        }
+    
+    def add_to_json_dataset_v2(self, file_id: str, code_name: str, test_name: str,
+                           code_path: str, test_path: str, language: str, source: str):
+        """Aggiunge una entry al dataset JSON e lo salva"""
+        if file_id in self.processed_ids:
+            print(f"  ID {file_id} già processato, saltando l'aggiunta al JSON.")
+            return
+
+        lang_lower = language.lower()
+        if lang_lower not in self.dataset_content:
+            self.dataset_content[lang_lower] = []
+
+
+
+        new_entry = {
+            "id": file_id, # Aggiunto l'ID per facilitare il tracking
+            "filename": code_name,
+            "language": language,
+            "source": source,
+            "codeSnippetFilePath": code_path,
+            "testUnitFilePath": test_path,           
+        }
+        new_entry.update(self.get_file_metadata(code_path,code_name))
+        
+        
+        self.dataset_content[lang_lower].append(new_entry)
+        self.processed_ids.add(file_id) # Aggiungi l'ID al set di quelli processati
+
+        # Salva il file JSON dopo ogni aggiunta per persistenza
+        try:
+            with open(self.jsonDataset_file, 'w', encoding='utf-8') as f:
+                json.dump(self.dataset_content, f, indent=4)
+        except Exception as e:
+            print(f"Errore nel salvare il file JSON: {e}")
      
     def run_full_extraction(self, sources: List[str] = None, languages: List[str] = None):
         """Esegue l'estrazione completa del dataset"""
@@ -490,7 +700,17 @@ class CodeTestDatasetCreator:
         print("=== Inizio creazione dataset con soluzioni umane ===")
         print(f"Linguaggi target: {', '.join(self.target_languages)}")
 
-        try:                                                                         
+        try:   
+            if "all_c" in sources : 
+                repos = [
+                    {"repo" : "", "name" : "","internalDirIsPresent":False, "source":"Exercism","licenseType":""},
+                    {"repo" : "", "name" : "","internalDirIsPresent":False, "source":"Exercism","licenseType":""},
+                    {"repo" : "", "name" : "","internalDirIsPresent":False, "source":"Exercism","licenseType":""},
+                    {"repo" : "", "name" : "","internalDirIsPresent":False, "source":"Exercism","licenseType":""},
+                ]
+                self.process_all_c(repos)                                                                      
+
+            """
             if "all_ts" in sources : 
                 repos = [
                     {"repo" : "uzilan/exercism-solutions-typescript", "name" : "","tsInternalDirIsPresent":False, "source":"Exercism"},
@@ -501,6 +721,7 @@ class CodeTestDatasetCreator:
                     {"repo" : "alemarr/exercism-solutions-typescript", "name" : "alemarr","tsInternalDirIsPresent":False, "source":"Exercism"},                    
                 ]
                 self.process_all_ts(repos)
+            """
             #if "samajammin" in sources:
             #    self.process_samajammin()
             #if "bearguns" in sources:
@@ -548,6 +769,81 @@ class CodeTestDatasetCreator:
         for lang, count in sorted(self.language_counts.items()):
             print(f"  - {lang}: {count} coppie")
      
+
+       
+    def process_all_c(self, repos):
+        for r in repos:
+            repo = r["repo"]
+            name = r["name"]
+            ts_internal_dir = r["internalDirIsPresent"]
+            source = r["source"]
+            licenseType = r["licenseType"]
+                        
+            counter = 0
+        
+            print(f"\nProcessing repo {repo} (c) ({source})")  
+            if ts_internal_dir : repo_contents = self.get_github_contents(repo,"c")
+            else : repo_contents = self.get_github_contents(repo)
+            
+            for item in repo_contents :
+                if item["type"] == "dir" and item["name"] != ".gradle":
+                    file_name:str= item["name"]
+                    
+                                                                
+                    if ts_internal_dir:
+                        conent = self.get_github_contents(repo, "c/"+file_name)
+                    else:
+                        conent = self.get_github_contents(repo, file_name)
+                        
+                    file_name.replace("-","_")
+                    print(f"\nProcessing filename : {file_name}")
+                    
+                    
+                    makeFile = None
+                    src_dir_content = None
+                    test_dir_content = None
+                    
+                    src_dir_fileArr = []
+                    test_dir_fileArr = []
+                    
+                    for f_item in conent:
+                        if f_item['name'] == "makefile":
+                            makeFile = f_item
+                            
+                        if f_item["type"] == "dir":
+                            is_test_dir = "test" in f_item['name'] or "Test" in f_item['name'] 
+                            dirContent = self.get_github_contents(repo,f_item["path"])
+                            if is_test_dir : test_dir_content = dirContent
+                            elif "src" in f_item['name'] or "Src" in f_item['name']: src_dir_content = dirContent
+                            
+                            for f in dirContent:
+                                if is_test_dir : test_dir_fileArr.append(f)
+                                else : src_dir_content.append(f)
+                        
+                        if f_item['type'] == "file" and file_name in f_item["name"]: 
+                            if "test" in f_item["name"]:
+                                test_dir_fileArr.append(f_item)
+                            else:
+                                src_dir_fileArr.append(f_item)     
+                    
+                    if src_dir_content and test_dir_content :
+                        print(f"Creating pair for file : {file_name}")
+                        self.create_code_pair_by_dir(repo,src_dir_content,test_dir_content, "c",file_name, source, makeFile)
+                        counter +=1
+                    elif len(src_dir_fileArr) > 0 and len(test_dir_fileArr) > 0:
+                        print(f"Creating pair for file : {file_name}")                    
+                        self.create_code_pair_by_array(repo,src_dir_fileArr,test_dir_fileArr, "c",file_name, source, makeFile)
+                        counter +=1
+                    
+                        
+                        
+            print(f"\nProcessed {counter} typescript pairs for repo {repo} | {name} | {source}")
+    
+    
+        
+    #repositories already processed
+    """
+     
        
     def process_all_ts(self, repos):
         for r in repos:
@@ -589,10 +885,8 @@ class CodeTestDatasetCreator:
                         counter +=1
                         
             print(f"\nProcessed {counter} typescript pairs for repo {repo} | {name} | {source}")
-    
-        
-    #repositories already processed
-    """
+   
+   
      def process_samajammin(self):
         repo = "samajammin/exercism"
         counter = 0
@@ -1099,7 +1393,10 @@ if __name__ == "__main__":
             #"PhymasSC"
             #"bearguns"
             #"samajammin"
-            "all_ts"
+            #"all_ts"
+            "all_c",
+            #"all_c++",
+            #"all_go"
         ],
         languages=[
             'python', 'javascript', 'java', 'cpp', 'go', 'rust', 'typescript',
