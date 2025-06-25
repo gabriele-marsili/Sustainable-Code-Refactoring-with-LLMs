@@ -12,6 +12,7 @@ from pathlib import Path
 import sys
 import csv 
 from fileMetadata import Metadata
+from stats import print_dataset_statistics
 
 sys.path.append(str(Path(__file__).parent))
 from datasetCreator import CodeTestDatasetCreator
@@ -216,7 +217,7 @@ def main():
         traceback.print_exc()
 
 def adjustMetadata():
-    root_dir = Path("...")  # Inserisci qui il path corretto
+    root_dir = Path("dataset")
     jsonDataset_file = root_dir / "dataset.json"
 
     # Carica il file JSON
@@ -226,34 +227,47 @@ def adjustMetadata():
     updated = False  # Flag per capire se ci sono stati aggiornamenti
 
     c = 0
+    removed_c = 0
     for language, entries in data.items():
-        for entry in entries:
+        for i, entry in enumerate(entries):
             if not entry.get("licenseType") or not entry.get("wordQuantity"):
                 code_path = root_dir / entry.get('codeSnippetFilePath')
                 file_name = entry.get("filename")
                 
                 # Calcolo metadati
-                metadata_obj = Metadata(code_path, file_name)
-                metadata = {
-                    'downloadDate': metadata_obj.download_date(),
-                    'characterQuantity': metadata_obj.character_count(),
-                    'wordQuantity': metadata_obj.word_count(),
-                    'licenseType': "None"
-                }
+                try:
+                    metadata_obj = Metadata(code_path, file_name)
+                    metadata = {
+                        'downloadDate': metadata_obj.download_date(),
+                        'characterQuantity': metadata_obj.character_count(),
+                        'wordQuantity': metadata_obj.word_count(),
+                        'licenseType': "None"
+                    }
 
-                # Aggiorna l'entry con i nuovi metadati
-                entry.update(metadata)
-                updated = True
-                c+=1
+                    # Aggiorna l'entry con i nuovi metadati
+                    entry.update(metadata)
+                    updated = True
+                    c+=1
+                
+                except FileNotFoundError as file_not_found_err :
+                    # Rimuovi l'entry dal dataset
+                    del data[language][i]
+                    removed_c+=1
+
+                    # Se la lista per quel linguaggio è vuota, elimina anche la chiave
+                    if not data[language]:
+                        del data[language]
 
     # Salva di nuovo il JSON se ci sono stati aggiornamenti
     if updated:
         with open(jsonDataset_file, 'w', encoding='utf-8') as f:
             json.dump(data, f, indent=4)
-        print(f"Dataset aggiornato con nuovi metadati. ({c} entry aggiornate)")
+        print(f"Dataset aggiornato con nuovi metadati\n{c} entry aggiornate\n{removed_c} entry rimosse")
+        print_dataset_statistics()
     else:
         print("Nessun metadato da aggiornare.")                  
 
 if __name__ == "__main__":
     #main()
-    adjustMetadata()
+    #adjustMetadata()
+    print_dataset_statistics()
