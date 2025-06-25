@@ -1,9 +1,6 @@
 # datasetCreator.py
 
-import os
-import csv
 import requests
-import json
 import shutil
 from pathlib import Path
 import re
@@ -11,6 +8,9 @@ from typing import List, Dict, Tuple, Optional
 import time
 import base64
 from fileMetadata import Metadata
+import os
+import json
+import shutil
 
 class CodeTestDatasetCreator:
     def __init__(self, root_dir: str = "dataset"):
@@ -109,6 +109,61 @@ class CodeTestDatasetCreator:
             print(f"Errore nel salvare content {content} in {local_path}:\n{e}")
             return False
 
+    
+    
+    def remove_entry_by_id(self, target_id: str):
+        json_file_path = str(self.jsonDataset_file)
+        
+        # Carica il file JSON
+        with open(json_file_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+
+        # Flag per sapere se abbiamo trovato l'ID
+        found = False
+
+        # Ciclo su ciascun linguaggio nel dizionario
+        for language, entries in list(data.items()):
+            for i, entry in enumerate(entries):
+                if entry.get('id') == target_id:
+                    # Ottieni il path da eliminare
+                    code_path :str = entry.get('codeSnippetFilePath')
+                    parts = code_path.split("/")
+                    dir_path = ""
+                    for i in range((len(parts)-1)): 
+                        if i == 0 : dir_path += parts[i]
+                        else : dir_path += ("/"+parts[i])
+                        
+                    if dir_path:
+                        folder_path = self.root_dir / dir_path
+
+                        # Elimina la cartella se esiste
+                        if os.path.isdir(folder_path):
+                            shutil.rmtree(folder_path)
+                            print(f"Cartella '{folder_path}' eliminata.")
+                        else:
+                            print(f"Cartella '{folder_path}' non trovata.")
+
+                    # Rimuovi l'entry dal dataset
+                    del data[language][i]
+                    found = True
+
+                    # Se la lista per quel linguaggio è vuota, elimina anche la chiave
+                    if not data[language]:
+                        del data[language]
+                    break
+
+            if found:
+                break
+
+        if found:
+            # Riscrive il JSON aggiornato
+            with open(json_file_path, 'w', encoding='utf-8') as f:
+                json.dump(data, f, indent=4)
+            print(f"Entry con ID '{target_id}' rimossa dal file JSON.")
+        else:
+            print(f"ID '{target_id}' non trovato.")
+
+    
     def process_language_directory(self, repo: str, language: str, path: str, source: str):
         """Processa una directory di linguaggio (es. per Exercism)"""
         contents = self.get_github_contents(repo, path)
@@ -338,13 +393,15 @@ class CodeTestDatasetCreator:
     def create_single_code_test_pair(self, repo: str, code_file: Dict, test_file: Dict,
                                    language: str, exercise_name: str, source: str):
         """Crea una singola coppia codice-test e la aggiunge al dataset"""
-
+        license = "None"
+        name = (repo.split("/"))[0]
         file_id = f"{language}_{exercise_name}_{source}"
 
         # Controlla se l'ID è già stato processato
         if file_id in self.processed_ids:
-            print(f"      Saltando: {file_id} (già presente)")
-            return
+            self.remove_entry_by_id(file_id)
+            
+        file_id = f"{language}_{exercise_name}_{source}_{name}"
 
         # Applica il limite di file per linguaggio, se impostato
         if self.max_files_per_language is not None:
@@ -367,9 +424,14 @@ class CodeTestDatasetCreator:
             return
 
         # Crea la struttura delle directory
+        source_for_path = source.replace(" ","_")
+        source_for_path = source_for_path.replace("(","")
+        source_for_path = source_for_path.replace(")","")
+        if not name in source_for_path : source_for_path += ("_"+name)
         lang_dir = self.root_dir / language
-        code_dir = lang_dir / exercise_name
+        code_dir = lang_dir / (exercise_name+"_"+source_for_path)       
         code_dir.mkdir(parents=True, exist_ok=True)
+        
 
         # Nomi dei file
         code_filename = f"{exercise_name}.{self.get_file_extension(language)}"
@@ -384,14 +446,16 @@ class CodeTestDatasetCreator:
             self.save_file_content(test_content, test_path)):
 
             # Aggiungi al JSON
-            self.add_to_json_dataset(
+            self.add_to_json_dataset_v2(
                 file_id,
                 code_filename,
                 test_filename,
                 str(code_path.relative_to(self.root_dir)),
                 str(test_path.relative_to(self.root_dir)),
                 language,
-                source
+                source,
+                code_path,
+                license
             )
             self.processed_ids.add(file_id) # Aggiungi l'ID al set degli ID processati
             self.language_counts[language] = self.language_counts.get(language, 0) + 1 # Incrementa il contatore del linguaggio
@@ -686,7 +750,7 @@ class CodeTestDatasetCreator:
             self.dataset_content[lang_lower] = []
 
         parsedPath = str(localFilePath)
-        if not parsedPath.endswith(".c") : parsedPath += ".c"
+        if not parsedPath.endswith(".c") and language == "c" : parsedPath += ".c"
         parsedPath = Path(__file__).parent / parsedPath        
         parsedPath = str(parsedPath.resolve())
         
@@ -730,7 +794,8 @@ class CodeTestDatasetCreator:
         print("=== Inizio creazione dataset con soluzioni umane ===")
         print(f"Linguaggi target: {', '.join(self.target_languages)}")
 
-        try:   
+        try:    
+            """
             if "all_c" in sources : 
                 repos = [
                     {"repo" : "HeitorMP/exercism-C", "name" : "HeitorMP","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
@@ -740,10 +805,10 @@ class CodeTestDatasetCreator:
                 ]
                 self.process_all_c(repos)                                                                      
 
-            """
+            
             if "all_ts" in sources : 
                 repos = [
-                    {"repo" : "uzilan/exercism-solutions-typescript", "name" : "","tsInternalDirIsPresent":False, "source":"Exercism"},
+                    {"repo" : "uzilan/exercism-solutions-typescript", "name" : "uzilan","tsInternalDirIsPresent":False, "source":"Exercism"},
                     {"repo" : "thewanionly/exercism-typescript", "name" : "thewanionly","tsInternalDirIsPresent":False, "source":"Exercism"},
                     {"repo" : "shybyte/exercism-typescript", "name" : "shybyte","tsInternalDirIsPresent":False, "source":"Exercism"},
                     {"repo" : "chriswilding/exercism-typescript", "name" : "chriswilding","tsInternalDirIsPresent":False, "source":"Exercism"},
@@ -751,39 +816,40 @@ class CodeTestDatasetCreator:
                     {"repo" : "alemarr/exercism-solutions-typescript", "name" : "alemarr","tsInternalDirIsPresent":False, "source":"Exercism"},                    
                 ]
                 self.process_all_ts(repos)
-            """
-            #if "samajammin" in sources:
-            #    self.process_samajammin()
-            #if "bearguns" in sources:
-            #    self.process_bearguns()
-            #if "PhymasSC" in sources:
-            #    self.process_PhymasSC()
-            #if "irvingbennett" in sources:
-            #    self.process_irvingbennett()
-            #if "programmiri" in sources:
-            #    self.process_programmiri()
-            #if "ffflorian" in sources:
-            #    self.process_ffflorian()
-            #if "oguzsh" in sources:
-            #    self.process_oguzsh()
-            #if "ThomasZumsteg-js" in sources:
-            #    self.process_ThomasZumsteg_js()
-            #if "robiworks" in sources:
-            #    self.process_robiworks()
+           
+            if "samajammin" in sources:
+                self.process_samajammin()
+            if "bearguns" in sources:
+                self.process_bearguns()
+            if "PhymasSC" in sources:
+                self.process_PhymasSC()
+            if "irvingbennett" in sources:
+                self.process_irvingbennett()
+            if "programmiri" in sources:
+                self.process_programmiri()
+            if "ffflorian" in sources:
+                self.process_ffflorian()
+            if "oguzsh" in sources:
+                self.process_oguzsh()
+            if "ThomasZumsteg-js" in sources:
+                self.process_ThomasZumsteg_js()
+            if "robiworks" in sources:
+                self.process_robiworks()
             #if "uzilan" in sources:
-            #    self.process_uzilan()
-            #if "mandarussell" in sources:
-            #    self.process_mandarussell()
-            #if "blogscot" in sources:
-            #    self.process_blogscot()
-            #if "RinatMambetov" in sources:
-            #    self.process_RinatMambetov()
-            #if "LauriESB" in sources:
-            #    self.process_LauriESB()
-            #if "java-exercism-shyvum" in sources:
-            #    self.process_shyvum()
-            #if 'java-thomasZumsteg' in sources:
-            #    self.process_thomasZumsteg()            
+                #self.process_uzilan()
+            """
+            if "mandarussell" in sources:
+                self.process_mandarussell()
+            if "blogscot" in sources:
+                self.process_blogscot()
+            if "RinatMambetov" in sources:
+                self.process_RinatMambetov()
+            if "LauriESB" in sources:
+                self.process_LauriESB()
+            if "java-exercism-shyvum" in sources:
+                self.process_shyvum()
+            if 'java-thomasZumsteg' in sources:
+                self.process_thomasZumsteg()            
 
         except Exception as e:
             print(f"Errore durante l'estrazione: {e}")
@@ -873,7 +939,7 @@ class CodeTestDatasetCreator:
     
         
     #repositories already processed
-    """
+    
      
        
     def process_all_ts(self, repos):
@@ -918,7 +984,7 @@ class CodeTestDatasetCreator:
             print(f"\nProcessed {counter} typescript pairs for repo {repo} | {name} | {source}")
    
    
-     def process_samajammin(self):
+    def process_samajammin(self):
         repo = "samajammin/exercism"
         counter = 0
        
@@ -1087,7 +1153,7 @@ class CodeTestDatasetCreator:
                     self.create_single_code_test_pair(repo,main_file,test_file,"javascript",file_name,"exercism-javascript-ffflorian")
     
 
-     def process_oguzsh(self):
+    def process_oguzsh(self):
         repo = "oguzsh/exercism-js-problems"
        
         print("\nProcessing oguzsh exercism (js)")        
@@ -1397,7 +1463,7 @@ class CodeTestDatasetCreator:
                     print(f"Creating pair for file : {file_name}")
                     
                     self.create_single_code_test_pair(repo,main_file,test_file,"Java",file_name,"exercism-java-ThomasZumsteg")
-    """
+
    
 
 # Utilizzo per test rapidi (rimuovere o commentare in produzione)
@@ -1408,24 +1474,24 @@ if __name__ == "__main__":
     # Esegui l'estrazione con tutti i linguaggi e le nuove fonti
     creator.run_full_extraction(
         sources=[
-           #'java-thomasZumsteg'
-           #"java-exercism-shyvum"
-           #"LauriESB"
-           #"RinatMambetov"
-           #"blogscot"
-           #"mandarussell"
-           #"uzilan"
-           #"robiworks"
-           #"ThomasZumsteg-js"
-           #"oguzsh"
-           #"ffflorian"
-           #"programmiri"
-           #"irvingbennett"
-            #"PhymasSC"
-            #"bearguns"
-            #"samajammin"
+            'java-thomasZumsteg',
+            "java-exercism-shyvum",
+            "LauriESB",
+            "RinatMambetov",
+            "blogscot",
+            "mandarussell",
+            #"uzilan",
+            #"robiworks",
+            #"ThomasZumsteg-js",
+            #"oguzsh",
+            #"ffflorian",
+            #"programmiri",
+            #"irvingbennett",
+            #"PhymasSC",
+            #"bearguns",
+            #"samajammin",
             #"all_ts"
-            "all_c",
+            #"all_c",
             #"all_c++",
             #"all_go"
         ],

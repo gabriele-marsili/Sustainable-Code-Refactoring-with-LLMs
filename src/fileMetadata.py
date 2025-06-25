@@ -61,3 +61,6 @@ class Metadata:
         Ritorna il nome del file analizzato.
         """
         return self.file.name
+
+
+

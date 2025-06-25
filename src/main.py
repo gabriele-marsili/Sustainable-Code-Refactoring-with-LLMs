@@ -5,11 +5,13 @@
 Script di configurazione per la creazione del dataset codice-test
 """
 
+import json
 import argparse
 import os
 from pathlib import Path
 import sys
 import csv 
+from fileMetadata import Metadata
 
 sys.path.append(str(Path(__file__).parent))
 from datasetCreator import CodeTestDatasetCreator
@@ -65,46 +67,46 @@ def main():
         '--sources', '-s',
         nargs='+',
         default=[
-            #'java-thomasZumsteg'
-            #"java-exercism-shyvum"
-            #"LauriESB"
-            #"RinatMambetov"
-            #"blogscot"
-            #"mandarussell"
-            #"uzilan"
-            #"robiworks"
-            #"ThomasZumsteg-js"
-            #"oguzsh"
-            #"ffflorian"
-            #"programmiri"
-            #"irvingbennett"
-            #"PhymasSC"
-            #"bearguns"
-            #"samajammin"
+            'java-thomasZumsteg',
+            "java-exercism-shyvum",
+            "LauriESB",
+            "RinatMambetov",
+            "blogscot",
+            "mandarussell",
+            #"uzilan",
+            #"robiworks",
+            #"ThomasZumsteg-js",
+            #"oguzsh",
+            #"ffflorian",
+            #"programmiri",
+            #"irvingbennett",
+            #"PhymasSC",
+            #"bearguns",
+            #"samajammin",
             #"all_ts"
-            "all_c",
+            #"all_c",
             #"all_c++",
             #"all_go"
         ],
         choices=[
-            #'java-thomasZumsteg'
-            #"java-exercism-shyvum"
-            #"LauriESB"
-            #"RinatMambetov"
-            #"blogscot"
-            #"mandarussell"
-            #"uzilan"
-            #"robiworks"
-            #"ThomasZumsteg-js"
-            #"oguzsh"
-            #"ffflorian"
-            #"programmiri"
-            #"irvingbennett"
-            #"PhymasSC"
-            #"bearguns"
-            #"samajammin"
+            'java-thomasZumsteg',
+            "java-exercism-shyvum",
+            "LauriESB",
+            "RinatMambetov",
+            "blogscot",
+            "mandarussell",
+            #"uzilan",
+            #"robiworks",
+            #"ThomasZumsteg-js",
+            #"oguzsh",
+            #"ffflorian",
+            #"programmiri",
+            #"irvingbennett",
+            #"PhymasSC",
+            #"bearguns",
+            #"samajammin",
             #"all_ts"
-            "all_c",
+            #"all_c",
             #"all_c++",
             #"all_go"
         ],
@@ -213,5 +215,45 @@ def main():
         import traceback
         traceback.print_exc()
 
+def adjustMetadata():
+    root_dir = Path("...")  # Inserisci qui il path corretto
+    jsonDataset_file = root_dir / "dataset.json"
+
+    # Carica il file JSON
+    with open(jsonDataset_file, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+
+    updated = False  # Flag per capire se ci sono stati aggiornamenti
+
+    c = 0
+    for language, entries in data.items():
+        for entry in entries:
+            if not entry.get("licenseType") or not entry.get("wordQuantity"):
+                code_path = root_dir / entry.get('codeSnippetFilePath')
+                file_name = entry.get("filename")
+                
+                # Calcolo metadati
+                metadata_obj = Metadata(code_path, file_name)
+                metadata = {
+                    'downloadDate': metadata_obj.download_date(),
+                    'characterQuantity': metadata_obj.character_count(),
+                    'wordQuantity': metadata_obj.word_count(),
+                    'licenseType': "None"
+                }
+
+                # Aggiorna l'entry con i nuovi metadati
+                entry.update(metadata)
+                updated = True
+                c+=1
+
+    # Salva di nuovo il JSON se ci sono stati aggiornamenti
+    if updated:
+        with open(jsonDataset_file, 'w', encoding='utf-8') as f:
+            json.dump(data, f, indent=4)
+        print(f"Dataset aggiornato con nuovi metadati. ({c} entry aggiornate)")
+    else:
+        print("Nessun metadato da aggiornare.")                  
+
 if __name__ == "__main__":
-    main()
+    #main()
+    adjustMetadata()
