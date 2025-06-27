@@ -68,12 +68,12 @@ def main():
         '--sources', '-s',
         nargs='+',
         default=[
-            'java-thomasZumsteg',
-            "java-exercism-shyvum",
-            "LauriESB",
-            "RinatMambetov",
-            "blogscot",
-            "mandarussell",
+            #'java-thomasZumsteg',
+            #"java-exercism-shyvum",
+            #"LauriESB",
+            #"RinatMambetov",
+            #"blogscot",
+            #"mandarussell",
             #"uzilan",
             #"robiworks",
             #"ThomasZumsteg-js",
@@ -85,17 +85,17 @@ def main():
             #"bearguns",
             #"samajammin",
             #"all_ts"
-            #"all_c",
+            "all_c",
             #"all_c++",
             #"all_go"
         ],
         choices=[
-            'java-thomasZumsteg',
-            "java-exercism-shyvum",
-            "LauriESB",
-            "RinatMambetov",
-            "blogscot",
-            "mandarussell",
+            #'java-thomasZumsteg',
+            #"java-exercism-shyvum",
+            #"LauriESB",
+            #"RinatMambetov",
+            #"blogscot",
+            #"mandarussell",
             #"uzilan",
             #"robiworks",
             #"ThomasZumsteg-js",
@@ -107,7 +107,7 @@ def main():
             #"bearguns",
             #"samajammin",
             #"all_ts"
-            #"all_c",
+            "all_c",
             #"all_c++",
             #"all_go"
         ],
@@ -306,7 +306,7 @@ def adjust_licenses():
 
 
 if __name__ == "__main__":
-    #main()
+    main()
     #adjustMetadata()
-    adjust_licenses()
+    #adjust_licenses()
     print_dataset_statistics()

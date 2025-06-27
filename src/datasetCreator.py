@@ -795,17 +795,21 @@ class CodeTestDatasetCreator:
         print(f"Linguaggi target: {', '.join(self.target_languages)}")
 
         try:    
-            """
+            
             if "all_c" in sources : 
                 repos = [
-                    {"repo" : "HeitorMP/exercism-C", "name" : "HeitorMP","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
-                    {"repo" : "ThomasZumsteg/exercism-c", "name" : "ThomasZumsteg","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
-                    #{"repo" : "", "name" : "","internalDirIsPresent":False, "source":"Exercism","licenseType":""},
-                    #{"repo" : "", "name" : "","internalDirIsPresent":False, "source":"Exercism","licenseType":""},
+                    #{"repo" : "HeitorMP/exercism-C", "name" : "HeitorMP","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
+                    #{"repo" : "ThomasZumsteg/exercism-c", "name" : "ThomasZumsteg","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
+                    #{"repo" : "chriswilding/exercism-c", "name" : "chriswilding","internalDirIsPresent":False, "source":"Exercism","licenseType":"MIT"},
+                    #{"repo" : "paddydoyle/exercism-c", "name" : "paddydoyle","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
+                    #{"repo" : "m3g4d1v3r/exercism_c_solutions", "name" : "m3g4d1v3r","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
+                    {"repo" : "leleah/Exercism_solutions_c", "name" : "leleah","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
+                    {"repo" : "attilahorvath/exercism-c", "name" : "attilahorvath","internalDirIsPresent":False, "source":"Exercism","licenseType":"MIT"},
+                    {"repo" : "vlzware/exercism_c", "name" : "vlzware","internalDirIsPresent":True, "source":"Exercism","licenseType":"MIT"},
                 ]
                 self.process_all_c(repos)                                                                      
 
-            
+            """
             if "all_ts" in sources : 
                 repos = [
                     {"repo" : "uzilan/exercism-solutions-typescript", "name" : "uzilan","tsInternalDirIsPresent":False, "source":"Exercism"},
@@ -934,7 +938,7 @@ class CodeTestDatasetCreator:
                     
                         
                         
-            print(f"\nProcessed {counter} typescript pairs for repo {repo} | {name} | {source}")
+            print(f"\nProcessed {counter} c pairs for repo {repo} | {name} | {source}")
     
     
         
@@ -1475,12 +1479,12 @@ if __name__ == "__main__":
     # Esegui l'estrazione con tutti i linguaggi e le nuove fonti
     creator.run_full_extraction(
         sources=[
-            'java-thomasZumsteg',
-            "java-exercism-shyvum",
-            "LauriESB",
-            "RinatMambetov",
-            "blogscot",
-            "mandarussell",
+            #'java-thomasZumsteg',
+            #"java-exercism-shyvum",
+            #"LauriESB",
+            #"RinatMambetov",
+            #"blogscot",
+            #"mandarussell",
             #"uzilan",
             #"robiworks",
             #"ThomasZumsteg-js",
@@ -1492,7 +1496,7 @@ if __name__ == "__main__":
             #"bearguns",
             #"samajammin",
             #"all_ts"
-            #"all_c",
+            "all_c",
             #"all_c++",
             #"all_go"
         ],
