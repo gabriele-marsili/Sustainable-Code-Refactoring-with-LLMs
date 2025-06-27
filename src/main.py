@@ -267,7 +267,46 @@ def adjustMetadata():
     else:
         print("Nessun metadato da aggiornare.")                  
 
+def adjust_licenses():
+        root_dir = Path("dataset")        
+        dataset_path: str = str(root_dir / "dataset.json")
+        license_dict = {
+            "mtrajk_coding_problems": "MIT",
+            "exercism-java-shyvum": "None",
+            "exercism-java-ThomasZumsteg": "None",
+            "LauriESB": "None",
+            "exercism-java-RinatMambetov": "None",
+            "mandarussell": "GPL-3.0 license",            
+            "exercism-javascript-ffflorian": "GPL-3.0 license",
+            "exercism-javascript-PhymasSC": "MIT",
+            "Exercism-typescript-chriswilding": "MIT"           
+        }
+
+        # Carica il dataset
+        with open(dataset_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+
+        # Itera su ogni linguaggio
+        for language, entries in data.items():
+            for entry in entries:
+                source = entry.get("source", "")
+                if source in license_dict:
+                    entry["licenseType"] = license_dict[source]
+                else:
+                    # Se non c'è nel dizionario
+                    if "licenseType" not in entry:
+                        entry["licenseType"] = "None"
+                    # Se esiste, lo lascia invariato
+
+        # Salva il dataset aggiornato
+        with open(dataset_path, 'w', encoding='utf-8') as f:
+            json.dump(data, f, indent=4, ensure_ascii=False)
+
+        print("Licenses updated in dataset.json")
+
+
 if __name__ == "__main__":
     #main()
     #adjustMetadata()
+    adjust_licenses()
     print_dataset_statistics()
