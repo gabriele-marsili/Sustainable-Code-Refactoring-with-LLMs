@@ -208,25 +208,18 @@ class CodeTestDatasetCreator:
             dirContent = self.get_github_contents(repo,dirFile["path"])
             for f in dirContent:
                 if f['type'] == "dir": self.recursive_dir_solver(f,sub_dir, repo)
-                elif f['type'] == "file" and "." in f['name']:
+                elif f['type'] == "file" and "." in f['name'] and self.is_valid_fileExt(f["name"]):
                     file_content = self.get_file_content(repo, f['path'])
                     complete_path = sub_dir / f['name']
                     if not self.save_file_content(file_content,complete_path): raise Exception(f"Error saving file {f['name']} in dir {sub_dir} (recursive dir solver)")
     
-    def create_code_pair_by_dir(self, repo:str, srcDir:List[Dict], testDir:List[Dict], language:str, exercise_name:str, source:str, makeFile:Dict|None, license:str):
+    def create_code_pair_by_dir(self, repo:str, srcDir:List[Dict], testDir:List[Dict], language:str, exercise_name:str, source:str, makeFile:Dict|None, license:str,build_dir_content:List[dict] | None):
         file_id = f"{language}_{exercise_name}_{source}"
         if file_id in self.processed_ids:
             print(f"      Saltando: {file_id} (già presente)")
             return
     
-        
-        for f in testDir:
-            if "test" in f["name"] and ".c" in f['name']:
-                test_file = self.get_file_content(repo,f['path'])
-                if not self.is_implemented_code(test_file, language):
-                    print(f"      Codice non implementato per {exercise_name}, saltando...")
-                    return
-                
+               
         # Crea la struttura delle directory
         source_for_path = source.replace(" ","_")
         source_for_path = source_for_path.replace("(","")
@@ -242,12 +235,30 @@ class CodeTestDatasetCreator:
         
         src_dir = code_dir / "src"
         test_dir = code_dir / "test"
+        build_dir = code_dir / "build"
         src_dir.mkdir(parents=True, exist_ok=True)        
         test_dir.mkdir(parents=True, exist_ok=True)
 
         # Nomi dei file
         code_filename = f"{exercise_name}.{self.get_file_extension(language)}"
         test_filename = f"{exercise_name}_testSuite.{self.get_file_extension(language)}"
+
+        #save build dir in local : 
+        if build_dir_content != None:
+            build_dir.mkdir(parents=True, exist_ok=True) #create build dir in local
+            for file in build_dir_content :
+                if file['type'] == "dir":
+                    try: self.recursive_dir_solver(file, build_dir, repo)
+                    except Exception as e:
+                        print(f"Error in recursive dir solver (creation of build dir):\n{e}")             
+                        shutil.rmtree(code_dir,True)
+                        raise e    
+                elif file['type'] == "file" and self.is_valid_fileExt(str(file["name"])):
+                    fileContent = self.get_file_content(repo, file['path'])
+                    complete_path = build_dir / file['name']
+                    if not self.save_file_content(fileContent,complete_path):                     
+                        shutil.rmtree(code_dir,True)
+                        raise Exception(f"\nError saving file {file['name']} in dir {build_dir}")
 
 
         #save test dir in local
@@ -259,7 +270,7 @@ class CodeTestDatasetCreator:
                     print(f"Error in recursive dir solver:\n{e}")             
                     shutil.rmtree(code_dir,True)
                     raise e
-            elif file['type'] == "file" and not str(file['name']).endswith(".json") and "." in file['name']:
+            elif file['type'] == "file" and self.is_valid_fileExt(str(file["name"])):
                 fileContent = self.get_file_content(repo, file['path'])
                 complete_path = test_dir / file['name']
                 if not self.save_file_content(fileContent,complete_path):                     
@@ -275,8 +286,8 @@ class CodeTestDatasetCreator:
                 except Exception as e:                    
                     shutil.rmtree(code_dir,True)
                     raise e
-            elif file['type'] == "file" and not str(file['name']).endswith(".json") and "." in file['name']:
-                if exercise_name in file['name'] and ".c" in file['name']:
+            elif file['type'] == "file" and self.is_valid_fileExt(str(file["name"])):
+                if exercise_name in file['name'] and ".cpp" in file['name']:
                     mainFile = file
                     
                 fileContent = self.get_file_content(repo, file['path'])
@@ -288,7 +299,7 @@ class CodeTestDatasetCreator:
 
         try:
             if mainFile : localFilePath = src_dir / mainFile['name']
-            else : localFilePath = src_dir / (exercise_name+".c")
+            else : localFilePath = src_dir / (exercise_name+".cpp")
             
 
             self.add_to_json_dataset_v2(file_id,code_filename,test_filename,src_dir,test_dir,language,source, localFilePath, license)   
@@ -308,13 +319,6 @@ class CodeTestDatasetCreator:
             print(f"      Saltando: {file_id} (già presente)")
             return
     
-        for f in testDirArr:
-            if "test" in f["name"] and ".c" in f['name']:
-                test_file = self.get_file_content(repo,f['path'])
-                if not self.is_implemented_code(test_file, language):
-                    print(f"      Codice non implementato per {exercise_name}, saltando...")
-                    return
-                
         # Crea la struttura delle directory
         source_for_path = source.replace(" ","_")
         source_for_path = source_for_path.replace("(","")
@@ -343,7 +347,7 @@ class CodeTestDatasetCreator:
                     print(f"err recursive:\n{e}")
                     shutil.rmtree(code_dir,True)
                     raise e
-            elif file['type'] == "file" and not str(file['name']).endswith(".json") and "." in file['name']:
+            elif file['type'] == "file" and self.is_valid_fileExt(str(file["name"])):
                 fileContent = self.get_file_content(repo, file['path'])
                 complete_path = test_dir / file['name']
                 if not self.save_file_content(fileContent,complete_path):    
@@ -360,8 +364,8 @@ class CodeTestDatasetCreator:
                 except Exception as e:                    
                     shutil.rmtree(code_dir,True)
                     raise e
-            elif file['type'] == "file" and not str(file['name']).endswith(".json") and "." in file['name']:
-                if exercise_name in file['name'] and ".c" in file['name']:
+            elif file['type'] == "file" and self.is_valid_fileExt(str(file["name"])):
+                if exercise_name in file['name'] and ".cpp" in file['name'] and not "test" in file['name']:
                     mainFile = file
                     
                 fileContent = self.get_file_content(repo, file['path'])
@@ -495,12 +499,7 @@ class CodeTestDatasetCreator:
             'your code here',
             'fill in',
             '# write your code',
-            '// write your code',
-            'throw new error',  # JavaScript, TypeScript
-            'return null;',
-            'return undefined;',
-            'function() {}',  # JavaScript vuota
-            '// solution' # Commento generico che indica la necessità di implementazione
+            '// write your code',            
         ]
 
         # Se contiene solo pattern di non implementazione e il contenuto è molto breve, scarta
@@ -534,9 +533,14 @@ class CodeTestDatasetCreator:
             # Deve contenere implementazioni reali
             return ('return' in content_lower or 'system.out' in content_lower) and len(content.strip()) > 100 and "throw new unsupportedoperationexception" not in content_lower
 
-        elif language in ['cpp', 'c']:
+        elif language =='c':
             # Deve contenere implementazioni reali
-            return ('return' in content_lower or 'cout' in content_lower or 'printf' in content_lower) and len(content.strip()) > 50
+            return ('return' in content_lower or 'cout' in content_lower or 'printf' in content_lower) and len(content.strip()) > 20
+
+        elif language =='cpp':
+            # Deve contenere implementazioni reali
+            return len(content.strip()) > 20
+
 
         elif language == 'go':
             # Deve contenere implementazioni reali
@@ -644,6 +648,12 @@ class CodeTestDatasetCreator:
         # Se non trova un match specifico, ritorna il primo test file disponibile
         # Questo è un fallback e potrebbe non essere sempre corretto, ma è meglio di nulla
         return test_files[0] if test_files else None
+
+    def is_valid_fileExt(self, fileName:str) -> bool:
+        parts = fileName.split(".")
+        ext = parts[(len(parts)-1)]
+        if ext in ["o","out","json","filters","sln","vcxproj",".vs","suo","sln","bin","db","exe","obj"]: return False
+        else : return "." in fileName
 
     def is_supported_language(self, language: str) -> bool:
         """Verifica se il linguaggio è supportato e richiesto"""
@@ -794,8 +804,25 @@ class CodeTestDatasetCreator:
         print("=== Inizio creazione dataset con soluzioni umane ===")
         print(f"Linguaggi target: {', '.join(self.target_languages)}")
 
-        try:    
+        try:   
             
+            if "all_cpp" in sources : 
+                repos = [
+                    #{"repo" : "johnngugi/exercism-cpp", "name" : "johnngugi","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
+                    #{"repo" : "ThomasZumsteg/exercism-cpp", "name" : "ThomasZumsteg","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
+                    #{"repo" : "Akshive/Exercism-cpp-solutions", "name" : "Akshive","internalDirIsPresent":False, "source":"Exercism","licenseType":"MIT"},
+                    #{"repo" : "cmccandless/ExercismSolutions-cpp", "name" : "cmccandless","internalDirIsPresent":False, "source":"Exercism","licenseType":"MIT"},
+                    #{"repo" : "pawelo091991/Cpp-Exercism-Solutions", "name" : "pawelo091991","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
+                    #{"repo" : "denniskovshov/exercism-cpp", "name" : "denniskovshov","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"}                    
+                    {"repo" : "viniciusjavs/exercism-cpp", "name" : "viniciusjavs","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
+                    {"repo" : "blogscot/exercism-cpp", "name" : "blogscot","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
+                    {"repo" : "MaxyMoos/exercism_cpp", "name" : "MaxyMoos","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
+                    #{"repo" : "", "name" : "","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"}
+                    
+                ]
+                self.process_all_cpp(repos)  
+            
+            """
             if "all_c" in sources : 
                 repos = [
                     #{"repo" : "HeitorMP/exercism-C", "name" : "HeitorMP","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
@@ -809,7 +836,7 @@ class CodeTestDatasetCreator:
                 ]
                 self.process_all_c(repos)                                                                      
 
-            """
+            
             if "all_ts" in sources : 
                 repos = [
                     {"repo" : "uzilan/exercism-solutions-typescript", "name" : "uzilan","tsInternalDirIsPresent":False, "source":"Exercism"},
@@ -841,7 +868,7 @@ class CodeTestDatasetCreator:
                 self.process_robiworks()
             #if "uzilan" in sources:
                 #self.process_uzilan()
-            """
+            
             if "mandarussell" in sources:
                 self.process_mandarussell()
             if "blogscot" in sources:
@@ -853,7 +880,8 @@ class CodeTestDatasetCreator:
             if "java-exercism-shyvum" in sources:
                 self.process_shyvum()
             if 'java-thomasZumsteg' in sources:
-                self.process_thomasZumsteg()            
+                self.process_thomasZumsteg()     
+            """       
 
         except Exception as e:
             print(f"Errore durante l'estrazione: {e}")
@@ -871,6 +899,92 @@ class CodeTestDatasetCreator:
      
 
        
+    def process_all_cpp(self, repos):
+        for r in repos:
+            repo = r["repo"]
+            name = r["name"]
+            ts_internal_dir = r["internalDirIsPresent"]
+            source = r["source"]
+            licenseType = r["licenseType"]
+            if not name in source : 
+                source += f" ({name})"
+            counter = 0
+        
+            print(f"\nProcessing repo {repo} (cpp) ({source})")  
+            if ts_internal_dir : repo_contents = self.get_github_contents(repo,"cpp")
+            else : repo_contents = self.get_github_contents(repo)
+            
+            for item in repo_contents :
+                if item["type"] == "dir" and item["name"] != ".gradle":
+                    file_name:str= item["name"]
+                    
+                                                                
+                    if ts_internal_dir:
+                        conent = self.get_github_contents(repo, "cpp/"+file_name)
+                    else:
+                        conent = self.get_github_contents(repo, file_name)
+                        
+                    file_name = file_name.replace("-","_")
+                    print(f"\nProcessing filename : {file_name}")
+                    
+                    
+                    makeFile = None
+                    src_dir_content = None
+                    test_dir_content = None
+                    build_dir_content = None
+                    
+                    src_dir_fileArr = []
+                    test_dir_fileArr = []
+                    
+                    for f_item in conent:
+                        if f_item['name'] == "makefile":
+                            makeFile = f_item
+                            
+                        if f_item["type"] == "dir":
+                            is_test_dir = "test" in f_item['name'] or "Test" in f_item['name'] 
+                            dirContent = self.get_github_contents(repo,f_item["path"])
+                            if is_test_dir : test_dir_content = dirContent
+                            elif "src" in f_item['name'] or "Src" in f_item['name']: src_dir_content = dirContent
+                            elif "build" in f_item['name'] or "Build" in f_item['name']: build_dir_content = dirContent
+                            
+                            for f in dirContent:
+                                if is_test_dir : test_dir_fileArr.append(f)
+                                else : src_dir_fileArr.append(f)
+                        
+                        if f_item['type'] == "file" and file_name in f_item["name"]: 
+                            if "test" in f_item["name"]:
+                                test_dir_fileArr.append(f_item)
+                            else:
+                                src_dir_fileArr.append(f_item)     
+                    
+                    if src_dir_content and test_dir_content :
+                        print(f"Creating pair for file : {file_name} (by dir)")
+                        self.create_code_pair_by_dir(repo,src_dir_content,test_dir_content, "cpp",file_name, source, makeFile,licenseType,build_dir_content)
+                        counter +=1
+                    elif len(src_dir_fileArr) > 0 and len(test_dir_fileArr) > 0:
+                        main_file_is_present = False
+                        for file in src_dir_fileArr:
+                            #print(F"f name : {file['name']}")
+                            if file_name in file["name"] and not "test" in file["name"] and str(file["name"]).endswith(".cpp") :
+                                main_file_is_present = True
+                                break
+                            
+                        if not main_file_is_present:
+                            print(f"Skip creation pair for file : {file_name} (by arr) : main file NOT found")                        
+                        else:
+                            print(f"Creating pair for file : {file_name} (by arr)")                    
+                            self.create_code_pair_by_array(repo,src_dir_fileArr,test_dir_fileArr, "cpp",file_name, source, makeFile,licenseType)
+                            counter +=1
+                    
+                        
+                        
+            print(f"\nProcessed {counter} c++ pairs for repo {repo} | {name} | {source}")
+    
+    
+        
+    #repositories already processed
+    """
+        
     def process_all_c(self, repos):
         for r in repos:
             repo = r["repo"]
@@ -941,9 +1055,6 @@ class CodeTestDatasetCreator:
             print(f"\nProcessed {counter} c pairs for repo {repo} | {name} | {source}")
     
     
-        
-    #repositories already processed
-    """
      
        
     def process_all_ts(self, repos):
@@ -1496,8 +1607,8 @@ if __name__ == "__main__":
             #"bearguns",
             #"samajammin",
             #"all_ts"
-            "all_c",
-            #"all_c++",
+            #"all_c",
+            "all_cpp",
             #"all_go"
         ],
         languages=[

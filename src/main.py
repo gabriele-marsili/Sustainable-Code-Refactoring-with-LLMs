@@ -85,9 +85,9 @@ def main():
             #"bearguns",
             #"samajammin",
             #"all_ts"
-            "all_c",
-            #"all_c++",
-            #"all_go"
+            #"all_c",
+            #"all_cpp",
+            "all_go"
         ],
         choices=[
             #'java-thomasZumsteg',
@@ -107,9 +107,9 @@ def main():
             #"bearguns",
             #"samajammin",
             #"all_ts"
-            "all_c",
-            #"all_c++",
-            #"all_go"
+            #"all_c",
+            #"all_cpp",
+            "all_go"
         ],
         help='Fonti da utilizzare (default: tutte)'
     )
@@ -309,4 +309,4 @@ if __name__ == "__main__":
     main()
     #adjustMetadata()
     #adjust_licenses()
-    print_dataset_statistics()
+    #print_dataset_statistics()

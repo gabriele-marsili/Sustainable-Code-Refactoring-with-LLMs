@@ -71,6 +71,7 @@ def print_dataset_statistics():
         plt.show()
 
     # Visualizzazione grafica
+    """
     plot_bar_chart(language_counter, "Entry per Linguaggio", "Linguaggio")
     plot_bar_chart(source_counter, "Entry per Fonte", "Fonte")
 
@@ -81,5 +82,6 @@ def print_dataset_statistics():
             cross_lang_distribution[len(involved_langs)] += 1
 
     plot_bar_chart(cross_lang_distribution, "Esercizi con Presenza Cross-Linguaggio", "Numero di Linguaggi Coinvolti")
+    """
 
 
