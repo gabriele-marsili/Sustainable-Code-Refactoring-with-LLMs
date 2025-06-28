@@ -213,7 +213,7 @@ class CodeTestDatasetCreator:
                     complete_path = sub_dir / f['name']
                     if not self.save_file_content(file_content,complete_path): raise Exception(f"Error saving file {f['name']} in dir {sub_dir} (recursive dir solver)")
     
-    def create_code_pair_by_dir(self, repo:str, srcDir:List[Dict], testDir:List[Dict], language:str, exercise_name:str, source:str, makeFile:Dict|None, license:str,build_dir_content:List[dict] | None):
+    def create_code_pair_by_dir(self, repo:str, srcDir:List[Dict], testDir:List[Dict], language:str, exercise_name:str, source:str, go_mod_file:Dict|None, license:str,build_dir_content:List[dict] | None):
         file_id = f"{language}_{exercise_name}_{source}"
         if file_id in self.processed_ids:
             print(f"      Saltando: {file_id} (già presente)")
@@ -228,10 +228,10 @@ class CodeTestDatasetCreator:
         code_dir = lang_dir / (exercise_name+"_"+source_for_path)
         code_dir.mkdir(parents=True, exist_ok=True)
         
-        if makeFile : #save makefile
-            makeFile_content = self.get_file_content(repo,makeFile['path'])
-            complete_path = code_dir / makeFile['name']
-            self.save_file_content(makeFile_content,complete_path)
+        if go_mod_file : #save go mod file
+            gomod_file_content = self.get_file_content(repo,go_mod_file['path'])
+            complete_path = code_dir / go_mod_file['name']
+            self.save_file_content(gomod_file_content,complete_path)
         
         src_dir = code_dir / "src"
         test_dir = code_dir / "test"
@@ -287,7 +287,7 @@ class CodeTestDatasetCreator:
                     shutil.rmtree(code_dir,True)
                     raise e
             elif file['type'] == "file" and self.is_valid_fileExt(str(file["name"])):
-                if exercise_name in file['name'] and ".cpp" in file['name']:
+                if exercise_name in file['name'] and ".go" in file['name']:
                     mainFile = file
                     
                 fileContent = self.get_file_content(repo, file['path'])
@@ -299,7 +299,7 @@ class CodeTestDatasetCreator:
 
         try:
             if mainFile : localFilePath = src_dir / mainFile['name']
-            else : localFilePath = src_dir / (exercise_name+".cpp")
+            else : localFilePath = src_dir / (exercise_name+".go")
             
 
             self.add_to_json_dataset_v2(file_id,code_filename,test_filename,src_dir,test_dir,language,source, localFilePath, license)   
@@ -313,7 +313,7 @@ class CodeTestDatasetCreator:
             raise e
         
 
-    def create_code_pair_by_array(self, repo:str, srcDirArr:List[Dict], testDirArr:List[Dict], language:str, exercise_name:str, source:str, makeFile:Dict|None, license:str):
+    def create_code_pair_by_array(self, repo:str, srcDirArr:List[Dict], testDirArr:List[Dict], language:str, exercise_name:str, source:str, go_mod_file:Dict|None, license:str):
         file_id = f"{language}_{exercise_name}_{source}"
         if file_id in self.processed_ids:
             print(f"      Saltando: {file_id} (già presente)")
@@ -327,10 +327,10 @@ class CodeTestDatasetCreator:
         code_dir = lang_dir / (exercise_name+"_"+source_for_path)
         code_dir.mkdir(parents=True, exist_ok=True)
         
-        if makeFile : #save makefile
-            makeFile_content = self.get_file_content(repo,makeFile['path'])
-            complete_path = code_dir / makeFile['name']
-            self.save_file_content(makeFile_content,complete_path)
+        if go_mod_file : #save makefile
+            go_mod_file_content = self.get_file_content(repo,go_mod_file['path'])
+            complete_path = code_dir / go_mod_file['name']
+            self.save_file_content(go_mod_file_content,complete_path)
         
         src_dir = code_dir / "src"
         test_dir = code_dir / "test"
@@ -365,7 +365,7 @@ class CodeTestDatasetCreator:
                     shutil.rmtree(code_dir,True)
                     raise e
             elif file['type'] == "file" and self.is_valid_fileExt(str(file["name"])):
-                if exercise_name in file['name'] and ".cpp" in file['name'] and not "test" in file['name']:
+                if exercise_name in file['name'] and ".go" in file['name'] and not "test" in file['name']:
                     mainFile = file
                     
                 fileContent = self.get_file_content(repo, file['path'])
@@ -806,6 +806,20 @@ class CodeTestDatasetCreator:
 
         try:   
             
+            if "all_go" in sources : 
+                repos = [
+                    {"repo" : "rootulp/exercism", "name" : "rootulp","internalDirIsPresent":True, "source":"Exercism","licenseType":"MIT"},
+                    {"repo" : "ThomasZumsteg/exercism-go", "name" : "ThomasZumsteg","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
+                    {"repo" : "thinkverse/exercism-go", "name" : "thinkverse","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
+                    {"repo" : "drapala/exercism_go", "name" : "drapala","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
+                    #{"repo" : "", "name" : "","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
+                    #{"repo" : "", "name" : "","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
+                    #{"repo" : "", "name" : "","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
+                    #{"repo" : "", "name" : "","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
+                ]
+                self.process_all_go(repos)  
+            
+            """
             if "all_cpp" in sources : 
                 repos = [
                     #{"repo" : "johnngugi/exercism-cpp", "name" : "johnngugi","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
@@ -822,7 +836,7 @@ class CodeTestDatasetCreator:
                 ]
                 self.process_all_cpp(repos)  
             
-            """
+            
             if "all_c" in sources : 
                 repos = [
                     #{"repo" : "HeitorMP/exercism-C", "name" : "HeitorMP","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
@@ -898,6 +912,94 @@ class CodeTestDatasetCreator:
             print(f"  - {lang}: {count} coppie")
      
 
+       
+    def process_all_go(self, repos):
+        for r in repos:
+            repo = r["repo"]
+            name = r["name"]
+            ts_internal_dir = r["internalDirIsPresent"]
+            source = r["source"]
+            licenseType = r["licenseType"]
+            if not name in source : 
+                fullName = name
+                if not "go" in name : fullName = "go_"+fullName
+                source += f" ({fullName})"
+            counter = 0
+        
+            print(f"\nProcessing repo {repo} (go) ({source})")  
+            if ts_internal_dir : repo_contents = self.get_github_contents(repo,"go")
+            else : repo_contents = self.get_github_contents(repo)
+            
+            for item in repo_contents :
+                if item["type"] == "dir" and item["name"] != ".gradle":
+                    file_name:str= item["name"]
+                    
+                                                                
+                    if ts_internal_dir:
+                        conent = self.get_github_contents(repo, "go/"+file_name)
+                    else:
+                        conent = self.get_github_contents(repo, file_name)
+                        
+                    file_name = file_name.replace("-","_")
+                    print(f"\nProcessing filename : {file_name}")
+                    
+                    
+                    go_mod_File = None
+                    src_dir_content = None
+                    test_dir_content = None
+                    build_dir_content = None
+                    
+                    src_dir_fileArr = []
+                    test_dir_fileArr = []
+                    
+                    for f_item in conent:                     
+                        if f_item['name'] == "go.mod" : go_mod_File = f_item
+                            
+                        #process internal dir
+                        if f_item["type"] == "dir" and f_item['name'] != ".exercism":
+                            is_test_dir = "test" in f_item['name'] or "Test" in f_item['name'] 
+                            dirContent = self.get_github_contents(repo,f_item["path"])
+                            if is_test_dir : test_dir_content = dirContent
+                            elif "src" in f_item['name'] or "Src" in f_item['name']: src_dir_content = dirContent
+                            elif "build" in f_item['name'] or "Build" in f_item['name']: build_dir_content = dirContent
+                            
+                            for f in dirContent:
+                                if is_test_dir : test_dir_fileArr.append(f)
+                                else : src_dir_fileArr.append(f)
+                        
+                        if f_item['type'] == "file" and file_name in f_item["name"]: 
+                            if "test" in f_item["name"]:
+                                test_dir_fileArr.append(f_item)
+                            else:
+                                src_dir_fileArr.append(f_item)     
+                    
+                    if src_dir_content and test_dir_content :
+                        print(f"Creating pair for file : {file_name} (by dir)")
+                        self.create_code_pair_by_dir(repo,src_dir_content,test_dir_content, "go",file_name, source, go_mod_File,licenseType,build_dir_content)
+                        counter +=1
+                    elif len(src_dir_fileArr) > 0 and len(test_dir_fileArr) > 0:
+                        main_file_is_present = False
+                        for file in src_dir_fileArr:
+                            #print(F"f name : {file['name']}")
+                            if file_name in file["name"] and not "test" in file["name"] and str(file["name"]).endswith(".go") :
+                                main_file_is_present = True
+                                break
+                            
+                        if not main_file_is_present:
+                            print(f"Skip creation pair for file : {file_name} (by arr) : main file NOT found")                        
+                        else:
+                            print(f"Creating pair for file : {file_name} (by arr)")                    
+                            self.create_code_pair_by_array(repo,src_dir_fileArr,test_dir_fileArr, "go",file_name, source, go_mod_File,licenseType)
+                            counter +=1
+                    
+                        
+                        
+            print(f"\nProcessed {counter} go pairs for repo {repo} | {name} | {source}")
+    
+    
+        
+    #repositories already processed
+    """
        
     def process_all_cpp(self, repos):
         for r in repos:
@@ -980,10 +1082,6 @@ class CodeTestDatasetCreator:
                         
             print(f"\nProcessed {counter} c++ pairs for repo {repo} | {name} | {source}")
     
-    
-        
-    #repositories already processed
-    """
         
     def process_all_c(self, repos):
         for r in repos:
@@ -1608,8 +1706,8 @@ if __name__ == "__main__":
             #"samajammin",
             #"all_ts"
             #"all_c",
-            "all_cpp",
-            #"all_go"
+            #"all_cpp",
+            "all_go"
         ],
         languages=[
             'python', 'javascript', 'java', 'cpp', 'go', 'rust', 'typescript',

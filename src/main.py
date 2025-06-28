@@ -306,7 +306,7 @@ def adjust_licenses():
 
 
 if __name__ == "__main__":
-    main()
+    #main()
     #adjustMetadata()
     #adjust_licenses()
-    #print_dataset_statistics()
+    print_dataset_statistics()
