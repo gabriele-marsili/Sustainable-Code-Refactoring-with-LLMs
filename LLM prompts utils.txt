@@ -1,0 +1,71 @@
+
+==========================
+Prompt Engineering Guide per Codice
+==========================
+
+Link Utili:
+- OpenAI Prompt Engineering: https://platform.openai.com/docs/guides/prompt-engineering
+- OpenAI Cookbook Prompting: https://github.com/openai/openai-cookbook/blob/main/techniques_to_improve_reliability.md
+- Gemini Prompt Guide PDF: https://services.google.com/fh/files/misc/gemini-for-google-workspace-prompting-guide-101.pdf
+
+==========================
+Best Practice per Prompt (soprattutto per codice)
+==========================
+
+1. Istruzioni chiare e specifiche:
+   - Usa verbi d'azione: "Scrivi", "Migliora", "Correggi"
+   - Definisci un ruolo (es. "Sei un ingegnere esperto in TypeScript")
+   - Specifica cosa vuoi in output (es. "funzione ottimizzata con commenti")
+
+2. Struttura e formattazione:
+   - Separa chiaramente istruzioni, codice ed esempi
+   - Usa blocchi """ o ``` per isolare codice
+   - Mostra esempi di input/output (few-shot learning)
+
+3. Iterazione:
+   - Inizia semplice, poi chiedi miglioramenti (test, refactoring)
+   - Usa chain-of-thought: chiedi ragionamento passo-passo
+
+4. Ruolo + contesto:
+   - Indica il contesto d’uso, le librerie, i vincoli (es. performance, compatibilità)
+
+5. Vincoli espliciti:
+   - Lunghezza massima, stile (PEP8, camelCase), compatibilità linguaggio
+
+6. Output strutturato:
+   - Richiedi codice + spiegazione + test
+   - Chiedi commenti/docstring formattati
+
+7. Per debugging e miglioramenti:
+   - "Trova bug", "Ottimizza per velocità", "Aggiungi test unitari"
+   - Dai in input codice e output atteso, se possibile
+
+8. Tooling/API:
+   - Temperatura bassa (~0.2) per codice deterministico
+   - Richiedi output in formato markdown/json se serve
+
+==========================
+Schema Prompt Riutilizzabile (per codice)
+==========================
+
+Sei un esperto sviluppatore {linguaggio}.
+Il tuo compito: {obiettivo principale, es. ottimizzare il codice seguente}.
+Vincoli:
+- {vincolo 1, es. massimo 50 righe}
+- {vincolo 2, es. compatibile con Node.js 18+}
+- {vincolo 3, es. include docstring/commenti chiari}
+Codice da analizzare:
+"""
+{codice}
+"""
+Output desiderato:
+1. Codice migliorato
+2. Spiegazione tecnica delle modifiche
+3. Test o esempio d’uso
+
+==========================
+Consigli Finali
+==========================
+- Itera: prima un output base, poi affina con prompt successivi
+- Fai refining progressivo con richieste sempre più specifiche
+- Studia prompt esistenti su GitHub, Reddit, ArXiv per ispirazione

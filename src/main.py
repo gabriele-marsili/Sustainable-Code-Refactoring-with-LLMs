@@ -16,6 +16,7 @@ from stats import print_dataset_statistics
 
 sys.path.append(str(Path(__file__).parent))
 from datasetCreator import CodeTestDatasetCreator
+from clusterCreator import ClusterCreator
 
 def setup_github_token():
     """Configurarazione token GitHub"""
@@ -265,7 +266,73 @@ def adjustMetadata():
         print(f"Dataset aggiornato con nuovi metadati\n{c} entry aggiornate\n{removed_c} entry rimosse")
         print_dataset_statistics()
     else:
-        print("Nessun metadato da aggiornare.")                  
+        print("Nessun metadato da aggiornare.")     
+        
+def adjusPaths():
+    root_dir = Path("dataset")
+    jsonDataset_file = root_dir / "dataset.json"
+
+    # Carica il file JSON
+    with open(jsonDataset_file, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+
+    updated = False  # Flag per capire se ci sono stati aggiornamenti
+
+    c = 0
+    
+    for language, entries in data.items():
+        for i, entry in enumerate(entries):  
+            language = entry.get("language")
+            source = entry.get("source")
+            codeSnippetFilePath = str(entry.get("codeSnippetFilePath"))
+            testUnitFilePath = str(entry.get("testUnitFilePath"))
+            
+            if language and language not in ["Java","javascript","typescript"]:
+                u = False
+                #if source not in codeSnippetFilePath : 
+                if "dataset/" in codeSnippetFilePath or "dataset/" in testUnitFilePath:
+                    codeSnippetFilePath_updated = ""
+                    testFilePath_updated = ""
+                    parts = codeSnippetFilePath.split("/")
+                    print(f"parts:\n{parts}")                    
+                    test_parts = testUnitFilePath.split("/")
+                    print(f"test_parts:\n{test_parts}")
+                    for i in range(len(parts)):
+                        if i == 0 or parts[i] == "dataset": pass
+                        elif i == len(parts)-1 : codeSnippetFilePath_updated += parts[i]
+                        else : codeSnippetFilePath_updated += (parts[i]+"/")
+
+                    for i in range(len(test_parts)):
+                        if i == 0 or test_parts[i] == "dataset" : pass
+                        elif i == len(test_parts)-1 : testFilePath_updated += test_parts[i]
+                        else : testFilePath_updated += (test_parts[i]+"/")
+
+                    print(f"codeSnippetFilePath_updated:\n{codeSnippetFilePath_updated}")
+                    
+                    print(f"testFilePath_updated:\n{testFilePath_updated}")
+                    
+                    
+                    updated_data = {
+                        "codeSnippetFilePath" : codeSnippetFilePath_updated,
+                        "testUnitFilePath" : testFilePath_updated
+                    }
+                    # Aggiorna l'entry con i nuovi metadati
+                    entry.update(updated_data)
+                    u = True
+                    
+                if u :
+                    updated = u
+                    c+=1
+                
+            
+    # Salva di nuovo il JSON se ci sono stati aggiornamenti
+    if updated:
+        with open(jsonDataset_file, 'w', encoding='utf-8') as f:
+            json.dump(data, f, indent=4)
+        print(f"Dataset aggiornato (paths aggiornati)\n{c} entry aggiornate")
+        #print_dataset_statistics()
+    else:
+        print("Nessun'entry da aggiornare.")     
 
 def adjust_licenses():
         root_dir = Path("dataset")        
@@ -304,9 +371,14 @@ def adjust_licenses():
 
         print("Licenses updated in dataset.json")
 
+def createFocusedCluster():
+    c_creator = ClusterCreator()
+    c_creator.start()
 
 if __name__ == "__main__":
     #main()
     #adjustMetadata()
     #adjust_licenses()
-    print_dataset_statistics()
+    #print_dataset_statistics()
+    #adjusPaths()
+    createFocusedCluster()
