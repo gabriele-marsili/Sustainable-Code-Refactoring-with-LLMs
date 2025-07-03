@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.convert = convert;
 function convert(n) {
-    var result = '';
+    let result = '';
     if (n % 3 === 0)
         result += 'Pling';
     if (n % 5 === 0)

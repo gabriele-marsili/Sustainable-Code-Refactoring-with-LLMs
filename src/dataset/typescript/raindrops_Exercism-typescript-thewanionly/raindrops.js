@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.convert = convert;
 function convert(num) {
-    var res = '';
+    let res = '';
     if (num % 3 === 0) {
         res = 'Pling';
     }

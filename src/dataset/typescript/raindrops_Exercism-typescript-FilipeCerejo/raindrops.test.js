@@ -1,0 +1,21 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const raindrops_1 = require("./raindrops");
+describe('Raindrops', () => {
+    it('converts 1', () => expect((0, raindrops_1.convert)(1)).toEqual('1'));
+    xit('converts 3', () => expect((0, raindrops_1.convert)(3)).toEqual('Pling'));
+    xit('converts 5', () => expect((0, raindrops_1.convert)(5)).toEqual('Plang'));
+    xit('converts 7', () => expect((0, raindrops_1.convert)(7)).toEqual('Plong'));
+    xit('converts 6', () => expect((0, raindrops_1.convert)(6)).toEqual('Pling'));
+    xit('converts 9', () => expect((0, raindrops_1.convert)(9)).toEqual('Pling'));
+    xit('converts 10', () => expect((0, raindrops_1.convert)(10)).toEqual('Plang'));
+    xit('converts 14', () => expect((0, raindrops_1.convert)(14)).toEqual('Plong'));
+    xit('converts 15', () => expect((0, raindrops_1.convert)(15)).toEqual('PlingPlang'));
+    xit('converts 21', () => expect((0, raindrops_1.convert)(21)).toEqual('PlingPlong'));
+    xit('converts 25', () => expect((0, raindrops_1.convert)(25)).toEqual('Plang'));
+    xit('converts 35', () => expect((0, raindrops_1.convert)(35)).toEqual('PlangPlong'));
+    xit('converts 49', () => expect((0, raindrops_1.convert)(49)).toEqual('Plong'));
+    xit('converts 52', () => expect((0, raindrops_1.convert)(52)).toEqual('52'));
+    xit('converts 105', () => expect((0, raindrops_1.convert)(105)).toEqual('PlingPlangPlong'));
+    xit('converts 12121', () => expect((0, raindrops_1.convert)(12121)).toEqual('12121'));
+});

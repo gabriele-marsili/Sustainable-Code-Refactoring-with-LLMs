@@ -38,19 +38,51 @@ def parse_metrics(log_path):
 def run_container(lang, mount_path, container_name,exercise_name):
     dockerfile_path = DOCKER_DIR / lang.lower()
     run_sh_path = dockerfile_path / "run.sh"
+    
+    target_run_sh = mount_path / "run.sh"    
+    shutil.copy(run_sh_path, target_run_sh)
+        
+    # Copia tsconfig.json 
+    tsconfig_src = DATASET_DIR / "typescript" / "tsconfig.json"
+    tsconfig_target = mount_path / "tsconfig.json"    
+    shutil.copy(tsconfig_src, tsconfig_target)
+        
+    # Copia package.json 
+    pkg_src = DOCKER_DIR / "typescript" / "package.json"
+    pkg_target = mount_path / "package.json"    
+    shutil.copy(pkg_src, pkg_target)
 
-    # Copia run.sh nel path montato se non c'è già
-    target_run_sh = mount_path / "run.sh"
-    if not target_run_sh.exists():
-        shutil.copy(run_sh_path, target_run_sh)
+   
+    # Copia jest.config.json
+    jest_src = DOCKER_DIR / "typescript" / "jest.config.js"
+    jest_target = mount_path / "jest.config.js"    
+    shutil.copy(jest_src, jest_target)
+
+    # Rimuove eventuali node_modules preesistenti nella directory host
+    nm = mount_path / "node_modules"
+    if nm.exists() and not nm.is_symlink():
+        print(f"🧹 Rimuovo node_modules locale da {nm}")
+        shutil.rmtree(nm)
+
 
     subprocess.run(["docker", "build", "-t", container_name, str(dockerfile_path)], check=True)
 
-    subprocess.run([
+    result = subprocess.run([
         "docker", "run", "--rm",
         "-v", f"{mount_path}:/app",
         container_name
-    ], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    ], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+
+    print(result.stdout)  # per vedere i log del container
+    if result.returncode != 0:
+        print(f"Errore nel container | result:\n{result}")
+
+
+    # Debug: mostra se il file esiste davvero
+    print(f"🔎 Controllo output.log in {mount_path}")
+    #print("📂 Contenuto post-run:", list(mount_path.iterdir()))
+
+
 
     log_file = mount_path / "output.log"
     
@@ -60,6 +92,35 @@ def run_container(lang, mount_path, container_name,exercise_name):
 
     return log_file
 
+def parse_metrics_typescript(log_path):
+    print(f"parsing ts metrics of logpath : {log_path}")
+    metrics = {
+        "execution_time_ms": None,
+        "CPU_usage": None,
+        "RAM_usage": None,
+        "success": None,
+        "passed_tests": None,
+        "failed_tests": None,
+    }
+
+    try:
+        with open(log_path) as f:
+            data = json.load(f)
+
+        if "startTime" in data and "testResults" in data and data["testResults"]:
+            first = data["testResults"][0]
+            metrics["execution_time_ms"] = data.get("testResults")[0].get("endTime", 0) - data.get("startTime", 0)
+
+        metrics["passed_tests"] = data.get("numPassedTests")
+        metrics["failed_tests"] = data.get("numFailedTests")
+        metrics["success"] = data.get("success")
+
+    except Exception as e:
+        print(f"❌ Errore parsing log JSON: {e}")
+
+    return metrics
+
+
 def run_tests_on_entry(entry, lang, base_only=False):
     path = DATASET_DIR / Path(entry["testUnitFilePath"]).parent
     container_name = f"test_{lang.lower()}"
@@ -67,7 +128,9 @@ def run_tests_on_entry(entry, lang, base_only=False):
 
     print(f"\n▶ Testing base code: {entry['id']} | path : {path}")
     base_log = run_container(lang, path.resolve(), container_name, entry["id"])
-    base_metrics = parse_metrics(base_log)
+    base_metrics = None
+    if lang != "typescript" : base_metrics =  parse_metrics(base_log)
+    else : base_metrics = parse_metrics_typescript(base_log)
     results.update(base_metrics)
 
     # Salva path log per tracciabilità
@@ -95,7 +158,10 @@ def run_tests_on_entry(entry, lang, base_only=False):
 
             # run test
             llm_log = run_container(lang, llm_code_path.resolve(), container_name, entry["id"])
-            llm_metrics = parse_metrics(llm_log)
+
+            if lang != "typescript" : llm_metrics =  parse_metrics(llm_log)
+            else : llm_metrics = parse_metrics_typescript(llm_log)
+
 
             # ripristina
             if backup:

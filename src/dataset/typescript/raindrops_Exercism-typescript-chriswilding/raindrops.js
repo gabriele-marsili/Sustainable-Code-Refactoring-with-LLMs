@@ -1,10 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var Rainsdrops = /** @class */ (function () {
-    function Rainsdrops() {
-    }
-    Rainsdrops.prototype.convert = function (n) {
-        var output = [];
+class Rainsdrops {
+    convert(n) {
+        const output = [];
         if (n % 3 === 0) {
             output.push('Pling');
         }
@@ -18,7 +16,6 @@ var Rainsdrops = /** @class */ (function () {
             return output.join("");
         }
         return n.toString();
-    };
-    return Rainsdrops;
-}());
+    }
+}
 exports.default = Rainsdrops;

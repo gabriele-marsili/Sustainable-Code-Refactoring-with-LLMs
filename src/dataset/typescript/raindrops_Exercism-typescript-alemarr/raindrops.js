@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.convert = convert;
-var soundsMap = new Map([
+const soundsMap = new Map([
     [3, "Pling"],
     [5, "Plang"],
     [7, "Plong"],
 ]);
 function convert(input) {
-    var converted = "";
-    soundsMap.forEach(function (sound, divider) {
+    let converted = "";
+    soundsMap.forEach((sound, divider) => {
         if (input % divider === 0) {
             converted += sound;
         }
