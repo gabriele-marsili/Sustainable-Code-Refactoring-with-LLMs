@@ -16,7 +16,8 @@ ln -s /base/node_modules node_modules
 echo "🔨 Compilazione TypeScript..."
 npx tsc || { echo "❌ tsc fallito"; exit 1; }
 
-echo "🧪 Esecuzione test con Jest..."
-npx jest --json --outputFile=output.log || { echo "❌ Jest fallito"; exit 1; }
+# Misura anche RAM e CPU con /usr/bin/time
+echo "🧪 Esecuzione test con Jest (con metriche)..."
+/usr/bin/time -v npx jest --json --outputFile=output.log 2> resource_usage.log || { echo "❌ Jest fallito"; exit 1; }
 
 echo "✅ Test completati"

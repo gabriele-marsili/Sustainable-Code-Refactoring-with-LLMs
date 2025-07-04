@@ -88,6 +88,13 @@ def run_container(lang, mount_path, container_name,exercise_name):
     
     final_log = LOGS_DIR / f"{container_name}_{exercise_name}_{uuid.uuid4().hex[:8]}.log"
     shutil.copy(log_file, final_log)
+    
+    # Salva anche il file di risorse se presente
+    resource_log = mount_path / "resource_usage.log"
+    if resource_log.exists():
+        final_resource_log = LOGS_DIR / f"{container_name}_{exercise_name}_{uuid.uuid4().hex[:8]}_resource.log"
+        shutil.copy(resource_log, final_resource_log)
+
 
 
     return log_file
@@ -114,6 +121,19 @@ def parse_metrics_typescript(log_path):
         metrics["passed_tests"] = data.get("numPassedTests")
         metrics["failed_tests"] = data.get("numFailedTests")
         metrics["success"] = data.get("success")
+
+        # Parse resource usage (if available)
+        resource_path = log_path.parent / "resource_usage.log"
+        if resource_path.exists():
+            with open(resource_path) as f:
+                for line in f:
+                    if "Maximum resident set size" in line:
+                        metrics["RAM_usage"] = int(line.split(":")[1].strip())  # in KB
+                    elif "Percent of CPU this job got" in line:
+                        metrics["CPU_usage"] = float(line.split(":")[1].replace("%", "").strip())
+        else:
+            print("⚠️ Nessun resource_usage.log trovato")
+
 
     except Exception as e:
         print(f"❌ Errore parsing log JSON: {e}")

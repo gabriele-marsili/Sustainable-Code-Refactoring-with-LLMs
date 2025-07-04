@@ -1,8 +1,9 @@
 FROM node:20
 
-WORKDIR /base
+# Aggiunge GNU time
+RUN apt-get update && apt-get install -y time
 
-# Copia e installa una sola volta le dipendenze
+WORKDIR /base
 COPY package.json .
 RUN npm install --include=dev
 
