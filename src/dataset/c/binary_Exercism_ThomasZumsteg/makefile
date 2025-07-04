@@ -1,16 +1,10 @@
-CFLAGS  = -std=c99
-CFLAGS += -Wall
-CFLAGS += -Wextra
-CFLAGS += -pedantic
-CFLAGS += -Werror
+CC = gcc
+CFLAGS = -I./src -Wall
+SRC = src/*.c test/*.c 
+OBJ = $(SRC:.c=.o)
 
-
-test: tests.out
-	@./tests.out
+tests.out: $(OBJ)
+	$(CC) $(OBJ) -o tests.out
 
 clean:
-	rm -f *.o *.out
-
-tests.out: test/test_binary.c src/binary.c src/binary.h
-	@echo Compiling $@
-	@cc $(CFLAGS) src/binary.c test/vendor/unity.c test/test_binary.c -o tests.out
+	rm -f $(OBJ) tests.out

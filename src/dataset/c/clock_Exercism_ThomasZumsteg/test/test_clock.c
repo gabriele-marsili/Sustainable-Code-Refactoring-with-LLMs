@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/clock.h"
 
 time_text_t actual_time_text;

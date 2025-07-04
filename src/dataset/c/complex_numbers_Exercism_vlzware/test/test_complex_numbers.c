@@ -1,7 +1,7 @@
 #include "../src/complex_numbers.h"
 
 #define UNITY_FLOAT_TYPE double
-#include "vendor/unity.h"
+#include "unity.h"
 
 #include <math.h>
 

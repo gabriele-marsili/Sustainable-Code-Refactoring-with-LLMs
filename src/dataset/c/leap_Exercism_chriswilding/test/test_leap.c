@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/leap.h"
 
 void setUp(void)

@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "acronym.h"
-#include "test-framework/unity.h"
+#include "unity.h"
 
 static char *actual = NULL;
 void setUp(void) {}

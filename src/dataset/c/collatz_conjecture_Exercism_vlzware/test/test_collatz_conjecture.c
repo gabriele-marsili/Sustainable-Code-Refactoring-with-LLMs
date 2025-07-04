@@ -1,6 +1,6 @@
 #include "../src/collatz_conjecture.h"
 
-#include "vendor/unity.h"
+#include "unity.h"
 
 void test_zero_steps_for_one(void)
 {

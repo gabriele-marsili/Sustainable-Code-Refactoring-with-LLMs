@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/nth_prime.h"
 
 void setUp(void)

@@ -1,4 +1,4 @@
-#include "test-framework/unity.h"
+#include "unity.h"
 #include "armstrong_numbers.h"
 
 void setUp(void)

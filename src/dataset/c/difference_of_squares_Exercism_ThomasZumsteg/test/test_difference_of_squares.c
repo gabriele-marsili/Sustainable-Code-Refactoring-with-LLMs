@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/difference_of_squares.h"
 
 void test_square_of_sum_up_to_5(void)

@@ -1,6 +1,6 @@
 #include <stdbool.h>
 #include "../src/pascals_triangle.h"
-#include "vendor/unity.h"
+#include "unity.h"
 
 void setUp(void)
 {

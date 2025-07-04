@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/perfect_numbers.h"
 
 void test_smallest_perfect_number_is_classified_correctly(void)

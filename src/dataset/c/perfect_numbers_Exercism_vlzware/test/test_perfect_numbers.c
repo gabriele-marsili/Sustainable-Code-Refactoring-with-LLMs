@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/perfect_numbers.h"
 
 void setUp(void)

@@ -1,7 +1,7 @@
 #include <stdbool.h>
 
 #include "matching_brackets.h"
-#include "test-framework/unity.h"
+#include "unity.h"
 
 void setUp(void) {}
 

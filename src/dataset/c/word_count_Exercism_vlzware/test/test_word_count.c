@@ -1,7 +1,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include <string.h>
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/word_count.h"
 
 word_count_word_t actual_solution[MAX_WORDS];

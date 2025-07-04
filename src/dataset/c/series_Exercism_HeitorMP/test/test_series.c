@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "test-framework/unity.h"
+#include "unity.h"
 #include "series.h"
 
 void setUp(void)

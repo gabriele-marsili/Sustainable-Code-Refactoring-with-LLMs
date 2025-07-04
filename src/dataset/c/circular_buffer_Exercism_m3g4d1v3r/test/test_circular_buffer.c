@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 #include "circular_buffer.h"
-#include "test-framework/unity.h"
+#include "unity.h"
 
 #define MAX_ERROR_MSG_LEN 100
 #define ARRAY_LENGTH(A) (sizeof(A) / sizeof(A[0]))

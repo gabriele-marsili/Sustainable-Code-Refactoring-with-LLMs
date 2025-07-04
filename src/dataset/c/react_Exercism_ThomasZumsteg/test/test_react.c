@@ -1,6 +1,6 @@
 #include <stddef.h>
 #include <stdio.h>
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/react.h"
 
 void test_input_cells_have_value(void)

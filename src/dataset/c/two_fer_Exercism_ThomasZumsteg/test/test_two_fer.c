@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/two_fer.h"
 #include <stddef.h>
 

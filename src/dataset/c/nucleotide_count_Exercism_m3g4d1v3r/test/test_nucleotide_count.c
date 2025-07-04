@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "nucleotide_count.h"
-#include "test-framework/unity.h"
+#include "unity.h"
 
 void setUp(void) {}
 

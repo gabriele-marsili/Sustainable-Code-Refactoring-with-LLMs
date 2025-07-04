@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/beer_song.h"
 
 #define BUFFER_SIZE   (1024)

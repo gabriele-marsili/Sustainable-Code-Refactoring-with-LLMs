@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/scrabble_score.h"
 
 void test_lowercase_letter(void)

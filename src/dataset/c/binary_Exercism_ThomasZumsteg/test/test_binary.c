@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/binary.h"
 
 void test_b0_is_decimal_0(void)

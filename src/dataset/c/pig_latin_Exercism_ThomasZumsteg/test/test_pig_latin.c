@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/pig_latin.h"
 #include <stdlib.h>
 

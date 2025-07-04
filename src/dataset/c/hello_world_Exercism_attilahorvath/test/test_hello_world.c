@@ -1,5 +1,5 @@
 #include <stddef.h>
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/hello_world.h"
 
 #define BUFFER_LENGTH 128

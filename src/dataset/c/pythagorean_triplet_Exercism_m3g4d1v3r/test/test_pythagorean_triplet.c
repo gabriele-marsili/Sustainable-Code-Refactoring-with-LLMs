@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 #include "pythagorean_triplet.h"
-#include "test-framework/unity.h"
+#include "unity.h"
 
 void setUp(void) {}
 

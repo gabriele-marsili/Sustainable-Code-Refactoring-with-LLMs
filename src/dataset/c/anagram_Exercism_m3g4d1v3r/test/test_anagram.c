@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "anagram.h"
-#include "test-framework/unity.h"
+#include "unity.h"
 
 #define MAX_STR_LEN 20
 

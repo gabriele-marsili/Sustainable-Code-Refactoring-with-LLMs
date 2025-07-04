@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/secret_handshake.h"
 #include <stdlib.h>
 

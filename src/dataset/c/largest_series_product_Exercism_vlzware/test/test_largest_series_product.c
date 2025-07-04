@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/largest_series_product.h"
 
 void setUp(void)

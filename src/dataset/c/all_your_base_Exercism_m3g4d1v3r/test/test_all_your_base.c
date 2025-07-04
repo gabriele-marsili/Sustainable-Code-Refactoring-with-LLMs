@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 #include "all_your_base.h"
-#include "test-framework/unity.h"
+#include "unity.h"
 
 #define LENGTH(A) (sizeof(A) / sizeof(A[0]))
 

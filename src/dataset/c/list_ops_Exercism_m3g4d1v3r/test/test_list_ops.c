@@ -1,7 +1,7 @@
 #include <stdarg.h>
 
 #include "list_ops.h"
-#include "test-framework/unity.h"
+#include "unity.h"
 
 static const int MAX_STRING_LEN = 100;
 static list_t *list = NULL;

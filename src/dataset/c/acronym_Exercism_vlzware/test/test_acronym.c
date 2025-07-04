@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/acronym.h"
 #include <stdlib.h>
 #include <string.h>

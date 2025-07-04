@@ -1,7 +1,7 @@
 #include <stdlib.h>
 
 #include "secret_handshake.h"
-#include "test-framework/unity.h"
+#include "unity.h"
 
 #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof(arr[0]))
 

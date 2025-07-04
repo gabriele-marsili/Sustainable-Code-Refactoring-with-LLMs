@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 #include "luhn.h"
-#include "test-framework/unity.h"
+#include "unity.h"
 
 void setUp(void) {}
 

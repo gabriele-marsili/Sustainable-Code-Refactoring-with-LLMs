@@ -1,4 +1,4 @@
-#include "test-framework/unity.h"
+#include "unity.h"
 #include "resistor_color_duo.h"
 
 void setUp(void)

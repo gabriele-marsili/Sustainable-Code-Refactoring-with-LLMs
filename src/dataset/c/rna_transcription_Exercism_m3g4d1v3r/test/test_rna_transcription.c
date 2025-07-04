@@ -1,7 +1,7 @@
 #include <stdlib.h>
 
 #include "rna_transcription.h"
-#include "test-framework/unity.h"
+#include "unity.h"
 
 void setUp(void) {}
 

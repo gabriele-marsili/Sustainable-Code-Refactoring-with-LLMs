@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/resistor_color.h"
 
 #define ARRAY_LENGTH(A) (sizeof(A) / sizeof(A[0]))

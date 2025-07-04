@@ -1,6 +1,6 @@
 #include <stddef.h>
 #include <stdbool.h>
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/linked_list.h"
 
 struct list_item **list = NULL;

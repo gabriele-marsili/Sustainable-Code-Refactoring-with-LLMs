@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 #include "pascals_triangle.h"
-#include "test-framework/unity.h"
+#include "unity.h"
 
 uint8_t **actual = NULL;
 size_t count = 0;

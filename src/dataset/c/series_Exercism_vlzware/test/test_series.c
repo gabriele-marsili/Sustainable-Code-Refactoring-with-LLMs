@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/series.h"
 
 void setUp(void)

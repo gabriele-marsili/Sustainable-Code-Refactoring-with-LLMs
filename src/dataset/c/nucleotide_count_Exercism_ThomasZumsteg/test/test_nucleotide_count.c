@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/nucleotide_count.h"
 #include <stdlib.h>
 #include <string.h>

@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/leap.h"
 
 void test_a_known_leap_year(void)

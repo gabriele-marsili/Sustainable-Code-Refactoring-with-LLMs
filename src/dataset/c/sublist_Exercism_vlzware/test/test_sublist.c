@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/sublist.h"
 
 #define ELEMENT_COUNT(array) (sizeof(array) / sizeof(array[0]))

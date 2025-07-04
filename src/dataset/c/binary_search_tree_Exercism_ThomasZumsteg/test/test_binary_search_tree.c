@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/binary_search_tree.h"
 #include <stdlib.h>
 #include <stdbool.h>

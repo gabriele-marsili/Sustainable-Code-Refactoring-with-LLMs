@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/queen_attack.h"
 
 void test_invalid_if_on_same_position(void)

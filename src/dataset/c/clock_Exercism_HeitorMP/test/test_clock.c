@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "test-framework/unity.h"
+#include "unity.h"
 #include "clock.h"
 
 void setUp(void)

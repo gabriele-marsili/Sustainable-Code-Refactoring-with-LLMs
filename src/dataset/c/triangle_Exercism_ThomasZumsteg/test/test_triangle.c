@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/triangle.h"
 
 void test_equilateral_is_true_if_all_sides_are_equal(void)

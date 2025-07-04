@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "atbash_cipher.h"
-#include "test-framework/unity.h"
+#include "unity.h"
 
 void setUp(void) {}
 

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 #include "saddle_points.h"
-#include "test-framework/unity.h"
+#include "unity.h"
 
 void setUp(void) {}
 

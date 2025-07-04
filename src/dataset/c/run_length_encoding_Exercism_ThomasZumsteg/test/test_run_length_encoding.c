@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/run_length_encoding.h"
 #include <stdlib.h>
 

@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/palindrome_products.h"
 
 void setUp(void)

@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/sum_of_multiples.h"
 
 #define NUM_OF_ELEMENTS(a)    (sizeof(a) / sizeof(a[0]))

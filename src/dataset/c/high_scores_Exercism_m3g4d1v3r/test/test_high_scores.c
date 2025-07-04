@@ -1,7 +1,7 @@
 #include <string.h>
 
 #include "high_scores.h"
-#include "test-framework/unity.h"
+#include "unity.h"
 
 #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof(arr[0]))
 

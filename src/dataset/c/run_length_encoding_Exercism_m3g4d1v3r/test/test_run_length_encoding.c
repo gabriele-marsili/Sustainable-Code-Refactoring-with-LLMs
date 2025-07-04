@@ -1,7 +1,7 @@
 #include <stdlib.h>
 
 #include "run_length_encoding.h"
-#include "test-framework/unity.h"
+#include "unity.h"
 
 void setUp(void) {}
 

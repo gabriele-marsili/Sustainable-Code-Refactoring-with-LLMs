@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/anagram.h"
 
 // Empty vector for when expected output is nothing

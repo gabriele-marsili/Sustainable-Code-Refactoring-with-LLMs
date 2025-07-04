@@ -1,5 +1,5 @@
 #include "resistor_color.h"
-#include "test-framework/unity.h"
+#include "unity.h"
 
 #define ARRAY_LENGTH(A) (sizeof(A) / sizeof(A[0]))
 

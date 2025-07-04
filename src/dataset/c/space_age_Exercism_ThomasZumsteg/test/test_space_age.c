@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/space_age.h"
 
 void test_convert_earth_year(void)

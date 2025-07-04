@@ -1,4 +1,4 @@
-#include "test-framework/unity.h"
+#include "unity.h"
 #include "pangram.h"
 
 void setUp(void)

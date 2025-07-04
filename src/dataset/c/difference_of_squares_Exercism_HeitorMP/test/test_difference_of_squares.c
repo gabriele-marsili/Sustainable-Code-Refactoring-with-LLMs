@@ -1,4 +1,4 @@
-#include "test-framework/unity.h"
+#include "unity.h"
 #include "difference_of_squares.h"
 
 void setUp(void)

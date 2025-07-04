@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/largest_series_product.h"
 
 void test_can_find_the_largest_product_of_2_with_numbers_in_order(void)

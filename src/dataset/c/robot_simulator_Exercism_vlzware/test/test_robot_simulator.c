@@ -1,5 +1,5 @@
 #include "../src/robot_simulator.h"
-#include "vendor/unity.h"
+#include "unity.h"
 
 void setUp(void)
 {

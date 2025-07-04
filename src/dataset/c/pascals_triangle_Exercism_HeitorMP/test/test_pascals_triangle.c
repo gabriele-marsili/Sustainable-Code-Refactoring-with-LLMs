@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdlib.h>
-#include "test-framework/unity.h"
+#include "unity.h"
 #include "pascals_triangle.h"
 
 uint8_t **actual = NULL;

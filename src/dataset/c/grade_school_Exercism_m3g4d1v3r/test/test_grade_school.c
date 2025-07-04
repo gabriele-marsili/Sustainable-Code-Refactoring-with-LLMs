@@ -3,7 +3,7 @@
 #include <string.h>
 
 #include "grade_school.h"
-#include "test-framework/unity.h"
+#include "unity.h"
 
 #define NON_EMPTY_DUMMY_ROSTER              \
     {                                       \

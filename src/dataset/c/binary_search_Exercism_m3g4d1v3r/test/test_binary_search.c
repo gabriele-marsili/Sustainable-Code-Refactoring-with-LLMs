@@ -1,5 +1,5 @@
 #include "binary_search.h"
-#include "test-framework/unity.h"
+#include "unity.h"
 
 void setUp(void) {}
 

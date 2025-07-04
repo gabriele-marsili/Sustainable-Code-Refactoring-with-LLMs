@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/bracket_push.h"
 #include <stdbool.h>
 

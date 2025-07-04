@@ -1,5 +1,5 @@
 #include "../src/robot_simulator.h"
-#include "vendor/unity.h"
+#include "unity.h"
 
 // Test Helper Function
 void confirm_position(RobotGridStatus_t * expected, RobotGridStatus_t * actual)

@@ -1,7 +1,7 @@
 #include <stdint.h>
 
 #include "prime_factors.h"
-#include "test-framework/unity.h"
+#include "unity.h"
 
 static uint64_t buf[MAXFACTORS] = {0};
 

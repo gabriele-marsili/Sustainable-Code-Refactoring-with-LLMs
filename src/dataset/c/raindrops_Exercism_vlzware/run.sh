@@ -1,2 +1,15 @@
 #!/bin/bash
-gcc -o main src/*.c test/*.c && /usr/bin/time -v ./main > output.log 2>&1
+set -e
+
+echo "📁 Contenuto corrente:"
+ls -la
+echo "📁 Contenuto src/:"
+ls -la src
+echo "📁 Contenuto test/:"
+ls -la test
+
+echo "🔧 Compilazione con make..."
+make test
+
+echo "🧪 Esecuzione test con misurazione risorse..."
+/usr/bin/time -v ./test > output.log 2>&1

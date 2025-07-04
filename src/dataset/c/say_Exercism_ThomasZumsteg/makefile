@@ -1,27 +1,10 @@
-CFLAGS  = -std=c99
-CFLAGS += -g
-CFLAGS += -Wall
-CFLAGS += -Wextra
-CFLAGS += -pedantic
-CFLAGS += -Werror
+CC = gcc
+CFLAGS = -I./src -Wall
+SRC = src/*.c test/*.c 
+OBJ = $(SRC:.c=.o)
 
-VFLAGS  = --quiet
-VFLAGS += --tool=memcheck
-VFLAGS += --leak-check=full
-VFLAGS += --error-exitcode=1
-
-LDFLAGS = -lm
-
-test: tests.out
-	@./tests.out
-
-memcheck: tests.out
-	@valgrind $(VFLAGS) ./tests.out
-	@echo "Memory check passed"
+tests.out: $(OBJ)
+	$(CC) $(OBJ) -o tests.out
 
 clean:
-	rm -rf *.o *.out *.out.dSYM
-
-tests.out: test/test_say.c src/say.c src/say.h
-	@echo Compiling $@
-	@$(CC) $(CFLAGS) src/say.c test/vendor/unity.c test/test_say.c -o tests.out $(LDFLAGS)
+	rm -f $(OBJ) tests.out

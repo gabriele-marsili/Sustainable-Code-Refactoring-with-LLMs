@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/meetup.h"
 
 // Using XMacros to create the tests

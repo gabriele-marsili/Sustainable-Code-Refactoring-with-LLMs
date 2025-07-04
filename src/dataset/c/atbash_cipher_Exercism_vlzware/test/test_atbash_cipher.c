@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/atbash_cipher.h"
 #include <stdlib.h>
 #include <string.h>

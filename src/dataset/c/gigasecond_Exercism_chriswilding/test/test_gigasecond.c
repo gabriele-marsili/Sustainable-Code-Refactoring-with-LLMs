@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/gigasecond.h"
 
 static inline size_t is_leap_year(int year)

@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/diamond.h"
 #include <stdlib.h>
 

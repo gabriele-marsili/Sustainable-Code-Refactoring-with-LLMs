@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/raindrops.h"
 
 #define BUFFER_LENGTH 100

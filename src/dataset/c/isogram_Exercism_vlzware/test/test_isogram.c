@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/isogram.h"
 #include <stdlib.h>
 

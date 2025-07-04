@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/prime_factors.h"
 #include <stdint.h>
 

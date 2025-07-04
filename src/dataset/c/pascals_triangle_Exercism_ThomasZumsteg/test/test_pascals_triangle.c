@@ -1,6 +1,6 @@
 #include <stdbool.h>
 #include "../src/pascals_triangle.h"
-#include "vendor/unity.h"
+#include "unity.h"
 
 static bool check(size_t count, size_t expected[][count], size_t ** result)
 {

@@ -1,5 +1,5 @@
 // Include the test framework.
-#include "vendor/unity.h"
+#include "unity.h"
 
 // Include the header file with the declarations of the functions you create.
 #include "../src/hello_world.h"

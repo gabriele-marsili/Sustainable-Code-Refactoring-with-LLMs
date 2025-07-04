@@ -1,5 +1,5 @@
 #include "nth_prime.h"
-#include "test-framework/unity.h"
+#include "unity.h"
 
 void setUp(void) {}
 

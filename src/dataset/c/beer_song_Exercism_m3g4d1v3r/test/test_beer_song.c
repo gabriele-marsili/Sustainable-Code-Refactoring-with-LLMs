@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 #include "beer_song.h"
-#include "test-framework/unity.h"
+#include "unity.h"
 
 #define MAX_LINE_LENGTH (1024)
 #define MAX_LINE_COUNT (299)

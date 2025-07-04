@@ -1,4 +1,4 @@
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/hamming.h"
 
 void test_no_difference_between_identical_strands(void)

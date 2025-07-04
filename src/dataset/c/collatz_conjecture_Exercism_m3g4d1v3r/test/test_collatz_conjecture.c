@@ -1,4 +1,4 @@
-#include "test-framework/unity.h"
+#include "unity.h"
 #include "collatz_conjecture.h"
 
 void setUp(void)

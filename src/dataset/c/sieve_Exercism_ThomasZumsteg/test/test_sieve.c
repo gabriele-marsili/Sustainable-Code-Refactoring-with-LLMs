@@ -1,5 +1,5 @@
 #include <string.h>
-#include "vendor/unity.h"
+#include "unity.h"
 #include "../src/sieve.h"
 
 static primesArray_t result_array;
