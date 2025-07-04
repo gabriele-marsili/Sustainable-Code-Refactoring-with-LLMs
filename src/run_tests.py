@@ -41,28 +41,29 @@ def run_container(lang, mount_path, container_name,exercise_name):
     
     target_run_sh = mount_path / "run.sh"    
     shutil.copy(run_sh_path, target_run_sh)
-        
-    # Copia tsconfig.json 
-    tsconfig_src = DATASET_DIR / "typescript" / "tsconfig.json"
-    tsconfig_target = mount_path / "tsconfig.json"    
-    shutil.copy(tsconfig_src, tsconfig_target)
-        
-    # Copia package.json 
-    pkg_src = DOCKER_DIR / "typescript" / "package.json"
-    pkg_target = mount_path / "package.json"    
-    shutil.copy(pkg_src, pkg_target)
+    
+    if lang == "typescript":
+        # Copia tsconfig.json 
+        tsconfig_src = DATASET_DIR / "typescript" / "tsconfig.json"
+        tsconfig_target = mount_path / "tsconfig.json"    
+        shutil.copy(tsconfig_src, tsconfig_target)
+            
+        # Copia package.json 
+        pkg_src = DOCKER_DIR / "typescript" / "package.json"
+        pkg_target = mount_path / "package.json"    
+        shutil.copy(pkg_src, pkg_target)
 
-   
-    # Copia jest.config.json
-    jest_src = DOCKER_DIR / "typescript" / "jest.config.js"
-    jest_target = mount_path / "jest.config.js"    
-    shutil.copy(jest_src, jest_target)
+    
+        # Copia jest.config.json
+        jest_src = DOCKER_DIR / "typescript" / "jest.config.js"
+        jest_target = mount_path / "jest.config.js"    
+        shutil.copy(jest_src, jest_target)
 
-    # Rimuove eventuali node_modules preesistenti nella directory host
-    nm = mount_path / "node_modules"
-    if nm.exists() and not nm.is_symlink():
-        print(f"🧹 Rimuovo node_modules locale da {nm}")
-        shutil.rmtree(nm)
+        # Rimuove eventuali node_modules preesistenti nella directory host
+        nm = mount_path / "node_modules"
+        if nm.exists() and not nm.is_symlink():
+            print(f"🧹 Rimuovo node_modules locale da {nm}")
+            shutil.rmtree(nm)
 
 
     subprocess.run(["docker", "build", "-t", container_name, str(dockerfile_path)], check=True)

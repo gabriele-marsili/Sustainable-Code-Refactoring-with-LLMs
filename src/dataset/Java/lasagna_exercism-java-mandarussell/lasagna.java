@@ -1,21 +1,41 @@
-public class Lasagna {
-    // expectedMinutesInOven method: returns minutes lasagna should be in the oven
+package utils;
+
+public class Lasagna extends ReflectionProxy {
+
+    @Override
+    public String getTargetClassName() {
+        return "Lasagna";
+    }
+
     public int expectedMinutesInOven() {
-        return 40;
-    }
-    
-    // remainingMinutesInOven method: calculates number of minutes lasagna has left in the oven
-    public int remainingMinutesInOven(int timeInOven) {
-        return this.expectedMinutesInOven() - timeInOven;
-    }
-
-    // preparationTimeInMinutes method: calculate prep time based on number of layers created
-    public int preparationTimeInMinutes(int numberOfLayers) {
-        return numberOfLayers * 2;
+        try {
+            return invokeMethod("expectedMinutesInOven", new Class[]{});
+        } catch (Exception e) {
+            throw new UnsupportedOperationException("Please implement the expectedMinutesInOven() method");
+        }
     }
 
-    // totalTimeInMinutes method: calculates total time taken so far to make lasagna
-    public int totalTimeInMinutes(int numberOfLayers, int timeInOven) {
-        return this.preparationTimeInMinutes(numberOfLayers) + timeInOven;
+    public int remainingMinutesInOven(int actualMinutes) {
+        try {
+            return invokeMethod("remainingMinutesInOven", new Class[]{int.class}, actualMinutes);
+        } catch (Exception e) {
+            throw new UnsupportedOperationException("Please implement the remainingMinutesInOven(int) method");
+        }
+    }
+
+    public int preparationTimeInMinutes(int amountLayers) {
+        try {
+            return invokeMethod("preparationTimeInMinutes", new Class[]{int.class}, amountLayers);
+        } catch (Exception e) {
+            throw new UnsupportedOperationException("Please implement the preparationTimeInMinutes(int) method");
+        }
+    }
+
+    public int totalTimeInMinutes(int amountLayers, int actualMinutes) {
+        try {
+            return invokeMethod("totalTimeInMinutes", new Class[]{int.class, int.class}, amountLayers, actualMinutes);
+        } catch (Exception e) {
+            throw new UnsupportedOperationException("Please implement the totalTimeInMinutes(int, int) method");
+        }
     }
 }
