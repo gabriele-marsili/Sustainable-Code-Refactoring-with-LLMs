@@ -18,6 +18,6 @@ npx tsc || { echo "❌ tsc fallito"; exit 1; }
 
 # Misura anche RAM e CPU con /usr/bin/time
 echo "🧪 Esecuzione test con Jest (con metriche)..."
-/usr/bin/time -v npx jest --json --outputFile=output.log 2> resource_usage.log || { echo "❌ Jest fallito"; exit 1; }
+/usr/bin/time -v npx jest --json --outputFile=output.log 2> resource_usage.log || { echo "❌ Jest fallito" ; exit 1; }
 
 echo "✅ Test completati"

@@ -3,11 +3,11 @@ import json
 import subprocess
 import shutil
 from pathlib import Path
-from datetime import datetime
 import re
 import uuid
+from tempFileGestor import TempTestFile
 
-BASE_DIR = Path(__file__).resolve().parent
+BASE_DIR = Path(__file__).resolve().parent #./src
 DATASET_DIR = BASE_DIR / "dataset"
 DOCKER_DIR = BASE_DIR / "docker"
 LOGS_DIR = BASE_DIR / "logs"
@@ -141,21 +141,23 @@ def parse_metrics_typescript(log_path):
 
     return metrics
 
-
-def run_tests_on_entry(entry, lang, base_only=False):
+def run_tests_on_entry(entry, lang, base_only=False, llm_only = False):
     path = DATASET_DIR / Path(entry["testUnitFilePath"]).parent
     container_name = f"test_{lang.lower()}"
     results = {}
 
     print(f"\n▶ Testing base code: {entry['id']} | path : {path}")
-    base_log = run_container(lang, path.resolve(), container_name, entry["id"])
-    base_metrics = None
-    if lang != "typescript" : base_metrics =  parse_metrics(base_log)
-    else : base_metrics = parse_metrics_typescript(base_log)
-    results.update(base_metrics)
+    if not llm_only:
+        base_log = run_container(lang, path.resolve(), container_name, entry["id"])
+        base_metrics = None
+        if lang != "typescript" : base_metrics =  parse_metrics(base_log)
+        else : base_metrics = parse_metrics_typescript(base_log)
+        results.update(base_metrics)
 
-    # Salva path log per tracciabilità
-    results["base_log"] = str(base_log)
+        # Salva path log per tracciabilità
+        results["base_log"] = str(base_log)
+    else:
+        results = entry
 
     # Se presenti, testiamo i file LLM
     llm_results = []
@@ -164,29 +166,69 @@ def run_tests_on_entry(entry, lang, base_only=False):
             llm_file = Path(llm_path).name
             llm_name = llm_file.split("_")[0]
             print(f"  ↪ Testing LLM ({llm_name}): {llm_file}")
-            llm_code_path = (DATASET_DIR / llm_path).parent
-            #temp_filename = llm_file  # rinomina se necessario
+            llm_type_dir = (DATASET_DIR / llm_path).parent
+            code_path_dir = llm_type_dir.parent  
+            print(f"  ↪ code_path_dir : {code_path_dir}")
+                      
             original_filename = Path(entry["codeSnippetFilePath"]).name
 
             # backup e sostituzione codice
-            target_file = llm_code_path / original_filename
+            target_file = code_path_dir / original_filename
+            if lang == "c" or lang == "cpp":target_file = Path(entry["codeSnippetFilePath"])
+            print(f"  ↪ target_file : {target_file}")
+            
             backup = None
+            renamed_llm_path = None
+
+            # Se Java: rinomina llm_file in original_filename
+            if lang == "java":
+                source_path = llm_type_dir / llm_file
+                renamed_llm_path = llm_type_dir / original_filename
+                source_path.rename(renamed_llm_path)
+                print(f"🔁 Rinomino {llm_file} → {original_filename}")
+                
             if target_file.exists():
                 backup = target_file.with_suffix(".bak")
                 shutil.copy(target_file, backup)
 
-            shutil.copy(llm_code_path / llm_file, target_file)
+            # Sovrascrive il codice del file snippet originario (salvato in backup) con il codice generato dal LLM
+            shutil.copy(llm_type_dir / llm_file, target_file)
 
+            """
+            # Genera il file di test temporaneo
+            base_test_path = DATASET_DIR / entry["testUnitFilePath"]
+            func_name = get_tested_function_name(base_test_path)
+            temp_test_file = TempTestFile(lang, base_test_path, target_file, func_name)
+            temp_test_path = temp_test_file.temp_path
+
+            # Backup e sostituzione test
+            target_test_file = base_test_path.parent / base_test_path.name
+            test_backup = target_test_file.with_suffix(".bak")
+            shutil.copy(target_test_file, test_backup)
+            shutil.copy(temp_test_path, target_test_file)
+            """
+            
             # run test
-            llm_log = run_container(lang, llm_code_path.resolve(), container_name, entry["id"])
+            llm_log = run_container(lang, code_path_dir.resolve(), container_name, entry["id"])
 
+            """
+            # ripristina
+            shutil.move(test_backup, target_test_file)
+            temp_test_path.unlink()
+            """
+            
             if lang != "typescript" : llm_metrics =  parse_metrics(llm_log)
             else : llm_metrics = parse_metrics_typescript(llm_log)
+            
 
-
-            # ripristina
+            # ripristina codeSnippet originario
             if backup:
                 shutil.move(backup, target_file)
+            
+            # Ripristina nome file LLM se era stato rinominato (solo Java)
+            if lang == "java" and renamed_llm_path and not (llm_type_dir / llm_file).exists():
+                renamed_llm_path.rename(llm_type_dir / llm_file)
+                print(f"🔁 Ripristino nome {original_filename} → {llm_file}")
 
             # confronta
             llm_metrics["LLM_type"] = llm_name
@@ -204,7 +246,97 @@ def run_tests_on_entry(entry, lang, base_only=False):
     results["LLM_results"] = llm_results
     return results
 
-def main(base_only=False):
+def get_tested_function_name(file_path):
+    """
+    Estrae il nome della funzione testata da un file di test.
+    
+    Args:
+        file_path (str): Path del file di test
+        
+    Returns:
+        str: Nome della funzione testata, o None se non trovata
+    """
+    
+    if not os.path.exists(file_path):
+        return None
+    
+    # Determina il linguaggio dall'estensione
+    extension = Path(file_path).suffix.lower()
+    
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+    except:
+        return None
+    
+    # Pattern per diversi linguaggi
+    patterns = {
+        '.py': [
+            r'from\s+\w+\s+import\s+(\w+)',
+            r'import\s+\w+\.(\w+)',
+            r'def\s+test_(\w+)',
+            r'(\w+)\s*\(',  # chiamate di funzione generiche
+        ],
+        '.java': [
+            r'import\s+static\s+\w+\.(\w+)',
+            r'import\s+\w+\.(\w+)',
+            r'(\w+)\s*\(',
+        ],
+        '.js': [
+            r'const\s+\{\s*(\w+)\s*\}\s*=\s*require',
+            r'import\s+\{\s*(\w+)\s*\}',
+            r'import\s+(\w+)\s+from',
+            r'(\w+)\s*\(',
+        ],
+        '.ts': [
+            r'import\s+\{\s*(\w+)\s*\}',
+            r'import\s+(\w+)\s+from',
+            r'(\w+)\s*\(',
+        ],
+        '.c': [
+            r'#include\s*[<"](\w+)\.h[>"]',
+            r'extern\s+\w+\s+(\w+)',
+            r'(\w+)\s*\(',
+        ],
+        '.cpp': [
+            r'#include\s*[<"](\w+)\.h[>"]',
+            r'extern\s+\w+\s+(\w+)',
+            r'(\w+)\s*\(',
+        ],
+        '.go': [
+            r'import\s+".*?/(\w+)"',
+            r'func\s+Test\w*(\w+)',
+            r'(\w+)\s*\(',
+        ]
+    }
+    
+    # Trova i pattern corrispondenti
+    language_patterns = patterns.get(extension, [])
+    
+    found_functions = []
+    
+    for pattern in language_patterns:
+        matches = re.findall(pattern, content, re.IGNORECASE | re.MULTILINE)
+        if matches:
+            found_functions.extend(matches)
+    
+    # Filtra funzioni comuni di test e utility
+    excluded = {'test', 'main', 'setUp', 'tearDown', 'before', 'after', 'describe', 'it', 'expect', 'assert'}
+    
+    # Rimuovi duplicati e funzioni escluse
+    unique_functions = []
+    for func in found_functions:
+        if func.lower() not in excluded and func not in unique_functions:
+            unique_functions.append(func)
+    
+    # Strategia di selezione: prendi la prima funzione trovata negli import/dichiarazioni
+    # o la più comune se ci sono più candidati
+    if unique_functions:
+        return unique_functions[0]
+    
+    return None
+
+def main(base_only=False, llm_only = False):
     LOGS_DIR.mkdir(exist_ok=True) #check and in case create logs dir 
     
     cluster_data = None
@@ -214,7 +346,7 @@ def main(base_only=False):
     for lang, entries in cluster_data.items(): #for each language in cluster data file 
         for entry in entries: # for each entry of each language 
             print(f"\n=== Testing {entry['id']} ({lang}) ===")
-            test_results = run_tests_on_entry(entry, lang, base_only=base_only)
+            test_results = run_tests_on_entry(entry, lang, base_only=base_only, llm_only=llm_only)
             # Merge into entry
             entry.update({
                 "CPU_usage": test_results.get("CPU_usage"),
@@ -232,5 +364,6 @@ if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("--base-only", action="store_true", help="Esegui solo i test sui codeSnippet originali")
+    parser.add_argument("--llm_only", action="store_true", help="Esegui solo i test sui codeSnippet originali")
     args = parser.parse_args()
-    main(base_only=args.base_only)
+    main(base_only=args.base_only, llm_only= args.llm_only)
