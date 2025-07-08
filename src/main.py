@@ -7,16 +7,20 @@ Script di configurazione per la creazione del dataset codice-test
 
 import json
 import argparse
+from stats import StatsHandler
 import os
 from pathlib import Path
 import sys
 import csv 
 from fileMetadata import Metadata
-from stats import print_dataset_statistics
 
 sys.path.append(str(Path(__file__).parent))
 from datasetCreator import CodeTestDatasetCreator
 from clusterCreator import ClusterCreator
+
+BASE_DIR = Path(__file__).resolve().parent #./src
+CLUSTER_JSON = BASE_DIR / "focused_cluster_datas.json"
+
 
 def setup_github_token():
     """Configurarazione token GitHub"""
@@ -217,7 +221,7 @@ def main():
         import traceback
         traceback.print_exc()
 
-def adjustMetadata():
+def adjustMetadata(stats_handler:StatsHandler):
     root_dir = Path("dataset")
     jsonDataset_file = root_dir / "dataset.json"
 
@@ -264,7 +268,7 @@ def adjustMetadata():
         with open(jsonDataset_file, 'w', encoding='utf-8') as f:
             json.dump(data, f, indent=4)
         print(f"Dataset aggiornato con nuovi metadati\n{c} entry aggiornate\n{removed_c} entry rimosse")
-        print_dataset_statistics()
+        stats_handler.print_dataset_statistics()
     else:
         print("Nessun metadato da aggiornare.")     
         
@@ -378,9 +382,12 @@ def createFocusedCluster():
     c_creator.start()
 
 if __name__ == "__main__":
+    stats_handler = StatsHandler(CLUSTER_JSON)
     #main()
-    #adjustMetadata()
+    #adjustMetadata(stats_handler)
     #adjust_licenses()
-    print_dataset_statistics()
+    #stats_handler.print_dataset_statistics()
     #adjusPaths()
     #createFocusedCluster()
+    stats_handler.full_analysis()
+    
