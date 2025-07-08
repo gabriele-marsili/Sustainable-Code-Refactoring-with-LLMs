@@ -168,13 +168,20 @@ def run_tests_on_entry(entry, lang, base_only=False, llm_only = False):
             print(f"  ↪ Testing LLM ({llm_name}): {llm_file}")
             llm_type_dir = (DATASET_DIR / llm_path).parent
             code_path_dir = llm_type_dir.parent  
+            if lang == "c" or lang == "cpp" or lang == "go":
+                code_path_dir = code_path_dir / "src"
             print(f"  ↪ code_path_dir : {code_path_dir}")
                       
             original_filename = Path(entry["codeSnippetFilePath"]).name
+            if lang == "c" or lang == "cpp" or lang == "go":
+                original_filename = llm_file.split("_")[1]
+            
+            print(f"  ↪ original_filename : {original_filename}")
+            
 
             # backup e sostituzione codice
             target_file = code_path_dir / original_filename
-            if lang == "c" or lang == "cpp":target_file = Path(entry["codeSnippetFilePath"])
+            
             print(f"  ↪ target_file : {target_file}")
             
             backup = None
@@ -192,7 +199,10 @@ def run_tests_on_entry(entry, lang, base_only=False, llm_only = False):
                 shutil.copy(target_file, backup)
 
             # Sovrascrive il codice del file snippet originario (salvato in backup) con il codice generato dal LLM
-            shutil.copy(llm_type_dir / llm_file, target_file)
+            if lang == "java":
+                shutil.copy(llm_type_dir / original_filename, target_file)
+            else:
+                shutil.copy(llm_type_dir / llm_file, target_file)
 
             """
             # Genera il file di test temporaneo
@@ -207,6 +217,9 @@ def run_tests_on_entry(entry, lang, base_only=False, llm_only = False):
             shutil.copy(target_test_file, test_backup)
             shutil.copy(temp_test_path, target_test_file)
             """
+            
+            if lang == "c" or lang == "cpp" or lang == "go":
+                code_path_dir = DATASET_DIR / Path(entry["testUnitFilePath"]).parent
             
             # run test
             llm_log = run_container(lang, code_path_dir.resolve(), container_name, entry["id"])
