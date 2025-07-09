@@ -13,7 +13,7 @@ class ClusterCreator :
         self.root_dir = Path(root_dir)
         self.jsonDataset_file = self.root_dir / "dataset.json"
         self.FOCUSED_CLUSTER_DIR = Path("focused_cluster")
-        self.FOCUSED_CLUSTER_JSON = self.FOCUSED_CLUSTER_DIR / "focused_cluster_datas.json"
+        self.FOCUSED_CLUSTER_JSON = self.FOCUSED_CLUSTER_DIR / "focused_cluster_datas_2.json"
 
 
     def load_dataset(self):
@@ -30,9 +30,10 @@ class ClusterCreator :
         cluster_map = defaultdict(list)
         for lang, entries in dataset.items():
             for entry in entries:
-                exercise = self.get_exercise_name(entry)
-                key = exercise.lower()
-                cluster_map[key].append((lang, entry))
+                if not "raindrops" in entry['id']:
+                    exercise = self.get_exercise_name(entry)
+                    key = exercise.lower()
+                    cluster_map[key].append((lang, entry))
         return cluster_map
 
     def copy_entry(self, entry, lang):

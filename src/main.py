@@ -388,6 +388,6 @@ if __name__ == "__main__":
     #adjust_licenses()
     #stats_handler.print_dataset_statistics()
     #adjusPaths()
-    #createFocusedCluster()
-    stats_handler.full_analysis()
+    createFocusedCluster()
+    #stats_handler.full_analysis()
     
