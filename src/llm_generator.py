@@ -1,46 +1,340 @@
 import os
 import json
 import time
-import ollama
+import asyncio
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Any
 import concurrent.futures
 from threading import Lock
 import logging
+from abc import ABC, abstractmethod
+from dataclasses import dataclass
+from enum import Enum
+
+# Imports condizionali per i vari provider
+try:
+    import ollama
+    OLLAMA_AVAILABLE = True
+except ImportError:
+    OLLAMA_AVAILABLE = False
+
+try:
+    import openai
+    OPENAI_AVAILABLE = True
+except ImportError:
+    OPENAI_AVAILABLE = False
+
+try:
+    import google.generativeai as genai
+    GEMINI_AVAILABLE = True
+except ImportError:
+    GEMINI_AVAILABLE = False
+
+try:
+    import anthropic
+    ANTHROPIC_AVAILABLE = True
+except ImportError:
+    ANTHROPIC_AVAILABLE = False
 
 # Setup logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
+class LLMProvider(Enum):
+    OLLAMA = "ollama"
+    OPENAI = "openai"
+    GEMINI = "gemini"
+    ANTHROPIC = "anthropic"
+
+@dataclass
+class LLMConfig:
+    provider: LLMProvider
+    model: str
+    output_prefix: str
+    folder: str
+    api_key: Optional[str] = None
+    temperature: float = 0.3
+    top_p: float = 0.9
+    max_tokens: int = 4000
+    timeout: int = 60
+    max_retries: int = 3
+
+class LLMProviderAdapter(ABC):
+    """Interfaccia astratta per i provider LLM"""
+    
+    @abstractmethod
+    def generate(self, prompt: str, config: LLMConfig) -> Optional[str]:
+        pass
+    
+    @abstractmethod
+    def is_available(self) -> bool:
+        pass
+
+class OllamaAdapter(LLMProviderAdapter):
+    """Adapter per Ollama"""
+    
+    def is_available(self) -> bool:
+        return OLLAMA_AVAILABLE
+    
+    def generate(self, prompt: str, config: LLMConfig) -> Optional[str]:
+        if not self.is_available():
+            return None
+            
+        for attempt in range(config.max_retries):
+            try:
+                logger.info(f"Tentativo {attempt + 1}/{config.max_retries} per modello {config.model}")
+
+                def call_ollama():
+                    return ollama.generate(
+                        model=config.model,
+                        prompt=prompt,
+                        options={
+                            'temperature': config.temperature,
+                            'top_p': config.top_p,
+                            'stop': ['```']
+                        }
+                    )
+
+                with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
+                    future = executor.submit(call_ollama)
+                    response = future.result(timeout=config.timeout)
+
+                generated_code = response['response'].strip()
+                return self._clean_markdown(generated_code)
+
+            except concurrent.futures.TimeoutError:
+                logger.warning(f"Timeout dopo {config.timeout}s per {config.model} (tentativo {attempt + 1})")
+            except Exception as e:
+                logger.warning(f"Errore generazione {config.model} (tentativo {attempt + 1}): {e}")
+
+            if attempt < config.max_retries - 1:
+                time.sleep(2 ** attempt)
+
+        return None
+    
+    def _clean_markdown(self, generated_code: str) -> str:
+        """Rimuove i markdown code blocks"""
+        if '```' in generated_code:
+            lines = generated_code.split('\n')
+            clean_lines = []
+            in_code_block = False
+
+            for line in lines:
+                if line.strip().startswith('```'):
+                    in_code_block = not in_code_block
+                    continue
+                if in_code_block or not line.strip().startswith('```'):
+                    clean_lines.append(line)
+
+            generated_code = '\n'.join(clean_lines).strip()
+        
+        return generated_code
+
+class OpenAIAdapter(LLMProviderAdapter):
+    """Adapter per OpenAI GPT"""
+    
+    def __init__(self):
+        self.client = None
+        if OPENAI_AVAILABLE:
+            api_key = os.getenv('OPENAI_API_KEY')
+            if api_key:
+                self.client = openai.OpenAI(api_key=api_key)
+    
+    def is_available(self) -> bool:
+        return OPENAI_AVAILABLE and self.client is not None
+    
+    def generate(self, prompt: str, config: LLMConfig) -> Optional[str]:
+        if not self.is_available():
+            return None
+            
+        for attempt in range(config.max_retries):
+            try:
+                logger.info(f"Tentativo {attempt + 1}/{config.max_retries} per modello {config.model}")
+                
+                response = self.client.chat.completions.create(
+                    model=config.model,
+                    messages=[
+                        {"role": "system", "content": "You are an expert software engineer focused on code optimization."},
+                        {"role": "user", "content": prompt}
+                    ],
+                    temperature=config.temperature,
+                    top_p=config.top_p,
+                    max_tokens=config.max_tokens,
+                    timeout=config.timeout
+                )
+                
+                generated_code = response.choices[0].message.content.strip()
+                return self._clean_markdown(generated_code)
+                
+            except Exception as e:
+                logger.warning(f"Errore generazione OpenAI (tentativo {attempt + 1}): {e}")
+                
+            if attempt < config.max_retries - 1:
+                time.sleep(2 ** attempt)
+        
+        return None
+    
+    def _clean_markdown(self, generated_code: str) -> str:
+        """Rimuove i markdown code blocks"""
+        if '```' in generated_code:
+            lines = generated_code.split('\n')
+            clean_lines = []
+            in_code_block = False
+
+            for line in lines:
+                if line.strip().startswith('```'):
+                    in_code_block = not in_code_block
+                    continue
+                if in_code_block or not line.strip().startswith('```'):
+                    clean_lines.append(line)
+
+            generated_code = '\n'.join(clean_lines).strip()
+        
+        return generated_code
+
+class GeminiAdapter(LLMProviderAdapter):
+    """Adapter per Google Gemini"""
+    
+    def __init__(self):
+        self.client = None
+        if GEMINI_AVAILABLE:
+            api_key = os.getenv('GEMINI_API_KEY')
+            if api_key:
+                genai.configure(api_key=api_key)
+                self.client = genai
+    
+    def is_available(self) -> bool:
+        return GEMINI_AVAILABLE and self.client is not None
+    
+    def generate(self, prompt: str, config: LLMConfig) -> Optional[str]:
+        if not self.is_available():
+            return None
+            
+        for attempt in range(config.max_retries):
+            try:
+                logger.info(f"Tentativo {attempt + 1}/{config.max_retries} per modello {config.model}")
+                
+                model = genai.GenerativeModel(config.model)
+                response = model.generate_content(
+                    prompt,
+                    generation_config=genai.types.GenerationConfig(
+                        temperature=config.temperature,
+                        top_p=config.top_p,
+                        max_output_tokens=config.max_tokens,
+                    )
+                )
+                
+                generated_code = response.text.strip()
+                return self._clean_markdown(generated_code)
+                
+            except Exception as e:
+                logger.warning(f"Errore generazione Gemini (tentativo {attempt + 1}): {e}")
+                
+            if attempt < config.max_retries - 1:
+                time.sleep(2 ** attempt)
+        
+        return None
+    
+    def _clean_markdown(self, generated_code: str) -> str:
+        """Rimuove i markdown code blocks"""
+        if '```' in generated_code:
+            lines = generated_code.split('\n')
+            clean_lines = []
+            in_code_block = False
+
+            for line in lines:
+                if line.strip().startswith('```'):
+                    in_code_block = not in_code_block
+                    continue
+                if in_code_block or not line.strip().startswith('```'):
+                    clean_lines.append(line)
+
+            generated_code = '\n'.join(clean_lines).strip()
+        
+        return generated_code
+
+class AnthropicAdapter(LLMProviderAdapter):
+    """Adapter per Anthropic Claude"""
+    
+    def __init__(self):
+        self.client = None
+        if ANTHROPIC_AVAILABLE:
+            api_key = os.getenv('ANTHROPIC_API_KEY')
+            if api_key:
+                self.client = anthropic.Anthropic(api_key=api_key)
+    
+    def is_available(self) -> bool:
+        return ANTHROPIC_AVAILABLE and self.client is not None
+    
+    def generate(self, prompt: str, config: LLMConfig) -> Optional[str]:
+        if not self.is_available():
+            return None
+            
+        for attempt in range(config.max_retries):
+            try:
+                logger.info(f"Tentativo {attempt + 1}/{config.max_retries} per modello {config.model}")
+                
+                message = self.client.messages.create(
+                    model=config.model,
+                    max_tokens=config.max_tokens,
+                    temperature=config.temperature,
+                    top_p=config.top_p,
+                    messages=[
+                        {"role": "user", "content": prompt}
+                    ]
+                )
+                
+                generated_code = message.content[0].text.strip()
+                return self._clean_markdown(generated_code)
+                
+            except Exception as e:
+                logger.warning(f"Errore generazione Anthropic (tentativo {attempt + 1}): {e}")
+                
+            if attempt < config.max_retries - 1:
+                time.sleep(2 ** attempt)
+        
+        return None
+    
+    def _clean_markdown(self, generated_code: str) -> str:
+        """Rimuove i markdown code blocks"""
+        if '```' in generated_code:
+            lines = generated_code.split('\n')
+            clean_lines = []
+            in_code_block = False
+
+            for line in lines:
+                if line.strip().startswith('```'):
+                    in_code_block = not in_code_block
+                    continue
+                if in_code_block or not line.strip().startswith('```'):
+                    clean_lines.append(line)
+
+            generated_code = '\n'.join(clean_lines).strip()
+        
+        return generated_code
+
 class LLMGenerator:
     """Gestisce la generazione di codice migliorato usando diversi LLM"""
     
-    def __init__(self, base_dir: Path, useClusterInstedOfDataset = False):
+    def __init__(self, base_dir: Path, useClusterInstedOfDataset: bool = False):
         self.base_dir = base_dir
         self.dataset_dir = base_dir / "dataset"        
         self.prompt_file = base_dir.parent / "promptV1.txt"
         self.dataset_json = self.dataset_dir / "dataset.json"
         self.focused_cluster_json = base_dir / "focused_cluster_datas.json"
-        if useClusterInstedOfDataset : self.dataset_json = self.focused_cluster_json
+        if useClusterInstedOfDataset:
+            self.dataset_json = self.focused_cluster_json
+        
+        # Inizializza gli adapter
+        self.adapters = {
+            LLMProvider.OLLAMA: OllamaAdapter(),
+            LLMProvider.OPENAI: OpenAIAdapter(),
+            LLMProvider.GEMINI: GeminiAdapter(),
+            LLMProvider.ANTHROPIC: AnthropicAdapter()
+        }
         
         # Configurazione modelli LLM
-        self.llm_models = {
-            "claude": {
-                "model": "claude3-sonnet", 
-                "output_prefix": "ClaudeSonnet3",
-                "folder": "claude"
-            },
-            "gemini": {
-                "model": "gemini-flash", 
-                "output_prefix": "GeminiFlash", 
-                "folder": "gemini"
-            },
-            "openai": {
-                "model": "gpt-4", 
-                "output_prefix": "ChatGPT4", 
-                "folder": "openAI"
-            }
-        }
+        self.llm_configs = self._load_llm_configs()
         
         # Lock per thread safety
         self.progress_lock = Lock()
@@ -49,6 +343,82 @@ class LLMGenerator:
         
         # Carica il prompt template
         self.prompt_template = self._load_prompt_template()
+    
+    def _load_llm_configs(self) -> Dict[str, LLMConfig]:
+        """Carica le configurazioni LLM da file o usa default"""
+        config_file = self.base_dir / "llm_configs.json"
+        
+        # Configurazioni default
+        default_configs = {
+            "llama3": LLMConfig(
+                provider=LLMProvider.OLLAMA,
+                model="llama3",
+                output_prefix="llama3",
+                folder="llama3"
+            ),
+            "gpt4": LLMConfig(
+                provider=LLMProvider.OPENAI,
+                model="gpt-4",
+                output_prefix="gpt4",
+                folder="gpt4",
+                max_tokens=4000
+            ),
+            "gpt4o": LLMConfig(
+                provider=LLMProvider.OPENAI,
+                model="gpt-4o",
+                output_prefix="gpt4o",
+                folder="gpt4o",
+                max_tokens=4000
+            ),
+            "gemini_flash": LLMConfig(
+                provider=LLMProvider.GEMINI,
+                model="gemini-1.5-flash",
+                output_prefix="gemini_flash",
+                folder="gemini_flash",
+                max_tokens=8000
+            ),
+            "claude_sonnet": LLMConfig(
+                provider=LLMProvider.ANTHROPIC,
+                model="claude-3-sonnet-20240229",
+                output_prefix="claude_sonnet",
+                folder="claude_sonnet",
+                max_tokens=4000
+            ),
+            "claude_sonnet4": LLMConfig(
+                provider=LLMProvider.ANTHROPIC,
+                model="claude-sonnet-4-20250514",
+                output_prefix="claude_sonnet4",
+                folder="claude_sonnet4",
+                max_tokens=4000
+            )
+        }
+        
+        # Carica configurazioni personalizzate se esistono
+        if config_file.exists():
+            try:
+                with open(config_file, 'r', encoding='utf-8') as f:
+                    custom_configs = json.load(f)
+                    
+                # Converti in oggetti LLMConfig
+                for key, config_dict in custom_configs.items():
+                    if key in default_configs:
+                        # Aggiorna la configurazione default
+                        for attr, value in config_dict.items():
+                            if hasattr(default_configs[key], attr):
+                                setattr(default_configs[key], attr, value)
+                        
+            except Exception as e:
+                logger.warning(f"Errore caricamento configurazioni LLM: {e}")
+        
+        # Filtra solo i modelli disponibili
+        available_configs = {}
+        for key, config in default_configs.items():
+            if self.adapters[config.provider].is_available():
+                available_configs[key] = config
+            else:
+                logger.warning(f"Provider {config.provider.value} non disponibile per {key}")
+        
+        return available_configs
     
     def _load_prompt_template(self) -> str:
         """Carica il template del prompt dal file .txt"""
@@ -68,50 +438,10 @@ class LLMGenerator:
             logger.error(f"Errore lettura file {code_path}: {e}")
             return ""
     
-    def _generate_with_ollama(self, model: str, prompt: str, max_retries: int = 3) -> Optional[str]:
-        """Genera codice usando Ollama con retry logic"""
-        for attempt in range(max_retries):
-            try:
-                logger.info(f"Tentativo {attempt + 1}/{max_retries} per modello {model}")
-                
-                response = ollama.generate(
-                    model=model,
-                    prompt=prompt,
-                    options={
-                        'temperature': 0.3,
-                        'top_p': 0.9,
-                        'stop': ['```']
-                    }
-                )
-                
-                generated_code = response['response'].strip()
-                
-                # Pulisci il codice generato (rimuovi eventuali markdown)
-                if '```' in generated_code:
-                    lines = generated_code.split('\n')
-                    clean_lines = []
-                    in_code_block = False
-                    
-                    for line in lines:
-                        if line.strip().startswith('```'):
-                            in_code_block = not in_code_block
-                            continue
-                        if in_code_block or not line.strip().startswith('```'):
-                            clean_lines.append(line)
-                    
-                    generated_code = '\n'.join(clean_lines).strip()
-                
-                return generated_code
-                
-            except Exception as e:
-                logger.warning(f"Errore generazione {model} (tentativo {attempt + 1}): {e}")
-                if attempt < max_retries - 1:
-                    time.sleep(2 ** attempt)  # Exponential backoff
-                else:
-                    logger.error(f"Fallimento definitivo per {model}")
-                    return None
-        
-        return None
+    def _generate_with_llm(self, config: LLMConfig, prompt: str) -> Optional[str]:
+        """Genera codice usando il provider LLM specificato"""
+        adapter = self.adapters[config.provider]
+        return adapter.generate(prompt, config)
     
     def _save_generated_code(self, code: str, output_path: Path) -> bool:
         """Salva il codice generato nel file di output"""
@@ -173,17 +503,17 @@ class LLMGenerator:
             prompt = self.prompt_template.format(code=original_code)
             
             # Genera il codice migliorato
-            generated_code = self._generate_with_ollama(llm_config['model'], prompt)
+            generated_code = self._generate_with_llm(llm_config, prompt)
             
             if generated_code:
                 # Determina il percorso di output
                 exercise_dir = self.dataset_dir / Path(entry['testUnitFilePath']).parent
-                llm_folder = exercise_dir / llm_config['folder']
+                llm_folder = exercise_dir / llm_config.folder
                 
                 # Crea nome file con prefisso LLM
                 base_name = Path(entry['filename']).stem
                 extension = Path(entry['filename']).suffix
-                output_filename = f"{llm_config['output_prefix']}_{base_name}{extension}"
+                output_filename = f"{llm_config.output_prefix}_{base_name}{extension}"
                 output_path = llm_folder / output_filename
                 
                 # Salva il codice generato
@@ -193,7 +523,7 @@ class LLMGenerator:
                 else:
                     result['error'] = f"Errore salvataggio in {output_path}"
             else:
-                result['error'] = f"Generazione fallita per {llm_config['model']}"
+                result['error'] = f"Generazione fallita per {llm_config.model}"
                 
         except Exception as e:
             result['error'] = f"Errore generale: {str(e)}"
@@ -209,7 +539,7 @@ class LLMGenerator:
         
         for lang, entries in dataset_data.items():
             for entry in entries:
-                for llm_key, llm_config in self.llm_models.items():
+                for llm_key, llm_config in self.llm_configs.items():
                     task = {
                         'entry': entry,
                         'lang': lang,
@@ -237,9 +567,23 @@ class LLMGenerator:
                 if entry['id'] in results_by_entry:
                     entry['LLM_codeSnippetFilePaths'] = results_by_entry[entry['id']]
     
-    def generate_all_codes(self, max_workers: Optional[int] = None) -> bool:
+    def list_available_models(self) -> Dict[str, str]:
+        """Restituisce un dizionario dei modelli disponibili"""
+        available = {}
+        for key, config in self.llm_configs.items():
+            available[key] = f"{config.provider.value}:{config.model}"
+        return available
+    
+    def generate_all_codes(self, max_workers: Optional[int] = None, selected_models: Optional[List[str]] = None) -> bool:
         """Genera codici migliorati per tutti gli entry usando thread pool"""
         logger.info("Inizio generazione codici LLM")
+        
+        # Filtra modelli se specificato
+        if selected_models:
+            filtered_configs = {k: v for k, v in self.llm_configs.items() if k in selected_models}
+            self.llm_configs = filtered_configs
+        
+        logger.info(f"Modelli disponibili: {list(self.llm_configs.keys())}")
         
         # Carica dataset
         try:
@@ -301,34 +645,42 @@ class LLMGenerator:
             logger.error(f"Errore salvataggio dataset: {e}")
             return False
 
-
 if __name__ == "__main__":
     import argparse
-    
-    parser = argparse.ArgumentParser(description="Pipeline Manager per generazione LLM e testing")
-    
-    parser.add_argument("--useClusterNotDatabase", action="store_true",
-                       help="Esegui dal cluster anziché dal database")
 
+    parser = argparse.ArgumentParser(description="Pipeline Manager per generazione LLM e testing")
+    parser.add_argument("--useClusterNotDatabase", action="store_true",
+                        help="Esegui dal cluster anziché dal database")
+    parser.add_argument("--models", nargs="+", 
+                        help="Modelli specifici da usare (es: --models gpt4 claude_sonnet)")
+    parser.add_argument("--list-models", action="store_true",
+                        help="Mostra i modelli disponibili")
+    parser.add_argument("--max-workers", type=int, default=None,
+                        help="Numero massimo di worker threads")
+    
     args = parser.parse_args()
-    
-    # Test del generatore
-    base_dir = Path(__file__).resolve().parent #src path
-    generator = LLMGenerator(base_dir,args.useClusterNotDatabase)
-    
+
+    base_dir = Path(__file__).resolve().parent
+    generator = LLMGenerator(base_dir, args.useClusterNotDatabase)
+
+    if args.list_models:
+        models = generator.list_available_models()
+        print("Modelli disponibili:")
+        for key, provider_model in models.items():
+            print(f"  {key}: {provider_model}")
+        exit(0)
+
     try:
-        import ollama
-        # Test connection
-        ollama.list()
-        logger.info("Ollama disponibile")
-        
-        success = generator.generate_all_codes()
+        success = generator.generate_all_codes(
+            max_workers=args.max_workers,
+            selected_models=args.models
+        )
         if success:
             logger.info("Generazione completata con successo!")
         else:
             logger.error("Generazione fallita!")
+
     except Exception as e:
-        logger.error(f"Errore connessione Ollama: {e}")
-        
-    
-   
+        import traceback
+        logger.error("Errore durante la generazione:")
+        logger.error(traceback.format_exc())
