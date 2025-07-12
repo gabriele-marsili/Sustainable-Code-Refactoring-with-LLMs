@@ -96,26 +96,26 @@ class TestRunner:
         
         print(f"🚀 Inizio esecuzione {self.total_tests} test con {self.max_workers} worker")
         
-        # Esegui test in parallelo
+        # esecuzione in parallelo sfruttando Thread Pool Executor
         test_results = []
         with concurrent.futures.ThreadPoolExecutor(max_workers=self.max_workers) as executor:
-            # Sottometti tutti i task
+            # sottomissione delle task
             future_to_task = {
                 executor.submit(self.run_test_worker, task): task 
                 for task in test_tasks
             }
             
-            # Raccogli risultati man mano che completano
+            # raccolta dei risultati man mano che le task vengono completate
             for future in concurrent.futures.as_completed(future_to_task):
                 result = future.result()
                 test_results.append(result)
                 
-                # Aggiorna entry con i risultati se il test è riuscito
+                # aggiornamento dell'entry (se il test ha successo)
                 if result['success'] and result['results']:
                     entry = result['entry']
                     results = result['results']
                     
-                    # Aggiorna metriche base
+                    # aggiornamento delle metriche associate al code snippet di base
                     if not llm_only:
                         entry.update({
                             "CPU_usage": results.get("CPU_usage"),
@@ -123,11 +123,11 @@ class TestRunner:
                             "execution_time_ms": results.get("execution_time_ms"),
                         })
                     
-                    # Aggiorna risultati LLM
+                    # aggiornamento delle metriche associate ai codici migliorati dagli LLMs
                     if not base_only and "LLM_results" in results:
                         entry["LLM_results"] = results["LLM_results"]
         
-        # Statistiche finali
+        # Statistiche esecuzione:
         successful_tests = sum(1 for r in test_results if r['success'])
         failed_tests = len(self.failed_tests)
         
@@ -139,37 +139,51 @@ class TestRunner:
         return test_results
 
 
-
-    def parse_metrics(self,log_path):
-        print(f"parsing metrics of logpath : {log_path}")
+    def parse_metrics(self,log_path): 
+        print(f"👀 parsing metrics of logpath : {log_path}")
         metrics = {
             "execution_time_ms": None,
             "CPU_usage": None,
             "RAM_usage": None,
+            "regrationTestPassed": True 
         }
-
+        
         with open(log_path) as f:
-            for line in f:
-                if "Elapsed (wall clock)" in line:
-                    time_match = re.search(r"(\d+):(\d+\.\d+)", line)
-                    if time_match:
-                        minutes = int(time_match.group(1))
-                        seconds = float(time_match.group(2))
-                        metrics["execution_time_ms"] = int((minutes * 60 + seconds) * 1000)
-                elif "Maximum resident set size" in line:
-                    metrics["RAM_usage"] = int(line.split(":")[1].strip())  # in KB
-                elif "Percent of CPU this job got" in line:
-                    metrics["CPU_usage"] = float(line.split(":")[1].replace("%", "").strip())
+            log_content = f.read()
+
+        # Cerca l'execution time
+        time_match = re.search(r"Elapsed \(wall clock\) time \(h:mm:ss or m:ss\): (\d+):(\d+\.\d+)", log_content)
+        if time_match:
+            minutes = int(time_match.group(1))
+            seconds = float(time_match.group(2))
+            metrics["execution_time_ms"] = int((minutes * 60 + seconds) * 1000)
+
+        # Cerca l'uso della RAM
+        ram_match = re.search(r"Maximum resident set size \(kbytes\): (\d+)", log_content)
+        if ram_match:
+            metrics["RAM_usage"] = int(ram_match.group(1))
+
+        # Cerca l'uso della CPU
+        cpu_match = re.search(r"Percent of CPU this job got: (\d+\.?\d*)%", log_content)
+        if cpu_match:
+            metrics["CPU_usage"] = float(cpu_match.group(1))
+
+        # Cerca il numero di fallimenti
+        failures_match = re.search(r"Failures: (\d+)", log_content)
+        if failures_match:
+            failures_count = int(failures_match.group(1))
+            metrics["regrationTestPassed"] = (failures_count == 0)
+        
         return metrics
 
-    def run_container(self,lang, mount_path, container_name,exercise_name):
+    def run_container(self,lang, mount_path, container_name,exercise_name:str, file_name:str, entry):
         dockerfile_path = DOCKER_DIR / lang.lower()
         run_sh_path = dockerfile_path / "run.sh"
         
         target_run_sh = mount_path / "run.sh"    
-        shutil.copy(run_sh_path, target_run_sh)
+        shutil.copy(run_sh_path, target_run_sh) #copia run.sh da docker directory a directory esercizio
         
-        if lang == "typescript":
+        if lang == "typescript": 
             # Copia tsconfig.json 
             tsconfig_src = DATASET_DIR / "typescript" / "tsconfig.json"
             tsconfig_target = mount_path / "tsconfig.json"    
@@ -186,49 +200,54 @@ class TestRunner:
             jest_target = mount_path / "jest.config.js"    
             shutil.copy(jest_src, jest_target)
 
-            # Rimuove eventuali node_modules preesistenti nella directory host
+            # Rimuove eventuali node_modules preesistenti  
             nm = mount_path / "node_modules"
-            if nm.exists() and not nm.is_symlink():
-                print(f"🧹 Rimuovo node_modules locale da {nm}")
+            if nm.exists() and not nm.is_symlink():                
                 shutil.rmtree(nm)
 
-
+        #build del container docker tramite subprocess
         subprocess.run(["docker", "build", "-t", container_name, str(dockerfile_path)], check=True)
 
-        result = subprocess.run([
-            "docker", "run", "--rm",
-            "-v", f"{mount_path}:/app",
-            container_name
-        ], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+        #esecuzione di run.sh => compilazione + esecuzione test unit 
+        if lang.lower() == "java" :           
+            
+            result = subprocess.run([
+                "docker", "run", "--rm",
+                "-v", f"{mount_path}:/app",
+                container_name, file_name
+            ], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+        
+        else :
+            result = subprocess.run([
+                "docker", "run", "--rm",
+                "-v", f"{mount_path}:/app",
+                container_name
+            ], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
 
-        print(result.stdout)  # per vedere i log del container
+        #print(result.stdout)  
         if result.returncode != 0:
-            print(f"Errore nel container | result:\n{result}")
+            print(f"❌‼ Errore nel container | result:\n{result}\n")
+        else: print(f"🟢 Test unit executed for entry {entry['id']}")
 
-
-        # Debug: mostra se il file esiste davvero
-        print(f"🔎 Controllo output.log in {mount_path}")
+        # Debug:
+        #print(f"🔎 Controllo output.log in {mount_path}")
         #print("📂 Contenuto post-run:", list(mount_path.iterdir()))
 
-
-
-        log_file = mount_path / "output.log"
-        
+        #copia del log file nella directory dell'esercizio
+        log_file = mount_path / "output.log"        
         final_log = LOGS_DIR / f"{container_name}_{exercise_name}_{uuid.uuid4().hex[:8]}.log"
         shutil.copy(log_file, final_log)
         
-        # Salva anche il file di risorse se presente
+        # Salva anche il file di risorse, se presente
         resource_log = mount_path / "resource_usage.log"
         if resource_log.exists():
             final_resource_log = LOGS_DIR / f"{container_name}_{exercise_name}_{uuid.uuid4().hex[:8]}_resource.log"
             shutil.copy(resource_log, final_resource_log)
 
-
-
         return log_file
 
     def parse_metrics_typescript(self,log_path):
-        print(f"parsing ts metrics of logpath : {log_path}")
+        #print(f"parsing ts metrics of logpath : {log_path}")
         metrics = {
             "execution_time_ms": None,
             "CPU_usage": None,
@@ -236,6 +255,7 @@ class TestRunner:
             "success": None,
             "passed_tests": None,
             "failed_tests": None,
+            "regrationTestPassed":False
         }
 
         try:
@@ -249,6 +269,7 @@ class TestRunner:
             metrics["passed_tests"] = data.get("numPassedTests")
             metrics["failed_tests"] = data.get("numFailedTests")
             metrics["success"] = data.get("success")
+            metrics["regrationTestPassed"] = data.get("numFailedTests") == 0
 
             # Parse resource usage (if available)
             resource_path = log_path.parent / "resource_usage.log"
@@ -264,7 +285,7 @@ class TestRunner:
 
 
         except Exception as e:
-            print(f"❌ Errore parsing log JSON: {e}")
+            print(f"❌ Errore parsing log JSON:\n{e}")
 
         return metrics
 
@@ -272,23 +293,25 @@ class TestRunner:
         path = DATASET_DIR / Path(entry["testUnitFilePath"]).parent
         container_name = f"test_{lang.lower()}"
         results = {}
+        parts = str(entry["codeSnippetFilePath"]).split("/")
+        codeSnippetFileName = parts.pop()
 
-        print(f"\n▶ Testing base code: {entry['id']} | path : {path}")
-        if not llm_only:
-            base_log = self.run_container(lang, path.resolve(), container_name, entry["id"])
+        print(f"\n➡️ Testing base code: {entry['id']}\n➡️ path : {path}")
+        if not llm_only: #esecuzione test suites su base code snippets
+            base_log = self.run_container(lang, path.resolve(), container_name, entry["id"],codeSnippetFileName, entry)
             base_metrics = None
             if lang != "typescript" : base_metrics =  self.parse_metrics(base_log)
             else : base_metrics = self.parse_metrics_typescript(base_log)
             results.update(base_metrics)
 
-            # Salva path log per tracciabilità
+            #salva path log 
             results["base_log"] = str(base_log)
         else:
             results = entry
 
-        # Se presenti, testiamo i file LLM
+        
         llm_results = []
-        if "LLM_codeSnippetFilePaths" in entry and not base_only:
+        if "LLM_codeSnippetFilePaths" in entry and not base_only: #esecuzione test suites su codici generati dagli LLMs
             for llm_path in entry["LLM_codeSnippetFilePaths"]:
                 llm_file = Path(llm_path).name
                 llm_name = llm_file.split("_")[0]
@@ -331,32 +354,15 @@ class TestRunner:
                 else:
                     shutil.copy(llm_type_dir / llm_file, target_file)
 
-                """
-                # Genera il file di test temporaneo
-                base_test_path = DATASET_DIR / entry["testUnitFilePath"]
-                func_name = get_tested_function_name(base_test_path)
-                temp_test_file = TempTestFile(lang, base_test_path, target_file, func_name)
-                temp_test_path = temp_test_file.temp_path
-
-                # Backup e sostituzione test
-                target_test_file = base_test_path.parent / base_test_path.name
-                test_backup = target_test_file.with_suffix(".bak")
-                shutil.copy(target_test_file, test_backup)
-                shutil.copy(temp_test_path, target_test_file)
-                """
+               
                 
                 if lang == "c" or lang == "cpp" or lang == "go":
                     code_path_dir = DATASET_DIR / Path(entry["testUnitFilePath"]).parent
                 
                 # run test
-                llm_log = self.run_container(lang, code_path_dir.resolve(), container_name, entry["id"])
+                llm_log = self.run_container(lang, code_path_dir.resolve(), container_name, entry["id"],codeSnippetFileName, entry)
 
-                """
-                # ripristina
-                shutil.move(test_backup, target_test_file)
-                temp_test_path.unlink()
-                """
-                
+               
                 if lang != "typescript" : llm_metrics =  self.parse_metrics(llm_log)
                 else : llm_metrics = self.parse_metrics_typescript(llm_log)
                 
@@ -378,7 +384,7 @@ class TestRunner:
                 llm_metrics["execution_time_improved"] = llm_metrics["execution_time_difference_ms"] < 0
                 llm_metrics["CPU_improved"] = llm_metrics["CPU_usage_difference"] < 0
                 llm_metrics["ram_improved"] = llm_metrics["ram_usage_difference"] < 0
-                llm_metrics["regrationTestPassed"] = True  # TODO: analizzare log
+                
 
                 llm_metrics["log"] = str(llm_log)
                 llm_results.append(llm_metrics)
@@ -386,104 +392,13 @@ class TestRunner:
         results["LLM_results"] = llm_results
         return results
 
-    def get_tested_function_name(self,file_path):
-        """
-        Estrae il nome della funzione testata da un file di test.
-        
-        Args:
-            file_path (str): Path del file di test
-            
-        Returns:
-            str: Nome della funzione testata, o None se non trovata
-        """
-        
-        if not os.path.exists(file_path):
-            return None
-        
-        # Determina il linguaggio dall'estensione
-        extension = Path(file_path).suffix.lower()
-        
-        try:
-            with open(file_path, 'r', encoding='utf-8') as f:
-                content = f.read()
-        except:
-            return None
-        
-        # Pattern per diversi linguaggi
-        patterns = {
-            '.py': [
-                r'from\s+\w+\s+import\s+(\w+)',
-                r'import\s+\w+\.(\w+)',
-                r'def\s+test_(\w+)',
-                r'(\w+)\s*\(',  # chiamate di funzione generiche
-            ],
-            '.java': [
-                r'import\s+static\s+\w+\.(\w+)',
-                r'import\s+\w+\.(\w+)',
-                r'(\w+)\s*\(',
-            ],
-            '.js': [
-                r'const\s+\{\s*(\w+)\s*\}\s*=\s*require',
-                r'import\s+\{\s*(\w+)\s*\}',
-                r'import\s+(\w+)\s+from',
-                r'(\w+)\s*\(',
-            ],
-            '.ts': [
-                r'import\s+\{\s*(\w+)\s*\}',
-                r'import\s+(\w+)\s+from',
-                r'(\w+)\s*\(',
-            ],
-            '.c': [
-                r'#include\s*[<"](\w+)\.h[>"]',
-                r'extern\s+\w+\s+(\w+)',
-                r'(\w+)\s*\(',
-            ],
-            '.cpp': [
-                r'#include\s*[<"](\w+)\.h[>"]',
-                r'extern\s+\w+\s+(\w+)',
-                r'(\w+)\s*\(',
-            ],
-            '.go': [
-                r'import\s+".*?/(\w+)"',
-                r'func\s+Test\w*(\w+)',
-                r'(\w+)\s*\(',
-            ]
-        }
-        
-        # Trova i pattern corrispondenti
-        language_patterns = patterns.get(extension, [])
-        
-        found_functions = []
-        
-        for pattern in language_patterns:
-            matches = re.findall(pattern, content, re.IGNORECASE | re.MULTILINE)
-            if matches:
-                found_functions.extend(matches)
-        
-        # Filtra funzioni comuni di test e utility
-        excluded = {'test', 'main', 'setUp', 'tearDown', 'before', 'after', 'describe', 'it', 'expect', 'assert'}
-        
-        # Rimuovi duplicati e funzioni escluse
-        unique_functions = []
-        for func in found_functions:
-            if func.lower() not in excluded and func not in unique_functions:
-                unique_functions.append(func)
-        
-        # Strategia di selezione: prendi la prima funzione trovata negli import/dichiarazioni
-        # o la più comune se ci sono più candidati
-        if unique_functions:
-            return unique_functions[0]
-        
-        return None
 
-
-
-
-
-# 3. Modificare la funzione main() sostituendo tutto il contenuto con:
 def main(base_only=False, llm_only=False, max_workers=None):
-    LOGS_DIR.mkdir(exist_ok=True)
+    """Esegue test suites su code snippet e codigi generati dagli LLMs.
+    Attualmente sfrutta il cluster scelto anziché il dataset"""
     
+    
+    LOGS_DIR.mkdir(exist_ok=True)    
     cluster_data = None
     try:
         with open(CLUSTER_JSON, "r", encoding="utf-8") as f:
@@ -491,16 +406,15 @@ def main(base_only=False, llm_only=False, max_workers=None):
     except Exception as e:
         print(f"❌ Errore caricamento cluster data: {e}")
         return False
-    
-    # Usa TestRunner per esecuzione concorrente
+        
     test_runner = TestRunner(max_workers=max_workers)
-    test_results = test_runner.run_tests_concurrent(
+    test_runner.run_tests_concurrent(
         cluster_data, 
         base_only=base_only, 
         llm_only=llm_only
     )
     
-    # Salva JSON aggiornato
+    #Salva JSON aggiornato
     try:
         with open(CLUSTER_JSON, "w", encoding="utf-8") as f:
             json.dump(cluster_data, f, indent=4, ensure_ascii=False)
@@ -511,7 +425,6 @@ def main(base_only=False, llm_only=False, max_workers=None):
         return False
 
 
-# 4. Modificare il blocco if __name__ == "__main__": alla fine del file
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()

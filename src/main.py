@@ -382,12 +382,34 @@ def createFocusedCluster():
     c_creator.start()
 
 if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--add-sources", action="store_true", 
+                       help="Add new sources")
+    parser.add_argument("--adjust-metadata", action="store_true", 
+                       help="Adjust Metadata")
+    parser.add_argument("--adjust-licenses", action="store_true", 
+                       help="Adjust licenses")
+    parser.add_argument("--statistics", action="store_true", 
+                       help="Print dataset statistics")
+    parser.add_argument("--charts", action="store_true", 
+                       help="Print charts of dataset statistics")
+    parser.add_argument("--analysis", action="store_true", 
+                       help="Print full dataset analysis")
+    parser.add_argument("--adjust-paths", action="store_true", 
+                       help="Adjust paths")
+    parser.add_argument("--create-focused-cluster", action="store_true", 
+                       help="Create focused cluster")
+    
+    args = parser.parse_args()
+    
     stats_handler = StatsHandler(CLUSTER_JSON)
-    #main()
-    #adjustMetadata(stats_handler)
-    #adjust_licenses()
-    #stats_handler.print_dataset_statistics()
-    #adjusPaths()
-    createFocusedCluster()
-    #stats_handler.full_analysis()
+    if args.add_sources : main()
+    if args.adjust_metadata : adjustMetadata(stats_handler)
+    if args.adjust_licenses : adjust_licenses()
+    if args.adjust_paths : adjusPaths()
+    if args.create_focused_cluster : createFocusedCluster()
+    if args.statistics : stats_handler.print_dataset_statistics(args.charts)
+    if args.analysis : stats_handler.full_analysis()
+     
     

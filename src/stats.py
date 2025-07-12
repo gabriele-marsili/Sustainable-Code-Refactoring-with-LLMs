@@ -170,9 +170,11 @@ class StatsHandler:
         
     
 
-    def print_dataset_statistics(self):
+    def print_dataset_statistics(self, charts:bool = False):
         root_dir = Path("dataset")
         dataset_path = root_dir / "dataset.json"
+        
+        
         
         if not dataset_path.exists():
             print(f"[ERRORE] File non trovato: {dataset_path}")
@@ -238,16 +240,16 @@ class StatsHandler:
             plt.show()
 
         # Visualizzazione grafica
-        """
-        plot_bar_chart(language_counter, "Entry per Linguaggio", "Linguaggio")
-        plot_bar_chart(source_counter, "Entry per Fonte", "Fonte")
+        if charts:
+            plot_bar_chart(language_counter, "Entry per Linguaggio", "Linguaggio")
+            plot_bar_chart(source_counter, "Entry per Fonte", "Fonte")
 
-        cross_lang_distribution = Counter()
-        for fname_stem, entries in clusters_cross_language.items():
-            involved_langs = set(e["language"] for e in entries)
-            if len(involved_langs) > 1:
-                cross_lang_distribution[len(involved_langs)] += 1
+            cross_lang_distribution = Counter()
+            for fname_stem, entries in clusters_cross_language.items():
+                involved_langs = set(e["language"] for e in entries)
+                if len(involved_langs) > 1:
+                    cross_lang_distribution[len(involved_langs)] += 1
 
-        plot_bar_chart(cross_lang_distribution, "Esercizi con Presenza Cross-Linguaggio", "Numero di Linguaggi Coinvolti")
-        """
+            plot_bar_chart(cross_lang_distribution, "Esercizi con Presenza Cross-Linguaggio", "Numero di Linguaggi Coinvolti")
+        
 

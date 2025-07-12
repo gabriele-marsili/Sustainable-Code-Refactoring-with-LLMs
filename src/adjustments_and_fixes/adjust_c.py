@@ -9,17 +9,24 @@ BASE_DIR = Path("../dataset/c")
 DEFAULT_MAKEFILE = """\
 CC = gcc
 CFLAGS = -I./src -Wall
-SRC = src/*.c test/*.c 
-OBJ = $(SRC:.c=.o)
+SRCS := $(wildcard src/*.c test/*.c)
+OBJS := $(SRCS:.c=.o)
+TARGET = test
 
-tests.out: $(OBJ)
-	$(CC) $(OBJ) -o tests.out
+all: $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $^
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	rm -f $(OBJ) tests.out
+	rm -f $(OBJS) $(TARGET)
 """
 
 
+"""Adjuster class to fix dataset files"""
 class Adjuster:
     def __init__(self):
         pass
@@ -53,50 +60,11 @@ class Adjuster:
             if exercise_dir.is_dir():
                 self.sposta_unity_files(exercise_dir)
 
-    def fix_makefile(self, makefile_path: Path):
-       
+    def fix_makefile(self, makefile_path: Path):       
         self.create_default_makefile(makefile_path.parent)
         return
 
-        content = makefile_path.read_text(encoding="utf-8")
-        modified = False
-
-        required_patterns = [
-            r'unity\.c',
-            r'CFLAGS.*-Isrc',
-            r'tests\.out\s*:.*src/.*\.c.*test/.*\.c',
-        ]
-
-        if any(re.search(p, content, re.MULTILINE) is None for p in required_patterns):
-            print(f"💣 Makefile rigenerato completamente per {makefile_path.parent}")
-            self.create_default_makefile(makefile_path.parent)
-            return
-
-        lines = content.splitlines()
-        new_lines = []
-
-        for line in lines:
-            orig = line
-            line = re.sub(r'test-framework/unity\.c', 'test/unity.c', line)
-            line = re.sub(r'test-framework/unity\.h', 'test/unity.h', line)
-            line = re.sub(r'test/vendor/unity\.c', 'test/unity.c', line)
-            line = re.sub(r'test/vendor/unity\.h', 'test/unity.h', line)
-            if line != orig:
-                modified = True
-            new_lines.append(line)
-
-        for i, line in enumerate(new_lines):
-            if line.strip().startswith("CFLAGS") and "-Isrc" not in line:
-                new_lines[i] = line.rstrip() + " -Isrc"
-                modified = True
-                print(f"🛠️ Aggiunto '-Isrc' in CFLAGS: {makefile_path}")
-
-        if modified:
-            makefile_path.write_text("\n".join(new_lines) + "\n", encoding="utf-8")
-            print(f"✅ Makefile aggiornato: {makefile_path}")
-        else:
-            print(f"👍 Makefile già conforme: {makefile_path}")
-
+        
     def create_default_makefile(self, target_dir: Path):
         makefile_path = target_dir / "Makefile"
         makefile_path.write_text(DEFAULT_MAKEFILE, encoding="utf-8")

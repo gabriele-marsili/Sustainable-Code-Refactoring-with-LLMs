@@ -15,10 +15,6 @@ curl -fsSL https://ollama.com/install.sh | sh
 # Avvia Ollama
 ollama serve
 
-# Scarica i modelli necessari
-ollama pull claude3-sonnet
-ollama pull gemini-flash  
-ollama pull gpt-4
 ```
 
 3. Verifica che Docker sia installato e funzionante:
@@ -83,36 +79,6 @@ python run_tests.py --llm-only --max-workers 6
 2. **`pipeline_manager.py`** - Orchestratore principale delle due fasi
 3. **`requirements.txt`** - Dipendenze necessarie
 
-### File modificati:
-
-1. **`run_tests.py`** - Aggiunto supporto per threading e esecuzione concorrente
-
-## Configurazione
-
-### Modelli LLM supportati
-
-La configurazione dei modelli è in `llm_generator.py`:
-
-```python
-self.llm_models = {
-    "claude": {
-        "model": "claude3-sonnet",     # Nome modello Ollama
-        "output_prefix": "ClaudeSonnet4",  # Prefisso file generato
-        "folder": "claude"             # Cartella di destinazione
-    },
-    "gemini": {
-        "model": "gemini-flash",
-        "output_prefix": "GeminiFlash",
-        "folder": "gemini"
-    },
-    "openai": {
-        "model": "gpt-4",
-        "output_prefix": "ChatGPT4",
-        "folder": "openAI"
-    }
-}
-```
-
 ### Ottimizzazione delle performance
 
 - **Worker threads**: Il numero di thread è automaticamente calcolato basandosi sui core CPU disponibili
@@ -123,7 +89,7 @@ self.llm_models = {
 
 ### Log di esecuzione
 
-La pipeline genera log dettagliati:
+La pipeline genera log dettagliati, esempio:
 
 ```
 2025-01-09 10:15:30 - INFO - Inizio generazione codici LLM
@@ -140,73 +106,3 @@ La pipeline genera log dettagliati:
 - **`dataset.json`** - Dataset aggiornato con i percorsi dei file generati
 - **`focused_cluster_datas.json`** - Risultati dei test con metriche
 - **`logs/`** - Directory con i log dettagliati di ogni esecuzione
-
-## Gestione degli Errori
-
-### Errori comuni e soluzioni:
-
-1. **Ollama non raggiungibile**
-   ```bash
-   # Verifica che Ollama sia in esecuzione
-   ollama list
-   ollama serve
-   ```
-
-2. **Docker non disponibile**
-   ```bash
-   # Verifica Docker
-   docker --version
-   # Avvia Docker se necessario
-   ```
-
-3. **Timeout generazione LLM**
-   - La pipeline include retry automatico con backoff esponenziale
-   - Riduci il numero di worker se il sistema è sotto stress
-
-4. **Memoria insufficiente**
-   - Riduci `--max-workers` per limitare l'uso di memoria
-   - Monitora l'uso di memoria durante l'esecuzione
-
-## Interruzione Sicura
-
-La pipeline supporta interruzione sicura:
-
-```bash
-# Premi Ctrl+C per interrompere
-# La pipeline completerà i task in corso e salverà i risultati parziali
-```
-
-## Esempio di Output
-
-```
-=== PIPELINE COMPLETATA ===
-Tempo totale: 1847.32 secondi
-Linguaggi processati: ['go', 'python', 'java', 'cpp', 'c', 'javascript', 'typescript']
-Entry totali: 85
-Generazioni riuscite: 248
-Test riusciti: 235
-```
-
-## Personalizzazione
-
-### Modifica del prompt
-
-Edita il file `promptForLLM.txt` per personalizzare le istruzioni agli LLM:
-
-```
-Improve the following code for better performance, readability, and efficiency:
-
-'''
-{code}
-'''
-
-Requirements:
-- Maintain the same function signature
-- Preserve all functionality
-- Optimize for speed and memory usage
-- Add appropriate comments
-```
-
-### Aggiunta di nuovi modelli LLM
-
-Modifica la configurazione in `llm_generator.py` aggiungendo nuovi modelli alla dictionary `self.llm_models`.

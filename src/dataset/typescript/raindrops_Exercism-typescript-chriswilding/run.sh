@@ -1,9 +1,6 @@
 #!/bin/bash
 set -e
 
-echo "📁 Contenuto iniziale di /app:"
-ls -al /app
-
 # Rimuove node_modules solo se non è un symlink
 if [ -e node_modules ] && [ ! -L node_modules ]; then
   echo "🧹 Rimuovo node_modules preesistente (non symlink)"
