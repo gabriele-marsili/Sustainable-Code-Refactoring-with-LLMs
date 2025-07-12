@@ -35,7 +35,7 @@ class TestRunner:
             progress = (self.completed_tests / self.total_tests) * 100
             print(f"🔄 Progresso test: {self.completed_tests}/{self.total_tests} ({progress:.1f}%)")
     
-    def run_test_worker(self, test_info):
+    def run_test_worker(self, test_info,run_with_docker_cache=True):
         """Worker per eseguire un singolo test"""
         entry, lang, test_type = test_info
         test_id = f"{entry['id']}_{test_type}"
@@ -45,15 +45,15 @@ class TestRunner:
             
             if test_type == "base":
                 # Test del codice base
-                results = self.run_tests_on_entry(entry, lang, base_only=True)
+                results = self.run_tests_on_entry(entry, lang, base_only=True, run_with_docker_cache=run_with_docker_cache)
                 success = results.get("execution_time_ms") is not None
             elif test_type == "llm":
                 # Test solo LLM
-                results = self.run_tests_on_entry(entry, lang, llm_only=True)
+                results = self.run_tests_on_entry(entry, lang, llm_only=True,run_with_docker_cache=run_with_docker_cache)
                 success = bool(results.get("LLM_results"))
             else:
                 # Test completo
-                results = self.run_tests_on_entry(entry, lang)
+                results = self.run_tests_on_entry(entry, lang,run_with_docker_cache=run_with_docker_cache)
                 success = results.get("execution_time_ms") is not None
             
             self._update_progress(test_id, success)
@@ -77,7 +77,7 @@ class TestRunner:
                 'error': error_msg
             }
     
-    def run_tests_concurrent(self, cluster_data, base_only=False, llm_only=False):
+    def run_tests_concurrent(self, cluster_data, base_only=False, llm_only=False,run_with_docker_cache=True):
         """Esegue tutti i test in modo concorrente"""
         # Prepara lista dei test
         test_tasks = []
@@ -101,7 +101,7 @@ class TestRunner:
         with concurrent.futures.ThreadPoolExecutor(max_workers=self.max_workers) as executor:
             # sottomissione delle task
             future_to_task = {
-                executor.submit(self.run_test_worker, task): task 
+                executor.submit(self.run_test_worker, task, run_with_docker_cache): task 
                 for task in test_tasks
             }
             
@@ -176,12 +176,17 @@ class TestRunner:
         
         return metrics
 
-    def run_container(self,lang, mount_path, container_name,exercise_name:str, file_name:str, entry):
+    def run_container(self,lang, mount_path, container_name, exercise_name:str, file_name:str, entry, LLM_dirName = "", run_with_cache=True):
+        print(f"mount_path = {mount_path}")
         dockerfile_path = DOCKER_DIR / lang.lower()
         run_sh_path = dockerfile_path / "run.sh"
         
         target_run_sh = mount_path / "run.sh"    
         shutil.copy(run_sh_path, target_run_sh) #copia run.sh da docker directory a directory esercizio
+        
+        if LLM_dirName != "":
+            target_run_sh =  mount_path / LLM_dirName / "run.sh"  
+            shutil.copy(run_sh_path, target_run_sh)
         
         if lang == "typescript": 
             # Copia tsconfig.json 
@@ -206,11 +211,12 @@ class TestRunner:
                 shutil.rmtree(nm)
 
         #build del container docker tramite subprocess
-        subprocess.run(["docker", "build", "-t", container_name, str(dockerfile_path)], check=True)
-
+        if run_with_cache : subprocess.run(["docker", "build", "-t", container_name, str(dockerfile_path)], check=True)
+        else : subprocess.run(["docker", "build", "--no-cache", "-t", container_name, str(dockerfile_path)], check=True)
+        
         #esecuzione di run.sh => compilazione + esecuzione test unit 
         if lang.lower() == "java" :           
-            
+            print(f"file name : {file_name}")
             result = subprocess.run([
                 "docker", "run", "--rm",
                 "-v", f"{mount_path}:/app",
@@ -234,9 +240,16 @@ class TestRunner:
         #print("📂 Contenuto post-run:", list(mount_path.iterdir()))
 
         #copia del log file nella directory dell'esercizio
-        log_file = mount_path / "output.log"        
+        log_file = mount_path / "output.log"     
+        
         final_log = LOGS_DIR / f"{container_name}_{exercise_name}_{uuid.uuid4().hex[:8]}.log"
         shutil.copy(log_file, final_log)
+        
+        if LLM_dirName != "":
+            target_log_path = mount_path / LLM_dirName / "output.log"
+            print(f"target_log_path = {target_log_path}")
+            shutil.copy(log_file, target_log_path) 
+        
         
         # Salva anche il file di risorse, se presente
         resource_log = mount_path / "resource_usage.log"
@@ -289,7 +302,7 @@ class TestRunner:
 
         return metrics
 
-    def run_tests_on_entry(self,entry, lang, base_only=False, llm_only = False):
+    def run_tests_on_entry(self,entry, lang, base_only=False, llm_only = False, run_with_docker_cache = True):
         path = DATASET_DIR / Path(entry["testUnitFilePath"]).parent
         container_name = f"test_{lang.lower()}"
         results = {}
@@ -298,7 +311,7 @@ class TestRunner:
 
         print(f"\n➡️ Testing base code: {entry['id']}\n➡️ path : {path}")
         if not llm_only: #esecuzione test suites su base code snippets
-            base_log = self.run_container(lang, path.resolve(), container_name, entry["id"],codeSnippetFileName, entry)
+            base_log = self.run_container(lang, path.resolve(), container_name, entry["id"],codeSnippetFileName, entry,run_with_docker_cache)
             base_metrics = None
             if lang != "typescript" : base_metrics =  self.parse_metrics(base_log)
             else : base_metrics = self.parse_metrics_typescript(base_log)
@@ -317,6 +330,7 @@ class TestRunner:
                 llm_name = llm_file.split("_")[0]
                 print(f"  ↪ Testing LLM ({llm_name}): {llm_file}")
                 llm_type_dir = (DATASET_DIR / llm_path).parent
+                llm_dirName = Path(llm_type_dir).name
                 code_path_dir = llm_type_dir.parent  
                 if lang == "c" or lang == "cpp" or lang == "go":
                     code_path_dir = code_path_dir / "src"
@@ -360,7 +374,7 @@ class TestRunner:
                     code_path_dir = DATASET_DIR / Path(entry["testUnitFilePath"]).parent
                 
                 # run test
-                llm_log = self.run_container(lang, code_path_dir.resolve(), container_name, entry["id"],codeSnippetFileName, entry)
+                llm_log = self.run_container(lang, code_path_dir.resolve(), container_name, entry["id"],codeSnippetFileName, entry, llm_dirName,run_with_docker_cache)
 
                
                 if lang != "typescript" : llm_metrics =  self.parse_metrics(llm_log)
@@ -386,14 +400,15 @@ class TestRunner:
                 llm_metrics["ram_improved"] = llm_metrics["ram_usage_difference"] < 0
                 
 
-                llm_metrics["log"] = str(llm_log)
+                
+                llm_metrics["log"] = str(llm_log).replace("output.log",f"{llm_dirName}/output.log")
                 llm_results.append(llm_metrics)
 
         results["LLM_results"] = llm_results
         return results
 
 
-def main(base_only=False, llm_only=False, max_workers=None):
+def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cache = True):
     """Esegue test suites su code snippet e codigi generati dagli LLMs.
     Attualmente sfrutta il cluster scelto anziché il dataset"""
     
@@ -411,7 +426,8 @@ def main(base_only=False, llm_only=False, max_workers=None):
     test_runner.run_tests_concurrent(
         cluster_data, 
         base_only=base_only, 
-        llm_only=llm_only
+        llm_only=llm_only,
+        run_with_docker_cache = run_with_docker_cache
     )
     
     #Salva JSON aggiornato
@@ -435,12 +451,21 @@ if __name__ == "__main__":
     parser.add_argument("--max-workers", type=int, 
                        help="Numero massimo di worker threads")
     
+    parser.add_argument("--no-docker-cache", action="store_false",
+                       help="Non utilizzare la cache per i containers Docker")
+    
+    
     args = parser.parse_args()
+    
+    if not args.no_docker_cache: run_with_docker_cache = False
+    else: run_with_docker_cache = True
+    
     
     success = main(
         base_only=args.base_only, 
         llm_only=args.llm_only,
-        max_workers=args.max_workers
+        max_workers=args.max_workers,
+        run_with_docker_cache = run_with_docker_cache
     )
     
     if success:
