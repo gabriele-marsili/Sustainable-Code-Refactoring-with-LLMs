@@ -280,13 +280,14 @@ class TestRunner:
             ], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
 
         #print(result.stdout)  
+        container_err_flag = False
         if result.returncode != 0:                                            
             if lang == "javascript":
                 self.convert_commonjs_to_esm(entry['testUnitFilePath'])
                 if not already_called : return self.run_container(lang, mount_path, container_name, exercise_name, file_name, entry, LLM_dirName , run_with_cache, True)
             
-            print(f"❌‼ Errore nel container | result:\n{result}\n")
-            
+            print(f"❌‼ Errore nel container {entry['id']} - {LLM_dirName} | result:\n{result}\n")
+            container_err_flag = True
             
         else: print(f"🟢 Test unit executed for entry {entry['id']}")
 
@@ -312,7 +313,7 @@ class TestRunner:
             final_resource_log = LOGS_DIR / f"{container_name}_{exercise_name}_{uuid.uuid4().hex[:8]}_resource.log"
             shutil.copy(resource_log, final_resource_log)
 
-        return log_file
+        return (log_file, container_err_flag)
 
     def parse_metrics_typescript(self,log_path):
         #print(f"parsing ts metrics of logpath : {log_path}")
@@ -366,11 +367,13 @@ class TestRunner:
 
         print(f"\n➡️ Testing base code: {entry['id']}\n➡️ path : {path}")
         if not llm_only: #esecuzione test suites su base code snippets
-            base_log = self.run_container(lang, path.resolve(), container_name, entry["id"],codeSnippetFileName, entry,run_with_docker_cache)
+            (base_log,container_err_flag) = self.run_container(lang, path.resolve(), container_name, entry["id"],codeSnippetFileName, entry,run_with_docker_cache)
             base_metrics = None
             if lang != "typescript" : base_metrics =  self.parse_metrics(base_log)
             else : base_metrics = self.parse_metrics_typescript(base_log)
+            if container_err_flag : base_metrics['regrationTestPassed'] = False
             results.update(base_metrics)
+            
 
             #salva path log 
             results["base_log"] = str(base_log)
@@ -429,12 +432,12 @@ class TestRunner:
                     code_path_dir = DATASET_DIR / Path(entry["testUnitFilePath"]).parent
                 
                 # run test
-                llm_log = self.run_container(lang, code_path_dir.resolve(), container_name, entry["id"],codeSnippetFileName, entry, llm_dirName,run_with_docker_cache)
-
+                (llm_log,container_err_flag) = self.run_container(lang, code_path_dir.resolve(), container_name, entry["id"],codeSnippetFileName, entry, llm_dirName,run_with_docker_cache)
+                
                
                 if lang != "typescript" : llm_metrics =  self.parse_metrics(llm_log)
                 else : llm_metrics = self.parse_metrics_typescript(llm_log)
-                
+                if container_err_flag : llm_metrics['regrationTestPassed'] = False
 
                 # ripristina codeSnippet originario
                 if backup:

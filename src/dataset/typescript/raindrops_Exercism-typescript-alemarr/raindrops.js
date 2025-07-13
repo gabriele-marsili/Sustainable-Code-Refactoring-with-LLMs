@@ -14,5 +14,4 @@ function convert(input) {
             result += sound;
         }
     }
-    return result || input.toString();
 }
