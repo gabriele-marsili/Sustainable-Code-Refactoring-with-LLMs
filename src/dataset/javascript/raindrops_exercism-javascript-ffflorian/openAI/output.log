@@ -1,35 +1,51 @@
-npm warn exec The following package was not found and will be installed: jest@30.0.4
-npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
-npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
-No tests found, exiting with code 1
-Run with `--passWithNoTests` to exit with code 0
-In /app
-  3 files checked.
-  testMatch: **/*testSuite.js - 0 matches
-  testPathIgnorePatterns: /node_modules/ - 3 matches
-  testRegex:  - 0 matches
-Pattern:  - 0 matches
-Command exited with non-zero status 1
-	Command being timed: "npx jest --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 17.72
-	System time (seconds): 9.06
-	Percent of CPU this job got: 80%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:33.39
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS ./raindrops_testSuite.js (5.333 s)
+  Raindrops
+    ✓ the sound for 1 is 1 (21 ms)
+    ✓ the sound for 3 is Pling (2 ms)
+    ✓ the sound for 5 is Plang (2 ms)
+    ✓ the sound for 7 is Plong (2 ms)
+    ✓ the sound for 6 is Pling as it has a factor 3 (3 ms)
+    ✓ 2 to the power 3 does not make a raindrop sound as 3 is the exponent not the base (2 ms)
+    ✓ the sound for 9 is Pling as it has a factor 3 (3 ms)
+    ✓ the sound for 10 is Plang as it has a factor 5
+    ✓ the sound for 14 is Plong as it has a factor of 7 (3 ms)
+    ✓ the sound for 15 is PlingPlang as it has factors 3 and 5 (3 ms)
+    ✓ the sound for 21 is PlingPlong as it has factors 3 and 7 (3 ms)
+    ✓ the sound for 25 is Plang as it has a factor 5 (3 ms)
+    ✓ the sound for 27 is Pling as it has a factor 3 (4 ms)
+    ✓ the sound for 35 is PlangPlong as it has factors 5 and 7 (4 ms)
+    ✓ the sound for 49 is Plong as it has a factor 7 (2 ms)
+    ✓ the sound for 52 is 52 (5 ms)
+    ✓ the sound for 105 is PlingPlangPlong as it has factors 3, 5 and 7 (3 ms)
+    ✓ the sound for 3125 is Plang as it has a factor 5 (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       18 passed, 18 total
+Snapshots:   0 total
+Time:        6.37 s
+Ran all test suites.
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 2.49
+	System time (seconds): 1.31
+	Percent of CPU this job got: 20%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:18.27
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 236424
+	Maximum resident set size (kbytes): 82332
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 109523
-	Voluntary context switches: 60609
-	Involuntary context switches: 16024
+	Minor (reclaiming a frame) page faults: 14013
+	Voluntary context switches: 6306
+	Involuntary context switches: 4696
 	Swaps: 0
 	File system inputs: 0
-	File system outputs: 202160
+	File system outputs: 16
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

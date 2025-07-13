@@ -9,6 +9,10 @@ from tempFileGestor import TempTestFile
 import concurrent.futures
 from threading import Lock
 import multiprocessing
+import sys
+
+
+
 
 BASE_DIR = Path(__file__).resolve().parent #./src
 DATASET_DIR = BASE_DIR / "dataset"
@@ -176,17 +180,62 @@ class TestRunner:
         
         return metrics
 
-    def run_container(self,lang, mount_path, container_name, exercise_name:str, file_name:str, entry, LLM_dirName = "", run_with_cache=True):
+    def convert_commonjs_to_esm(self,file_path: str):
+        if DATASET_DIR not in file_path : file_path = DATASET_DIR + file_path
+        path = Path(file_path)
+        if not path.exists() or not path.suffix == ".js":
+            print(f"❌ File non valido: {file_path}")
+            sys.exit(1)
+
+        code = path.read_text()
+
+        # Convert require() → import
+        def replace_require(match):
+            var = match.group(1)
+            module = match.group(2)
+            return f"import {var} from '{module}';"
+
+        code = re.sub(r"const (\w+)\s*=\s*require\(['\"](.+?)['\"]\);?", replace_require, code)
+
+        # Convert module.exports or exports.foo → export
+        code = re.sub(r"module\.exports\s*=\s*(\w+);", r"export default \1;", code)
+        code = re.sub(r"exports\.(\w+)\s*=\s*(\w+);", r"export const \1 = \2;", code)
+
+        # Optional: Remove "use strict" (not needed in ESM)
+        code = re.sub(r"'use strict';\n?", "", code)
+
+        # Backup
+        path.with_suffix(".js.bak").write_text(path.read_text())
+        path.write_text(code)
+
+        print(f"✅ Conversione completata: {file_path} (backup creato)")
+
+
+    def run_container(self,lang, mount_path, container_name, exercise_name:str, file_name:str, entry, LLM_dirName = "", run_with_cache=True, already_called = False):
         print(f"mount_path = {mount_path}")
         dockerfile_path = DOCKER_DIR / lang.lower()
         run_sh_path = dockerfile_path / "run.sh"
         
         target_run_sh = mount_path / "run.sh"    
         shutil.copy(run_sh_path, target_run_sh) #copia run.sh da docker directory a directory esercizio
+        print(f"copyed run sh : {run_sh_path}\nin target run sh: {target_run_sh}")
         
         if LLM_dirName != "":
             target_run_sh =  mount_path / LLM_dirName / "run.sh"  
             shutil.copy(run_sh_path, target_run_sh)
+        
+        if lang == "javascript":
+            target_package_json = mount_path / "package.json"              
+            
+            # Copia package.json
+            pkg_json_src = DOCKER_DIR / "javascript" / "package.json"
+            shutil.copy(pkg_json_src, target_package_json)
+            
+            # Copia jest config            
+            target_jest_config = mount_path / "jest.config.js"
+            jest_config_src = DOCKER_DIR / "javascript" / "jest.config.js"
+            shutil.copy(jest_config_src, target_jest_config)
+
         
         if lang == "typescript": 
             # Copia tsconfig.json 
@@ -231,8 +280,14 @@ class TestRunner:
             ], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
 
         #print(result.stdout)  
-        if result.returncode != 0:
+        if result.returncode != 0:                                            
+            if lang == "javascript":
+                self.convert_commonjs_to_esm(entry['testUnitFilePath'])
+                if not already_called : return self.run_container(lang, mount_path, container_name, exercise_name, file_name, entry, LLM_dirName , run_with_cache, True)
+            
             print(f"❌‼ Errore nel container | result:\n{result}\n")
+            
+            
         else: print(f"🟢 Test unit executed for entry {entry['id']}")
 
         # Debug:

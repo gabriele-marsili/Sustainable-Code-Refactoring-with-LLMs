@@ -1,55 +1,44 @@
-npm warn exec The following package was not found and will be installed: jest@30.0.4
-npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
-npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
-PASS ./raindrops_testSuite.js (9.308 s)
-  Raindrops
-    ✓ converts 1 (81 ms)
-    ✓ converts 3 (3 ms)
-    ✓ converts 5 (4 ms)
-    ✓ converts 7 (7 ms)
-    ✓ converts 6 (5 ms)
-    ✓ converts 9 (7 ms)
-    ✓ converts 10 (5 ms)
-    ✓ converts 14 (1 ms)
-    ✓ converts 15 (7 ms)
-    ✓ converts 21 (4 ms)
-    ✓ converts 25 (3 ms)
-    ✓ converts 35 (3 ms)
-    ✓ converts 49 (5 ms)
-    ✓ converts 52 (1 ms)
-    ✓ converts 105 (2 ms)
-    ✓ converts 12121 (10 ms)
+FAIL ./raindrops_testSuite.js
+  ● Test suite failed to run
 
-Test Suites: 1 passed, 1 total
-Tests:       16 passed, 16 total
+    ReferenceError: require is not defined
+
+    > 1 | var Raindrops = require('./raindrops');
+        |                 ^
+      2 |
+      3 | describe('Raindrops', function() {
+      4 |   var drops = new Raindrops();
+
+      at raindrops_testSuite.js:1:17
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
 Snapshots:   0 total
-Time:        10.325 s
+Time:        9.21 s
 Ran all test suites.
-npm notice
-npm notice New major version of npm available! 10.8.2 -> 11.4.2
-npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.4.2
-npm notice To update run: npm install -g npm@11.4.2
-npm notice
-	Command being timed: "npx jest --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 23.04
-	System time (seconds): 11.43
-	Percent of CPU this job got: 38%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:30.25
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Command exited with non-zero status 1
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 2.64
+	System time (seconds): 1.62
+	Percent of CPU this job got: 17%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:25.04
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 232656
+	Maximum resident set size (kbytes): 81056
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 115117
-	Voluntary context switches: 76769
-	Involuntary context switches: 67033
+	Minor (reclaiming a frame) page faults: 13886
+	Voluntary context switches: 6430
+	Involuntary context switches: 4883
 	Swaps: 0
-	File system inputs: 160
-	File system outputs: 236984
+	File system inputs: 0
+	File system outputs: 16
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 0
+	Exit status: 1

@@ -1,17 +1,13 @@
 export function convert(input) {
-  let result = '';
-
-  if (input % 3 === 0) {
-    result += 'Pling';
+  const div3 = input % 3 === 0;
+  const div5 = input % 5 === 0;
+  const div7 = input % 7 === 0;
+  
+  if (!(div3 || div5 || div7)) {
+    return input.toString();
   }
-
-  if (input % 5 === 0) {
-    result += 'Plang';
-  }
-
-  if (input % 7 === 0) {
-    result += 'Plong';
-  }
-
-  return result || input.toString();
+  
+  return (div3 ? 'Pling' : '') + 
+         (div5 ? 'Plang' : '') + 
+         (div7 ? 'Plong' : '');
 }
