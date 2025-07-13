@@ -8,21 +8,17 @@ BASE_DIR = Path("../dataset/c")
 
 DEFAULT_MAKEFILE = """\
 CC = gcc
-CFLAGS = -I./src -Wall
-SRCS := $(wildcard src/*.c test/*.c)
-OBJS := $(SRCS:.c=.o)
-TARGET = test
+CFLAGS = -Isrc -Itest
+SRC = $(wildcard src/*.c)
+TEST = $(filter-out test/unity.c, $(wildcard test/*.c))
+OBJS = $(SRC:.c=.o) $(TEST:.c=.o) test/unity.o
 
-all: $(TARGET)
-
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $^
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c -o $@ $<
+tests.out: $(OBJS)
+	$(CC) $(OBJS) -o tests.out
+	chmod +x tests.out
 
 clean:
-	rm -f $(OBJS) $(TARGET)
+	rm -f src/*.o test/*.o tests.out
 """
 
 

@@ -1,10 +1,12 @@
 CC = gcc
-CFLAGS = -I./src -Wall
-SRC = src/*.c test/*.c 
-OBJ = $(SRC:.c=.o)
+CFLAGS = -Isrc -Itest
+SRC = $(wildcard src/*.c)
+TEST = $(filter-out test/unity.c, $(wildcard test/*.c))
+OBJS = $(SRC:.c=.o) $(TEST:.c=.o) test/unity.o
 
-tests.out: $(OBJ)
-	$(CC) $(OBJ) -o tests.out
+tests.out: $(OBJS)
+	$(CC) $(OBJS) -o tests.out
+	chmod +x tests.out
 
 clean:
-	rm -f $(OBJ) tests.out
+	rm -f src/*.o test/*.o tests.out
