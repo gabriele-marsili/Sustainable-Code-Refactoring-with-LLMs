@@ -1,15 +1,12 @@
 #include "raindrops.h"
 #include <string>
-#include <map>
 
-string raindrops::convert(int number) {
-	string raindrops = "";
-	const std::map<int, string> data = { { 3, "Pling" }, { 5, "Plang" }, { 7, "Plong" } };
+std::string raindrops::convert(int number) {
+    std::string result;
 
-	for (const auto& kv: data) {
-		if (number % kv.first == 0)
-			raindrops += kv.second;
-	}
+    if (number % 3 == 0) result += "Pling";
+    if (number % 5 == 0) result += "Plang";
+    if (number % 7 == 0) result += "Plong";
 
-	return raindrops == "" ? std::to_string(number) : raindrops;
+    return result.empty() ? std::to_string(number) : result;
 }

@@ -2,30 +2,14 @@
 #include "raindrops.h"
 
 namespace raindrops {
-    // let's pretend we only need to handle int and negative values are ok
     std::string convert(int num) {
-        std::string result = "";
-        bool has_factor = false;
-
-        if (num % 3 == 0) {
-            result += "Pling";
-            has_factor = true;
-        }
+        std::string result;
+        result.reserve(15); // "PlingPlangPlong" = 15 chars
         
-        if (num % 5 == 0) {
-            result += "Plang";
-            has_factor = true;
-        }
-
-        if (num % 7 == 0) {
-            result += "Plong";
-            has_factor = true;
-        }
-
-        if (!has_factor) {
-            result = std::to_string(num);
-        }
-
-        return result;
+        if (num % 3 == 0) result += "Pling";
+        if (num % 5 == 0) result += "Plang";
+        if (num % 7 == 0) result += "Plong";
+        
+        return result.empty() ? std::to_string(num) : result;
     }
 }  // namespace raindrops

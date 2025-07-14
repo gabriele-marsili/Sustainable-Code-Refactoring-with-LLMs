@@ -403,7 +403,7 @@ if __name__ == "__main__":
     
     args = parser.parse_args()
     
-    stats_handler = StatsHandler(CLUSTER_JSON)
+    stats_handler = StatsHandler(CLUSTER_JSON) #stats with cluster instead of dataset
     if args.add_sources : main()
     if args.adjust_metadata : adjustMetadata(stats_handler)
     if args.adjust_licenses : adjust_licenses()
