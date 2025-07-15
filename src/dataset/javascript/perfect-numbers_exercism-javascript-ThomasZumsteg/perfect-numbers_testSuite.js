@@ -1,4 +1,4 @@
-var PerfectNumbers = require('./perfect-numbers');
+import PerfectNumbers from './perfect-numbers';
 
 describe('Exercise - Perfect Numbers', function () {
   var perfectNumbers;

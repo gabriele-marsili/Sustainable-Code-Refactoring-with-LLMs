@@ -8,4 +8,4 @@ class Isogram {
     }
 }
 
-module.exports = Isogram;
+export default Isogram;;

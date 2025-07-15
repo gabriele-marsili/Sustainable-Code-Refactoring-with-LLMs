@@ -1,4 +1,4 @@
-from problems.medium.encode_and_decode_strings import Codec
+from encode_and_decode_strings import Codec
 
 codec = Codec()
 

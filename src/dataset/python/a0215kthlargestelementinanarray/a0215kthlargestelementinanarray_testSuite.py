@@ -1,4 +1,4 @@
-from solutions.a0215kthlargestelementinanarray import Solution
+from a0215kthlargestelementinanarray import Solution
 
 solution = Solution()
 

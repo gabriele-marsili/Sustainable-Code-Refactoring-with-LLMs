@@ -1,4 +1,4 @@
-from solutions.a0089graycode import Solution
+from a0089graycode import Solution
 import math
 
 solution = Solution()

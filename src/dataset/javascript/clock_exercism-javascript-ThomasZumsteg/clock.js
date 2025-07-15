@@ -36,4 +36,4 @@ Clock.prototype.toString = function() {
 	return hours + ":" + minutes;
 };
 
-module.exports = Clock;
+export default Clock;;

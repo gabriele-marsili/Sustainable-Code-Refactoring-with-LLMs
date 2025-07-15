@@ -1,4 +1,4 @@
-from solutions.a0092reverselinkedlistii import Solution
+from a0092reverselinkedlistii import Solution
 from utils.list.ListNode import ListNode
 
 solution = Solution()

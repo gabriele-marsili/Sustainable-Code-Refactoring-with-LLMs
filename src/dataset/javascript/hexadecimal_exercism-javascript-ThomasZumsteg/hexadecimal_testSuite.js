@@ -1,4 +1,4 @@
-var Hexadecimal = require('./hexadecimal');
+import Hexadecimal from './hexadecimal';
 
 describe('Hexadecimal', function() {
 

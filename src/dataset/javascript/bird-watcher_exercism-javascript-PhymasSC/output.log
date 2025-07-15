@@ -1,0 +1,47 @@
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS ./bird-watcher_testSuite.js (33.146 s)
+  bird watcher
+    totalBirdCount
+      ✓ calculates the correct total number of birds (258 ms)
+      ✓ works for a short bird count list (3 ms)
+      ✓ works for a long bird count list (2 ms)
+    birdsInWeek
+      ✓ calculates the number of birds in the first week (3 ms)
+      ✓ calculates the number of birds for a week in the middle of the log (5 ms)
+      ✓ works when there is only one week (22 ms)
+      ✓ works for a long bird count list (8 ms)
+    fixBirdCountLog
+      ✓ returns a bird count list with the corrected values (25 ms)
+      ✓ does not create a new array (9 ms)
+      ✓ works for a short bird count list (10 ms)
+      ✓ works for a long bird count list (5 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       11 passed, 11 total
+Snapshots:   0 total
+Time:        40.649 s
+Ran all test suites.
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 3.87
+	System time (seconds): 5.37
+	Percent of CPU this job got: 7%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:58.59
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 68192
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 17120
+	Voluntary context switches: 7158
+	Involuntary context switches: 4785
+	Swaps: 0
+	File system inputs: 8
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

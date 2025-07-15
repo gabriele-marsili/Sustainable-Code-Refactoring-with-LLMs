@@ -3,7 +3,6 @@
 // convenience to get you started writing code faster.
 //
 
-import { Number } from "core-js"
 
 export class Matrix {
   matrix_ = []

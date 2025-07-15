@@ -14,4 +14,4 @@ Words.prototype.count = function( wordString ) {
 	return wordCount;
 };
 
-module.exports = Words;
+export default Words;;

@@ -1,4 +1,4 @@
-from solutions.a0091decodeways import Solution
+from a0091decodeways import Solution
 
 solution = Solution()
 

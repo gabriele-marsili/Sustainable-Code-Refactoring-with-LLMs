@@ -1,4 +1,4 @@
-from solutions.a0209minimumsizesubarraysum import Solution
+from a0209minimumsizesubarraysum import Solution
 
 solution = Solution()
 

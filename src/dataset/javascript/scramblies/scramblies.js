@@ -30,4 +30,4 @@ const uniqCharacters = ( str ) => [...new Set(str.split(''))]
 // return the count of a given character in a string
 const countCharacters = ( str, char ) => str.split(char).length
 
-module.exports = scramble
+export default scramble;

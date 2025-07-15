@@ -21,7 +21,7 @@ function is_rectangle(diagram, top_left, bottom_right) {
     return true;
 }
 
-module.exports = function(diagram) {
+export default function(diagram) {;
     var count = 0;
     for(var r = 0; r < diagram.length; r++) {
         for(var c = 0; c < diagram[r].length; c++) {

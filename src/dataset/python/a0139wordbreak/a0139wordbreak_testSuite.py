@@ -1,4 +1,4 @@
-from solutions.a0139wordbreak import Solution
+from a0139wordbreak import Solution
 
 solution = Solution()
 

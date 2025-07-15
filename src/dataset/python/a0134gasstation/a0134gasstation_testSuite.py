@@ -1,4 +1,4 @@
-from solutions.a0134gasstation import Solution
+from a0134gasstation import Solution
 
 solution = Solution()
 

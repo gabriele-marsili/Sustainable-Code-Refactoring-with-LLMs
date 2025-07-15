@@ -1,6 +1,6 @@
-const domainName = require('../domainName')
+import domainName from '../domainName';
 
-const { assert } = require("chai");
+import { assert  } from 'chai';
 
 describe("Sample test", () => {
   it("Should pass sample tests", () => {

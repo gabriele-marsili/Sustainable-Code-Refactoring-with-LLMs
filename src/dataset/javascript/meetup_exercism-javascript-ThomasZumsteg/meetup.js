@@ -53,4 +53,4 @@ Date.prototype.addDays = function(days) {
     return dat;
 };
 
-module.exports = Meetup;
+export default Meetup;;

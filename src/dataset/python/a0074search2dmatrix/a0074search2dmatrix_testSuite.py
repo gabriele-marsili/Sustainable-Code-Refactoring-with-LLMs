@@ -1,4 +1,4 @@
-from solutions.a0074search2dmatrix import Solution
+from a0074search2dmatrix import Solution
 
 solution = Solution()
 

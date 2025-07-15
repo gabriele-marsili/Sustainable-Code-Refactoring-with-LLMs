@@ -20,4 +20,4 @@ function score(word) {
 		}, 0);
 };
 
-module.exports = score;
+export default score;;

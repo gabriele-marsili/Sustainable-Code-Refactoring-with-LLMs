@@ -4,4 +4,4 @@ class TwoFer {
   }
 }
 
-module.exports = TwoFer;
+export default TwoFer;;

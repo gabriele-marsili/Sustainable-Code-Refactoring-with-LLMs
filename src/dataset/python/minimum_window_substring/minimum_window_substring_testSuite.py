@@ -1,4 +1,4 @@
-from problems.hard.minimum_window_substring import Solution
+from minimum_window_substring import Solution
 
 solution = Solution()
 

@@ -20,4 +20,4 @@ class Binary {
   }
 }
 
-module.exports = Binary;
+export default Binary;;

@@ -56,4 +56,4 @@ Anagram.prototype.isAnagram = function(base, match) {
   return true;
 }
 
-module.exports = Anagram;
+export default Anagram;;

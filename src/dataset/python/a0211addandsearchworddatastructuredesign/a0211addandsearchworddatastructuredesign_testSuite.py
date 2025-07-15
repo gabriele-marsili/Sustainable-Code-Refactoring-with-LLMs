@@ -1,4 +1,4 @@
-from solutions.a0211addandsearchworddatastructuredesign import WordDictionary
+from a0211addandsearchworddatastructuredesign import WordDictionary
 
 
 def test_wordDictionary1():

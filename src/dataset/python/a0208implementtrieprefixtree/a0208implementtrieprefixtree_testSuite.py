@@ -1,4 +1,4 @@
-from solutions.a0208implementtrieprefixtree import Trie
+from a0208implementtrieprefixtree import Trie
 
 
 def test_trie1():

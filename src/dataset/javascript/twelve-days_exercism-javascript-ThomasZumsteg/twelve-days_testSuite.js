@@ -1,4 +1,4 @@
-var TwelveDays = require('./twelve-days');
+import TwelveDays from './twelve-days';
 
 
 describe('TwelveDays', function () {

@@ -1,4 +1,4 @@
-from problems.easy.ransom_note import Solution
+from ransom_note import Solution
 
 
 def test_ransom_note():

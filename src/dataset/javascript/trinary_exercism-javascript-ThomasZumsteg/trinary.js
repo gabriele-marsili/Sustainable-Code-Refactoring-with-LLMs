@@ -16,4 +16,4 @@ Trinary.prototype.toDecimal = function() {
 	return decimal || 0;
 };
 
-module.exports = Trinary;
+export default Trinary;;

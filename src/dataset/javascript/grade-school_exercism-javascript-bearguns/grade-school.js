@@ -26,4 +26,4 @@ class School {
   }
 }
 
-module.exports = School;
+export default School;;

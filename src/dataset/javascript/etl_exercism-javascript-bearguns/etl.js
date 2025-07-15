@@ -14,4 +14,4 @@ class ETL {
   }
 }
 
-module.exports = ETL;
+export default ETL;;

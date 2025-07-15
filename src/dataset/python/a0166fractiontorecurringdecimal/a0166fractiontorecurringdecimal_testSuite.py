@@ -1,4 +1,4 @@
-from solutions.a0166fractiontorecurringdecimal import Solution
+from a0166fractiontorecurringdecimal import Solution
 
 solution = Solution()
 

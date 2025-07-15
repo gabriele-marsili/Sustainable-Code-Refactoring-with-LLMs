@@ -27,4 +27,4 @@ function saddlePoints(matrix) {
 	return saddlePoints;
 };
 
-module.exports = Matrix;
+export default Matrix;;

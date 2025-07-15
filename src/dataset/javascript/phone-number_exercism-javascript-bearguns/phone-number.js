@@ -47,4 +47,4 @@ PhoneNumber.prototype.validate = function(phone) {
   return phone;
 }
 
-module.exports = PhoneNumber;
+export default PhoneNumber;;

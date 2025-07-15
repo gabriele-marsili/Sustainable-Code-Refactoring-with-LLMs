@@ -1,4 +1,4 @@
-var rectangles = require('./rectangles');
+import rectangles from './rectangles';
 
 describe('Rectangles', function () {
   it('no rows', function () {

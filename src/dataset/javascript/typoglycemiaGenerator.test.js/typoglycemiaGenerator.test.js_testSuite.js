@@ -1,6 +1,6 @@
-const ScrambleWords = require('../typoglycemiaGenerator')
+import ScrambleWords from '../typoglycemiaGenerator';
 
-const { assert } = require("chai");
+import { assert  } from 'chai';
 
 // describe("Basic tests", function(){
 //       it("Should pass sample tests", () => {

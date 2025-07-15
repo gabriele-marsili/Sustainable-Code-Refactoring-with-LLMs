@@ -1,4 +1,4 @@
-var Minesweeper = require('./minesweeper');
+import Minesweeper from './minesweeper';
 
 describe('Minesweeper()', function () {
   it('handles no rows', function () {

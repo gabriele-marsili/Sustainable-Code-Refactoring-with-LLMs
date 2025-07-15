@@ -40,4 +40,4 @@ class Cipher {
   }
 }
 
-module.exports = Cipher;
+export default Cipher;;

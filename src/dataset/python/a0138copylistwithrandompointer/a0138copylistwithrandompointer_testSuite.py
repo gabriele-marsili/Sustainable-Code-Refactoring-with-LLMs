@@ -1,4 +1,4 @@
-from solutions.a0138copylistwithrandompointer import Solution, Node
+from a0138copylistwithrandompointer import Solution, Node
 
 solution = Solution()
 

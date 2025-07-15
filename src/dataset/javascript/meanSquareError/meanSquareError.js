@@ -27,4 +27,4 @@ var solution = function(firstArray, secondArray) {
   return avg
 }
 
-module.exports = solution
+export default solution;

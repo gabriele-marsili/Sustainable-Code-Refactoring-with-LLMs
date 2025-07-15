@@ -1,4 +1,4 @@
-from problems.easy.two_sum import Solution
+from two_sum import Solution
 
 solution = Solution()
 

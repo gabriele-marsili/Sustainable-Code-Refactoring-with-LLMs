@@ -1,4 +1,4 @@
-module.exports = function(chars) {
+export default function(chars) {;
     var srahc = '';
     for(var i = chars.length-1; 0 <= i; i--) {
         srahc += chars[i];

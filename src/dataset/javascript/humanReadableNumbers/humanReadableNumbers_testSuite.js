@@ -1,6 +1,5 @@
-const humanReadable = require('../humanReadableNumbers')
-
-const strictEqual = require("chai").assert.strictEqual;
+import humanReadable from '../humanReadableNumbers';
+import { strictEqual } from "chai";
 
 describe('tests', function() {
   it('should format correctly', function() {

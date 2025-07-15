@@ -40,4 +40,4 @@ var lines = {
 			 ],
 };
 
-module.exports = FoodChain; 
+export default FoodChain; ;

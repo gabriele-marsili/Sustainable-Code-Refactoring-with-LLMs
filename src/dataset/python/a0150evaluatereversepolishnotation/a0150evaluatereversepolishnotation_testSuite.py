@@ -1,4 +1,4 @@
-from solutions.a0150evaluatereversepolishnotation import Solution
+from a0150evaluatereversepolishnotation import Solution
 
 solution = Solution()
 

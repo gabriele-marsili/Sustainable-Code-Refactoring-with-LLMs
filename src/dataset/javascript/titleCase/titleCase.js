@@ -52,4 +52,4 @@ function titleCase(title, minorWords) {
   return words.join(' ')
 }
 
-module.exports = titleCase
+export default titleCase;

@@ -1,4 +1,4 @@
-from problems.easy.merge_sorted_array import Solution
+from merge_sorted_array import Solution
 
 
 def test_merge_sorted_array():

@@ -1,4 +1,4 @@
-from solutions.a0098validatebinarysearchtree import Solution
+from a0098validatebinarysearchtree import Solution
 from utils.tree.TreeNode import TreeNode
 
 solution = Solution()

@@ -83,4 +83,4 @@ function ScrambleWords(str) {
   return scrambledWords.join(' ')
 };
 
-module.exports = ScrambleWords
+export default ScrambleWords;

@@ -1,4 +1,4 @@
-from solutions.a0144binarytreepreordertraversal import Solution
+from a0144binarytreepreordertraversal import Solution
 from utils.tree.TreeNode import TreeNode
 
 solution = Solution()

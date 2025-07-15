@@ -28,4 +28,4 @@ class PerfectNumbers {
     }
 }
 
-module.exports = PerfectNumbers;
+export default PerfectNumbers;;

@@ -1,4 +1,4 @@
-var Proverb = require('./proverb');
+import Proverb from './proverb';
 
 describe('Proverb Test Suite', function () {
   it('tests a single consequence', function () {

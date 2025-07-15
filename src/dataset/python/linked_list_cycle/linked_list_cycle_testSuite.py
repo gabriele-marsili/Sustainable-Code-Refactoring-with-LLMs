@@ -1,4 +1,4 @@
-from problems.easy.linked_list_cycle import Solution, ListNode
+from linked_list_cycle import Solution, ListNode
 
 
 def test_linked_list_cycle():

@@ -1,4 +1,4 @@
-from solutions.a0199binarytreerightsideview import Solution
+from a0199binarytreerightsideview import Solution
 from utils.tree.TreeNode import TreeNode
 
 solution = Solution()

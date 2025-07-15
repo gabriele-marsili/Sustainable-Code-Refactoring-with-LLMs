@@ -1,4 +1,4 @@
-from problems.medium.min_stack import MinStack
+from min_stack import MinStack
 
 
 def test_sample():

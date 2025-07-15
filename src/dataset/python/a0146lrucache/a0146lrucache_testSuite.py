@@ -1,4 +1,4 @@
-from solutions.a0146lrucache import LRUCache
+from a0146lrucache import LRUCache
 
 
 def test_lrucache1():

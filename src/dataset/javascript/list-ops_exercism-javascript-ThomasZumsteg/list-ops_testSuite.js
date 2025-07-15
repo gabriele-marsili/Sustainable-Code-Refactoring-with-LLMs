@@ -1,4 +1,4 @@
-var List = require('./list-ops');
+import List from './list-ops';
 
 describe('List', function () {
   // predicates to filter by & functions to map

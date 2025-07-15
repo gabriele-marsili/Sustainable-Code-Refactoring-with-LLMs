@@ -7,7 +7,7 @@ function to(num) {
 	}.bind(this.factors), 0)
 };
 
-module.exports = function(factors) { 
+export default function(factors) { ;
 	return { factors: factors || [3,5],
 			 to: to };
 };

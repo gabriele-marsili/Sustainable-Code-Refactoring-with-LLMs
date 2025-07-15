@@ -1,4 +1,4 @@
-from solutions.a0054spiralmatrix import Solution
+from a0054spiralmatrix import Solution
 
 solution = Solution()
 

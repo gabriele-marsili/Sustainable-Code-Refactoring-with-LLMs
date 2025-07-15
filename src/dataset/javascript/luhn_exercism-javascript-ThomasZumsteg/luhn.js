@@ -42,4 +42,4 @@ Luhn.prototype._checksum = function() {
 	}, 0);
 }
 
-module.exports = Luhn;
+export default Luhn;;

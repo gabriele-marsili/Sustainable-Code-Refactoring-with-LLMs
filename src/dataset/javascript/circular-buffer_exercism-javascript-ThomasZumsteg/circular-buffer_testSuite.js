@@ -1,6 +1,6 @@
-var circularBuffer = require('./circular-buffer').circularBuffer;
-var bufferEmptyException = require('./circular-buffer').bufferEmptyException;
-var bufferFullException = require('./circular-buffer').bufferFullException;
+import { circularBuffer as circularBuffer } from './circular-buffer';
+import { bufferEmptyException as bufferEmptyException } from './circular-buffer';
+import { bufferFullException as bufferFullException } from './circular-buffer';
 
 describe('CircularBuffer', function() {
 

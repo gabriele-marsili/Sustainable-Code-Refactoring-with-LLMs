@@ -1,4 +1,4 @@
-from solutions.a0148sortlist import Solution
+from a0148sortlist import Solution
 from utils.list.ListNode import ListNode
 
 solution = Solution()

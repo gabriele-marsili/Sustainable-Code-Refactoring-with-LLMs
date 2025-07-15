@@ -1,4 +1,4 @@
-from solutions.a0116populatingnextrightpointersineachnode import Solution
+from a0116populatingnextrightpointersineachnode import Solution
 
 solution = Solution()
 

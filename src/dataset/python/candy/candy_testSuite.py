@@ -1,4 +1,4 @@
-from problems.hard.candy import Solution
+from candy import Solution
 
 
 def test_candy():

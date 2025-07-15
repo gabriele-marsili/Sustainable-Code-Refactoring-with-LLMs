@@ -25,4 +25,4 @@ function getName() {
 	return name;
 }
 
-module.exports = Robot;
+export default Robot;;

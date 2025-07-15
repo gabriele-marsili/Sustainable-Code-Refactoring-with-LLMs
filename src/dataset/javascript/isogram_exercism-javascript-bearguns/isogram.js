@@ -14,4 +14,4 @@ var Isogram = function(string) {
   }
 };
 
-module.exports = Isogram;
+export default Isogram;;

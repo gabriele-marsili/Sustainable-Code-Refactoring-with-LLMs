@@ -1,4 +1,4 @@
-from solutions.a0056mergeintervals import Solution
+from a0056mergeintervals import Solution
 
 solution = Solution()
 

@@ -19,4 +19,4 @@ var Pangram = function (input) {
   }
 }
 
-module.exports = Pangram;
+export default Pangram;;

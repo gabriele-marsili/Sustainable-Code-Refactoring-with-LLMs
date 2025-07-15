@@ -1,4 +1,4 @@
-from solutions.a0216combinationsumiii import Solution
+from a0216combinationSumiii import Solution
 
 solution = Solution()
 

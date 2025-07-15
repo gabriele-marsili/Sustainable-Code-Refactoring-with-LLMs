@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const bob_1 = require("./bob");
+import bob_1 from './bob';
 describe('Bob', () => {
     it('stating something', () => {
         const result = (0, bob_1.hey)('Tom-ay-to, tom-aaaah-to.');

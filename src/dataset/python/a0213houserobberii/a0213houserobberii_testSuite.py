@@ -1,4 +1,4 @@
-from solutions.a0213houserobberii import Solution
+from a0213houserobberii import Solution
 
 solution = Solution()
 

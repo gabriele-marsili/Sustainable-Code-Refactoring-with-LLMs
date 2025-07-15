@@ -24,4 +24,4 @@ function hex_digit_value(digit) {
 		return NaN
 }
 
-module.exports = Hexadecimal;
+export default Hexadecimal;;

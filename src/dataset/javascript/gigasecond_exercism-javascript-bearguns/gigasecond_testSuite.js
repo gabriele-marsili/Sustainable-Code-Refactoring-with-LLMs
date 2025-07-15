@@ -1,4 +1,4 @@
-var Gigasecond = require('./gigasecond');
+import Gigasecond from './gigasecond';
 
 describe('Gigasecond', function() {
 

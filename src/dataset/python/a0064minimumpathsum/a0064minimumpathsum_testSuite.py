@@ -1,4 +1,4 @@
-from solutions.a0064minimumpathsum import Solution
+from a0064minimumpathsum import Solution
 import json
 
 solution = Solution()

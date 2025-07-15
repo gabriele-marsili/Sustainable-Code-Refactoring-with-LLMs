@@ -1,4 +1,4 @@
-from problems.easy.maximum_depth_of_binary_tree import Solution, TreeNode
+from maximum_depth_of_binary_tree import Solution, TreeNode
 
 
 def test_maximum_depth_of_binary_tree():

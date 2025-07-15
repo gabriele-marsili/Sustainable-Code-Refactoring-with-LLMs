@@ -1,4 +1,4 @@
-var strain = require('./strain');
+import strain from './strain';
 
 describe('strain', function() {
 

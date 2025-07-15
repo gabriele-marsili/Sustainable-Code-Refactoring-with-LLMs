@@ -1,4 +1,4 @@
-from solutions.a0129sumroottoleafnumbers import Solution
+from a0129sumroottoleafnumbers import Solution
 from utils.tree.TreeNode import TreeNode
 
 solution = Solution()

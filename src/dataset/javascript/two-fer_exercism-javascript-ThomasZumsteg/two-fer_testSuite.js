@@ -1,5 +1,5 @@
 
-var TwoFer = require('./two-fer');
+import TwoFer from './two-fer';
 
 describe('Two Fer', function () {
   var twoFer = new TwoFer();

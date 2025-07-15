@@ -1,4 +1,4 @@
-var score = require('./scrabble-score');
+import score from './scrabble-score';
 
 describe('Scrabble', function() {
   it('scores an empty word as zero',function() {

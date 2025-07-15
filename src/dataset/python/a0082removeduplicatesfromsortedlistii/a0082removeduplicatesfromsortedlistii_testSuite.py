@@ -1,4 +1,4 @@
-from solutions.a0082removeduplicatesfromsortedlistii import Solution
+from a0082removeduplicatesfromsortedlistii import Solution
 from utils.list.ListNode import ListNode
 
 solution = Solution()

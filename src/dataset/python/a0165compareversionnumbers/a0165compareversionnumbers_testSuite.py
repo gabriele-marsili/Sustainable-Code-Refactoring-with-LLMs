@@ -1,4 +1,4 @@
-from solutions.a0165compareversionnumbers import Solution
+from a0165compareversionnumbers import Solution
 
 solution = Solution()
 

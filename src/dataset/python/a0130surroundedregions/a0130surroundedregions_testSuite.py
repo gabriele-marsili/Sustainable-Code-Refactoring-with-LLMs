@@ -1,4 +1,4 @@
-from solutions.a0130surroundedregions import Solution
+from a0130surroundedregions import Solution
 
 solution = Solution()
 

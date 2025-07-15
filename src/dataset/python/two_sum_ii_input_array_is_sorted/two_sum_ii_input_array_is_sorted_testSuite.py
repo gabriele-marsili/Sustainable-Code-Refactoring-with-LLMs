@@ -1,4 +1,4 @@
-from problems.medium.two_sum_ii_input_array_is_sorted import Solution
+from two_sum_ii_input_array_is_sorted import Solution
 
 solution = Solution()
 

@@ -10,4 +10,4 @@ function pigize(word) {
 	return matches ? matches[2] + matches[1] + "ay" : word;
 };
 
-module.exports = { translate: translate }
+export default { translate: translate };

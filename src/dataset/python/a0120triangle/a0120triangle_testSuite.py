@@ -1,4 +1,4 @@
-from solutions.a0120triangle import Solution
+from a0120triangle import Solution
 
 solution = Solution()
 

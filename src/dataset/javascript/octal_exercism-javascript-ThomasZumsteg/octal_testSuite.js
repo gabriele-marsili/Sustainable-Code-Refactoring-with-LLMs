@@ -1,4 +1,4 @@
-var Octal = require('./octal');
+import Octal from './octal';
 
 describe('octal', function() {
 

@@ -1,4 +1,4 @@
-var Flattener = require('./flatten-array.js');
+import Flattener from './flatten-array.js';
 
 describe('FlattenArray', function () {
   var flattener = new Flattener();

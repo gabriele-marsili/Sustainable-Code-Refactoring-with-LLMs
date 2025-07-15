@@ -1,4 +1,4 @@
-from solutions.a0152maximumproductsubarray import Solution
+from a0152maximumproductsubarray import Solution
 
 solution = Solution()
 

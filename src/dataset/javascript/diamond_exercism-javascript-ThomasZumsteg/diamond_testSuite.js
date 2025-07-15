@@ -1,4 +1,4 @@
-var Diamond = require('./diamond');
+import Diamond from './diamond';
 
 describe('Diamond', function () {
   var diamond = new Diamond();

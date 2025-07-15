@@ -1,4 +1,4 @@
-var BeerSong = require('./beer-song');
+import BeerSong from './beer-song';
 
 describe('BeerSong', function() {
   var song = new BeerSong();

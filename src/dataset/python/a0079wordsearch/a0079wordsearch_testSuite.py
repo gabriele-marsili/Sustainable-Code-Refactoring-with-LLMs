@@ -1,4 +1,4 @@
-from solutions.a0079wordsearch import Solution
+from a0079wordsearch import Solution
 
 solution = Solution()
 

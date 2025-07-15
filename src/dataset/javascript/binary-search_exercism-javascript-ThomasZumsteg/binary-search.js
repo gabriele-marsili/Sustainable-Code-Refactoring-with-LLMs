@@ -31,4 +31,4 @@ BinarySearch.prototype = {
   },
 };
 
-module.exports = BinarySearch;
+export default BinarySearch;;

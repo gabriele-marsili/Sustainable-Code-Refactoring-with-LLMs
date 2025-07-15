@@ -43,4 +43,4 @@ function is_palindrome(str) {
 	return true;
 }
 
-module.exports = Palindromes;
+export default Palindromes;;

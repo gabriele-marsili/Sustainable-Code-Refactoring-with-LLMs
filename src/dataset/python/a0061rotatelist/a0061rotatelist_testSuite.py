@@ -1,4 +1,4 @@
-from solutions.a0061rotatelist import Solution
+from a0061rotatelist import Solution
 from utils.list.ListNode import ListNode
 
 solution = Solution()

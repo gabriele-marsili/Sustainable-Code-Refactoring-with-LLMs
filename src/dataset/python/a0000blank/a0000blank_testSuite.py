@@ -1,4 +1,4 @@
-from solutions.a0000blank import Solution
+from a0000blank import Solution
 
 solution = Solution()
 

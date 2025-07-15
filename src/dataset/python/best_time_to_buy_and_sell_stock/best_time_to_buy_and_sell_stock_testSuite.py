@@ -1,4 +1,4 @@
-from problems.easy.best_time_to_buy_and_sell_stock import Solution
+from best_time_to_buy_and_sell_stock import Solution
 
 solution = Solution()
 

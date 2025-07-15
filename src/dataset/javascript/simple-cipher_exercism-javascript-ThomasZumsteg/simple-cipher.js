@@ -33,4 +33,4 @@ Cipher.prototype.decode = function(cipherText) {
 		.join('');
 };
 
-module.exports = Cipher;
+export default Cipher;;

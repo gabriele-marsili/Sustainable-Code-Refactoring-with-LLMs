@@ -1,4 +1,4 @@
-from solutions.a0093restoreipaddresses import Solution
+from a0093restoreIpAddresses import Solution
 
 solution = Solution()
 

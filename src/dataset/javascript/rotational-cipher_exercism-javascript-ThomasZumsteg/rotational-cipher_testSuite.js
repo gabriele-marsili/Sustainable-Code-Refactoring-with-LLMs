@@ -1,4 +1,4 @@
-var RotationalCipher = require('./rotational-cipher');
+import RotationalCipher from './rotational-cipher';
 
 describe('RotationalCipher', function () {
   var rotationalCipher = new RotationalCipher();

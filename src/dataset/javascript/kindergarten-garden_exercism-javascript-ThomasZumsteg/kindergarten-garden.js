@@ -13,7 +13,7 @@ var Garden = function(garden, students) {
 
 function MakeRow(row) {
 	/* Converts a row of plant letters to an array of plants */
-	plant_map = {'C': 'clover', 'G': 'grass', 'R': 'radishes', 'V': 'violets'};
+	const plant_map = {'C': 'clover', 'G': 'grass', 'R': 'radishes', 'V': 'violets'};
 	return row.split('').map( function(plant) { return plant_map[plant] });
 }
 
@@ -24,4 +24,4 @@ function StudentsGarden(garden, position) {
 	}, []);
 }
 
-module.exports = Garden;
+export default Garden;;

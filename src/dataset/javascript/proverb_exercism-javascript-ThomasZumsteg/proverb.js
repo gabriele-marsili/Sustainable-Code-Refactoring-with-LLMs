@@ -18,4 +18,4 @@ class Proverb {
     }
 }
 
-module.exports = Proverb;
+export default Proverb;;

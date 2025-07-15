@@ -1,5 +1,4 @@
-'use strict';
-var Palindromes = require('./palindrome-products');
+import Palindromes from './palindrome-products';
 
 describe('Palindrome', function() {
 
@@ -9,7 +8,7 @@ describe('Palindrome', function() {
 
     var largest = palindromes.largest();
     expect(largest.value).toEqual(9);
-    expect([[[3, 3], [1, 9]], [[1, 9], [3, 3]]]).toContain(largest.factors);
+    expect([[[3, 3], [1, 9]], [[1, 9], [3, 3]]]).toContainEqual(largest.factors);
   });
 
   it('largets palindrome from double digit factors', function() {

@@ -54,4 +54,4 @@ class SpaceAge {
   }
 }
 
-module.exports = SpaceAge;
+export default SpaceAge;;

@@ -1,4 +1,4 @@
-var Words = require('./word-count');
+import Words from './word-count';
 
 describe('count()', function() {
   var words = new Words();

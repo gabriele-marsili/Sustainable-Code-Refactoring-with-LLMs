@@ -1,4 +1,4 @@
-from solutions.a0095uniquebinarysearchtreesii import Solution
+from a0095uniquebinarysearchtreesii import Solution
 from utils.tree.TreeNode import TreeNode
 
 import json

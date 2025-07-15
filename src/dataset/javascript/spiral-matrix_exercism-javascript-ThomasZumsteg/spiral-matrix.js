@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   ofSize(limit) {
     const bound = {
       row: { upper: limit - 1, lower: 1 },

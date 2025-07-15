@@ -14,4 +14,4 @@ ETL.prototype.transform = function(oldSturct) {
 	return newStruct;
 }
 
-module.exports = ETL
+export default ETL;

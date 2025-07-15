@@ -9,4 +9,4 @@ Pangram.prototype.isPangram = function() {
     return this.alphabet.every((letter) => letters.includes(letter));
 }
 
-module.exports = Pangram
+export default Pangram;

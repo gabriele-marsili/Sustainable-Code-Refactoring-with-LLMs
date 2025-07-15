@@ -79,4 +79,4 @@ CustomSet.prototype.union = function(set_b) {
 	return new CustomSet([].concat(this.toList(), set_b.toList()));
 };
 
-module.exports = CustomSet;
+export default CustomSet;;

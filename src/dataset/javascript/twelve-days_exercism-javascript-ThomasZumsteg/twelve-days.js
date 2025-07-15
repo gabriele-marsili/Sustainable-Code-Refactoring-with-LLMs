@@ -33,4 +33,4 @@ class TwelveDays {
     sing() { return this.verse([1, 12]); }
 }
 
-module.exports = TwelveDays;
+export default TwelveDays;;

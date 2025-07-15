@@ -1,4 +1,4 @@
-var Raindrops = require('./raindrops');
+import Raindrops from './raindrops';
 
 describe('Raindrops', function() {
   var drops = new Raindrops();

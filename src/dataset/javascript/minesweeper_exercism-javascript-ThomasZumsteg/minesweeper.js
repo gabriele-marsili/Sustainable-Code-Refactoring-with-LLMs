@@ -30,4 +30,4 @@ class Minesweeper {
     }
 }
 
-module.exports = Minesweeper
+export default Minesweeper;

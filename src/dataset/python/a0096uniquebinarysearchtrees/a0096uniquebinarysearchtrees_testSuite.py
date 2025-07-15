@@ -1,4 +1,4 @@
-from solutions.a0096uniquebinarysearchtrees import Solution
+from a0096uniquebinarysearchtrees import Solution
 
 solution = Solution()
 

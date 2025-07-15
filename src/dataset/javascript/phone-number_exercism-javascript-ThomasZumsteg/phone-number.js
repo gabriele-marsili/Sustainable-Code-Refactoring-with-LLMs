@@ -16,9 +16,9 @@ var PhoneNumber = function(phoneNumber) {
 	}
 }
 
-var sprintf = require('util').format;
+import { format as sprintf } from 'util';
 PhoneNumber.prototype.number   = function() { return this.num }
 PhoneNumber.prototype.areaCode = function() { return this.area }
 PhoneNumber.prototype.toString = function() { return sprintf("(%s) %s-%s", this.area, this.first, this.second) }
 
-module.exports = PhoneNumber;
+export default PhoneNumber;;

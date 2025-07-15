@@ -1,4 +1,4 @@
-var ArmstrongNumber = require('./armstrong-numbers');
+import ArmstrongNumber from './armstrong-numbers';
 
 describe('ArmstrongNumber', function () {
   it('Single digit numbers are Armstrong numbers', function () {

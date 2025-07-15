@@ -27,7 +27,7 @@
  * See its tests in this folder for a quick primer on how to use it! ( :
  */
 
-var Grains = require('./grains');
+import Grains from './grains';
 
 describe('Grains', function () {
   var grains = new Grains();

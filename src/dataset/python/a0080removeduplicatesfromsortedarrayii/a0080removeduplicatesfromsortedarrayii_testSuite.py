@@ -1,4 +1,4 @@
-from solutions.a0080removeduplicatesfromsortedarrayii import Solution
+from a0080removeduplicatesfromsortedarrayii import Solution
 
 solution = Solution()
 

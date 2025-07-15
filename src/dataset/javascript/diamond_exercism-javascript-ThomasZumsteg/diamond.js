@@ -14,4 +14,4 @@ class Diamond {
     }
 }
 
-module.exports = Diamond;
+export default Diamond;;

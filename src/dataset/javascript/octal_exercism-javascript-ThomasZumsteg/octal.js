@@ -14,4 +14,4 @@ Octal.prototype.toDecimal = function() {
 		}, 0);
 };
 
-module.exports = Octal;
+export default Octal;;

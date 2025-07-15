@@ -1,4 +1,4 @@
-var LinkedList = require('./linked-list');
+import LinkedList from './linked-list';
 
 describe('LinkedList', function () {
   it('push/pop', function () {

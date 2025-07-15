@@ -1,4 +1,4 @@
-from solutions.a0200numberofislands import Solution
+from a0200numberofislands import Solution
 
 solution = Solution()
 

@@ -6,4 +6,4 @@ function accumulate(items, func) {
 	return modified;
 }
 
-module.exports = accumulate;
+export default accumulate;;

@@ -16,4 +16,4 @@ Anagram.prototype.matches = function( wordList) {
 	return wordList.filter( anagrams );
 };
 
-module.exports = anagram;
+export default anagram;;

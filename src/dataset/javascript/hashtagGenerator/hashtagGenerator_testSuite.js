@@ -1,5 +1,5 @@
-const generateHashtag = require(`../hashtagGenerator`)
-const { assert } = require('chai')
+import { assert  } from 'chai';
+import { generateHashtag } from './hashtagGenerator'
 
 describe("Tests", () => {
   it("test", () => {

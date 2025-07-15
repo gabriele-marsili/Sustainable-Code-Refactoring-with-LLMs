@@ -1,0 +1,45 @@
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS ./zipper_testSuite.js (27.219 s)
+  Zipper
+    ✓ data is retained (132 ms)
+    ✓ left, right and value (5 ms)
+    ✓ dead end (17 ms)
+    ✓ tree from deep focus (10 ms)
+    ✓ traversing up from top (10 ms)
+    ✓ left, right and up (6 ms)
+    ✓ setValue (13 ms)
+    ✓ setValue after traversing up (4 ms)
+    ✓ setLeft with leaf (2 ms)
+    ✓ setRight with null (11 ms)
+    ✓ setRight with subtree (15 ms)
+    ✓ setValue on deep focus (2 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       12 passed, 12 total
+Snapshots:   0 total
+Time:        34.587 s
+Ran all test suites.
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 3.73
+	System time (seconds): 4.96
+	Percent of CPU this job got: 7%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:58.86
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 69428
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 7
+	Minor (reclaiming a frame) page faults: 17803
+	Voluntary context switches: 7202
+	Involuntary context switches: 4693
+	Swaps: 0
+	File system inputs: 664
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

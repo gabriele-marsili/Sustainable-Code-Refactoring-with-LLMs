@@ -1,4 +1,4 @@
-from solutions.a0001twosum import Solution
+from a0001twosum import Solution
 
 solution = Solution()
 

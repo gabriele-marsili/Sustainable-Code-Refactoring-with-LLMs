@@ -25,4 +25,4 @@ Triangle.prototype.kind = function() {
 	return "scalene";
 };
 
-module.exports = Triangle;
+export default Triangle;;

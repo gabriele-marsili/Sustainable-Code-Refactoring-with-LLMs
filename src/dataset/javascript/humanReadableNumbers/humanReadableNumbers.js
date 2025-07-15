@@ -24,4 +24,4 @@ function formatTwoDigits(num) {
   return ("0" + num).slice(-2)
 }
 
-module.exports = humanReadable
+export default humanReadable;

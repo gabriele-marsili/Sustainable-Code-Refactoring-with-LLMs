@@ -1,4 +1,4 @@
-var Triangle = require('./triangle');
+import Triangle from './triangle';
 
 describe('Triangle', function() {
 

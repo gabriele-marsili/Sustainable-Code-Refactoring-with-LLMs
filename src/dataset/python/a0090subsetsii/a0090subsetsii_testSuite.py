@@ -1,4 +1,4 @@
-from solutions.a0090subsetsii import Solution
+from a0090subsetsii import Solution
 
 solution = Solution()
 

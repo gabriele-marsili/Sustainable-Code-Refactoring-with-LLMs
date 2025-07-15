@@ -21,4 +21,4 @@ function next_row(current_row) {
 	return row;
 }
 
-module.exports = Triangle;
+export default Triangle;;

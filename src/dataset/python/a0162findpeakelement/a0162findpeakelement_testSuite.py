@@ -1,4 +1,4 @@
-from solutions.a0162findpeakelement import Solution
+from a0162findpeakelement import Solution
 
 solution = Solution()
 

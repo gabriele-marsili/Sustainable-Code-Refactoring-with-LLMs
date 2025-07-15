@@ -90,4 +90,4 @@ BeerSong.prototype.sing = function() {
   return song;
 }
 
-module.exports = BeerSong;
+export default BeerSong;;

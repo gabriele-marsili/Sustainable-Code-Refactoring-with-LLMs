@@ -1,4 +1,4 @@
-from solutions.a0055jumpgame import Solution
+from a0055jumpgame import Solution
 
 solution = Solution()
 

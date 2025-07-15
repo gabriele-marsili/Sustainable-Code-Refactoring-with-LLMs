@@ -1,0 +1,43 @@
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS ./hexadecimal_testSuite.js (11.895 s)
+  Hexadecimal
+    ✓ hex 1 is decimal 1 (47 ms)
+    ✓ hex c is decimal 12 (8 ms)
+    ✓ hex 10 is decimal 16 (2 ms)
+    ✓ hex af is decimal 175 (6 ms)
+    ✓ hex 100 is decimal 256 (15 ms)
+    ✓ hex 19ace is decimal 105166 (1 ms)
+    ✓ invalid hex is decimal 0 (6 ms)
+    ✓ black (8 ms)
+    ✓ white (7 ms)
+    ✓ yellow (15 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       10 passed, 10 total
+Snapshots:   0 total
+Time:        14.331 s
+Ran all test suites.
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 2.66
+	System time (seconds): 2.66
+	Percent of CPU this job got: 11%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:48.36
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 81168
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 15793
+	Voluntary context switches: 5964
+	Involuntary context switches: 7662
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

@@ -1,4 +1,4 @@
-from solutions.a0103binarytreezigzaglevelordertraversal import Solution
+from a0103binarytreezigzaglevelordertraversal import Solution
 from utils.tree.TreeNode import TreeNode
 
 solution = Solution()

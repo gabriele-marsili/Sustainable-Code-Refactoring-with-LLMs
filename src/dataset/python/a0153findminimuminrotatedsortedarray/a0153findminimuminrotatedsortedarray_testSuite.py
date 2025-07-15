@@ -1,4 +1,4 @@
-from solutions.a0153findminimuminrotatedsortedarray import Solution
+from a0153findminimuminrotatedsortedarray import Solution
 
 solution = Solution()
 

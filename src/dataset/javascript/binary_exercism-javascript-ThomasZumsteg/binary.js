@@ -14,4 +14,4 @@ Binary.prototype.toDecimal = function() {
 	);
 };
 
-module.exports = Binary;
+export default Binary;;

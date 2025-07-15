@@ -1,4 +1,4 @@
-module.exports =  {
+export default {;
     encode: function(text) {
         return text.replace(/([\w])\1+/g, function(group, chr) {
             return group.length + chr});

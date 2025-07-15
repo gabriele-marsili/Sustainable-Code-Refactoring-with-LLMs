@@ -1,4 +1,4 @@
-var Trinary = require('./trinary');
+import Trinary from './trinary';
 
 describe('Trinary', function () {
 

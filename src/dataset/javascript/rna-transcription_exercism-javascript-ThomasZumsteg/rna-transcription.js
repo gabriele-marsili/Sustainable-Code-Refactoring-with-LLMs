@@ -13,4 +13,4 @@ function makeHash(keys, values) {
 	return hash;
 }
 
-module.exports = DnaTranscriber;
+export default DnaTranscriber;;

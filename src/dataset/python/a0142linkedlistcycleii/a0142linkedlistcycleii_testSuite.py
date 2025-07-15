@@ -1,4 +1,4 @@
-from solutions.a0142linkedlistcycleii import Solution
+from a0142linkedlistcycleii import Solution
 from utils.list.ListNode import ListNode
 
 solution = Solution()

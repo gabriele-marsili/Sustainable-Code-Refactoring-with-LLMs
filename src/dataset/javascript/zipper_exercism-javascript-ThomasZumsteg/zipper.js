@@ -62,7 +62,7 @@ class Zipper {
   }
 }
 
-module.exports = {
+export default {;
   fromTree(items) {
     return new Zipper(items);
   },

@@ -1,0 +1,45 @@
+E
+======================================================================
+ERROR: power_testSuite (unittest.loader._FailedTest.power_testSuite)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: power_testSuite
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
+    __import__(name)
+  File "/app/power_testSuite.py", line 3, in <module>
+    print(power(2, 0))
+          ^^^^^
+NameError: name 'power' is not defined
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.022s
+
+FAILED (errors=1)
+Command exited with non-zero status 1
+	Command being timed: "python3 -m unittest discover -s . -p *test*.py"
+	User time (seconds): 0.41
+	System time (seconds): 0.27
+	Percent of CPU this job got: 12%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:05.32
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 14720
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 2497
+	Voluntary context switches: 109
+	Involuntary context switches: 243
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 576
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

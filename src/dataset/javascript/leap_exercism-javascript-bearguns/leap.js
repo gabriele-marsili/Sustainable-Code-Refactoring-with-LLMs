@@ -14,4 +14,4 @@ Year.prototype.isLeap = function() {
     return this.year % 4 === 0;
 };
 
-module.exports = Year;
+export default Year;;

@@ -1,4 +1,4 @@
-from solutions.a0060permutationsequence import Solution
+from a0060permutationsequence import Solution
 
 solution = Solution()
 

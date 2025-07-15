@@ -1,6 +1,6 @@
-const solution = require("../meanSquareError")
+import solution from '../meanSquareError';
 
-const { assert } = require("chai");
+import { assert  } from 'chai';
 
 describe("Tests", () => {
   it("test", () => {

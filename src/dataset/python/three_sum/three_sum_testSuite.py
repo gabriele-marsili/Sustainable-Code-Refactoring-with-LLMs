@@ -1,4 +1,4 @@
-from problems.medium.three_sum import Solution
+from three_sum import Solution
 
 
 solution = Solution()

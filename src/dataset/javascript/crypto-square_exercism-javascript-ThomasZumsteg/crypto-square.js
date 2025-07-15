@@ -40,4 +40,4 @@ Crypto.prototype.normalizeCiphertext = function() {
 		.join(' ');
 };
 
-module.exports = Crypto;
+export default Crypto;;

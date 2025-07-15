@@ -1,4 +1,4 @@
-var accumulate = require('./accumulate');
+import accumulate from './accumulate';
 
 describe('accumulate()', function() {
 

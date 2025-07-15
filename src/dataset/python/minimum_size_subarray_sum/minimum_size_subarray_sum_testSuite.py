@@ -1,4 +1,4 @@
-from problems.medium.minimum_size_subarray_sum import Solution
+from minimum_size_subarray_sum import Solution
 
 
 def test_minimum_size_subarray_sum():

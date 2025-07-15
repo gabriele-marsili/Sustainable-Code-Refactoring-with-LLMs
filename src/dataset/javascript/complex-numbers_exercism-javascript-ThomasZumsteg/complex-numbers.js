@@ -40,4 +40,4 @@ class ComplexNumber {
     }
 }
 
-module.exports = ComplexNumber;
+export default ComplexNumber;;

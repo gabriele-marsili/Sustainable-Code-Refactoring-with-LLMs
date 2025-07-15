@@ -1,4 +1,4 @@
-from solutions.a0078subsets import Solution
+from a0078subsets import Solution
 from utils.listutil import ListUtil
 
 solution = Solution()

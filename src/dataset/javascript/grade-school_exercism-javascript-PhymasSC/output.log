@@ -1,0 +1,121 @@
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL ./grade-school_testSuite.js (6.4 s)
+  School
+    ✓ a new school has an empty roster (35 ms)
+    ✓ adding a student adds them to the roster for the given grade (5 ms)
+    ✓ adding more students to the same grade adds them to the roster (5 ms)
+    ✓ adding students to different grades adds them to the roster (1 ms)
+    ✓ grade returns the students in that grade in alphabetical order (5 ms)
+    ✓ grade returns an empty array if there are no students in that grade (4 ms)
+    ✕ the students names in each grade in the roster are sorted (49 ms)
+    ✕ roster cannot be modified outside of module (6 ms)
+    ✓ roster cannot be modified outside of module using grade() (2 ms)
+    ✕ a student can't be in two different grades (6 ms)
+
+  ● School › the students names in each grade in the roster are sorted
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+        "3": Array [
+          "Kyle",
+        ],
+        "4": Array [
+    -     "Christopher",
+          "Jennifer",
+    +     "Christopher",
+        ],
+        "6": Array [
+          "Kareem",
+        ],
+      }
+
+      60 |       6: ['Kareem'],
+      61 |     };
+    > 62 |     expect(school.roster()).toEqual(expectedSortedStudents);
+         |                             ^
+      63 |   });
+      64 |
+      65 |   test('roster cannot be modified outside of module', () => {
+
+      at Object.<anonymous> (grade-school_testSuite.js:62:29)
+
+  ● School › roster cannot be modified outside of module
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 1
+
+      Object {
+        "2": Array [
+          "Aimee",
+    +     "Oops.",
+        ],
+      }
+
+      68 |     roster[2].push('Oops.');
+      69 |     const expectedDb = { 2: ['Aimee'] };
+    > 70 |     expect(school.roster()).toEqual(expectedDb);
+         |                             ^
+      71 |   });
+      72 |
+      73 |   test('roster cannot be modified outside of module using grade()', () => {
+
+      at Object.<anonymous> (grade-school_testSuite.js:70:29)
+
+  ● School › a student can't be in two different grades
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "Aimee",
+    + ]
+
+      82 |     school.add('Aimee', 1);
+      83 |
+    > 84 |     expect(school.grade(2)).toEqual([]);
+         |                             ^
+      85 |   });
+      86 | });
+      87 |
+
+      at Object.<anonymous> (grade-school_testSuite.js:84:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 7 passed, 10 total
+Snapshots:   0 total
+Time:        7.747 s
+Ran all test suites.
+Command exited with non-zero status 1
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 1.42
+	System time (seconds): 1.72
+	Percent of CPU this job got: 16%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:19.51
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 84300
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 14306
+	Voluntary context switches: 5320
+	Involuntary context switches: 5877
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

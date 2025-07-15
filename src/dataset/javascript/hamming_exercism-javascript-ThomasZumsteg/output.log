@@ -1,0 +1,59 @@
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL ./hamming_testSuite.js (15.405 s)
+  Hamming
+    ✓ no difference between identical strands (137 ms)
+    ✓ complete hamming distance for single nucleotide strand (2 ms)
+    ✓ complete hamming distance for small strand (31 ms)
+    ✓ small hamming distance (15 ms)
+    ✓ small hamming distance in longer strand (29 ms)
+    ✓ large hamming distance (1 ms)
+    ✓ hamming distance in very long strand (3 ms)
+    ✕ throws error when strands are not equal length (40 ms)
+
+  ● Hamming › throws error when strands are not equal length
+
+    expect(received).toThrow(expected)
+
+    Expected message: "DNA strands must be of equal length."
+    Received value:   "DNA strands must be of equal length."
+
+      33 |
+      34 |   it('throws error when strands are not equal length', function() {
+    > 35 |     expect(function() { hamming.compute('GGACGGATTCTG', 'AGGAC'); }).toThrow(
+         |                                                                      ^
+      36 |       new Error('DNA strands must be of equal length.')
+      37 |     );
+      38 |   });
+
+      at Object.<anonymous> (hamming_testSuite.js:35:70)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 7 passed, 8 total
+Snapshots:   0 total
+Time:        21.383 s
+Ran all test suites.
+Command exited with non-zero status 1
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 2.66
+	System time (seconds): 2.40
+	Percent of CPU this job got: 11%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:44.82
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 75340
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 15437
+	Voluntary context switches: 5810
+	Involuntary context switches: 9016
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

@@ -18,4 +18,4 @@ class Raindrops {
   }
 }
 
-module.exports = Raindrops;
+export default Raindrops;;

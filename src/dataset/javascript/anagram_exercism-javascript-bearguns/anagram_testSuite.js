@@ -1,4 +1,4 @@
-var Anagram = require('./anagram');
+import Anagram from './anagram';
 
 describe('Anagram', function() {
 

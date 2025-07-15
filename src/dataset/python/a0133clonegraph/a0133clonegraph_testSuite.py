@@ -1,4 +1,4 @@
-from solutions.a0133clonegraph import Solution, Node
+from a0133clonegraph import Solution, Node
 
 solution = Solution()
 

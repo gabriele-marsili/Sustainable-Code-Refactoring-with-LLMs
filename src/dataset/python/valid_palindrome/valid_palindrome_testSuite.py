@@ -1,4 +1,4 @@
-from problems.easy.valid_palindrome import Solution
+from valid_palindrome import Solution
 
 
 def test_is_palindrome():

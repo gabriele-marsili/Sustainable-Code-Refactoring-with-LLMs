@@ -1,4 +1,4 @@
-var RLE = require('./run-length-encoding');
+import RLE from './run-length-encoding';
 
 describe('Run-length encoding', function () {
   it('encode empty string', function () {

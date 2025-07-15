@@ -1,0 +1,42 @@
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS ./matrix_testSuite.js (12.977 s)
+  Matrix
+    ✓ extract row from one number matrix (110 ms)
+    ✓ can extract row (3 ms)
+    ✓ extract row where numbers have different widths (2 ms)
+    ✓ can extract row from non-square matrix with no corresponding column (20 ms)
+    ✓ extract column from one number matrix (68 ms)
+    ✓ can extract column (19 ms)
+    ✓ can extract column from non-square matrix with no corresponding row (11 ms)
+    ✓ can extract column from non-square matrix with more columns than rows (7 ms)
+    ✓ extract column where numbers have different widths (13 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       9 passed, 9 total
+Snapshots:   0 total
+Time:        15.808 s
+Ran all test suites.
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 2.26
+	System time (seconds): 2.13
+	Percent of CPU this job got: 11%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:39.67
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 78344
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 14667
+	Voluntary context switches: 5753
+	Involuntary context switches: 8576
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

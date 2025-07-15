@@ -9,4 +9,4 @@ Hamming.prototype.compute = function( dnaA, dnaB ) {
   return sum;
 }
 
-module.exports = Hamming;
+export default Hamming;;

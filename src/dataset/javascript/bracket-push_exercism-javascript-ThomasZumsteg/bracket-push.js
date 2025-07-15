@@ -16,4 +16,4 @@ function bracket(brackets) {
   return stack.length == 0;
 };
 
-module.exports = bracket;
+export default bracket;;

@@ -1,4 +1,4 @@
-var Triangle = require('./pascals-triangle');
+import Triangle from './pascals-triangle';
 
 describe('Triangle', function () {
 

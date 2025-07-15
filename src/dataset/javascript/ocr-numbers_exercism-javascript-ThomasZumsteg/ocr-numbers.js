@@ -1,7 +1,7 @@
 function convert(OCR_string) {
 	/* Convert a line representation of digits into a string of digits */
-	OCR_lines = OCR_string.split("\n");
-	OCR_characters = [];
+	const OCR_lines = OCR_string.split("\n");
+	let OCR_characters = [];
 	for(var line = 0; line < OCR_lines.length; line += 4) {
 		OCR_characters.push(lines_to_characters(OCR_lines.slice(line, line + 4)));
 	}
@@ -25,7 +25,7 @@ function lines_to_characters(line) {
 	return characters.map(function(character) {return character.join("\n")});
 }
 
-module.exports = {convert: convert};
+export default {convert: convert};;
 
 var OCR_digits = [
 	" _ \n" +

@@ -1,4 +1,4 @@
-from solutions.a0077combinations import Solution
+from a0077combinations import Solution
 from utils.listutil import ListUtil
 
 solution = Solution()

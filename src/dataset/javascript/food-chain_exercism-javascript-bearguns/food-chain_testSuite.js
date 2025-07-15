@@ -1,4 +1,4 @@
-var FoodChain = require('./food-chain');
+import FoodChain from './food-chain';
 
 describe('Food Chain', function () {
   var song = new FoodChain();

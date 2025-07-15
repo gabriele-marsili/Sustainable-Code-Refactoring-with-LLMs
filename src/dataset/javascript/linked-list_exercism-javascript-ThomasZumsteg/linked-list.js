@@ -84,4 +84,4 @@ Element.prototype.delete = function() {
 	this.prev = null;
 };
 
-module.exports = LinkedList;
+export default LinkedList;;

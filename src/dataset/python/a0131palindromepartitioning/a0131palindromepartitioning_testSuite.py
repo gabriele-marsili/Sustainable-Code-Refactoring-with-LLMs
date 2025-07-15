@@ -1,4 +1,4 @@
-from solutions.a0131palindromepartitioning import Solution
+from a0131palindromepartitioning import Solution
 
 solution = Solution()
 

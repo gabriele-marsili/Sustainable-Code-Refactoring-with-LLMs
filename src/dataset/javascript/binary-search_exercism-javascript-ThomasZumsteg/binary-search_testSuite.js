@@ -1,4 +1,4 @@
-var BinarySearch = require('./binary-search');
+import BinarySearch from './binary-search';
 
 describe('BinarySearch', function() {
 

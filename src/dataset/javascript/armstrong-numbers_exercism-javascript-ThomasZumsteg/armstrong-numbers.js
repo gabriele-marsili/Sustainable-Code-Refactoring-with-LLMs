@@ -4,4 +4,4 @@ function validate(number) {
         Math.pow(parseInt(num), digits.length) + acc, 0);
 }
 
-module.exports = {validate: validate};
+export default {validate: validate};;

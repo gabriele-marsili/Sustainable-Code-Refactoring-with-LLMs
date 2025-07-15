@@ -6,4 +6,4 @@ var Gigasecond = function(date) {
   }
 };
 
-module.exports = Gigasecond;
+export default Gigasecond;;

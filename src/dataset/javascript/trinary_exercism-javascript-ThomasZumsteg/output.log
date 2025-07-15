@@ -1,0 +1,42 @@
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS ./trinary_testSuite.js (14.887 s)
+  Trinary
+    ✓ 1 is decimal 1 (143 ms)
+    ✓ 2 is decimal 2 (13 ms)
+    ✓ 10 is decimal 3 (12 ms)
+    ✓ 11 is decimal 4 (5 ms)
+    ✓ 100 is decimal 9 (25 ms)
+    ✓ 112 is decimal 14 (11 ms)
+    ✓ 222 is 26 (15 ms)
+    ✓ 1122000120 is 32091 (10 ms)
+    ✓ invalid trinary is decimal 0 (14 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       9 passed, 9 total
+Snapshots:   0 total
+Time:        20.003 s
+Ran all test suites.
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 2.56
+	System time (seconds): 2.55
+	Percent of CPU this job got: 10%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:48.31
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 73136
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 16525
+	Voluntary context switches: 5979
+	Involuntary context switches: 8146
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

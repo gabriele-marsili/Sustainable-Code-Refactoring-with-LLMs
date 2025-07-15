@@ -1,4 +1,4 @@
-from solutions.a0127wordladder import Solution
+from a0127wordladder import Solution
 
 solution = Solution()
 

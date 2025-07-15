@@ -26,4 +26,4 @@ function reverseNumeric(a, b){
 	return b - a;
 };
 
-module.exports = toRoman;
+export default toRoman;;

@@ -1,6 +1,6 @@
-module.exports = function(start) {
+export default function(start) {;
     const max_col = start.reduce((max, row) => Math.max(max, row.length), 0);
-    result = [];
+    var result = [];
     for(var c = 0; c < max_col; c++) {
         var prefix = true;
         result.push([]);

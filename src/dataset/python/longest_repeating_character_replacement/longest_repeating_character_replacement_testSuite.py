@@ -1,4 +1,4 @@
-from problems.medium.longest_repeating_character_replacement import Solution
+from longest_repeating_character_replacement import Solution
 
 solution = Solution()
 

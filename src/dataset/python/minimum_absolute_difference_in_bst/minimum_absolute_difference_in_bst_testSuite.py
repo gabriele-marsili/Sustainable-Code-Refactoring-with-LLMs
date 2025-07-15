@@ -1,4 +1,4 @@
-from problems.easy.minimum_absolute_difference_in_bst import Solution, TreeNode
+from minimum_absolute_difference_in_bst import Solution, TreeNode
 
 
 def test_get_minimum_difference():

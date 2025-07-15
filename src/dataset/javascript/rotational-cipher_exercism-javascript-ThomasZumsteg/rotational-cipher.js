@@ -18,4 +18,4 @@ class RotationalCipher {
     }
 }
 
-module.exports = RotationalCipher;
+export default RotationalCipher;;

@@ -16,4 +16,4 @@ function primeFactors(remainder) {
 	return factors;
 }
 
-module.exports = {for: primeFactors};
+export default {for: primeFactors};;

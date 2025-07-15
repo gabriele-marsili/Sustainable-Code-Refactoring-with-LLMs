@@ -1,5 +1,5 @@
-const { assert } = require("chai");
-const scramble = require("../scramblies")
+import { assert  } from 'chai';
+import scramble from '../scramblies';
 
 describe('Sample Tests', function(){
   it("Tests", () => {

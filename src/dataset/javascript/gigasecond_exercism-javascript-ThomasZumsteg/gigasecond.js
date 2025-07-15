@@ -11,4 +11,4 @@ Gigasecond.prototype.date = function() {
   return new Date(this.day.getTime() + GIGASECOND);
 };
 
-module.exports = Gigasecond;
+export default Gigasecond;;

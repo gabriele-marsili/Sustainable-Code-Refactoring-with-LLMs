@@ -1,6 +1,6 @@
-var BigInt = require('./big-integer.js');
+import BigInt from './big-integer.js';
 
-module.exports = function () {
+export default function () {;
 	/* Counts the number of grains of rice on squares of a chess board */
 	return {
 		// Grains start at 1 and double every square

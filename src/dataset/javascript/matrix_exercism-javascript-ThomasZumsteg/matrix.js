@@ -9,4 +9,4 @@ var Matrix = function(matrix) {
 	}, this.rows);
 }
 
-module.exports = Matrix;
+export default Matrix;;

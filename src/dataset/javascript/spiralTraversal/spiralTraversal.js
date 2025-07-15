@@ -106,4 +106,4 @@ function isSquare(matrix) {
   return matrix.every( array => array.length === size)
 }
 
-module.exports = spiralTraversal
+export default spiralTraversal;

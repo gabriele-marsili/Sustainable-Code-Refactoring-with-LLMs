@@ -21,4 +21,4 @@ SpaceAge.prototype.onSaturn = onAny(29.447498);
 SpaceAge.prototype.onUranus = onAny(84.016846);
 SpaceAge.prototype.onNeptune = onAny(164.79132);
 
-module.exports = SpaceAge;
+export default SpaceAge;;

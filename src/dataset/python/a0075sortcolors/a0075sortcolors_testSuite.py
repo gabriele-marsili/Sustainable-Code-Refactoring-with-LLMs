@@ -1,4 +1,4 @@
-from solutions.a0075sortcolors import Solution
+from a0075sortcolors import Solution
 
 solution = Solution()
 

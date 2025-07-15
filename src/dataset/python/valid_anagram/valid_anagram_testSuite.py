@@ -1,4 +1,4 @@
-from problems.easy.valid_anagram import Solution
+from valid_anagram import Solution
 
 solution = Solution()
 

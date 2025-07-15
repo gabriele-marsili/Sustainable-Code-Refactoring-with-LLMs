@@ -39,4 +39,4 @@ class RobotName {
 
 }
 
-module.exports = RobotName;
+export default RobotName;;

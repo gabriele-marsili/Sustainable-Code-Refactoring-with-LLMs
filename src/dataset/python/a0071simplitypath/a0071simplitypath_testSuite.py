@@ -1,4 +1,4 @@
-from solutions.a0071simplitypath import Solution
+from a0071simplitypath import Solution
 
 solution = Solution()
 

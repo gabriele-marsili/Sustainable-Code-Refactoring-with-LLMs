@@ -1,4 +1,4 @@
-var PhoneNumber = require('./phone-number');
+import PhoneNumber from './phone-number';
 
 describe('PhoneNumber()', function() {
   it('cleans the number', function() {

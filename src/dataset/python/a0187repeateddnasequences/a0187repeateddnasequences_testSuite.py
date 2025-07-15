@@ -1,4 +1,4 @@
-from solutions.a0187repeateddnasequences import Solution
+from a0187repeateddnasequences import Solution
 
 solution = Solution()
 

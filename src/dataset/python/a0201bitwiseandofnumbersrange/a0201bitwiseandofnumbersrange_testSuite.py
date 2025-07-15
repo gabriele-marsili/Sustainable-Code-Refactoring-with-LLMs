@@ -1,4 +1,4 @@
-from solutions.a0201bitwiseandofnumbersrange import Solution
+from a0201bitwiseandofnumbersrange import Solution
 
 solution = Solution()
 

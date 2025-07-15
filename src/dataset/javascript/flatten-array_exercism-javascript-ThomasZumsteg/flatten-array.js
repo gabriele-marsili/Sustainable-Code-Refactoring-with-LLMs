@@ -6,4 +6,4 @@ class Flattener {
     }
 }
 
-module.exports = Flattener;
+export default Flattener;;

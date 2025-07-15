@@ -27,4 +27,4 @@ Queens.prototype.canAttack = function() {
 	return (Math.min.apply(null, diffs) == 0 || diffs[0] == diffs[1]);
 };
 
-module.exports = Queens;
+export default Queens;;

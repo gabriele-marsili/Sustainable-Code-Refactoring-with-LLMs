@@ -1,4 +1,4 @@
-var ETL = require('./etl');
+import ETL from './etl';
 
 describe('Transform', function() {
   var etl = new ETL();

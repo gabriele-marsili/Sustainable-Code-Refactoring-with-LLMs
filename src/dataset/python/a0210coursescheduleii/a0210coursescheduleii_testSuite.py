@@ -1,4 +1,4 @@
-from solutions.a0210coursescheduleii import Solution
+from a0210coursescheduleii import Solution
 
 solution = Solution()
 

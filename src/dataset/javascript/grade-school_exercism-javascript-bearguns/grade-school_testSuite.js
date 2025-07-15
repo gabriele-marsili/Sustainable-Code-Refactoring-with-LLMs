@@ -1,4 +1,4 @@
-var School = require('./grade-school');
+import School from './grade-school';
 
 describe('School', function() {
   var school;

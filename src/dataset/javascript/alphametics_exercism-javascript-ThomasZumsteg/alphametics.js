@@ -60,4 +60,4 @@ function solve(puzzle) {
     return solution.length == 1 ? solution[0] : null;
 }
 
-module.exports = solve;
+export default solve;;

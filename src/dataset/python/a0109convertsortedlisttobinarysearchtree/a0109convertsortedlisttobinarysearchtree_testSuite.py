@@ -1,4 +1,4 @@
-from solutions.a0109convertsortedlisttobinarysearchtree import Solution
+from a0109convertsortedlisttobinarysearchtree import Solution
 from utils.list.ListNode import ListNode
 from utils.tree.TreeNode import TreeNode
 

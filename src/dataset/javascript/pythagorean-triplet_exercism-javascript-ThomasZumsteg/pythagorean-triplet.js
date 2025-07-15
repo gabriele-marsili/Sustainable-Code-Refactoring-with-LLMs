@@ -28,4 +28,4 @@ Triplet.where = function(params) {
 	return triplets;
 };
 
-module.exports = Triplet;
+export default Triplet;;

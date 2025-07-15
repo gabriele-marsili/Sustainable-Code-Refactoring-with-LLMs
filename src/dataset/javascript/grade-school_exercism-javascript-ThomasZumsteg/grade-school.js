@@ -16,4 +16,4 @@ School.prototype.add = function(student, grade) {
 		this.class[grade] = [student];
 };
 
-module.exports = School;
+export default School;;

@@ -1,4 +1,4 @@
-from problems.medium.valid_sudoku import Solution
+from valid_sudoku import Solution
 
 solution = Solution()
 

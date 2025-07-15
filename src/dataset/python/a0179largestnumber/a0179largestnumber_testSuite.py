@@ -1,4 +1,4 @@
-from solutions.a0179largestnumber import Solution
+from a0179largestnumber import Solution
 
 solution = Solution()
 

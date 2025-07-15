@@ -1,4 +1,4 @@
-var SpaceAge = require('./space-age');
+import SpaceAge from './space-age';
 
 describe('Space Age', function() {
   it('age in seconds', function() {

@@ -1,4 +1,4 @@
-from problems.easy.summary_ranges import Solution
+from summary_ranges import Solution
 
 
 def test_summary_ranges():

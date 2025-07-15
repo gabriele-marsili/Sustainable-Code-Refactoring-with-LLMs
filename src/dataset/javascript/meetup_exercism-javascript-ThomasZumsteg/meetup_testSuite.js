@@ -1,4 +1,4 @@
-var meetupDay = require('./meetup');
+import meetupDay from './meetup';
 
 
 function MeetupDayException(message) {

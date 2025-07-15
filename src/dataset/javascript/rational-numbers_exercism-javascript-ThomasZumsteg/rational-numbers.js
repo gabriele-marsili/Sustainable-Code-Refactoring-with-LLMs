@@ -56,4 +56,4 @@ class Rational {
     }
 }
 
-module.exports =  Rational;
+export default Rational;;

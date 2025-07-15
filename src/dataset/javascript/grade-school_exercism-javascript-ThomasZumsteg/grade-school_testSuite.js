@@ -1,4 +1,4 @@
-var School = require('./grade-school');
+import School from './grade-school';
 
 describe('School', function() {
   var school;
@@ -49,7 +49,7 @@ describe('School', function() {
     school.add('Kareem', 6);
     school.add('Christopher', 4);
     school.add('Kyle', 3);
-    sorted = {
+    const sorted = {
       3 : ['Kyle'],
       4 : ['Christopher', 'Jennifer'],
       6 : ['Kareem']

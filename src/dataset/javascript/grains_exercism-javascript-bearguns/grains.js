@@ -1,5 +1,5 @@
 'use strict'
-const bigInt = require('./big-integer.js');
+import bigInt from './big-integer.js';
 
 class Grains {
   constructor() {
@@ -24,4 +24,4 @@ class Grains {
   }
 }
 
-module.exports = Grains;
+export default Grains;;

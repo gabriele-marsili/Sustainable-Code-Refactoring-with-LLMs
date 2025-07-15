@@ -34,4 +34,4 @@ TwoBucket.prototype.moves = function() {
 	return moves;
 };
 
-module.exports = TwoBucket;
+export default TwoBucket;;

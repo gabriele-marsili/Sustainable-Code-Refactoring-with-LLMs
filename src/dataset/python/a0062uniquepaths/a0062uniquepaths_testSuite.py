@@ -1,4 +1,4 @@
-from solutions.a0062uniquepaths import Solution
+from a0062uniquepaths import Solution
 
 solution = Solution()
 

@@ -1,4 +1,4 @@
-var ComplexNumber = require('./complex-numbers.js');
+import ComplexNumber from './complex-numbers.js';
 
 describe('Complex numbers', () => {
   it('Real part of a purely real number', () => {

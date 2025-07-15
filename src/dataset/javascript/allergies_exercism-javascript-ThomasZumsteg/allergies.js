@@ -26,4 +26,4 @@ Allergies.prototype.allergicTo = function(item, index) {
 	return Boolean(this.code & (1 << index));
 };
 
-module.exports = Allergies;
+export default Allergies;;

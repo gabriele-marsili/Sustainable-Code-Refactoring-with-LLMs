@@ -37,7 +37,7 @@ WordProblem.prototype.process = function(tokens) {
 // An error
 var ArgumentError = function() {}
 
-module.exports = {
+export default {
 	WordProblem: WordProblem,
 	ArgumentError: ArgumentError,
 }

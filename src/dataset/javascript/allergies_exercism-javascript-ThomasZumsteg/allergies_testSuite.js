@@ -1,4 +1,4 @@
-var Allergies = require('./allergies');
+import Allergies from './allergies';
 
 describe('Allergies',function() {
 

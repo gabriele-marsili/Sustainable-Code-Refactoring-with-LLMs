@@ -1,4 +1,4 @@
-var Pangram = require('./pangram');
+import Pangram from './pangram';
 
 describe('Pangram()', function()  {
 

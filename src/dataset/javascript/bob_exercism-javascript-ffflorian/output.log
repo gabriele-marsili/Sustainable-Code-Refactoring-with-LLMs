@@ -1,70 +1,58 @@
-npm warn exec The following package was not found and will be installed: jest@30.0.4
-npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
-npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
-FAIL ./bob_testSuite.js
-  ● Test suite failed to run
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS ./bob_testSuite.js (28.471 s)
+  Bob
+    ✓ stating something (176 ms)
+    ✓ shouting (1 ms)
+    ✓ shouting gibberish (2 ms)
+    ✓ asking a question (7 ms)
+    ✓ asking a numeric question (7 ms)
+    ✓ asking gibberish (9 ms)
+    ✓ talking forcefully (14 ms)
+    ✓ using acronyms in regular speech (2 ms)
+    ✓ forceful question (2 ms)
+    ✓ shouting numbers (4 ms)
+    ✓ no letters (3 ms)
+    ✓ question with no letters (8 ms)
+    ✓ shouting with special characters (1 ms)
+    ✓ shouting with no exclamation mark (4 ms)
+    ✓ statement containing question mark (5 ms)
+    ✓ non-letters with question (2 ms)
+    ✓ prattling on (5 ms)
+    ✓ silence (1 ms)
+    ✓ prolonged silence (5 ms)
+    ✓ alternate silence (1 ms)
+    ✓ multiple line question (8 ms)
+    ✓ starting with whitespace (3 ms)
+    ✓ ending with whitespace (10 ms)
+    ✓ other whitespace (8 ms)
+    ✓ non-question ending with whitespace (9 ms)
 
-    Jest encountered an unexpected token
-
-    Jest failed to parse a file. This happens e.g. when your code or its dependencies use non-standard JavaScript syntax, or when Jest is not configured to support such syntax.
-
-    Out of the box Jest supports Babel, which will be used to transform your files into valid JS based on your Babel configuration.
-
-    By default "node_modules" folder is ignored by transformers.
-
-    Here's what you can do:
-     • If you are trying to use ECMAScript Modules, see https://jestjs.io/docs/ecmascript-modules for how to enable it.
-     • If you are trying to use TypeScript, see https://jestjs.io/docs/getting-started#using-typescript
-     • To have some of your "node_modules" files transformed, you can specify a custom "transformIgnorePatterns" in your config.
-     • If you need a custom transformation, specify a "transform" option in your config.
-     • If you simply want to mock your non-JS modules (e.g. binary assets) you can stub them out with the "moduleNameMapper" config option.
-
-    You'll find more details and examples of these config options in the docs:
-    https://jestjs.io/docs/configuration
-    For information about custom transformations, see:
-    https://jestjs.io/docs/code-transformation
-
-    Details:
-
-    /app/bob_testSuite.js:1
-    import { hey } from './bob';
-    ^^^^^^
-
-    SyntaxError: Cannot use import statement outside a module
-
-      at Runtime.createScriptFromCode (../root/.npm/_npx/b8d86e6551a4f492/node_modules/jest-runtime/build/index.js:1314:40)
-
-Test Suites: 1 failed, 1 total
-Tests:       0 total
+Test Suites: 1 passed, 1 total
+Tests:       25 passed, 25 total
 Snapshots:   0 total
-Time:        2.312 s
+Time:        36.225 s
 Ran all test suites.
-npm notice
-npm notice New major version of npm available! 10.8.2 -> 11.4.2
-npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.4.2
-npm notice To update run: npm install -g npm@11.4.2
-npm notice
-Command exited with non-zero status 1
-	Command being timed: "npx jest --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 49.51
-	System time (seconds): 37.09
-	Percent of CPU this job got: 4%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 29:07.12
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 3.33
+	System time (seconds): 4.89
+	Percent of CPU this job got: 7%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:48.08
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 215388
+	Maximum resident set size (kbytes): 68952
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 8199
-	Minor (reclaiming a frame) page faults: 197715
-	Voluntary context switches: 90802
-	Involuntary context switches: 76231
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 18241
+	Voluntary context switches: 7120
+	Involuntary context switches: 5004
 	Swaps: 0
-	File system inputs: 1877608
-	File system outputs: 234368
+	File system inputs: 8
+	File system outputs: 16
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

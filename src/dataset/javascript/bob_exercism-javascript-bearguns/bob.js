@@ -13,4 +13,4 @@ var Bob = function() {
   }
 }
 
-module.exports = Bob;
+export default Bob;;

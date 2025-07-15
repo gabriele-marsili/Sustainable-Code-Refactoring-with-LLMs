@@ -1,4 +1,4 @@
-from solutions.a0073setmatrixzeros import Solution
+from a0073setmatrixzeros import Solution
 import json
 
 

@@ -23,4 +23,4 @@ function domainName(url){
   
 }
 
-module.exports = domainName
+export default domainName;

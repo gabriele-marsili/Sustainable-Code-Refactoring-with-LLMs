@@ -62,4 +62,4 @@ Robot.prototype.evaluate = function(instruction_list) {
 	}, this);
 };
 
-module.exports = Robot;
+export default Robot;;

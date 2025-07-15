@@ -47,4 +47,4 @@ function generateHashtag (str) {
   return outputString
 }
 
-module.exports = generateHashtag
+export default generateHashtag;

@@ -10,4 +10,4 @@ Raindrops.prototype.convert = function(number) {
 	return sounds || number.toString();
 };
 
-module.exports = Raindrops;
+export default Raindrops;;

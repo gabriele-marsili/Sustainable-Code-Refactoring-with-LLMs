@@ -17,4 +17,4 @@ var shift_char = function(text, char) {
 	return text;
 }
 
-module.exports.encode = encode;
+export const encode = encode;;

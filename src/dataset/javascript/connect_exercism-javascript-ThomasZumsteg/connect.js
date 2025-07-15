@@ -13,7 +13,7 @@ function has_path(board, letter) {
             queue.push({row: 0, col:i});
         return queue}, new Array());
     while(0 < queue.length) {
-        elem = queue.pop();
+        let elem = queue.pop();
         if(seen.has(hash(elem)) || board[elem.row] == undefined ||
             board[elem.row][elem.col] != letter)
             continue;
@@ -42,4 +42,4 @@ class Board {
     }
 }
 
-module.exports = Board;
+export default Board;;

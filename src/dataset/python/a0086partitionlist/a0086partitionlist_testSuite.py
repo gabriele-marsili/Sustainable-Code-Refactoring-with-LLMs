@@ -1,4 +1,4 @@
-from solutions.a0086partitionlist import Solution
+from a0086partitionlist import Solution
 from utils.list.ListNode import ListNode
 
 solution = Solution()

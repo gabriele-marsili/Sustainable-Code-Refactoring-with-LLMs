@@ -1,4 +1,4 @@
-var DnaTranscriber = require('./rna-transcription');
+import DnaTranscriber from './rna-transcription';
 var dnaTranscriber = new DnaTranscriber();
 
 describe('toRna()', function() {

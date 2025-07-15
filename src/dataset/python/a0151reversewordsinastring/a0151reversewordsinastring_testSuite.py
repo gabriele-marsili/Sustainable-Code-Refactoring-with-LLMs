@@ -1,4 +1,4 @@
-from solutions.a0151reversewordsinastring import Solution
+from a0151reversewordsinastring import Solution
 
 solution = Solution()
 

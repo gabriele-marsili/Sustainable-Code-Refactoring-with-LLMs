@@ -1,4 +1,4 @@
-from solutions.a0063uniquepathsii import Solution
+from a0063uniquepathsii import Solution
 import json
 
 solution = Solution()

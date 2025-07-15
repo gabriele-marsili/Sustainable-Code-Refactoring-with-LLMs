@@ -1,4 +1,4 @@
-from solutions.a0114flattenbinarytreetolinkedlist import Solution
+from a0114flattenbinarytreetolinkedlist import Solution
 from utils.tree.TreeNode import TreeNode
 
 solution = Solution()

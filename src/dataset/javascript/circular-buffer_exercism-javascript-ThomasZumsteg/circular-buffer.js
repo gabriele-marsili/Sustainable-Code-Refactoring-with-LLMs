@@ -48,7 +48,7 @@ var bufferFullException = function() {
     };
 };
 
-module.exports = {
+export default {;
 	circularBuffer: circularBuffer,
 	bufferEmptyException: bufferEmptyException,
 	bufferFullException: bufferFullException,

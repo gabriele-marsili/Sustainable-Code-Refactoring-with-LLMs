@@ -1,4 +1,4 @@
-var Isogram = require('./isogram');
+import Isogram from './isogram';
 
 describe('Isogram Test Suite', function () {
   it('duplicates', function () {

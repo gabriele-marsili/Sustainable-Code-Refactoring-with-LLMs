@@ -1,4 +1,4 @@
-from problems.medium.longest_consecutive_sequence import Solution
+from longest_consecutive_sequence import Solution
 
 solution = Solution()
 

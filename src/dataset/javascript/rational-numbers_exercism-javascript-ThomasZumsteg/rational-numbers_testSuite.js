@@ -1,4 +1,4 @@
-var Rational = require('./rational-numbers');
+import Rational from './rational-numbers';
 
 describe('Addition', function () {
   it('Add two positive rational numbers', function () {

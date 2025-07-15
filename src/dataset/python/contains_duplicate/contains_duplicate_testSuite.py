@@ -1,4 +1,4 @@
-from problems.easy.contains_duplicate import Solution
+from contains_duplicate import Solution
 
 solution = Solution()
 

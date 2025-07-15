@@ -10,15 +10,19 @@ import concurrent.futures
 from threading import Lock
 import multiprocessing
 import sys
-
-
-
+import time
+from collections import defaultdict
+from library_installer import install_external_dependencies
 
 BASE_DIR = Path(__file__).resolve().parent #./src
 DATASET_DIR = BASE_DIR / "dataset"
+DATASET_JSON_PATH = BASE_DIR / "dataset" / "dataset.json"
 DOCKER_DIR = BASE_DIR / "docker"
 LOGS_DIR = BASE_DIR / "logs"
 CLUSTER_JSON = BASE_DIR / "focused_cluster_datas.json"
+BAD_ENTRIES_JSON = BASE_DIR / "bad_entries.json"
+BAD_ENTRIES_CLUSTER_JSON = BASE_DIR / "bad_entries_cluster.json"
+silent_mode = False
 
 class TestRunner:
     """Gestisce l'esecuzione concorrente dei test"""
@@ -28,7 +32,12 @@ class TestRunner:
         self.progress_lock = Lock()
         self.completed_tests = 0
         self.total_tests = 0
+        self.passed_tests = 0
         self.failed_tests = []
+        self.start_time = time.time()
+        self.container_pool = {}  # Dizionario per memorizzare i nomi dei container per linguaggio
+
+
     
     def _update_progress(self, test_id, success=True):
         """Aggiorna il progresso in modo thread-safe"""
@@ -37,7 +46,13 @@ class TestRunner:
             if not success:
                 self.failed_tests.append(test_id)
             progress = (self.completed_tests / self.total_tests) * 100
-            print(f"🔄 Progresso test: {self.completed_tests}/{self.total_tests} ({progress:.1f}%)")
+            progress_passed = (self.passed_tests / self.completed_tests) * 100
+            c_time = time.time()
+            elapsed_time_s = c_time - self.start_time
+            hours = int(elapsed_time_s // 3600)
+            minutes = int((elapsed_time_s % 3600) // 60)
+            secs = int(elapsed_time_s % 60)
+            print(f"🔄 Progresso test: {self.completed_tests}/{self.total_tests} ({progress:.1f}%)\n🟩 Passed :  {self.passed_tests}/{self.completed_tests} ({progress_passed:.1f}%)\n⏳ Time passed : {hours:02d}h {minutes:02d}min {secs:02d}s")
     
     def run_test_worker(self, test_info,run_with_docker_cache=True):
         """Worker per eseguire un singolo test"""
@@ -45,7 +60,7 @@ class TestRunner:
         test_id = f"{entry['id']}_{test_type}"
         
         try:
-            print(f"🧪 Esecuzione test: {test_id}")
+            if not silent_mode : print(f"🧪 Esecuzione test: {test_id}")
             
             if test_type == "base":
                 # Test del codice base
@@ -71,7 +86,7 @@ class TestRunner:
             
         except Exception as e:
             error_msg = f"Errore test {test_id}: {str(e)}"
-            print(f"❌ {error_msg}")
+            if not silent_mode : print(f"❌ {error_msg}")
             self._update_progress(test_id, False)
             return {
                 'test_id': test_id,
@@ -98,7 +113,7 @@ class TestRunner:
         self.completed_tests = 0
         self.failed_tests = []
         
-        print(f"🚀 Inizio esecuzione {self.total_tests} test con {self.max_workers} worker")
+        print(f"🚀 Inizio esecuzione {self.total_tests} test con {self.max_workers} worker\nrun_with_docker_cache = {run_with_docker_cache}")
         
         # esecuzione in parallelo sfruttando Thread Pool Executor
         test_results = []
@@ -133,18 +148,18 @@ class TestRunner:
         
         # Statistiche esecuzione:
         successful_tests = sum(1 for r in test_results if r['success'])
-        failed_tests = len(self.failed_tests)
+        failed_tests = self.total_tests - self.passed_tests
         
-        print(f"✅ Test completati: {successful_tests}/{self.total_tests} successi")
+        print(f"✅ Test completati: {self.passed_tests}/{self.total_tests} successi")
         if failed_tests > 0:
             print(f"❌ Test falliti: {failed_tests}")
-            print(f"   Dettagli: {', '.join(self.failed_tests)}")
+            if not silent_mode : print(f"   Dettagli: {', '.join(self.failed_tests)}")
         
         return test_results
 
 
     def parse_metrics(self,log_path): 
-        print(f"👀 parsing metrics of logpath : {log_path}")
+        if not silent_mode : print(f"👀 parsing metrics of logpath : {log_path}")
         metrics = {
             "execution_time_ms": None,
             "CPU_usage": None,
@@ -155,7 +170,7 @@ class TestRunner:
         with open(log_path) as f:
             log_content = f.read()
 
-        # Cerca l'execution time
+        # Cerca l'execution time | to do -> User time + system time
         time_match = re.search(r"Elapsed \(wall clock\) time \(h:mm:ss or m:ss\): (\d+):(\d+\.\d+)", log_content)
         if time_match:
             minutes = int(time_match.group(1))
@@ -181,10 +196,10 @@ class TestRunner:
         return metrics
 
     def convert_commonjs_to_esm(self,file_path: str):
-        if DATASET_DIR not in file_path : file_path = DATASET_DIR + file_path
+        if str(DATASET_DIR) not in file_path : file_path = str(DATASET_DIR) +"/"+ file_path
         path = Path(file_path)
         if not path.exists() or not path.suffix == ".js":
-            print(f"❌ File non valido: {file_path}")
+            if not silent_mode : print(f"❌ File non valido: {file_path}")
             sys.exit(1)
 
         code = path.read_text()
@@ -208,112 +223,179 @@ class TestRunner:
         path.with_suffix(".js.bak").write_text(path.read_text())
         path.write_text(code)
 
-        print(f"✅ Conversione completata: {file_path} (backup creato)")
+        if not silent_mode : print(f"✅ Conversione completata: {file_path} (backup creato)")
 
 
+
+    def patch_import(self,test_file_path: Path):
+        content = test_file_path.read_text()
+        new_content = re.sub(r'from\s+solutions\.(\w+)\s+import', r'from \1 import', content)
+        test_file_path.write_text(new_content)
+
+
+    def add_bad_entry_id(self, entry_id: str, err_msg: str = "", log_file: Path = None,language:str=""):
+        if not silent_mode : print(f"✍🏻 Writing bad entry: {entry_id}")
+        
+        # Converte log_file in stringa, se fornito come Path
+        log_file_path = str(log_file) if log_file is not None else ""
+
+        # Percorso assoluto al JSON
+        bad_entries_path = Path(BAD_ENTRIES_JSON)
+
+        # Crea file se non esiste
+        if bad_entries_path.exists():
+            with bad_entries_path.open("r", encoding="utf-8") as f:
+                try:
+                    dati = json.load(f)
+                except json.JSONDecodeError:
+                    if not silent_mode : print("⚠️ BAD_ENTRIES_JSON corrotto. Sovrascrivo.")
+                    dati = {"entries": []}
+        else:
+            dati = {"entries": []}
+
+        # Aggiungi nuova entry (evita duplicati se necessario)
+        dati["entries"].append({
+            "id": entry_id,
+            "error_message": err_msg,
+            "log_file_path": log_file_path,
+            "language":language
+        })
+
+        # Scrittura sicura del file aggiornato
+        with bad_entries_path.open("w", encoding="utf-8") as f:
+            json.dump(dati, f, indent=4)
+            
+    
+    
     def run_container(self,lang, mount_path, container_name, exercise_name:str, file_name:str, entry, LLM_dirName = "", run_with_cache=True, already_called = False):
-        print(f"mount_path = {mount_path}")
-        dockerfile_path = DOCKER_DIR / lang.lower()
-        run_sh_path = dockerfile_path / "run.sh"
-        
-        target_run_sh = mount_path / "run.sh"    
-        shutil.copy(run_sh_path, target_run_sh) #copia run.sh da docker directory a directory esercizio
-        print(f"copyed run sh : {run_sh_path}\nin target run sh: {target_run_sh}")
-        
-        if LLM_dirName != "":
-            target_run_sh =  mount_path / LLM_dirName / "run.sh"  
-            shutil.copy(run_sh_path, target_run_sh)
-        
-        if lang == "javascript":
-            target_package_json = mount_path / "package.json"              
+        try:
+            if not silent_mode : print(f"mount_path = {mount_path}")
+            dockerfile_path = DOCKER_DIR / lang.lower()
+            run_sh_path = dockerfile_path / "run.sh"
             
-            # Copia package.json
-            pkg_json_src = DOCKER_DIR / "javascript" / "package.json"
-            shutil.copy(pkg_json_src, target_package_json)
+            target_run_sh = mount_path / "run.sh"    
+            shutil.copy(run_sh_path, target_run_sh) #copia run.sh da docker directory a directory esercizio
             
-            # Copia jest config            
-            target_jest_config = mount_path / "jest.config.js"
-            jest_config_src = DOCKER_DIR / "javascript" / "jest.config.js"
-            shutil.copy(jest_config_src, target_jest_config)
-
-        
-        if lang == "typescript": 
-            # Copia tsconfig.json 
-            tsconfig_src = DATASET_DIR / "typescript" / "tsconfig.json"
-            tsconfig_target = mount_path / "tsconfig.json"    
-            shutil.copy(tsconfig_src, tsconfig_target)
-                
-            # Copia package.json 
-            pkg_src = DOCKER_DIR / "typescript" / "package.json"
-            pkg_target = mount_path / "package.json"    
-            shutil.copy(pkg_src, pkg_target)
-
-        
-            # Copia jest.config.json
-            jest_src = DOCKER_DIR / "typescript" / "jest.config.js"
-            jest_target = mount_path / "jest.config.js"    
-            shutil.copy(jest_src, jest_target)
-
-            # Rimuove eventuali node_modules preesistenti  
-            nm = mount_path / "node_modules"
-            if nm.exists() and not nm.is_symlink():                
-                shutil.rmtree(nm)
-
-        #build del container docker tramite subprocess
-        if run_with_cache : subprocess.run(["docker", "build", "-t", container_name, str(dockerfile_path)], check=True)
-        else : subprocess.run(["docker", "build", "--no-cache", "-t", container_name, str(dockerfile_path)], check=True)
-        
-        #esecuzione di run.sh => compilazione + esecuzione test unit 
-        if lang.lower() == "java" :           
-            print(f"file name : {file_name}")
-            result = subprocess.run([
-                "docker", "run", "--rm",
-                "-v", f"{mount_path}:/app",
-                container_name, file_name
-            ], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
-        
-        else :
-            result = subprocess.run([
-                "docker", "run", "--rm",
-                "-v", f"{mount_path}:/app",
-                container_name
-            ], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
-
-        #print(result.stdout)  
-        container_err_flag = False
-        if result.returncode != 0:                                            
+            if LLM_dirName != "":
+                target_run_sh =  mount_path / LLM_dirName / "run.sh"  
+                shutil.copy(run_sh_path, target_run_sh)
+            
             if lang == "javascript":
-                self.convert_commonjs_to_esm(entry['testUnitFilePath'])
-                if not already_called : return self.run_container(lang, mount_path, container_name, exercise_name, file_name, entry, LLM_dirName , run_with_cache, True)
+                target_package_json = mount_path / "package.json"              
+                
+                # Copia package.json
+                pkg_json_src = DOCKER_DIR / "javascript" / "package.json"
+                shutil.copy(pkg_json_src, target_package_json)
+                
+                # Copia jest config            
+                target_jest_config = mount_path / "jest.config.js"
+                jest_config_src = DOCKER_DIR / "javascript" / "jest.config.js"
+                shutil.copy(jest_config_src, target_jest_config)
+
+            if lang == "python":
+                utils_src_dir = DOCKER_DIR / "python" / "utils"
+                utils_dest_dir_path = mount_path / "utils"
+                if not utils_dest_dir_path.exists():
+                    shutil.copytree(utils_src_dir,utils_dest_dir_path)
             
-            print(f"❌‼ Errore nel container {entry['id']} - {LLM_dirName} | result:\n{result}\n")
-            container_err_flag = True
+            if lang == "typescript": 
+                # Copia tsconfig.json 
+                tsconfig_src = DATASET_DIR / "typescript" / "tsconfig.json"
+                tsconfig_target = mount_path / "tsconfig.json"    
+                #print(f"tsconfig_src = {tsconfig_src}\ntsconfig_target = {tsconfig_target}")
+                
+                shutil.copy(tsconfig_src, tsconfig_target)
+                    
+                # Copia package.json 
+                pkg_src = DOCKER_DIR / "typescript" / "package.json"
+                pkg_target = mount_path / "package.json"    
+                shutil.copy(pkg_src, pkg_target)
+
             
-        else: print(f"🟢 Test unit executed for entry {entry['id']}")
+                # Copia jest.config.json
+                jest_src = DOCKER_DIR / "typescript" / "jest.config.js"
+                jest_target = mount_path / "jest.config.js"    
+                shutil.copy(jest_src, jest_target)
 
-        # Debug:
-        #print(f"🔎 Controllo output.log in {mount_path}")
-        #print("📂 Contenuto post-run:", list(mount_path.iterdir()))
+                # Rimuove eventuali node_modules preesistenti  
+                nm = mount_path / "node_modules"
+                if nm.exists() and not nm.is_symlink():                
+                    shutil.rmtree(nm)
 
-        #copia del log file nella directory dell'esercizio
-        log_file = mount_path / "output.log"     
-        
-        final_log = LOGS_DIR / f"{container_name}_{exercise_name}_{uuid.uuid4().hex[:8]}.log"
-        shutil.copy(log_file, final_log)
-        
-        if LLM_dirName != "":
-            target_log_path = mount_path / LLM_dirName / "output.log"
-            print(f"target_log_path = {target_log_path}")
-            shutil.copy(log_file, target_log_path) 
-        
-        
-        # Salva anche il file di risorse, se presente
-        resource_log = mount_path / "resource_usage.log"
-        if resource_log.exists():
-            final_resource_log = LOGS_DIR / f"{container_name}_{exercise_name}_{uuid.uuid4().hex[:8]}_resource.log"
-            shutil.copy(resource_log, final_resource_log)
+            #build del container docker tramite subprocess
+            if run_with_cache : subprocess.run(["docker", "build", "-t", container_name, str(dockerfile_path)], check=True)
+            else : subprocess.run(["docker", "build", "--no-cache", "-t", container_name, str(dockerfile_path)], check=True)
+            
+            #esecuzione di run.sh => compilazione + esecuzione test unit 
+            if lang.lower() == "java" :           
+                if not silent_mode : print(f"file name : {file_name}")
+                result = subprocess.run([
+                    "docker", "run", "--rm",
+                    "-v", f"{mount_path}:/app",
+                    container_name, file_name
+                ], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+            
+            else :
+                result = subprocess.run([
+                    "docker", "run", "--rm",
+                    "-v", f"{mount_path}:/app",
+                    container_name
+                ], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
 
-        return (log_file, container_err_flag)
+            #print(result.stdout)  
+            container_err_flag = False
+            err_msg = ""
+            if result.returncode != 0:                                            
+                if lang == "javascript":
+                    self.convert_commonjs_to_esm(entry['testUnitFilePath'])
+                    if not already_called : return self.run_container(lang, mount_path, container_name, exercise_name, file_name, entry, LLM_dirName , run_with_cache, True)
+                
+                if lang == "python" and not already_called:
+                    test_path = DATASET_DIR / entry['testUnitFilePath']                                        
+                    code_path = str(DATASET_DIR / entry['codeSnippetFilePath'])
+                    
+                    self.patch_import(test_path)
+                    install_external_dependencies(code_path)
+                    return self.run_container(lang, mount_path, container_name, exercise_name, file_name, entry, LLM_dirName , run_with_cache, True)
+                
+                err_msg = f"❌‼ Errore nel container {entry['id']} - {LLM_dirName} | result:\n{result}\n"
+                if not silent_mode : print(err_msg)
+                container_err_flag = True
+                
+                
+            else: 
+                if not silent_mode : print(f"🟢 Test unit executed for entry {entry['id']}")
+                self.passed_tests += 1
+
+            # Debug:
+            #print(f"🔎 Controllo output.log in {mount_path}")
+            #print("📂 content post-run:", list(mount_path.iterdir()))
+
+            #copia del log file nella directory dell'esercizio
+            log_file = mount_path / "output.log"     
+            
+            final_log = LOGS_DIR / f"{container_name}_{exercise_name}_{uuid.uuid4().hex[:8]}.log"
+            shutil.copy(log_file, final_log)
+            
+            if LLM_dirName != "":
+                target_log_path = mount_path / LLM_dirName / "output.log"
+                if not silent_mode : print(f"target_log_path = {target_log_path}")
+                shutil.copy(log_file, target_log_path) 
+            
+            
+            # Salva anche il file di risorse, se presente
+            resource_log = mount_path / "resource_usage.log"
+            if resource_log.exists():
+                final_resource_log = LOGS_DIR / f"{container_name}_{exercise_name}_{uuid.uuid4().hex[:8]}_resource.log"
+                shutil.copy(resource_log, final_resource_log)
+
+            if container_err_flag : 
+                self.add_bad_entry_id(entry['id'], err_msg, log_file,entry['language'])
+
+            return (log_file, container_err_flag)
+        
+        except Exception as e :
+            if not silent_mode : print(f"\nexception in run container :\n{e}")
 
     def parse_metrics_typescript(self,log_path):
         #print(f"parsing ts metrics of logpath : {log_path}")
@@ -350,61 +432,110 @@ class TestRunner:
                         elif "Percent of CPU this job got" in line:
                             metrics["CPU_usage"] = float(line.split(":")[1].replace("%", "").strip())
             else:
-                print("⚠️ Nessun resource_usage.log trovato")
+                if not silent_mode : print("⚠️ Nessun resource_usage.log trovato")
 
 
         except Exception as e:
-            print(f"❌ Errore parsing log JSON:\n{e}")
+            if not silent_mode : print(f"❌ Errore parsing log JSON:\n{e}")
 
         return metrics
 
-    def run_tests_on_entry(self,entry, lang, base_only=False, llm_only = False, run_with_docker_cache = True):
+    def read_and_print_file_content(self,file_path):
+        try:
+            with open(file_path, "r", encoding="utf-8") as file:
+                content = file.read()
+                if not silent_mode : print(f"File content:\n\n{content}\n")
+        except FileNotFoundError:
+            if not silent_mode : print(f"File non trovato: {file_path}")
+        except UnicodeDecodeError:
+            if not silent_mode : print(f"Errore nella codifica del file: {file_path}")
+
+
+    def setup_container(self, lang, run_with_docker_cache):
+        container_name = f"test_{lang.lower()}_persistant"
+        
+        try:
+            # Controllo se il container esiste già e lo rimuovo per evitare conflitti da esecuzioni precedenti
+            subprocess.run(["docker", "stop", container_name], capture_output=True, text=True)
+            subprocess.run(["docker", "rm", container_name], capture_output=True, text=True)
+        except subprocess.CalledProcessError:
+            pass # Non fare nulla se il container non esiste
+        
+        print(f"➡️ Creazione e avvio del container per {lang}...")
+        
+        try:
+            # Costruisci il container
+            dockerfile_path = DOCKER_DIR / lang.lower()
+            if run_with_docker_cache:
+                subprocess.run(["docker", "build", "-t", container_name, str(dockerfile_path)], check=True)
+            else:
+                subprocess.run(["docker", "build", "--no-cache", "-t", container_name, str(dockerfile_path)], check=True)
+            
+            # Avvia il container in background
+            subprocess.run(["docker", "run", "-d", "--name", container_name, "-v", f"{BASE_DIR.resolve()}:/app", container_name], check=True)
+            
+            self.container_pool[lang] = container_name
+            print(f"✅ Container {container_name} creato e avviato.")
+        except subprocess.CalledProcessError as e:
+            print(f"❌ Errore nella creazione del container {container_name}: {e.stderr}")
+            raise # Propaga l'errore per fallire l'intera esecuzione
+        
+    def run_tests_on_entry(self, entry, lang, base_only=False, llm_only=False, run_with_docker_cache=True):
         path = DATASET_DIR / Path(entry["testUnitFilePath"]).parent
-        container_name = f"test_{lang.lower()}"
+        
+        container_name = self.container_pool.get(lang)
+        if not container_name:
+            # Questo caso non dovrebbe verificarsi se la pre-inizializzazione funziona
+            raise Exception(f"🤨 Container per il linguaggio '{lang}' non trovato.")
+
         results = {}
         parts = str(entry["codeSnippetFilePath"]).split("/")
         codeSnippetFileName = parts.pop()
-
-        print(f"\n➡️ Testing base code: {entry['id']}\n➡️ path : {path}")
-        if not llm_only: #esecuzione test suites su base code snippets
-            (base_log,container_err_flag) = self.run_container(lang, path.resolve(), container_name, entry["id"],codeSnippetFileName, entry,run_with_docker_cache)
+        
+        
+        # Esegui i test sul codice base
+        if not llm_only:
+            if not silent_mode : print(f"\n➡️ Testing base code: {entry['id']}\n➡️ path : {path}")
+                        
+            (base_log,container_err_flag) = self.run_container(lang, path.resolve(), container_name, entry["id"],codeSnippetFileName, entry,"",run_with_docker_cache)
+            
             base_metrics = None
             if lang != "typescript" : base_metrics =  self.parse_metrics(base_log)
             else : base_metrics = self.parse_metrics_typescript(base_log)
             if container_err_flag : base_metrics['regrationTestPassed'] = False
             results.update(base_metrics)
             
-
             #salva path log 
             results["base_log"] = str(base_log)
         else:
             results = entry
 
-        
+        # Esegui i test sui codici generati dagli LLM
         llm_results = []
-        if "LLM_codeSnippetFilePaths" in entry and not base_only: #esecuzione test suites su codici generati dagli LLMs
+        if "LLM_codeSnippetFilePaths" in entry and not base_only:
             for llm_path in entry["LLM_codeSnippetFilePaths"]:
                 llm_file = Path(llm_path).name
                 llm_name = llm_file.split("_")[0]
-                print(f"  ↪ Testing LLM ({llm_name}): {llm_file}")
+                if not silent_mode : print(f"  ↪ Testing LLM ({llm_name}): {llm_file}")
+                
                 llm_type_dir = (DATASET_DIR / llm_path).parent
                 llm_dirName = Path(llm_type_dir).name
                 code_path_dir = llm_type_dir.parent  
                 if lang == "c" or lang == "cpp" or lang == "go":
                     code_path_dir = code_path_dir / "src"
-                print(f"  ↪ code_path_dir : {code_path_dir}")
+                if not silent_mode : print(f"  ↪ code_path_dir : {code_path_dir}")
                         
                 original_filename = Path(entry["codeSnippetFilePath"]).name
                 if lang == "c" or lang == "cpp" or lang == "go":
                     original_filename = llm_file.split("_")[1]
                 
-                print(f"  ↪ original_filename : {original_filename}")
+                if not silent_mode : print(f"  ↪ original_filename : {original_filename}")
                 
 
                 # backup e sostituzione codice
                 target_file = code_path_dir / original_filename
                 
-                print(f"  ↪ target_file : {target_file}")
+                if not silent_mode : print(f"  ↪ target_file : {target_file}")
                 
                 backup = None
                 renamed_llm_path = None
@@ -414,19 +545,21 @@ class TestRunner:
                     source_path = llm_type_dir / llm_file
                     renamed_llm_path = llm_type_dir / original_filename
                     source_path.rename(renamed_llm_path)
-                    print(f"🔁 Rinomino {llm_file} → {original_filename}")
+                    if not silent_mode : print(f"🔁 Rinomino {llm_file} → {original_filename}")
                     
                 if target_file.exists():
                     backup = target_file.with_suffix(".bak")
                     shutil.copy(target_file, backup)
 
                 # Sovrascrive il codice del file snippet originario (salvato in backup) con il codice generato dal LLM
+                
                 if lang == "java":
                     shutil.copy(llm_type_dir / original_filename, target_file)
                 else:
                     shutil.copy(llm_type_dir / llm_file, target_file)
 
-               
+                # debug :
+                # self.read_and_print_file_content(target_file)
                 
                 if lang == "c" or lang == "cpp" or lang == "go":
                     code_path_dir = DATASET_DIR / Path(entry["testUnitFilePath"]).parent
@@ -446,7 +579,7 @@ class TestRunner:
                 # Ripristina nome file LLM se era stato rinominato (solo Java)
                 if lang == "java" and renamed_llm_path and not (llm_type_dir / llm_file).exists():
                     renamed_llm_path.rename(llm_type_dir / llm_file)
-                    print(f"🔁 Ripristino nome {original_filename} → {llm_file}")
+                    if not silent_mode : print(f"🔁 Ripristino nome {original_filename} → {llm_file}")
 
                 # confronta
                 llm_metrics["LLM_type"] = llm_name
@@ -465,34 +598,58 @@ class TestRunner:
         results["LLM_results"] = llm_results
         return results
 
-
-def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cache = True):
+def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cache = True, use_dataset = False, use_bad_entries = False):
     """Esegue test suites su code snippet e codigi generati dagli LLMs.
     Attualmente sfrutta il cluster scelto anziché il dataset"""
     
+    chosen_path = CLUSTER_JSON
+    if use_dataset : chosen_path = DATASET_JSON_PATH
+    if use_bad_entries : chosen_path = BAD_ENTRIES_CLUSTER_JSON
+    
+    if not silent_mode : print(f"chosen_path = {chosen_path}")
     
     LOGS_DIR.mkdir(exist_ok=True)    
     cluster_data = None
     try:
-        with open(CLUSTER_JSON, "r", encoding="utf-8") as f:
+        with open(chosen_path, "r", encoding="utf-8") as f:
             cluster_data = json.load(f)
     except Exception as e:
-        print(f"❌ Errore caricamento cluster data: {e}")
+        if not silent_mode : print(f"❌ Errore caricamento cluster data: {e}")
         return False
         
+    
     test_runner = TestRunner(max_workers=max_workers)
-    test_runner.run_tests_concurrent(
-        cluster_data, 
-        base_only=base_only, 
-        llm_only=llm_only,
-        run_with_docker_cache = run_with_docker_cache
-    )
+    
+    # Pre-inizializza i container prima di avviare i worker
+    print("🐳 Pre-inizializzazione dei container Docker...")
+    languages = set(cluster_data.keys())
+    for lang in languages:
+        test_runner.setup_container(lang, run_with_docker_cache)
+
+
+    try:
+        test_runner.run_tests_concurrent(
+            cluster_data, 
+            base_only=base_only, 
+            llm_only=llm_only,
+            run_with_docker_cache = run_with_docker_cache
+        )
+    except Exception as e:
+        print(f"❌ Errore run test concurrent: {e}")
+    finally:
+        # Pulizia dei container persistenti
+        for lang, container_name in test_runner.container_pool.items():
+            print(f"🛑 Fermo e rimuovo il container '{container_name}'...")
+            subprocess.run(["docker", "stop", container_name], check=True)
+            subprocess.run(["docker", "rm", container_name], check=True)
+        print("✅ Pulizia dei container completata.")
+
     
     #Salva JSON aggiornato
     try:
-        with open(CLUSTER_JSON, "w", encoding="utf-8") as f:
+        with open(chosen_path, "w", encoding="utf-8") as f:
             json.dump(cluster_data, f, indent=4, ensure_ascii=False)
-        print(f"✅ Dati salvati in {CLUSTER_JSON}")
+        print(f"✅ Dati salvati in {chosen_path}")
         return True
     except Exception as e:
         print(f"❌ Errore salvataggio: {e}")
@@ -512,18 +669,30 @@ if __name__ == "__main__":
     parser.add_argument("--no-docker-cache", action="store_false",
                        help="Non utilizzare la cache per i containers Docker")
     
+    parser.add_argument("--dataset", action="store_true",
+                       help="Use dataset for tests instead of cluster json")
+    
+    parser.add_argument("--bad-entries", action="store_true",
+                       help="Use bad entries cluster for tests instead of cluster json")
+    
+    parser.add_argument("--silent", action="store_true",
+                       help="Excute in silent mode, shows only progress")
     
     args = parser.parse_args()
     
     if not args.no_docker_cache: run_with_docker_cache = False
     else: run_with_docker_cache = True
     
+    if args.silent:
+        silent_mode = True
     
     success = main(
         base_only=args.base_only, 
         llm_only=args.llm_only,
         max_workers=args.max_workers,
-        run_with_docker_cache = run_with_docker_cache
+        run_with_docker_cache = run_with_docker_cache,
+        use_dataset = args.dataset,
+        use_bad_entries = args.bad_entries,
     )
     
     if success:

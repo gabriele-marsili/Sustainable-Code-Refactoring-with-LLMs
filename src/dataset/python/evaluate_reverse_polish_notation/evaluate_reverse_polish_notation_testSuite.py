@@ -1,4 +1,4 @@
-from problems.medium.evaluate_reverse_polish_notation import Solution
+from evaluate_reverse_polish_notation import Solution
 
 solution = Solution()
 

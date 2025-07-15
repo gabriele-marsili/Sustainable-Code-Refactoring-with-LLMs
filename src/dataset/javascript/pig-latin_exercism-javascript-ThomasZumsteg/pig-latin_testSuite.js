@@ -1,4 +1,4 @@
-var pigLatin = require('./pig-latin');
+import pigLatin from './pig-latin';
 
 describe('pigLatin', function () {
 

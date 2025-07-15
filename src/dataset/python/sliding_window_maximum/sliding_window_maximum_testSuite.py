@@ -1,4 +1,4 @@
-from problems.hard.sliding_window_maximum import Solution
+from sliding_window_maximum import Solution
 
 solution = Solution()
 

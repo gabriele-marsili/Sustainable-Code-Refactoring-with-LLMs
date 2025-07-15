@@ -1,4 +1,4 @@
-from solutions.a0113pathsumii import Solution
+from a0113pathsumii import Solution
 from utils.tree.TreeNode import TreeNode
 
 solution = Solution()

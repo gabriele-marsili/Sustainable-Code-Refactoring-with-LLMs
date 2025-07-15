@@ -1,4 +1,4 @@
-var Year = require('./leap');
+import Year from './leap';
 
 describe('Leap year', function() {
 
