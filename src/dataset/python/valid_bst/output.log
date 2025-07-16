@@ -9,22 +9,23 @@ Traceback (most recent call last):
              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/usr/local/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
     __import__(name)
-  File "/app/valid_bst_testSuite.py", line 10, in <module>
-    root = TreeNode(5, TreeNode(1), TreeNode(4, TreeNode(3), TreeNode(6)))
-           ^^^^^^^^
-NameError: name 'TreeNode' is not defined
+  File "/app/valid_bst_testSuite.py", line 2, in <module>
+    from valid_bst import TreeNode, is_valid_bst
+  File "/app/valid_bst.py", line 26, in <module>
+    from tree_helpers import TreeNode
+ModuleNotFoundError: No module named 'tree_helpers'
 
 
 ----------------------------------------------------------------------
-Ran 1 test in 0.021s
+Ran 1 test in 0.008s
 
 FAILED (errors=1)
 Command exited with non-zero status 1
 	Command being timed: "python3 -m unittest discover -s . -p *test*.py"
-	User time (seconds): 0.35
-	System time (seconds): 0.25
-	Percent of CPU this job got: 16%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.75
+	User time (seconds): 0.30
+	System time (seconds): 0.20
+	Percent of CPU this job got: 33%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.49
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
@@ -32,9 +33,9 @@ Command exited with non-zero status 1
 	Maximum resident set size (kbytes): 14976
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 2498
-	Voluntary context switches: 107
-	Involuntary context switches: 225
+	Minor (reclaiming a frame) page faults: 2505
+	Voluntary context switches: 140
+	Involuntary context switches: 218
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 576

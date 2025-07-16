@@ -1,11 +1,15 @@
-# Test 1
-# Correct result => 4
-print(num_smses('222'))
+import unittest
+from number_of_smses import number_of_smses
 
-# Test 2
-# Correct result => 14
-print(num_smses('2202222'))
+class Test(unittest.TestCase):
+    def test_1(self):
+        self.assertEqual(number_of_smses('222'), 4)
 
-# Test 3
-# Correct result => 274
-print(num_smses('2222222222'))
+    def test_2(self):
+        self.assertEqual(number_of_smses('2202222'), 14)
+
+    def test_3(self):
+        self.assertEqual(number_of_smses('2222222222'), 274)
+
+if __name__ == "__main__":
+    unittest.main()

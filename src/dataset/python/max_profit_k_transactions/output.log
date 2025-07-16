@@ -9,22 +9,21 @@ Traceback (most recent call last):
              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/usr/local/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
     __import__(name)
-  File "/app/max_profit_k_transactions_testSuite.py", line 3, in <module>
-    print(max_profit_with_k_transactions([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 10))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-NameError: name 'max_profit_with_k_transactions' is not defined
+  File "/app/max_profit_k_transactions_testSuite.py", line 2, in <module>
+    from max_profit_k_transactions import max_profit_k_transactions
+ImportError: cannot import name 'max_profit_k_transactions' from 'max_profit_k_transactions' (/app/max_profit_k_transactions.py)
 
 
 ----------------------------------------------------------------------
-Ran 1 test in 0.003s
+Ran 1 test in 0.013s
 
 FAILED (errors=1)
 Command exited with non-zero status 1
 	Command being timed: "python3 -m unittest discover -s . -p *test*.py"
-	User time (seconds): 0.17
-	System time (seconds): 0.12
-	Percent of CPU this job got: 17%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.74
+	User time (seconds): 0.26
+	System time (seconds): 0.17
+	Percent of CPU this job got: 26%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.63
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
@@ -32,9 +31,9 @@ Command exited with non-zero status 1
 	Maximum resident set size (kbytes): 14848
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 2498
-	Voluntary context switches: 111
-	Involuntary context switches: 256
+	Minor (reclaiming a frame) page faults: 2508
+	Voluntary context switches: 151
+	Involuntary context switches: 236
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 576

@@ -1,11 +1,15 @@
-# Test 1
-# Correct result => 4
-print(count_consecutive_sums(42))
+import unittest
+from count_consecutive_sums import count_consecutive_sums
 
-# Test 2
-# Correct result => 6
-print(count_consecutive_sums(99))
+class Test(unittest.TestCase):
+    def test_1(self):
+        self.assertEqual(count_consecutive_sums(42), 4)
 
-# Test 3
-# Correct result => 2
-print(count_consecutive_sums(92))
+    def test_2(self):
+        self.assertEqual(count_consecutive_sums(99), 6)
+
+    def test_3(self):
+        self.assertEqual(count_consecutive_sums(92), 2)
+
+if __name__ == "__main__":
+    unittest.main()

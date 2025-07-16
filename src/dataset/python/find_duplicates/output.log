@@ -1,40 +1,40 @@
-E
+FF
 ======================================================================
-ERROR: find_duplicates_testSuite (unittest.loader._FailedTest.find_duplicates_testSuite)
+FAIL: test_find_duplicates (find_duplicates_testSuite.Test.test_find_duplicates)
 ----------------------------------------------------------------------
-ImportError: Failed to import test module: find_duplicates_testSuite
 Traceback (most recent call last):
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
-    module = self._get_module_from_name(name)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
-    __import__(name)
-  File "/app/find_duplicates_testSuite.py", line 3, in <module>
-    print(find_duplicates([1, 1, 1, 1]))
-          ^^^^^^^^^^^^^^^
-NameError: name 'find_duplicates' is not defined
+  File "/app/find_duplicates_testSuite.py", line 7, in test_find_duplicates
+    self.assertEqual(find_duplicates([1, 1, 1, 1]), [1])
+AssertionError: {1} != [1]
 
+======================================================================
+FAIL: test_find_duplicates_2 (find_duplicates_testSuite.Test.test_find_duplicates_2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/app/find_duplicates_testSuite.py", line 11, in test_find_duplicates_2
+    self.assertEqual(find_duplicates_2([1, 1, 1, 1]), [1])
+AssertionError: {1} != [1]
 
 ----------------------------------------------------------------------
-Ran 1 test in 0.045s
+Ran 2 tests in 0.038s
 
-FAILED (errors=1)
+FAILED (failures=2)
 Command exited with non-zero status 1
 	Command being timed: "python3 -m unittest discover -s . -p *test*.py"
-	User time (seconds): 0.36
-	System time (seconds): 0.22
-	Percent of CPU this job got: 13%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.24
+	User time (seconds): 0.14
+	System time (seconds): 0.07
+	Percent of CPU this job got: 31%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.71
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 14720
+	Maximum resident set size (kbytes): 14976
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 2502
-	Voluntary context switches: 110
-	Involuntary context switches: 245
+	Minor (reclaiming a frame) page faults: 2488
+	Voluntary context switches: 95
+	Involuntary context switches: 217
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 576

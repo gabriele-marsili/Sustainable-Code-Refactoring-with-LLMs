@@ -1,39 +1,23 @@
-E
-======================================================================
-ERROR: merge_sorted_array_testSuite (unittest.loader._FailedTest.merge_sorted_array_testSuite)
-----------------------------------------------------------------------
-ImportError: Failed to import test module: merge_sorted_array_testSuite
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
-    module = self._get_module_from_name(name)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
-    __import__(name)
-  File "/app/merge_sorted_array_testSuite.py", line 1, in <module>
-    from problems.easy.merge_sorted_array import Solution
-ModuleNotFoundError: No module named 'problems'
-
 
 ----------------------------------------------------------------------
-Ran 1 test in 0.003s
+Ran 0 tests in 0.000s
 
-FAILED (errors=1)
-Command exited with non-zero status 1
+OK
 	Command being timed: "python3 -m unittest discover -s . -p *test*.py"
-	User time (seconds): 0.16
+	User time (seconds): 0.18
 	System time (seconds): 0.09
-	Percent of CPU this job got: 18%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.37
+	Percent of CPU this job got: 23%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.19
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 14848
+	Maximum resident set size (kbytes): 14720
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 2501
-	Voluntary context switches: 50
-	Involuntary context switches: 359
+	Minor (reclaiming a frame) page faults: 2483
+	Voluntary context switches: 131
+	Involuntary context switches: 192
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 576
@@ -41,4 +25,4 @@ Command exited with non-zero status 1
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

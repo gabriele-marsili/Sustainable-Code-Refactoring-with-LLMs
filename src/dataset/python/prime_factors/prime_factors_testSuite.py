@@ -1,11 +1,16 @@
-# Test 1
-# Correct result => [2, 3, 7]
-print(prime_factors(42))
+import unittest
+from prime_factors import prime_factors
 
-# Test 2
-# Correct result => [2, 2, 2, 2, 2, 2, 5, 5, 5, 5, 5, 5]
-print(prime_factors(10**6))
+class TestPrimeFactors(unittest.TestCase):
 
-# Test 3
-# Correct result => [127, 9721]
-print(prime_factors(1234567))
+    def test_prime_factors_1(self):
+        self.assertEqual(prime_factors(42), [2, 3, 7])
+
+    def test_prime_factors_2(self):
+        self.assertEqual(prime_factors(10**6), [2, 2, 2, 2, 2, 2, 5, 5, 5, 5, 5, 5])
+
+    def test_prime_factors_3(self):
+        self.assertEqual(prime_factors(1234567), [127, 9721])
+
+if __name__ == "__main__":
+    unittest.main()

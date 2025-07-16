@@ -1,7 +1,13 @@
-# Test 1
-# Correct result => True
-print(can_jump([2, 3, 1, 1, 4]))
+import unittest
+from jump_game import can_jump
 
-# Test 2
-# Correct result => False
-print(can_jump([3, 2, 1, 0, 4]))
+class Test(unittest.TestCase):
+    def test_1(self):        
+        self.assertEqual(can_jump([3, 2, 1, 0, 4]),False)
+    def test_2(self):        
+        self.assertEqual(can_jump([2, 3, 1, 1, 4]),True)
+
+
+
+if __name__ == "__main__":
+    unittest.main()

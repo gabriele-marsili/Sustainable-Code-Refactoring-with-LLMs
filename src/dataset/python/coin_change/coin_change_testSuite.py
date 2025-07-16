@@ -1,13 +1,16 @@
-# Test 1
-# Correct result => 3
-coins = [1, 2, 5]
-amount = 11
-print(coin_change_1(coins, amount))
-print(coin_change_2(coins, amount))
+import unittest
+from coin_change import coin_change
 
-# Test 2
-# Correct result => -1
-coins = [2]
-amount = 3
-print(coin_change_1(coins, amount))
-print(coin_change_2(coins, amount))
+class TestCoinChange(unittest.TestCase):
+    def test_coin_change(self):
+        coins = [1, 2, 5]
+        amount = 11
+        self.assertEqual(coin_change(coins, amount), 3)
+
+    def test_coin_change_negative(self):
+        coins = [2]
+        amount = 3
+        self.assertEqual(coin_change(coins, amount), -1)
+
+if __name__ == "__main__":
+    unittest.main()

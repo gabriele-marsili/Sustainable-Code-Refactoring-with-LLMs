@@ -1,7 +1,10 @@
-# Test 1
-# Correct result => 'ubcdofghijklmnepqrstavwxyz'
-print(reverse_vowels('abcdefghijklmnopqrstuvwxyz'))
+import unittest
+from reverse_vowels import reverse_vowels
 
-# Test 2
-# Correct result => 'Hollo werld'
-print(reverse_vowels('Hello world'))
+class Test(unittest.TestCase):
+    def test_reverse_vowels(self):
+        self.assertEqual(reverse_vowels('abcdefghijklmnopqrstuvwxyz'), 'ubcdofghijklmnepqrstavwxyz')
+        self.assertEqual(reverse_vowels('Hello world'), 'Hollo werld')
+
+if __name__ == "__main__":
+    unittest.main()

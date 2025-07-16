@@ -1,7 +1,12 @@
-# Test 1
-# Correct result => 'hcum yrev margorp siht ekil i'
-print(reverse_sentence('i like this program very much'))
+import unittest
+from reverse_string import reverse_string
 
-# Test 2
-# Correct result => 'uoy era woh'
-print(reverse_sentence('how are you'))
+class Test(unittest.TestCase):
+    def test_reverse_sentence1(self):
+        self.assertEqual(reverse_sentence('i like this program very much'), 'hcum yrev margorp siht ekil i')
+
+    def test_reverse_sentence2(self):
+        self.assertEqual(reverse_sentence('how are you'), 'uoy era woh')
+
+if __name__ == "__main__":
+    unittest.main()

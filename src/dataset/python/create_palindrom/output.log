@@ -9,32 +9,31 @@ Traceback (most recent call last):
              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/usr/local/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
     __import__(name)
-  File "/app/create_palindrom_testSuite.py", line 4, in <module>
-    print(create_palindrome_1(word))
-          ^^^^^^^^^^^^^^^^^^^
-NameError: name 'create_palindrome_1' is not defined
+  File "/app/create_palindrom_testSuite.py", line 1, in <module>
+    from create_palindrom import create_palindrom
+ImportError: cannot import name 'create_palindrom' from 'create_palindrom' (/app/create_palindrom.py)
 
 
 ----------------------------------------------------------------------
-Ran 1 test in 0.005s
+Ran 1 test in 0.014s
 
 FAILED (errors=1)
 Command exited with non-zero status 1
 	Command being timed: "python3 -m unittest discover -s . -p *test*.py"
-	User time (seconds): 0.33
-	System time (seconds): 0.33
-	Percent of CPU this job got: 15%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.38
+	User time (seconds): 0.54
+	System time (seconds): 0.37
+	Percent of CPU this job got: 23%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.92
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 14848
+	Maximum resident set size (kbytes): 15104
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 2502
-	Voluntary context switches: 117
-	Involuntary context switches: 287
+	Minor (reclaiming a frame) page faults: 2509
+	Voluntary context switches: 143
+	Involuntary context switches: 269
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 576

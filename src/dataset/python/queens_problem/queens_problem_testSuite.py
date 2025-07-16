@@ -1,39 +1,36 @@
-# Test 1
-# Correct result => 1
-print(place_n_queens(1))
+import unittest
+from queens_problem import place_n_queens
 
-# Test 2
-# Correct result => 0
-print(place_n_queens(2))
+class Test(unittest.TestCase):
+    def test_1(self):
+        self.assertEqual(place_n_queens(1), 1)
 
-# Test 3
-# Correct result => 0
-print(place_n_queens(3))
+    def test_2(self):
+        self.assertEqual(place_n_queens(2), 0)
 
-# Test 4
-# Correct result => 2
-print(place_n_queens(4))
+    def test_3(self):
+        self.assertEqual(place_n_queens(3), 0)
 
-# Test 5
-# Correct result => 10
-print(place_n_queens(5))
+    def test_4(self):
+        self.assertEqual(place_n_queens(4), 2)
 
-# Test 6
-# Correct result => 4
-print(place_n_queens(6))
+    def test_5(self):
+        self.assertEqual(place_n_queens(5), 10)
 
-# Test 7
-# Correct result => 40
-print(place_n_queens(7))
+    def test_6(self):
+        self.assertEqual(place_n_queens(6), 4)
 
-# Test 8
-# Correct result => 92
-print(place_n_queens(8))
+    def test_7(self):
+        self.assertEqual(place_n_queens(7), 40)
 
-# Test 9
-# Correct result => 352
-print(place_n_queens(9))
+    def test_8(self):
+        self.assertEqual(place_n_queens(8), 92)
 
-# Test 10
-# Correct result => 724
-print(place_n_queens(10))
+    def test_9(self):
+        self.assertEqual(place_n_queens(9), 352)
+
+    def test_10(self):
+        self.assertEqual(place_n_queens(10), 724)
+
+if __name__ == "__main__":
+    unittest.main()

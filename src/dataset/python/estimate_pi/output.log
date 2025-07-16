@@ -1,40 +1,32 @@
-E
+F..
 ======================================================================
-ERROR: estimate_pi_testSuite (unittest.loader._FailedTest.estimate_pi_testSuite)
+FAIL: test_estimate_pi_10 (estimate_pi_testSuite.TestEstimatePi.test_estimate_pi_10)
 ----------------------------------------------------------------------
-ImportError: Failed to import test module: estimate_pi_testSuite
 Traceback (most recent call last):
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
-    module = self._get_module_from_name(name)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
-    __import__(name)
-  File "/app/estimate_pi_testSuite.py", line 3, in <module>
-    print(estimate_pi(10))
-          ^^^^^^^^^^^
-NameError: name 'estimate_pi' is not defined
-
+  File "/app/estimate_pi_testSuite.py", line 7, in test_estimate_pi_10
+    self.assertNotAlmostEqual(estimate_pi(10), 3.14, places=0)
+AssertionError: 2.8 == 3.14 within 0 places
 
 ----------------------------------------------------------------------
-Ran 1 test in 0.007s
+Ran 3 tests in 13.165s
 
-FAILED (errors=1)
+FAILED (failures=1)
 Command exited with non-zero status 1
 	Command being timed: "python3 -m unittest discover -s . -p *test*.py"
-	User time (seconds): 0.26
-	System time (seconds): 0.10
-	Percent of CPU this job got: 15%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:02.40
+	User time (seconds): 5.65
+	System time (seconds): 0.55
+	Percent of CPU this job got: 43%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:14.17
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 14720
+	Maximum resident set size (kbytes): 14976
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 2497
-	Voluntary context switches: 106
-	Involuntary context switches: 286
+	Minor (reclaiming a frame) page faults: 2527
+	Voluntary context switches: 134
+	Involuntary context switches: 4852
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 576

@@ -1,17 +1,17 @@
 (node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-FAIL ./grade-school_testSuite.js (6.4 s)
+FAIL ./grade-school_testSuite.js (7.389 s)
   School
-    ✓ a new school has an empty roster (35 ms)
-    ✓ adding a student adds them to the roster for the given grade (5 ms)
-    ✓ adding more students to the same grade adds them to the roster (5 ms)
+    ✓ a new school has an empty roster (24 ms)
+    ✓ adding a student adds them to the roster for the given grade (2 ms)
+    ✓ adding more students to the same grade adds them to the roster (1 ms)
     ✓ adding students to different grades adds them to the roster (1 ms)
-    ✓ grade returns the students in that grade in alphabetical order (5 ms)
-    ✓ grade returns an empty array if there are no students in that grade (4 ms)
-    ✕ the students names in each grade in the roster are sorted (49 ms)
-    ✕ roster cannot be modified outside of module (6 ms)
+    ✓ grade returns the students in that grade in alphabetical order (2 ms)
+    ✓ grade returns an empty array if there are no students in that grade (1 ms)
+    ✕ the students names in each grade in the roster are sorted (29 ms)
+    ✕ roster cannot be modified outside of module (11 ms)
     ✓ roster cannot be modified outside of module using grade() (2 ms)
-    ✕ a student can't be in two different grades (6 ms)
+    ✕ a student can't be in two different grades (2 ms)
 
   ● School › the students names in each grade in the roster are sorted
 
@@ -93,24 +93,24 @@ FAIL ./grade-school_testSuite.js (6.4 s)
 Test Suites: 1 failed, 1 total
 Tests:       3 failed, 7 passed, 10 total
 Snapshots:   0 total
-Time:        7.747 s
+Time:        8.931 s
 Ran all test suites.
 Command exited with non-zero status 1
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 1.42
-	System time (seconds): 1.72
-	Percent of CPU this job got: 16%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:19.51
+	User time (seconds): 2.05
+	System time (seconds): 2.51
+	Percent of CPU this job got: 19%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:23.51
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 84300
+	Maximum resident set size (kbytes): 84568
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 14306
-	Voluntary context switches: 5320
-	Involuntary context switches: 5877
+	Minor (reclaiming a frame) page faults: 14227
+	Voluntary context switches: 6448
+	Involuntary context switches: 4417
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

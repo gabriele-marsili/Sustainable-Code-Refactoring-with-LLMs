@@ -1,9 +1,12 @@
-# Test 1
-# Correct result => 'PAHNAPLSIIGYIR'
-print(convert('PAYPALISHIRING', 3))
-print(convert_2('PAYPALISHIRING', 3))
+import unittest
+from zigzag_conversion import zigzag_conversion as convert, zigzag_conversion as convert_2
 
-# Test 2
-# Correct result => 'PINALSIGYAHRPI'
-print(convert('PAYPALISHIRING', 4))
-print(convert_2('PAYPALISHIRING', 4))
+class Test(unittest.TestCase):
+    def test_zigzag_conversion(self):
+        self.assertEqual(convert('PAYPALISHIRING', 3), 'PAHNAPLSIIGYIR')
+        self.assertEqual(convert_2('PAYPALISHIRING', 3), 'PAHNAPLSIIGYIR')
+        self.assertEqual(convert('PAYPALISHIRING', 4), 'PINALSIGYAHRPI')
+        self.assertEqual(convert_2('PAYPALISHIRING', 4), 'PINALSIGYAHRPI')
+
+if __name__ == "__main__":
+    unittest.main()

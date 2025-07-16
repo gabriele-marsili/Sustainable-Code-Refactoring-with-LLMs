@@ -1,7 +1,14 @@
-# Test 1
-# Correct result => 4
-print(missing_number([2, 3, 1]))
+import unittest
+from find_one_missing_number import missing_number
 
-# Test 2
-# Correct result => 3
-print(missing_number([2, 1, 4]))
+
+class Test(unittest.TestCase):
+    def test_1(self):        
+        self.assertEqual(missing_number([2, 1, 4]),3)
+    def test_2(self):        
+        self.assertEqual(missing_number([2, 3, 1]),4)
+    
+
+
+if __name__ == "__main__":
+    unittest.main()

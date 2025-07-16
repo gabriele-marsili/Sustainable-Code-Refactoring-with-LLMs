@@ -1,40 +1,23 @@
-E
-======================================================================
-ERROR: longest_increasing_subarray_testSuite (unittest.loader._FailedTest.longest_increasing_subarray_testSuite)
+.
 ----------------------------------------------------------------------
-ImportError: Failed to import test module: longest_increasing_subarray_testSuite
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
-    module = self._get_module_from_name(name)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
-    __import__(name)
-  File "/app/longest_increasing_subarray_testSuite.py", line 3, in <module>
-    print(longest_increasing_subarray([10, 1, 3, 8, 2, 0, 5, 7, 12, 3]))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-NameError: name 'longest_increasing_subarray' is not defined
+Ran 1 test in 0.005s
 
-
-----------------------------------------------------------------------
-Ran 1 test in 0.004s
-
-FAILED (errors=1)
-Command exited with non-zero status 1
+OK
 	Command being timed: "python3 -m unittest discover -s . -p *test*.py"
-	User time (seconds): 0.22
-	System time (seconds): 0.14
-	Percent of CPU this job got: 21%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.70
+	User time (seconds): 0.21
+	System time (seconds): 0.12
+	Percent of CPU this job got: 18%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.84
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 14720
+	Maximum resident set size (kbytes): 14464
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 2496
-	Voluntary context switches: 111
-	Involuntary context switches: 299
+	Minor (reclaiming a frame) page faults: 2487
+	Voluntary context switches: 141
+	Involuntary context switches: 241
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 576
@@ -42,4 +25,4 @@ Command exited with non-zero status 1
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

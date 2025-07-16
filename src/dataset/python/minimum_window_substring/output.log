@@ -1,29 +1,13 @@
-E
-======================================================================
-ERROR: minimum_window_substring_testSuite (unittest.loader._FailedTest.minimum_window_substring_testSuite)
-----------------------------------------------------------------------
-ImportError: Failed to import test module: minimum_window_substring_testSuite
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
-    module = self._get_module_from_name(name)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
-    __import__(name)
-  File "/app/minimum_window_substring_testSuite.py", line 1, in <module>
-    from problems.hard.minimum_window_substring import Solution
-ModuleNotFoundError: No module named 'problems'
-
 
 ----------------------------------------------------------------------
-Ran 1 test in 0.002s
+Ran 0 tests in 0.000s
 
-FAILED (errors=1)
-Command exited with non-zero status 1
+OK
 	Command being timed: "python3 -m unittest discover -s . -p *test*.py"
-	User time (seconds): 0.27
-	System time (seconds): 0.18
-	Percent of CPU this job got: 11%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.82
+	User time (seconds): 0.19
+	System time (seconds): 0.12
+	Percent of CPU this job got: 21%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.51
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
@@ -31,9 +15,9 @@ Command exited with non-zero status 1
 	Maximum resident set size (kbytes): 14848
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 2505
-	Voluntary context switches: 104
-	Involuntary context switches: 328
+	Minor (reclaiming a frame) page faults: 2485
+	Voluntary context switches: 115
+	Involuntary context switches: 318
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 576
@@ -41,4 +25,4 @@ Command exited with non-zero status 1
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

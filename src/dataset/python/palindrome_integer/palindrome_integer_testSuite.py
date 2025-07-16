@@ -1,17 +1,22 @@
-# Test 1
-# Correct result => True
-x = 121
-print(palindrome_integer_1(x))
-print(palindrome_integer_2(x))
+import unittest
+from palindrome_integer import palindrome_integer_1, palindrome_integer_2
 
-# Test 2
-# Correct result => False
-x = -121
-print(palindrome_integer_1(x))
-print(palindrome_integer_2(x))
+class Test(unittest.TestCase):
+    def test_palindrome_integer_1(self):
+        x = 121
+        self.assertTrue(palindrome_integer_1(x))
+        x = -121
+        self.assertFalse(palindrome_integer_1(x))
+        x = 10
+        self.assertFalse(palindrome_integer_1(x))
 
-# Test 2
-# Correct result => False
-x = 10
-print(palindrome_integer_1(x))
-print(palindrome_integer_2(x))
+    def test_palindrome_integer_2(self):
+        x = 121
+        self.assertTrue(palindrome_integer_2(x))
+        x = -121
+        self.assertFalse(palindrome_integer_2(x))
+        x = 10
+        self.assertFalse(palindrome_integer_2(x))
+
+if __name__ == "__main__":
+    unittest.main()

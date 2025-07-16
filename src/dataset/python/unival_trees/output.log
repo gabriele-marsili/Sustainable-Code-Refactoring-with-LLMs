@@ -9,32 +9,33 @@ Traceback (most recent call last):
              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/usr/local/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
     __import__(name)
-  File "/app/unival_trees_testSuite.py", line 3, in <module>
-    print(count_unival_trees(TreeNode(0, TreeNode(1), TreeNode(0, TreeNode(1, TreeNode(1), TreeNode(1)), TreeNode(0)))))
-          ^^^^^^^^^^^^^^^^^^
-NameError: name 'count_unival_trees' is not defined
+  File "/app/unival_trees_testSuite.py", line 2, in <module>
+    from unival_trees import TreeNode, unival_trees
+  File "/app/unival_trees.py", line 29, in <module>
+    from tree_helpers import TreeNode
+ModuleNotFoundError: No module named 'tree_helpers'
 
 
 ----------------------------------------------------------------------
-Ran 1 test in 0.012s
+Ran 1 test in 0.003s
 
 FAILED (errors=1)
 Command exited with non-zero status 1
 	Command being timed: "python3 -m unittest discover -s . -p *test*.py"
-	User time (seconds): 0.24
-	System time (seconds): 0.25
-	Percent of CPU this job got: 12%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.06
+	User time (seconds): 0.30
+	System time (seconds): 0.19
+	Percent of CPU this job got: 34%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.44
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 14720
+	Maximum resident set size (kbytes): 14976
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 2495
-	Voluntary context switches: 83
-	Involuntary context switches: 193
+	Minor (reclaiming a frame) page faults: 2504
+	Voluntary context switches: 142
+	Involuntary context switches: 217
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 576

@@ -24,7 +24,7 @@ if __name__ == "__main__":
     bad_entries_cluster_json_path = base_dir / "src/bad_entries_cluster.json"
     if not bad_entries_cluster_json_path.exists(): print(f"❌ Cluster bad entries not exists")
     # Le stringhe che vuoi sostituire
-    old_text = "from problems.hard."
+    old_text = "from problems.medium."
     new_text = "from "
     
     datas = None

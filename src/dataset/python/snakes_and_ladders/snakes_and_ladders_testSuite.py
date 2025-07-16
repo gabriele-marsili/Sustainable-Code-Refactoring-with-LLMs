@@ -1,4 +1,4 @@
-from problems.medium.snakes_and_ladders import Solution
+from snakes_and_ladders import Solution
 
 
 def test_snakes_and_ladders():

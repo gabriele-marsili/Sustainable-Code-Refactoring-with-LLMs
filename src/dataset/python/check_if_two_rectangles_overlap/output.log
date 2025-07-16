@@ -1,40 +1,23 @@
-E
-======================================================================
-ERROR: check_if_two_rectangles_overlap_testSuite (unittest.loader._FailedTest.check_if_two_rectangles_overlap_testSuite)
+....
 ----------------------------------------------------------------------
-ImportError: Failed to import test module: check_if_two_rectangles_overlap_testSuite
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
-    module = self._get_module_from_name(name)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
-    __import__(name)
-  File "/app/check_if_two_rectangles_overlap_testSuite.py", line 3, in <module>
-    print(check_if_two_rectangles_overlap((0, 0), (3, 2), (1, 1), (5, 4)))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-NameError: name 'check_if_two_rectangles_overlap' is not defined
+Ran 4 tests in 0.007s
 
-
-----------------------------------------------------------------------
-Ran 1 test in 0.017s
-
-FAILED (errors=1)
-Command exited with non-zero status 1
+OK
 	Command being timed: "python3 -m unittest discover -s . -p *test*.py"
-	User time (seconds): 0.40
-	System time (seconds): 0.32
-	Percent of CPU this job got: 15%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.65
+	User time (seconds): 0.36
+	System time (seconds): 0.17
+	Percent of CPU this job got: 32%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.68
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 14720
+	Maximum resident set size (kbytes): 14592
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 2499
-	Voluntary context switches: 94
-	Involuntary context switches: 235
+	Minor (reclaiming a frame) page faults: 2487
+	Voluntary context switches: 140
+	Involuntary context switches: 195
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 576
@@ -42,4 +25,4 @@ Command exited with non-zero status 1
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

@@ -1,51 +1,45 @@
-# Test 1
-# Correct result => 5
-print(num_decodings('12151'))
+import unittest
+from number_of_decodings import number_of_decodings
 
-# Test 2
-# Correct result => 5
-print(num_decodings('1111'))
+class Test(unittest.TestCase):
+    def test_1(self):
+        self.assertEqual(number_of_decodings('12151'), 5)
 
-# Test 3
-# Correct result => 3
-print(num_decodings('111'))
+    def test_2(self):
+        self.assertEqual(number_of_decodings('1111'), 5)
 
-# Test 4
-# Correct result => 1
-print(num_decodings('1010'))
+    def test_3(self):
+        self.assertEqual(number_of_decodings('111'), 3)
 
-# Test 5
-# Correct result => 4
-print(num_decodings('2626'))
+    def test_4(self):
+        self.assertEqual(number_of_decodings('1010'), 1)
 
-# Test 6
-# Correct result => 1
-print(num_decodings('1'))
+    def test_5(self):
+        self.assertEqual(number_of_decodings('2626'), 4)
 
-# Test 7
-# Correct result => 2
-print(num_decodings('11'))
+    def test_6(self):
+        self.assertEqual(number_of_decodings('1'), 1)
 
-# Test 8
-# Correct result => 3
-print(num_decodings('111'))
+    def test_7(self):
+        self.assertEqual(number_of_decodings('11'), 2)
 
-# Test 9
-# Correct result => 5
-print(num_decodings('1111'))
+    def test_8(self):
+        self.assertEqual(number_of_decodings('111'), 3)
 
-# Test 10
-# Correct result => 8
-print(num_decodings('11111'))
+    def test_9(self):
+        self.assertEqual(number_of_decodings('1111'), 5)
 
-# Test 11
-# Correct result => 13
-print(num_decodings('111111'))
+    def test_10(self):
+        self.assertEqual(number_of_decodings('11111'), 8)
 
-# Test 12
-# Correct result => 21
-print(num_decodings('1111111'))
+    def test_11(self):
+        self.assertEqual(number_of_decodings('111111'), 13)
 
-# Test 13
-# Correct result => 34
-print(num_decodings('11111111'))
+    def test_12(self):
+        self.assertEqual(number_of_decodings('1111111'), 21)
+
+    def test_13(self):
+        self.assertEqual(number_of_decodings('11111111'), 34)
+
+if __name__ == "__main__":
+    unittest.main()

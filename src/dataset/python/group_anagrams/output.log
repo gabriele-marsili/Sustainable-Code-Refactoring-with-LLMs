@@ -1,30 +1,33 @@
-E
+F
 ======================================================================
-ERROR: group_anagrams_testSuite (unittest.loader._FailedTest.group_anagrams_testSuite)
+FAIL: test_1 (group_anagrams_testSuite.Test.test_1)
 ----------------------------------------------------------------------
-ImportError: Failed to import test module: group_anagrams_testSuite
 Traceback (most recent call last):
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
-    module = self._get_module_from_name(name)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
-    __import__(name)
-  File "/app/group_anagrams_testSuite.py", line 3, in <module>
-    print(group_anagrams(['eat', 'tea', 'tan', 'ate', 'nat', 'bat']))
-          ^^^^^^^^^^^^^^
-NameError: name 'group_anagrams' is not defined
+  File "/app/group_anagrams_testSuite.py", line 6, in test_1
+    self.assertEqual(group_anagrams(['eat', 'tea', 'tan', 'ate', 'nat', 'bat']),[['eat', 'ate', 'tea'], ['tan', 'nat'], ['bat']])
+AssertionError: Lists differ: [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']] != [['eat', 'ate', 'tea'], ['tan', 'nat'], ['bat']]
+
+First differing element 0:
+['eat', 'tea', 'ate']
+['eat', 'ate', 'tea']
+
+- [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]
+?               -------
+
++ [['eat', 'ate', 'tea'], ['tan', 'nat'], ['bat']]
+?          +++++++
 
 
 ----------------------------------------------------------------------
-Ran 1 test in 0.002s
+Ran 1 test in 0.028s
 
-FAILED (errors=1)
+FAILED (failures=1)
 Command exited with non-zero status 1
 	Command being timed: "python3 -m unittest discover -s . -p *test*.py"
-	User time (seconds): 0.26
-	System time (seconds): 0.19
-	Percent of CPU this job got: 22%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:02.01
+	User time (seconds): 0.24
+	System time (seconds): 0.14
+	Percent of CPU this job got: 25%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.53
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
@@ -32,9 +35,9 @@ Command exited with non-zero status 1
 	Maximum resident set size (kbytes): 14592
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 2497
-	Voluntary context switches: 134
-	Involuntary context switches: 246
+	Minor (reclaiming a frame) page faults: 2489
+	Voluntary context switches: 113
+	Involuntary context switches: 324
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 576

@@ -1,0 +1,15 @@
+import unittest
+from sort_rgb_array import sort_rgb_array, sort_rgb_array_2
+
+class TestSortRgbArray(unittest.TestCase):
+
+    def test_sort_rgb_array(self):
+        self.assertEqual(sort_rgb_array(['G', 'B', 'R', 'R', 'B', 'R', 'G']), ['R', 'R', 'R', 'G', 'G', 'B', 'B'])
+        self.assertEqual(sort_rgb_array(['B', 'B', 'B', 'G', 'G', 'R', 'R']), ['R', 'R', 'G', 'G', 'B', 'B', 'B'])
+
+    def test_sort_rgb_array_2(self):
+        self.assertEqual(sort_rgb_array_2(['G', 'B', 'R', 'R', 'B', 'R', 'G']), ['R', 'R', 'R', 'G', 'G', 'B', 'B'])
+        self.assertEqual(sort_rgb_array_2(['B', 'B', 'B', 'G', 'G', 'R', 'R']), ['R', 'R', 'G', 'G', 'B', 'B', 'B'])
+
+if __name__ == "__main__":
+    unittest.main()

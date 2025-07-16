@@ -1,11 +1,16 @@
-# Test 1
-# Correct result => 3
-print(ordered_digits('301'))
+import unittest
+from ordered_digits import ordered_digits
 
-# Test 2
-# Correct result => 1
-print(ordered_digits('901'))
+class TestOrderedDigits(unittest.TestCase):
 
-# Test 3
-# Correct result => 4
-print(ordered_digits('5982'))
+    def test_ordered_digits_1(self):
+        self.assertEqual(ordered_digits('301'), 3)
+
+    def test_ordered_digits_2(self):
+        self.assertEqual(ordered_digits('901'), 1)
+
+    def test_ordered_digits_3(self):
+        self.assertEqual(ordered_digits('5982'), 4)
+
+if __name__ == "__main__":
+    unittest.main()

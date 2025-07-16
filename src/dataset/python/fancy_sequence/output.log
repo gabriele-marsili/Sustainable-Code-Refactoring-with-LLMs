@@ -1,30 +1,13 @@
-E
-======================================================================
-ERROR: fancy_sequence_testSuite (unittest.loader._FailedTest.fancy_sequence_testSuite)
+.
 ----------------------------------------------------------------------
-ImportError: Failed to import test module: fancy_sequence_testSuite
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
-    module = self._get_module_from_name(name)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
-    __import__(name)
-  File "/app/fancy_sequence_testSuite.py", line 2, in <module>
-    fancy = Fancy()
-            ^^^^^
-NameError: name 'Fancy' is not defined
+Ran 1 test in 0.009s
 
-
-----------------------------------------------------------------------
-Ran 1 test in 0.001s
-
-FAILED (errors=1)
-Command exited with non-zero status 1
+OK
 	Command being timed: "python3 -m unittest discover -s . -p *test*.py"
-	User time (seconds): 0.26
-	System time (seconds): 0.18
-	Percent of CPU this job got: 12%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.55
+	User time (seconds): 0.31
+	System time (seconds): 0.17
+	Percent of CPU this job got: 23%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:02.02
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
@@ -32,9 +15,9 @@ Command exited with non-zero status 1
 	Maximum resident set size (kbytes): 14720
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 2499
-	Voluntary context switches: 103
-	Involuntary context switches: 342
+	Minor (reclaiming a frame) page faults: 2485
+	Voluntary context switches: 131
+	Involuntary context switches: 366
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 576
@@ -42,4 +25,4 @@ Command exited with non-zero status 1
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

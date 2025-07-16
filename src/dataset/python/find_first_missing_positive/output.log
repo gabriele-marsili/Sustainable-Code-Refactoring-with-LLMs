@@ -1,40 +1,23 @@
-E
-======================================================================
-ERROR: find_first_missing_positive_testSuite (unittest.loader._FailedTest.find_first_missing_positive_testSuite)
+........
 ----------------------------------------------------------------------
-ImportError: Failed to import test module: find_first_missing_positive_testSuite
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
-    module = self._get_module_from_name(name)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
-    __import__(name)
-  File "/app/find_first_missing_positive_testSuite.py", line 4, in <module>
-    print(find_first_missing_1(list(test))) # make a copy, the list will be changed inside the function
-          ^^^^^^^^^^^^^^^^^^^^
-NameError: name 'find_first_missing_1' is not defined
+Ran 8 tests in 0.009s
 
-
-----------------------------------------------------------------------
-Ran 1 test in 0.078s
-
-FAILED (errors=1)
-Command exited with non-zero status 1
+OK
 	Command being timed: "python3 -m unittest discover -s . -p *test*.py"
-	User time (seconds): 0.28
-	System time (seconds): 0.27
-	Percent of CPU this job got: 12%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.61
+	User time (seconds): 0.14
+	System time (seconds): 0.09
+	Percent of CPU this job got: 25%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.94
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 14592
+	Maximum resident set size (kbytes): 14720
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 2497
+	Minor (reclaiming a frame) page faults: 2488
 	Voluntary context switches: 106
-	Involuntary context switches: 224
+	Involuntary context switches: 246
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 576
@@ -42,4 +25,4 @@ Command exited with non-zero status 1
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

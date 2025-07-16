@@ -1,7 +1,10 @@
-# Test 1
-# Correct result => 23
-print(basic_calculator('(1+(4+5+2)-3)+(6+8)'))
+import unittest
+from basic_calculator import basic_calculator
 
-# Test 2
-# Correct result => 3
-print(basic_calculator(' 2-1 + 2 '))
+class Test(unittest.TestCase):
+    def test_calculator(self):
+        self.assertEqual(basic_calculator('(1+(4+5+2)-3)+(6+8)'), 23)
+        self.assertEqual(basic_calculator(' 2-1 + 2 '), 3)
+
+if __name__ == "__main__":
+    unittest.main()

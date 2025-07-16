@@ -1,0 +1,10 @@
+import unittest
+from find_second_largest_node import TreeNode, find_second_largest_node
+
+class Test(unittest.TestCase):
+    def test_find_second_largest(self):
+        tree = TreeNode(1, TreeNode(5, TreeNode(2), TreeNode(8)), TreeNode(4, TreeNode(12), TreeNode(7)))
+        self.assertEqual(find_second_largest_node(tree).val, 7)
+
+if __name__ == "__main__":
+    unittest.main()

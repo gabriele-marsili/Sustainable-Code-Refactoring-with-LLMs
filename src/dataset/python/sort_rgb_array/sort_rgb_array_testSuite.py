@@ -1,9 +1,15 @@
-# Test 1
-# Correct result => ['R', 'R', 'R', 'G', 'G', 'B', 'B']
-print(sort_rgb_array(['G', 'B', 'R', 'R', 'B', 'R', 'G']))
-print(sort_rgb_array_2(['G', 'B', 'R', 'R', 'B', 'R', 'G']))
+import unittest
+from sort_rgb_array import sort_rgb_array, sort_rgb_array_2
 
-# Test 2
-# Correct result => ['R', 'R', 'G', 'G', 'B', 'B', 'B']
-print(sort_rgb_array(['B', 'B', 'B', 'G', 'G', 'R', 'R']))
-print(sort_rgb_array_2(['B', 'B', 'B', 'G', 'G', 'R', 'R']))
+class TestRgbArray(unittest.TestCase):
+
+    def test_sort_rgb_array(self):
+        self.assertEqual(sort_rgb_array(['G', 'B', 'R', 'R', 'B', 'R', 'G']), ['R', 'R', 'R', 'G', 'G', 'B', 'B'])
+        self.assertEqual(sort_rgb_array(['B', 'B', 'B', 'G', 'G', 'R', 'R']), ['R', 'R', 'G', 'G', 'B', 'B', 'B'])
+
+    def test_sort_rgb_array_2(self):
+        self.assertEqual(sort_rgb_array_2(['G', 'B', 'R', 'R', 'B', 'R', 'G']), ['R', 'R', 'R', 'G', 'G', 'B', 'B'])
+        self.assertEqual(sort_rgb_array_2(['B', 'B', 'B', 'G', 'G', 'R', 'R']), ['R', 'R', 'G', 'G', 'B', 'B', 'B'])
+
+if __name__ == "__main__":
+    unittest.main()

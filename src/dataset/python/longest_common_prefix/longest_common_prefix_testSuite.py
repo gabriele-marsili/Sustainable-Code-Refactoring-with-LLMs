@@ -1,11 +1,15 @@
-# Test 1
-# Correct result => 'fl'
-print(longest_common_prefix(['flower', 'flow', 'flight']))
+import unittest
+from longest_common_prefix import longest_common_prefix
 
-# Test 2
-# Correct result => ''
-print(longest_common_prefix(['dog', 'racecar', 'car']))
+class Test(unittest.TestCase):
+    def test_1(self):
+        self.assertEqual(longest_common_prefix(['flower', 'flow', 'flight']), 'fl')
 
-# Test 3
-# Correct result => 'a'
-print(longest_common_prefix(['aa', 'a']))
+    def test_2(self):
+        self.assertEqual(longest_common_prefix(['dog', 'racecar', 'car']), '')
+
+    def test_3(self):
+        self.assertEqual(longest_common_prefix(['aa', 'a']), 'a')
+
+if __name__ == "__main__":
+    unittest.main()

@@ -1,23 +1,24 @@
-# Test 1
-# Correct result => 4
-print(longest_palindromic_substring('google'))
+import unittest
+from longest_palindromic_substring import longest_palindromic_substring
 
-# Test 2
-# Correct result => 11
-print(longest_palindromic_substring('sgoaberebaogle'))
+class Test(unittest.TestCase):
+    def test_1(self):
+        self.assertEqual(longest_palindromic_substring('google'), 4)
 
-# Test 3
-# Correct result => 2
-print(longest_palindromic_substring('abcdeef'))
+    def test_2(self):
+        self.assertEqual(longest_palindromic_substring('sgoaberebaogle'), 11)
 
-# Test 4
-# Correct result => 7
-print(longest_palindromic_substring('racecar'))
+    def test_3(self):
+        self.assertEqual(longest_palindromic_substring('abcdeef'), 2)
 
-# Test 5
-# Correct result => 5
-print(longest_palindromic_substring('abbabbc'))
+    def test_4(self):
+        self.assertEqual(longest_palindromic_substring('racecar'), 7)
 
-# Test 6
-# Correct result => 10
-print(longest_palindromic_substring('forgeeksskeegfor'))
+    def test_5(self):
+        self.assertEqual(longest_palindromic_substring('abbabbc'), 5)
+
+    def test_6(self):
+        self.assertEqual(longest_palindromic_substring('forgeeksskeegfor'), 10)
+
+if __name__ == "__main__":
+    unittest.main()

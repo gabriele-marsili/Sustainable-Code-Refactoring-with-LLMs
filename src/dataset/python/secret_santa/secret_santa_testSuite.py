@@ -1,3 +1,10 @@
-# Test 1
-# Correct result => nondeterministic algorithm, many solutions exist
-print(secret_santa(['a', 'b', 'c']))
+import unittest
+from secret_santa import secret_santa
+
+class Test(unittest.TestCase):
+    def test_1(self):        
+        self.assertEqual(secret_santa(['a', 'b', 'c']),'a')
+
+
+if __name__ == "__main__":
+    unittest.main()

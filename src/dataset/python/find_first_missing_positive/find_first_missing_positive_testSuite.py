@@ -1,47 +1,48 @@
-# Test 1
-# Correct result => 1
-test = [-1, 2, 3]
-print(find_first_missing_1(list(test))) # make a copy, the list will be changed inside the function
-print(find_first_missing_2(list(test)))
+import unittest
+from find_first_missing_positive import find_first_missing_1, find_first_missing_2
 
-# Test 2
-# Correct result => 2
-test = [3, 4, -1, 1]
-print(find_first_missing_1(list(test)))
-print(find_first_missing_2(list(test)))
+class TestFindFirstMissing(unittest.TestCase):
+    
+    def test_1(self):
+        test = [-1, 2, 3]
+        self.assertEqual(find_first_missing_1(list(test)), 1)
+        self.assertEqual(find_first_missing_2(list(test)), 1)
 
-# Test 3
-# Correct result => 3
-test = [1, 2, 0]
-print(find_first_missing_1(list(test)))
-print(find_first_missing_2(list(test)))
+    def test_2(self):
+        test = [3, 4, -1, 1]
+        self.assertEqual(find_first_missing_1(list(test)), 2)
+        self.assertEqual(find_first_missing_2(list(test)), 2)
 
-# Test 4
-# Correct result => 4
-test = [1, 2, 3]
-print(find_first_missing_1(list(test)))
-print(find_first_missing_2(list(test)))
+    def test_3(self):
+        test = [1, 2, 0]
+        self.assertEqual(find_first_missing_1(list(test)), 3)
+        self.assertEqual(find_first_missing_2(list(test)), 3)
 
-# Test 5
-# Correct result => 1
-test = [-4, -1, -3, -1]
-print(find_first_missing_1(list(test)))
-print(find_first_missing_2(list(test)))
+    def test_4(self):
+        test = [1, 2, 3]
+        self.assertEqual(find_first_missing_1(list(test)), 4)
+        self.assertEqual(find_first_missing_2(list(test)), 4)
 
-# Test 6
-# Correct result => 3
-test = [2, 1, 2, -1, 0, 20]
-print(find_first_missing_1(list(test)))
-print(find_first_missing_2(list(test)))
+    def test_5(self):
+        test = [-4, -1, -3, -1]
+        self.assertEqual(find_first_missing_1(list(test)), 1)
+        self.assertEqual(find_first_missing_2(list(test)), 1)
 
-# Test 7
-# Correct result => 3
-test = [1, 2, 5, 5, 1, 2]
-print(find_first_missing_1(list(test)))
-print(find_first_missing_2(list(test)))
+    def test_6(self):
+        test = [2, 1, 2, -1, 0, 20]
+        self.assertEqual(find_first_missing_1(list(test)), 3)
+        self.assertEqual(find_first_missing_2(list(test)), 3)
 
-# Test 8
-# Correct result => 4
-test = [1, 2, 3, 5, 1, 2, 3, 3]
-print(find_first_missing_1(list(test)))
-print(find_first_missing_2(list(test)))
+    def test_7(self):
+        test = [1, 2, 5, 5, 1, 2]
+        self.assertEqual(find_first_missing_1(list(test)), 3)
+        self.assertEqual(find_first_missing_2(list(test)), 3)
+
+    def test_8(self):
+        test = [1, 2, 3, 5, 1, 2, 3, 3]
+        self.assertEqual(find_first_missing_1(list(test)), 4)
+        self.assertEqual(find_first_missing_2(list(test)), 4)
+
+
+if __name__ == "__main__":
+    unittest.main()

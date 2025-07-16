@@ -1,19 +1,29 @@
+import unittest
 from .testing_ll import build_ll, print_ll
+from merge_sorted_ll import merge_sorted_ll
 
-# Test 1
-# Correct result => 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9
-a = build_ll([1, 2, 3, 4, 5])
-b = build_ll([6, 7, 8, 9])
-print_ll(merge_two_sorted_ll(a, b))
+class Test(unittest.TestCase):
 
-# Test 2
-# Correct result => 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
-a = build_ll([1, 3, 5])
-b = build_ll([2, 4, 6, 7])
-print_ll(merge_two_sorted_ll(a, b))
+    def test_merge_two_sorted_ll_1(self):
+        a = build_ll([1, 2, 3, 4, 5])
+        b = build_ll([6, 7, 8, 9])
+        result = merge_two_sorted_ll(a, b)
+        expected = build_ll([1, 2, 3, 4, 5, 6, 7, 8, 9])
+        self.assertEqual(print_ll(result), print_ll(expected))
 
-# Test 3
-# Correct result => 1 -> 1 -> 2 -> 3 -> 4 -> 4
-a = build_ll([1, 2, 4])
-b = build_ll([1, 3, 4])
-print_ll(merge_two_sorted_ll(a, b))
+    def test_merge_two_sorted_ll_2(self):
+        a = build_ll([1, 3, 5])
+        b = build_ll([2, 4, 6, 7])
+        result = merge_two_sorted_ll(a, b)
+        expected = build_ll([1, 2, 3, 4, 5, 6, 7])
+        self.assertEqual(print_ll(result), print_ll(expected))
+
+    def test_merge_two_sorted_ll_3(self):
+        a = build_ll([1, 2, 4])
+        b = build_ll([1, 3, 4])
+        result = merge_two_sorted_ll(a, b)
+        expected = build_ll([1, 1, 2, 3, 4, 4])
+        self.assertEqual(print_ll(result), print_ll(expected))
+
+if __name__ == "__main__":
+    unittest.main()

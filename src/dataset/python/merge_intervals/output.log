@@ -1,30 +1,13 @@
-E
-======================================================================
-ERROR: merge_intervals_testSuite (unittest.loader._FailedTest.merge_intervals_testSuite)
+...
 ----------------------------------------------------------------------
-ImportError: Failed to import test module: merge_intervals_testSuite
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
-    module = self._get_module_from_name(name)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
-    __import__(name)
-  File "/app/merge_intervals_testSuite.py", line 3, in <module>
-    print(merge_intervals([(1, 5), (2, 6)]))
-          ^^^^^^^^^^^^^^^
-NameError: name 'merge_intervals' is not defined
+Ran 3 tests in 0.003s
 
-
-----------------------------------------------------------------------
-Ran 1 test in 0.002s
-
-FAILED (errors=1)
-Command exited with non-zero status 1
+OK
 	Command being timed: "python3 -m unittest discover -s . -p *test*.py"
-	User time (seconds): 0.36
-	System time (seconds): 0.24
-	Percent of CPU this job got: 24%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:02.46
+	User time (seconds): 0.23
+	System time (seconds): 0.21
+	Percent of CPU this job got: 25%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.75
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
@@ -32,9 +15,9 @@ Command exited with non-zero status 1
 	Maximum resident set size (kbytes): 14720
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 2498
-	Voluntary context switches: 113
-	Involuntary context switches: 164
+	Minor (reclaiming a frame) page faults: 2483
+	Voluntary context switches: 147
+	Involuntary context switches: 169
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 576
@@ -42,4 +25,4 @@ Command exited with non-zero status 1
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

@@ -1,15 +1,19 @@
-# Test 1
-# Correct result => BABC
-print(longest_common_substring('ABABC', 'BABCA'))
+import unittest
+from longest_common_substring import longest_common_substring
 
-# Test 2
-# Correct result => Geeks
-print(longest_common_substring('GeeksforGeeks', 'GeeksQuiz'))
+class TestLongestCommonSubstring(unittest.TestCase):
 
-# Test 3
-# Correct result => abcd
-print(longest_common_substring('abcdxyz', 'xyzabcd'))
+    def test_1(self):
+        self.assertEqual(longest_common_substring('ABABC', 'BABCA'), 'BABC')
 
-# Test 4
-# Correct result => abcdez
-print(longest_common_substring('zxabcdezy', 'yzabcdezx'))
+    def test_2(self):
+        self.assertEqual(longest_common_substring('GeeksforGeeks', 'GeeksQuiz'), 'Geeks')
+
+    def test_3(self):
+        self.assertEqual(longest_common_substring('abcdxyz', 'xyzabcd'), 'abcd')
+
+    def test_4(self):
+        self.assertEqual(longest_common_substring('zxabcdezy', 'yzabcdezx'), 'abcde')
+
+if __name__ == "__main__":
+    unittest.main()

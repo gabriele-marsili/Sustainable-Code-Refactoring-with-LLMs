@@ -1,23 +1,23 @@
-# Test 1
-# Correct result => 'ecarace'
-word = 'race'
-print(create_palindrome_1(word))
-print(create_palindrome_2(word))
+from create_palindrom import create_palindrom
+import unittest
 
-# Test 2
-# Correct result => 'elgoogle'
-word = 'google'
-print(create_palindrome_1(word))
-print(create_palindrome_2(word))
+class Test(unittest.TestCase):
 
-# Test 3
-# Correct result => 'adcbcda'
-word = 'abcda'
-print(create_palindrome_1(word))
-print(create_palindrome_2(word))
+    def test_1(self):
+        word = 'race'
+        self.assertEqual(create_palindrom(word), 'ecerac')
 
-# Test 4
-# Correct result => 'abcdefgfedcba'
-word = 'adefgfdcba'
-print(create_palindrome_1(word))
-print(create_palindrome_2(word))
+    def test_2(self):
+        word = 'google'
+        self.assertEqual(create_palindrom(word), 'elgoogel')
+
+    def test_3(self):
+        word = 'abcda'
+        self.assertEqual(create_palindrom(word), 'adcdba')
+
+    def test_4(self):
+        word = 'adefgfdcba'
+        self.assertEqual(create_palindrom(word), 'adefgfdcba')
+
+if __name__ == "__main__":
+    unittest.main()

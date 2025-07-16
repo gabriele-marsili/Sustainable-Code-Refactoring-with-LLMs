@@ -1,30 +1,29 @@
-E
+F...
 ======================================================================
-ERROR: top_k_frequent_elements_testSuite (unittest.loader._FailedTest.top_k_frequent_elements_testSuite)
+FAIL: test_1 (top_k_frequent_elements_testSuite.Test.test_1)
 ----------------------------------------------------------------------
-ImportError: Failed to import test module: top_k_frequent_elements_testSuite
 Traceback (most recent call last):
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
-    module = self._get_module_from_name(name)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
-    __import__(name)
-  File "/app/top_k_frequent_elements_testSuite.py", line 3, in <module>
-    print(top_k_frequent_1([1, 1, 1, 2, 2, 3], 2))
-          ^^^^^^^^^^^^^^^^
-NameError: name 'top_k_frequent_1' is not defined
+  File "/app/top_k_frequent_elements_testSuite.py", line 6, in test_1
+    self.assertEqual(top_k_frequent_1([1, 1, 1, 2, 2, 3], 2),[1,2])
+AssertionError: Lists differ: [2, 1] != [1, 2]
 
+First differing element 0:
+2
+1
+
+- [2, 1]
++ [1, 2]
 
 ----------------------------------------------------------------------
-Ran 1 test in 0.004s
+Ran 4 tests in 0.033s
 
-FAILED (errors=1)
+FAILED (failures=1)
 Command exited with non-zero status 1
 	Command being timed: "python3 -m unittest discover -s . -p *test*.py"
-	User time (seconds): 0.43
-	System time (seconds): 0.31
-	Percent of CPU this job got: 19%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.89
+	User time (seconds): 0.31
+	System time (seconds): 0.16
+	Percent of CPU this job got: 23%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.98
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
@@ -32,9 +31,9 @@ Command exited with non-zero status 1
 	Maximum resident set size (kbytes): 14720
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 2495
-	Voluntary context switches: 109
-	Involuntary context switches: 187
+	Minor (reclaiming a frame) page faults: 2488
+	Voluntary context switches: 130
+	Involuntary context switches: 166
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 576

@@ -1,30 +1,22 @@
-E
+F
 ======================================================================
-ERROR: generate_parentheses_testSuite (unittest.loader._FailedTest.generate_parentheses_testSuite)
+FAIL: test_1 (generate_parentheses_testSuite.Test.test_1)
 ----------------------------------------------------------------------
-ImportError: Failed to import test module: generate_parentheses_testSuite
 Traceback (most recent call last):
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
-    module = self._get_module_from_name(name)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
-    __import__(name)
-  File "/app/generate_parentheses_testSuite.py", line 3, in <module>
-    print(generate_parentheses(3))
-          ^^^^^^^^^^^^^^^^^^^^
-NameError: name 'generate_parentheses' is not defined
-
+  File "/app/generate_parentheses_testSuite.py", line 6, in test_1
+    self.assertEqual(generate_parentheses(3),32)
+AssertionError: ['((()))', '(()())', '(())()', '()(())', '()()()'] != 32
 
 ----------------------------------------------------------------------
-Ran 1 test in 0.008s
+Ran 1 test in 0.017s
 
-FAILED (errors=1)
+FAILED (failures=1)
 Command exited with non-zero status 1
 	Command being timed: "python3 -m unittest discover -s . -p *test*.py"
-	User time (seconds): 0.56
-	System time (seconds): 0.33
-	Percent of CPU this job got: 14%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:06.13
+	User time (seconds): 0.21
+	System time (seconds): 0.13
+	Percent of CPU this job got: 23%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.47
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
@@ -32,9 +24,9 @@ Command exited with non-zero status 1
 	Maximum resident set size (kbytes): 14720
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 2498
-	Voluntary context switches: 111
-	Involuntary context switches: 273
+	Minor (reclaiming a frame) page faults: 2489
+	Voluntary context switches: 158
+	Involuntary context switches: 224
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 576

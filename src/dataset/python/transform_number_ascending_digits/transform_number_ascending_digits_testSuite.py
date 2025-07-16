@@ -1,11 +1,11 @@
-# Test 1
-# Correct result => 1
-print(operations('901'))
+import unittest
+from transform_number_ascending_digits import transform_number_ascending_digits
 
-# Test 2
-# Correct result => 3
-print(operations('301'))
+class Test(unittest.TestCase):
+    def test_operations(self):
+        self.assertEqual(transform_number_ascending_digits('901'), 1)
+        self.assertEqual(transform_number_ascending_digits('301'), 3)
+        self.assertEqual(transform_number_ascending_digits('5982'), 4)
 
-# Test 3
-# Correct result => 4
-print(operations('5982'))
+if __name__ == "__main__":
+    unittest.main()

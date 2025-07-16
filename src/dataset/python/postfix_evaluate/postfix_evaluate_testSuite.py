@@ -1,19 +1,21 @@
-# Test 1
-# Correct result => 20
-print(postfix_evaluate([2, 3, '+', 4, '*']))
+import unittest
+from postfix_evaluate import postfix_evaluate
 
-# Test 2
-# Correct result => 14
-print(postfix_evaluate([2, 3, 4, '*', '+']))
+class Test(unittest.TestCase):
+    def test_postfix_evaluate_1(self):
+        self.assertEqual(postfix_evaluate([2, 3, '+', 4, '*']), 20)
 
-# Test 3
-# Correct result => 0
-print(postfix_evaluate([3, 3, 3, '-', '/']))
+    def test_postfix_evaluate_2(self):
+        self.assertEqual(postfix_evaluate([2, 3, 4, '*', '+']), 14)
 
-# Test 4
-# Correct result => 2
-print(postfix_evaluate([7, 3, '/']))
+    def test_postfix_evaluate_3(self):
+        self.assertEqual(postfix_evaluate([3, 3, 3, '-', '/']), 0)
 
-# Test 5
-# Correct result => 720
-print(postfix_evaluate([1, 2, 3, 4, 5, 6, '*', '*', '*', '*', '*']))
+    def test_postfix_evaluate_4(self):
+        self.assertEqual(postfix_evaluate([7, 3, '/']), 2)
+
+    def test_postfix_evaluate_5(self):
+        self.assertEqual(postfix_evaluate([1, 2, 3, 4, 5, 6, '*', '*', '*', '*', '*']), 720)
+
+if __name__ == "__main__":
+    unittest.main()

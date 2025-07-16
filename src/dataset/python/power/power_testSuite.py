@@ -1,51 +1,46 @@
-# Test 1
-# Correct result => 1
-print(power(2, 0))
+import unittest
+from power import power
 
-# Test 2
-# Correct result => 2
-print(power(2, 1))
+class TestPowerFunction(unittest.TestCase):
 
-# Test 3
-# Correct result => 4
-print(power(2, 2))
+    def test_power_1(self):
+        self.assertEqual(power(2, 0), 1)
 
-# Test 4
-# Correct result => 8
-print(power(2, 3))
+    def test_power_2(self):
+        self.assertEqual(power(2, 1), 2)
 
-# Test 5
-# Correct result => 16
-print(power(2, 4))
+    def test_power_3(self):
+        self.assertEqual(power(2, 2), 4)
 
-# Test 6
-# Correct result => 32
-print(power(2, 5))
+    def test_power_4(self):
+        self.assertEqual(power(2, 3), 8)
 
-# Test 7
-# Correct result => 1024
-print(power(2, 10))
+    def test_power_5(self):
+        self.assertEqual(power(2, 4), 16)
 
-# Test 8
-# Correct result => 0.5
-print(power(2, -1))
+    def test_power_6(self):
+        self.assertEqual(power(2, 5), 32)
 
-# Test 9
-# Correct result => 0.25
-print(power(2, -2))
+    def test_power_7(self):
+        self.assertEqual(power(2, 10), 1024)
 
-# Test 10
-# Correct result => 0.125
-print(power(2, -3))
+    def test_power_8(self):
+        self.assertEqual(power(2, -1), 0.5)
 
-# Test 11
-# Correct result => 0.0625
-print(power(2, -4))
+    def test_power_9(self):
+        self.assertEqual(power(2, -2), 0.25)
 
-# Test 12
-# Correct result => -8
-print(power(-2, 3))
+    def test_power_10(self):
+        self.assertEqual(power(2, -3), 0.125)
 
-# Test 13
-# Correct result => 16
-print(power(-2, 4))
+    def test_power_11(self):
+        self.assertEqual(power(2, -4), 0.0625)
+
+    def test_power_12(self):
+        self.assertEqual(power(-2, 3), -8)
+
+    def test_power_13(self):
+        self.assertEqual(power(-2, 4), 16)
+
+if __name__ == "__main__":
+    unittest.main()

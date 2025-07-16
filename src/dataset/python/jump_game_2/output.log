@@ -9,22 +9,21 @@ Traceback (most recent call last):
              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/usr/local/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
     __import__(name)
-  File "/app/jump_game_2_testSuite.py", line 4, in <module>
-    print(min_jumps_1(nums))
-          ^^^^^^^^^^^
-NameError: name 'min_jumps_1' is not defined
+  File "/app/jump_game_2_testSuite.py", line 2, in <module>
+    from jump_game_2 import jump_game_2
+ImportError: cannot import name 'jump_game_2' from 'jump_game_2' (/app/jump_game_2.py)
 
 
 ----------------------------------------------------------------------
-Ran 1 test in 0.033s
+Ran 1 test in 0.017s
 
 FAILED (errors=1)
 Command exited with non-zero status 1
 	Command being timed: "python3 -m unittest discover -s . -p *test*.py"
 	User time (seconds): 0.35
-	System time (seconds): 0.23
-	Percent of CPU this job got: 13%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.31
+	System time (seconds): 0.30
+	Percent of CPU this job got: 34%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.92
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
@@ -32,9 +31,9 @@ Command exited with non-zero status 1
 	Maximum resident set size (kbytes): 14848
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 2499
-	Voluntary context switches: 117
-	Involuntary context switches: 216
+	Minor (reclaiming a frame) page faults: 2500
+	Voluntary context switches: 138
+	Involuntary context switches: 235
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 576

@@ -1,11 +1,15 @@
-# Test 1
-# Correct result => 321
-print(reverse_integer(123))
+import unittest
+from reverse_integer import reverse_integer
 
-# Test 2
-# Correct result => -321
-print(reverse_integer(-123))
+class Test(unittest.TestCase):
+    def test_1(self):
+        self.assertEqual(reverse_integer(123), 321)
 
-# Test 3
-# Correct result => 21
-print(reverse_integer(120))
+    def test_2(self):
+        self.assertEqual(reverse_integer(-123), -321)
+
+    def test_3(self):
+        self.assertEqual(reverse_integer(120), 21)
+
+if __name__ == "__main__":
+    unittest.main()

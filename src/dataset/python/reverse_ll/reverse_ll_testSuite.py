@@ -1,7 +1,13 @@
-# import build_ll and print_ll methods from ll_helpers.py
+import unittest
 from ll_helpers import build_ll, print_ll
+from reverse_ll import reverse_ll
+from reverse_ll import reverse_ll_2
 
-# Test 1
-# Correct result => 4 -> 3 -> 2 -> 1
-print_ll(reverse_ll(build_ll([1, 2, 3, 4])))
-print_ll(reverse_ll_2(build_ll([1, 2, 3, 4])))
+class Test(unittest.TestCase):
+
+    def test_reverse_ll(self):
+        self.assertEqual(print_ll(reverse_ll(build_ll([1, 2, 3, 4]))), '4 -> 3 -> 2 -> 1')
+        self.assertEqual(print_ll(reverse_ll_2(build_ll([1, 2, 3, 4]))), '4 -> 3 -> 2 -> 1')
+
+if __name__ == "__main__":
+    unittest.main()

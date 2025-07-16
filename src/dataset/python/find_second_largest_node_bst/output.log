@@ -9,32 +9,33 @@ Traceback (most recent call last):
              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/usr/local/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
     __import__(name)
-  File "/app/find_second_largest_node_bst_testSuite.py", line 3, in <module>
-    tree = TreeNode(5, TreeNode(3, TreeNode(1), TreeNode(4)), TreeNode(8, TreeNode(7), TreeNode(12, TreeNode(10, TreeNode(13)))))
-           ^^^^^^^^
-NameError: name 'TreeNode' is not defined
+  File "/app/find_second_largest_node_bst_testSuite.py", line 2, in <module>
+    from find_second_largest_node_bst import find_second_largest_bst_1, find_second_largest_bst_2
+  File "/app/find_second_largest_node_bst.py", line 22, in <module>
+    from tree_helpers import TreeNode
+ModuleNotFoundError: No module named 'tree_helpers'
 
 
 ----------------------------------------------------------------------
-Ran 1 test in 0.011s
+Ran 1 test in 0.007s
 
 FAILED (errors=1)
 Command exited with non-zero status 1
 	Command being timed: "python3 -m unittest discover -s . -p *test*.py"
-	User time (seconds): 0.22
-	System time (seconds): 0.11
-	Percent of CPU this job got: 10%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.44
+	User time (seconds): 0.25
+	System time (seconds): 0.18
+	Percent of CPU this job got: 26%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.66
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 14720
+	Maximum resident set size (kbytes): 14848
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 2496
-	Voluntary context switches: 122
-	Involuntary context switches: 217
+	Minor (reclaiming a frame) page faults: 2504
+	Voluntary context switches: 146
+	Involuntary context switches: 200
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 576

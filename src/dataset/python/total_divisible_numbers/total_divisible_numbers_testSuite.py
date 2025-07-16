@@ -1,11 +1,11 @@
-# Test 1
-# Correct result => 4
-print(total_divisible_numbers([3, 5, 6], 146))
+import unittest
+from total_divisible_numbers import total_divisible_numbers
 
-# Test 2
-# Correct result => 52
-print(total_divisible_numbers([3, 3, 2], 317))
+class Test(unittest.TestCase):
+    def test_total_divisible_numbers(self):
+        self.assertEqual(total_divisible_numbers([3, 5, 6], 146), 4)
+        self.assertEqual(total_divisible_numbers([3, 3, 2], 317), 52)
+        self.assertEqual(total_divisible_numbers([2, 3], 30), 30)
 
-# Test 3
-# Correct result => 30
-print(total_divisible_numbers([2, 3], 30))
+if __name__ == "__main__":
+    unittest.main()

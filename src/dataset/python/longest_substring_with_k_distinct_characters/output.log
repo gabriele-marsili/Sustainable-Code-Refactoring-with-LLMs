@@ -9,10 +9,9 @@ Traceback (most recent call last):
              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/usr/local/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
     __import__(name)
-  File "/app/longest_substring_with_k_distinct_characters_testSuite.py", line 3, in <module>
-    print(longest_substring_with_distinct_characters('abcba', 2))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-NameError: name 'longest_substring_with_distinct_characters' is not defined
+  File "/app/longest_substring_with_k_distinct_characters_testSuite.py", line 2, in <module>
+    from longest_substring_with_k_distinct_characters import longest_substring_with_k_distinct_characters
+ImportError: cannot import name 'longest_substring_with_k_distinct_characters' from 'longest_substring_with_k_distinct_characters' (/app/longest_substring_with_k_distinct_characters.py)
 
 
 ----------------------------------------------------------------------
@@ -21,20 +20,20 @@ Ran 1 test in 0.003s
 FAILED (errors=1)
 Command exited with non-zero status 1
 	Command being timed: "python3 -m unittest discover -s . -p *test*.py"
-	User time (seconds): 0.61
-	System time (seconds): 0.51
-	Percent of CPU this job got: 17%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:06.40
+	User time (seconds): 0.30
+	System time (seconds): 0.21
+	Percent of CPU this job got: 38%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.38
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 14720
+	Maximum resident set size (kbytes): 14848
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 2498
-	Voluntary context switches: 102
-	Involuntary context switches: 284
+	Minor (reclaiming a frame) page faults: 2504
+	Voluntary context switches: 126
+	Involuntary context switches: 353
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 576

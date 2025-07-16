@@ -1,11 +1,13 @@
-# Test 1
-# Correct result => True
-print(is_valid('()[{([]{})}]'))
+import unittest
+from valid_parentheses import is_valid
 
-# Test 2
-# Correct result => False
-print(is_valid('()[{([]{]})}]'))
+class Test(unittest.TestCase):
+    def test_1(self):        
+        self.assertEqual(is_valid('(]]])'), False)
+    def test_2(self):        
+        self.assertEqual(is_valid('()[{([]{]})}]'), False)
+    def test_3(self):        
+        self.assertEqual(is_valid('()[{([]{})}]'), True)
 
-# Test 3
-# Correct result => False
-print(is_valid('(]]])'))
+if __name__ == "__main__":
+    unittest.main()

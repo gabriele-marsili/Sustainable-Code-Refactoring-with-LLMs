@@ -1,24 +1,26 @@
-# Test 1
-# Correct result => 9
-tree = TreeNode(5, TreeNode(3, TreeNode(1), TreeNode(4)), TreeNode(8, TreeNode(7), TreeNode(12, TreeNode(10, TreeNode(9)))))
-print(find_kth_smallest_node_bst(tree, 7).val)
+import unittest
+from find_kth_smallest_node_bst import find_kth_smallest_node_bst, TreeNode
 
-# Test 2
-# Correct result => 5
-tree = TreeNode(5, TreeNode(3, TreeNode(1), TreeNode(4)), TreeNode(8, TreeNode(7), TreeNode(12)))
-print(find_kth_smallest_node_bst(tree, 4).val)
+class Test(unittest.TestCase):
+    def test_1(self):
+        tree = TreeNode(5, TreeNode(3, TreeNode(1), TreeNode(4)), TreeNode(8, TreeNode(7), TreeNode(12, TreeNode(10, TreeNode(9)))))
+        self.assertEqual(find_kth_smallest_node_bst(tree, 7).val, 9)
 
-# Test 3
-# Correct result => 3
-tree = TreeNode(5, TreeNode(3, TreeNode(1), TreeNode(4)))
-print(find_kth_smallest_node_bst(tree, 2).val)
+    def test_2(self):
+        tree = TreeNode(5, TreeNode(3, TreeNode(1), TreeNode(4)), TreeNode(8, TreeNode(7), TreeNode(12)))
+        self.assertEqual(find_kth_smallest_node_bst(tree, 4).val, 5)
 
-# Test 4
-# Correct result => 6
-tree = TreeNode(5, TreeNode(3, TreeNode(1), TreeNode(4)), TreeNode(8, TreeNode(6, None, TreeNode(7))))
-print(find_kth_smallest_node_bst(tree, 5).val)
+    def test_3(self):
+        tree = TreeNode(5, TreeNode(3, TreeNode(1), TreeNode(4)))
+        self.assertEqual(find_kth_smallest_node_bst(tree, 2).val, 3)
 
-# Test 5
-# Correct result => 9
-tree = TreeNode(5, TreeNode(3, TreeNode(1), TreeNode(4)), TreeNode(8, TreeNode(7), TreeNode(12, TreeNode(9, None, TreeNode(10, None, TreeNode(11))))))
-print(find_kth_smallest_node_bst(tree, 7).val)
+    def test_4(self):
+        tree = TreeNode(5, TreeNode(3, TreeNode(1), TreeNode(4)), TreeNode(8, TreeNode(6, None, TreeNode(7))))
+        self.assertEqual(find_kth_smallest_node_bst(tree, 5).val, 6)
+
+    def test_5(self):
+        tree = TreeNode(5, TreeNode(3, TreeNode(1), TreeNode(4)), TreeNode(8, TreeNode(7), TreeNode(12, TreeNode(9, None, TreeNode(10, None, TreeNode(11))))))
+        self.assertEqual(find_kth_smallest_node_bst(tree, 7).val, 9)
+
+if __name__ == "__main__":
+    unittest.main()
