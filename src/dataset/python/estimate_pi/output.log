@@ -5,28 +5,28 @@ FAIL: test_estimate_pi_10 (estimate_pi_testSuite.TestEstimatePi.test_estimate_pi
 Traceback (most recent call last):
   File "/app/estimate_pi_testSuite.py", line 7, in test_estimate_pi_10
     self.assertNotAlmostEqual(estimate_pi(10), 3.14, places=0)
-AssertionError: 2.8 == 3.14 within 0 places
+AssertionError: 3.2 == 3.14 within 0 places
 
 ----------------------------------------------------------------------
-Ran 3 tests in 13.165s
+Ran 3 tests in 11.375s
 
 FAILED (failures=1)
 Command exited with non-zero status 1
 	Command being timed: "python3 -m unittest discover -s . -p *test*.py"
-	User time (seconds): 5.65
-	System time (seconds): 0.55
-	Percent of CPU this job got: 43%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:14.17
+	User time (seconds): 5.60
+	System time (seconds): 0.52
+	Percent of CPU this job got: 50%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:12.15
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 14976
+	Maximum resident set size (kbytes): 15104
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 2527
-	Voluntary context switches: 134
-	Involuntary context switches: 4852
+	Minor (reclaiming a frame) page faults: 2528
+	Voluntary context switches: 128
+	Involuntary context switches: 3832
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 576

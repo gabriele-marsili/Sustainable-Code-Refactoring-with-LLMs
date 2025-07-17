@@ -1,33 +1,33 @@
 FAIL ./acronym_testSuite.js
   ● Test suite failed to run
 
-    SyntaxError: Unexpected token ';'
+    SyntaxError: The requested module './acronym' does not provide an export named 'parse'
 
-      at Runtime.loadEsmModule (node_modules/jest-runtime/build/index.js:516:20)
+      at Runtime.linkAndEvaluateModule (node_modules/jest-runtime/build/index.js:708:5)
 
 Test Suites: 1 failed, 1 total
 Tests:       0 total
 Snapshots:   0 total
-Time:        12.115 s
+Time:        9.933 s
 Ran all test suites.
 (node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
 Command exited with non-zero status 1
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 2.35
-	System time (seconds): 2.67
-	Percent of CPU this job got: 14%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:35.07
+	User time (seconds): 2.28
+	System time (seconds): 2.58
+	Percent of CPU this job got: 15%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:32.06
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 83192
+	Maximum resident set size (kbytes): 80304
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 14738
-	Voluntary context switches: 6561
-	Involuntary context switches: 4860
+	Minor (reclaiming a frame) page faults: 13890
+	Voluntary context switches: 6416
+	Involuntary context switches: 5517
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

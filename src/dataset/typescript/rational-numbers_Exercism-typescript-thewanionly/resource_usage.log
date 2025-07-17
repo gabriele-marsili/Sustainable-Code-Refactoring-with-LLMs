@@ -1,0 +1,75 @@
+PASS ./rational-numbers.test.ts (42.093 s)
+  Addition
+    ✓ Add two positive rational numbers (24 ms)
+    ✓ Add a positive rational number and a negative rational number (1 ms)
+    ✓ Add two negative rational numbers (12 ms)
+    ✓ Add a rational number to its additive inverse (4 ms)
+  Subtraction
+    ✓ Subtract two positive rational numbers (19 ms)
+    ✓ Subtract a positive rational number and a negative rational number (1 ms)
+    ✓ Subtract two negative rational numbers
+    ✓ Subtract a rational number from itself (12 ms)
+  Multiplication
+    ✓ Multiply two positive rational numbers (69 ms)
+    ✓ Multiply a negative rational number by a positive rational number (16 ms)
+    ✓ Multiply two negative rational numbers (39 ms)
+    ✓ Multiply a rational number by its reciprocal (16 ms)
+    ✓ Multiply a rational number by 1 (2 ms)
+    ✓ Multiply a rational number by 0 (2 ms)
+  Division
+    ✓ Divide two positive rational numbers
+    ✓ Divide a positive rational number by a negative rational number (1 ms)
+    ✓ Divide two negative rational numbers (17 ms)
+    ✓ Divide a rational number by 1 (1 ms)
+  Absolute value
+    ✓ Absolute value of a positive rational number (1 ms)
+    ✓ Absolute value of a negative rational number (1 ms)
+    ✓ Absolute value of zero (10 ms)
+  Exponentiation of a rational number
+    ✓ Raise a positive rational number to a positive integer power (1 ms)
+    ✓ Raise a negative rational number to a positive integer power (1 ms)
+    ✓ Raise zero to an integer power (6 ms)
+    ✓ Raise one to an integer power (10 ms)
+    ✓ Raise a positive rational number to the power of zero (1 ms)
+    ✓ Raise a negative rational number to the power of zero (2 ms)
+  Exponentiation of a real number to a rational number
+    ✓ Raise a real number to a positive rational number (18 ms)
+    ✓ Raise a real number to a negative rational number (25 ms)
+    ✓ Raise a real number to a zero rational number (1 ms)
+  Reduction to lowest terms
+    ✓ Reduce a positive rational number to lowest terms (1 ms)
+    ✓ Reduce a negative rational number to lowest terms (1 ms)
+    ✓ Reduce a rational number with a negative denominator to lowest terms (22 ms)
+    ✓ Reduce zero to lowest terms
+    ✓ Reduce an integer to lowest terms (11 ms)
+    ✓ Reduce one to lowest terms (52 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       36 passed, 36 total
+Snapshots:   0 total
+Time:        43.826 s
+Ran all test suites.
+Test results written to: output.log
+	Command being timed: "npx jest --json --outputFile=output.log"
+	User time (seconds): 18.49
+	System time (seconds): 7.46
+	Percent of CPU this job got: 42%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:01.53
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 221032
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 64128
+	Voluntary context switches: 1932
+	Involuntary context switches: 9604
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 176
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

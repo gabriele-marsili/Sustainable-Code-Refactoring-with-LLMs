@@ -1,0 +1,57 @@
+PASS ./word-search.test.ts (15.019 s)
+  single line grids
+    ✓ Should accept an initial game grid (24 ms)
+    ○ skipped can accept a target search word
+    ○ skipped should locate a word written left to right
+    ○ skipped can locate a left to right word in a different position
+    ○ skipped can locate a different left to right word
+    ○ skipped can locate that different left to right word in a different position
+  multi line grids
+    ○ skipped can locate a left to right word in a two line grid
+    ○ skipped can locate a left to right word in a different position in a two line grid
+    ○ skipped can locate a left to right word in a three line grid
+    ○ skipped can locate a left to right word in a ten line grid
+    ○ skipped can locate a left to right word in a different position in a ten line grid
+    ○ skipped can locate a different left to right word in a ten line grid
+  can find multiple words
+    ○ skipped can find two words written left to right
+  different directions
+    ○ skipped should locate a single word written right to left
+    ○ skipped should locate multiple words written in different horizontal directions
+  vertical directions
+    ○ skipped should locate words written top to bottom
+    ○ skipped should locate words written bottom to top
+    ○ skipped should locate words written top left to bottom right
+    ○ skipped should locate words written bottom right to top left
+    ○ skipped should locate words written bottom left to top right
+    ○ skipped should locate words written top right to bottom left
+
+Test Suites: 1 passed, 1 total
+Tests:       20 skipped, 1 passed, 21 total
+Snapshots:   0 total
+Time:        16.564 s
+Ran all test suites.
+Test results written to: output.log
+	Command being timed: "npx jest --json --outputFile=output.log"
+	User time (seconds): 9.78
+	System time (seconds): 5.23
+	Percent of CPU this job got: 56%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:26.63
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 220692
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 63862
+	Voluntary context switches: 1933
+	Involuntary context switches: 6663
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 208
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

@@ -1,0 +1,47 @@
+PASS ./react.test.ts (18.307 s)
+  React module
+    ✓ compute cells update value when inputs are changed (54 ms)
+    ○ skipped input cells have a value
+    ○ skipped an input cell's value can be set
+    ○ skipped compute cells calculate initial value
+    ○ skipped compute cell takes inputs in correct order
+    ○ skipped compute cells can depend on other compute cells
+    ○ skipped compute cells fire callbacks
+    ○ skipped callbacks fire only when output values change
+    ○ skipped callbacks do not report already reported values
+    ○ skipped callbacks can fire from multiple cells
+    ○ skipped static callbacks fire even if their own value has not changed
+    ○ skipped callbacks can be added and removed
+    ○ skipped removing a callback multiple times doesn't interfere with other callbacks
+    ○ skipped callbacks should only be called once, even if multiple dependencies change
+    ○ skipped callbacks should not be called if dependencies change but output value doesn't change
+
+Test Suites: 1 passed, 1 total
+Tests:       14 skipped, 1 passed, 15 total
+Snapshots:   0 total
+Time:        19.827 s
+Ran all test suites.
+Test results written to: output.log
+	Command being timed: "npx jest --json --outputFile=output.log"
+	User time (seconds): 8.66
+	System time (seconds): 3.66
+	Percent of CPU this job got: 43%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:28.47
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 219036
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 63911
+	Voluntary context switches: 1868
+	Involuntary context switches: 6808
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 200
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

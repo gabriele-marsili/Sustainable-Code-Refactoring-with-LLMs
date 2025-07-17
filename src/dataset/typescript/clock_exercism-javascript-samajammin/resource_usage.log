@@ -1,0 +1,85 @@
+PASS ./clock.test.ts (18.47 s)
+  Clock
+    Creating a new clock with an initial time
+      ✓ on the hour (28 ms)
+      ✓ past the hour
+      ✓ midnight is zero hours (4 ms)
+      ✓ hour rolls over (4 ms)
+      ✓ hour rolls over continuously (3 ms)
+      ✓ sixty minutes is next hour (3 ms)
+      ✓ minutes roll over
+      ✓ minutes roll over continuously (1 ms)
+      ✓ hour and minutes roll over (3 ms)
+      ✓ hour and minutes roll over continuously (3 ms)
+      ✓ hour and minutes roll over to exactly midnight (3 ms)
+      ✓ negative hour (3 ms)
+      ✓ negative hour rolls over (3 ms)
+      ✓ negative hour rolls over continuously (1 ms)
+      ✓ negative minutes (1 ms)
+      ✓ negative minutes rolls over
+      ✓ negative minutes rolls over continuously
+      ✓ negative hour and minutes both roll over (1 ms)
+      ✓ negative hour and minutes both roll over continuously (1 ms)
+      Adding and subtracting minutes
+        ✓ add minutes
+        ✓ add no minutes
+        ✓ add to next hour (1 ms)
+        ✓ add more than one hour
+        ✓ add more than two hours with carry (1 ms)
+        ✓ add across midnight (19 ms)
+        ✓ add more than one day (1500 min = 25 hrs) (8 ms)
+        ✓ add more than two days (1 ms)
+        ✓ subtract minutes (4 ms)
+        ✓ subtract to previous hour
+        ✓ subtract more than an hour (1 ms)
+        ✓ subtract across midnight (2 ms)
+        ✓ subtract more than two hours (1 ms)
+        ✓ subtract more than two hours with borrow (3 ms)
+        ✓ subtract more than one day (1500 min = 25 hrs)
+        ✓ subtract more than two days (2 ms)
+      Construct two separate clocks, set times, test if they are equal
+        ✓ clocks with same time (3 ms)
+        ✓ clocks a minute apart (1 ms)
+        ✓ clocks an hour apart (1 ms)
+        ✓ clocks with hour overflow
+        ✓ clocks with hour overflow by several days (1 ms)
+        ✓ clocks with negative hour (1 ms)
+        ✓ clocks with negative hour that wraps (1 ms)
+        ✓ clocks with negative hour that wraps multiple times (4 ms)
+        ✓ clocks with minute overflow (1 ms)
+        ✓ clocks with minute overflow by several days (3 ms)
+        ✓ clocks with negative minute
+        ✓ clocks with negative minute that wraps (3 ms)
+        ✓ clocks with negative minute that wraps multiple times
+        ✓ clocks with negative hours and minutes (2 ms)
+        ✓ clocks with negative hours and minutes that wrap (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       50 passed, 50 total
+Snapshots:   0 total
+Time:        20.243 s
+Ran all test suites.
+Test results written to: output.log
+	Command being timed: "npx jest --json --outputFile=output.log"
+	User time (seconds): 7.85
+	System time (seconds): 3.57
+	Percent of CPU this job got: 39%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:28.68
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 218888
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 63806
+	Voluntary context switches: 1920
+	Involuntary context switches: 6401
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 152
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

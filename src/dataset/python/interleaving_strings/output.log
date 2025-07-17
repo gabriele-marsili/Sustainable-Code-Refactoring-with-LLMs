@@ -1,39 +1,32 @@
-E
+F
 ======================================================================
-ERROR: interleaving_strings_testSuite (unittest.loader._FailedTest.interleaving_strings_testSuite)
+FAIL: test_interleaving_strings (interleaving_strings_testSuite.TestInterleavingStrings.test_interleaving_strings)
 ----------------------------------------------------------------------
-ImportError: Failed to import test module: interleaving_strings_testSuite
 Traceback (most recent call last):
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
-    module = self._get_module_from_name(name)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
-    __import__(name)
-  File "/app/interleaving_strings_testSuite.py", line 2, in <module>
-    from interleaving_strings import interleaving_strings
-ImportError: cannot import name 'interleaving_strings' from 'interleaving_strings' (/app/interleaving_strings.py)
-
+  File "/app/interleaving_strings_testSuite.py", line 7, in test_interleaving_strings
+    self.assertEqual(interleaving_strings_1(a, b, c), True)
+AssertionError: 2 != True
 
 ----------------------------------------------------------------------
-Ran 1 test in 0.002s
+Ran 1 test in 0.023s
 
-FAILED (errors=1)
+FAILED (failures=1)
 Command exited with non-zero status 1
 	Command being timed: "python3 -m unittest discover -s . -p *test*.py"
-	User time (seconds): 0.66
-	System time (seconds): 0.62
-	Percent of CPU this job got: 31%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.05
+	User time (seconds): 0.30
+	System time (seconds): 0.18
+	Percent of CPU this job got: 33%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.47
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 14848
+	Maximum resident set size (kbytes): 14592
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 2502
-	Voluntary context switches: 139
-	Involuntary context switches: 354
+	Minor (reclaiming a frame) page faults: 2487
+	Voluntary context switches: 113
+	Involuntary context switches: 187
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 576

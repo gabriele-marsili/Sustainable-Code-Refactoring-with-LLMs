@@ -1,0 +1,41 @@
+PASS ./isogram.test.ts (15.236 s)
+  Check if the given string is an isogram
+    ✓ empty string (35 ms)
+    ✓ isogram with only lower case characters (1 ms)
+    ✓ word with one duplicated character (12 ms)
+    ✓ longest reported english isogram (1 ms)
+    ✓ word with duplicated character in mixed case (2 ms)
+    ✓ hypothetical isogrammic word with hyphen (1 ms)
+    ✓ isogram with duplicated hyphen (1 ms)
+    ✓ made-up name that is an isogram (1 ms)
+    ✓ duplicated character in the middle (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       9 passed, 9 total
+Snapshots:   0 total
+Time:        16.894 s
+Ran all test suites.
+Test results written to: output.log
+	Command being timed: "npx jest --json --outputFile=output.log"
+	User time (seconds): 7.58
+	System time (seconds): 3.38
+	Percent of CPU this job got: 41%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:26.62
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 215584
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 63029
+	Voluntary context switches: 1887
+	Involuntary context switches: 6479
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 72
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

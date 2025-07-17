@@ -1,39 +1,25 @@
-E
-======================================================================
-ERROR: add_two_numbers_testSuite (unittest.loader._FailedTest.add_two_numbers_testSuite)
+..
 ----------------------------------------------------------------------
-ImportError: Failed to import test module: add_two_numbers_testSuite
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
-    module = self._get_module_from_name(name)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
-    __import__(name)
-  File "/app/add_two_numbers_testSuite.py", line 2, in <module>
-    from ll_helpers import build_ll, print_ll
-ModuleNotFoundError: No module named 'll_helpers'
+Ran 2 tests in 0.005s
 
-
-----------------------------------------------------------------------
-Ran 1 test in 0.001s
-
-FAILED (errors=1)
-Command exited with non-zero status 1
+OK
+7 -> 0 -> 8
+8 -> 9 -> 0 -> 0 -> 1
 	Command being timed: "python3 -m unittest discover -s . -p *test*.py"
-	User time (seconds): 0.52
-	System time (seconds): 0.33
-	Percent of CPU this job got: 29%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:02.90
+	User time (seconds): 0.21
+	System time (seconds): 0.11
+	Percent of CPU this job got: 17%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.86
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 14848
+	Maximum resident set size (kbytes): 14720
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 2498
-	Voluntary context switches: 125
-	Involuntary context switches: 268
+	Minor (reclaiming a frame) page faults: 2485
+	Voluntary context switches: 163
+	Involuntary context switches: 237
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 576
@@ -41,4 +27,4 @@ Command exited with non-zero status 1
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

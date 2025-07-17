@@ -1,0 +1,48 @@
+PASS ./sum-of-multiples.test.ts (18.149 s)
+  Sum Of Multiples
+    ✓ no multiples within limit (78 ms)
+    ○ skipped one factor has multiples within limit
+    ○ skipped more than one multiple within limit
+    ○ skipped more than one factor with multiples within limit
+    ○ skipped each multiple is only counted once
+    ○ skipped a much larger limit
+    ○ skipped three factors
+    ○ skipped factors not relatively prime
+    ○ skipped some pairs of factors relatively prime and some not
+    ○ skipped one factor is a multiple of another
+    ○ skipped much larger factors
+    ○ skipped all numbers are multiples of 1
+    ○ skipped no factors means an empty sum
+    ○ skipped the only multiple of 0 is 0
+    ○ skipped the factor 0 does not affect the sum of multiples of other factors
+    ○ skipped solutions using include-exclude must extend to cardinality greater than 3
+
+Test Suites: 1 passed, 1 total
+Tests:       15 skipped, 1 passed, 16 total
+Snapshots:   0 total
+Time:        19.974 s
+Ran all test suites.
+Test results written to: output.log
+	Command being timed: "npx jest --json --outputFile=output.log"
+	User time (seconds): 8.73
+	System time (seconds): 4.36
+	Percent of CPU this job got: 40%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:32.06
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 218436
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 63714
+	Voluntary context switches: 1798
+	Involuntary context switches: 6956
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 96
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

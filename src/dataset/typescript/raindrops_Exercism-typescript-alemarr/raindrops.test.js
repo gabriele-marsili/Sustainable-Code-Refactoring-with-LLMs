@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-import raindrops_1 from './raindrops';
+const raindrops_1 = require("./raindrops");
 describe('Raindrops', () => {
     it('converts 1', () => expect((0, raindrops_1.convert)(1)).toEqual('1'));
     it('converts 3', () => expect((0, raindrops_1.convert)(3)).toEqual('Pling'));

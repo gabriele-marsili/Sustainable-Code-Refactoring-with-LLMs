@@ -1,31 +1,59 @@
-E
+EEEEE
 ======================================================================
-ERROR: find_second_largest_node_bst_testSuite (unittest.loader._FailedTest.find_second_largest_node_bst_testSuite)
+ERROR: test_1 (find_second_largest_node_bst_testSuite.Test.test_1)
 ----------------------------------------------------------------------
-ImportError: Failed to import test module: find_second_largest_node_bst_testSuite
 Traceback (most recent call last):
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
-    module = self._get_module_from_name(name)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
-    __import__(name)
-  File "/app/find_second_largest_node_bst_testSuite.py", line 2, in <module>
-    from find_second_largest_node_bst import find_second_largest_bst_1, find_second_largest_bst_2
-  File "/app/find_second_largest_node_bst.py", line 22, in <module>
-    from tree_helpers import TreeNode
-ModuleNotFoundError: No module named 'tree_helpers'
+  File "/app/find_second_largest_node_bst_testSuite.py", line 6, in test_1
+    tree = TreeNode(5, TreeNode(3, TreeNode(1), TreeNode(4)), TreeNode(8, TreeNode(7), TreeNode(12, TreeNode(10, TreeNode(13)))))
+           ^^^^^^^^
+NameError: name 'TreeNode' is not defined
 
+======================================================================
+ERROR: test_2 (find_second_largest_node_bst_testSuite.Test.test_2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/app/find_second_largest_node_bst_testSuite.py", line 11, in test_2
+    tree = TreeNode(5, TreeNode(3, TreeNode(1), TreeNode(4)), TreeNode(8, TreeNode(7), TreeNode(12)))
+           ^^^^^^^^
+NameError: name 'TreeNode' is not defined
+
+======================================================================
+ERROR: test_3 (find_second_largest_node_bst_testSuite.Test.test_3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/app/find_second_largest_node_bst_testSuite.py", line 16, in test_3
+    tree = TreeNode(5, TreeNode(3, TreeNode(1), TreeNode(4)))
+           ^^^^^^^^
+NameError: name 'TreeNode' is not defined
+
+======================================================================
+ERROR: test_4 (find_second_largest_node_bst_testSuite.Test.test_4)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/app/find_second_largest_node_bst_testSuite.py", line 21, in test_4
+    tree = TreeNode(5, TreeNode(3, TreeNode(1), TreeNode(4)), TreeNode(8, TreeNode(6, None, TreeNode(7))))
+           ^^^^^^^^
+NameError: name 'TreeNode' is not defined
+
+======================================================================
+ERROR: test_5 (find_second_largest_node_bst_testSuite.Test.test_5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/app/find_second_largest_node_bst_testSuite.py", line 26, in test_5
+    tree = TreeNode(5, TreeNode(3, TreeNode(1), TreeNode(4)), TreeNode(8, TreeNode(7), TreeNode(12, TreeNode(9, None, TreeNode(10, None, TreeNode(11))))))
+           ^^^^^^^^
+NameError: name 'TreeNode' is not defined
 
 ----------------------------------------------------------------------
-Ran 1 test in 0.007s
+Ran 5 tests in 0.035s
 
-FAILED (errors=1)
+FAILED (errors=5)
 Command exited with non-zero status 1
 	Command being timed: "python3 -m unittest discover -s . -p *test*.py"
-	User time (seconds): 0.25
-	System time (seconds): 0.18
-	Percent of CPU this job got: 26%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.66
+	User time (seconds): 0.20
+	System time (seconds): 0.12
+	Percent of CPU this job got: 35%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.91
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
@@ -33,9 +61,9 @@ Command exited with non-zero status 1
 	Maximum resident set size (kbytes): 14848
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 2504
-	Voluntary context switches: 146
-	Involuntary context switches: 200
+	Minor (reclaiming a frame) page faults: 2488
+	Voluntary context switches: 154
+	Involuntary context switches: 183
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 576

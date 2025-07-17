@@ -1,3 +1,4 @@
+import { format as sprintf } from 'util';
 var BeerSong = function() {}
 
 
@@ -11,7 +12,7 @@ BeerSong.prototype.verse = function( verseNum ) {
 	};
 	// A normal verse
 	var normalLine = "%d bottles of beer on the wall, %d bottles of beer.\nTake one down and pass it around, %d bottles of beer on the wall.\n";
-	import { format as sprintf } from 'util';
+	
 	return verseNum in specialLines ? specialLines[verseNum] : sprintf(normalLine, verseNum, verseNum, verseNum - 1);
 };
 

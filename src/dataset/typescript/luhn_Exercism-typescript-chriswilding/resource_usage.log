@@ -1,0 +1,43 @@
+PASS ./luhn.test.ts (14.708 s)
+  Luhn
+    ✓ single digit strings can not be valid (31 ms)
+    ✓ a single zero is invalid (1 ms)
+    ✓ a simple valid SIN that remains valid if reversed (2 ms)
+    ✓ a valid Canadian SIN (2 ms)
+    ✓ invalid Canadian SIN (8 ms)
+    ✓ invalid credit card (1 ms)
+    ✓ valid strings with a non-digit included become invalid (2 ms)
+    ✓ valid strings with punctuation included become invalid (2 ms)
+    ✓ valid strings with symbols included become invalid
+    ✓ single zero with space is invalid (2 ms)
+    ✓ input digit 9 is correctly converted to output digit 9 (2 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       11 passed, 11 total
+Snapshots:   0 total
+Time:        15.793 s
+Ran all test suites.
+Test results written to: output.log
+	Command being timed: "npx jest --json --outputFile=output.log"
+	User time (seconds): 7.34
+	System time (seconds): 3.11
+	Percent of CPU this job got: 43%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:24.15
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 219356
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 63880
+	Voluntary context switches: 1684
+	Involuntary context switches: 6187
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 80
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

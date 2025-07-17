@@ -1,0 +1,54 @@
+PASS ./triangle.test.ts (44.681 s)
+  Triangle
+    equilateral triangle
+      ✓ all sides are equal (35 ms)
+      ✓ any side is unequal (4 ms)
+      ✓ no sides are equal (2 ms)
+      ✓ all zero sides is not a triangle (2 ms)
+      ✓ sides may be floats (8 ms)
+    isosceles triangle
+      ✓ last two sides are equal (6 ms)
+      ✓ first two sides are equal (1 ms)
+      ✓ first and last sides are equal (40 ms)
+      ✓ equilateral triangles are also isosceles (8 ms)
+      ✓ no sides are equal (8 ms)
+      ✓ first triangle inequality violation (1 ms)
+      ✓ second triangle inequality violation (2 ms)
+      ✓ third triangle inequality violation (5 ms)
+      ✓ sides may be floats (4 ms)
+    scalene triangle
+      ✓ no sides are equal (5 ms)
+      ✓ all sides are equal (7 ms)
+      ✓ two sides are equal (7 ms)
+      ✓ may not violate triangle inequality (5 ms)
+      ✓ sides may be floats (5 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       19 passed, 19 total
+Snapshots:   0 total
+Time:        51.262 s
+Ran all test suites.
+Test results written to: output.log
+	Command being timed: "npx jest --json --outputFile=output.log"
+	User time (seconds): 20.91
+	System time (seconds): 8.72
+	Percent of CPU this job got: 43%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:08.32
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 218288
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 63836
+	Voluntary context switches: 1911
+	Involuntary context switches: 10479
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 104
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

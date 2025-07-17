@@ -1,0 +1,55 @@
+PASS ./pig-latin.test.ts (16.883 s)
+  ay is added to words that start with vowels
+    ✓ word beginning with a (53 ms)
+    ✓ word beginning with e (7 ms)
+    ✓ word beginning with i (4 ms)
+    ✓ word beginning with o (2 ms)
+    ✓ word beginning with u (8 ms)
+    ✓ word beginning with a vowel and followed by a qu (1 ms)
+  first letter and ay are moved to the end of words that start with consonants
+    ✓ word beginning with p (8 ms)
+    ✓ word beginning with k (16 ms)
+    ✓ word beginning with x (5 ms)
+    ✓ word beginning with q without a following u (5 ms)
+  some letter clusters are treated like a single consonant
+    ✓ word beginning with ch (3 ms)
+    ✓ word beginning with qu (3 ms)
+    ✓ word beginning with qu and a preceding consonant (13 ms)
+    ✓ word beginning with th (7 ms)
+    ✓ word beginning with thr (14 ms)
+    ✓ word beginning with sch (8 ms)
+  position of y in a word determines if it is a consonant or a vowel
+    ✓ y is treated like a consonant at the beginning of a word (1 ms)
+    ✓ y as second letter in two letter word (1 ms)
+  phrases are translated
+    ✓ a whole phrase (6 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       19 passed, 19 total
+Snapshots:   0 total
+Time:        18.724 s
+Ran all test suites.
+Test results written to: output.log
+	Command being timed: "npx jest --json --outputFile=output.log"
+	User time (seconds): 7.48
+	System time (seconds): 3.62
+	Percent of CPU this job got: 42%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:26.39
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 218304
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 63927
+	Voluntary context switches: 1879
+	Involuntary context switches: 6215
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 96
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

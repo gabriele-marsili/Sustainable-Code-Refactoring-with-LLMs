@@ -1,0 +1,47 @@
+PASS ./run-length-encoding.test.ts (20.639 s)
+  run-length encode a string
+    ✓ empty string (53 ms)
+    ✓ single characters only are encoded without count (30 ms)
+    ✓ string with no single characters (5 ms)
+    ✓ single characters mixed with repeated characters (1 ms)
+    ✓ multiple whitespace mixed in string (1 ms)
+    ✓ lowercase characters (1 ms)
+  run-length decode a string
+    ✓ empty string (12 ms)
+    ✓ single characters only (17 ms)
+    ✓ string with no single characters (30 ms)
+    ✓ single characters with repeated characters (90 ms)
+    ✓ multiple whitespace mixed in string (5 ms)
+    ✓ lower case string (1 ms)
+  encode and then decode
+    ✓ encode followed by decode gives original string (2 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       13 passed, 13 total
+Snapshots:   0 total
+Time:        22.474 s
+Ran all test suites.
+Test results written to: output.log
+	Command being timed: "npx jest --json --outputFile=output.log"
+	User time (seconds): 8.68
+	System time (seconds): 4.07
+	Percent of CPU this job got: 39%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:32.66
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 218128
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 63600
+	Voluntary context switches: 1753
+	Involuntary context switches: 6774
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 96
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

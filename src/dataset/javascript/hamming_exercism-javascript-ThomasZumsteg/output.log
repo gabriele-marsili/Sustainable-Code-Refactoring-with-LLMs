@@ -1,15 +1,15 @@
 (node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-FAIL ./hamming_testSuite.js (11.946 s)
+FAIL ./hamming_testSuite.js (11.9 s)
   Hamming
-    ✓ no difference between identical strands (96 ms)
-    ✓ complete hamming distance for single nucleotide strand (7 ms)
-    ✓ complete hamming distance for small strand (1 ms)
+    ✓ no difference between identical strands (87 ms)
+    ✓ complete hamming distance for single nucleotide strand (9 ms)
+    ✓ complete hamming distance for small strand (2 ms)
     ✓ small hamming distance (1 ms)
-    ✓ small hamming distance in longer strand (7 ms)
-    ✓ large hamming distance (4 ms)
-    ✓ hamming distance in very long strand (2 ms)
-    ✕ throws error when strands are not equal length (38 ms)
+    ✓ small hamming distance in longer strand (5 ms)
+    ✓ large hamming distance (6 ms)
+    ✓ hamming distance in very long strand (6 ms)
+    ✕ throws error when strands are not equal length (19 ms)
 
   ● Hamming › throws error when strands are not equal length
 
@@ -31,24 +31,24 @@ FAIL ./hamming_testSuite.js (11.946 s)
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 7 passed, 8 total
 Snapshots:   0 total
-Time:        14.261 s
+Time:        13.912 s
 Ran all test suites.
 Command exited with non-zero status 1
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 2.53
-	System time (seconds): 3.03
+	User time (seconds): 2.31
+	System time (seconds): 2.72
 	Percent of CPU this job got: 15%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:36.93
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:32.53
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 80100
+	Maximum resident set size (kbytes): 84400
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 14134
-	Voluntary context switches: 6661
-	Involuntary context switches: 4704
+	Minor (reclaiming a frame) page faults: 14950
+	Voluntary context switches: 6410
+	Involuntary context switches: 5274
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

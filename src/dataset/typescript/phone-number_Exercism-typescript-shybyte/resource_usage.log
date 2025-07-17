@@ -1,0 +1,42 @@
+PASS ./phone-number.test.ts (13.134 s)
+  PhoneNumber()
+    ✓ cleans the number (26 ms)
+    ✓ cleans numbers with dots (6 ms)
+    ✓ cleans numbers with multiple spaces
+    ✓ invalid when 9 digits (1 ms)
+    ✓ invalid when 11 digits (1 ms)
+    ✓ valid when 11 digits and starting with 1 (1 ms)
+    ✓ invalid when 12 digits
+    ✓ invalid with letters (1 ms)
+    ✓ invalid with punctuations (5 ms)
+    ✓ invalid with right number of digits but letters mixed in (5 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       10 passed, 10 total
+Snapshots:   0 total
+Time:        14.907 s
+Ran all test suites.
+Test results written to: output.log
+	Command being timed: "npx jest --json --outputFile=output.log"
+	User time (seconds): 6.86
+	System time (seconds): 3.01
+	Percent of CPU this job got: 45%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:21.57
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 217240
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 63188
+	Voluntary context switches: 1867
+	Involuntary context switches: 5350
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 72
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

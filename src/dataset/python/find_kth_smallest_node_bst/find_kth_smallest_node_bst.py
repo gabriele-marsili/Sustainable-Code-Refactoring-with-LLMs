@@ -31,8 +31,12 @@ When the Kth node is found, return that node.
 # Solution #
 ############
 
-# import TreeNode class from tree_helpers.py
-from tree_helpers import TreeNode
+class TreeNode:
+    def __init__(self, val, left=None, right=None):
+        '''Definition for binary tree.'''
+        self.val = val
+        self.left = left
+        self.right = right
 
 def find_kth_smallest_node_bst(root, k):
     return search(root, k)[1]

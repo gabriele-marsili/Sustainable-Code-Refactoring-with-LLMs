@@ -1,0 +1,86 @@
+  console.log
+    {
+      actual: CustomSet { values: [ 1, 2, 3 ] },
+      expected: CustomSet { values: [ 1, 2, 3 ] }
+    }
+
+      at Object.<anonymous> (custom-set.test.ts:137:15)
+
+PASS ./custom-set.test.ts (21.216 s)
+  CustomSet
+    empty: returns true if the set contains no elements
+      ✓ sets with no elements are empty (34 ms)
+      ✓ sets with elements are not empty (4 ms)
+    contains: sets can report if they contain an element
+      ✓ nothing is contained in an empty set (4 ms)
+      ✓ when the element is in the set (1 ms)
+      ✓ when the element is not in the set (6 ms)
+    subset: a set is a subset if all of its elements are contained in the other set
+      ✓ empty set is a subset of another empty set (3 ms)
+      ✓ empty set is a subset of non-empty set (2 ms)
+      ✓ non-empty set is not a subset of empty set (2 ms)
+      ✓ set is a subset of set with exact same elements (2 ms)
+      ✓ set is a subset of larger set with same elements (1 ms)
+      ✓ set is not a subset of set that does not contain its elements (1 ms)
+    disjoint: sets are disjoint if they share no elements
+      ✓ the empty set is disjoint with itself (3 ms)
+      ✓ empty set is disjoint with non-empty set (2 ms)
+      ✓ non-empty set is disjoint with empty set (3 ms)
+      ✓ sets are not disjoint if they share an element (3 ms)
+      ✓ sets are disjoint if they share no elements (2 ms)
+    eql: sets with the same elements are equal
+      ✓ empty sets are equal (1 ms)
+      ✓ empty set is not equal to non-empty set (1 ms)
+      ✓ non-empty set is not equal to empty set (1 ms)
+      ✓ sets with the same elements are equal (1 ms)
+      ✓ sets with different elements are not equal (4 ms)
+    add: unique elements can be added to a set
+      ✓ add to empty set (2 ms)
+      ✓ add to non-empty set (1 ms)
+      ✓ adding an existing element does not change the set (321 ms)
+    intersection: returns a set of all shared elements
+      ✓ intersection of two empty sets is an empty set (18 ms)
+      ✓ intersection of an empty set and non-empty set is an empty set
+      ✓ intersection of a non-empty set and an empty set is an empty set
+      ✓ intersection of two sets with no shared elements is an empty set (1 ms)
+      ✓ intersection of two sets with shared elements is a set of the shared elements (1 ms)
+    difference of a set is a set of all elements that are only in the first set
+      ✓ difference of two empty sets is an empty set (1 ms)
+      ✓ difference of empty set and non-empty set is an empty set (19 ms)
+      ✓ difference of a non-empty set and an empty set is the non-empty set (4 ms)
+      ✓ difference of two non-empty sets is a set of elements that are only in the first set (1 ms)
+    union: returns a set of all elements in either set
+      ✓ union of empty sets is an empty set (7 ms)
+      ✓ union of an empty set and non-empty set is the non-empty set (3 ms)
+      ✓ union of a non-empty set and empty set is the non-empty set (1 ms)
+      ✓ union of non-empty sets contains all unique elements (5 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       37 passed, 37 total
+Snapshots:   0 total
+Time:        23.155 s
+Ran all test suites.
+Test results written to: output.log
+	Command being timed: "npx jest --json --outputFile=output.log"
+	User time (seconds): 8.77
+	System time (seconds): 3.95
+	Percent of CPU this job got: 39%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:32.01
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 221356
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 64510
+	Voluntary context switches: 1876
+	Involuntary context switches: 7024
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 168
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

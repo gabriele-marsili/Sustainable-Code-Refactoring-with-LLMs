@@ -7,12 +7,10 @@ const FACTOR_RAINDROP_PAIRS = [
 ];
 class Raindrops {
     convert(n) {
-        let result = '';
-        for (const [factor, drop] of FACTOR_RAINDROP_PAIRS) {
-            if (n % factor === 0)
-                result += drop;
-        }
-        return result || n.toString();
+        const dropString = FACTOR_RAINDROP_PAIRS
+            .map(([factor, drop]) => (n % factor === 0) ? drop : '')
+            .join('');
+        return dropString || (n.toString());
     }
 }
 exports.default = Raindrops;

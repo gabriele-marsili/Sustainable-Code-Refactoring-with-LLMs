@@ -1,0 +1,50 @@
+PASS ./anagram.test.ts (14.548 s)
+  Anagram
+    ✓ no matches (33 ms)
+    ✓ detects two anagrams (11 ms)
+    ✓ does not detect anagram subsets (1 ms)
+    ✓ detects anagram (1 ms)
+    ✓ detects three anagrams (3 ms)
+    ✓ detects multiple anagrams with different case (1 ms)
+    ✓ does not detect non-anagrams with identical checksum (13 ms)
+    ✓ detects anagrams case-insensitively (1 ms)
+    ✓ detects anagrams using case-insensitive subject (1 ms)
+    ✓ detects anagrams using case-insensitive possible matches (22 ms)
+    ✓ does not detect an anagram if the original word is repeated (1 ms)
+    ✓ anagrams must use all letters exactly once (1 ms)
+    ✓ words are not anagrams of themselves (4 ms)
+    ✓ words are not anagrams of themselves even if letter case is partially different (44 ms)
+    ✓ words are not anagrams of themselves even if letter case is completely different (26 ms)
+    ✓ words other than themselves can be anagrams (1 ms)
+    ✓ matches() accepts string arguments (7 ms)
+    ✓ matches() accepts single string argument (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       18 passed, 18 total
+Snapshots:   0 total
+Time:        15.79 s
+Ran all test suites.
+Test results written to: output.log
+	Command being timed: "npx jest --json --outputFile=output.log"
+	User time (seconds): 8.01
+	System time (seconds): 3.88
+	Percent of CPU this job got: 40%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:29.42
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 219064
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 63925
+	Voluntary context switches: 1908
+	Involuntary context switches: 6656
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 112
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

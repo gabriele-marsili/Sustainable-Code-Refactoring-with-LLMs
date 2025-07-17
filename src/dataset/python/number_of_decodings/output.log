@@ -1,39 +1,23 @@
-E
-======================================================================
-ERROR: number_of_decodings_testSuite (unittest.loader._FailedTest.number_of_decodings_testSuite)
+.............
 ----------------------------------------------------------------------
-ImportError: Failed to import test module: number_of_decodings_testSuite
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
-    module = self._get_module_from_name(name)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
-    __import__(name)
-  File "/app/number_of_decodings_testSuite.py", line 2, in <module>
-    from number_of_decodings import number_of_decodings
-ImportError: cannot import name 'number_of_decodings' from 'number_of_decodings' (/app/number_of_decodings.py)
+Ran 13 tests in 0.012s
 
-
-----------------------------------------------------------------------
-Ran 1 test in 0.001s
-
-FAILED (errors=1)
-Command exited with non-zero status 1
+OK
 	Command being timed: "python3 -m unittest discover -s . -p *test*.py"
-	User time (seconds): 0.20
-	System time (seconds): 0.11
+	User time (seconds): 0.27
+	System time (seconds): 0.16
 	Percent of CPU this job got: 29%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.04
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.46
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 14848
+	Maximum resident set size (kbytes): 14464
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 2500
-	Voluntary context switches: 106
-	Involuntary context switches: 333
+	Minor (reclaiming a frame) page faults: 2484
+	Voluntary context switches: 144
+	Involuntary context switches: 289
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 576
@@ -41,4 +25,4 @@ Command exited with non-zero status 1
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

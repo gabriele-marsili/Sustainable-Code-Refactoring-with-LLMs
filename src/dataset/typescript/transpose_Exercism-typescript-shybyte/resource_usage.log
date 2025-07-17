@@ -1,0 +1,99 @@
+FAIL ./transpose.test.ts (12.54 s)
+  Transpose
+    ✓ empty string (32 ms)
+    ✓ two characters in a row (2 ms)
+    ✓ two characters in a column (2 ms)
+    ✓ simple (1 ms)
+    ✓ single line (6 ms)
+    ✓ first line longer than second line (1 ms)
+    ✓ second line longer than first line (6 ms)
+    ✓ square
+    ✓ rectangle (1 ms)
+    ✓ triangle (7 ms)
+    ✓ test mixed lines (1 ms)
+    ✕ test many lines (110 ms)
+
+  ● Transpose › test many lines
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 14
+    + Received  + 14
+
+    @@ -35,21 +35,21 @@
+        "ismdsehphnnosa",
+        "ncuse ra-tau l",
+        " et  tormsural",
+        "dniuthwea'g t ",
+        "iennwesnr hsts",
+    -   "g,ycoitkrttet",
+    -   "n,l rs'a anr",
+    -   "ief 'dgcgdi",
+    -   "taol  eoe,v",
+    -   "yneisl,u;e",
+    -   ",.sftol ",
+    -   "     ervdt",
+    -   "     ;ie o",
+    -   "       f,r ",
+    -   "       eem",
+    -   "       .me",
+    -   "          on",
+    -   "          vd",
+    -   "          e.",
+    +   "g,ycoi tkrttet",
+    +   "n ,l r s'a anr",
+    +   "i  ef  'dgcgdi",
+    +   "t  aol   eoe,v",
+    +   "y  nei sl,u; e",
+    +   ",  .sf to l   ",
+    +   "     e rv d  t",
+    +   "     ; ie    o",
+    +   "       f, r   ",
+    +   "       e  e  m",
+    +   "       .  m  e",
+    +   "          o  n",
+    +   "          v  d",
+    +   "          e  .",
+        "          ,",
+      ]
+
+      84 |     it('test many lines', () => {
+      85 |         const expected = ['CIFWFAWDTAWITW', 'hnrhr hohnhshh', 'o oeopotedi ea', 'rfmrmash  cn t', '.a e ie fthow ', ' ia fr weh,whh', 'Trnco miae  ie', 'w ciroitr btcr', 'oVivtfshfcuhhe', ' eeih a uote  ', 'hrnl sdtln  is', 'oot ttvh tttfh', 'un bhaeepihw a', 'saglernianeoyl', 'e,ro -trsui ol', 'h uofcu sarhu ', 'owddarrdan o m', 'lhg to\'egccuwi', 'deemasdaeehris', 'sr als t  ists', ',ebk \'phool\'h,', '  reldi ffd   ', 'bweso tb  rtpo', 'oea ileutterau', 't kcnoorhhnatr', 'hl isvuyee\'fi ', ' atv es iisfet', 'ayoior trr ino', 'l  lfsoh  ecti', 'ion   vedpn  l', 'kuehtteieadoe ', 'erwaharrar,fas', '   nekt te  rh', 'ismdsehphnnosa', 'ncuse ra-tau l', ' et  tormsural', 'dniuthwea\'g t ', 'iennwesnr hsts', 'g,ycoitkrttet', 'n,l rs\'a anr', 'ief \'dgcgdi', 'taol  eoe,v', 'yneisl,u;e', ',.sftol ', '     ervdt', '     ;ie o', '       f,r ', '       eem', '       .me', '          on', '          vd', '          e.', '          ,']
+    > 86 |         expect(Transpose.transpose(['Chor. Two households, both alike in dignity,', 'In fair Verona, where we lay our scene,', 'From ancient grudge break to new mutiny,', 'Where civil blood makes civil hands unclean.', 'From forth the fatal loins of these two foes', 'A pair of star-cross\'d lovers take their life;', 'Whose misadventur\'d piteous overthrows', 'Doth with their death bury their parents\' strife.', 'The fearful passage of their death-mark\'d love,', 'And the continuance of their parents\' rage,', 'Which, but their children\'s end, naught could remove,', 'Is now the two hours\' traffic of our stage;', 'The which if you with patient ears attend,', 'What here shall miss, our toil shall strive to mend.'])).toEqual(expected)
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ^
+      87 |     })
+      88 | })
+      89 |
+
+      at Object.<anonymous> (transpose.test.ts:86:726)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 11 passed, 12 total
+Snapshots:   0 total
+Time:        13.803 s
+Ran all test suites.
+Test results written to: output.log
+Command exited with non-zero status 1
+	Command being timed: "npx jest --json --outputFile=output.log"
+	User time (seconds): 6.55
+	System time (seconds): 2.99
+	Percent of CPU this job got: 45%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:20.96
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 219208
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 63615
+	Voluntary context switches: 1754
+	Involuntary context switches: 6018
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 112
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

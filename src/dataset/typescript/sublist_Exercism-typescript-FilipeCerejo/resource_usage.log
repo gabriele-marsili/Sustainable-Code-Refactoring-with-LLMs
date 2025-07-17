@@ -1,0 +1,49 @@
+PASS ./sublist.test.ts (16.53 s)
+  Sublist
+    ✓ empty lists (123 ms)
+    ○ skipped empty list within non empty list
+    ○ skipped non empty list contains empty list
+    ○ skipped list equals itself
+    ○ skipped different lists
+    ○ skipped false start
+    ○ skipped consecutive
+    ○ skipped sublist at start
+    ○ skipped sublist in middle
+    ○ skipped sublist at end
+    ○ skipped at start of superlist
+    ○ skipped in middle of superlist
+    ○ skipped at end of superlist
+    ○ skipped first list missing element from second list
+    ○ skipped second list missing element from first list
+    ○ skipped order matters to a list
+    ○ skipped same digits but different numbers
+
+Test Suites: 1 passed, 1 total
+Tests:       16 skipped, 1 passed, 17 total
+Snapshots:   0 total
+Time:        19.671 s
+Ran all test suites.
+Test results written to: output.log
+	Command being timed: "npx jest --json --outputFile=output.log"
+	User time (seconds): 7.34
+	System time (seconds): 3.58
+	Percent of CPU this job got: 42%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:26.00
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 215068
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 63945
+	Voluntary context switches: 1979
+	Involuntary context switches: 6540
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 120
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

@@ -1,39 +1,73 @@
-E
+FFFF
 ======================================================================
-ERROR: create_palindrom_testSuite (unittest.loader._FailedTest.create_palindrom_testSuite)
+FAIL: test_1 (create_palindrom_testSuite.Test.test_1)
 ----------------------------------------------------------------------
-ImportError: Failed to import test module: create_palindrom_testSuite
 Traceback (most recent call last):
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
-    module = self._get_module_from_name(name)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
-    __import__(name)
-  File "/app/create_palindrom_testSuite.py", line 1, in <module>
-    from create_palindrom import create_palindrom
-ImportError: cannot import name 'create_palindrom' from 'create_palindrom' (/app/create_palindrom.py)
+  File "/app/create_palindrom_testSuite.py", line 8, in test_1
+    self.assertEqual(create_palindrome_1(word), 'ecerac')
+AssertionError: 'ecrarce' != 'ecerac'
+- ecrarce
+?     - -
++ ecerac
+?   +
+
+
+======================================================================
+FAIL: test_2 (create_palindrom_testSuite.Test.test_2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/app/create_palindrom_testSuite.py", line 12, in test_2
+    self.assertEqual(create_palindrome_2(word), 'elgoogel')
+AssertionError: 'elgoogle' != 'elgoogel'
+- elgoogle
+?        -
++ elgoogel
+?       +
+
+
+======================================================================
+FAIL: test_3 (create_palindrom_testSuite.Test.test_3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/app/create_palindrom_testSuite.py", line 16, in test_3
+    self.assertEqual(create_palindrome_1(word), 'adcdba')
+AssertionError: 'adbcbda' != 'adcdba'
+- adbcbda
++ adcdba
+
+
+======================================================================
+FAIL: test_4 (create_palindrom_testSuite.Test.test_4)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/app/create_palindrom_testSuite.py", line 20, in test_4
+    self.assertEqual(create_palindrome_2(word), 'adefgfdcba')
+AssertionError: 'abcdefgfedcba' != 'adefgfdcba'
+- abcdefgfedcba
+?  --     -
++ adefgfdcba
 
 
 ----------------------------------------------------------------------
-Ran 1 test in 0.014s
+Ran 4 tests in 0.075s
 
-FAILED (errors=1)
+FAILED (failures=4)
 Command exited with non-zero status 1
 	Command being timed: "python3 -m unittest discover -s . -p *test*.py"
-	User time (seconds): 0.54
-	System time (seconds): 0.37
-	Percent of CPU this job got: 23%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.92
+	User time (seconds): 0.28
+	System time (seconds): 0.15
+	Percent of CPU this job got: 26%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.63
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 15104
+	Maximum resident set size (kbytes): 14976
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 2509
-	Voluntary context switches: 143
-	Involuntary context switches: 269
+	Minor (reclaiming a frame) page faults: 2498
+	Voluntary context switches: 125
+	Involuntary context switches: 311
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 576

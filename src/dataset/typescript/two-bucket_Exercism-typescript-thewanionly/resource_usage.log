@@ -1,0 +1,47 @@
+PASS ./two-bucket.test.ts (44.542 s)
+  TwoBucket
+    Measure using bucket one of size 3 and bucket two of size 5
+      ✓ start with bucket one (160 ms)
+      ✓ start with bucket two (13 ms)
+    Measure using bucket one of size 7 and bucket two of size 11
+      ✓ start with bucket one (9 ms)
+      ✓ start with bucket two (6 ms)
+    Measure one step using bucket one of size 1 and bucket two of size 3
+      ✓ start with bucket two (4 ms)
+    Measure using bucket one of size 2 and bucket two of size 3
+      ○ skipped start with bucket one and end with bucket two
+    Reachability
+      ✓ With the same buckets but a different goal, then it is possible (4 ms)
+      ○ skipped Not possible to reach the goal
+    Goal larger than both buckets
+      ○ skipped Is impossible
+
+Test Suites: 1 passed, 1 total
+Tests:       3 skipped, 6 passed, 9 total
+Snapshots:   0 total
+Time:        49.243 s
+Ran all test suites.
+Test results written to: output.log
+	Command being timed: "npx jest --json --outputFile=output.log"
+	User time (seconds): 19.41
+	System time (seconds): 8.89
+	Percent of CPU this job got: 35%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:19.40
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 219420
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 66782
+	Voluntary context switches: 2044
+	Involuntary context switches: 10899
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 136
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

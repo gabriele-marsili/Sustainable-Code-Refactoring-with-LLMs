@@ -1,6 +1,6 @@
 import unittest
-from .testing_ll import build_ll, print_ll
-from merge_sorted_ll import merge_sorted_ll
+from ll_helper import build_ll, print_ll
+from merge_sorted_ll import merge_two_sorted_ll
 
 class Test(unittest.TestCase):
 

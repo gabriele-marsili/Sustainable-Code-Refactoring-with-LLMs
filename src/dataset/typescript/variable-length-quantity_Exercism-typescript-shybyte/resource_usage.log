@@ -1,0 +1,60 @@
+PASS ./variable-length-quantity.test.ts (17.087 s)
+  VariableLengthQuantity
+    Encode a series of integers, producing a series of bytes.
+      ✓ zero (55 ms)
+      ✓ arbitrary single byte (32 ms)
+      ✓ largest single byte (20 ms)
+      ✓ smallest double byte (1 ms)
+      ✓ arbitrary double byte (16 ms)
+      ✓ largest double byte (1 ms)
+      ✓ smallest triple byte (19 ms)
+      ✓ arbitrary triple byte (11 ms)
+      ✓ largest triple byte (2 ms)
+      ✓ smallest quadruple byte (17 ms)
+      ✓ arbitrary quadruple byte (16 ms)
+      ✓ largest quadruple byte (15 ms)
+      ✓ smallest quintuple byte (10 ms)
+      ✓ arbitrary quintuple byte (15 ms)
+      ✓ maximum 32-bit integer input (5 ms)
+      ✓ two single-byte values (11 ms)
+      ✓ two multi-byte values (60 ms)
+      ✓ many multi-byte values (1 ms)
+    Decode a series of bytes, producing a series of integers.
+      ✓ one byte (1 ms)
+      ✓ two bytes (25 ms)
+      ✓ three bytes (6 ms)
+      ✓ four bytes (1 ms)
+      ✓ maximum 32-bit integer (9 ms)
+      ✓ incomplete sequence causes error (291 ms)
+      ✓ incomplete sequence causes error, even if value is zero (53 ms)
+      ✓ multiple values (5 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       26 passed, 26 total
+Snapshots:   0 total
+Time:        19.186 s
+Ran all test suites.
+Test results written to: output.log
+	Command being timed: "npx jest --json --outputFile=output.log"
+	User time (seconds): 8.33
+	System time (seconds): 3.99
+	Percent of CPU this job got: 37%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:32.55
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 220376
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 63912
+	Voluntary context switches: 1889
+	Involuntary context switches: 7025
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 120
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

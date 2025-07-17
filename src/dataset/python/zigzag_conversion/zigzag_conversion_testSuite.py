@@ -1,5 +1,5 @@
 import unittest
-from zigzag_conversion import zigzag_conversion as convert, zigzag_conversion as convert_2
+from zigzag_conversion import convert,convert_2
 
 class Test(unittest.TestCase):
     def test_zigzag_conversion(self):

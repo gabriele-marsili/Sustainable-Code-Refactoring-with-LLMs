@@ -1,41 +1,56 @@
-E
+FFFF
 ======================================================================
-ERROR: find_max_path_sum_testSuite (unittest.loader._FailedTest.find_max_path_sum_testSuite)
+FAIL: test_1 (find_max_path_sum_testSuite.TestMaxPathSum.test_1)
 ----------------------------------------------------------------------
-ImportError: Failed to import test module: find_max_path_sum_testSuite
 Traceback (most recent call last):
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
-    module = self._get_module_from_name(name)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
-    __import__(name)
-  File "/app/find_max_path_sum_testSuite.py", line 2, in <module>
-    from find_max_path_sum import find_max_path_sum, TreeNode
-  File "/app/find_max_path_sum.py", line 36, in <module>
-    from tree_helpers import TreeNode
-ModuleNotFoundError: No module named 'tree_helpers'
+  File "/app/find_max_path_sum_testSuite.py", line 8, in test_1
+    self.assertEqual(find_max_path_sum(tree), 18)
+AssertionError: (18, 11) != 18
 
+======================================================================
+FAIL: test_2 (find_max_path_sum_testSuite.TestMaxPathSum.test_2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/app/find_max_path_sum_testSuite.py", line 12, in test_2
+    self.assertEqual(find_max_path_sum(tree), 10)
+AssertionError: (10, 7) != 10
+
+======================================================================
+FAIL: test_3 (find_max_path_sum_testSuite.TestMaxPathSum.test_3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/app/find_max_path_sum_testSuite.py", line 16, in test_3
+    self.assertEqual(find_max_path_sum(tree), 17)
+AssertionError: (17, 10) != 17
+
+======================================================================
+FAIL: test_4 (find_max_path_sum_testSuite.TestMaxPathSum.test_4)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/app/find_max_path_sum_testSuite.py", line 20, in test_4
+    self.assertEqual(find_max_path_sum(tree), 6)
+AssertionError: (6, 4) != 6
 
 ----------------------------------------------------------------------
-Ran 1 test in 0.010s
+Ran 4 tests in 0.051s
 
-FAILED (errors=1)
+FAILED (failures=4)
 Command exited with non-zero status 1
 	Command being timed: "python3 -m unittest discover -s . -p *test*.py"
-	User time (seconds): 0.31
-	System time (seconds): 0.20
-	Percent of CPU this job got: 32%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.60
+	User time (seconds): 0.24
+	System time (seconds): 0.18
+	Percent of CPU this job got: 29%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.48
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 14976
+	Maximum resident set size (kbytes): 14592
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 2504
-	Voluntary context switches: 135
-	Involuntary context switches: 243
+	Minor (reclaiming a frame) page faults: 2490
+	Voluntary context switches: 158
+	Involuntary context switches: 249
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 576

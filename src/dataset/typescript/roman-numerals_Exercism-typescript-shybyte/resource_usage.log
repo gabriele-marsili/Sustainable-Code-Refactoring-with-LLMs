@@ -1,0 +1,51 @@
+PASS ./roman-numerals.test.ts (15.285 s)
+  RomanNumerals
+    ✓ 1 is a single I (40 ms)
+    ✓ 2 is two I's (2 ms)
+    ✓ 3 is three I's (1 ms)
+    ✓ 4, being 5 - 1, is IV (2 ms)
+    ✓ 5 is a single V (4 ms)
+    ✓ 6, being 5 + 1, is VI (2 ms)
+    ✓ 9, being 10 - 1, is IX (2 ms)
+    ✓ 20 is two X's (1 ms)
+    ✓ 48 is not 50 - 2 but rather 40 + 8 (1 ms)
+    ✓ 49 is not 40 + 5 + 4 but rather 50 - 10 + 10 - 1 (2 ms)
+    ✓ 50 is a single L (1 ms)
+    ✓ 90, being 100 - 10, is XC (1 ms)
+    ✓ 100 is a single C (1 ms)
+    ✓ 60, being 50 + 10, is LX (1 ms)
+    ✓ 400, being 500 - 100, is CD (3 ms)
+    ✓ 500 is a single D
+    ✓ 900, being 1000 - 100, is CM (3 ms)
+    ✓ 1000 is a single M (2 ms)
+    ✓ 3000 is three M's (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       19 passed, 19 total
+Snapshots:   0 total
+Time:        18.349 s
+Ran all test suites.
+Test results written to: output.log
+	Command being timed: "npx jest --json --outputFile=output.log"
+	User time (seconds): 8.41
+	System time (seconds): 4.09
+	Percent of CPU this job got: 40%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:31.17
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 215776
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 63008
+	Voluntary context switches: 1835
+	Involuntary context switches: 6554
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 88
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

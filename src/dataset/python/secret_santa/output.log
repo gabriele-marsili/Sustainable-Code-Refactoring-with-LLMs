@@ -5,28 +5,28 @@ FAIL: test_1 (secret_santa_testSuite.Test.test_1)
 Traceback (most recent call last):
   File "/app/secret_santa_testSuite.py", line 6, in test_1
     self.assertEqual(secret_santa(['a', 'b', 'c']),'a')
-AssertionError: [('b', 'c'), ('c', 'a'), ('a', 'b')] != 'a'
+AssertionError: [('a', 'c'), ('c', 'b'), ('b', 'a')] != 'a'
 
 ----------------------------------------------------------------------
-Ran 1 test in 0.008s
+Ran 1 test in 0.015s
 
 FAILED (failures=1)
 Command exited with non-zero status 1
 	Command being timed: "python3 -m unittest discover -s . -p *test*.py"
 	User time (seconds): 0.23
-	System time (seconds): 0.15
-	Percent of CPU this job got: 36%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.06
+	System time (seconds): 0.23
+	Percent of CPU this job got: 40%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.15
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 14976
+	Maximum resident set size (kbytes): 14720
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 2528
-	Voluntary context switches: 134
-	Involuntary context switches: 238
+	Minor (reclaiming a frame) page faults: 2523
+	Voluntary context switches: 128
+	Involuntary context switches: 298
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 576

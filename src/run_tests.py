@@ -22,6 +22,7 @@ LOGS_DIR = BASE_DIR / "logs"
 CLUSTER_JSON = BASE_DIR / "focused_cluster_datas.json"
 BAD_ENTRIES_JSON = BASE_DIR / "bad_entries.json"
 BAD_ENTRIES_CLUSTER_JSON = BASE_DIR / "bad_entries_cluster.json"
+DEBUG_CLUSTER_JSON = BASE_DIR / "debug_cluster.json"
 silent_mode = False
 
 class TestRunner:
@@ -87,7 +88,8 @@ class TestRunner:
         except Exception as e:
             error_msg = f"Errore test {test_id}: {str(e)}"
             if not silent_mode : print(f"❌ {error_msg}")
-            self._update_progress(test_id, False)
+            self._update_progress(test_id, False)               
+            self.add_bad_entry_id(entry['id'],str(e),"",entry['language'])
             return {
                 'test_id': test_id,
                 'entry': entry,
@@ -598,13 +600,16 @@ class TestRunner:
         results["LLM_results"] = llm_results
         return results
 
-def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cache = True, use_dataset = False, use_bad_entries = False):
+def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cache = True, use_dataset = False, use_bad_entries = False,use_debug_cluster = False):
     """Esegue test suites su code snippet e codigi generati dagli LLMs.
     Attualmente sfrutta il cluster scelto anziché il dataset"""
     
     chosen_path = CLUSTER_JSON
     if use_dataset : chosen_path = DATASET_JSON_PATH
     if use_bad_entries : chosen_path = BAD_ENTRIES_CLUSTER_JSON
+    if use_debug_cluster : 
+        chosen_path = DEBUG_CLUSTER_JSON
+        print("🪲 Using debug cluster...")
     
     if not silent_mode : print(f"chosen_path = {chosen_path}")
     
@@ -675,6 +680,9 @@ if __name__ == "__main__":
     parser.add_argument("--bad-entries", action="store_true",
                        help="Use bad entries cluster for tests instead of cluster json")
     
+    parser.add_argument("--debug-cluster", action="store_true",
+                       help="Use debug cluster for tests instead of cluster json")
+    
     parser.add_argument("--silent", action="store_true",
                        help="Excute in silent mode, shows only progress")
     
@@ -693,6 +701,7 @@ if __name__ == "__main__":
         run_with_docker_cache = run_with_docker_cache,
         use_dataset = args.dataset,
         use_bad_entries = args.bad_entries,
+        use_debug_cluster = args.debug_cluster
     )
     
     if success:

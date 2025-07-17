@@ -1,0 +1,41 @@
+PASS ./pangram.test.ts (66.307 s)
+  Pangram()
+    ✓ empty sentence (138 ms)
+    ✓ pangram with only lower case (6 ms)
+    ✓ missing character 'x' (2 ms)
+    ✓ another missing character 'x' (1 ms)
+    ✓ pangram with underscores (2 ms)
+    ✓ pangram with numbers (1 ms)
+    ✓ missing letters replaced by numbers (19 ms)
+    ✓ pangram with mixed case and punctuation (1 ms)
+    ✓ pangram with non-ascii characters (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       9 passed, 9 total
+Snapshots:   0 total
+Time:        74.137 s
+Ran all test suites.
+Test results written to: output.log
+	Command being timed: "npx jest --json --outputFile=output.log"
+	User time (seconds): 23.44
+	System time (seconds): 10.96
+	Percent of CPU this job got: 36%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:33.94
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 215132
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 67151
+	Voluntary context switches: 1924
+	Involuntary context switches: 10173
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 72
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

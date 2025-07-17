@@ -1,33 +1,104 @@
-FAIL ./beer-song_testSuite.js
-  ● Test suite failed to run
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL ./beer-song_testSuite.js (11.239 s)
+  BeerSong
+    ✕ prints an arbitrary verse (106 ms)
+    ✕ handles 1 bottle (8 ms)
+    ✕ handles 0 bottles
+    ✕ sings several verses (5 ms)
+    ✕ sings the rest of the verses (1 ms)
 
-    SyntaxError: Unexpected token '{'
+  ● BeerSong › prints an arbitrary verse
 
-      at Runtime.loadEsmModule (node_modules/jest-runtime/build/index.js:516:20)
+    TypeError: expected is not a function
+
+       6 |   it('prints an arbitrary verse', function() {
+       7 |     var expected = '8 bottles of beer on the wall, 8 bottles of beer.\nTake one down and pass it around, 7 bottles of beer on the wall.\n';
+    >  8 |     expected(song.verse(8)).toEqual(expected);
+         |     ^
+       9 |   });
+      10 |
+      11 |   it('handles 1 bottle', function() {
+
+      at Object.<anonymous> (beer-song_testSuite.js:8:5)
+
+  ● BeerSong › handles 1 bottle
+
+    TypeError: expected is not a function
+
+      11 |   it('handles 1 bottle', function() {
+      12 |     var expected = '1 bottle of beer on the wall, 1 bottle of beer.\nTake it down and pass it around, no more bottles of beer on the wall.\n';
+    > 13 |     expected(song.verse(1)).toEqual(expected);
+         |     ^
+      14 |   });
+      15 |
+      16 |   it('handles 0 bottles', function() {
+
+      at Object.<anonymous> (beer-song_testSuite.js:13:5)
+
+  ● BeerSong › handles 0 bottles
+
+    TypeError: expected is not a function
+
+      16 |   it('handles 0 bottles', function() {
+      17 |     var expected = 'No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n';
+    > 18 |     expected(song.verse(0)).toEqual(expected);
+         |     ^
+      19 |   });
+      20 |
+      21 |   it('sings several verses', function() {
+
+      at Object.<anonymous> (beer-song_testSuite.js:18:5)
+
+  ● BeerSong › sings several verses
+
+    TypeError: expected is not a function
+
+      21 |   it('sings several verses', function() {
+      22 |     var expected = '8 bottles of beer on the wall, 8 bottles of beer.\nTake one down and pass it around, 7 bottles of beer on the wall.\n\n7 bottles of beer on the wall, 7 bottles of beer.\nTake one down and pass it around, 6 bottles of beer on the wall.\n\n6 bottles of beer on the wall, 6 bottles of beer.\nTake one down and pass it around, 5 bottles of beer on the wall.\n';
+    > 23 |     expected(song.sing(8, 6)).toEqual(expected);
+         |     ^
+      24 |   });
+      25 |
+      26 |   it('sings the rest of the verses', function() {
+
+      at Object.<anonymous> (beer-song_testSuite.js:23:5)
+
+  ● BeerSong › sings the rest of the verses
+
+    TypeError: expected is not a function
+
+      26 |   it('sings the rest of the verses', function() {
+      27 |     var expected = '3 bottles of beer on the wall, 3 bottles of beer.\nTake one down and pass it around, 2 bottles of beer on the wall.\n\n2 bottles of beer on the wall, 2 bottles of beer.\nTake one down and pass it around, 1 bottle of beer on the wall.\n\n1 bottle of beer on the wall, 1 bottle of beer.\nTake it down and pass it around, no more bottles of beer on the wall.\n\nNo more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n';
+    > 28 |     expected(song.sing(3)).toEqual(expected);
+         |     ^
+      29 |   });
+      30 | });
+      31 |
+
+      at Object.<anonymous> (beer-song_testSuite.js:28:5)
 
 Test Suites: 1 failed, 1 total
-Tests:       0 total
+Tests:       5 failed, 5 total
 Snapshots:   0 total
-Time:        11.633 s
+Time:        13.032 s
 Ran all test suites.
-(node:22) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
-(Use `node --trace-warnings ...` to show where the warning was created)
 Command exited with non-zero status 1
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 2.29
-	System time (seconds): 2.57
-	Percent of CPU this job got: 14%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:34.45
+	User time (seconds): 2.37
+	System time (seconds): 2.62
+	Percent of CPU this job got: 15%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:32.91
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 79664
+	Maximum resident set size (kbytes): 84168
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 14112
-	Voluntary context switches: 6502
-	Involuntary context switches: 5027
+	Minor (reclaiming a frame) page faults: 14448
+	Voluntary context switches: 6544
+	Involuntary context switches: 5323
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

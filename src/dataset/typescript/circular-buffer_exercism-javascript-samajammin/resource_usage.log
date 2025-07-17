@@ -1,0 +1,42 @@
+PASS ./circular-buffer.test.ts (19.397 s)
+  CircularBuffer
+    ✓ reading an empty buffer throws a BufferEmptyError (63 ms)
+    ✓ write and read back one item (6 ms)
+    ✓ write and read back multiple items (4 ms)
+    ✓ clearing a buffer (17 ms)
+    ✓ alternate write and read (13 ms)
+    ✓ reads back oldest item (9 ms)
+    ✓ writing to a full buffer throws a BufferOverflowError (8 ms)
+    ✓ forced writes over write oldest item in a full buffer (4 ms)
+    ✓ forced writes act like write in a non-full buffer (45 ms)
+    ✓ alternate force write and read into full buffer (26 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       10 passed, 10 total
+Snapshots:   0 total
+Time:        21.02 s
+Ran all test suites.
+Test results written to: output.log
+	Command being timed: "npx jest --json --outputFile=output.log"
+	User time (seconds): 8.07
+	System time (seconds): 3.89
+	Percent of CPU this job got: 40%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:29.59
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 218216
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 63761
+	Voluntary context switches: 1780
+	Involuntary context switches: 6716
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 96
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
