@@ -1,0 +1,49 @@
+test_luhn.c:150:test_single_digit_strings_can_not_be_valid:PASS
+test_luhn.c:151:test_a_single_zero_is_invalid:PASS
+test_luhn.c:152:test_a_simple_valid_SIN_that_remains_valid_if_reversed:PASS
+test_luhn.c:153:test_a_simple_valid_SIN_that_becomes_invalid_if_reversed:PASS
+test_luhn.c:154:test_a_valid_Canadian_SIN:PASS
+test_luhn.c:155:test_invalid_Canadian_SIN:PASS
+test_luhn.c:156:test_invalid_credit_card:PASS
+test_luhn.c:157:test_invalid_long_number_with_an_even_remainder:PASS
+test_luhn.c:158:invalid_long_number_with_a_remainder_divisible_by_5:PASS
+test_luhn.c:159:test_valid_number_with_an_even_number_of_digits:PASS
+test_luhn.c:160:test_valid_number_with_an_odd_number_of_spaces:PASS
+test_luhn.c:161:test_valid_string_with_a_non_digit_added_at_the_end_to_become_invalid:PASS
+test_luhn.c:163:test_valid_strings_with_punctuation_included_become_invalid:PASS
+test_luhn.c:164:test_valid_strings_with_symbols_included_become_invalid:PASS
+test_luhn.c:165:test_single_zero_with_space_is_invalid:PASS
+test_luhn.c:166:test_more_than_a_single_zero_is_valid:PASS
+test_luhn.c:167:test_input_digit_9_is_correctly_converted_to_output_digit_9:PASS
+test_luhn.c:168:test_very_long_input_is_valid:PASS
+test_luhn.c:169:test_number_with_odd_number_of_digits_and_non_zero_first_digit:PASS
+test_luhn.c:170:test_ascii_value_for_non_doubled_non_digit_isnt_allowed:PASS
+test_luhn.c:171:test_ascii_value_for_doubled_non_digit_isnt_allowed:PASS
+test_luhn.c:172:test_non_numeric_non_space_char_in_middle_with_sum_divisible_by_10_isnt_allowed:PASS
+
+-----------------------
+22 Tests 0 Failures 0 Ignored 
+OK
+	Command being timed: "./tests.out"
+	User time (seconds): 0.00
+	System time (seconds): 0.00
+	Percent of CPU this job got: 5%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.03
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 1152
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 73
+	Voluntary context switches: 7
+	Involuntary context switches: 6
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

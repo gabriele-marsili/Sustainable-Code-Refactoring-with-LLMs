@@ -1,0 +1,45 @@
+test/test_phone_number.c:185:test_cleans_the_number:PASS
+test/test_phone_number.c:186:test_cleans_numbers_with_dots:PASS
+test/test_phone_number.c:187:test_cleans_numbers_with_multiple_spaces:PASS
+test/test_phone_number.c:188:test_invalid_when_9_digits:PASS
+test/test_phone_number.c:189:test_invalid_when_11_digits_does_not_start_with_a_1:PASS
+test/test_phone_number.c:190:test_valid_when_11_digits_and_starting_with_1:PASS
+test/test_phone_number.c:191:test_valid_when_11_digits_and_starting_with_1_even_with_punctuation:PASS
+test/test_phone_number.c:193:test_invalid_when_more_than_11_digits:PASS
+test/test_phone_number.c:194:test_invalid_with_letters:PASS
+test/test_phone_number.c:195:test_invalid_with_punctuations:PASS
+test/test_phone_number.c:196:test_invalid_if_area_code_starts_with_0:PASS
+test/test_phone_number.c:197:test_invalid_if_area_code_starts_with_1:PASS
+test/test_phone_number.c:198:test_invalid_if_exchange_code_starts_with_0:PASS
+test/test_phone_number.c:199:test_invalid_if_exchange_code_starts_with_1:PASS
+test/test_phone_number.c:200:test_invalid_if_area_code_starts_with_0_on_valid_11_digit_number:PASS
+test/test_phone_number.c:201:test_invalid_if_area_code_starts_with_1_on_valid_11_digit_number:PASS
+test/test_phone_number.c:202:test_invalid_if_exchange_code_starts_with_0_on_valid_11_digit_number:PASS
+test/test_phone_number.c:204:test_invalid_if_exchange_code_starts_with_1_on_valid_11_digit_number:PASS
+
+-----------------------
+18 Tests 0 Failures 0 Ignored 
+OK
+	Command being timed: "./tests.out"
+	User time (seconds): 0.00
+	System time (seconds): 0.00
+	Percent of CPU this job got: 18%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.03
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 1024
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 70
+	Voluntary context switches: 7
+	Involuntary context switches: 4
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
