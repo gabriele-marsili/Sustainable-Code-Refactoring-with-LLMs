@@ -1,42 +1,40 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -I src -I test -I /usr/local/include
-LDFLAGS = -lboost_unit_test_framework
-SRC = $(wildcard src/*.cpp)
-TEST = $(wildcard test/*.cpp)
-OBJ = $(SRC:.cpp=.o) $(TEST:.cpp=.o)
+CXXFLAGS = -std=c++17 -I src -I test -I /usr/local/include -DBOOST_TEST_DYN_LINK
+LDFLAGS = -L/usr/local/lib -lboost_unit_test_framework
 
-# Rileva automaticamente il tipo di test framework
-TEST_FRAMEWORK = $(shell if grep -q "catch.hpp\|catch2" test/*.cpp 2>/dev/null; then echo "catch"; elif grep -q "boost.*test" test/*.cpp 2>/dev/null; then echo "boost"; else echo "unknown"; fi)
+# Source and test files
+SRC_FILES = $(wildcard src/*.cpp)
+TEST_FILES = $(wildcard test/*.cpp)
 
-# Verifica se boost è disponibile
-BOOST_AVAILABLE = $(shell pkg-config --exists boost 2>/dev/null && echo "yes" || echo "no")
+# Object files
+SRC_OBJ = $(patsubst src/%.cpp, obj/%.o, $(SRC_FILES))
+TEST_OBJ = $(patsubst test/%.cpp, obj/%.o, $(TEST_FILES))
 
-all: test_exec
+# Eseguibile di test
+TARGET = test_exec
 
-test_exec: $(OBJ)
-ifeq ($(TEST_FRAMEWORK),catch)
-	@echo "🧪 Compilando con Catch2..."
-	@if [ -f /usr/local/src/catch_amalgamated.cpp ]; then 		$(CXX) $(CXXFLAGS) -o test_exec $(OBJ) /usr/local/src/catch_amalgamated.cpp; 	else 		$(CXX) $(CXXFLAGS) -o test_exec $(OBJ); 	fi
-else ifeq ($(TEST_FRAMEWORK),boost)
-	@echo "🧪 Compilando con Boost.Test..."
-	@if command -v pkg-config > /dev/null && pkg-config --exists boost; then 		$(CXX) $(CXXFLAGS) -o test_exec $(OBJ) $(LDFLAGS); 	else 		echo "⚠️  Boost non disponibile, tentativo senza librerie..."; 		$(CXX) $(CXXFLAGS) -o test_exec $(OBJ) -lboost_unit_test_framework 2>/dev/null || 		$(CXX) $(CXXFLAGS) -o test_exec $(OBJ); 	fi
-else
-	@echo "🧪 Framework sconosciuto, tentativo con Boost..."
-	@$(CXX) $(CXXFLAGS) -o test_exec $(OBJ) $(LDFLAGS) 2>/dev/null || 	echo "⚠️  Boost fallito, tentativo senza librerie..." && 	$(CXX) $(CXXFLAGS) -o test_exec $(OBJ)
-endif
+# Directory per gli object files
+OBJ_DIR = obj
 
-%.o: %.cpp
+.PHONY: all clean
+
+all: $(TARGET)
+
+# Creazione della directory degli object files se non esiste
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+
+$(TARGET): $(OBJ_DIR) $(SRC_OBJ) $(TEST_OBJ)
+	@echo "🧪 Compilando l'eseguibile di test..."
+	$(CXX) $(CXXFLAGS) $(SRC_OBJ) $(TEST_OBJ) -o $@ $(LDFLAGS)
+
+$(OBJ_DIR)/%.o: src/%.cpp
+	@echo "🔨 Compilando $<..."
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/%.o: test/%.cpp
 	@echo "🔨 Compilando $<..."
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -f src/*.o test/*.o test_exec
-
-.PHONY: all clean debug
-
-debug:
-	@echo "Framework rilevato: $(TEST_FRAMEWORK)"
-	@echo "Boost disponibile: $(BOOST_AVAILABLE)"
-	@echo "File sorgente: $(SRC)"
-	@echo "File test: $(TEST)"
-	@echo "File oggetto: $(OBJ)"
+	rm -rf $(OBJ_DIR) $(TARGET)

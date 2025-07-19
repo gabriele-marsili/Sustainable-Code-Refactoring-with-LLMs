@@ -376,12 +376,21 @@ class TestRunner:
             #copia del log file nella directory dell'esercizio
             log_file = mount_path / "output.log"     
             
+    
             final_log = LOGS_DIR / f"{container_name}_{exercise_name}_{uuid.uuid4().hex[:8]}.log"
+            
+            if not final_log.exists():
+                final_log.touch()
+            
             shutil.copy(log_file, final_log)
             
             if LLM_dirName != "":
                 target_log_path = mount_path / LLM_dirName / "output.log"
                 if not silent_mode : print(f"target_log_path = {target_log_path}")
+                
+                if not target_log_path.exists():
+                    target_log_path.touch()   
+                
                 shutil.copy(log_file, target_log_path) 
             
             

@@ -1,0 +1,38 @@
+# raindrops/test [raindrops/test.test]
+test/error_handling_test.go:32:20: undefined: Resource
+test/error_handling_test.go:33:9: undefined: Use
+test/error_handling_test.go:53:20: undefined: Resource
+test/error_handling_test.go:56:27: undefined: TransientError
+test/error_handling_test.go:60:9: undefined: Use
+test/error_handling_test.go:72:20: undefined: Resource
+test/error_handling_test.go:75:27: undefined: TransientError
+test/error_handling_test.go:79:9: undefined: Use
+test/error_handling_test.go:96:37: undefined: FrobError
+test/error_handling_test.go:104:20: undefined: Resource
+test/error_handling_test.go:104:20: too many errors
+FAIL	raindrops/test [build failed]
+FAIL
+Command exited with non-zero status 1
+	Command being timed: "go test ./test/..."
+	User time (seconds): 24.13
+	System time (seconds): 49.31
+	Percent of CPU this job got: 48%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:30.79
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 201092
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 700665
+	Voluntary context switches: 33047
+	Involuntary context switches: 44312
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 166792
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

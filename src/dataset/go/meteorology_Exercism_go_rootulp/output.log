@@ -1,0 +1,38 @@
+# raindrops/test [raindrops/test.test]
+test/meteorology_test.go:10:8: undefined: TemperatureUnit
+test/meteorology_test.go:15:10: undefined: Celsius
+test/meteorology_test.go:20:10: undefined: Fahrenheit
+test/meteorology_test.go:36:8: undefined: Temperature
+test/meteorology_test.go:41:10: undefined: Temperature
+test/meteorology_test.go:41:26: undefined: Celsius
+test/meteorology_test.go:46:10: undefined: Temperature
+test/meteorology_test.go:46:26: undefined: Fahrenheit
+test/meteorology_test.go:51:10: undefined: Temperature
+test/meteorology_test.go:51:27: undefined: Celsius
+test/meteorology_test.go:51:27: too many errors
+FAIL	raindrops/test [build failed]
+FAIL
+Command exited with non-zero status 1
+	Command being timed: "go test ./test/..."
+	User time (seconds): 25.73
+	System time (seconds): 52.25
+	Percent of CPU this job got: 50%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:35.65
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 201448
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 696282
+	Voluntary context switches: 34047
+	Involuntary context switches: 44997
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 166792
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1
