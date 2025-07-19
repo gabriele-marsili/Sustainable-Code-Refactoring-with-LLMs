@@ -532,7 +532,7 @@ class TestRunner:
                 llm_type_dir = (DATASET_DIR / llm_path).parent
                 llm_dirName = Path(llm_type_dir).name
                 code_path_dir = llm_type_dir.parent  
-                if lang == "c" or lang == "cpp" or lang == "go":
+                if lang == "c" or lang == "cpp":
                     code_path_dir = code_path_dir / "src"
                 if not silent_mode : print(f"  ↪ code_path_dir : {code_path_dir}")
                         
@@ -572,7 +572,7 @@ class TestRunner:
                 # debug :
                 # self.read_and_print_file_content(target_file)
                 
-                if lang == "c" or lang == "cpp" or lang == "go":
+                if lang == "c" or lang == "cpp":
                     code_path_dir = DATASET_DIR / Path(entry["testUnitFilePath"]).parent
                 
                 # run test
