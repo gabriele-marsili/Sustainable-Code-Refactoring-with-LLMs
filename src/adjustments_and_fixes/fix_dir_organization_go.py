@@ -1,9 +1,10 @@
 import json
 import os
 import shutil
+from pathlib import Path
 
-DATASET_JSON = "../src/dataset.json"  # Percorso relativo al tuo progetto
-DATASET_ROOT = "../src/dataset"    
+DATASET_ROOT = Path("../dataset")
+DATASET_JSON = DATASET_ROOT / "dataset.json"  # Percorso relativo al tuo progetto
 
 def flatten_go_exercises():
     with open(DATASET_JSON, "r", encoding="utf-8") as f:
@@ -33,7 +34,7 @@ def flatten_go_exercises():
                     src_file = os.path.join(src_dir, fname)
                     dest_file = os.path.join(exercise_dir, fname)
                     shutil.move(src_file, dest_file)
-                    entry["codeSnippetFilePath"] = str(entry["codeSnippetFilePath"]).replace("/src",str(fname))
+                    entry["codeSnippetFilePath"] = str(entry["codeSnippetFilePath"]).replace("/src","/"+str(fname))
                     print(f"Moved code → {dest_file}")
             os.rmdir(src_dir)
             changed = True
@@ -46,7 +47,7 @@ def flatten_go_exercises():
                     src_file = os.path.join(test_dir, fname)
                     dest_file = os.path.join(exercise_dir, fname)
                     shutil.move(src_file, dest_file)
-                    entry["testUnitFilePath"] = str(entry["testUnitFilePath"]).replace("/test",str(fname))
+                    entry["testUnitFilePath"] = str(entry["testUnitFilePath"]).replace("/test","/"+str(fname))
                     print(f"Moved test → {dest_file}")
             os.rmdir(test_dir)
             changed = True
@@ -59,5 +60,23 @@ def flatten_go_exercises():
     else:
         print("No Go entries needed updating")
 
+def fix_paths():
+    with open(DATASET_JSON, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    for entry in data.get("go", []):
+        f_name :str = entry['filename']
+        test_f_name :str = f_name.replace(".go","_test.go")
+        entry["codeSnippetFilePath"] = str(entry["codeSnippetFilePath"]).replace(f_name,"/"+str(f_name))
+        entry["testUnitFilePath"] = str(entry["testUnitFilePath"]).replace(test_f_name,"/"+str(test_f_name))
+            
+
+    
+    with open(DATASET_JSON, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2)
+        
+    
+    
+
 if __name__ == "__main__":
-    flatten_go_exercises()
+    fix_paths()
