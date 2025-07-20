@@ -14,6 +14,9 @@ import time
 from collections import defaultdict
 from library_installer import install_external_dependencies
 from utility_dir import utility_paths
+import argparse
+from datetime import datetime
+
 
 BASE_DIR = utility_paths.SRC_DIR
 DATASET_DIR = utility_paths.DATASET_DIR
@@ -619,10 +622,57 @@ class TestRunner:
         results["LLM_results"] = llm_results
         return results
 
-def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cache = True, use_dataset = False, use_bad_entries = False,use_debug_cluster = False,cluster_name =""):
+    def save_results_to_output_file(self, cluster_data, output_file):
+        """Salva i risultati delle metriche in un file di output separato"""
+        import datetime
+        
+        output_data = {
+            "execution_date": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "results": {}
+        }
+        
+        for lang, entries in cluster_data.items():
+            output_data["results"][lang] = []
+            
+            for entry in entries:
+                result_entry = {
+                    "id": entry["id"],
+                    "filename": entry["filename"],
+                    "language": entry["language"]
+                }
+                
+                # Aggiungi metriche base se presenti
+                if "CPU_usage" in entry:
+                    result_entry["CPU_usage"] = entry["CPU_usage"]
+                if "RAM_usage" in entry:
+                    result_entry["RAM_usage"] = entry["RAM_usage"]
+                if "execution_time_ms" in entry:
+                    result_entry["execution_time_ms"] = entry["execution_time_ms"]
+                
+                # Aggiungi risultati LLM se presenti
+                if "LLM_results" in entry and entry["LLM_results"]:
+                    result_entry["LLM_results"] = entry["LLM_results"]
+                
+                output_data["results"][lang].append(result_entry)
+        
+        # Salva il file di output
+        output_file = utility_paths.OUTPUT_DIR_FILEPATH / output_file
+        with open(output_file, "w", encoding="utf-8") as f:
+            json.dump(output_data, f, indent=4, ensure_ascii=False)
+        
+        
+        
+        print(f"✅ Risultati salvati in {output_file}")
+
+def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cache = True, use_dataset = False, use_bad_entries = False,use_debug_cluster = False,cluster_name ="",output_file:str=None):
     """Esegue test suites su code snippet e codigi generati dagli LLMs.
     Attualmente sfrutta il cluster scelto anziché il dataset"""
+        
+    if not output_file : raise Exception("❌ Missing output file to save result")
     
+    if not output_file.endswith(".json"):output_file = output_file + ".json"
+    
+        
     chosen_path = CLUSTER_JSON
     if use_dataset : chosen_path = DATASET_JSON_PATH
     if use_bad_entries : chosen_path = BAD_ENTRIES_CLUSTER_JSON
@@ -632,11 +682,11 @@ def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cach
     if use_debug_cluster : 
         chosen_path = DEBUG_CLUSTER_JSON
         print("🪲 Using debug cluster...")
+            
         
-    
-    
+        
     if not silent_mode : print(f"chosen_path = {chosen_path}")
-    
+        
     LOGS_DIR.mkdir(exist_ok=True)    
     cluster_data = None
     try:
@@ -645,10 +695,12 @@ def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cach
     except Exception as e:
         if not silent_mode : print(f"❌ Errore caricamento cluster data: {e}")
         return False
-        
+            
     
+
+
     test_runner = TestRunner(max_workers=max_workers)
-    
+        
     # Pre-inizializza i container prima di avviare i worker
     print("🐳 Pre-inizializzazione dei container Docker...")
     languages = set(cluster_data.keys())
@@ -666,23 +718,32 @@ def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cach
     except Exception as e:
         print(f"❌ Errore run test concurrent: {e}")
     finally:
-        # Pulizia dei container persistenti
+       #  Pulizia dei container persistenti
         for lang, container_name in test_runner.container_pool.items():
             print(f"🛑 Fermo e rimuovo il container '{container_name}'...")
             subprocess.run(["docker", "stop", container_name], check=True)
             subprocess.run(["docker", "rm", container_name], check=True)
         print("✅ Pulizia dei container completata.")
 
-    
-    #Salva JSON aggiornato
-    try:
-        with open(chosen_path, "w", encoding="utf-8") as f:
-            json.dump(cluster_data, f, indent=4, ensure_ascii=False)
-        print(f"✅ Dati salvati in {chosen_path}")
-        return True
-    except Exception as e:
-        print(f"❌ Errore salvataggio: {e}")
-        return False
+        
+        #Salva JSON aggiornato
+        """
+        try:
+            with open(chosen_path, "w", encoding="utf-8") as f:
+                json.dump(cluster_data, f, indent=4, ensure_ascii=False)
+            print(f"✅ Dati salvati in {chosen_path}")
+            return True
+        except Exception as e:
+            print(f"❌ Errore salvataggio: {e}")
+        """
+        
+    if output_file:
+        try:
+            print(f"ℹ️ Input file {chosen_path}")
+            test_runner.save_results_to_output_file(cluster_data, output_file)
+        except Exception as e:
+            print(f"❌ Errore salvataggio output file: {e}")
+            return False
 
 
 if __name__ == "__main__":
@@ -712,6 +773,10 @@ if __name__ == "__main__":
     parser.add_argument("--silent", action="store_true",
                        help="Excute in silent mode, shows only progress")
     
+    parser.add_argument("--output-file", type=str,
+                   help="File di output per salvare i risultati delle metriche")
+
+    
     args = parser.parse_args()
     
     if not args.no_docker_cache: run_with_docker_cache = False
@@ -729,6 +794,7 @@ if __name__ == "__main__":
         use_bad_entries = args.bad_entries,
         use_debug_cluster = args.debug_cluster,
         cluster_name=args.cluster_name,
+        output_file=args.output_file
         
     )
     

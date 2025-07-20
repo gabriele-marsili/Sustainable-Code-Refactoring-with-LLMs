@@ -1,19 +1,38 @@
 from pathlib import Path
 
+# Ottieni il path assoluto della directory che contiene questo file
+CURRENT_FILE_DIR = Path(__file__).resolve().parent
 
-SRC_DIR = Path("..")
-DATASET_DIR = Path("../dataset")
-DATASET_JSON_FILEPATH = Path("../dataset/dataset.json")
-FOCUSED_CLUSTER_JSON_FILEPATH = Path("../clusters/focused_cluster_datas.json")
-FOCUSED_CLUSTER_2_JSON_FILEPATH = Path("../clusters/focused_cluster_datas_2.json")
+SRC_DIR = CURRENT_FILE_DIR.parent
+SRC_DIR = SRC_DIR.resolve()  # Rendi il path assoluto
 
-OUTPUT_DIR_FILEPATH  = Path("../execution_outputs")
+DATASET_DIR = SRC_DIR / "dataset"
+DATASET_JSON_FILEPATH = DATASET_DIR / "dataset.json"
+FOCUSED_CLUSTER_JSON_FILEPATH = SRC_DIR / "clusters/focused_cluster_datas.json"
+FOCUSED_CLUSTER_2_JSON_FILEPATH = SRC_DIR / "clusters/focused_cluster_datas_2.json"
+
+OUTPUT_DIR_FILEPATH = SRC_DIR / "execution_outputs"
 OUTPUT_DATASET_FILEPATH = OUTPUT_DIR_FILEPATH / "dataset_outputs.json"
 OUTPUT_FOCUSED_CLUSTER_FILEPATH = OUTPUT_DIR_FILEPATH / "focused_cluster_outputs.json"
 
-CLUSTERS_DIR_FILEPATH = Path("../clusters")
-BAD_ENTRIES_FILEPATH = Path("../clusters/bad_entries.json")
-BAD_ENTRIES_CLUSTER_FILEPATH = Path("../clusters/bad_entries_cluster.json")
-DEBUG_CLUSTER_FILEPATH = Path("../clusters/debug_cluster.json")
-LLM_CONFIGS_FILEPATH = Path("../llm_configs.json")
+CLUSTERS_DIR_FILEPATH = SRC_DIR / "clusters"
+BAD_ENTRIES_FILEPATH = CLUSTERS_DIR_FILEPATH / "bad_entries.json"
+BAD_ENTRIES_CLUSTER_FILEPATH = CLUSTERS_DIR_FILEPATH / "bad_entries_cluster.json"
+DEBUG_CLUSTER_FILEPATH = CLUSTERS_DIR_FILEPATH / "debug_cluster.json"
+LLM_CONFIGS_FILEPATH = SRC_DIR / "llm_configs.json"
 
+if __name__ == "__main__":
+    print(f"Current file directory: {CURRENT_FILE_DIR}")
+    print(f"SRC_DIR: {SRC_DIR}")
+    print(f"DATASET_DIR: {DATASET_DIR}")
+    print(f"DATASET_JSON_FILEPATH: {DATASET_JSON_FILEPATH}")
+    print(f"FOCUSED_CLUSTER_JSON_FILEPATH: {FOCUSED_CLUSTER_JSON_FILEPATH}")
+    print(f"FOCUSED_CLUSTER_2_JSON_FILEPATH: {FOCUSED_CLUSTER_2_JSON_FILEPATH}")
+    print(f"OUTPUT_DIR_FILEPATH: {OUTPUT_DIR_FILEPATH}")
+    print(f"OUTPUT_DATASET_FILEPATH: {OUTPUT_DATASET_FILEPATH}")
+    print(f"OUTPUT_FOCUSED_CLUSTER_FILEPATH: {OUTPUT_FOCUSED_CLUSTER_FILEPATH}")
+    print(f"CLUSTERS_DIR_FILEPATH: {CLUSTERS_DIR_FILEPATH}")
+    print(f"BAD_ENTRIES_FILEPATH: {BAD_ENTRIES_FILEPATH}")
+    print(f"BAD_ENTRIES_CLUSTER_FILEPATH: {BAD_ENTRIES_CLUSTER_FILEPATH}")
+    print(f"DEBUG_CLUSTER_FILEPATH: {DEBUG_CLUSTER_FILEPATH}")
+    print(f"LLM_CONFIGS_FILEPATH: {LLM_CONFIGS_FILEPATH}")
