@@ -17,9 +17,10 @@ from fileMetadata import Metadata
 sys.path.append(str(Path(__file__).parent))
 from datasetCreator import CodeTestDatasetCreator
 from clusterCreator import ClusterCreator
+from utility_dir import utility_paths
 
 BASE_DIR = Path(__file__).resolve().parent #./src
-CLUSTER_JSON = BASE_DIR / "focused_cluster_datas.json"
+CLUSTER_JSON = utility_paths.FOCUSED_CLUSTER_JSON_FILEPATH
 
 
 def setup_github_token():

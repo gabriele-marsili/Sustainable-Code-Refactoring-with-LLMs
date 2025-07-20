@@ -13,16 +13,17 @@ import sys
 import time
 from collections import defaultdict
 from library_installer import install_external_dependencies
+from utility_dir import utility_paths
 
-BASE_DIR = Path(__file__).resolve().parent #./src
-DATASET_DIR = BASE_DIR / "dataset"
-DATASET_JSON_PATH = BASE_DIR / "dataset" / "dataset.json"
+BASE_DIR = utility_paths.SRC_DIR
+DATASET_DIR = utility_paths.DATASET_DIR
+DATASET_JSON_PATH = utility_paths.DATASET_JSON_FILEPATH
 DOCKER_DIR = BASE_DIR / "docker"
 LOGS_DIR = BASE_DIR / "logs"
-CLUSTER_JSON = BASE_DIR / "focused_cluster_datas.json"
-BAD_ENTRIES_JSON = BASE_DIR / "bad_entries.json"
-BAD_ENTRIES_CLUSTER_JSON = BASE_DIR / "bad_entries_cluster.json"
-DEBUG_CLUSTER_JSON = BASE_DIR / "debug_cluster.json"
+CLUSTER_JSON = utility_paths.FOCUSED_CLUSTER_JSON_FILEPATH
+BAD_ENTRIES_JSON = utility_paths.BAD_ENTRIES_FILEPATH
+BAD_ENTRIES_CLUSTER_JSON = utility_paths.BAD_ENTRIES_CLUSTER_FILEPATH
+DEBUG_CLUSTER_JSON = utility_paths.DEBUG_CLUSTER_FILEPATH
 silent_mode = False
 
 class TestRunner:
@@ -172,12 +173,21 @@ class TestRunner:
         with open(log_path) as f:
             log_content = f.read()
 
-        # Cerca l'execution time | to do -> User time + system time
-        time_match = re.search(r"Elapsed \(wall clock\) time \(h:mm:ss or m:ss\): (\d+):(\d+\.\d+)", log_content)
-        if time_match:
-            minutes = int(time_match.group(1))
-            seconds = float(time_match.group(2))
-            metrics["execution_time_ms"] = int((minutes * 60 + seconds) * 1000)
+        # Cerca il tempo di esecuzione come somma di User + System time
+        user_time_match = re.search(r"User time \(seconds\): ([\d.]+)", log_content)
+        system_time_match = re.search(r"System time \(seconds\): ([\d.]+)", log_content)
+
+        if user_time_match and system_time_match:
+            user_time = float(user_time_match.group(1))
+            system_time = float(system_time_match.group(1))
+            metrics["execution_time_ms"] = int((user_time + system_time) * 1000)        
+        else: #fallback a wall clock time
+            time_match = re.search(r"Elapsed \(wall clock\) time \(h:mm:ss or m:ss\): (\d+):(\d+\.\d+)", log_content)
+            if time_match:
+                minutes = int(time_match.group(1))
+                seconds = float(time_match.group(2))
+                metrics["execution_time_ms"] = int((minutes * 60 + seconds) * 1000)
+
 
         # Cerca l'uso della RAM
         ram_match = re.search(r"Maximum resident set size \(kbytes\): (\d+)", log_content)
@@ -609,16 +619,21 @@ class TestRunner:
         results["LLM_results"] = llm_results
         return results
 
-def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cache = True, use_dataset = False, use_bad_entries = False,use_debug_cluster = False):
+def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cache = True, use_dataset = False, use_bad_entries = False,use_debug_cluster = False,cluster_name =""):
     """Esegue test suites su code snippet e codigi generati dagli LLMs.
     Attualmente sfrutta il cluster scelto anziché il dataset"""
     
     chosen_path = CLUSTER_JSON
     if use_dataset : chosen_path = DATASET_JSON_PATH
     if use_bad_entries : chosen_path = BAD_ENTRIES_CLUSTER_JSON
+    if cluster_name != "" : 
+        if not (cluster_name.endswith(".json")):cluster_name = cluster_name + ".json"
+        chosen_path = utility_paths.CLUSTERS_DIR_FILEPATH / cluster_name
     if use_debug_cluster : 
         chosen_path = DEBUG_CLUSTER_JSON
         print("🪲 Using debug cluster...")
+        
+    
     
     if not silent_mode : print(f"chosen_path = {chosen_path}")
     
@@ -679,6 +694,8 @@ if __name__ == "__main__":
                        help="Esegui solo i test sui codeSnippet LLM")
     parser.add_argument("--max-workers", type=int, 
                        help="Numero massimo di worker threads")
+    parser.add_argument("--cluster-name", type=str, 
+                       help="Name of cluster to run")
     
     parser.add_argument("--no-docker-cache", action="store_false",
                        help="Non utilizzare la cache per i containers Docker")
@@ -710,7 +727,9 @@ if __name__ == "__main__":
         run_with_docker_cache = run_with_docker_cache,
         use_dataset = args.dataset,
         use_bad_entries = args.bad_entries,
-        use_debug_cluster = args.debug_cluster
+        use_debug_cluster = args.debug_cluster,
+        cluster_name=args.cluster_name,
+        
     )
     
     if success:

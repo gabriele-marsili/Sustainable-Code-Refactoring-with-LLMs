@@ -3,8 +3,9 @@ import argparse
 import os
 import shutil
 from pathlib import Path
+from utility_dir import utility_paths
 
-BASE_DIR = Path("../dataset/c")
+BASE_DIR = utility_paths.DATASET_DIR / "c"
 
 DEFAULT_MAKEFILE = """\
 CC = gcc

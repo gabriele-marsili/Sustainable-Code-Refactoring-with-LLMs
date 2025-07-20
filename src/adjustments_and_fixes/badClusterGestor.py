@@ -2,7 +2,7 @@ import json
 import pathlib
 from typing import Dict, List, Set, Any
 import logging
-
+from utility_dir import utility_paths
 # Configurazione logging
 logging.basicConfig(
     level=logging.INFO,
@@ -26,9 +26,9 @@ class BadClusterGestor:
             base_dir = pathlib.Path(__file__).resolve().parent.parent.parent
         
         self.base_dir = base_dir
-        self.bad_entries_json_path = base_dir / "src/bad_entries.json"
-        self.dataset_path = base_dir / "src/dataset/dataset.json"
-        self.bad_entries_cluster_json_path = base_dir / "src/bad_entries_cluster.json"
+        self.bad_entries_json_path = utility_paths.BAD_ENTRIES_FILEPATH
+        self.dataset_path = utility_paths.DATASET_JSON_FILEPATH
+        self.bad_entries_cluster_json_path = utility_paths.BAD_ENTRIES_CLUSTER_FILEPATH
         
         # Verifica che i file esistano
         self._validate_file_paths()

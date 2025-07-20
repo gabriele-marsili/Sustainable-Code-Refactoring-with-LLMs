@@ -15,7 +15,7 @@ import requests
 from dotenv import load_dotenv
 import re
 import time
-
+from utility_dir import utility_paths
 keys = [
     
 ]
@@ -464,7 +464,7 @@ def main():
     """
     src_path = Path(__file__).resolve().parent.parent #src
         
-    bad_entries_json_path = src_path / "bad_entries.json"
+    bad_entries_json_path = utility_paths.BAD_ENTRIES_FILEPATH
     #dataset_path = src_path / "dataset/dataset.json"
     #bad_entries_cluster_json_path = src_path / "bad_entries_cluster.json"
 

@@ -2,11 +2,12 @@ import os
 import json
 import re
 from pathlib import Path
+from utility_dir import utility_paths
 
 BASE_DIR = Path(__file__).resolve().parent
-DATASET_DIR = BASE_DIR / "dataset" / "Java"
-JSON_PATH = BASE_DIR / "dataset" / "dataset.json"
-JSON_PATH_FOCUSED_CLUSTER = BASE_DIR / "focused_cluster_datas.json"
+DATASET_DIR = utility_paths.DATASET_DIR / "Java"
+JSON_PATH = utility_paths.DATASET_DIR / "dataset.json"
+JSON_PATH_FOCUSED_CLUSTER = utility_paths.FOCUSED_CLUSTER_JSON_FILEPATH
 
 def find_public_class(file_path):
     """Estrae il nome della classe pubblica dal contenuto di un file .java"""

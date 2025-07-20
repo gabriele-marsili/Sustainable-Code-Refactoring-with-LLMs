@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+from utility_dir import utility_paths
 
 def find_and_replace_in_files(file_path, old_string, new_string):
     try:
@@ -21,7 +22,7 @@ def find_and_replace_in_files(file_path, old_string, new_string):
 
 if __name__ == "__main__":
     base_dir = Path(__file__).resolve().parent.parent.parent
-    bad_entries_cluster_json_path = base_dir / "src/bad_entries_cluster.json"
+    bad_entries_cluster_json_path = utility_paths.BAD_ENTRIES_CLUSTER_FILEPATH
     if not bad_entries_cluster_json_path.exists(): print(f"❌ Cluster bad entries not exists")
     # Le stringhe che vuoi sostituire
     old_text = "from problems.medium."

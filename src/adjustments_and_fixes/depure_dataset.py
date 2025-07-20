@@ -104,7 +104,7 @@ def main():
     Funzione principale dello script
     """
     # Nomi dei file
-    bad_entries_file = "../bad_entries.json"
+    bad_entries_file = "../clusters/bad_entries.json"
     dataset_file = "../dataset/dataset.json"
     backup_file = "../dataset/dataset_backup.json"
     

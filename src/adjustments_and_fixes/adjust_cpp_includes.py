@@ -2,7 +2,11 @@ import os
 import json
 from pathlib import Path
 
-BAD_ENTRIES_CLUSTER_JSON_PATH = Path("../bad_entries_cluster.json")
+from utility_dir import utility_paths
+
+BASE_DIR = utility_paths.DATASET_DIR
+
+BAD_ENTRIES_CLUSTER_JSON_PATH = utility_paths.BAD_ENTRIES_CLUSTER_FILEPATH
 BASE_DIR = Path("../dataset")
 
 def fix_includes_in_test_files(dataset_json_path=BAD_ENTRIES_CLUSTER_JSON_PATH):

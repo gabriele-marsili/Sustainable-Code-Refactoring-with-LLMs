@@ -3,17 +3,17 @@ import json
 import shutil
 from collections import defaultdict
 from pathlib import Path
-
+from utility_dir import utility_paths
 
 
 # === UTILS ===
 
 class ClusterCreator : 
-    def __init__(self, root_dir = "dataset"):
+    def __init__(self, root_dir = "dataset", cluster_name = "focused_cluster_datas_2.json"):
         self.root_dir = Path(root_dir)
         self.jsonDataset_file = self.root_dir / "dataset.json"
-        self.FOCUSED_CLUSTER_DIR = Path("focused_cluster")
-        self.FOCUSED_CLUSTER_JSON = self.FOCUSED_CLUSTER_DIR / "focused_cluster_datas_2.json"
+        self.FOCUSED_CLUSTER_DIR = utility_paths.CLUSTERS_DIR_FILEPATH
+        self.FOCUSED_CLUSTER_JSON = utility_paths.CLUSTERS_DIR_FILEPATH / cluster_name
 
 
     def load_dataset(self):

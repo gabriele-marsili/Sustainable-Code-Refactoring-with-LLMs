@@ -1,8 +1,8 @@
 import shutil
 from pathlib import Path
-
+from utility_dir import utility_paths
 BASE_DIR = Path(__file__).resolve().parent
-DATASET_DIR = BASE_DIR / "dataset" / "typescript"
+DATASET_DIR = utility_paths.DATASET_DIR
 
 def copy_tsconfig_to_exercises():    
     tsconfig_src = DATASET_DIR / "tsconfig.json"

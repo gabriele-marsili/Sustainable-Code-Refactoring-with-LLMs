@@ -11,7 +11,7 @@ import signal
 import sys
 
 from llm_generator import LLMGenerator
-
+from utility_dir import utility_paths
 # Setup logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -21,8 +21,8 @@ class PipelineManager:
     
     def __init__(self, base_dir: Path, useClusterNotDatabase = False):
         self.base_dir = base_dir
-        self.dataset_json = base_dir / "dataset" / "dataset.json"
-        self.focused_cluster_json = base_dir / "focused_cluster_datas.json"
+        self.dataset_json = utility_paths.DATASET_JSON_FILEPATH
+        self.focused_cluster_json = utility_paths.FOCUSED_CLUSTER_JSON_FILEPATH
         self.run_tests_script = base_dir / "run_tests.py"
         
         # Componenti pipeline
