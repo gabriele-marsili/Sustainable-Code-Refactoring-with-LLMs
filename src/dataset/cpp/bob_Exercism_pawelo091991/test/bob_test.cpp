@@ -1,4 +1,4 @@
-#include "bob.h"
+#include "../src/bob.h"
 #include "test/catch.hpp"
 
 // Bob exercise test case data version 1.4.0

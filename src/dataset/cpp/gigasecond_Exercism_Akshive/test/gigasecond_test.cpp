@@ -1,4 +1,4 @@
-#include "gigasecond.h"
+#include "../src/gigasecond.h"
 #include "test/catch.hpp"
 #include "boost/date_time/posix_time/posix_time.hpp"
 

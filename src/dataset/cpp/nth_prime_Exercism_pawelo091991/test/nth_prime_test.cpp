@@ -1,4 +1,4 @@
-#include "nth_prime.h"
+#include "../src/nth_prime.h"
 #include "test/catch.hpp"
 #include <stdexcept>
 

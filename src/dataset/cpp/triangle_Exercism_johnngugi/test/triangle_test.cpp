@@ -1,4 +1,4 @@
-#include "triangle.h"
+#include "../src/triangle.h"
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 #include <stdexcept>

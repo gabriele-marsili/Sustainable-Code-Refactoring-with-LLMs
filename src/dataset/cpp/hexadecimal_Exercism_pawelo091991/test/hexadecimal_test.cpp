@@ -1,4 +1,4 @@
-#include "hexadecimal.h"
+#include "../src/hexadecimal.h"
 #include "test/catch.hpp"
 #define EXERCISM_RUN_ALL_TESTS
 TEST_CASE("hex_1_is_decimal_1")

@@ -1,4 +1,4 @@
-#include "phone_number.h"
+#include "../src/phone_number.h"
 
 #include "test/catch.hpp"
 #include <exception>

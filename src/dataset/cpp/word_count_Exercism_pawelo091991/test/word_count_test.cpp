@@ -1,4 +1,4 @@
-#include "word_count.h"
+#include "../src/word_count.h"
 #include "test/catch.hpp"
 #include <map>
 

@@ -1,4 +1,4 @@
-#include "pascals_triangle.h"
+#include "../src/pascals_triangle.h"
 #include "test/catch.hpp"
 
 TEST_CASE("zero_rows")

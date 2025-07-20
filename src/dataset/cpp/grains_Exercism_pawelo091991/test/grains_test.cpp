@@ -1,4 +1,4 @@
-#include "grains.h"
+#include "../src/grains.h"
 #include "test/catch.hpp"
 
 TEST_CASE("square_1")

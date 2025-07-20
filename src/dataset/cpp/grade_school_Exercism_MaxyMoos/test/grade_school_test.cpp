@@ -1,4 +1,4 @@
-#include "grade_school.h"
+#include "../src/grade_school.h"
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 

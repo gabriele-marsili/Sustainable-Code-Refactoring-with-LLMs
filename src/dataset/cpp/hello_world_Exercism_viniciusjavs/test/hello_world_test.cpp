@@ -1,5 +1,5 @@
 // Include the header file with the definitions of the functions you create.
-#include "hello_world.h"
+#include "../src/hello_world.h"
 
 // Include the test framework.
 #include "test/catch.hpp"

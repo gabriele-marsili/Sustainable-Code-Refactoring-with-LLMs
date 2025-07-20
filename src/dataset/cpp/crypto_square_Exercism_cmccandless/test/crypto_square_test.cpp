@@ -1,4 +1,4 @@
-#include "crypto_square.h"
+#include "../src/crypto_square.h"
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 

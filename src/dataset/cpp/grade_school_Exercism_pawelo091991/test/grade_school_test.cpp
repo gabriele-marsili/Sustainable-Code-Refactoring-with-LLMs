@@ -1,4 +1,4 @@
-#include "grade_school.h"
+#include "../src/grade_school.h"
 #include <map>
 #include "test/catch.hpp"
 

@@ -1,4 +1,4 @@
-#include "difference_of_squares.h"
+#include "../src/difference_of_squares.h"
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 

@@ -1,5 +1,5 @@
 #include "test/catch.hpp"
-#include "collatz_conjecture.h"
+#include "../src/collatz_conjecture.h"
 #include <stdexcept>
 
 // Collatz-conjecture exercise test case data version 1.2.1

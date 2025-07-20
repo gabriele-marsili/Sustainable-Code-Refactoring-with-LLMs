@@ -1,4 +1,4 @@
-#include "hamming.h"
+#include "../src/hamming.h"
 #include <stdexcept>
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>

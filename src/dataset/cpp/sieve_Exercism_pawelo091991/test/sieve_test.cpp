@@ -1,4 +1,4 @@
-#include "sieve.h"
+#include "../src/sieve.h"
 #include "test/catch.hpp"
 
 TEST_CASE("no_primes_under_two")

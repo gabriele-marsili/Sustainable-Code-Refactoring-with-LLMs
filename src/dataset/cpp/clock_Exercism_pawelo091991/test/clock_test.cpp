@@ -1,4 +1,4 @@
-#include "clock.h"
+#include "../src/clock.h"
 #include "test/catch.hpp"
 #include <sstream>
 #define EXERCISM_RUN_ALL_TESTS

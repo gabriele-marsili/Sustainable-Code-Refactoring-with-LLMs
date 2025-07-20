@@ -1,4 +1,4 @@
-#include "etl.h"
+#include "../src/etl.h"
 #include <map>
 #include "test/catch.hpp"
 #define EXERCISM_RUN_ALL_TESTS

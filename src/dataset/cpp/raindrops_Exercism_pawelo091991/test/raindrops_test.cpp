@@ -1,4 +1,4 @@
-#include "raindrops.h"
+#include "../src/raindrops.h"
 #include "test/catch.hpp"
 
 TEST_CASE("one_yields_itself")

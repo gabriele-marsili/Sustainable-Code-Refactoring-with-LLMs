@@ -1,4 +1,4 @@
-#include "beer_song.h"
+#include "../src/beer_song.h"
 #include "test/catch.hpp"
 
 using namespace std;

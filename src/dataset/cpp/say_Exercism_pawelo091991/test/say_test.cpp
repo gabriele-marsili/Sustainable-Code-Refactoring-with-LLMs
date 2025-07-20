@@ -1,4 +1,4 @@
-#include "say.h"
+#include "../src/say.h"
 #include "test/catch.hpp"
 
 TEST_CASE("zero")

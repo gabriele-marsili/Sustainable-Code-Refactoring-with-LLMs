@@ -1,4 +1,4 @@
-#include "queen_attack.h"
+#include "../src/queen_attack.h"
 #include "test/catch.hpp"
 #define EXERCISM_RUN_ALL_TESTS
 

@@ -1,4 +1,4 @@
-#include "phone_number.h"
+#include "../src/phone_number.h"
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 

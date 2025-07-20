@@ -1,4 +1,4 @@
-#include "series.h"
+#include "../src/series.h"
 #include "test/catch.hpp"
 #include <stdexcept>
 #define EXERCISM_RUN_ALL_TESTS

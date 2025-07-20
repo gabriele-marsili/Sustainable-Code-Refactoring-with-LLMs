@@ -1,4 +1,4 @@
-#include "reverse_string.h"
+#include "../src/reverse_string.h"
 #define CATCH_CONFIG_MAIN
 #include "test/catch.hpp"
 

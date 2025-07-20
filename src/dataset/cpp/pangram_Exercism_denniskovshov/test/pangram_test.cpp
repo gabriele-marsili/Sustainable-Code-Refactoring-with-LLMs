@@ -1,4 +1,4 @@
-#include "pangram.h"
+#include "../src/pangram.h"
 #ifdef EXERCISM_TEST_SUITE
 #include <catch2/catch.hpp>
 #else

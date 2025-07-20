@@ -1,4 +1,4 @@
-#include "prime_factors.h"
+#include "../src/prime_factors.h"
 #include "test/catch.hpp"
 
 #define EXERCISM_RUN_ALL_TESTS

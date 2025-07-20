@@ -1,4 +1,4 @@
-#include "isogram.h"
+#include "../src/isogram.h"
 #include "test/catch.hpp"
 
 using namespace std;

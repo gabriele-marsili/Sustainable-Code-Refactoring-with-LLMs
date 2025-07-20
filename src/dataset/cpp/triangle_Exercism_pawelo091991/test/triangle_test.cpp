@@ -1,4 +1,4 @@
-#include "triangle.h"
+#include "../src/triangle.h"
 #include "test/catch.hpp"
 #include <stdexcept>
 

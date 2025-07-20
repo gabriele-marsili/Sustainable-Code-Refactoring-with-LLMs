@@ -1,4 +1,4 @@
-#include "hamming.h"
+#include "../src/hamming.h"
 #include <stdexcept>
 #include "test/catch.hpp"
 

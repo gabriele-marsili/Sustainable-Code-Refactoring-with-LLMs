@@ -1,4 +1,4 @@
-#include "hamming.h"
+#include "../src/hamming.h"
 #include "test/catch.hpp"
 
 TEST_CASE("no_difference_between_identical_strands") {

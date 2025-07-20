@@ -1,4 +1,4 @@
-#include "nth_prime.h"
+#include "../src/nth_prime.h"
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 #include <stdexcept>

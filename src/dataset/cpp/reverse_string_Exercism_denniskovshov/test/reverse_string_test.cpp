@@ -1,4 +1,4 @@
-#include "reverse_string.h"
+#include "../src/reverse_string.h"
 #ifdef EXERCISM_TEST_SUITE
 #include <catch2/catch.hpp>
 #else

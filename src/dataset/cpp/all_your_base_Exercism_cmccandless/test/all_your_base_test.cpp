@@ -1,4 +1,4 @@
-#include "all_your_base.h"
+#include "../src/all_your_base.h"
 #include "test/catch.hpp"
 
 using namespace std;

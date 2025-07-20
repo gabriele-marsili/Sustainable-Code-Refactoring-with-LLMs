@@ -1,4 +1,4 @@
-#include "sieve.h"
+#include "../src/sieve.h"
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 

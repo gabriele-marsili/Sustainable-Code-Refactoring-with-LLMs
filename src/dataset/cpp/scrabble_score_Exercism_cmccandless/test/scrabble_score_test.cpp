@@ -1,4 +1,4 @@
-#include "scrabble_score.h"
+#include "../src/scrabble_score.h"
 #include "test/catch.hpp"
 
 TEST_CASE("scores_an_empty_word_as_zero")

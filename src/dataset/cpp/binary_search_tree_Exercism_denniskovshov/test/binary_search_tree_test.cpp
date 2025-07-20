@@ -1,4 +1,4 @@
-#include "binary_search_tree.h"
+#include "../src/binary_search_tree.h"
 #ifdef EXERCISM_TEST_SUITE
 #include <catch2/catch.hpp>
 #else

@@ -1,4 +1,4 @@
-#include "matching_brackets.h"
+#include "../src/matching_brackets.h"
 #include "test/catch.hpp"
 #define EXERCISM_RUN_ALL_TESTS
 TEST_CASE("paired_square_brackets")

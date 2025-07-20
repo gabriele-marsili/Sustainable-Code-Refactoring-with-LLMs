@@ -1,4 +1,4 @@
-#include "hello_world.h"
+#include "../src/hello_world.h"
 #define CATCH_CONFIG_MAIN
 #include "test/catch.hpp"
 

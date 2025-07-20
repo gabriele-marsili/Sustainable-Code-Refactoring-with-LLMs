@@ -1,4 +1,4 @@
-#include "atbash_cipher.h"
+#include "../src/atbash_cipher.h"
 #include "test/catch.hpp"
 #define EXERCISM_RUN_ALL_TESTS
 TEST_CASE("encode_yes")

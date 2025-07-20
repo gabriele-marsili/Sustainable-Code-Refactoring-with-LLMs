@@ -1,4 +1,4 @@
-#include "raindrops.h"
+#include "../src/raindrops.h"
 #ifdef EXERCISM_TEST_SUITE
 #include <catch2/catch.hpp>
 #else

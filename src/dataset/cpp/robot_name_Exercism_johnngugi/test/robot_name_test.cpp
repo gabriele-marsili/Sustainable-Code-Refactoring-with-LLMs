@@ -1,4 +1,4 @@
-#include "robot_name.h"
+#include "../src/robot_name.h"
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 #include <boost/regex.hpp>

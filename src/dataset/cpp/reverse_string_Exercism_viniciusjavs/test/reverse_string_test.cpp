@@ -1,4 +1,4 @@
-#include "reverse_string.h"
+#include "../src/reverse_string.h"
 #include "test/catch.hpp"
 
 TEST_CASE("an_empty_string")

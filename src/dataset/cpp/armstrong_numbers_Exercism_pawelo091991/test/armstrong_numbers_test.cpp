@@ -1,5 +1,5 @@
 #include "test/catch.hpp"
-#include "armstrong_numbers.h"
+#include "../src/armstrong_numbers.h"
 
 // Armstrong-numbers exercise test case data version 1.1.0
 #define EXERCISM_RUN_ALL_TESTS

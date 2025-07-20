@@ -1,4 +1,4 @@
-#include "space_age.h"
+#include "../src/space_age.h"
 #define CATCH_CONFIG_MAIN
 #include "test/catch.hpp"
 

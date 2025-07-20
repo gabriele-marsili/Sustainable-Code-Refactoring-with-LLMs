@@ -1,4 +1,4 @@
-#include "nucleotide_count.h"
+#include "../src/nucleotide_count.h"
 #include "test/catch.hpp"
 
 TEST_CASE("has_no_nucleotides") {

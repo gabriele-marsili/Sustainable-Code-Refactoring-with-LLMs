@@ -1,4 +1,4 @@
-#include "gigasecond.h"
+#include "../src/gigasecond.h"
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 

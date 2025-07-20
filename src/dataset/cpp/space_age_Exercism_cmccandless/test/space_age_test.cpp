@@ -1,4 +1,4 @@
-#include "space_age.h"
+#include "../src/space_age.h"
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 #include <cmath>

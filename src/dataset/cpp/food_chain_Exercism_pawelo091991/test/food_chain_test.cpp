@@ -1,4 +1,4 @@
-#include "food_chain.h"
+#include "../src/food_chain.h"
 #include "test/catch.hpp"
 #define EXERCISM_RUN_ALL_TESTS
 using namespace std;

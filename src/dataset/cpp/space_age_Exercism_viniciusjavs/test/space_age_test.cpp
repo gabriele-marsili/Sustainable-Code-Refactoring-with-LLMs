@@ -1,4 +1,4 @@
-#include "space_age.h"
+#include "../src/space_age.h"
 #include "test/catch.hpp"
 
 TEST_CASE("age_in_seconds")

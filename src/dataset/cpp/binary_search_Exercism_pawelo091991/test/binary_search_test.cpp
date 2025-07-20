@@ -1,4 +1,4 @@
-#include "binary_search.h"
+#include "../src/binary_search.h"
 #include "test/catch.hpp"
 #include <stdexcept>
 #include <vector>

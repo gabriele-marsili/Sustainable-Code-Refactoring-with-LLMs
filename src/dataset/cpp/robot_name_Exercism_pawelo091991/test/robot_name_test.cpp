@@ -1,4 +1,4 @@
-#include "robot_name.h"
+#include "../src/robot_name.h"
 #include "test/catch.hpp"
 #include <cctype>
 #include <string>

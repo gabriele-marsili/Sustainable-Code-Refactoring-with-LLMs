@@ -1,4 +1,4 @@
-#include "trinary.h"
+#include "../src/trinary.h"
 #include "test/catch.hpp"
 #define EXERCISM_RUN_ALL_TESTS
 

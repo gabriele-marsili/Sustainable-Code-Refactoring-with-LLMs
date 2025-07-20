@@ -1,5 +1,5 @@
 #include "test/catch.hpp"
-#include "protein_translation.h"
+#include "../src/protein_translation.h"
 #include <vector>
 #include <string>
 

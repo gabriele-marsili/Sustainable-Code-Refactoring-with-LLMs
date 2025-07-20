@@ -1,5 +1,5 @@
 #include "test/catch.hpp"
-#include "circular_buffer.h"
+#include "../src/circular_buffer.h"
 #include "circular_buffer.cpp"
 #include <stdexcept>
 #define EXERCISM_RUN_ALL_TESTS

@@ -1,4 +1,4 @@
-#include "space_age.h"
+#include "../src/space_age.h"
 #ifdef EXERCISM_TEST_SUITE
 #include <catch2/catch.hpp>
 #else

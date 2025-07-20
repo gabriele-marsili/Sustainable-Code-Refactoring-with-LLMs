@@ -1,4 +1,4 @@
-#include "scrabble_score.h"
+#include "../src/scrabble_score.h"
 #include "test/catch.hpp"
 #define EXERCISM_RUN_ALL_TESTS
 

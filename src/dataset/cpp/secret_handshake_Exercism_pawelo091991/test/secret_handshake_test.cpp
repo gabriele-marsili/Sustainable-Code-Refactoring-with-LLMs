@@ -1,5 +1,5 @@
 #include "test/catch.hpp"
-#include "secret_handshake.h"
+#include "../src/secret_handshake.h"
 #include <vector>
 #include <string>
 #define EXERCISM_RUN_ALL_TESTS

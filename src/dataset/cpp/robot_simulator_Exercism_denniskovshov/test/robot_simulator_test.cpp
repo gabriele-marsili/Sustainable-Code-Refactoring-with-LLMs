@@ -3,7 +3,7 @@
 #else
 #include "test/catch.hpp"
 #endif
-#include "robot_simulator.h"
+#include "../src/robot_simulator.h"
 
 using robot_simulator::Robot;
 using robot_simulator::Bearing;

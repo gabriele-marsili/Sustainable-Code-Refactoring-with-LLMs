@@ -1,4 +1,4 @@
-#include "leap.h"
+#include "../src/leap.h"
 #include "test/catch.hpp"
 
 TEST_CASE("not_divisible_by_4")

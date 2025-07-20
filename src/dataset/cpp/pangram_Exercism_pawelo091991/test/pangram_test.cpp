@@ -1,4 +1,4 @@
-#include "pangram.h"
+#include "../src/pangram.h"
 #include "test/catch.hpp"
 
 TEST_CASE("sentence_empty")

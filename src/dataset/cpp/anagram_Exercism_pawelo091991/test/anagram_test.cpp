@@ -1,4 +1,4 @@
-#include "anagram.h"
+#include "../src/anagram.h"
 #include "test/catch.hpp"
 
 using namespace std;

@@ -1,4 +1,4 @@
-#include "bob.h"
+#include "../src/bob.h"
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 

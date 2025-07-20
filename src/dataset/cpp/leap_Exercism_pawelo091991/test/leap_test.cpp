@@ -1,4 +1,4 @@
-#include "leap.h"
+#include "../src/leap.h"
 #define CATCH_CONFIG_MAIN
 #include "test/catch.hpp"
 
