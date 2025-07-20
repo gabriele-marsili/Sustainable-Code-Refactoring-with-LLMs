@@ -1,40 +1,40 @@
-PASS ./pangram.test.ts (14.799 s)
+PASS ./pangram.test.ts (31.965 s)
   Pangram()
-    ✓ empty sentence (43 ms)
-    ✓ perfect lower case (2 ms)
-    ✓ only lower case (2 ms)
-    ✓ missing the letter 'x' (3 ms)
-    ✓ missing the letter 'h' (4 ms)
-    ✓ with underscores (2 ms)
-    ✓ with numbers (1 ms)
-    ✓ missing letters replaced by numbers
-    ✓ mixed case and punctuation (2 ms)
-    ✓ a-m and A-M are 26 different characters but not a pangram (2 ms)
+    ✓ empty sentence (117 ms)
+    ✓ perfect lower case (11 ms)
+    ✓ only lower case (4 ms)
+    ✓ missing the letter 'x' (4 ms)
+    ✓ missing the letter 'h' (3 ms)
+    ✓ with underscores (6 ms)
+    ✓ with numbers (6 ms)
+    ✓ missing letters replaced by numbers (8 ms)
+    ✓ mixed case and punctuation (17 ms)
+    ✓ a-m and A-M are 26 different characters but not a pangram (12 ms)
 
 Test Suites: 1 passed, 1 total
 Tests:       10 passed, 10 total
 Snapshots:   0 total
-Time:        17.693 s
+Time:        35.572 s
 Ran all test suites.
 Test results written to: output.log
 	Command being timed: "npx jest --json --outputFile=output.log"
-	User time (seconds): 9.72
-	System time (seconds): 5.78
-	Percent of CPU this job got: 53%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:28.74
+	User time (seconds): 15.51
+	System time (seconds): 7.39
+	Percent of CPU this job got: 42%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:53.54
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 218908
+	Maximum resident set size (kbytes): 217212
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 63472
-	Voluntary context switches: 1699
-	Involuntary context switches: 6714
+	Minor (reclaiming a frame) page faults: 63759
+	Voluntary context switches: 1824
+	Involuntary context switches: 9690
 	Swaps: 0
 	File system inputs: 0
-	File system outputs: 72
+	File system outputs: 80
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0

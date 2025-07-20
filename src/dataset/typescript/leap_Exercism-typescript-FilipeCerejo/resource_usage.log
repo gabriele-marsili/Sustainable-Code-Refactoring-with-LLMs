@@ -1,6 +1,6 @@
-PASS ./leap.test.ts (21.924 s)
+PASS ./leap.test.ts (35.042 s)
   A leap year
-    ✓ year not divisible by 4 in common year (35 ms)
+    ✓ year not divisible by 4 in common year (78 ms)
     ○ skipped year divisible by 2, not divisible by 4 in common year
     ○ skipped year divisible by 4, not divisible by 100 in leap year
     ○ skipped year divisible by 4 and 5 is still a leap year
@@ -13,24 +13,24 @@ PASS ./leap.test.ts (21.924 s)
 Test Suites: 1 passed, 1 total
 Tests:       8 skipped, 1 passed, 9 total
 Snapshots:   0 total
-Time:        23.611 s
+Time:        38.687 s
 Ran all test suites.
 Test results written to: output.log
 	Command being timed: "npx jest --json --outputFile=output.log"
-	User time (seconds): 8.27
-	System time (seconds): 4.21
-	Percent of CPU this job got: 37%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:33.36
+	User time (seconds): 18.06
+	System time (seconds): 9.42
+	Percent of CPU this job got: 41%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:05.81
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 215988
+	Maximum resident set size (kbytes): 214668
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 62807
-	Voluntary context switches: 1718
-	Involuntary context switches: 6842
+	Minor (reclaiming a frame) page faults: 63038
+	Voluntary context switches: 1781
+	Involuntary context switches: 10266
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 80

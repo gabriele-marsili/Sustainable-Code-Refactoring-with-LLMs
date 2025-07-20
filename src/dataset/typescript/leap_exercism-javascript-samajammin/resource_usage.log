@@ -1,36 +1,36 @@
-PASS ./leap.test.ts (14.013 s)
+PASS ./leap.test.ts (29.004 s)
   A leap year
-    ✓ is not very common (35 ms)
-    ✓ is introduced every 4 years to adjust about a day (3 ms)
-    ✓ is skipped every 100 years to remove an extra day (1 ms)
-    ✓ is reintroduced every 400 years to adjust another day (5 ms)
+    ✓ is not very common (60 ms)
+    ✓ is introduced every 4 years to adjust about a day (1 ms)
+    ✓ is skipped every 100 years to remove an extra day (2 ms)
+    ✓ is reintroduced every 400 years to adjust another day (12 ms)
     Additional example of a leap year that
-      ✓ is not a leap year (3 ms)
-      ✓ is a common leap year (3 ms)
-      ✓ is skipped every 100 years (8 ms)
-      ✓ is reintroduced every 400 years (1 ms)
+      ✓ is not a leap year (18 ms)
+      ✓ is a common leap year (1 ms)
+      ✓ is skipped every 100 years (20 ms)
+      ✓ is reintroduced every 400 years (3 ms)
 
 Test Suites: 1 passed, 1 total
 Tests:       8 passed, 8 total
 Snapshots:   0 total
-Time:        16.261 s
+Time:        32.69 s
 Ran all test suites.
 Test results written to: output.log
 	Command being timed: "npx jest --json --outputFile=output.log"
-	User time (seconds): 7.86
-	System time (seconds): 4.28
-	Percent of CPU this job got: 40%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:29.85
+	User time (seconds): 15.34
+	System time (seconds): 8.17
+	Percent of CPU this job got: 45%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:52.11
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 216768
+	Maximum resident set size (kbytes): 216568
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 63096
-	Voluntary context switches: 1787
-	Involuntary context switches: 6514
+	Minor (reclaiming a frame) page faults: 63611
+	Voluntary context switches: 1767
+	Involuntary context switches: 11845
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 80

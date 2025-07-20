@@ -1,58 +1,50 @@
-npm warn exec The following package was not found and will be installed: jest@30.0.4
-npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
-npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
-PASS ./bob_testSuite.js
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS ./bob_testSuite.js (14.182 s)
   Bob
-    ✓ stating something (17 ms)
-    ✓ shouting (5 ms)
-    ✓ asking a question (1 ms)
-    ✓ talking forcefully (3 ms)
-    ✓ using acronyms in regular speech (1 ms)
-    ✓ forceful questions
-    ✓ shouting numbers
-    ✓ only numbers (1 ms)
-    ✓ question with only numbers (1 ms)
-    ✓ shouting with special characters (1 ms)
-    ✓ shouting with umlauts (1 ms)
-    ✓ calmly speaking about umlauts (1 ms)
-    ✓ shouting with no exclamation mark (2 ms)
-    ✓ statement containing question mark
+    ✓ stating something (214 ms)
+    ✓ shouting (8 ms)
+    ✓ asking a question (7 ms)
+    ✓ talking forcefully (2 ms)
+    ✓ using acronyms in regular speech (63 ms)
+    ✓ forceful questions (5 ms)
+    ✓ shouting numbers (25 ms)
+    ✓ only numbers (18 ms)
+    ✓ question with only numbers (49 ms)
+    ✓ shouting with special characters (4 ms)
+    ✓ shouting with umlauts (9 ms)
+    ✓ calmly speaking about umlauts (2 ms)
+    ✓ shouting with no exclamation mark (8 ms)
+    ✓ statement containing question mark (1 ms)
     ✓ prattling on (1 ms)
-    ✓ silence (1 ms)
-    ✓ prolonged silence
+    ✓ silence (10 ms)
+    ✓ prolonged silence (1 ms)
 
 Test Suites: 1 passed, 1 total
 Tests:       17 passed, 17 total
 Snapshots:   0 total
-Time:        2.079 s
+Time:        17.25 s
 Ran all test suites.
-npm notice
-npm notice New major version of npm available! 10.8.2 -> 11.4.2
-npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.4.2
-npm notice To update run: npm install -g npm@11.4.2
-npm notice
-	Command being timed: "npx jest --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 55.26
-	System time (seconds): 40.93
-	Percent of CPU this job got: 5%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 26:54.27
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 3.40
+	System time (seconds): 3.99
+	Percent of CPU this job got: 14%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:50.87
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 221428
+	Maximum resident set size (kbytes): 75928
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 8160
-	Minor (reclaiming a frame) page faults: 210525
-	Voluntary context switches: 81658
-	Involuntary context switches: 63761
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 16513
+	Voluntary context switches: 6728
+	Involuntary context switches: 4904
 	Swaps: 0
-	File system inputs: 1876208
-	File system outputs: 234544
+	File system inputs: 0
+	File system outputs: 16
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 0
-e (bytes): 4096
 	Exit status: 0

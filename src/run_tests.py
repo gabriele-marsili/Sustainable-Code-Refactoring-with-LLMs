@@ -16,7 +16,7 @@ from library_installer import install_external_dependencies
 from utility_dir import utility_paths
 import argparse
 from datetime import datetime
-
+from disordInteraction import create_webhook_reporter
 
 BASE_DIR = utility_paths.SRC_DIR
 DATASET_DIR = utility_paths.DATASET_DIR
@@ -28,6 +28,17 @@ BAD_ENTRIES_JSON = utility_paths.BAD_ENTRIES_FILEPATH
 BAD_ENTRIES_CLUSTER_JSON = utility_paths.BAD_ENTRIES_CLUSTER_FILEPATH
 DEBUG_CLUSTER_JSON = utility_paths.DEBUG_CLUSTER_FILEPATH
 silent_mode = False
+global time_passed
+global files_executed
+global total_files
+global tests_passed
+global error_quantity
+time_passed = ""
+files_executed = 0
+total_files = 0
+tests_passed = 0
+error_quantity = 0
+
 
 class TestRunner:
     """Gestisce l'esecuzione concorrente dei test"""
@@ -39,12 +50,13 @@ class TestRunner:
         self.total_tests = 0
         self.passed_tests = 0
         self.failed_tests = []
-        self.start_time = time.time()
+        self.start_time = time.time()        
         self.container_pool = {}  # Dizionario per memorizzare i nomi dei container per linguaggio
 
 
     
     def _update_progress(self, test_id, success=True):
+        global time_passed, files_executed, total_files, tests_passed, error_quantity
         """Aggiorna il progresso in modo thread-safe"""
         with self.progress_lock:
             self.completed_tests += 1
@@ -57,7 +69,12 @@ class TestRunner:
             hours = int(elapsed_time_s // 3600)
             minutes = int((elapsed_time_s % 3600) // 60)
             secs = int(elapsed_time_s % 60)
-            print(f"🔄 Progresso test: {self.completed_tests}/{self.total_tests} ({progress:.1f}%)\n🟩 Passed :  {self.passed_tests}/{self.completed_tests} ({progress_passed:.1f}%)\n⏳ Time passed : {hours:02d}h {minutes:02d}min {secs:02d}s")
+            time_passed = f"{hours:02d}h {minutes:02d}min {secs:02d}s"
+            print(f"🔄 Progresso test: {self.completed_tests}/{self.total_tests} ({progress:.1f}%)\n🟩 Passed :  {self.passed_tests}/{self.completed_tests} ({progress_passed:.1f}%)\n⏳ Time passed : {time_passed}")
+            tests_passed = self.passed_tests
+            files_executed = self.completed_tests
+            total_files = self.total_tests
+            error_quantity = self.completed_tests - self.passed_tests
     
     def run_test_worker(self, test_info,run_with_docker_cache=True):
         """Worker per eseguire un singolo test"""
@@ -665,7 +682,7 @@ class TestRunner:
         
         print(f"✅ Risultati salvati in {output_file}")
 
-def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cache = True, use_dataset = False, use_bad_entries = False,use_debug_cluster = False,cluster_name ="",output_file:str=None):
+def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cache = True, use_dataset = False, use_bad_entries = False,use_debug_cluster = False,cluster_name ="",output_file:str=None,webhook=False):
     """Esegue test suites su code snippet e codigi generati dagli LLMs.
     Attualmente sfrutta il cluster scelto anziché il dataset"""
         
@@ -737,6 +754,35 @@ def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cach
         except Exception as e:
             print(f"❌ Errore salvataggio: {e}")
         """
+
+    if webhook : 
+        WEBHOOK_URL = "https://discord.com/api/webhooks/1396529284327411857/zm_1miPBBZivw5gWUeXZpixwPdNItX3jaLQXa0rNFLmnXzv95neYStPxBbN6wFkabLen"
+    
+        # Crea reporter
+        reporter = create_webhook_reporter(WEBHOOK_URL, "Test Results Bot")
+        test_name = "Test for file : "+ str(chosen_path)
+        if cluster_name and cluster_name != "":
+            test_name = "Test for cluster : "+ str(cluster_name)
+        success = reporter.send_test_results(
+            test_name= test_name,
+            duration=time_passed,
+            files_executed=files_executed,
+            total_files=total_files,
+            tests_passed=tests_passed,
+            total_tests=total_files,
+            errors=error_quantity,
+            additional_info={
+                "Chosen path": chosen_path,
+                "Output file": output_file or "Not chosen",                
+            },
+            custom_message="🚀 A test run completed!"
+        )
+        
+        if success:
+            print("Test results sent successfully!")
+        else:
+            print("Failed to send test results.")
+
         
     if output_file:
         try:
@@ -777,6 +823,8 @@ if __name__ == "__main__":
     parser.add_argument("--output-file", type=str,
                    help="File di output per salvare i risultati delle metriche")
 
+    parser.add_argument("--webhook", action="store_true",
+                       help="Send ds webhook when test ends")
     
     args = parser.parse_args()
     
@@ -795,7 +843,8 @@ if __name__ == "__main__":
         use_bad_entries = args.bad_entries,
         use_debug_cluster = args.debug_cluster,
         cluster_name=args.cluster_name,
-        output_file=args.output_file
+        output_file=args.output_file,
+        webhook=args.webhook,
         
     )
     

@@ -1,0 +1,42 @@
+(node:24) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS ./leap_testSuite.js (37.549 s)
+  Leap year
+    ✓ is not very common (492 ms)
+    ✓ is introduced every 4 years to adjust about a day (113 ms)
+    ✓ is skipped every 100 years to remove an extra day (1 ms)
+    ✓ is reintroduced every 400 years to adjust another day (1 ms)
+    Additional example of a leap year that
+      ○ skipped is not a leap year
+      ○ skipped is a common leap year
+      ○ skipped is skipped every 100 years
+      ○ skipped is reintroduced every 400 years
+
+Test Suites: 1 passed, 1 total
+Tests:       4 skipped, 4 passed, 8 total
+Snapshots:   0 total
+Time:        43.912 s
+Ran all test suites.
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 3.29
+	System time (seconds): 4.29
+	Percent of CPU this job got: 7%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:35.51
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 72160
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 15603
+	Voluntary context switches: 6559
+	Involuntary context switches: 6352
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

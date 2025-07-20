@@ -1,36 +1,36 @@
-PASS ./leap.test.ts (35.608 s)
+PASS ./leap.test.ts (31.627 s)
   A leap year
-    ✓ year not divisible by 4 in common year (46 ms)
-    ✓ year divisible by 2, not divisible by 4 in common year (2 ms)
-    ✓ year divisible by 4, not divisible by 100 in leap year (2 ms)
-    ✓ year divisible by 4 and 5 is still a leap year (3 ms)
-    ✓ year divisible by 100, not divisible by 400 in common year (1 ms)
-    ✓ year divisible by 100 but not by 3 is still not a leap year (1 ms)
+    ✓ year not divisible by 4 in common year (56 ms)
+    ✓ year divisible by 2, not divisible by 4 in common year (6 ms)
+    ✓ year divisible by 4, not divisible by 100 in leap year (1 ms)
+    ✓ year divisible by 4 and 5 is still a leap year
+    ✓ year divisible by 100, not divisible by 400 in common year (4 ms)
+    ✓ year divisible by 100 but not by 3 is still not a leap year (6 ms)
     ✓ year divisible by 400 in leap year (1 ms)
-    ✓ year divisible by 400 but not by 125 is still a leap year (2 ms)
-    ✓ year divisible by 200, not divisible by 400 in common year (4 ms)
+    ✓ year divisible by 400 but not by 125 is still a leap year (1 ms)
+    ✓ year divisible by 200, not divisible by 400 in common year (2 ms)
 
 Test Suites: 1 passed, 1 total
 Tests:       9 passed, 9 total
 Snapshots:   0 total
-Time:        37.424 s
+Time:        34.948 s
 Ran all test suites.
 Test results written to: output.log
 	Command being timed: "npx jest --json --outputFile=output.log"
-	User time (seconds): 14.72
-	System time (seconds): 6.43
-	Percent of CPU this job got: 36%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:57.55
+	User time (seconds): 16.60
+	System time (seconds): 9.63
+	Percent of CPU this job got: 51%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:51.34
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 217636
+	Maximum resident set size (kbytes): 213048
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 63623
-	Voluntary context switches: 1743
-	Involuntary context switches: 8807
+	Minor (reclaiming a frame) page faults: 62768
+	Voluntary context switches: 1782
+	Involuntary context switches: 10734
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 80
