@@ -2,22 +2,22 @@
 set -e
 echo "🧪 Esecuzione test con misurazione risorse..."
 
-# Inizializza modulo Go se non esiste
-if [ ! -f "go.mod" ]; then
-    echo "Inizializzo modulo Go..."
-    go mod init raindrops
-fi
-
-# Verifica struttura directory
+# Mostra la struttura
 echo "Struttura directory:"
 find . -name "*.go" | head -10
 
-# Crea un file go.mod appropriato per la struttura
+# Crea un go.mod fittizio (modulo locale)
+if [ ! -f "go.mod" ]; then
+    echo "Inizializzo go.mod..."
+    go mod init esercizio
+fi
+
+# Sovrascrive comunque per sicurezza
 cat > go.mod << EOF
-module raindrops
+module esercizio
 
 go 1.21
 EOF
 
-# Esegui i test con misurazione risorse
-/usr/bin/time -v go test ./test/... > output.log 2>&1
+# Esegui test Go
+/usr/bin/time -v go test -v > output.log 2>&1 || true

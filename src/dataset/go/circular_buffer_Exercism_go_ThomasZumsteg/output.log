@@ -1,0 +1,118 @@
+=== RUN   TestTestVersion
+--- PASS: TestTestVersion (0.00s)
+=== RUN   TestReadEmptyBuffer
+    circular_buffer_test.go:48: NewBuffer(1)
+    circular_buffer_test.go:66: ReadByte() fails as expected
+--- PASS: TestReadEmptyBuffer (0.00s)
+=== RUN   TestWriteAndReadOneItem
+    circular_buffer_test.go:48: NewBuffer(1)
+    circular_buffer_test.go:73: WriteByte(1)
+    circular_buffer_test.go:59: ReadByte 1
+    circular_buffer_test.go:66: ReadByte() fails as expected
+--- PASS: TestWriteAndReadOneItem (0.00s)
+=== RUN   TestWriteAndReadMultipleItems
+    circular_buffer_test.go:48: NewBuffer(2)
+    circular_buffer_test.go:73: WriteByte(1)
+    circular_buffer_test.go:73: WriteByte(2)
+    circular_buffer_test.go:59: ReadByte 1
+    circular_buffer_test.go:59: ReadByte 2
+    circular_buffer_test.go:66: ReadByte() fails as expected
+--- PASS: TestWriteAndReadMultipleItems (0.02s)
+=== RUN   TestReset
+    circular_buffer_test.go:48: NewBuffer(3)
+    circular_buffer_test.go:73: WriteByte(1)
+    circular_buffer_test.go:73: WriteByte(2)
+    circular_buffer_test.go:73: WriteByte(3)
+    circular_buffer_test.go:85: Reset()
+    circular_buffer_test.go:73: WriteByte(1)
+    circular_buffer_test.go:73: WriteByte(3)
+    circular_buffer_test.go:59: ReadByte 1
+    circular_buffer_test.go:73: WriteByte(4)
+    circular_buffer_test.go:59: ReadByte 3
+--- PASS: TestReset (0.01s)
+=== RUN   TestAlternateWriteAndRead
+    circular_buffer_test.go:48: NewBuffer(2)
+    circular_buffer_test.go:73: WriteByte(1)
+    circular_buffer_test.go:59: ReadByte 1
+    circular_buffer_test.go:73: WriteByte(2)
+    circular_buffer_test.go:59: ReadByte 2
+--- PASS: TestAlternateWriteAndRead (0.01s)
+=== RUN   TestReadOldestItem
+    circular_buffer_test.go:48: NewBuffer(3)
+    circular_buffer_test.go:73: WriteByte(1)
+    circular_buffer_test.go:73: WriteByte(2)
+    circular_buffer_test.go:59: ReadByte 1
+    circular_buffer_test.go:73: WriteByte(3)
+    circular_buffer_test.go:59: ReadByte 2
+    circular_buffer_test.go:59: ReadByte 3
+--- PASS: TestReadOldestItem (0.01s)
+=== RUN   TestWriteFullBuffer
+    circular_buffer_test.go:48: NewBuffer(2)
+    circular_buffer_test.go:73: WriteByte(1)
+    circular_buffer_test.go:73: WriteByte(2)
+    circular_buffer_test.go:80: WriteByte(A) fails as expected
+--- PASS: TestWriteFullBuffer (0.01s)
+=== RUN   TestOverwriteFull
+    circular_buffer_test.go:48: NewBuffer(2)
+    circular_buffer_test.go:73: WriteByte(1)
+    circular_buffer_test.go:73: WriteByte(2)
+    circular_buffer_test.go:90: Overwrite(A)
+    circular_buffer_test.go:59: ReadByte 2
+    circular_buffer_test.go:59: ReadByte A
+    circular_buffer_test.go:66: ReadByte() fails as expected
+--- PASS: TestOverwriteFull (0.01s)
+=== RUN   TestOverwriteNonFull
+    circular_buffer_test.go:48: NewBuffer(2)
+    circular_buffer_test.go:73: WriteByte(1)
+    circular_buffer_test.go:90: Overwrite(2)
+    circular_buffer_test.go:59: ReadByte 1
+    circular_buffer_test.go:59: ReadByte 2
+    circular_buffer_test.go:66: ReadByte() fails as expected
+--- PASS: TestOverwriteNonFull (0.01s)
+=== RUN   TestAlternateReadAndOverwrite
+    circular_buffer_test.go:48: NewBuffer(5)
+    circular_buffer_test.go:73: WriteByte(1)
+    circular_buffer_test.go:73: WriteByte(2)
+    circular_buffer_test.go:73: WriteByte(3)
+    circular_buffer_test.go:59: ReadByte 1
+    circular_buffer_test.go:59: ReadByte 2
+    circular_buffer_test.go:73: WriteByte(4)
+    circular_buffer_test.go:59: ReadByte 3
+    circular_buffer_test.go:73: WriteByte(5)
+    circular_buffer_test.go:73: WriteByte(6)
+    circular_buffer_test.go:73: WriteByte(7)
+    circular_buffer_test.go:73: WriteByte(8)
+    circular_buffer_test.go:90: Overwrite(A)
+    circular_buffer_test.go:90: Overwrite(B)
+    circular_buffer_test.go:59: ReadByte 6
+    circular_buffer_test.go:59: ReadByte 7
+    circular_buffer_test.go:59: ReadByte 8
+    circular_buffer_test.go:59: ReadByte A
+    circular_buffer_test.go:59: ReadByte B
+    circular_buffer_test.go:66: ReadByte() fails as expected
+--- PASS: TestAlternateReadAndOverwrite (0.02s)
+PASS
+ok  	esercizio	0.192s
+	Command being timed: "go test -v"
+	User time (seconds): 28.63
+	System time (seconds): 56.09
+	Percent of CPU this job got: 48%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:54.91
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 198688
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 3
+	Minor (reclaiming a frame) page faults: 716051
+	Voluntary context switches: 39013
+	Involuntary context switches: 49926
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 172448
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

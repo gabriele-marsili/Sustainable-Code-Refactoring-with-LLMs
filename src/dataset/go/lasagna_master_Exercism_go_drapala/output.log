@@ -1,0 +1,57 @@
+=== RUN   TestPreparationTime
+=== RUN   TestPreparationTime/Preparation_time_for_many_layers_with_custom_average_time
+=== RUN   TestPreparationTime/Preparation_time_for_few_layers
+=== RUN   TestPreparationTime/Preparation_time_for_default_case
+--- PASS: TestPreparationTime (0.01s)
+    --- PASS: TestPreparationTime/Preparation_time_for_many_layers_with_custom_average_time (0.00s)
+    --- PASS: TestPreparationTime/Preparation_time_for_few_layers (0.00s)
+    --- PASS: TestPreparationTime/Preparation_time_for_default_case (0.00s)
+=== RUN   TestQuantities
+=== RUN   TestQuantities/few_layers
+=== RUN   TestQuantities/many_layers
+=== RUN   TestQuantities/no_noodles
+=== RUN   TestQuantities/no_sauce
+--- PASS: TestQuantities (0.02s)
+    --- PASS: TestQuantities/few_layers (0.00s)
+    --- PASS: TestQuantities/many_layers (0.00s)
+    --- PASS: TestQuantities/no_noodles (0.00s)
+    --- PASS: TestQuantities/no_sauce (0.00s)
+=== RUN   TestAddSecretIngredient
+=== RUN   TestAddSecretIngredient/Adds_secret_ingredient
+--- PASS: TestAddSecretIngredient (0.00s)
+    --- PASS: TestAddSecretIngredient/Adds_secret_ingredient (0.00s)
+=== RUN   TestScaleRecipe
+=== RUN   TestScaleRecipe/scales_up_correctly
+=== RUN   TestScaleRecipe/scales_up_correctly_(2)
+=== RUN   TestScaleRecipe/scales_down_correctly
+=== RUN   TestScaleRecipe/empty_recipe
+--- PASS: TestScaleRecipe (0.01s)
+    --- PASS: TestScaleRecipe/scales_up_correctly (0.00s)
+    --- PASS: TestScaleRecipe/scales_up_correctly_(2) (0.00s)
+    --- PASS: TestScaleRecipe/scales_down_correctly (0.00s)
+    --- PASS: TestScaleRecipe/empty_recipe (0.00s)
+PASS
+ok  	esercizio	0.069s
+	Command being timed: "go test -v"
+	User time (seconds): 24.77
+	System time (seconds): 49.27
+	Percent of CPU this job got: 48%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:33.24
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 205096
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 715696
+	Voluntary context switches: 33967
+	Involuntary context switches: 45478
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 172000
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

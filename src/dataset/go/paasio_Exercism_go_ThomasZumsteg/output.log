@@ -1,0 +1,37 @@
+=== RUN   TestMultiThreaded
+--- PASS: TestMultiThreaded (0.00s)
+=== RUN   TestWrite
+--- PASS: TestWrite (0.00s)
+=== RUN   TestRead
+--- PASS: TestRead (0.23s)
+=== RUN   TestReadTotal
+    paasio_test.go:103: Calling Read() for 8000*50=400000 bytes
+--- PASS: TestReadTotal (0.97s)
+=== RUN   TestWriteTotal
+    paasio_test.go:134: Calling Write() with 8000*50=400000 bytes
+--- PASS: TestWriteTotal (1.00s)
+PASS
+ok  	esercizio	2.287s
+	Command being timed: "go test -v"
+	User time (seconds): 25.16
+	System time (seconds): 52.31
+	Percent of CPU this job got: 48%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:40.79
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 200448
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 774716
+	Voluntary context switches: 35644
+	Involuntary context switches: 46893
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 180456
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

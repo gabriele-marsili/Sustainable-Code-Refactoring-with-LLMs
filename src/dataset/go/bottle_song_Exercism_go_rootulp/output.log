@@ -1,29 +1,41 @@
-# raindrops/test [raindrops/test.test]
-test/bottle_song_test.go:11:21: undefined: testCases
-test/bottle_song_test.go:13:14: undefined: Recite
-FAIL	raindrops/test [build failed]
-FAIL
-Command exited with non-zero status 1
-	Command being timed: "go test ./test/..."
-	User time (seconds): 22.55
-	System time (seconds): 47.15
-	Percent of CPU this job got: 49%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:21.70
+=== RUN   TestRecite
+=== RUN   TestRecite/first_generic_verse
+=== RUN   TestRecite/last_generic_verse
+=== RUN   TestRecite/verse_with_2_bottles
+=== RUN   TestRecite/verse_with_1_bottle
+=== RUN   TestRecite/first_two_verses
+=== RUN   TestRecite/last_three_verses
+=== RUN   TestRecite/all_verses
+--- PASS: TestRecite (0.07s)
+    --- PASS: TestRecite/first_generic_verse (0.03s)
+    --- PASS: TestRecite/last_generic_verse (0.00s)
+    --- PASS: TestRecite/verse_with_2_bottles (0.00s)
+    --- PASS: TestRecite/verse_with_1_bottle (0.00s)
+    --- PASS: TestRecite/first_two_verses (0.00s)
+    --- PASS: TestRecite/last_three_verses (0.00s)
+    --- PASS: TestRecite/all_verses (0.00s)
+PASS
+ok  	esercizio	0.142s
+	Command being timed: "go test -v"
+	User time (seconds): 22.72
+	System time (seconds): 47.20
+	Percent of CPU this job got: 47%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:26.67
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 198080
+	Maximum resident set size (kbytes): 204468
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 695576
-	Voluntary context switches: 31943
-	Involuntary context switches: 41492
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 715121
+	Voluntary context switches: 33518
+	Involuntary context switches: 43276
 	Swaps: 0
-	File system inputs: 208
-	File system outputs: 166776
+	File system inputs: 0
+	File system outputs: 171768
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

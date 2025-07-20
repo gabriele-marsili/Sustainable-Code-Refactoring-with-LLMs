@@ -1,35 +1,61 @@
-# raindrops/test [raindrops/test.test]
-test/linked_list_test.go:10:21: undefined: newListTestCases
-test/linked_list_test.go:12:14: undefined: NewList
-test/linked_list_test.go:20:21: undefined: reverseTestCases
-test/linked_list_test.go:22:14: undefined: NewList
-test/linked_list_test.go:31:21: undefined: pushPopTestCases
-test/linked_list_test.go:33:14: undefined: NewList
-test/linked_list_test.go:44:46: undefined: List
-test/linked_list_test.go:102:11: undefined: List
-FAIL	raindrops/test [build failed]
-FAIL
-Command exited with non-zero status 1
-	Command being timed: "go test ./test/..."
-	User time (seconds): 24.08
-	System time (seconds): 50.03
+=== RUN   TestNew
+=== RUN   TestNew/from_5_elements
+=== RUN   TestNew/from_2_elements
+=== RUN   TestNew/from_no_element
+=== RUN   TestNew/from_1_element
+--- PASS: TestNew (0.01s)
+    --- PASS: TestNew/from_5_elements (0.00s)
+    --- PASS: TestNew/from_2_elements (0.00s)
+    --- PASS: TestNew/from_no_element (0.00s)
+    --- PASS: TestNew/from_1_element (0.00s)
+=== RUN   TestReverse
+=== RUN   TestReverse/from_5_elements
+=== RUN   TestReverse/from_2_elements
+=== RUN   TestReverse/from_no_element
+=== RUN   TestReverse/from_1_element
+--- PASS: TestReverse (0.01s)
+    --- PASS: TestReverse/from_5_elements (0.00s)
+    --- PASS: TestReverse/from_2_elements (0.00s)
+    --- PASS: TestReverse/from_no_element (0.00s)
+    --- PASS: TestReverse/from_1_element (0.00s)
+=== RUN   TestPushPop
+=== RUN   TestPushPop/PushFront_only
+=== RUN   TestPushPop/PushBack_only
+=== RUN   TestPushPop/PopFront_only,_pop_some_elements
+=== RUN   TestPushPop/PopFront_only,_pop_till_empty
+=== RUN   TestPushPop/PopBack_only,_pop_some_elements
+=== RUN   TestPushPop/PopBack_only,_pop_till_empty
+=== RUN   TestPushPop/mixed_actions
+--- PASS: TestPushPop (0.01s)
+    --- PASS: TestPushPop/PushFront_only (0.00s)
+    --- PASS: TestPushPop/PushBack_only (0.00s)
+    --- PASS: TestPushPop/PopFront_only,_pop_some_elements (0.00s)
+    --- PASS: TestPushPop/PopFront_only,_pop_till_empty (0.00s)
+    --- PASS: TestPushPop/PopBack_only,_pop_some_elements (0.00s)
+    --- PASS: TestPushPop/PopBack_only,_pop_till_empty (0.00s)
+    --- PASS: TestPushPop/mixed_actions (0.00s)
+PASS
+ok  	esercizio	0.048s
+	Command being timed: "go test -v"
+	User time (seconds): 23.63
+	System time (seconds): 48.37
 	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:33.62
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:28.93
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 202556
+	Maximum resident set size (kbytes): 204792
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 697883
-	Voluntary context switches: 33598
-	Involuntary context switches: 44119
+	Major (requiring I/O) page faults: 4
+	Minor (reclaiming a frame) page faults: 719770
+	Voluntary context switches: 34591
+	Involuntary context switches: 43676
 	Swaps: 0
 	File system inputs: 0
-	File system outputs: 166776
+	File system outputs: 172616
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

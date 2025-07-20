@@ -1,0 +1,49 @@
+=== RUN   TestWelcomeMessage
+=== RUN   TestWelcomeMessage/Welcome_message_for_customer_with_first_letter_capitalized
+=== RUN   TestWelcomeMessage/Welcome_message_for_customer_with_only_lowercase_letters
+=== RUN   TestWelcomeMessage/Welcome_message_for_customer_with_dash_in_name
+=== RUN   TestWelcomeMessage/Welcome_message_for_customer_with_only_uppercase_letters
+--- PASS: TestWelcomeMessage (0.01s)
+    --- PASS: TestWelcomeMessage/Welcome_message_for_customer_with_first_letter_capitalized (0.00s)
+    --- PASS: TestWelcomeMessage/Welcome_message_for_customer_with_only_lowercase_letters (0.00s)
+    --- PASS: TestWelcomeMessage/Welcome_message_for_customer_with_dash_in_name (0.00s)
+    --- PASS: TestWelcomeMessage/Welcome_message_for_customer_with_only_uppercase_letters (0.00s)
+=== RUN   TestAddBorder
+=== RUN   TestAddBorder/Add_border_with_10_stars_per_line
+=== RUN   TestAddBorder/Add_border_with_2_stars_per_line
+--- PASS: TestAddBorder (0.01s)
+    --- PASS: TestAddBorder/Add_border_with_10_stars_per_line (0.00s)
+    --- PASS: TestAddBorder/Add_border_with_2_stars_per_line (0.00s)
+=== RUN   TestCleanupMessage
+=== RUN   TestCleanupMessage/Cleanup_message_with_many_stars_and_leading_and_trailing_whitespace
+=== RUN   TestCleanupMessage/Cleanup_message_without_leading_or_trailing_whitespace
+=== RUN   TestCleanupMessage/Cleanup_message_without_leading_whitespace
+--- PASS: TestCleanupMessage (0.01s)
+    --- PASS: TestCleanupMessage/Cleanup_message_with_many_stars_and_leading_and_trailing_whitespace (0.00s)
+    --- PASS: TestCleanupMessage/Cleanup_message_without_leading_or_trailing_whitespace (0.00s)
+    --- PASS: TestCleanupMessage/Cleanup_message_without_leading_whitespace (0.00s)
+PASS
+ok  	esercizio	0.056s
+	Command being timed: "go test -v"
+	User time (seconds): 28.38
+	System time (seconds): 54.17
+	Percent of CPU this job got: 48%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:50.01
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 199932
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 4
+	Minor (reclaiming a frame) page faults: 711576
+	Voluntary context switches: 37176
+	Involuntary context switches: 50086
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 171808
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

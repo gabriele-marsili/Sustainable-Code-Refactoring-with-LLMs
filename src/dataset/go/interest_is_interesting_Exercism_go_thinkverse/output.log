@@ -1,0 +1,89 @@
+=== RUN   TestInterestRate
+=== RUN   TestInterestRate/Minimal_first_interest_rate
+=== RUN   TestInterestRate/Tiny_first_interest_rate
+=== RUN   TestInterestRate/Maximum_first_interest_rate
+=== RUN   TestInterestRate/Minimal_second_interest_rate
+=== RUN   TestInterestRate/Tiny_second_interest_rate
+=== RUN   TestInterestRate/Maximum_second_interest_rate
+=== RUN   TestInterestRate/Minimal_third_interest_rate
+=== RUN   TestInterestRate/Tiny_third_interest_rate
+=== RUN   TestInterestRate/Large_third_interest_rate
+=== RUN   TestInterestRate/Rate_on_minimal_negative_balance
+=== RUN   TestInterestRate/Rate_on_small_negative_balance
+=== RUN   TestInterestRate/Rate_on_regular_negative_balance
+=== RUN   TestInterestRate/Rate_on_large_negative_balance
+--- PASS: TestInterestRate (0.03s)
+    --- PASS: TestInterestRate/Minimal_first_interest_rate (0.00s)
+    --- PASS: TestInterestRate/Tiny_first_interest_rate (0.00s)
+    --- PASS: TestInterestRate/Maximum_first_interest_rate (0.00s)
+    --- PASS: TestInterestRate/Minimal_second_interest_rate (0.00s)
+    --- PASS: TestInterestRate/Tiny_second_interest_rate (0.00s)
+    --- PASS: TestInterestRate/Maximum_second_interest_rate (0.00s)
+    --- PASS: TestInterestRate/Minimal_third_interest_rate (0.00s)
+    --- PASS: TestInterestRate/Tiny_third_interest_rate (0.00s)
+    --- PASS: TestInterestRate/Large_third_interest_rate (0.00s)
+    --- PASS: TestInterestRate/Rate_on_minimal_negative_balance (0.00s)
+    --- PASS: TestInterestRate/Rate_on_small_negative_balance (0.00s)
+    --- PASS: TestInterestRate/Rate_on_regular_negative_balance (0.00s)
+    --- PASS: TestInterestRate/Rate_on_large_negative_balance (0.00s)
+=== RUN   TestInterest
+=== RUN   TestInterest/Interest_on_negative_balance
+=== RUN   TestInterest/Interest_on_small_balance
+=== RUN   TestInterest/Interest_on_medium_balance
+=== RUN   TestInterest/Interest_on_large_balance
+--- PASS: TestInterest (0.01s)
+    --- PASS: TestInterest/Interest_on_negative_balance (0.00s)
+    --- PASS: TestInterest/Interest_on_small_balance (0.00s)
+    --- PASS: TestInterest/Interest_on_medium_balance (0.00s)
+    --- PASS: TestInterest/Interest_on_large_balance (0.00s)
+=== RUN   TestAnnualBalanceUpdate
+=== RUN   TestAnnualBalanceUpdate/Annual_balance_update_for_empty_start_balance
+=== RUN   TestAnnualBalanceUpdate/Annual_balance_update_for_small_positive_start_balance
+=== RUN   TestAnnualBalanceUpdate/Annual_balance_update_for_average_positive_start_balance
+=== RUN   TestAnnualBalanceUpdate/Annual_balance_update_for_large_positive_start_balance
+=== RUN   TestAnnualBalanceUpdate/Annual_balance_update_for_huge_positive_start_balance
+=== RUN   TestAnnualBalanceUpdate/Annual_balance_update_for_small_negative_start_balance
+=== RUN   TestAnnualBalanceUpdate/Annual_balance_update_for_large_negative_start_balance
+--- PASS: TestAnnualBalanceUpdate (0.02s)
+    --- PASS: TestAnnualBalanceUpdate/Annual_balance_update_for_empty_start_balance (0.00s)
+    --- PASS: TestAnnualBalanceUpdate/Annual_balance_update_for_small_positive_start_balance (0.00s)
+    --- PASS: TestAnnualBalanceUpdate/Annual_balance_update_for_average_positive_start_balance (0.00s)
+    --- PASS: TestAnnualBalanceUpdate/Annual_balance_update_for_large_positive_start_balance (0.00s)
+    --- PASS: TestAnnualBalanceUpdate/Annual_balance_update_for_huge_positive_start_balance (0.00s)
+    --- PASS: TestAnnualBalanceUpdate/Annual_balance_update_for_small_negative_start_balance (0.00s)
+    --- PASS: TestAnnualBalanceUpdate/Annual_balance_update_for_large_negative_start_balance (0.00s)
+=== RUN   TestYearsBeforeDesiredBalance
+=== RUN   TestYearsBeforeDesiredBalance/Years_before_desired_balance_for_small_start_balance
+=== RUN   TestYearsBeforeDesiredBalance/Years_before_desired_balance_for_average_start_balance
+=== RUN   TestYearsBeforeDesiredBalance/Years_before_desired_balance_for_large_start_balance
+=== RUN   TestYearsBeforeDesiredBalance/Years_before_large_difference_between_start_and_target_balance
+--- PASS: TestYearsBeforeDesiredBalance (0.01s)
+    --- PASS: TestYearsBeforeDesiredBalance/Years_before_desired_balance_for_small_start_balance (0.00s)
+    --- PASS: TestYearsBeforeDesiredBalance/Years_before_desired_balance_for_average_start_balance (0.00s)
+    --- PASS: TestYearsBeforeDesiredBalance/Years_before_desired_balance_for_large_start_balance (0.00s)
+    --- PASS: TestYearsBeforeDesiredBalance/Years_before_large_difference_between_start_and_target_balance (0.00s)
+PASS
+ok  	esercizio	0.112s
+	Command being timed: "go test -v"
+	User time (seconds): 23.09
+	System time (seconds): 49.80
+	Percent of CPU this job got: 48%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:30.55
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 202172
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 712523
+	Voluntary context switches: 33105
+	Involuntary context switches: 44700
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 171848
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

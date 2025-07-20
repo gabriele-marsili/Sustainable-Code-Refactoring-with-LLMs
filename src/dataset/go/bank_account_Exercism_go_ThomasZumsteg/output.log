@@ -1,0 +1,45 @@
+=== RUN   TestSeqOpenBalanceClose
+    bank_account_test.go:30: Account 'a' opened with initial balance of 10.
+    bank_account_test.go:47: Account 'a' closed.
+--- PASS: TestSeqOpenBalanceClose (0.00s)
+=== RUN   TestSeqOpenDepositClose
+    bank_account_test.go:63: Account 'a' opened with initial balance of 10.
+    bank_account_test.go:74: Deposit of 20 accepted to account 'a'
+    bank_account_test.go:83: Account 'a' closed.
+    bank_account_test.go:84: &{0 false 0xc000100008}
+--- PASS: TestSeqOpenDepositClose (0.01s)
+=== RUN   TestMoreSeqCases
+    bank_account_test.go:100: Account 'a' opened with initial balance of 10.
+    bank_account_test.go:107: Account 'z' opened with initial balance of 0.
+    bank_account_test.go:138: Withdrawal of 3 accepted from account 'a'
+    bank_account_test.go:164: Account 'z' closed.
+--- PASS: TestMoreSeqCases (0.00s)
+=== RUN   TestConcClose
+--- PASS: TestConcClose (0.51s)
+=== RUN   TestConcDeposit
+--- PASS: TestConcDeposit (0.17s)
+PASS
+ok  	esercizio	0.742s
+	Command being timed: "go test -v"
+	User time (seconds): 27.56
+	System time (seconds): 54.29
+	Percent of CPU this job got: 48%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:48.85
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 200596
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 4
+	Minor (reclaiming a frame) page faults: 715036
+	Voluntary context switches: 37136
+	Involuntary context switches: 49822
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 171872
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

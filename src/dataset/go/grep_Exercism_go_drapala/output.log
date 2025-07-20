@@ -1,0 +1,52 @@
+=== RUN   TestSearch
+    grep_test.go:70: PASS: One file, one match, no flags
+    grep_test.go:70: PASS: One file, several matches, no flags
+    grep_test.go:70: PASS: Multiple files, one match, no flags
+    grep_test.go:70: PASS: Multiple files, several matches, no flags
+    grep_test.go:70: PASS: One file, one match, print line numbers flag
+    grep_test.go:70: PASS: One file, several matches, print line numbers flag
+    grep_test.go:70: PASS: Multiple files, several matches, print line numbers flag
+    grep_test.go:70: PASS: One file, one match, case-insensitive flag
+    grep_test.go:70: PASS: One file, several matches, case-insensitive flag
+    grep_test.go:70: PASS: Multiple files, several matches, case-insensitive flag
+    grep_test.go:70: PASS: One file, one match, file flag takes precedence over line flag
+    grep_test.go:70: PASS: One file, one match, print file names flag
+    grep_test.go:70: PASS: One file, one match, match entire lines flag
+    grep_test.go:70: PASS: One file, one match, multiple flags
+    grep_test.go:70: PASS: Multiple files, one match, print file names flag
+    grep_test.go:70: PASS: Multiple files, several matches, file flag takes precedence over line number flag
+    grep_test.go:70: PASS: Multiple files, no matches, various flags
+    grep_test.go:70: PASS: One file, several matches, match entire lines flag
+    grep_test.go:70: PASS: One file, no matches, various flags
+    grep_test.go:70: PASS: Multiple files, one match, match entire lines flag
+    grep_test.go:70: PASS: Multiple files, one match, multiple flags
+    grep_test.go:70: PASS: Multiple files, several matches, inverted flag
+    grep_test.go:70: PASS: One file, several matches, inverted flag
+    grep_test.go:70: PASS: One file, several matches, inverted and match entire lines flags
+    grep_test.go:70: PASS: Multiple files, several matches, inverted and match entire lines flags
+--- PASS: TestSearch (0.34s)
+PASS
+ok  	esercizio	0.368s
+	Command being timed: "go test -v"
+	User time (seconds): 24.08
+	System time (seconds): 48.31
+	Percent of CPU this job got: 48%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:28.82
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 199788
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 725431
+	Voluntary context switches: 34108
+	Involuntary context switches: 44843
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 172152
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

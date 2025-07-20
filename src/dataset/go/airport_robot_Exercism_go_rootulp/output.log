@@ -1,31 +1,37 @@
-# raindrops/test [raindrops/test.test]
-test/airport_robot_test.go:25:14: undefined: SayHello
-test/airport_robot_test.go:25:32: undefined: Italian
-test/airport_robot_test.go:52:14: undefined: SayHello
-test/airport_robot_test.go:52:32: undefined: Portuguese
-FAIL	raindrops/test [build failed]
-FAIL
-Command exited with non-zero status 1
-	Command being timed: "go test ./test/..."
-	User time (seconds): 24.99
-	System time (seconds): 51.66
+=== RUN   TestSayHello_Italien
+=== RUN   TestSayHello_Italien/name_without_spaces
+=== RUN   TestSayHello_Italien/full_name
+--- PASS: TestSayHello_Italien (0.01s)
+    --- PASS: TestSayHello_Italien/name_without_spaces (0.00s)
+    --- PASS: TestSayHello_Italien/full_name (0.00s)
+=== RUN   TestSayHello_Portuguese
+=== RUN   TestSayHello_Portuguese/name_without_spaces
+=== RUN   TestSayHello_Portuguese/full_name
+--- PASS: TestSayHello_Portuguese (0.01s)
+    --- PASS: TestSayHello_Portuguese/name_without_spaces (0.00s)
+    --- PASS: TestSayHello_Portuguese/full_name (0.00s)
+PASS
+ok  	esercizio	0.160s
+	Command being timed: "go test -v"
+	User time (seconds): 28.49
+	System time (seconds): 57.34
 	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:38.41
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:58.12
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 204280
+	Maximum resident set size (kbytes): 200492
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 1
-	Minor (reclaiming a frame) page faults: 701340
-	Voluntary context switches: 35321
-	Involuntary context switches: 44186
+	Major (requiring I/O) page faults: 4
+	Minor (reclaiming a frame) page faults: 711930
+	Voluntary context switches: 39918
+	Involuntary context switches: 48851
 	Swaps: 0
-	File system inputs: 144
-	File system outputs: 166776
+	File system inputs: 0
+	File system outputs: 171712
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

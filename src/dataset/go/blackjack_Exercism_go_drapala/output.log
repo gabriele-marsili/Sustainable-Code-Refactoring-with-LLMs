@@ -1,0 +1,149 @@
+=== RUN   TestParseCard
+=== RUN   TestParseCard/parse_ace
+=== RUN   TestParseCard/parse_two
+=== RUN   TestParseCard/parse_three
+=== RUN   TestParseCard/parse_four
+=== RUN   TestParseCard/parse_five
+=== RUN   TestParseCard/parse_six
+=== RUN   TestParseCard/parse_seven
+=== RUN   TestParseCard/parse_eight
+=== RUN   TestParseCard/parse_nine
+=== RUN   TestParseCard/parse_ten
+=== RUN   TestParseCard/parse_jack
+=== RUN   TestParseCard/parse_queen
+=== RUN   TestParseCard/parse_king
+--- PASS: TestParseCard (0.03s)
+    --- PASS: TestParseCard/parse_ace (0.00s)
+    --- PASS: TestParseCard/parse_two (0.00s)
+    --- PASS: TestParseCard/parse_three (0.00s)
+    --- PASS: TestParseCard/parse_four (0.00s)
+    --- PASS: TestParseCard/parse_five (0.00s)
+    --- PASS: TestParseCard/parse_six (0.00s)
+    --- PASS: TestParseCard/parse_seven (0.00s)
+    --- PASS: TestParseCard/parse_eight (0.00s)
+    --- PASS: TestParseCard/parse_nine (0.00s)
+    --- PASS: TestParseCard/parse_ten (0.00s)
+    --- PASS: TestParseCard/parse_jack (0.00s)
+    --- PASS: TestParseCard/parse_queen (0.00s)
+    --- PASS: TestParseCard/parse_king (0.00s)
+=== RUN   TestBlackjack
+=== RUN   TestBlackjack/blackjack_with_ten_(ace_first)
+=== RUN   TestBlackjack/blackjack_with_jack_(ace_first)
+=== RUN   TestBlackjack/blackjack_with_queen_(ace_first)
+=== RUN   TestBlackjack/blackjack_with_king_(ace_first)
+=== RUN   TestBlackjack/blackjack_with_ten_(ace_second)
+=== RUN   TestBlackjack/blackjack_with_jack_(ace_second)
+=== RUN   TestBlackjack/blackjack_with_queen_(ace_second)
+=== RUN   TestBlackjack/blackjack_with_king_(ace_second)
+=== RUN   TestBlackjack/no_blackjack_with_ace_and_five
+=== RUN   TestBlackjack/no_blackjack_with_ace_and_nine
+=== RUN   TestBlackjack/no_blackjack_with_two_aces
+=== RUN   TestBlackjack/no_blackjack_with_two_figures
+=== RUN   TestBlackjack/no_blackjack_with_king_and_five
+=== RUN   TestBlackjack/no_blackjack_with_eight_and_five
+--- PASS: TestBlackjack (0.03s)
+    --- PASS: TestBlackjack/blackjack_with_ten_(ace_first) (0.00s)
+    --- PASS: TestBlackjack/blackjack_with_jack_(ace_first) (0.00s)
+    --- PASS: TestBlackjack/blackjack_with_queen_(ace_first) (0.00s)
+    --- PASS: TestBlackjack/blackjack_with_king_(ace_first) (0.00s)
+    --- PASS: TestBlackjack/blackjack_with_ten_(ace_second) (0.00s)
+    --- PASS: TestBlackjack/blackjack_with_jack_(ace_second) (0.00s)
+    --- PASS: TestBlackjack/blackjack_with_queen_(ace_second) (0.00s)
+    --- PASS: TestBlackjack/blackjack_with_king_(ace_second) (0.00s)
+    --- PASS: TestBlackjack/no_blackjack_with_ace_and_five (0.00s)
+    --- PASS: TestBlackjack/no_blackjack_with_ace_and_nine (0.00s)
+    --- PASS: TestBlackjack/no_blackjack_with_two_aces (0.00s)
+    --- PASS: TestBlackjack/no_blackjack_with_two_figures (0.00s)
+    --- PASS: TestBlackjack/no_blackjack_with_king_and_five (0.00s)
+    --- PASS: TestBlackjack/no_blackjack_with_eight_and_five (0.00s)
+=== RUN   TestFirstTurn
+=== RUN   TestFirstTurn/pair_of_aces
+=== RUN   TestFirstTurn/pair_of_jacks
+=== RUN   TestFirstTurn/pair_of_kings
+=== RUN   TestFirstTurn/pair_of_twos
+=== RUN   TestFirstTurn/pair_of_fives
+=== RUN   TestFirstTurn/blackjack_with_ace_for_dealer
+=== RUN   TestFirstTurn/blackjack_with_queen_for_dealer
+=== RUN   TestFirstTurn/blackjack_with_five_for_dealer
+=== RUN   TestFirstTurn/blackjack_with_nine_for_dealer
+=== RUN   TestFirstTurn/score_of_20
+=== RUN   TestFirstTurn/score_of_19
+=== RUN   TestFirstTurn/score_of_18
+=== RUN   TestFirstTurn/score_of_17
+=== RUN   TestFirstTurn/score_of_16_with_six_for_dealer
+=== RUN   TestFirstTurn/score_of_16_with_seven_for_dealer
+=== RUN   TestFirstTurn/score_of_16_with_ace_for_dealer
+=== RUN   TestFirstTurn/score_of_15_with_six_for_dealer
+=== RUN   TestFirstTurn/score_of_15_with_seven_for_dealer
+=== RUN   TestFirstTurn/score_of_15_with_king_for_dealer
+=== RUN   TestFirstTurn/score_of_14_with_six_for_dealer
+=== RUN   TestFirstTurn/score_of_14_with_seven_for_dealer
+=== RUN   TestFirstTurn/score_of_14_with_queen_for_dealer
+=== RUN   TestFirstTurn/score_of_13_with_six_for_dealer
+=== RUN   TestFirstTurn/score_of_13_with_seven_for_dealer
+=== RUN   TestFirstTurn/score_of_13_with_queen_for_dealer
+=== RUN   TestFirstTurn/score_of_12_with_six_for_dealer
+=== RUN   TestFirstTurn/score_of_12_with_seven_for_dealer
+=== RUN   TestFirstTurn/score_of_12_with_queen_for_dealer
+=== RUN   TestFirstTurn/score_of_11_with_queen_for_dealer
+=== RUN   TestFirstTurn/score_of_10_with_two_for_dealer
+=== RUN   TestFirstTurn/score_of_5_with_queen_for_dealer
+=== RUN   TestFirstTurn/score_of_4_with_five_for_dealer
+--- PASS: TestFirstTurn (0.07s)
+    --- PASS: TestFirstTurn/pair_of_aces (0.00s)
+    --- PASS: TestFirstTurn/pair_of_jacks (0.00s)
+    --- PASS: TestFirstTurn/pair_of_kings (0.00s)
+    --- PASS: TestFirstTurn/pair_of_twos (0.00s)
+    --- PASS: TestFirstTurn/pair_of_fives (0.00s)
+    --- PASS: TestFirstTurn/blackjack_with_ace_for_dealer (0.00s)
+    --- PASS: TestFirstTurn/blackjack_with_queen_for_dealer (0.00s)
+    --- PASS: TestFirstTurn/blackjack_with_five_for_dealer (0.00s)
+    --- PASS: TestFirstTurn/blackjack_with_nine_for_dealer (0.00s)
+    --- PASS: TestFirstTurn/score_of_20 (0.00s)
+    --- PASS: TestFirstTurn/score_of_19 (0.00s)
+    --- PASS: TestFirstTurn/score_of_18 (0.00s)
+    --- PASS: TestFirstTurn/score_of_17 (0.00s)
+    --- PASS: TestFirstTurn/score_of_16_with_six_for_dealer (0.00s)
+    --- PASS: TestFirstTurn/score_of_16_with_seven_for_dealer (0.00s)
+    --- PASS: TestFirstTurn/score_of_16_with_ace_for_dealer (0.00s)
+    --- PASS: TestFirstTurn/score_of_15_with_six_for_dealer (0.00s)
+    --- PASS: TestFirstTurn/score_of_15_with_seven_for_dealer (0.00s)
+    --- PASS: TestFirstTurn/score_of_15_with_king_for_dealer (0.00s)
+    --- PASS: TestFirstTurn/score_of_14_with_six_for_dealer (0.00s)
+    --- PASS: TestFirstTurn/score_of_14_with_seven_for_dealer (0.00s)
+    --- PASS: TestFirstTurn/score_of_14_with_queen_for_dealer (0.00s)
+    --- PASS: TestFirstTurn/score_of_13_with_six_for_dealer (0.00s)
+    --- PASS: TestFirstTurn/score_of_13_with_seven_for_dealer (0.00s)
+    --- PASS: TestFirstTurn/score_of_13_with_queen_for_dealer (0.00s)
+    --- PASS: TestFirstTurn/score_of_12_with_six_for_dealer (0.00s)
+    --- PASS: TestFirstTurn/score_of_12_with_seven_for_dealer (0.00s)
+    --- PASS: TestFirstTurn/score_of_12_with_queen_for_dealer (0.00s)
+    --- PASS: TestFirstTurn/score_of_11_with_queen_for_dealer (0.00s)
+    --- PASS: TestFirstTurn/score_of_10_with_two_for_dealer (0.00s)
+    --- PASS: TestFirstTurn/score_of_5_with_queen_for_dealer (0.00s)
+    --- PASS: TestFirstTurn/score_of_4_with_five_for_dealer (0.00s)
+PASS
+ok  	esercizio	0.151s
+	Command being timed: "go test -v"
+	User time (seconds): 23.17
+	System time (seconds): 48.69
+	Percent of CPU this job got: 49%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:26.54
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 206324
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 717704
+	Voluntary context switches: 32760
+	Involuntary context switches: 43970
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 171968
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

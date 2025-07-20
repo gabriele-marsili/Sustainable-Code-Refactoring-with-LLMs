@@ -1,38 +1,61 @@
-# raindrops/test [raindrops/test.test]
-test/meteorology_test.go:10:8: undefined: TemperatureUnit
-test/meteorology_test.go:15:10: undefined: Celsius
-test/meteorology_test.go:20:10: undefined: Fahrenheit
-test/meteorology_test.go:36:8: undefined: Temperature
-test/meteorology_test.go:41:10: undefined: Temperature
-test/meteorology_test.go:41:26: undefined: Celsius
-test/meteorology_test.go:46:10: undefined: Temperature
-test/meteorology_test.go:46:26: undefined: Fahrenheit
-test/meteorology_test.go:51:10: undefined: Temperature
-test/meteorology_test.go:51:27: undefined: Celsius
-test/meteorology_test.go:51:27: too many errors
-FAIL	raindrops/test [build failed]
-FAIL
-Command exited with non-zero status 1
-	Command being timed: "go test ./test/..."
-	User time (seconds): 25.73
-	System time (seconds): 52.25
-	Percent of CPU this job got: 50%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:35.65
+=== RUN   TestTemperatureUnitString
+=== RUN   TestTemperatureUnitString/Celsius_unit
+=== RUN   TestTemperatureUnitString/Fahrenheit_unit
+--- PASS: TestTemperatureUnitString (0.00s)
+    --- PASS: TestTemperatureUnitString/Celsius_unit (0.00s)
+    --- PASS: TestTemperatureUnitString/Fahrenheit_unit (0.00s)
+=== RUN   TestTemperatureString
+=== RUN   TestTemperatureString/21_degree_Celsius
+=== RUN   TestTemperatureString/32_degree_Fahrenheit
+=== RUN   TestTemperatureString/minus_17_degree_Celsius
+--- PASS: TestTemperatureString (0.01s)
+    --- PASS: TestTemperatureString/21_degree_Celsius (0.00s)
+    --- PASS: TestTemperatureString/32_degree_Fahrenheit (0.00s)
+    --- PASS: TestTemperatureString/minus_17_degree_Celsius (0.00s)
+=== RUN   TestSpeedUnitString
+=== RUN   TestSpeedUnitString/kmPerHour
+=== RUN   TestSpeedUnitString/milesPerHour
+--- PASS: TestSpeedUnitString (0.00s)
+    --- PASS: TestSpeedUnitString/kmPerHour (0.00s)
+    --- PASS: TestSpeedUnitString/milesPerHour (0.00s)
+=== RUN   TestSpeedString
+=== RUN   TestSpeedString/18_kilometers_per_hour
+=== RUN   TestSpeedString/30_miles_per_hour
+=== RUN   TestSpeedString/0_kilometers_per_hour
+--- PASS: TestSpeedString (0.01s)
+    --- PASS: TestSpeedString/18_kilometers_per_hour (0.00s)
+    --- PASS: TestSpeedString/30_miles_per_hour (0.00s)
+    --- PASS: TestSpeedString/0_kilometers_per_hour (0.00s)
+=== RUN   TestMeteorologyDataString
+=== RUN   TestMeteorologyDataString/Athens
+=== RUN   TestMeteorologyDataString/Delhi
+=== RUN   TestMeteorologyDataString/San_Francisco
+--- PASS: TestMeteorologyDataString (0.01s)
+    --- PASS: TestMeteorologyDataString/Athens (0.00s)
+    --- PASS: TestMeteorologyDataString/Delhi (0.00s)
+    --- PASS: TestMeteorologyDataString/San_Francisco (0.00s)
+PASS
+ok  	esercizio	0.070s
+	Command being timed: "go test -v"
+	User time (seconds): 22.50
+	System time (seconds): 47.88
+	Percent of CPU this job got: 48%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:26.16
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 201448
+	Maximum resident set size (kbytes): 199956
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 696282
-	Voluntary context switches: 34047
-	Involuntary context switches: 44997
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 720406
+	Voluntary context switches: 33217
+	Involuntary context switches: 43763
 	Swaps: 0
 	File system inputs: 0
-	File system outputs: 166792
+	File system outputs: 173168
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

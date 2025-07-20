@@ -1,0 +1,51 @@
+=== RUN   TestNewVoteCounter
+=== RUN   TestNewVoteCounter/Simple_vote_counter_with_2_votes
+--- PASS: TestNewVoteCounter (0.00s)
+    --- PASS: TestNewVoteCounter/Simple_vote_counter_with_2_votes (0.00s)
+=== RUN   TestVoteCount
+=== RUN   TestVoteCount/Call_to_VoteCount_with_a_nil_argument
+=== RUN   TestVoteCount/Call_to_VoteCount_with_a_pointer_to_an_int_with_a_value_of_2
+--- PASS: TestVoteCount (0.01s)
+    --- PASS: TestVoteCount/Call_to_VoteCount_with_a_nil_argument (0.00s)
+    --- PASS: TestVoteCount/Call_to_VoteCount_with_a_pointer_to_an_int_with_a_value_of_2 (0.00s)
+=== RUN   TestIncrementVoteCount
+=== RUN   TestIncrementVoteCount/Call_to_IncrementVoteCount_with_a_pointer_to_an_int_with_a_value_of_2_and_increment_of_2
+--- PASS: TestIncrementVoteCount (0.00s)
+    --- PASS: TestIncrementVoteCount/Call_to_IncrementVoteCount_with_a_pointer_to_an_int_with_a_value_of_2_and_increment_of_2 (0.00s)
+=== RUN   TestNewElectionResult
+=== RUN   TestNewElectionResult/Call_to_NewElectionResult_for_Peter_with_2_votes
+--- PASS: TestNewElectionResult (0.00s)
+    --- PASS: TestNewElectionResult/Call_to_NewElectionResult_for_Peter_with_2_votes (0.00s)
+=== RUN   TestDisplayResult
+=== RUN   TestDisplayResult/Call_to_DisplayResult_for_John_with_5_votes
+--- PASS: TestDisplayResult (0.00s)
+    --- PASS: TestDisplayResult/Call_to_DisplayResult_for_John_with_5_votes (0.00s)
+=== RUN   TestDecrementVotesOfCandidate
+=== RUN   TestDecrementVotesOfCandidate/Call_to_DecrementVotesOfCandidate_for_John_with_3_votes
+--- PASS: TestDecrementVotesOfCandidate (0.00s)
+    --- PASS: TestDecrementVotesOfCandidate/Call_to_DecrementVotesOfCandidate_for_John_with_3_votes (0.00s)
+PASS
+ok  	esercizio	0.071s
+	Command being timed: "go test -v"
+	User time (seconds): 23.46
+	System time (seconds): 49.37
+	Percent of CPU this job got: 48%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:31.69
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 198496
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 713353
+	Voluntary context switches: 33214
+	Involuntary context switches: 44192
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 171992
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

@@ -1,33 +1,31 @@
-# raindrops/test [raindrops/test.test]
-test/difference_of_squares_test.go:13:11: undefined: SquareOfSum
-test/difference_of_squares_test.go:21:11: undefined: SumOfSquares
-test/difference_of_squares_test.go:30:11: undefined: Difference
-test/difference_of_squares_test.go:40:3: undefined: SquareOfSum
-test/difference_of_squares_test.go:46:3: undefined: SumOfSquares
-test/difference_of_squares_test.go:52:3: undefined: Difference
-FAIL	raindrops/test [build failed]
-FAIL
-Command exited with non-zero status 1
-	Command being timed: "go test ./test/..."
-	User time (seconds): 23.57
-	System time (seconds): 48.34
-	Percent of CPU this job got: 47%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:30.17
+=== RUN   TestSquareOfSum
+--- PASS: TestSquareOfSum (0.00s)
+=== RUN   TestSumOfSquares
+--- PASS: TestSumOfSquares (0.00s)
+=== RUN   TestDifference
+--- PASS: TestDifference (0.00s)
+PASS
+ok  	esercizio	0.015s
+	Command being timed: "go test -v"
+	User time (seconds): 22.39
+	System time (seconds): 46.55
+	Percent of CPU this job got: 49%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:19.12
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 202548
+	Maximum resident set size (kbytes): 204036
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 696937
-	Voluntary context switches: 33240
-	Involuntary context switches: 43209
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 710658
+	Voluntary context switches: 32397
+	Involuntary context switches: 43110
 	Swaps: 0
 	File system inputs: 0
-	File system outputs: 166776
+	File system outputs: 171656
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

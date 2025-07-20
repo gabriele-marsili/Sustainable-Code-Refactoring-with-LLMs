@@ -1,31 +1,64 @@
-# raindrops/test [raindrops/test.test]
-test/binary_search_test.go:10:23: undefined: testCases
-test/binary_search_test.go:11:11: undefined: SearchInts
-test/binary_search_test.go:32:12: undefined: SearchInts
-test/binary_search_test.go:48:3: undefined: SearchInts
-FAIL	raindrops/test [build failed]
-FAIL
-Command exited with non-zero status 1
-	Command being timed: "go test ./test/..."
-	User time (seconds): 23.12
-	System time (seconds): 47.62
-	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:24.46
+=== RUN   TestSearchInts
+binarySearch([6], 6, 0, 1)
+    binary_search_test.go:15: SUCCESS: finds a value in an array with one element
+binarySearch([1 3 4 6 8 9 11], 6, 0, 7)
+    binary_search_test.go:15: SUCCESS: finds a value in the middle of an array
+binarySearch([1 3 4 6 8 9 11], 1, 0, 7)
+binarySearch([1 3 4 6 8 9 11], 1, 0, 3)
+binarySearch([1 3 4 6 8 9 11], 1, 0, 1)
+    binary_search_test.go:15: SUCCESS: finds a value at the beginning of an array
+binarySearch([1 3 4 6 8 9 11], 11, 0, 7)
+binarySearch([1 3 4 6 8 9 11], 11, 4, 7)
+binarySearch([1 3 4 6 8 9 11], 11, 6, 7)
+    binary_search_test.go:15: SUCCESS: finds a value at the end of an array
+binarySearch([1 3 5 8 13 21 34 55 89 144 233 377 634], 144, 0, 13)
+binarySearch([1 3 5 8 13 21 34 55 89 144 233 377 634], 144, 7, 13)
+binarySearch([1 3 5 8 13 21 34 55 89 144 233 377 634], 144, 7, 10)
+binarySearch([1 3 5 8 13 21 34 55 89 144 233 377 634], 144, 9, 10)
+    binary_search_test.go:15: SUCCESS: finds a value in an array of odd length
+binarySearch([1 3 5 8 13 21 34 55 89 144 233 377], 21, 0, 12)
+binarySearch([1 3 5 8 13 21 34 55 89 144 233 377], 21, 0, 6)
+binarySearch([1 3 5 8 13 21 34 55 89 144 233 377], 21, 4, 6)
+    binary_search_test.go:15: SUCCESS: finds a value in an array of even length
+binarySearch([1 3 4 6 8 9 11], 7, 0, 7)
+binarySearch([1 3 4 6 8 9 11], 7, 4, 7)
+binarySearch([1 3 4 6 8 9 11], 7, 4, 5)
+    binary_search_test.go:15: SUCCESS: identifies that a value is not included in the array
+binarySearch([1 3 4 6 8 9 11], 0, 0, 7)
+binarySearch([1 3 4 6 8 9 11], 0, 0, 3)
+binarySearch([1 3 4 6 8 9 11], 0, 0, 1)
+    binary_search_test.go:15: SUCCESS: a value smaller than the array's smallest value is not found
+binarySearch([1 3 4 6 8 9 11], 13, 0, 7)
+binarySearch([1 3 4 6 8 9 11], 13, 4, 7)
+binarySearch([1 3 4 6 8 9 11], 13, 6, 7)
+    binary_search_test.go:15: SUCCESS: a value larger than the array's largest value is not found
+    binary_search_test.go:15: SUCCESS: nothing is found in an empty array
+binarySearch([1 2], 0, 0, 2)
+binarySearch([1 2], 0, 0, 1)
+    binary_search_test.go:15: SUCCESS: nothing is found when the left and right bounds cross
+--- PASS: TestSearchInts (0.12s)
+PASS
+ok  	esercizio	0.172s
+	Command being timed: "go test -v"
+	User time (seconds): 22.12
+	System time (seconds): 46.25
+	Percent of CPU this job got: 47%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:22.70
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 204616
+	Maximum resident set size (kbytes): 201596
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 699734
-	Voluntary context switches: 32058
-	Involuntary context switches: 41774
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 720326
+	Voluntary context switches: 33078
+	Involuntary context switches: 42281
 	Swaps: 0
-	File system inputs: 16
-	File system outputs: 166792
+	File system inputs: 0
+	File system outputs: 171768
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

@@ -1,0 +1,48 @@
+=== RUN   TestTallyHappy
+=== RUN   TestTallyHappy/good
+--- FAIL: TestTallyHappy (0.00s)
+    --- FAIL: TestTallyHappy/good (0.00s)
+panic: Please implement the Tally function [recovered]
+	panic: Please implement the Tally function
+
+goroutine 19 [running]:
+testing.tRunner.func1.2({0x5080c0, 0x55db00})
+	/usr/local/go/src/testing/testing.go:1545 +0x238
+testing.tRunner.func1()
+	/usr/local/go/src/testing/testing.go:1548 +0x397
+panic({0x5080c0?, 0x55db00?})
+	/usr/local/go/src/runtime/panic.go:914 +0x21f
+esercizio.Tally(...)
+	/app/tournament.go:6
+esercizio.TestTallyHappy.func1(0x0?)
+	/app/tournament_test.go:111 +0x25
+testing.tRunner(0xc00009ab60, 0xc0000821f0)
+	/usr/local/go/src/testing/testing.go:1595 +0xff
+created by testing.(*T).Run in goroutine 18
+	/usr/local/go/src/testing/testing.go:1648 +0x3ad
+exit status 2
+FAIL	esercizio	0.169s
+Command exited with non-zero status 1
+	Command being timed: "go test -v"
+	User time (seconds): 27.29
+	System time (seconds): 52.45
+	Percent of CPU this job got: 48%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:44.74
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 200504
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 713511
+	Voluntary context switches: 35269
+	Involuntary context switches: 47353
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 171696
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

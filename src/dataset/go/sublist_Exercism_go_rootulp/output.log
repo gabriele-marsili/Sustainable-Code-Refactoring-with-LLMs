@@ -1,0 +1,45 @@
+=== RUN   TestSublist
+    sublist_test.go:12: PASS: empty lists
+    sublist_test.go:12: PASS: empty list within non empty list
+    sublist_test.go:12: PASS: non empty list contains empty list
+    sublist_test.go:12: PASS: list equals itself
+    sublist_test.go:12: PASS: different lists
+    sublist_test.go:12: PASS: false start
+    sublist_test.go:12: PASS: consecutive
+    sublist_test.go:12: PASS: sublist at start
+    sublist_test.go:12: PASS: sublist in middle
+    sublist_test.go:12: PASS: sublist at end
+    sublist_test.go:12: PASS: at start of superlist
+    sublist_test.go:12: PASS: in middle of superlist
+    sublist_test.go:12: PASS: at end of superlist
+    sublist_test.go:12: PASS: first list missing element from second list
+    sublist_test.go:12: PASS: second list missing element from first list
+    sublist_test.go:12: PASS: order matters to a list
+    sublist_test.go:12: PASS: same digits but different numbers
+    sublist_test.go:12: PASS: unfinished sequence
+--- PASS: TestSublist (0.02s)
+PASS
+ok  	esercizio	0.039s
+	Command being timed: "go test -v"
+	User time (seconds): 28.32
+	System time (seconds): 53.42
+	Percent of CPU this job got: 48%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:49.58
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 206220
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 713287
+	Voluntary context switches: 35945
+	Involuntary context switches: 47921
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 171712
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

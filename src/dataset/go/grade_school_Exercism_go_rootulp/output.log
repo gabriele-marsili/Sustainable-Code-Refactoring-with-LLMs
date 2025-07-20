@@ -1,38 +1,39 @@
-# raindrops/test [raindrops/test.test]
-test/grade_school_test.go:11:9: undefined: New
-test/grade_school_test.go:16:15: undefined: Grade
-test/grade_school_test.go:24:16: undefined: Grade
-test/grade_school_test.go:25:7: undefined: New
-test/grade_school_test.go:36:16: undefined: Grade
-test/grade_school_test.go:37:7: undefined: New
-test/grade_school_test.go:50:16: undefined: Grade
-test/grade_school_test.go:54:7: undefined: New
-test/grade_school_test.go:67:7: undefined: New
-test/grade_school_test.go:85:7: undefined: New
-test/grade_school_test.go:85:7: too many errors
-FAIL	raindrops/test [build failed]
-FAIL
-Command exited with non-zero status 1
-	Command being timed: "go test ./test/..."
-	User time (seconds): 23.52
-	System time (seconds): 49.97
+=== RUN   TestNewSchoolIsEmpty
+--- PASS: TestNewSchoolIsEmpty (0.00s)
+=== RUN   TestAddStudent
+--- PASS: TestAddStudent (0.00s)
+=== RUN   TestAddMoreSameGrade
+--- PASS: TestAddMoreSameGrade (0.00s)
+=== RUN   TestAddDifferentGrades
+--- PASS: TestAddDifferentGrades (0.00s)
+=== RUN   TestGetGrade
+--- PASS: TestGetGrade (0.00s)
+=== RUN   TestNonExistantGrade
+--- PASS: TestNonExistantGrade (0.00s)
+=== RUN   TestSortedEnrollment
+--- PASS: TestSortedEnrollment (0.00s)
+PASS
+ok  	esercizio	0.060s
+	Command being timed: "go test -v"
+	User time (seconds): 22.70
+	System time (seconds): 46.15
 	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:31.66
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:21.96
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 202924
+	Maximum resident set size (kbytes): 201740
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 697229
-	Voluntary context switches: 33359
-	Involuntary context switches: 43712
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 713864
+	Voluntary context switches: 32607
+	Involuntary context switches: 42770
 	Swaps: 0
 	File system inputs: 0
-	File system outputs: 166792
+	File system outputs: 172048
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

@@ -1,35 +1,49 @@
-# raindrops/test [raindrops/test.test]
-test/allergies_test.go:9:23: undefined: listTests
-test/allergies_test.go:10:16: undefined: Allergies
-test/allergies_test.go:24:24: undefined: allergicToTests
-test/allergies_test.go:25:4: undefined: Allergies
-test/allergies_test.go:31:23: undefined: allergicToTests
-test/allergies_test.go:33:14: undefined: AllergicTo
-test/allergies_test.go:48:24: undefined: allergicToTests
-test/allergies_test.go:51:5: undefined: AllergicTo
-FAIL	raindrops/test [build failed]
-FAIL
-Command exited with non-zero status 1
-	Command being timed: "go test ./test/..."
-	User time (seconds): 24.72
-	System time (seconds): 50.80
+=== RUN   TestAllergies
+    allergies_test.go:13: PASS: Allergic to []string{}
+    allergies_test.go:13: PASS: Allergic to []string{"eggs"}
+    allergies_test.go:13: PASS: Allergic to []string{"peanuts"}
+    allergies_test.go:13: PASS: Allergic to []string{"strawberries"}
+    allergies_test.go:13: PASS: Allergic to []string{"eggs", "peanuts"}
+    allergies_test.go:13: PASS: Allergic to []string{"eggs", "shellfish"}
+    allergies_test.go:13: PASS: Allergic to []string{"strawberries", "tomatoes", "chocolate", "pollen", "cats"}
+    allergies_test.go:13: PASS: Allergic to []string{"eggs", "peanuts", "shellfish", "strawberries", "tomatoes", "chocolate", "pollen", "cats"}
+    allergies_test.go:13: PASS: Allergic to []string{"eggs", "shellfish", "strawberries", "tomatoes", "chocolate", "pollen", "cats"}
+--- PASS: TestAllergies (0.01s)
+=== RUN   TestAllergicTo
+    allergies_test.go:37: PASS: AllergicTo(0, peanuts) false
+    allergies_test.go:37: PASS: AllergicTo(0, cats) false
+    allergies_test.go:37: PASS: AllergicTo(0, strawberries) false
+    allergies_test.go:37: PASS: AllergicTo(1, eggs) true
+    allergies_test.go:37: PASS: AllergicTo(5, eggs) true
+    allergies_test.go:37: PASS: AllergicTo(5, shellfish) true
+    allergies_test.go:37: PASS: AllergicTo(5, strawberries) false
+    allergies_test.go:37: PASS: AllergicTo(9, eggs) true
+    allergies_test.go:37: PASS: AllergicTo(9, peanuts) false
+    allergies_test.go:37: PASS: AllergicTo(9, shellfish) false
+    allergies_test.go:37: PASS: AllergicTo(9, strawberries) true
+--- PASS: TestAllergicTo (0.01s)
+PASS
+ok  	esercizio	0.071s
+	Command being timed: "go test -v"
+	User time (seconds): 28.39
+	System time (seconds): 58.56
 	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:34.55
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 3:00.02
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 201392
+	Maximum resident set size (kbytes): 199468
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 48
-	Minor (reclaiming a frame) page faults: 699059
-	Voluntary context switches: 34829
-	Involuntary context switches: 43436
+	Major (requiring I/O) page faults: 7
+	Minor (reclaiming a frame) page faults: 708552
+	Voluntary context switches: 39757
+	Involuntary context switches: 49568
 	Swaps: 0
-	File system inputs: 11664
-	File system outputs: 166800
+	File system inputs: 304
+	File system outputs: 171896
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

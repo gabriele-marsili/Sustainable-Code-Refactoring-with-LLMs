@@ -1,0 +1,37 @@
+=== RUN   TestSolve
+    two_bucket_test.go:29: PASS: Measure using bucket one of size 3 and bucket two of size 5 - start with bucket one
+    two_bucket_test.go:29: PASS: Measure using bucket one of size 3 and bucket two of size 5 - start with bucket two
+    two_bucket_test.go:29: PASS: Measure using bucket one of size 7 and bucket two of size 11 - start with bucket one
+    two_bucket_test.go:29: PASS: Measure using bucket one of size 7 and bucket two of size 11 - start with bucket two
+    two_bucket_test.go:29: PASS: Measure one step using bucket one of size 1 and bucket two of size 3 - start with bucket two
+    two_bucket_test.go:29: PASS: Measure using bucket one of size 2 and bucket two of size 3 - start with bucket one and end with bucket two
+    two_bucket_test.go:29: PASS: Invalid first bucket size
+    two_bucket_test.go:29: PASS: Invalid second bucket size
+    two_bucket_test.go:29: PASS: Invalid goal amount
+    two_bucket_test.go:29: PASS: Invalid start bucket name
+--- PASS: TestSolve (0.01s)
+PASS
+ok  	esercizio	0.044s
+	Command being timed: "go test -v"
+	User time (seconds): 28.63
+	System time (seconds): 54.15
+	Percent of CPU this job got: 48%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:52.07
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 204964
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 713589
+	Voluntary context switches: 37083
+	Involuntary context switches: 49563
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 171768
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

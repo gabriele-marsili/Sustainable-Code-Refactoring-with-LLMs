@@ -1,0 +1,69 @@
+=== RUN   TestWelcome
+=== RUN   TestWelcome/Greet_Chihiro_with_a_welcoming_message
+=== RUN   TestWelcome/Greet_Xuân_Jing_with_a_welcoming_message
+--- PASS: TestWelcome (0.01s)
+    --- PASS: TestWelcome/Greet_Chihiro_with_a_welcoming_message (0.00s)
+    --- PASS: TestWelcome/Greet_Xuân_Jing_with_a_welcoming_message (0.00s)
+=== RUN   TestHappyBirthday
+=== RUN   TestHappyBirthday/Wish_Chihiro_Happy_Birthday_with_name_and_age
+=== RUN   TestHappyBirthday/Wish_Xuân_Jing_Happy_Birthday_with_name_and_age
+--- PASS: TestHappyBirthday (0.01s)
+    --- PASS: TestHappyBirthday/Wish_Chihiro_Happy_Birthday_with_name_and_age (0.00s)
+    --- PASS: TestHappyBirthday/Wish_Xuân_Jing_Happy_Birthday_with_name_and_age (0.00s)
+=== RUN   TestAssignTable
+=== RUN   TestAssignTable/Greet_Chihiro_and_give_them_directions_to_their_seat
+Welcome to my party, Chihiro!
+You have been assigned to table 16. Your table is straight ahead, exactly 9.2 meters from here.
+You will be sitting next to Akachi Chikondi.
+    party_robot_test.go:94: AssignTable(Chihiro,22,Akachi Chikondi,straight ahead,9.239438)
+        got:
+        Welcome to my party, Chihiro!
+        You have been assigned to table 16. Your table is straight ahead, exactly 9.2 meters from here.
+        You will be sitting next to Akachi Chikondi.
+        want:
+        Welcome to my party, Chihiro!
+        You have been assigned to table 022. Your table is straight ahead, exactly 9.2 meters from here.
+        You will be sitting next to Akachi Chikondi.
+=== RUN   TestAssignTable/Greet_Xuân_Jing_and_give_them_directions_to_their_seat
+Welcome to my party, Xuân Jing!
+You have been assigned to table 4. Your table is on the right, exactly 23.5 meters from here.
+You will be sitting next to Eike.
+    party_robot_test.go:94: AssignTable(Xuân Jing,4,Eike,on the right,23.470103)
+        got:
+        Welcome to my party, Xuân Jing!
+        You have been assigned to table 4. Your table is on the right, exactly 23.5 meters from here.
+        You will be sitting next to Eike.
+        want:
+        Welcome to my party, Xuân Jing!
+        You have been assigned to table 004. Your table is on the right, exactly 23.5 meters from here.
+        You will be sitting next to Eike.
+--- FAIL: TestAssignTable (0.02s)
+    --- FAIL: TestAssignTable/Greet_Chihiro_and_give_them_directions_to_their_seat (0.00s)
+    --- FAIL: TestAssignTable/Greet_Xuân_Jing_and_give_them_directions_to_their_seat (0.01s)
+FAIL
+exit status 1
+FAIL	esercizio	0.084s
+Command exited with non-zero status 1
+	Command being timed: "go test -v"
+	User time (seconds): 25.50
+	System time (seconds): 50.93
+	Percent of CPU this job got: 47%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:40.18
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 199668
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 710717
+	Voluntary context switches: 34877
+	Involuntary context switches: 46201
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 171840
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

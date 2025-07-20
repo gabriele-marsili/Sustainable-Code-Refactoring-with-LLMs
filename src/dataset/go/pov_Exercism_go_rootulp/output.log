@@ -1,0 +1,83 @@
+=== RUN   TestNewNotNil
+=== RUN   TestNewNotNil/singleton
+=== RUN   TestNewNotNil/parent_and_one_sibling
+=== RUN   TestNewNotNil/parent_and_kids
+--- PASS: TestNewNotNil (0.01s)
+    --- PASS: TestNewNotNil/singleton (0.00s)
+    --- PASS: TestNewNotNil/parent_and_one_sibling (0.00s)
+    --- PASS: TestNewNotNil/parent_and_kids (0.00s)
+=== RUN   TestValue
+=== RUN   TestValue/singleton
+=== RUN   TestValue/parent_and_one_sibling
+=== RUN   TestValue/parent_and_kids
+--- PASS: TestValue (0.01s)
+    --- PASS: TestValue/singleton (0.00s)
+    --- PASS: TestValue/parent_and_one_sibling (0.00s)
+    --- PASS: TestValue/parent_and_kids (0.00s)
+=== RUN   TestChildren
+=== RUN   TestChildren/singleton
+=== RUN   TestChildren/parent_and_one_sibling
+=== RUN   TestChildren/parent_and_kids
+--- PASS: TestChildren (0.01s)
+    --- PASS: TestChildren/singleton (0.00s)
+    --- PASS: TestChildren/parent_and_one_sibling (0.00s)
+    --- PASS: TestChildren/parent_and_kids (0.00s)
+=== RUN   TestFromPov
+=== RUN   TestFromPov/Results_in_the_same_tree_if_the_input_tree_is_a_singleton
+=== RUN   TestFromPov/Can_reroot_a_tree_with_a_parent_and_one_sibling
+=== RUN   TestFromPov/Can_reroot_a_tree_with_a_parent_and_many_siblings
+=== RUN   TestFromPov/Can_reroot_a_tree_with_new_root_deeply_nested_in_tree
+=== RUN   TestFromPov/Moves_children_of_the_new_root_to_same_level_as_former_parent
+=== RUN   TestFromPov/Can_reroot_a_complex_tree_with_cousins
+=== RUN   TestFromPov/Errors_if_target_does_not_exist_in_a_singleton_tree
+=== RUN   TestFromPov/Errors_if_target_does_not_exist_in_a_large_tree
+--- PASS: TestFromPov (0.02s)
+    --- PASS: TestFromPov/Results_in_the_same_tree_if_the_input_tree_is_a_singleton (0.00s)
+    --- PASS: TestFromPov/Can_reroot_a_tree_with_a_parent_and_one_sibling (0.00s)
+    --- PASS: TestFromPov/Can_reroot_a_tree_with_a_parent_and_many_siblings (0.00s)
+    --- PASS: TestFromPov/Can_reroot_a_tree_with_new_root_deeply_nested_in_tree (0.00s)
+    --- PASS: TestFromPov/Moves_children_of_the_new_root_to_same_level_as_former_parent (0.00s)
+    --- PASS: TestFromPov/Can_reroot_a_complex_tree_with_cousins (0.00s)
+    --- PASS: TestFromPov/Errors_if_target_does_not_exist_in_a_singleton_tree (0.00s)
+    --- PASS: TestFromPov/Errors_if_target_does_not_exist_in_a_large_tree (0.00s)
+=== RUN   TestPathTo
+=== RUN   TestPathTo/Can_find_path_to_parent
+=== RUN   TestPathTo/Can_find_path_to_sibling
+=== RUN   TestPathTo/Can_find_path_to_cousin
+=== RUN   TestPathTo/Can_find_path_not_involving_root
+=== RUN   TestPathTo/Can_find_path_from_nodes_other_than_x
+=== RUN   TestPathTo/Errors_if_destination_does_not_exist
+=== RUN   TestPathTo/Errors_if_source_does_not_exist
+--- PASS: TestPathTo (0.02s)
+    --- PASS: TestPathTo/Can_find_path_to_parent (0.00s)
+    --- PASS: TestPathTo/Can_find_path_to_sibling (0.00s)
+    --- PASS: TestPathTo/Can_find_path_to_cousin (0.00s)
+    --- PASS: TestPathTo/Can_find_path_not_involving_root (0.00s)
+    --- PASS: TestPathTo/Can_find_path_from_nodes_other_than_x (0.00s)
+    --- PASS: TestPathTo/Errors_if_destination_does_not_exist (0.00s)
+    --- PASS: TestPathTo/Errors_if_source_does_not_exist (0.00s)
+PASS
+ok  	esercizio	0.106s
+	Command being timed: "go test -v"
+	User time (seconds): 23.43
+	System time (seconds): 47.54
+	Percent of CPU this job got: 48%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:26.44
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 201592
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 720005
+	Voluntary context switches: 33457
+	Involuntary context switches: 44681
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 172752
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

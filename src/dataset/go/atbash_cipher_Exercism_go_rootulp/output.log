@@ -1,31 +1,27 @@
-# raindrops/test [raindrops/test.test]
-test/atbash_cipher_test.go:6:23: undefined: tests
-test/atbash_cipher_test.go:7:13: undefined: Atbash
-test/atbash_cipher_test.go:20:24: undefined: tests
-test/atbash_cipher_test.go:21:4: undefined: Atbash
-FAIL	raindrops/test [build failed]
-FAIL
-Command exited with non-zero status 1
-	Command being timed: "go test ./test/..."
-	User time (seconds): 22.75
-	System time (seconds): 47.58
+=== RUN   TestAtbash
+--- PASS: TestAtbash (0.00s)
+PASS
+ok  	esercizio	0.048s
+	Command being timed: "go test -v"
+	User time (seconds): 21.96
+	System time (seconds): 46.82
 	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:25.04
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:21.43
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 204700
+	Maximum resident set size (kbytes): 200392
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 698128
-	Voluntary context switches: 32099
-	Involuntary context switches: 42057
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 713172
+	Voluntary context switches: 32391
+	Involuntary context switches: 42402
 	Swaps: 0
-	File system inputs: 256
-	File system outputs: 166776
+	File system inputs: 0
+	File system outputs: 171688
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

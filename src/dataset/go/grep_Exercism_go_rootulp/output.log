@@ -1,33 +1,77 @@
-# raindrops/test [raindrops/test.test]
-test/grep_test.go:61:23: undefined: fileContentData
-test/grep_test.go:64:21: undefined: testCases
-test/grep_test.go:65:13: undefined: Search
-test/grep_test.go:78:23: undefined: fileContentData
-test/grep_test.go:83:22: undefined: testCases
-test/grep_test.go:84:4: undefined: Search
-FAIL	raindrops/test [build failed]
-FAIL
-Command exited with non-zero status 1
-	Command being timed: "go test ./test/..."
-	User time (seconds): 24.25
-	System time (seconds): 49.01
+=== RUN   TestSearch
+result [Of Atreus, Agamemnon, King of men.]
+    grep_test.go:70: PASS: One file, one match, no flags
+result [2:Of that Forbidden Tree, whose mortal tast]
+    grep_test.go:70: PASS: One file, one match, print line numbers flag
+result [Of that Forbidden Tree, whose mortal tast]
+    grep_test.go:70: PASS: One file, one match, case-insensitive flag
+result [paradise-lost.txt]
+    grep_test.go:70: PASS: One file, one match, print file names flag
+result [With loss of Eden, till one greater Man]
+    grep_test.go:70: PASS: One file, one match, match entire lines flag
+result [9:Of Atreus, Agamemnon, King of men.]
+    grep_test.go:70: PASS: One file, one match, multiple flags
+result [Nor how it may concern my modesty, But I beseech your grace that I may know The worst that may befall me in this case,]
+    grep_test.go:70: PASS: One file, several matches, no flags
+result [3:Nor how it may concern my modesty, 5:But I beseech your grace that I may know 6:The worst that may befall me in this case,]
+    grep_test.go:70: PASS: One file, several matches, print line numbers flag
+result []
+    grep_test.go:70: PASS: One file, several matches, match entire lines flag
+result [Achilles sing, O Goddess! Peleus' son; The noble Chief Achilles from the son]
+    grep_test.go:70: PASS: One file, several matches, case-insensitive flag
+result [Brought Death into the World, and all our woe, With loss of Eden, till one greater Man Restore us, and regain the blissful Seat, Sing Heav'nly Muse, that on the secret top That Shepherd, who first taught the chosen Seed]
+    grep_test.go:70: PASS: One file, several matches, inverted flag
+result []
+    grep_test.go:70: PASS: One file, no matches, various flags
+result [iliad.txt]
+    grep_test.go:70: PASS: One file, one match, file flag takes precedence over line flag
+result [Achilles sing, O Goddess! Peleus' son; His wrath pernicious, who ten thousand woes Caused to Achaia's host, sent many a soul And Heroes gave (so stood the will of Jove) To dogs and to all ravening fowls a prey, When fierce dispute had separated once The noble Chief Achilles from the son Of Atreus, Agamemnon, King of men.]
+    grep_test.go:70: PASS: One file, several matches, inverted and match entire lines flags
+result [iliad.txt:Of Atreus, Agamemnon, King of men.]
+    grep_test.go:70: PASS: Multiple files, one match, no flags
+result [midsummer-night.txt:Nor how it may concern my modesty, midsummer-night.txt:But I beseech your grace that I may know midsummer-night.txt:The worst that may befall me in this case,]
+    grep_test.go:70: PASS: Multiple files, several matches, no flags
+result [midsummer-night.txt:5:But I beseech your grace that I may know midsummer-night.txt:6:The worst that may befall me in this case, paradise-lost.txt:2:Of that Forbidden Tree, whose mortal tast paradise-lost.txt:6:Sing Heav'nly Muse, that on the secret top]
+    grep_test.go:70: PASS: Multiple files, several matches, print line numbers flag
+result [iliad.txt paradise-lost.txt]
+    grep_test.go:70: PASS: Multiple files, one match, print file names flag
+result [iliad.txt:Caused to Achaia's host, sent many a soul iliad.txt:Illustrious into Ades premature, iliad.txt:And Heroes gave (so stood the will of Jove) iliad.txt:To dogs and to all ravening fowls a prey, midsummer-night.txt:I do entreat your grace to pardon me. midsummer-night.txt:In such a presence here to plead my thoughts; midsummer-night.txt:If I refuse to wed Demetrius. paradise-lost.txt:Brought Death into the World, and all our woe, paradise-lost.txt:Restore us, and regain the blissful Seat, paradise-lost.txt:Sing Heav'nly Muse, that on the secret top]
+    grep_test.go:70: PASS: Multiple files, several matches, case-insensitive flag
+result [iliad.txt:Achilles sing, O Goddess! Peleus' son; iliad.txt:The noble Chief Achilles from the son midsummer-night.txt:If I refuse to wed Demetrius.]
+    grep_test.go:70: PASS: Multiple files, several matches, inverted flag
+result [midsummer-night.txt:But I beseech your grace that I may know]
+    grep_test.go:70: PASS: Multiple files, one match, match entire lines flag
+result [paradise-lost.txt:4:With loss of Eden, till one greater Man]
+    grep_test.go:70: PASS: Multiple files, one match, multiple flags
+result []
+    grep_test.go:70: PASS: Multiple files, no matches, various flags
+result [iliad.txt paradise-lost.txt]
+    grep_test.go:70: PASS: Multiple files, several matches, file flag takes precedence over line number flag
+result [iliad.txt:Achilles sing, O Goddess! Peleus' son; iliad.txt:His wrath pernicious, who ten thousand woes iliad.txt:Caused to Achaia's host, sent many a soul iliad.txt:And Heroes gave (so stood the will of Jove) iliad.txt:To dogs and to all ravening fowls a prey, iliad.txt:When fierce dispute had separated once iliad.txt:The noble Chief Achilles from the son iliad.txt:Of Atreus, Agamemnon, King of men. midsummer-night.txt:I do entreat your grace to pardon me. midsummer-night.txt:I know not by what power I am made bold, midsummer-night.txt:Nor how it may concern my modesty, midsummer-night.txt:In such a presence here to plead my thoughts; midsummer-night.txt:But I beseech your grace that I may know midsummer-night.txt:The worst that may befall me in this case, midsummer-night.txt:If I refuse to wed Demetrius. paradise-lost.txt:Of Mans First Disobedience, and the Fruit paradise-lost.txt:Of that Forbidden Tree, whose mortal tast paradise-lost.txt:Brought Death into the World, and all our woe, paradise-lost.txt:With loss of Eden, till one greater Man paradise-lost.txt:Restore us, and regain the blissful Seat, paradise-lost.txt:Sing Heav'nly Muse, that on the secret top paradise-lost.txt:Of Oreb, or of Sinai, didst inspire paradise-lost.txt:That Shepherd, who first taught the chosen Seed]
+    grep_test.go:70: PASS: Multiple files, several matches, inverted and match entire lines flags
+--- PASS: TestSearch (0.71s)
+PASS
+ok  	esercizio	0.738s
+	Command being timed: "go test -v"
+	User time (seconds): 22.47
+	System time (seconds): 47.14
 	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:31.38
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:24.41
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 206100
+	Maximum resident set size (kbytes): 205304
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 706845
-	Voluntary context switches: 33500
-	Involuntary context switches: 44319
+	Major (requiring I/O) page faults: 6
+	Minor (reclaiming a frame) page faults: 725394
+	Voluntary context switches: 33585
+	Involuntary context switches: 43520
 	Swaps: 0
 	File system inputs: 0
-	File system outputs: 166792
+	File system outputs: 173312
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

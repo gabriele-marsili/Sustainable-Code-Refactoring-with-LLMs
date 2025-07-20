@@ -1,31 +1,44 @@
-# raindrops/test [raindrops/test.test]
-test/isbn_verifier_test.go:8:23: undefined: testCases
-test/isbn_verifier_test.go:9:15: undefined: IsValidISBN
-test/isbn_verifier_test.go:24:21: undefined: testCases
-test/isbn_verifier_test.go:25:4: undefined: IsValidISBN
-FAIL	raindrops/test [build failed]
-FAIL
-Command exited with non-zero status 1
-	Command being timed: "go test ./test/..."
-	User time (seconds): 24.08
-	System time (seconds): 49.94
+=== RUN   TestIsValidISBN
+    isbn_verifier_test.go:11: PASS: valid isbn number
+    isbn_verifier_test.go:11: PASS: invalid isbn check digit
+    isbn_verifier_test.go:11: PASS: valid isbn number with a check digit of 10
+    isbn_verifier_test.go:11: PASS: check digit is a character other than X
+    isbn_verifier_test.go:11: PASS: invalid character in isbn
+    isbn_verifier_test.go:11: PASS: X is only valid as a check digit
+    isbn_verifier_test.go:11: PASS: valid isbn without separating dashes
+    isbn_verifier_test.go:11: PASS: isbn without separating dashes and X as check digit
+    isbn_verifier_test.go:11: PASS: isbn without check digit and dashes
+    isbn_verifier_test.go:11: PASS: too long isbn and no dashes
+    isbn_verifier_test.go:11: PASS: too short isbn
+    isbn_verifier_test.go:11: PASS: isbn without check digit
+    isbn_verifier_test.go:11: PASS: check digit of X should not be used for 0
+    isbn_verifier_test.go:11: PASS: empty isbn
+    isbn_verifier_test.go:11: PASS: input is 9 characters
+    isbn_verifier_test.go:11: PASS: invalid characters are not ignored
+    isbn_verifier_test.go:11: PASS: input is too long but contains a valid isbn
+--- PASS: TestIsValidISBN (0.04s)
+PASS
+ok  	esercizio	0.050s
+	Command being timed: "go test -v"
+	User time (seconds): 22.53
+	System time (seconds): 46.73
 	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:31.94
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:22.51
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 202884
+	Maximum resident set size (kbytes): 199216
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 695168
-	Voluntary context switches: 33051
-	Involuntary context switches: 43911
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 722901
+	Voluntary context switches: 33331
+	Involuntary context switches: 43583
 	Swaps: 0
 	File system inputs: 0
-	File system outputs: 166776
+	File system outputs: 172744
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

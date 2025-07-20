@@ -1,38 +1,51 @@
-# raindrops/test [raindrops/test.test]
-test/elons_toys_test.go:11:12: undefined: Car
-test/elons_toys_test.go:12:13: undefined: Car
-test/elons_toys_test.go:16:9: undefined: Car
-test/elons_toys_test.go:21:15: undefined: Car
-test/elons_toys_test.go:31:11: undefined: CreateCar
-test/elons_toys_test.go:42:12: undefined: Track
-test/elons_toys_test.go:43:12: undefined: Track
-test/elons_toys_test.go:47:11: undefined: Track
-test/elons_toys_test.go:50:14: undefined: Track
-test/elons_toys_test.go:56:11: undefined: Track
-test/elons_toys_test.go:56:11: too many errors
-FAIL	raindrops/test [build failed]
-FAIL
-Command exited with non-zero status 1
-	Command being timed: "go test ./test/..."
-	User time (seconds): 23.93
-	System time (seconds): 49.13
+=== RUN   TestCreateCar
+=== RUN   TestCreateCar/Create_a_new_car.
+--- PASS: TestCreateCar (0.00s)
+    --- PASS: TestCreateCar/Create_a_new_car. (0.00s)
+=== RUN   TestCreateTrack
+=== RUN   TestCreateTrack/Create_a_new_track.
+=== RUN   TestCreateTrack/Create_a_new_track.#01
+--- PASS: TestCreateTrack (0.00s)
+    --- PASS: TestCreateTrack/Create_a_new_track. (0.00s)
+    --- PASS: TestCreateTrack/Create_a_new_track.#01 (0.00s)
+=== RUN   TestDrive
+=== RUN   TestDrive/Drive_the_car_once.
+--- PASS: TestDrive (0.00s)
+    --- PASS: TestDrive/Drive_the_car_once. (0.00s)
+=== RUN   TestCanFinish
+=== RUN   TestCanFinish/Car_has_100%_battery._Car_can_finish_the_race
+--- PASS: TestCanFinish (0.00s)
+    --- PASS: TestCanFinish/Car_has_100%_battery._Car_can_finish_the_race (0.00s)
+=== RUN   TestDisplayDistance
+=== RUN   TestDisplayDistance/Car_displays_driven_distance
+--- PASS: TestDisplayDistance (0.00s)
+    --- PASS: TestDisplayDistance/Car_displays_driven_distance (0.00s)
+=== RUN   TestDisplayBattery
+=== RUN   TestDisplayBattery/Display_battery_percentage
+--- PASS: TestDisplayBattery (0.01s)
+    --- PASS: TestDisplayBattery/Display_battery_percentage (0.00s)
+PASS
+ok  	esercizio	0.056s
+	Command being timed: "go test -v"
+	User time (seconds): 22.53
+	System time (seconds): 46.49
 	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:31.45
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:22.62
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 203896
+	Maximum resident set size (kbytes): 203268
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 698474
-	Voluntary context switches: 33705
-	Involuntary context switches: 43495
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 716805
+	Voluntary context switches: 33060
+	Involuntary context switches: 43084
 	Swaps: 0
 	File system inputs: 0
-	File system outputs: 166776
+	File system outputs: 172000
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

@@ -1,31 +1,53 @@
-# raindrops/test [raindrops/test.test]
-test/house_test.go:117:14: undefined: Verse
-test/house_test.go:125:7: undefined: Song
-test/house_test.go:157:4: undefined: Verse
-test/house_test.go:167:3: undefined: Song
-FAIL	raindrops/test [build failed]
-FAIL
-Command exited with non-zero status 1
-	Command being timed: "go test ./test/..."
-	User time (seconds): 23.93
-	System time (seconds): 48.70
-	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:31.09
+=== RUN   TestVerse
+=== RUN   TestVerse/verse_1
+=== RUN   TestVerse/verse_2
+=== RUN   TestVerse/verse_3
+=== RUN   TestVerse/verse_4
+=== RUN   TestVerse/verse_5
+=== RUN   TestVerse/verse_6
+=== RUN   TestVerse/verse_7
+=== RUN   TestVerse/verse_8
+=== RUN   TestVerse/verse_9
+=== RUN   TestVerse/verse_10
+=== RUN   TestVerse/verse_11
+=== RUN   TestVerse/verse_12
+--- PASS: TestVerse (0.03s)
+    --- PASS: TestVerse/verse_1 (0.00s)
+    --- PASS: TestVerse/verse_2 (0.00s)
+    --- PASS: TestVerse/verse_3 (0.00s)
+    --- PASS: TestVerse/verse_4 (0.00s)
+    --- PASS: TestVerse/verse_5 (0.00s)
+    --- PASS: TestVerse/verse_6 (0.00s)
+    --- PASS: TestVerse/verse_7 (0.00s)
+    --- PASS: TestVerse/verse_8 (0.00s)
+    --- PASS: TestVerse/verse_9 (0.00s)
+    --- PASS: TestVerse/verse_10 (0.00s)
+    --- PASS: TestVerse/verse_11 (0.00s)
+    --- PASS: TestVerse/verse_12 (0.00s)
+=== RUN   TestSong
+--- PASS: TestSong (0.00s)
+PASS
+ok  	esercizio	0.051s
+	Command being timed: "go test -v"
+	User time (seconds): 22.26
+	System time (seconds): 46.41
+	Percent of CPU this job got: 47%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:23.11
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 204844
+	Maximum resident set size (kbytes): 203532
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 694676
-	Voluntary context switches: 32749
-	Involuntary context switches: 43719
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 711577
+	Voluntary context switches: 33094
+	Involuntary context switches: 43350
 	Swaps: 0
 	File system inputs: 0
-	File system outputs: 166816
+	File system outputs: 171696
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

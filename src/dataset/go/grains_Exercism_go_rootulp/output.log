@@ -1,33 +1,39 @@
-# raindrops/test [raindrops/test.test]
-test/grains_test.go:8:23: undefined: squareTests
-test/grains_test.go:9:27: undefined: Square
-test/grains_test.go:31:15: undefined: Total
-test/grains_test.go:40:24: undefined: squareTests
-test/grains_test.go:41:4: undefined: Square
-test/grains_test.go:49:3: undefined: Total
-FAIL	raindrops/test [build failed]
-FAIL
-Command exited with non-zero status 1
-	Command being timed: "go test ./test/..."
-	User time (seconds): 23.62
-	System time (seconds): 49.82
+=== RUN   TestSquare
+    grains_test.go:25: PASS: 1
+    grains_test.go:25: PASS: 2
+    grains_test.go:25: PASS: 3
+    grains_test.go:25: PASS: 4
+    grains_test.go:25: PASS: 16
+    grains_test.go:25: PASS: 32
+    grains_test.go:25: PASS: 64
+    grains_test.go:25: PASS: square 0 returns an error
+    grains_test.go:25: PASS: negative square returns an error
+    grains_test.go:25: PASS: square greater than 64 returns an error
+--- PASS: TestSquare (0.02s)
+=== RUN   TestTotal
+--- PASS: TestTotal (0.00s)
+PASS
+ok  	esercizio	0.047s
+	Command being timed: "go test -v"
+	User time (seconds): 21.77
+	System time (seconds): 46.59
 	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:31.54
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:20.83
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 205000
+	Maximum resident set size (kbytes): 207900
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 697548
-	Voluntary context switches: 33429
-	Involuntary context switches: 43896
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 716224
+	Voluntary context switches: 31967
+	Involuntary context switches: 42698
 	Swaps: 0
 	File system inputs: 0
-	File system outputs: 166776
+	File system outputs: 171664
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

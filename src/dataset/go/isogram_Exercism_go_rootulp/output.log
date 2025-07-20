@@ -1,31 +1,40 @@
-# raindrops/test [raindrops/test.test]
-test/isogram_test.go:6:20: undefined: testCases
-test/isogram_test.go:7:6: undefined: IsIsogram
-test/isogram_test.go:18:21: undefined: testCases
-test/isogram_test.go:19:4: undefined: IsIsogram
-FAIL	raindrops/test [build failed]
-FAIL
-Command exited with non-zero status 1
-	Command being timed: "go test ./test/..."
-	User time (seconds): 23.53
-	System time (seconds): 49.45
+=== RUN   TestIsIsogram
+    isogram_test.go:11: PASS: Word ""
+    isogram_test.go:11: PASS: Word "isogram"
+    isogram_test.go:11: PASS: Word "eleven"
+    isogram_test.go:11: PASS: Word "zzyzx"
+    isogram_test.go:11: PASS: Word "subdermatoglyphic"
+    isogram_test.go:11: PASS: Word "Alphabet"
+    isogram_test.go:11: PASS: Word "alphAbet"
+    isogram_test.go:11: PASS: Word "thumbscrew-japingly"
+    isogram_test.go:11: PASS: Word "thumbscrew-jappingly"
+    isogram_test.go:11: PASS: Word "six-year-old"
+    isogram_test.go:11: PASS: Word "Emily Jung Schwartzkopf"
+    isogram_test.go:11: PASS: Word "accentor"
+    isogram_test.go:11: PASS: Word "angola"
+--- PASS: TestIsIsogram (0.03s)
+PASS
+ok  	esercizio	0.052s
+	Command being timed: "go test -v"
+	User time (seconds): 23.57
+	System time (seconds): 47.78
 	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:30.79
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:27.99
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 206032
+	Maximum resident set size (kbytes): 200776
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 701033
-	Voluntary context switches: 33367
-	Involuntary context switches: 43813
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 717222
+	Voluntary context switches: 33734
+	Involuntary context switches: 43871
 	Swaps: 0
 	File system inputs: 0
-	File system outputs: 166776
+	File system outputs: 171656
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

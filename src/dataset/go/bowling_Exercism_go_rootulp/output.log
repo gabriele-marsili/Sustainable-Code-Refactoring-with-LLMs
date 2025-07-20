@@ -1,32 +1,59 @@
-# raindrops/test [raindrops/test.test]
-test/bowling_test.go:11:28: undefined: Game
-test/bowling_test.go:21:21: undefined: scoreTestCases
-test/bowling_test.go:22:8: undefined: NewGame
-test/bowling_test.go:47:21: undefined: rollTestCases
-test/bowling_test.go:48:8: undefined: NewGame
-FAIL	raindrops/test [build failed]
-FAIL
-Command exited with non-zero status 1
-	Command being timed: "go test ./test/..."
-	User time (seconds): 22.88
-	System time (seconds): 47.72
+=== RUN   TestScore
+    bowling_test.go:42: PASS: should be able to score a game with all zeros
+    bowling_test.go:42: PASS: should be able to score a game with no strikes or spares
+    bowling_test.go:42: PASS: a spare followed by zeros is worth ten points
+    bowling_test.go:42: PASS: points scored in the roll after a spare are counted twice
+    bowling_test.go:42: PASS: consecutive spares each get a one roll bonus
+    bowling_test.go:42: PASS: a spare in the last frame gets a one roll bonus that is counted once
+    bowling_test.go:42: PASS: a strike earns ten points in a frame with a single roll
+    bowling_test.go:42: PASS: points scored in the two rolls after a strike are counted twice as a bonus
+    bowling_test.go:42: PASS: consecutive strikes each get the two roll bonus
+    bowling_test.go:42: PASS: a strike in the last frame gets a two roll bonus that is counted once
+    bowling_test.go:42: PASS: rolling a spare with the two roll bonus does not get a bonus roll
+    bowling_test.go:42: PASS: strikes with the two roll bonus do not get bonus rolls
+    bowling_test.go:42: PASS: a strike with the one roll bonus after a spare in the last frame does not get a bonus
+    bowling_test.go:42: PASS: all strikes is a perfect game
+    bowling_test.go:42: PASS: two bonus rolls after a strike in the last frame can score more than 10 points if one is a strike
+    bowling_test.go:42: PASS: an unstarted game cannot be scored
+    bowling_test.go:42: PASS: an incomplete game cannot be scored
+    bowling_test.go:42: PASS: bonus rolls for a strike in the last frame must be rolled before score can be calculated
+    bowling_test.go:42: PASS: both bonus rolls for a strike in the last frame must be rolled before score can be calculated
+    bowling_test.go:42: PASS: bonus roll for a spare in the last frame must be rolled before score can be calculated
+--- PASS: TestScore (0.07s)
+=== RUN   TestRoll
+    bowling_test.go:64: PASS: rolls cannot score negative points
+    bowling_test.go:64: PASS: a roll cannot score more than 10 points
+    bowling_test.go:64: PASS: two rolls in a frame cannot score more than 10 points
+    bowling_test.go:64: PASS: bonus roll after a strike in the last frame cannot score more than 10 points
+    bowling_test.go:64: PASS: two bonus rolls after a strike in the last frame cannot score more than 10 points
+    bowling_test.go:64: PASS: the second bonus rolls after a strike in the last frame cannot be a strike if the first one is not a strike
+    bowling_test.go:64: PASS: second bonus roll after a strike in the last frame cannot score more than 10 points
+    bowling_test.go:64: PASS: cannot roll if game already has ten frames
+    bowling_test.go:64: PASS: cannot roll after bonus roll for spare
+    bowling_test.go:64: PASS: cannot roll after bonus rolls for strike
+--- PASS: TestRoll (0.02s)
+PASS
+ok  	esercizio	0.152s
+	Command being timed: "go test -v"
+	User time (seconds): 22.55
+	System time (seconds): 47.01
 	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:25.27
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:22.80
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 200272
+	Maximum resident set size (kbytes): 201164
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 703641
-	Voluntary context switches: 31978
-	Involuntary context switches: 42081
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 715074
+	Voluntary context switches: 33194
+	Involuntary context switches: 42735
 	Swaps: 0
 	File system inputs: 0
-	File system outputs: 166776
+	File system outputs: 171928
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

@@ -1,3 +1,3 @@
-module annalyn
+module esercizio
 
-go 1.14
+go 1.21

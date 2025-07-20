@@ -1,0 +1,76 @@
+=== RUN   TestGetItem
+=== RUN   TestGetItem/Retrieve_item_from_slice_by_index
+=== RUN   TestGetItem/Get_first_item_from_slice
+=== RUN   TestGetItem/Get_last_item_from_slice
+=== RUN   TestGetItem/Index_out_of_bounds
+=== RUN   TestGetItem/Negative_index
+--- PASS: TestGetItem (0.01s)
+    --- PASS: TestGetItem/Retrieve_item_from_slice_by_index (0.00s)
+    --- PASS: TestGetItem/Get_first_item_from_slice (0.00s)
+    --- PASS: TestGetItem/Get_last_item_from_slice (0.00s)
+    --- PASS: TestGetItem/Index_out_of_bounds (0.00s)
+    --- PASS: TestGetItem/Negative_index (0.00s)
+=== RUN   TestSetItem
+=== RUN   TestSetItem/Overwrite_an_existing_item
+=== RUN   TestSetItem/Overwrite_first_item
+=== RUN   TestSetItem/Overwrite_last_item
+=== RUN   TestSetItem/Index_out_of_bounds
+=== RUN   TestSetItem/Negative_index
+--- PASS: TestSetItem (0.01s)
+    --- PASS: TestSetItem/Overwrite_an_existing_item (0.00s)
+    --- PASS: TestSetItem/Overwrite_first_item (0.00s)
+    --- PASS: TestSetItem/Overwrite_last_item (0.00s)
+    --- PASS: TestSetItem/Index_out_of_bounds (0.00s)
+    --- PASS: TestSetItem/Negative_index (0.00s)
+=== RUN   TestPrefilledSlice
+=== RUN   TestPrefilledSlice/Create_a_prefilled_slice_with_value_3
+=== RUN   TestPrefilledSlice/Create_a_prefilled_slice_with_value_10
+=== RUN   TestPrefilledSlice/Length_zero
+=== RUN   TestPrefilledSlice/Negative_length
+--- PASS: TestPrefilledSlice (0.01s)
+    --- PASS: TestPrefilledSlice/Create_a_prefilled_slice_with_value_3 (0.00s)
+    --- PASS: TestPrefilledSlice/Create_a_prefilled_slice_with_value_10 (0.00s)
+    --- PASS: TestPrefilledSlice/Length_zero (0.00s)
+    --- PASS: TestPrefilledSlice/Negative_length (0.00s)
+=== RUN   TestRemoveItem
+=== RUN   TestRemoveItem/Remove_an_item
+Valid item: 1
+=== RUN   TestRemoveItem/Remove_the_first_item
+First item: 0
+=== RUN   TestRemoveItem/Remove_the_last_item
+Last item: 3
+=== RUN   TestRemoveItem/Remove_out_of_bounds_index
+Invalid item: 7
+=== RUN   TestRemoveItem/Remove_negative_index
+Invalid item: -7
+--- PASS: TestRemoveItem (0.02s)
+    --- PASS: TestRemoveItem/Remove_an_item (0.00s)
+    --- PASS: TestRemoveItem/Remove_the_first_item (0.00s)
+    --- PASS: TestRemoveItem/Remove_the_last_item (0.00s)
+    --- PASS: TestRemoveItem/Remove_out_of_bounds_index (0.00s)
+    --- PASS: TestRemoveItem/Remove_negative_index (0.00s)
+PASS
+ok  	esercizio	0.079s
+	Command being timed: "go test -v"
+	User time (seconds): 23.96
+	System time (seconds): 49.19
+	Percent of CPU this job got: 48%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:30.77
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 204408
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 715854
+	Voluntary context switches: 33131
+	Involuntary context switches: 44081
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 171856
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

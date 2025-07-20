@@ -1,31 +1,51 @@
-# raindrops/test [raindrops/test.test]
-test/change_test.go:9:21: undefined: testCases
-test/change_test.go:11:19: undefined: Change
-test/change_test.go:32:22: undefined: testCases
-test/change_test.go:33:4: undefined: Change
-FAIL	raindrops/test [build failed]
-FAIL
-Command exited with non-zero status 1
-	Command being timed: "go test ./test/..."
-	User time (seconds): 23.18
-	System time (seconds): 47.80
+=== RUN   TestChange
+=== RUN   TestChange/change_for_1_cent
+=== RUN   TestChange/single_coin_change
+=== RUN   TestChange/multiple_coin_change
+=== RUN   TestChange/change_with_Lilliputian_Coins
+=== RUN   TestChange/change_with_Lower_Elbonia_Coins
+=== RUN   TestChange/large_target_values
+=== RUN   TestChange/possible_change_without_unit_coins_available
+=== RUN   TestChange/another_possible_change_without_unit_coins_available
+=== RUN   TestChange/no_coins_make_0_change
+=== RUN   TestChange/error_testing_for_change_smaller_than_the_smallest_of_coins
+=== RUN   TestChange/error_if_no_combination_can_add_up_to_target
+=== RUN   TestChange/cannot_find_negative_change_values
+--- PASS: TestChange (0.06s)
+    --- PASS: TestChange/change_for_1_cent (0.00s)
+    --- PASS: TestChange/single_coin_change (0.00s)
+    --- PASS: TestChange/multiple_coin_change (0.00s)
+    --- PASS: TestChange/change_with_Lilliputian_Coins (0.00s)
+    --- PASS: TestChange/change_with_Lower_Elbonia_Coins (0.00s)
+    --- PASS: TestChange/large_target_values (0.02s)
+    --- PASS: TestChange/possible_change_without_unit_coins_available (0.00s)
+    --- PASS: TestChange/another_possible_change_without_unit_coins_available (0.00s)
+    --- PASS: TestChange/no_coins_make_0_change (0.00s)
+    --- PASS: TestChange/error_testing_for_change_smaller_than_the_smallest_of_coins (0.00s)
+    --- PASS: TestChange/error_if_no_combination_can_add_up_to_target (0.00s)
+    --- PASS: TestChange/cannot_find_negative_change_values (0.00s)
+PASS
+ok  	esercizio	0.104s
+	Command being timed: "go test -v"
+	User time (seconds): 22.32
+	System time (seconds): 46.12
 	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:26.98
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:20.77
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 204832
+	Maximum resident set size (kbytes): 206096
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 695829
-	Voluntary context switches: 32357
-	Involuntary context switches: 42039
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 713370
+	Voluntary context switches: 32455
+	Involuntary context switches: 42196
 	Swaps: 0
 	File system inputs: 0
-	File system outputs: 166776
+	File system outputs: 171760
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

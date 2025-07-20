@@ -1,0 +1,44 @@
+=== RUN   TestIsValidISBN
+    isbn_verifier_test.go:11: PASS: valid isbn number
+    isbn_verifier_test.go:11: PASS: invalid isbn check digit
+    isbn_verifier_test.go:11: PASS: valid isbn number with a check digit of 10
+    isbn_verifier_test.go:11: PASS: check digit is a character other than X
+    isbn_verifier_test.go:11: PASS: invalid character in isbn
+    isbn_verifier_test.go:11: PASS: X is only valid as a check digit
+    isbn_verifier_test.go:11: PASS: valid isbn without separating dashes
+    isbn_verifier_test.go:11: PASS: isbn without separating dashes and X as check digit
+    isbn_verifier_test.go:11: PASS: isbn without check digit and dashes
+    isbn_verifier_test.go:11: PASS: too long isbn and no dashes
+    isbn_verifier_test.go:11: PASS: too short isbn
+    isbn_verifier_test.go:11: PASS: isbn without check digit
+    isbn_verifier_test.go:11: PASS: check digit of X should not be used for 0
+    isbn_verifier_test.go:11: PASS: empty isbn
+    isbn_verifier_test.go:11: PASS: input is 9 characters
+    isbn_verifier_test.go:11: PASS: invalid characters are not ignored
+    isbn_verifier_test.go:11: PASS: input is too long but contains a valid isbn
+--- PASS: TestIsValidISBN (0.01s)
+PASS
+ok  	esercizio	0.031s
+	Command being timed: "go test -v"
+	User time (seconds): 24.01
+	System time (seconds): 48.47
+	Percent of CPU this job got: 48%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:30.39
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 203508
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 712171
+	Voluntary context switches: 33547
+	Involuntary context switches: 44215
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 171632
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

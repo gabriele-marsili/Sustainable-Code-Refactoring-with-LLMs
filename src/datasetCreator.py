@@ -58,14 +58,16 @@ class CodeTestDatasetCreator:
     def get_github_contents(self, repo: str, path: str = "") -> List[Dict]:
         """Ottiene i contenuti di una directory GitHub"""
         url = f"https://api.github.com/repos/{repo}/contents/{path}"
-        headers = {'Accept': 'application/vnd.github.v3+json'}
+        headers = {'Accept': 'application/vnd.github.v3+json',"User-Agent":"Awesome-Octocat-App"}
         if self.github_token:
             headers['Authorization'] = f'token {self.github_token}'
 
         try:
+            time.sleep(3)
             response = self.session.get(url, headers=headers)
             if response.status_code == 403:
                 print(f"Rate limit raggiunto, attendere 60 secondi...")
+                print(url)
                 time.sleep(60)
                 response = self.session.get(url, headers=headers) # Riprova dopo l'attesa
 
@@ -78,11 +80,12 @@ class CodeTestDatasetCreator:
     def get_file_content(self, repo: str, file_path: str) -> Optional[str]:
         """Ottiene il contenuto di un file da GitHub"""
         url = f"https://api.github.com/repos/{repo}/contents/{file_path}"
-        headers = {'Accept': 'application/vnd.github.v3+json'}
+        headers = {'Accept': 'application/vnd.github.v3+json',"User-Agent":"Awesome-Octocat-App"}
         if self.github_token:
             headers['Authorization'] = f'token {self.github_token}'
 
         try:
+            time.sleep(3)
             response = self.session.get(url, headers=headers)
             if response.status_code == 404:
                 return None
@@ -791,7 +794,7 @@ class CodeTestDatasetCreator:
         """Esegue l'estrazione completa del dataset"""
         if sources is None:
             sources = [
-                'java-thomasZumsteg'
+                'all_go'
             ]
         if languages is None:
             languages = ['python', 'java', 'javascript', 'typescript', 'cpp', 'go', 'rust', 'csharp', 'ruby', 'php']
@@ -812,10 +815,6 @@ class CodeTestDatasetCreator:
                     {"repo" : "ThomasZumsteg/exercism-go", "name" : "ThomasZumsteg","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
                     {"repo" : "thinkverse/exercism-go", "name" : "thinkverse","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
                     {"repo" : "drapala/exercism_go", "name" : "drapala","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
-                    #{"repo" : "", "name" : "","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
-                    #{"repo" : "", "name" : "","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
-                    #{"repo" : "", "name" : "","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
-                    #{"repo" : "", "name" : "","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
                 ]
                 self.process_all_go(repos)  
             
@@ -912,6 +911,33 @@ class CodeTestDatasetCreator:
             print(f"  - {lang}: {count} coppie")
      
 
+    def get_dataset_go_entries(self):
+        self.dataset_content.get("go", [])                    
+       
+    def process_files_to_add(self,files,exercism_name:str,source:str,repo):
+        for f in files :
+            if not (exercism_name in str(f['name'])) and str(f['name']).endswith("go"):
+                print(f"adding file {f['name']} to exercism {exercism_name}")
+                                    
+                # Crea la struttura delle directory
+                source_for_path = source.replace(" ","_")
+                source_for_path = source_for_path.replace("(","")
+                source_for_path = source_for_path.replace(")","")
+                lang_dir = self.root_dir / "go"
+                code_dir = lang_dir / (exercism_name+"_"+source_for_path)
+                
+                file_content = self.get_file_content(repo, f['path'])
+                complete_path = code_dir / f['name']
+                self.save_file_content(file_content,complete_path)
+                print(f"✅ saved file {complete_path} (to exercism {exercism_name})")
+                
+
+                
+                
+
+                    
+                
+                
        
     def process_all_go(self, repos):
         for r in repos:
@@ -952,27 +978,34 @@ class CodeTestDatasetCreator:
                     src_dir_fileArr = []
                     test_dir_fileArr = []
                     
+                    files_to_add = []
                     for f_item in conent:                     
                         if f_item['name'] == "go.mod" : go_mod_File = f_item
                             
                         #process internal dir
                         if f_item["type"] == "dir" and f_item['name'] != ".exercism":
-                            is_test_dir = "test" in f_item['name'] or "Test" in f_item['name'] 
+                            #is_test_dir = "test" in f_item['name'] or "Test" in f_item['name'] 
                             dirContent = self.get_github_contents(repo,f_item["path"])
-                            if is_test_dir : test_dir_content = dirContent
-                            elif "src" in f_item['name'] or "Src" in f_item['name']: src_dir_content = dirContent
-                            elif "build" in f_item['name'] or "Build" in f_item['name']: build_dir_content = dirContent
+                            #if is_test_dir : test_dir_content = dirContent
+                            #elif "src" in f_item['name'] or "Src" in f_item['name']: src_dir_content = dirContent
+                            #elif "build" in f_item['name'] or "Build" in f_item['name']: build_dir_content = dirContent
                             
                             for f in dirContent:
-                                if is_test_dir : test_dir_fileArr.append(f)
-                                else : src_dir_fileArr.append(f)
+                                if str(f['name']).endswith(".go") : files_to_add.append(f)
+                                #if is_test_dir : test_dir_fileArr.append(f)
+                                #else : src_dir_fileArr.append(f)
                         
-                        if f_item['type'] == "file" and file_name in f_item["name"]: 
-                            if "test" in f_item["name"]:
-                                test_dir_fileArr.append(f_item)
-                            else:
-                                src_dir_fileArr.append(f_item)     
+                        if f_item['type'] == "file": # and file_name in f_item["name"]: 
+                            if str(f_item['name']).endswith(".go") : files_to_add.append(f_item)
+                            #if "test" in f_item["name"]:
+                            #    test_dir_fileArr.append(f_item)
+                            #else:
+                            #    src_dir_fileArr.append(f_item)     
                     
+                    #file_id = f"go_{file_name}_{source}"
+                    self.process_files_to_add(files_to_add,file_name,source,repo)
+                    
+                    """
                     if src_dir_content and test_dir_content :
                         print(f"Creating pair for file : {file_name} (by dir)")
                         self.create_code_pair_by_dir(repo,src_dir_content,test_dir_content, "go",file_name, source, go_mod_File,licenseType,build_dir_content)
@@ -991,7 +1024,7 @@ class CodeTestDatasetCreator:
                             print(f"Creating pair for file : {file_name} (by arr)")                    
                             self.create_code_pair_by_array(repo,src_dir_fileArr,test_dir_fileArr, "go",file_name, source, go_mod_File,licenseType)
                             counter +=1
-                    
+                    """
                         
                         
             print(f"\nProcessed {counter} go pairs for repo {repo} | {name} | {source}")
@@ -1684,7 +1717,7 @@ class CodeTestDatasetCreator:
 if __name__ == "__main__":
     creator = CodeTestDatasetCreator()
     creator.github_token = os.getenv("GITHUB_TOKEN") # Carica il token da variabile d'ambiente
-
+    print(f"creator.github_token = {creator.github_token}")
     # Esegui l'estrazione con tutti i linguaggi e le nuove fonti
     creator.run_full_extraction(
         sources=[

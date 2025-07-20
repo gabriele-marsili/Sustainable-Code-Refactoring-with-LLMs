@@ -1,38 +1,33 @@
-# raindrops/test [raindrops/test.test]
-test/matrix_test.go:147:13: undefined: New
-test/matrix_test.go:170:13: undefined: New
-test/matrix_test.go:197:13: undefined: New
-test/matrix_test.go:221:12: undefined: New
-test/matrix_test.go:236:11: undefined: New
-test/matrix_test.go:257:9: undefined: New
-test/matrix_test.go:274:14: undefined: Matrix
-test/matrix_test.go:277:17: undefined: New
-test/matrix_test.go:291:17: undefined: New
-test/matrix_test.go:309:17: undefined: New
-test/matrix_test.go:309:17: too many errors
-FAIL	raindrops/test [build failed]
-FAIL
-Command exited with non-zero status 1
-	Command being timed: "go test ./test/..."
-	User time (seconds): 26.06
-	System time (seconds): 53.82
+=== RUN   TestNew
+--- PASS: TestNew (0.00s)
+=== RUN   TestRows
+--- PASS: TestRows (0.00s)
+=== RUN   TestCols
+--- PASS: TestCols (0.00s)
+=== RUN   TestSet
+--- PASS: TestSet (0.00s)
+PASS
+ok  	esercizio	0.032s
+	Command being timed: "go test -v"
+	User time (seconds): 22.79
+	System time (seconds): 47.09
 	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:46.23
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:24.20
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 204208
+	Maximum resident set size (kbytes): 200584
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 1
-	Minor (reclaiming a frame) page faults: 700523
-	Voluntary context switches: 33991
-	Involuntary context switches: 44893
+	Major (requiring I/O) page faults: 4
+	Minor (reclaiming a frame) page faults: 721359
+	Voluntary context switches: 32739
+	Involuntary context switches: 43300
 	Swaps: 0
-	File system inputs: 240
-	File system outputs: 166792
+	File system inputs: 0
+	File system outputs: 172232
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

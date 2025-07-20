@@ -1,38 +1,31 @@
-# raindrops/test [raindrops/test.test]
-test/ledger_test.go:13:13: undefined: Entry
-test/ledger_test.go:29:14: undefined: Entry
-test/ledger_test.go:45:14: undefined: Entry
-test/ledger_test.go:67:14: undefined: Entry
-test/ledger_test.go:89:14: undefined: Entry
-test/ledger_test.go:117:14: undefined: Entry
-test/ledger_test.go:133:14: undefined: Entry
-test/ledger_test.go:149:14: undefined: Entry
-test/ledger_test.go:165:14: undefined: Entry
-test/ledger_test.go:181:14: undefined: Entry
-test/ledger_test.go:181:14: too many errors
-FAIL	raindrops/test [build failed]
-FAIL
-Command exited with non-zero status 1
-	Command being timed: "go test ./test/..."
-	User time (seconds): 24.95
-	System time (seconds): 49.49
+=== RUN   TestFormatLedgerSuccess
+--- PASS: TestFormatLedgerSuccess (0.00s)
+=== RUN   TestFormatLedgerFailure
+--- PASS: TestFormatLedgerFailure (0.00s)
+=== RUN   TestFormatLedgerNotChangeInput
+--- PASS: TestFormatLedgerNotChangeInput (0.00s)
+PASS
+ok  	esercizio	0.021s
+	Command being timed: "go test -v"
+	User time (seconds): 23.39
+	System time (seconds): 48.17
 	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:34.03
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:28.11
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 202828
+	Maximum resident set size (kbytes): 206452
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 697604
-	Voluntary context switches: 33299
-	Involuntary context switches: 44419
+	Major (requiring I/O) page faults: 3
+	Minor (reclaiming a frame) page faults: 715776
+	Voluntary context switches: 34373
+	Involuntary context switches: 44051
 	Swaps: 0
 	File system inputs: 0
-	File system outputs: 166848
+	File system outputs: 172152
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

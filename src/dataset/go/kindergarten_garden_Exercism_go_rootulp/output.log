@@ -1,34 +1,31 @@
-# raindrops/test [raindrops/test.test]
-test/kindergarten_garden_test.go:104:13: undefined: NewGarden
-test/kindergarten_garden_test.go:138:12: undefined: NewGarden
-test/kindergarten_garden_test.go:158:14: undefined: NewGarden
-test/kindergarten_garden_test.go:159:14: undefined: NewGarden
-test/kindergarten_garden_test.go:163:16: undefined: Garden
-test/kindergarten_garden_test.go:185:4: undefined: NewGarden
-test/kindergarten_garden_test.go:194:12: undefined: NewGarden
-FAIL	raindrops/test [build failed]
-FAIL
-Command exited with non-zero status 1
-	Command being timed: "go test ./test/..."
-	User time (seconds): 24.24
-	System time (seconds): 48.99
-	Percent of CPU this job got: 47%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:33.04
+=== RUN   TestGarden
+--- PASS: TestGarden (0.00s)
+=== RUN   TestNamesNotModified
+--- PASS: TestNamesNotModified (0.00s)
+=== RUN   TestTwoGardens
+--- PASS: TestTwoGardens (0.00s)
+PASS
+ok  	esercizio	0.027s
+	Command being timed: "go test -v"
+	User time (seconds): 23.75
+	System time (seconds): 48.02
+	Percent of CPU this job got: 48%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:28.78
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 203984
+	Maximum resident set size (kbytes): 206480
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 695922
-	Voluntary context switches: 32908
-	Involuntary context switches: 44018
+	Major (requiring I/O) page faults: 4
+	Minor (reclaiming a frame) page faults: 718407
+	Voluntary context switches: 34090
+	Involuntary context switches: 45391
 	Swaps: 0
 	File system inputs: 0
-	File system outputs: 166792
+	File system outputs: 172072
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

@@ -1,0 +1,53 @@
+=== RUN   TestNewCar
+=== RUN   TestNewCar/Create_a_new_car.
+--- PASS: TestNewCar (0.00s)
+    --- PASS: TestNewCar/Create_a_new_car. (0.00s)
+=== RUN   TestNewTrack
+=== RUN   TestNewTrack/Create_a_new_track.
+=== RUN   TestNewTrack/Create_a_new_track.#01
+--- PASS: TestNewTrack (0.00s)
+    --- PASS: TestNewTrack/Create_a_new_track. (0.00s)
+    --- PASS: TestNewTrack/Create_a_new_track.#01 (0.00s)
+=== RUN   TestDrive
+=== RUN   TestDrive/Drive_the_car_with_full_battery.
+=== RUN   TestDrive/Drive_the_car_with_battery_drained.
+--- PASS: TestDrive (0.00s)
+    --- PASS: TestDrive/Drive_the_car_with_full_battery. (0.00s)
+    --- PASS: TestDrive/Drive_the_car_with_battery_drained. (0.00s)
+=== RUN   TestCanFinish
+=== RUN   TestCanFinish/Car_can_easily_finish_the_track_distance.
+=== RUN   TestCanFinish/Car_can_finish_the_track_distance_just_as_the_battery_is_drained.
+=== RUN   TestCanFinish/Car_cannot_finish_the_track_distance.
+=== RUN   TestCanFinish/Car_can_finish_the_track_distance_with_initial_battery_less_than_100%
+=== RUN   TestCanFinish/Car_cannot_finish_the_track_distance_with_initial_battery_less_than_100%
+--- PASS: TestCanFinish (0.01s)
+    --- PASS: TestCanFinish/Car_can_easily_finish_the_track_distance. (0.00s)
+    --- PASS: TestCanFinish/Car_can_finish_the_track_distance_just_as_the_battery_is_drained. (0.00s)
+    --- PASS: TestCanFinish/Car_cannot_finish_the_track_distance. (0.00s)
+    --- PASS: TestCanFinish/Car_can_finish_the_track_distance_with_initial_battery_less_than_100% (0.00s)
+    --- PASS: TestCanFinish/Car_cannot_finish_the_track_distance_with_initial_battery_less_than_100% (0.00s)
+PASS
+ok  	esercizio	0.056s
+	Command being timed: "go test -v"
+	User time (seconds): 25.96
+	System time (seconds): 50.01
+	Percent of CPU this job got: 47%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:38.92
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 199080
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 714837
+	Voluntary context switches: 33912
+	Involuntary context switches: 45787
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 171856
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
