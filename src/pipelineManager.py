@@ -208,8 +208,8 @@ class PipelineManager:
                 
                 for entry in entries:
                     # Conta generazioni riuscite
-                    if 'LLM_codeSnippetFilePaths' in entry:
-                        successful_generations += len(entry['LLM_codeSnippetFilePaths'])
+                    if 'LLM' in entry:
+                        successful_generations += len(entry["LLM"])
                     
                     # Conta test riusciti
                     if 'LLM_results' in entry:

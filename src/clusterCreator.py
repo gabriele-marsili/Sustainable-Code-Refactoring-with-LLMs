@@ -8,13 +8,20 @@ from utility_dir import utility_paths
 
 # === UTILS ===
 
+CLUSTER_ALREADY_CREATED = [
+    "raindrops",
+    "bob",
+    "leap",
+    "pangram"
+]
+
 class ClusterCreator : 
-    def __init__(self, root_dir = "dataset", cluster_name = "focused_cluster_datas_2.json"):
+    def __init__(self, root_dir = "dataset", cluster_name = "focused_cluster_datas_3.json",save_in_dir=False):
         self.root_dir = Path(root_dir)
         self.jsonDataset_file = self.root_dir / "dataset.json"
         self.FOCUSED_CLUSTER_DIR = utility_paths.CLUSTERS_DIR_FILEPATH
         self.FOCUSED_CLUSTER_JSON = utility_paths.CLUSTERS_DIR_FILEPATH / cluster_name
-
+        self.save_in_dir = save_in_dir
 
     def load_dataset(self):
         with open(self.jsonDataset_file, "r", encoding="utf-8") as f:
@@ -26,11 +33,18 @@ class ClusterCreator :
         base = Path(filename).stem
         return base.split(".")[0]  # Se è tipo x.test.js rimuove .test
 
+    def check_already_created(self,entry):
+        for name in CLUSTER_ALREADY_CREATED : 
+            if name in entry["id"] : return True
+        
+        return False
+    
     def group_entries_by_exercise(self,dataset):
         cluster_map = defaultdict(list)
         for lang, entries in dataset.items():
             for entry in entries:
-                if not "raindrops" in entry['id']:
+                #skip already created clusters :
+                if not self.check_already_created(entry):
                     exercise = self.get_exercise_name(entry)
                     key = exercise.lower()
                     cluster_map[key].append((lang, entry))
@@ -84,10 +98,11 @@ class ClusterCreator :
 
         print(f"Cluster selezionato: '{top_cluster_name}' con {len(top_cluster_entries)} versioni cross-language.")
 
-        os.makedirs(self.FOCUSED_CLUSTER_DIR, exist_ok=True)
+        if self.save_in_dir : 
+            os.makedirs(self.FOCUSED_CLUSTER_DIR, exist_ok=True)
 
-        for lang, entry in top_cluster_entries:
-            self.copy_entry(entry, lang)
+            for lang, entry in top_cluster_entries:
+                self.copy_entry(entry, lang)
 
         self.save_focused_dataset(top_cluster_entries)
 

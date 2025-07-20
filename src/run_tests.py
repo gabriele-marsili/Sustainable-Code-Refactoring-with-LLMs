@@ -536,8 +536,9 @@ class TestRunner:
 
         # Esegui i test sui codici generati dagli LLM
         llm_results = []
-        if "LLM_codeSnippetFilePaths" in entry and not base_only:
-            for llm_path in entry["LLM_codeSnippetFilePaths"]:
+        if "LLMs" in entry and not base_only:
+            for LLM in entry["LLMs"]:
+                llm_path = LLM["path"]
                 llm_file = Path(llm_path).name
                 llm_name = llm_file.split("_")[0]
                 if not silent_mode : print(f"  ↪ Testing LLM ({llm_name}): {llm_file}")
@@ -676,7 +677,7 @@ def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cach
     chosen_path = CLUSTER_JSON
     if use_dataset : chosen_path = DATASET_JSON_PATH
     if use_bad_entries : chosen_path = BAD_ENTRIES_CLUSTER_JSON
-    if cluster_name != "" : 
+    if cluster_name and cluster_name != "" : 
         if not (cluster_name.endswith(".json")):cluster_name = cluster_name + ".json"
         chosen_path = utility_paths.CLUSTERS_DIR_FILEPATH / cluster_name
     if use_debug_cluster : 

@@ -43,8 +43,9 @@ def update_json(renamed_files, path):
             continue
         for entry in entries:
             keys = ["codeSnippetFilePath", "testUnitFilePath"]
-            if "LLM_codeSnippetFilePaths" in entry:
-                keys += entry["LLM_codeSnippetFilePaths"]
+            if "LLMs" in entry:
+                for llm in entry["LLMs"]:                    
+                    keys += llm["path"]
 
             for key in keys:
                 if isinstance(entry.get(key), list):
