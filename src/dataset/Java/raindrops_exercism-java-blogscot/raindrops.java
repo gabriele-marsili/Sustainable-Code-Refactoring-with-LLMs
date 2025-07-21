@@ -1,22 +1,16 @@
-import java.util.HashMap;
-
 class RaindropConverter {
-  private static final HashMap<Integer, String> raindrops = new HashMap<>();
-
-  static {
-    raindrops.put(3, "Pling");
-    raindrops.put(5, "Plang");
-    raindrops.put(7, "Plong");
-  }
+  private static final int[] keys = {3, 5, 7};
+  private static final String[] values = {"Pling", "Plang", "Plong"};
 
   String convert(int number) {
+    StringBuilder result = new StringBuilder();
 
-    return raindrops
-        .keySet()
-        .stream()
-        .filter(key -> number % key == 0)
-        .map(raindrops::get)
-        .reduce(String::concat)
-        .orElse(Integer.toString(number));
+    for (int i = 0; i < keys.length; i++) {
+      if (number % keys[i] == 0) {
+        result.append(values[i]);
+      }
+    }
+
+    return result.length() > 0 ? result.toString() : Integer.toString(number);
   }
 }

@@ -1,23 +1,19 @@
 type Divider = 3 | 5 | 7;
 type Sound = "Pling" | "Plang" | "Plong";
 
-const soundsMap = new Map<Divider, Sound>([
+const dividers: [Divider, Sound][] = [
   [3, "Pling"],
   [5, "Plang"],
   [7, "Plong"],
-]);
+];
 
 export function convert(input: number): string {
-  let converted: string = "";
-  soundsMap.forEach((sound, divider) => {
+  let result = "";
+  for (let i = 0; i < dividers.length; i++) {
+    const [divider, sound] = dividers[i];
     if (input % divider === 0) {
-      converted += sound;
+      result += sound;
     }
-  });
-
-  if (converted.length === 0) {
-    return input.toString();
   }
-
-  return converted;
+  return result || input.toString();
 }

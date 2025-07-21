@@ -76,7 +76,7 @@ class TestRunner:
             total_files = self.total_tests
             error_quantity = self.completed_tests - self.passed_tests
     
-    def run_test_worker(self, test_info,run_with_docker_cache=True):
+    def run_test_worker(self, test_info,run_with_docker_cache=True,prompt_version = 1):
         """Worker per eseguire un singolo test"""
         entry, lang, test_type = test_info
         test_id = f"{entry['id']}_{test_type}"
@@ -86,18 +86,22 @@ class TestRunner:
             
             if test_type == "base":
                 # Test del codice base
-                results = self.run_tests_on_entry(entry, lang, base_only=True, run_with_docker_cache=run_with_docker_cache)
+                results = self.run_tests_on_entry(entry, lang, base_only=True, run_with_docker_cache=run_with_docker_cache,prompt_version = prompt_version)
                 success = results.get("execution_time_ms") is not None
             elif test_type == "llm":
                 # Test solo LLM
-                results = self.run_tests_on_entry(entry, lang, llm_only=True,run_with_docker_cache=run_with_docker_cache)
+                results = self.run_tests_on_entry(entry, lang, llm_only=True,run_with_docker_cache=run_with_docker_cache,prompt_version = prompt_version)
                 success = bool(results.get("LLM_results"))
             else:
                 # Test completo
-                results = self.run_tests_on_entry(entry, lang,run_with_docker_cache=run_with_docker_cache)
+                results = self.run_tests_on_entry(entry, lang,run_with_docker_cache=run_with_docker_cache,prompt_version = prompt_version)
                 success = results.get("execution_time_ms") is not None
             
             self._update_progress(test_id, success)
+            
+            if not silent_mode:
+                print(f"results in run_ test_worker :\n{results}")
+                
             return {
                 'test_id': test_id,
                 'entry': entry,
@@ -119,7 +123,7 @@ class TestRunner:
                 'error': error_msg
             }
     
-    def run_tests_concurrent(self, cluster_data, base_only=False, llm_only=False,run_with_docker_cache=True):
+    def run_tests_concurrent(self, cluster_data, base_only=False, llm_only=False,run_with_docker_cache=True,prompt_version = 1):
         """Esegue tutti i test in modo concorrente"""
         # Prepara lista dei test
         test_tasks = []
@@ -143,7 +147,7 @@ class TestRunner:
         with concurrent.futures.ThreadPoolExecutor(max_workers=self.max_workers) as executor:
             # sottomissione delle task
             future_to_task = {
-                executor.submit(self.run_test_worker, task, run_with_docker_cache): task 
+                executor.submit(self.run_test_worker, task, run_with_docker_cache, prompt_version): task 
                 for task in test_tasks
             }
             
@@ -151,6 +155,8 @@ class TestRunner:
             for future in concurrent.futures.as_completed(future_to_task):
                 result = future.result()
                 test_results.append(result)
+                
+                if not silent_mode : print(f"task result:\n{result}")
                 
                 # aggiornamento dell'entry (se il test ha successo)
                 if result['success'] and result['results']:
@@ -170,7 +176,7 @@ class TestRunner:
                         entry["LLM_results"] = results["LLM_results"]
         
         # Statistiche esecuzione:
-        successful_tests = sum(1 for r in test_results if r['success'])
+        #successful_tests = sum(1 for r in test_results if r['success'])
         failed_tests = self.total_tests - self.passed_tests
         
         print(f"✅ Test completati: {self.passed_tests}/{self.total_tests} successi")
@@ -521,7 +527,7 @@ class TestRunner:
             print(f"❌ Errore nella creazione del container {container_name}: {e.stderr}")
             raise # Propaga l'errore per fallire l'intera esecuzione
         
-    def run_tests_on_entry(self, entry, lang, base_only=False, llm_only=False, run_with_docker_cache=True):
+    def run_tests_on_entry(self, entry, lang, base_only=False, llm_only=False, run_with_docker_cache=True,prompt_version = 1):
         path = DATASET_DIR / Path(entry["testUnitFilePath"]).parent
         
         container_name = self.container_pool.get(lang)
@@ -557,7 +563,12 @@ class TestRunner:
             for LLM in entry["LLMs"]:
                 llm_path = LLM["path"]
                 llm_file = Path(llm_path).name
-                llm_name = llm_file.split("_")[0]
+                llm_name = LLM["filename"]
+                prompt_V_str = f"_v{prompt_version}"
+                if not prompt_V_str in llm_name : 
+                    if not silent_mode : print(f"  ↪ Skipping LLM ({llm_name}): {llm_file} | -> not version {prompt_version}")
+                    continue
+                
                 if not silent_mode : print(f"  ↪ Testing LLM ({llm_name}): {llm_file}")
                 
                 llm_type_dir = (DATASET_DIR / llm_path).parent
@@ -614,6 +625,9 @@ class TestRunner:
                 else : llm_metrics = self.parse_metrics_typescript(llm_log)
                 if container_err_flag : llm_metrics['regrationTestPassed'] = False
 
+                if not silent_mode :
+                    print(f"llm_metrics:\n{llm_metrics}")
+
                 # ripristina codeSnippet originario
                 if backup:
                     shutil.move(backup, target_file)
@@ -624,23 +638,21 @@ class TestRunner:
                     if not silent_mode : print(f"🔁 Ripristino nome {original_filename} → {llm_file}")
 
                 # confronta
-                llm_metrics["LLM_type"] = llm_name
-                llm_metrics["execution_time_difference_ms"] = llm_metrics["execution_time_ms"] - results["execution_time_ms"]
-                llm_metrics["CPU_usage_difference"] = llm_metrics["CPU_usage"] - results["CPU_usage"]
-                llm_metrics["ram_usage_difference"] = llm_metrics["RAM_usage"] - results["RAM_usage"]
-                llm_metrics["execution_time_improved"] = llm_metrics["execution_time_difference_ms"] < 0
-                llm_metrics["CPU_improved"] = llm_metrics["CPU_usage_difference"] < 0
-                llm_metrics["ram_improved"] = llm_metrics["ram_usage_difference"] < 0
-                
-
-                
+                llm_metrics["LLM_type"] = LLM["type"]
+                llm_metrics['path'] = llm_path
                 llm_metrics["log"] = str(llm_log).replace("output.log",f"{llm_dirName}/output.log")
                 llm_results.append(llm_metrics)
+                if not silent_mode :
+                     print(f"updated llm_results in\n{llm_results}")
 
         results["LLM_results"] = llm_results
+       
+        if not silent_mode :
+            print(f"results['LLM_results'] = {results['LLM_results']}")
+        
         return results
 
-    def save_results_to_output_file(self, cluster_data, output_file):
+    def save_results_to_output_file(self, cluster_data, output_file, result_list):
         """Salva i risultati delle metriche in un file di output separato"""
         import datetime
         
@@ -648,6 +660,13 @@ class TestRunner:
             "execution_date": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "results": {}
         }
+        
+        # Crea un dizionario per mappare gli ID delle entry ai risultati
+        results_by_id = {}
+        for result in result_list:
+            if result['success'] and result['results']:
+                entry_id = result['entry']['id']
+                results_by_id[entry_id] = result['results']
         
         for lang, entries in cluster_data.items():
             output_data["results"][lang] = []
@@ -659,17 +678,35 @@ class TestRunner:
                     "language": entry["language"]
                 }
                 
-                # Aggiungi metriche base se presenti
-                if "CPU_usage" in entry:
-                    result_entry["CPU_usage"] = entry["CPU_usage"]
-                if "RAM_usage" in entry:
-                    result_entry["RAM_usage"] = entry["RAM_usage"]
-                if "execution_time_ms" in entry:
-                    result_entry["execution_time_ms"] = entry["execution_time_ms"]
+                # Cerca i risultati corrispondenti nella result_list
+                entry_results = results_by_id.get(entry["id"])
                 
-                # Aggiungi risultati LLM se presenti
-                if "LLM_results" in entry and entry["LLM_results"]:
-                    result_entry["LLM_results"] = entry["LLM_results"]
+                if entry_results:
+                    # Aggiungi metriche base se presenti nei risultati
+                    if "CPU_usage" in entry_results:
+                        result_entry["CPU_usage"] = entry_results["CPU_usage"]
+                    if "RAM_usage" in entry_results:
+                        result_entry["RAM_usage"] = entry_results["RAM_usage"]
+                    if "execution_time_ms" in entry_results:
+                        result_entry["execution_time_ms"] = entry_results["execution_time_ms"]
+                    if "regrationTestPassed" in entry_results:
+                        result_entry["regrationTestPassed"] = entry_results["regrationTestPassed"]
+                    if "base_log" in entry_results:
+                        result_entry["base_log"] = entry_results["base_log"]
+                    
+                    # Aggiungi risultati LLM se presenti
+                    if "LLM_results" in entry_results and entry_results["LLM_results"]:
+                        result_entry["LLM_results"] = entry_results["LLM_results"]
+                else:
+                    # Fallback: usa i dati dall'entry originale (se disponibili)
+                    if "CPU_usage" in entry:
+                        result_entry["CPU_usage"] = entry["CPU_usage"]
+                    if "RAM_usage" in entry:
+                        result_entry["RAM_usage"] = entry["RAM_usage"]
+                    if "execution_time_ms" in entry:
+                        result_entry["execution_time_ms"] = entry["execution_time_ms"]
+                    if "LLM_results" in entry and entry["LLM_results"]:
+                        result_entry["LLM_results"] = entry["LLM_results"]
                 
                 output_data["results"][lang].append(result_entry)
         
@@ -678,18 +715,27 @@ class TestRunner:
         with open(output_file, "w", encoding="utf-8") as f:
             json.dump(output_data, f, indent=4, ensure_ascii=False)
         
-        
-        
         print(f"✅ Risultati salvati in {output_file}")
+        
+        # Debug: stampa statistiche sui risultati salvati
+        if not silent_mode:
+            total_entries = sum(len(entries) for entries in output_data["results"].values())
+            entries_with_llm = sum(
+                1 for lang_entries in output_data["results"].values() 
+                for entry in lang_entries 
+                if "LLM_results" in entry and entry["LLM_results"]
+            )
+            print(f"📊 Statistiche salvate: {total_entries} entry totali, {entries_with_llm} con risultati LLM")
 
-def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cache = True, use_dataset = False, use_bad_entries = False,use_debug_cluster = False,cluster_name ="",output_file:str=None,webhook=False):
+def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cache = True, use_dataset = False, use_bad_entries = False,use_debug_cluster = False,cluster_name ="",output_file:str=None,webhook=False, prompt_version = 1):
     """Esegue test suites su code snippet e codigi generati dagli LLMs.
     Attualmente sfrutta il cluster scelto anziché il dataset"""
         
     if not output_file : raise Exception("❌ Missing output file to save result")
-    
+    if not prompt_version : prompt_version = 1    
     if not output_file.endswith(".json"):output_file = output_file + ".json"
     
+    if prompt_version < 1 or prompt_version > 3 : raise Exception(f"❌ Invalid prompt verison : {prompt_version}")
         
     chosen_path = CLUSTER_JSON
     if use_dataset : chosen_path = DATASET_JSON_PATH
@@ -725,13 +771,14 @@ def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cach
     for lang in languages:
         test_runner.setup_container(lang, run_with_docker_cache)
 
-
+    test_res = []
     try:
-        test_runner.run_tests_concurrent(
+        test_res = test_runner.run_tests_concurrent(
             cluster_data, 
             base_only=base_only, 
             llm_only=llm_only,
-            run_with_docker_cache = run_with_docker_cache
+            run_with_docker_cache = run_with_docker_cache,
+            prompt_version=prompt_version
         )
     except Exception as e:
         print(f"❌ Errore run test concurrent: {e}")
@@ -787,7 +834,7 @@ def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cach
     if output_file:
         try:
             print(f"ℹ️ Input file {chosen_path}")
-            test_runner.save_results_to_output_file(cluster_data, output_file)
+            test_runner.save_results_to_output_file(cluster_data, output_file, test_res)
         except Exception as e:
             print(f"❌ Errore salvataggio output file: {e}")
             return False
@@ -826,6 +873,9 @@ if __name__ == "__main__":
     parser.add_argument("--webhook", action="store_true",
                        help="Send ds webhook when test ends")
     
+    parser.add_argument("--prompt-version", type=int,
+                   help="Choose prompt version related to LLMs files")
+    
     args = parser.parse_args()
     
     if not args.no_docker_cache: run_with_docker_cache = False
@@ -834,6 +884,25 @@ if __name__ == "__main__":
     if args.silent:
         silent_mode = True
     
+    success = False
+    for i in range(2,6): #2 to 5 included
+        out_file = f"{args.output_file}_{i}"
+        success = main(
+            base_only=args.base_only, 
+            llm_only=args.llm_only,
+            max_workers=args.max_workers,
+            run_with_docker_cache = run_with_docker_cache,
+            use_dataset = args.dataset,
+            use_bad_entries = args.bad_entries,
+            use_debug_cluster = args.debug_cluster,
+            cluster_name=args.cluster_name,
+            output_file=out_file,
+            webhook=args.webhook,
+            prompt_version=args.prompt_version,
+            
+        )
+    """
+    run normal:
     success = main(
         base_only=args.base_only, 
         llm_only=args.llm_only,
@@ -845,8 +914,10 @@ if __name__ == "__main__":
         cluster_name=args.cluster_name,
         output_file=args.output_file,
         webhook=args.webhook,
+        prompt_version=args.prompt_version,
         
     )
+    """     
     
     if success:
         print("\n🎉 Test completati con successo!")

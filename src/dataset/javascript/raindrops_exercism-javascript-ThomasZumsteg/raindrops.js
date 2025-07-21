@@ -1,13 +1,13 @@
-var Raindrops = function() {};
+class Raindrops {
+  convert(number) {
+    const div3 = number % 3 === 0;
+    const div5 = number % 5 === 0;
+    const div7 = number % 7 === 0;
 
-Raindrops.prototype.convert = function(number) {
-	var sounds = '';
-	
-	if (number % 3 === 0) sounds += 'Pling';
-	if (number % 5 === 0) sounds += 'Plang';
-	if (number % 7 === 0) sounds += 'Plong';
-	
-	return sounds || number.toString();
-};
+    if (!div3 && !div5 && !div7) return number.toString();
 
-export default Raindrops;;
+    return `${div3 ? 'Pling' : ''}${div5 ? 'Plang' : ''}${div7 ? 'Plong' : ''}`;
+  }
+}
+
+export default Raindrops;

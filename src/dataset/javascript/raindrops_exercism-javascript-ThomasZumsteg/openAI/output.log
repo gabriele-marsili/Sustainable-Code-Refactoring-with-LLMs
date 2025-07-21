@@ -1,39 +1,44 @@
-FAIL ./raindrops_testSuite.js
-  ● Test suite failed to run
-
-    ReferenceError: require is not defined
-
-    > 1 | var Raindrops = require('./raindrops');
-        |                 ^
-      2 |
-      3 | describe('Raindrops', function() {
-      4 |   var drops = new Raindrops();
-
-      at raindrops_testSuite.js:1:17
-
-Test Suites: 1 failed, 1 total
-Tests:       0 total
-Snapshots:   0 total
-Time:        17.041 s
-Ran all test suites.
-(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(node:22) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-Command exited with non-zero status 1
+PASS ./raindrops_testSuite.js (14.131 s)
+  Raindrops
+    ✓ converts 1 (77 ms)
+    ✓ converts 3 (4 ms)
+    ✓ converts 5 (4 ms)
+    ✓ converts 7 (10 ms)
+    ✓ converts 6 (16 ms)
+    ✓ converts 9 (7 ms)
+    ✓ converts 10 (3 ms)
+    ✓ converts 14 (7 ms)
+    ✓ converts 15 (9 ms)
+    ✓ converts 21 (5 ms)
+    ✓ converts 25 (6 ms)
+    ✓ converts 35 (5 ms)
+    ✓ converts 49 (4 ms)
+    ✓ converts 52 (1 ms)
+    ✓ converts 105 (2 ms)
+    ✓ converts 12121 (3 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       16 passed, 16 total
+Snapshots:   0 total
+Time:        16.258 s
+Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 3.92
-	System time (seconds): 2.39
-	Percent of CPU this job got: 18%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:34.88
+	User time (seconds): 2.60
+	System time (seconds): 2.92
+	Percent of CPU this job got: 15%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:35.04
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 79804
+	Maximum resident set size (kbytes): 81356
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 14752
-	Voluntary context switches: 6634
-	Involuntary context switches: 4248
+	Minor (reclaiming a frame) page faults: 15110
+	Voluntary context switches: 6511
+	Involuntary context switches: 5685
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16
@@ -41,4 +46,4 @@ Command exited with non-zero status 1
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

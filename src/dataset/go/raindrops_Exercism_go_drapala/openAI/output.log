@@ -1,31 +1,63 @@
-# raindrops/test [raindrops/test.test]
-test/raindrops_test.go:6:23: undefined: tests
-test/raindrops_test.go:7:16: undefined: Convert
-test/raindrops_test.go:19:24: undefined: tests
-test/raindrops_test.go:20:4: undefined: Convert
-FAIL	raindrops/test [build failed]
-FAIL
-Command exited with non-zero status 1
-	Command being timed: "go test ./test/..."
-	User time (seconds): 22.50
-	System time (seconds): 50.79
-	Percent of CPU this job got: 185%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:39.53
+=== RUN   TestConvert
+x: 1 
+x/3: 1 
+x: 3 
+x/3: 0 
+x: 5 
+x/3: 2 
+x: 7 
+x/3: 1 
+x: 6 
+x/3: 0 
+x: 8 
+x/3: 2 
+x: 9 
+x/3: 0 
+x: 10 
+x/3: 1 
+x: 14 
+x/3: 2 
+x: 15 
+x/3: 0 
+x: 21 
+x/3: 0 
+x: 25 
+x/3: 1 
+x: 27 
+x/3: 0 
+x: 35 
+x/3: 2 
+x: 49 
+x/3: 1 
+x: 52 
+x/3: 1 
+x: 105 
+x/3: 0 
+x: 3125 
+x/3: 2 
+--- PASS: TestConvert (0.06s)
+PASS
+ok  	esercizio	0.091s
+	Command being timed: "go test -v"
+	User time (seconds): 23.80
+	System time (seconds): 48.33
+	Percent of CPU this job got: 47%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:31.80
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 198264
+	Maximum resident set size (kbytes): 202540
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 693925
-	Voluntary context switches: 19920
-	Involuntary context switches: 27634
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 713707
+	Voluntary context switches: 33164
+	Involuntary context switches: 43872
 	Swaps: 0
 	File system inputs: 0
-	File system outputs: 166776
+	File system outputs: 171616
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

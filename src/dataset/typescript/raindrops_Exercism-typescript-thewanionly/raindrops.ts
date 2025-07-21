@@ -1,21 +1,9 @@
 export function convert(num: number): string {
-  let res = ''
+  let result = ''
 
-  if (num % 3 === 0) {
-    res = 'Pling'
-  }
+  if (num % 3 === 0) result += 'Pling'
+  if (num % 5 === 0) result += 'Plang'
+  if (num % 7 === 0) result += 'Plong'
 
-  if (num % 5 === 0) {
-    res += 'Plang'
-  }
-
-  if (num % 7 === 0) {
-    res += 'Plong'
-  }
-
-  if (!res.length) {
-    res = String(num)
-  }
-
-  return res
+  return result || String(num)
 }

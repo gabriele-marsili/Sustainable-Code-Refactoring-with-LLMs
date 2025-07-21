@@ -30,17 +30,17 @@ raindrops.c:155:test_forty_nine_yields_plong:PASS
 raindrops.c:156:test_fifty_two_yields_itself:PASS
 raindrops.c:157:test_one_hundred_five_yields_plingplangplong:PASS
 raindrops.c:158:test_big_prime_yields_itself:PASS
-raindrops.c:159:test_no_buffer_overflow_for_plingplangplong:PASS
-raindrops.c:120:test_no_buffer_overflow_for_number:FAIL: Expected 63 Was 0
+raindrops.c:112:test_no_buffer_overflow_for_plingplangplong:FAIL: Expected 63 Was 108
+raindrops.c:160:test_no_buffer_overflow_for_number:PASS
 
 -----------------------
 34 Tests 1 Failures 0 Ignored 
 FAIL
 	Command being timed: "./tests.out"
 	User time (seconds): 0.00
-	System time (seconds): 0.01
-	Percent of CPU this job got: 18%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.07
+	System time (seconds): 0.00
+	Percent of CPU this job got: 2%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.03
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
@@ -48,7 +48,7 @@ FAIL
 	Maximum resident set size (kbytes): 1280
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 1
-	Minor (reclaiming a frame) page faults: 75
+	Minor (reclaiming a frame) page faults: 73
 	Voluntary context switches: 6
 	Involuntary context switches: 7
 	Swaps: 0

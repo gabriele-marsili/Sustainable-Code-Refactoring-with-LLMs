@@ -1,34 +1,28 @@
 {
     "entries": [
         {
+            "id": "javascript_raindrops_exercism-javascript-oguzsh_oguzsh",
+            "error_message": "\u274c\u203c Errore nel container javascript_raindrops_exercism-javascript-oguzsh_oguzsh - openAI | result:\nCompletedProcess(args=['docker', 'run', '--rm', '-v', '/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/javascript/raindrops_exercism-javascript-oguzsh:/app', 'test_javascript_persistant'], returncode=1, stdout='\ud83d\udd75\ufe0f  Analisi file JS per determinare se usare ESM o CommonJS...\\n\u2699\ufe0f  Rilevato codice con import/export \u2192 ESM\\n\\nup to date, audited 266 packages in 9s\\n\\n32 packages are looking for funding\\n  run `npm fund` for details\\n\\nfound 0 vulnerabilities\\n\u25b6\ufe0f  Avvio Jest in modalit\u00e0 ESM\\n')\n",
+            "log_file_path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/javascript/raindrops_exercism-javascript-oguzsh/output.log",
+            "language": "javascript"
+        },
+        {
             "id": "javascript_raindrops_exercism-javascript-programmiri_programmiri",
-            "error_message": "\u274c\u203c Errore nel container javascript_raindrops_exercism-javascript-programmiri_programmiri -  | result:\nCompletedProcess(args=['docker', 'run', '--rm', '-v', '/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/javascript/raindrops_exercism-javascript-programmiri:/app', 'test_javascript_persistant'], returncode=1, stdout='\ud83d\udd75\ufe0f  Analisi file JS per determinare se usare ESM o CommonJS...\\n\u2699\ufe0f  Rilevato codice con import/export \u2192 ESM\\nnpm error code EJSONPARSE\\nnpm error path /app/package.json\\nnpm error JSON.parse Unexpected end of JSON input while parsing empty string\\nnpm error JSON.parse Failed to parse JSON data.\\nnpm error JSON.parse Note: package.json must be actual JSON, not just JavaScript.\\nnpm error A complete log of this run can be found in: /root/.npm/_logs/2025-07-20T16_22_30_744Z-debug-0.log\\n')\n",
+            "error_message": "\u274c\u203c Errore nel container javascript_raindrops_exercism-javascript-programmiri_programmiri - openAI | result:\nCompletedProcess(args=['docker', 'run', '--rm', '-v', '/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/javascript/raindrops_exercism-javascript-programmiri:/app', 'test_javascript_persistant'], returncode=1, stdout='\ud83d\udd75\ufe0f  Analisi file JS per determinare se usare ESM o CommonJS...\\n\u2699\ufe0f  Rilevato codice con import/export \u2192 ESM\\n\\nup to date, audited 266 packages in 9s\\n\\n32 packages are looking for funding\\n  run `npm fund` for details\\n\\nfound 0 vulnerabilities\\n\u25b6\ufe0f  Avvio Jest in modalit\u00e0 ESM\\n')\n",
             "log_file_path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/javascript/raindrops_exercism-javascript-programmiri/output.log",
             "language": "javascript"
         },
         {
-            "id": "javascript_raindrops_exercism-javascript-programmiri",
-            "error_message": "\u274c\u203c Errore nel container javascript_raindrops_exercism-javascript-programmiri -  | result:\nCompletedProcess(args=['docker', 'run', '--rm', '-v', '/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/javascript/raindrops_exercism-javascript-programmiri:/app', 'test_javascript_persistant'], returncode=1, stdout='\ud83d\udd75\ufe0f  Analisi file JS per determinare se usare ESM o CommonJS...\\n\u2699\ufe0f  Rilevato codice con import/export \u2192 ESM\\nnpm error code EJSONPARSE\\nnpm error path /app/package.json\\nnpm error JSON.parse Unexpected end of JSON input while parsing empty string\\nnpm error JSON.parse Failed to parse JSON data.\\nnpm error JSON.parse Note: package.json must be actual JSON, not just JavaScript.\\nnpm error A complete log of this run can be found in: /root/.npm/_logs/2025-07-20T16_22_30_748Z-debug-0.log\\n')\n",
-            "log_file_path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/javascript/raindrops_exercism-javascript-programmiri/output.log",
-            "language": "javascript"
-        },
-        {
-            "id": "cpp_raindrops_Exercism (ThomasZumsteg)",
-            "error_message": "cannot unpack non-iterable NoneType object",
+            "id": "Java_raindrops_exercism-java-uzilan_robiworks",
+            "error_message": "[Errno 2] No such file or directory: '/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/Java/raindrops_exercism-java-uzilan_robiworks/openAI/ChatGPT4_raindrops_v1.java' -> '/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/Java/raindrops_exercism-java-uzilan_robiworks/openAI/raindrops.java'",
             "log_file_path": "",
-            "language": "cpp"
+            "language": "Java"
         },
         {
-            "id": "cpp_bob_Exercism (Akshive)",
-            "error_message": "\u274c\u203c Errore nel container cpp_bob_Exercism (Akshive) -  | result:\nCompletedProcess(args=['docker', 'run', '--rm', '-v', '/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/cpp/bob_Exercism_Akshive:/app', 'test_cpp_persistant'], returncode=1, stdout='\ud83d\udd27 Compilazione con make...\\nrm -rf obj test_exec\\nmkdir -p obj\\n\ud83d\udd28 Compilando src/bob.cpp...\\ng++ -std=c++17 -I src -I test -I /usr/local/include -DBOOST_TEST_DYN_LINK -c src/bob.cpp -o obj/bob.o\\n\ud83d\udd28 Compilando test/bob_test.cpp...\\ng++ -std=c++17 -I src -I test -I /usr/local/include -DBOOST_TEST_DYN_LINK -c test/bob_test.cpp -o obj/bob_test.o\\ntest/bob_test.cpp:2:10: fatal error: test/catch.hpp: No such file or directory\\n    2 | #include \"test/catch.hpp\"\\n      |          ^~~~~~~~~~~~~~~~\\ncompilation terminated.\\nmake: *** [Makefile:37: obj/bob_test.o] Error 1\\n\u274c Compilazione fallita\\n')\n",
-            "log_file_path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/cpp/bob_Exercism_Akshive/output.log",
-            "language": "cpp"
-        },
-        {
-            "id": "cpp_bob_Exercism (Akshive)",
-            "error_message": "\u274c\u203c Errore nel container cpp_bob_Exercism (Akshive) -  | result:\nCompletedProcess(args=['docker', 'run', '--rm', '-v', '/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/cpp/bob_Exercism_Akshive:/app', 'test_cpp_persistant'], returncode=1, stdout='\ud83d\udd27 Compilazione con make...\\nrm -rf obj test_exec\\nmkdir -p obj\\n\ud83d\udd28 Compilando src/bob.cpp...\\ng++ -std=c++17 -I src -I test -I /usr/local/include -DBOOST_TEST_DYN_LINK -c src/bob.cpp -o obj/bob.o\\n\ud83d\udd28 Compilando test/bob_test.cpp...\\ng++ -std=c++17 -I src -I test -I /usr/local/include -DBOOST_TEST_DYN_LINK -c test/bob_test.cpp -o obj/bob_test.o\\ntest/bob_test.cpp:2:10: fatal error: test/catch.hpp: No such file or directory\\n    2 | #include \"test/catch.hpp\"\\n      |          ^~~~~~~~~~~~~~~~\\ncompilation terminated.\\nmake: *** [Makefile:37: obj/bob_test.o] Error 1\\n\u274c Compilazione fallita\\n')\n",
-            "log_file_path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/cpp/bob_Exercism_Akshive/output.log",
-            "language": "cpp"
+            "id": "Java_raindrops_exercism-java-blogscot_blogscot",
+            "error_message": "[Errno 2] No such file or directory: '/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/Java/raindrops_exercism-java-blogscot/openAI/ChatGPT4_raindrops_v1.java' -> '/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/Java/raindrops_exercism-java-blogscot/openAI/raindrops.java'",
+            "log_file_path": "",
+            "language": "Java"
         }
     ]
 }
