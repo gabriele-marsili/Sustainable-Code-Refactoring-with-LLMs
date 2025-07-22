@@ -1,0 +1,116 @@
+✅ Struttura comune ai tre prompt
+Ruolo del modello:
+Tutti i prompt iniziano assegnando al modello il ruolo di un software engineer con esperienza.
+
+Contesto del codice:
+Tutti specificano che verrà fornito un code snippet delimitato da triple backtick (```)
+
+Obiettivo (Task):
+Ottimizzare il codice preservando il comportamento e le interfacce/firme.
+
+Linee guida sull’ottimizzazione:
+
+Migliorare le performance a runtime
+
+Ridurre l’uso di risorse (CPU, memoria)
+
+Applicare principi di sustainable software engineering
+
+Output richiesto:
+Il codice ottimizzato senza spiegazioni.
+
+Differenze tra le versioni -> img
+
+
+✅ Punti di forza e debolezza per versione
+🔹 V1 – Diretta e sintetica
+Punti di forza:
+
+Chiarezza: istruzioni concise e numerate.
+
+Redundancy utile: enfatizza non modificare le firme due volte.
+
+Specifica chiaramente gli obiettivi in ordine di priorità.
+
+Debolezze:
+
+Manca riferimento al linguaggio specifico (non usa {language}).
+
+Tono più "tecnico" e meno naturale.
+
+Meno enfasi su manutenibilità del codice (focus solo su performance e sostenibilità).
+
+Ambiguità:
+
+L’uso di "interface" + "function signatures" può sembrare ridondante o ambiguo.
+
+🔹 V2 – Più naturale e contestualizzata
+Punti di forza:
+
+Linguaggio più naturale e fluido.
+
+Utilizza {language} per contestualizzare meglio il codice.
+
+Menzione chiara dell’assenza di test.
+
+Mantiene un buon bilanciamento tra performance, sostenibilità e struttura.
+
+Debolezze:
+
+Meno formale e strutturato rispetto a V1 e V3 (niente elenco numerato).
+
+Manca enfasi su “clean code” o manutenibilità.
+
+Ambiguità:
+
+"Preserve...functionality and function signatures" è chiaro, ma meno preciso del “original behavior and interface” (V1) o del “do not alter...interface” (V3).
+
+🔹 V3 – Più autorevole e sofisticato
+Punti di forza:
+
+Profilo tecnico elevato: specifica "senior-level", "expertise in sustainable computing".
+
+Enfasi su manutenibilità, clean code, e refactoring, non presente in V1 e V2.
+
+Tono professionale, più adatto a prompt complessi o enterprise-grade.
+
+Debolezze:
+
+Non menziona l’assenza di test (potrebbe causare confusione).
+
+Più verboso; meno adatto a contesti dove la concisione è essenziale.
+
+Non menziona esplicitamente le “function signatures” (rischio di ambiguità sul vincolo dell’interfaccia).
+
+Ambiguità:
+
+“Preserve...interface” è meno esplicito di “do not alter function signatures” → potrebbe essere interpretato con più libertà.
+
+📌 Considerazioni conclusive
+V1 è adatta quando serve un prompt diretto e preciso, con priorità chiara sulle performance e rispetto rigoroso dell’interfaccia.
+
+V2 è più flessibile e naturale, ottima per prompt multi-lingua, grazie al placeholder {language} e al linguaggio scorrevole.
+
+V3 è ideale per casi avanzati dove si vuole ottenere codice sostenibile e manutenibile, ma introduce lievi ambiguità e maggiore verbosità.
+
+-------------------------
+
+In tutti e 3 i prompts per prima cosa determino il ruolo assoiciato al contesto, ossia ingegnere del software con esperienza. A riguardo, nella V3 del prompt vi sono alcune modifiche, quali la specializzazione del livello (senior-level) e il campo di esperienza (sustainable computing and performance optimization).
+
+Successivamente viene specificato il contesto : snippet di codice e relativo linguaggio, ponendo attenzione sul fatto che sia delimitato da triplici apici  (```).
+Nella V3, a differenza delle altre versioni, non viene specificato che il codice NON include i tests.
+
+Di seguito viene chiarito l'obiettivo (task) : migliorare il codice fornito mantenendo le funzionalità.Riguardo ciò le principali differenze tra versioni sono : 
+- V1 : "snippet" al posto di "code", mantenere "comportamento ed interfacce" (specificando firme delle funzioni), viene chiesto anche di ridurre l'energia consumata a runtime.
+- V2 : "code" al posto di "snippet", mantenere "funzionalità e firme delle funzioni", viene chiesto anche di ridurre l'energia consumata a runtime.
+- V3 : riferimento a "code snippet" (it), mantenere "funzionalià e interfacce", nessuna specifica sulle firme delle funzioni né sulla riduzione dell'energia a runtime.
+
+In tutte le versioni viene poi allegato lo snippet di codice da migliroare tra tripli apici.
+
+Vengono poi inseriti una serie di (keywords diverse per ogni versione) : 
+- V1 : criteri, quali tempo d'esecuzione, uso di risorse (memoria e CPU), non modificare le firme delle funzioni (ripetuto) e seguire best practices (guidelines e patterns) relative all'ingegneria del software sostenibile
+- V2 : guidelines di ottimizzazione, quali migliorare l'efficienza d'esecuzione minimizzando il tempo d'esecuzione, ridurre l'uso di risorse (memoria e CPU),applicare principi di ingegneria del softwar sostenibile 
+- V3 : istruzioni, quali fare refactoring del codice per migliorare le performance a runtime riducendo il consumo di energia, limitare l'uso delle risorse quando possibile, preservare nomi e firme di funzioni, applicare pratiche di coding manutenibili in linea con l'ingegneria del software sostenibile.
+
+Infine, in tutte le versioni viene richiesto in output solamente il codice.
+

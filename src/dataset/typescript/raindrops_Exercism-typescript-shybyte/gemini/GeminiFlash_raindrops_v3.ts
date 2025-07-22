@@ -1,0 +1,19 @@
+export default class Raindrops {
+    convert(n: number): string {
+        let result = '';
+
+        const factors = [
+            { factor: 3, sound: 'Pling' },
+            { factor: 5, sound: 'Plang' },
+            { factor: 7, sound: 'Plong' }
+        ];
+
+        for (const { factor, sound } of factors) {
+            if (n % factor === 0) {
+                result += sound;
+            }
+        }
+
+        return result || n.toString();
+    }
+}
