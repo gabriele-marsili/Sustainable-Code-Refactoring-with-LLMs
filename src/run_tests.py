@@ -59,7 +59,7 @@ class TestRunner:
         global time_passed, files_executed, total_files, tests_passed, error_quantity
         """Aggiorna il progresso in modo thread-safe"""
         with self.progress_lock:
-            self.completed_tests += 1
+            
             if not success:
                 self.failed_tests.append(test_id)
             progress = (self.completed_tests / self.total_tests) * 100
@@ -135,8 +135,17 @@ class TestRunner:
                     test_tasks.append((entry, lang, "llm"))
                 else:
                     test_tasks.append((entry, lang, "full"))
+                    
+                if base_only : 
+                    self.total_tests += 1
+                elif llm_only: 
+                    self.total_tests += len(entry["LLMs"])
+                else : 
+                    self.total_tests += 1
+                    self.total_tests += len(entry["LLMs"])                    
+            
         
-        self.total_tests = len(test_tasks)
+       
         self.completed_tests = 0
         self.failed_tests = []
         
@@ -383,6 +392,7 @@ class TestRunner:
             #print(result.stdout)  
             container_err_flag = False
             err_msg = ""
+            self.completed_tests += 1
             if result.returncode != 0:                                            
                 if lang == "javascript":
                     self.convert_commonjs_to_esm(entry['testUnitFilePath'])
@@ -735,7 +745,7 @@ def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cach
     if not prompt_version : prompt_version = 1    
     if not output_file.endswith(".json"):output_file = output_file + ".json"
     
-    if prompt_version < 1 or prompt_version > 3 : raise Exception(f"❌ Invalid prompt verison : {prompt_version}")
+    if prompt_version < 1 or prompt_version > 4 : raise Exception(f"❌ Invalid prompt verison : {prompt_version}")
         
     chosen_path = CLUSTER_JSON
     if use_dataset : chosen_path = DATASET_JSON_PATH
@@ -885,7 +895,7 @@ if __name__ == "__main__":
         silent_mode = True
     
     success = False
-    for i in range(2,6): #2 to 5 included
+    for i in range(1,6): #1 to 5 included
         out_file = f"{args.output_file}_{i}"
         success = main(
             base_only=args.base_only, 
@@ -925,3 +935,9 @@ if __name__ == "__main__":
     else:
         print("\n💥 Test falliti!")
         exit(1)
+        
+        
+        
+# python3 run_tests.py --llm-only --cluster-name cluster_raindrops --output-file raindrops_results_v2 --webhook --prompt-version 2 --silent
+# python3 run_tests.py --llm-only --cluster-name cluster_raindrops --output-file raindrops_results_v3 --webhook --prompt-version 3 --silent
+# python3 run_tests.py --llm-only --cluster-name cluster_raindrops --output-file raindrops_results_v4 --webhook --prompt-version 4 --silent
