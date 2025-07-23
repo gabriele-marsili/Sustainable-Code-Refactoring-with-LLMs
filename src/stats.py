@@ -1,14 +1,18 @@
 import json
 import matplotlib.pyplot as plt
 from collections import defaultdict, Counter
-from statistics import mean
+from statistics import mean, stdev
 from pathlib import Path
-
+import re
+import numpy as np
+from utility_dir import utility_paths
 
 class StatsHandler:
-    def __init__(self, dataset_path: str):
-        self.dataset_path = Path(dataset_path)
-        self.data = self.load_dataset()
+    def __init__(self, output_directory: str, cluster_filter: str = None):
+        self.output_directory = Path(output_directory)
+        self.cluster_filter = cluster_filter  # Nuovo parametro per filtrare per cluster
+        self.data = {}
+        self.baseline_data = {}  # Nuovo: dati per i code snippet di base
         self.global_metrics = {}
         self.per_language_metrics = {}
         self.comparison_per_snippet = []
@@ -17,138 +21,605 @@ class StatsHandler:
         # Nuove statistiche per i regression test
         self.regression_test_stats = {}
         self.regression_test_per_language = {}
+        # Nuove statistiche per le versioni dei prompt
+        self.version_stats = {}
+        self.version_comparison = {}
+        self.cluster_version_stats = {}
+        # Nuove statistiche per baseline
+        self.baseline_stats = {}
+        self.baseline_vs_versions_comparison = {}
+        
+    def load_output_files(self):
+        """Carica tutti i file di output .json dalla directory specificata, con filtro per cluster"""
+        if not self.output_directory.exists():
+            raise FileNotFoundError(f"[ERRORE] Directory non trovata: {self.output_directory}")
+        
+        json_files = list(self.output_directory.glob("*.json"))
+        if not json_files:
+            raise FileNotFoundError(f"[ERRORE] Nessun file .json trovato in: {self.output_directory}")
+        
+        # Filtra per cluster se specificato
+        if self.cluster_filter:
+            json_files = [f for f in json_files if self.cluster_filter in f.name]
+            if not json_files:
+                raise FileNotFoundError(f"[ERRORE] Nessun file trovato per il cluster: {self.cluster_filter}")
+        
+        print(f"Trovati {len(json_files)} file JSON per il cluster '{self.cluster_filter or 'tutti'}'")
+        
+        for file_path in json_files:
+            try:
+                with open(file_path, 'r', encoding="utf-8") as f:
+                    file_data = json.load(f)
+                    
+                # Estrai informazioni dal nome del file
+                filename = file_path.stem
+                file_info = self.parse_filename(filename)
+                
+                if file_info:
+                    if len(file_info) == 3:  # File con versione prompt
+                        cluster_name, version, run_number = file_info
+                        
+                        if cluster_name not in self.data:
+                            self.data[cluster_name] = {}
+                        if version not in self.data[cluster_name]:
+                            self.data[cluster_name][version] = {}
+                        
+                        self.data[cluster_name][version][run_number] = file_data
+                    
+                    elif len(file_info) == 2:  # File baseline (senza versione)
+                        cluster_name, run_number = file_info
+                        
+                        if cluster_name not in self.baseline_data:
+                            self.baseline_data[cluster_name] = {}
+                        
+                        self.baseline_data[cluster_name][run_number] = file_data
+                    
+            except json.JSONDecodeError as e:
+                print(f"[WARN] Errore nel parsing del file {file_path}: {e}")
+            except Exception as e:
+                print(f"[WARN] Errore nel caricamento del file {file_path}: {e}")
 
-    def load_dataset(self):
-        if not self.dataset_path.exists():
-            raise FileNotFoundError(f"[ERRORE] Dataset non trovato: {self.dataset_path}")
-        with open(self.dataset_path, 'r', encoding="utf-8") as f:
-            return json.load(f)
+    def parse_filename(self, filename):
+        """Estrae cluster, versione e numero di run dal nome del file"""
+        # Pattern per file con versione: cluster_results_vX_Y.json
+        version_pattern = r"(.+)_results_v(\d+)_(\d+)"
+        version_match = re.match(version_pattern, filename)
+        
+        if version_match:
+            cluster_name = version_match.group(1)
+            version = f"v{version_match.group(2)}"
+            run_number = int(version_match.group(3))
+            return cluster_name, version, run_number
+        
+        # Pattern per file baseline: cluster_results_Y.json
+        baseline_pattern = r"(.+)_results_(\d+)"
+        baseline_match = re.match(baseline_pattern, filename)
+        
+        if baseline_match:
+            cluster_name = baseline_match.group(1)
+            run_number = int(baseline_match.group(2))
+            return cluster_name, run_number
+        
+        return None
 
+   
+    def compute_baseline_statistics(self):
+        """Computa statistiche per i code snippet di base"""
+        self.baseline_stats = {}
+        
+        for cluster_name, runs in self.baseline_data.items():
+            baseline_data = {
+                'execution_times': [],
+                'cpu_usages': [],
+                'ram_usages': [],
+                'entry_count': 0,
+                'languages': set()
+            }
+            
+            # Aggrega dati da tutti i run baseline
+            for run_number, run_data in runs.items():
+                results = run_data.get('results', {})
+                
+                for language, entries in results.items():
+                    baseline_data['languages'].add(language)
+                    baseline_data['entry_count'] += len(entries)
+                    
+                    for entry in entries:
+                        baseline_data['execution_times'].append(entry.get('execution_time_ms', 0))
+                        baseline_data['cpu_usages'].append(entry.get('CPU_usage', 0))
+                        baseline_data['ram_usages'].append(entry.get('RAM_usage', 0))
+            
+            # Calcola statistiche aggregate
+            if baseline_data['execution_times']:
+                self.baseline_stats[cluster_name] = {
+                    'avg_execution_time': mean(baseline_data['execution_times']),
+                    'std_execution_time': stdev(baseline_data['execution_times']) if len(baseline_data['execution_times']) > 1 else 0,
+                    'avg_cpu_usage': mean(baseline_data['cpu_usages']),
+                    'std_cpu_usage': stdev(baseline_data['cpu_usages']) if len(baseline_data['cpu_usages']) > 1 else 0,
+                    'avg_ram_usage': mean(baseline_data['ram_usages']),
+                    'std_ram_usage': stdev(baseline_data['ram_usages']) if len(baseline_data['ram_usages']) > 1 else 0,
+                    'total_entries': baseline_data['entry_count'],
+                    'sample_count': len(baseline_data['execution_times']),
+                    'languages': list(baseline_data['languages'])
+                }
+
+    def compute_version_statistics(self):
+        """Computa statistiche aggregate per versione di prompt (modificata per calcolo entry)"""
+        self.version_stats = {}
+        self.cluster_version_stats = {}
+        
+        for cluster_name, versions in self.data.items():
+            self.cluster_version_stats[cluster_name] = {}
+            
+            for version, runs in versions.items():
+                version_data = {
+                    'execution_times': [],
+                    'cpu_usages': [],
+                    'ram_usages': [],
+                    'regression_tests_passed': [],
+                    'regression_tests_total': [],
+                    'llm_results': [],
+                    'entry_count': 0  
+                }
+                
+                # Aggrega dati da tutti i run di questa versione
+                for run_number, run_data in runs.items():
+                    results = run_data.get('results', {})
+                    
+                    for language, entries in results.items():
+                        for entry in entries:
+                            llm_results = entry.get('LLM_results', [])
+                            if run_number == 1 : 
+                                version_data['entry_count'] += len(llm_results)  # Conta LLM_results
+                            
+                            for llm_result in llm_results:
+                                version_data['execution_times'].append(llm_result.get('execution_time_ms', 0))
+                                version_data['cpu_usages'].append(llm_result.get('CPU_usage', 0))
+                                version_data['ram_usages'].append(llm_result.get('RAM_usage', 0))
+                                
+                                test_passed = llm_result.get('regrationTestPassed', False)
+                                version_data['regression_tests_passed'].append(1 if test_passed else 0)
+                                version_data['regression_tests_total'].append(1)
+                                
+                                version_data['llm_results'].append({
+                                    'cluster': cluster_name,
+                                    'version': version,
+                                    'run': run_number,
+                                    'language': language,
+                                    'llm_type': llm_result.get('LLM_type', 'unknown'),
+                                    'execution_time_ms': llm_result.get('execution_time_ms', 0),
+                                    'CPU_usage': llm_result.get('CPU_usage', 0),
+                                    'RAM_usage': llm_result.get('RAM_usage', 0),
+                                    'regression_test_passed': test_passed
+                                })
+                
+                # Calcola statistiche aggregate per questa versione
+                if version_data['execution_times']:
+                    stats = {
+                        'avg_execution_time': mean(version_data['execution_times']),
+                        'std_execution_time': stdev(version_data['execution_times']) if len(version_data['execution_times']) > 1 else 0,
+                        'avg_cpu_usage': mean(version_data['cpu_usages']),
+                        'std_cpu_usage': stdev(version_data['cpu_usages']) if len(version_data['cpu_usages']) > 1 else 0,
+                        'avg_ram_usage': mean(version_data['ram_usages']),
+                        'std_ram_usage': stdev(version_data['ram_usages']) if len(version_data['ram_usages']) > 1 else 0,
+                        'total_tests': sum(version_data['regression_tests_total']),
+                        'tests_passed': sum(version_data['regression_tests_passed']),
+                        'pass_rate': (sum(version_data['regression_tests_passed']) / sum(version_data['regression_tests_total']) * 100) if sum(version_data['regression_tests_total']) > 0 else 0,
+                        'total_entries': version_data['entry_count'],  # Nuovo campo
+                        'sample_count': len(version_data['execution_times']),
+                        'llm_results': version_data['llm_results']
+                    }
+                    
+                    self.cluster_version_stats[cluster_name][version] = stats
+                    
+                    # Statistiche globali per versione
+                    if version not in self.version_stats:
+                        self.version_stats[version] = {
+                            'execution_times': [],
+                            'cpu_usages': [],
+                            'ram_usages': [],
+                            'pass_rates': [],
+                            'clusters': [],
+                            'total_entries': 0  
+                        }
+                    
+                    self.version_stats[version]['execution_times'].extend(version_data['execution_times'])
+                    self.version_stats[version]['cpu_usages'].extend(version_data['cpu_usages'])
+                    self.version_stats[version]['ram_usages'].extend(version_data['ram_usages'])
+                    self.version_stats[version]['pass_rates'].append(stats['pass_rate'])
+                    self.version_stats[version]['clusters'].append(cluster_name)
+                    self.version_stats[version]['total_entries'] += stats['total_entries']
+
+    def compute_baseline_vs_versions_comparison(self):
+        """Computa confronto tra baseline e versioni prompt"""
+        self.baseline_vs_versions_comparison = {}
+        
+        for cluster_name in self.baseline_stats.keys():
+            if cluster_name in self.cluster_version_stats:
+                comparison = {
+                    'cluster': cluster_name,
+                    'baseline': self.baseline_stats[cluster_name],
+                    'versions': {}
+                }
+                
+                for version, stats in self.cluster_version_stats[cluster_name].items():
+                    comparison['versions'][version] = {
+                        'avg_execution_time': stats['avg_execution_time'],
+                        'avg_cpu_usage': stats['avg_cpu_usage'],
+                        'avg_ram_usage': stats['avg_ram_usage'],
+                        'pass_rate': stats['pass_rate'],
+                        'total_entries': stats['total_entries']
+                    }
+                
+                self.baseline_vs_versions_comparison[cluster_name] = comparison
+
+    
+    def compute_version_comparison(self):
+        """Computa confronti tra versioni diverse (modificata per includere entry count)"""
+        self.version_comparison = {}
+        
+        for version, data in self.version_stats.items():
+            if data['execution_times']:
+                self.version_comparison[version] = {
+                    'avg_execution_time': mean(data['execution_times']),
+                    'avg_cpu_usage': mean(data['cpu_usages']),
+                    'avg_ram_usage': mean(data['ram_usages']),
+                    'avg_pass_rate': mean(data['pass_rates']),
+                    'total_entries': data['total_entries'],  
+                    'cluster_count': len(set(data['clusters']))
+                }
+
+    
+    def plot_single_metric(self, metric_name, metric_key, unit="", include_baseline=True):
+        """Visualizza una singola metrica alla volta"""
+        if not self.version_comparison:
+            print(f"[WARN] Nessun dato per il confronto della metrica {metric_name}")
+            return
+        
+        fig, ax = plt.subplots(1, 1, figsize=(12, 8))
+        
+        versions = sorted(self.version_comparison.keys())
+        values = [self.version_comparison[v][metric_key] for v in versions]
+        
+        # Plot delle versioni
+        bars = ax.bar(versions, values, color='lightblue', alpha=0.7, label='Prompt Versions')
+        
+        # Aggiungi baseline se disponibile e richiesto
+        if include_baseline and self.baseline_stats and metric_key != 'avg_pass_rate':
+            baseline_values = []
+            baseline_labels = []
+            
+            for cluster, stats in self.baseline_stats.items():
+                if metric_key in stats:
+                    baseline_values.append(stats[metric_key])
+                    baseline_labels.append(f"{cluster}\n(Baseline)")
+            
+            if baseline_values:
+                baseline_x = range(len(versions), len(versions) + len(baseline_values))
+                baseline_bars = ax.bar(baseline_x, baseline_values, color='orange', alpha=0.7, label='Baseline')
+                
+                # Imposta etichette per baseline
+                ax.set_xticks(list(range(len(versions))) + list(baseline_x))
+                ax.set_xticklabels(versions + baseline_labels)
+                
+                # Aggiungi valori sui bar baseline
+                for bar, value in zip(baseline_bars, baseline_values):
+                    ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + (max(values + baseline_values) * 0.01),
+                           f'{value:.1f}', ha='center', va='bottom')
+        
+        ax.set_title(f'{metric_name} Comparison - Cluster: {self.cluster_filter or "All"}')
+        ax.set_xlabel('Version / Baseline')
+        ax.set_ylabel(f'{metric_name} ({unit})')
+        ax.grid(True, axis='y', linestyle='--', alpha=0.7)
+        ax.legend()
+        
+        # Aggiungi valori sui bar delle versioni
+        for bar, value in zip(bars, values):
+            ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + (max(values) * 0.01),
+                   f'{value:.1f}', ha='center', va='bottom')
+        
+        plt.tight_layout()
+        plt.show()
+
+    def plot_all_metrics_separately(self):
+        """Visualizza tutte le metriche in grafici separati"""
+        metrics = [
+            ('Execution Time', 'avg_execution_time', 'ms'),
+            ('CPU Usage', 'avg_cpu_usage', '%'),
+            ('RAM Usage', 'avg_ram_usage', 'KB'),
+            ('Pass Rate', 'avg_pass_rate', '%')
+        ]
+        
+        for metric_name, metric_key, unit in metrics:
+            include_baseline = metric_key != 'avg_pass_rate'  # Baseline non ha pass rate
+            self.plot_single_metric(metric_name, metric_key, unit, include_baseline)
+
+    
+    def find_best_prompt_version(self):
+        """Trova la migliore versione del prompt basata su criteri combinati"""
+        if not self.version_comparison:
+            return None
+        
+        best_version = None
+        best_score = float('inf')
+        
+        for version, stats in self.version_comparison.items():
+            # Score combinato: minimizza tempo e uso risorse, massimizza pass rate
+            # Normalizza le metriche per il confronto
+            exec_time_norm = stats['avg_execution_time']
+            cpu_norm = stats['avg_cpu_usage']
+            ram_norm = stats['avg_ram_usage'] / 1000  # Converti in MB per la scala
+            pass_rate_penalty = (100 - stats['avg_pass_rate']) * 10  # Penalità per test falliti
+            
+            # Score combinato (più basso è meglio)
+            combined_score = exec_time_norm + cpu_norm + ram_norm + pass_rate_penalty
+            
+            if combined_score < best_score:
+                best_score = combined_score
+                best_version = version
+        
+        return best_version, best_score
+
+    def print_version_statistics(self):
+        """Stampa statistiche per versione (modificata per includere entry count)"""
+        print(f"\n🔄 Prompt Version Statistics for Cluster: {self.cluster_filter or 'All'}:")
+        print("="*60)
+        
+        # Statistiche baseline
+        if self.baseline_stats:
+            print("\n📊 Baseline Statistics (Code Snippets):")
+            for cluster, stats in self.baseline_stats.items():
+                print(f"\n🔹 {cluster} (Baseline):")
+                print(f"  ⏱️  Avg Execution Time: {stats['avg_execution_time']:.2f} ms")
+                print(f"  🖥️  Avg CPU Usage: {stats['avg_cpu_usage']:.2f}%")
+                print(f"  💾  Avg RAM Usage: {stats['avg_ram_usage']:.2f} KB")
+                print(f"  📝  Total Entries: {stats['total_entries']}")
+                print(f"  🧪  Sample Count: {stats['sample_count']}")
+                print(f"  🗣️  Languages: {', '.join(stats['languages'])}")
+        
+        # Statistiche globali per versione
+        print("\n📊 Global Statistics by Version:")
+        for version in sorted(self.version_comparison.keys()):
+            stats = self.version_comparison[version]
+            print(f"\n🔹 {version}:")
+            print(f"  ⏱️  Avg Execution Time: {stats['avg_execution_time']:.2f} ms")
+            print(f"  🖥️  Avg CPU Usage: {stats['avg_cpu_usage']:.2f}%")
+            print(f"  💾  Avg RAM Usage: {stats['avg_ram_usage']:.2f} KB")
+            print(f"  ✅  Avg Pass Rate: {stats['avg_pass_rate']:.1f}%")
+            print(f"  📝  Total Entries: {stats['total_entries']}")
+            print(f"  📚  Clusters: {stats['cluster_count']}")
+        
+        # Migliore versione
+        best_info = self.find_best_prompt_version()
+        if best_info:
+            best_version, score = best_info
+            print(f"\n🏆 Best Prompt Version: {best_version} (score: {score:.2f})")
+        
+        # Confronto baseline vs versioni
+        if self.baseline_vs_versions_comparison:
+            print("\n📊 Baseline vs Versions Comparison:")
+            for cluster, comparison in self.baseline_vs_versions_comparison.items():
+                print(f"\n🔸 Cluster: {cluster}")
+                baseline = comparison['baseline']
+                print(f"  Baseline: {baseline['avg_execution_time']:.2f}ms, "
+                      f"{baseline['avg_cpu_usage']:.1f}% CPU, "
+                      f"{baseline['avg_ram_usage']:.0f}KB RAM, "
+                      f"{baseline['total_entries']} entries")
+                
+                for version, stats in comparison['versions'].items():
+                    # Calcola differenze percentuali
+                    exec_diff = ((stats['avg_execution_time'] - baseline['avg_execution_time']) / baseline['avg_execution_time']) * 100
+                    cpu_diff = ((stats['avg_cpu_usage'] - baseline['avg_cpu_usage']) / baseline['avg_cpu_usage']) * 100
+                    ram_diff = ((stats['avg_ram_usage'] - baseline['avg_ram_usage']) / baseline['avg_ram_usage']) * 100
+                    
+                    print(f"  {version}: {stats['avg_execution_time']:.2f}ms ({exec_diff:+.1f}%), "
+                          f"{stats['avg_cpu_usage']:.1f}% CPU ({cpu_diff:+.1f}%), "
+                          f"{stats['avg_ram_usage']:.0f}KB RAM ({ram_diff:+.1f}%), "
+                          f"{stats['pass_rate']:.1f}% pass, {stats['total_entries']} entries")
+
+    def plot_version_comparison(self):
+        """Visualizza confronto tra versioni"""
+        if not self.version_comparison:
+            print("[WARN] Nessun dato per il confronto tra versioni")
+            return
+        
+        versions = sorted(self.version_comparison.keys())
+        metrics = ['avg_execution_time', 'avg_cpu_usage', 'avg_ram_usage', 'avg_pass_rate']
+        metric_names = ['Execution Time (ms)', 'CPU Usage (%)', 'RAM Usage (KB)', 'Pass Rate (%)']
+        
+        fig, axes = plt.subplots(2, 2, figsize=(15, 12))
+        axes = axes.flatten()
+        
+        for i, (metric, name) in enumerate(zip(metrics, metric_names)):
+            values = [self.version_comparison[v][metric] for v in versions]
+            
+            ax = axes[i]
+            bars = ax.bar(versions, values, color='lightblue' if metric != 'avg_pass_rate' else 'lightgreen')
+            ax.set_title(f'{name} by Prompt Version')
+            ax.set_xlabel('Version')
+            ax.set_ylabel(name)
+            ax.grid(True, axis='y', linestyle='--', alpha=0.7)
+            
+            # Aggiungi valori sui bar
+            for bar, value in zip(bars, values):
+                ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + (max(values) * 0.01),
+                       f'{value:.1f}', ha='center', va='bottom')
+        
+        plt.tight_layout()
+        plt.suptitle('🔄 Prompt Version Performance Comparison', y=1.02, fontsize=16)
+        plt.show()
+
+    def plot_cluster_version_heatmap(self):
+        """Crea heatmap delle performance per cluster e versione"""
+        if not self.cluster_version_stats:
+            print("[WARN] Nessun dato per l'heatmap cluster-versione")
+            return
+        
+        clusters = sorted(self.cluster_version_stats.keys())
+        all_versions = set()
+        for cluster_data in self.cluster_version_stats.values():
+            all_versions.update(cluster_data.keys())
+        versions = sorted(all_versions)
+        
+        metrics = ['avg_execution_time', 'avg_cpu_usage', 'avg_ram_usage', 'pass_rate']
+        metric_names = ['Execution Time', 'CPU Usage', 'RAM Usage', 'Pass Rate']
+        
+        fig, axes = plt.subplots(2, 2, figsize=(16, 12))
+        axes = axes.flatten()
+        
+        for i, (metric, name) in enumerate(zip(metrics, metric_names)):
+            # Crea matrice per heatmap
+            matrix = np.full((len(clusters), len(versions)), np.nan)
+            
+            for ci, cluster in enumerate(clusters):
+                for vi, version in enumerate(versions):
+                    if version in self.cluster_version_stats[cluster]:
+                        matrix[ci, vi] = self.cluster_version_stats[cluster][version][metric]
+            
+            ax = axes[i]
+            im = ax.imshow(matrix, aspect='auto', cmap='RdYlGn_r' if metric != 'pass_rate' else 'RdYlGn')
+            
+            ax.set_xticks(range(len(versions)))
+            ax.set_xticklabels(versions)
+            ax.set_yticks(range(len(clusters)))
+            ax.set_yticklabels(clusters)
+            ax.set_title(f'{name} Heatmap')
+            
+            # Aggiungi valori nelle celle
+            for ci in range(len(clusters)):
+                for vi in range(len(versions)):
+                    if not np.isnan(matrix[ci, vi]):
+                        ax.text(vi, ci, f'{matrix[ci, vi]:.1f}', 
+                               ha='center', va='center', fontsize=8)
+            
+            plt.colorbar(im, ax=ax)
+        
+        plt.tight_layout()
+        plt.suptitle('🔥 Performance Heatmap by Cluster and Version', y=1.02, fontsize=16)
+        plt.show()
+
+    def plot_version_trend_analysis(self):
+        """Analizza trend delle performance attraverso le versioni"""
+        if not self.version_comparison:
+            return
+        
+        versions = sorted(self.version_comparison.keys(), key=lambda x: int(x[1:]))
+        version_numbers = [int(v[1:]) for v in versions]
+        
+        metrics = ['avg_execution_time', 'avg_cpu_usage', 'avg_ram_usage', 'avg_pass_rate']
+        metric_names = ['Execution Time (ms)', 'CPU Usage (%)', 'RAM Usage (KB)', 'Pass Rate (%)']
+        colors = ['red', 'blue', 'green', 'orange']
+        
+        plt.figure(figsize=(14, 8))
+        
+        for i, (metric, name, color) in enumerate(zip(metrics, metric_names, colors)):
+            values = [self.version_comparison[v][metric] for v in versions]
+            
+            if metric == 'avg_ram_usage':
+                values = [v/1000 for v in values]  # Converti in MB
+                name = 'RAM Usage (MB)'
+            
+            plt.subplot(2, 2, i+1)
+            plt.plot(version_numbers, values, marker='o', color=color, linewidth=2, markersize=8)
+            plt.title(f'{name} Trend')
+            plt.xlabel('Version')
+            plt.ylabel(name)
+            plt.grid(True, linestyle='--', alpha=0.7)
+            plt.xticks(version_numbers)
+            
+            # Aggiungi annotazioni per miglioramenti/peggioramenti
+            for j in range(1, len(values)):
+                change = values[j] - values[j-1]
+                if metric != 'avg_pass_rate':  # Per pass rate, incremento è buono
+                    if change < 0:
+                        plt.annotate('↗️', xy=(version_numbers[j], values[j]), 
+                                   xytext=(5, 5), textcoords='offset points', color='green')
+                    elif change > 0:
+                        plt.annotate('↘️', xy=(version_numbers[j], values[j]), 
+                                   xytext=(5, 5), textcoords='offset points', color='red')
+                else:
+                    if change > 0:
+                        plt.annotate('↗️', xy=(version_numbers[j], values[j]), 
+                                   xytext=(5, 5), textcoords='offset points', color='green')
+                    elif change < 0:
+                        plt.annotate('↘️', xy=(version_numbers[j], values[j]), 
+                                   xytext=(5, 5), textcoords='offset points', color='red')
+        
+        plt.tight_layout()
+        plt.suptitle('📈 Performance Trends Across Prompt Versions', y=1.02, fontsize=16)
+        plt.show()
+
+    def export_version_analysis(self, output_file="version_analysis.json"):
+        """Esporta l'analisi delle versioni in un file JSON"""
+        analysis_data = {
+            'version_comparison': self.version_comparison,
+            'cluster_version_stats': self.cluster_version_stats,
+            'best_version': self.find_best_prompt_version()
+        }
+        
+        with open(output_file, 'w', encoding='utf-8') as f:
+            json.dump(analysis_data, f, indent=2, ensure_ascii=False)
+        
+        print(f"✅ Analisi delle versioni esportata in: {output_file}")
+
+    def full_version_analysis(self):
+        """Analisi completa delle versioni dei prompt"""
+        print("Loading output files...")
+        self.load_output_files()
+        
+        print("Computing baseline statistics...")
+        self.compute_baseline_statistics()
+        
+        print("Computing version statistics...")
+        self.compute_version_statistics()
+        self.compute_version_comparison()
+        self.compute_baseline_vs_versions_comparison()
+        
+        # Stampa risultati
+        self.print_version_statistics()
+        
+        # Visualizzazioni separate per metrica
+        print("Generating visualizations...")
+        self.plot_all_metrics_separately()
+        self.plot_cluster_version_heatmap()
+        self.plot_version_trend_analysis()
+        
+        # Esporta risultati
+        self.export_version_analysis()
+
+    # Mantieni i metodi originali per compatibilità
     def compute_regression_test_statistics(self):
-        """Computa statistiche sui regression test passati/falliti per LLM e linguaggio"""
+        """Computa statistiche sui regression test da tutti i file caricati"""
         regression_stats = defaultdict(lambda: {'passed': 0, 'failed': 0, 'total': 0})
         regression_per_lang = defaultdict(lambda: defaultdict(lambda: {'passed': 0, 'failed': 0, 'total': 0}))
         
-        # Controlla se è una lista (formato flat) o un dizionario per linguaggio
-        if isinstance(self.data, dict):
-            data_entries = []
-            for lang_entries in self.data.values():
-                data_entries.extend(lang_entries)
-        elif isinstance(self.data, list):
-            data_entries = self.data
-        else:
-            raise ValueError("Formato del dataset non riconosciuto.")
-
-        for entry in data_entries:
-            language = entry['language']
-            
-            for llm_result in entry['LLM_results']:
-                llm = llm_result['LLM_type']
-                test_passed = llm_result.get('regrationTestPassed', False)
-                
-                # Statistiche globali
-                regression_stats[llm]['total'] += 1
-                if test_passed:
-                    regression_stats[llm]['passed'] += 1
-                else:
-                    regression_stats[llm]['failed'] += 1
-                
-                # Statistiche per linguaggio
-                regression_per_lang[language][llm]['total'] += 1
-                if test_passed:
-                    regression_per_lang[language][llm]['passed'] += 1
-                else:
-                    regression_per_lang[language][llm]['failed'] += 1
+        for cluster_name, versions in self.data.items():
+            for version, runs in versions.items():
+                for run_number, run_data in runs.items():
+                    results = run_data.get('results', {})
+                    
+                    for language, entries in results.items():
+                        for entry in entries:
+                            for llm_result in entry.get('LLM_results', []):
+                                llm = llm_result.get('LLM_type', 'unknown')
+                                test_passed = llm_result.get('regrationTestPassed', False)
+                                
+                                # Statistiche globali
+                                regression_stats[llm]['total'] += 1
+                                if test_passed:
+                                    regression_stats[llm]['passed'] += 1
+                                else:
+                                    regression_stats[llm]['failed'] += 1
+                                
+                                # Statistiche per linguaggio
+                                regression_per_lang[language][llm]['total'] += 1
+                                if test_passed:
+                                    regression_per_lang[language][llm]['passed'] += 1
+                                else:
+                                    regression_per_lang[language][llm]['failed'] += 1
 
         self.regression_test_stats = dict(regression_stats)
         self.regression_test_per_language = dict(regression_per_lang)
-
-    def compute_statistics(self):
-        """Computa statistiche considerando solo gli LLM che passano i regression test"""
-        global_metrics = defaultdict(lambda: defaultdict(list))
-        per_language_metrics = defaultdict(lambda: defaultdict(lambda: defaultdict(list)))
-        comparison_per_snippet = []
-
-        # Controlla se è una lista (formato flat) o un dizionario per linguaggio
-        if isinstance(self.data, dict):
-            data_entries = []
-            for lang_entries in self.data.values():
-                data_entries.extend(lang_entries)
-        elif isinstance(self.data, list):
-            data_entries = self.data
-        else:
-            raise ValueError("Formato del dataset non riconosciuto.")
-
-        for entry in data_entries:
-            language = entry['language']
-            base_metrics = {
-                'execution_time_ms': entry['execution_time_ms'],
-                'CPU_usage': entry['CPU_usage'],
-                'RAM_usage': entry['RAM_usage']
-            }
-
-            for llm_result in entry['LLM_results']:
-                llm = llm_result['LLM_type']
-                
-                # FILTRO: Considera solo gli LLM che passano i regression test
-                if not llm_result.get('regrationTestPassed', False):
-                    continue
-
-                for metric in ['execution_time_difference_ms', 'CPU_usage_difference', 'ram_usage_difference']:
-                    normalized_metric = metric.replace('_difference', '')
-                    global_metrics[llm][normalized_metric].append(llm_result[metric])
-                    per_language_metrics[language][llm][normalized_metric].append(llm_result[metric])
-
-                comparison_per_snippet.append({
-                    "id": entry["id"],
-                    "language": language,
-                    "llm": llm,
-                    "execution_time_ms": llm_result["execution_time_ms"],
-                    "CPU_usage": llm_result["CPU_usage"],
-                    "RAM_usage": llm_result["RAM_usage"],
-                    "execution_time_improved": llm_result["execution_time_improved"],
-                    "CPU_improved": llm_result["CPU_improved"],
-                    "ram_improved": llm_result["ram_improved"],
-                    "regression_test_passed": llm_result.get('regrationTestPassed', False)
-                })
-
-        self.global_metrics = global_metrics
-        self.per_language_metrics = per_language_metrics
-        self.comparison_per_snippet = comparison_per_snippet
-
-    def find_best_models(self):
-        best_models = {}
-        for metric in ['execution_time_ms', 'CPU_usage', 'RAM_usage']:
-            # Crea dizionario temporaneo con solo LLM che hanno dati per quella metrica
-            valid_llms = {
-                llm: mean(values[metric])
-                for llm, values in self.global_metrics.items()
-                if metric in values and values[metric]  # chiave presente e lista non vuota
-            }
-
-            if valid_llms:
-                best_llm = min(valid_llms, key=valid_llms.get)
-                best_models[metric] = best_llm
-            else:
-                best_models[metric] = "N/A"
-        self.best_models = best_models
-
-    def find_best_models_by_language(self):
-        best_per_lang = defaultdict(dict)
-        for lang, llm_data in self.per_language_metrics.items():
-            for metric in ['execution_time_ms', 'CPU_usage', 'RAM_usage']:
-                if llm_data:  # Controlla che ci siano dati per questo linguaggio
-                    valid_llms = {
-                        llm: mean(metrics[metric]) 
-                        for llm, metrics in llm_data.items() 
-                        if metric in metrics and metrics[metric]
-                    }
-                    if valid_llms:
-                        best_llm = min(valid_llms, key=valid_llms.get)
-                        best_per_lang[lang][metric] = best_llm
-                    else:
-                        best_per_lang[lang][metric] = "N/A"
-        self.best_per_lang = best_per_lang
 
     def print_regression_test_summary(self):
         """Stampa statistiche sui regression test"""
@@ -165,187 +636,9 @@ class StatsHandler:
             print(f"🔹 {llm}:")
             print(f"  ✅ Passed: {passed}/{total} ({pass_rate:.1f}%)")
             print(f"  ❌ Failed: {failed}/{total} ({100-pass_rate:.1f}%)")
-        
-        # Statistiche per linguaggio
-        print("\n📚 Regression Test Results by Language:")
-        for lang, llm_stats in self.regression_test_per_language.items():
-            print(f"\n🔸 Language: {lang}")
-            for llm, stats in llm_stats.items():
-                passed = stats['passed']
-                total = stats['total']
-                failed = stats['failed']
-                pass_rate = (passed / total * 100) if total > 0 else 0
-                print(f"  {llm}: {passed}/{total} passed ({pass_rate:.1f}%)")
-        
-        # LLM che passano tutti i test
-        print("\n🏆 LLMs with 100% Pass Rate:")
-        perfect_llms = [llm for llm, stats in self.regression_test_stats.items() 
-                       if stats['passed'] == stats['total'] and stats['total'] > 0]
-        if perfect_llms:
-            for llm in perfect_llms:
-                print(f"  ✨ {llm} ({self.regression_test_stats[llm]['total']} tests)")
-        else:
-            print("  None")
-        
-        # LLM che falliscono tutti i test
-        print("\n💥 LLMs with 0% Pass Rate:")
-        failed_llms = [llm for llm, stats in self.regression_test_stats.items() 
-                      if stats['passed'] == 0 and stats['total'] > 0]
-        if failed_llms:
-            for llm in failed_llms:
-                print(f"  ❌ {llm} ({self.regression_test_stats[llm]['total']} tests)")
-        else:
-            print("  None")
 
-    def print_summary(self):
-        print("\n📊 Average Performance Difference per LLM (only regression test passed, lower is better):")
-        for llm, metrics in self.global_metrics.items():
-            print(f"\n🔹 {llm}")
-            for metric, values in metrics.items():
-                if values:  # Controlla che ci siano valori
-                    print(f"  {metric}: {mean(values):.2f} (based on {len(values)} samples)")
-                else:
-                    print(f"  {metric}: N/A (no valid samples)")
 
-        print("\n🏆 Best LLM per Overall Metric (only regression test passed):")
-        for metric, llm in self.best_models.items():
-            print(f"  {metric}: {llm}")
-
-        print("\n📚 Best LLM per Language and Metric (only regression test passed):")
-        for lang, metrics in self.best_per_lang.items():
-            print(f"\n🔸 Language: {lang}")
-            for metric, llm in metrics.items():
-                print(f"  {metric}: {llm}")
-
-    def plot_regression_test_results(self):
-        """Visualizza i risultati dei regression test"""
-        # Grafico globale dei pass rate
-        llms = list(self.regression_test_stats.keys())
-        pass_rates = [
-            (stats['passed'] / stats['total'] * 100) if stats['total'] > 0 else 0
-            for stats in self.regression_test_stats.values()
-        ]
-        
-        plt.figure(figsize=(12, 6))
-        colors = ['green' if rate == 100 else 'orange' if rate >= 50 else 'red' for rate in pass_rates]
-        bars = plt.bar(llms, pass_rates, color=colors)
-        plt.title("🧪 Regression Test Pass Rate by LLM")
-        plt.ylabel("Pass Rate (%)")
-        plt.xlabel("LLM")
-        plt.ylim(0, 100)
-        plt.grid(True, axis='y', linestyle='--', alpha=0.7)
-        
-        # Aggiungi etichette sui bar
-        for bar, rate in zip(bars, pass_rates):
-            plt.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 1,
-                    f'{rate:.1f}%', ha='center', va='bottom')
-        
-        plt.tight_layout()
-        plt.show()
-        
-        # Grafico per linguaggio
-        for lang, llm_stats in self.regression_test_per_language.items():
-            llms = list(llm_stats.keys())
-            pass_rates = [
-                (stats['passed'] / stats['total'] * 100) if stats['total'] > 0 else 0
-                for stats in llm_stats.values()
-            ]
-            
-            plt.figure(figsize=(10, 6))
-            colors = ['green' if rate == 100 else 'orange' if rate >= 50 else 'red' for rate in pass_rates]
-            bars = plt.bar(llms, pass_rates, color=colors)
-            plt.title(f"🧪 Regression Test Pass Rate for {lang}")
-            plt.ylabel("Pass Rate (%)")
-            plt.xlabel("LLM")
-            plt.ylim(0, 100)
-            plt.grid(True, axis='y', linestyle='--', alpha=0.7)
-            
-            # Aggiungi etichette sui bar
-            for bar, rate in zip(bars, pass_rates):
-                plt.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 1,
-                        f'{rate:.1f}%', ha='center', va='bottom')
-            
-            plt.tight_layout()
-            plt.show()
-
-    def plot_llm_performance(self):
-        """Plotta performance solo per LLM che passano i regression test"""
-        for metric in ['execution_time_ms', 'CPU_usage', 'RAM_usage']:
-            llms = []
-            values = []
-            sample_counts = []
-
-            for llm, metrics in self.global_metrics.items():
-                if metric in metrics and metrics[metric]:
-                    llms.append(llm)
-                    values.append(mean(metrics[metric]))
-                    sample_counts.append(len(metrics[metric]))
-
-            if not llms:
-                print(f"[WARN] Nessun dato per metrica {metric} (regression test passed), grafico non generato.")
-                continue
-
-            plt.figure(figsize=(12, 6))
-            bars = plt.bar(llms, values, color='teal')
-            plt.title(f"Average {metric} improvement (lower is better) - Only Regression Test Passed")
-            plt.ylabel(metric)
-            plt.xlabel("LLM")
-            plt.grid(True, axis='y', linestyle='--', alpha=0.7)
-            
-            # Aggiungi numero di campioni sui bar
-            for bar, count in zip(bars, sample_counts):
-                plt.text(bar.get_x() + bar.get_width()/2, bar.get_height() + (max(values) * 0.01),
-                        f'n={count}', ha='center', va='bottom', fontsize=8)
-            
-            plt.tight_layout()
-            plt.show()
-
-    def plot_best_llm_by_language(self):
-        """Plotta migliori LLM per linguaggio (solo regression test passed)"""
-        for metric in ['execution_time_ms', 'CPU_usage', 'RAM_usage']:
-            best_llms = []
-            for lang in sorted(self.best_per_lang.keys()):
-                if metric in self.best_per_lang[lang] and self.best_per_lang[lang][metric] != "N/A":
-                    best_llms.append(self.best_per_lang[lang][metric])
-
-            if not best_llms:
-                print(f"[WARN] Nessun dato per metrica {metric} per linguaggio, grafico non generato.")
-                continue
-
-            counts = Counter(best_llms)
-            labels, values = zip(*counts.items())
-
-            plt.figure(figsize=(10, 6))
-            plt.bar(labels, values, color='coral')
-            plt.title(f"🏆 Best LLM by Language for {metric} (Regression Test Passed)")
-            plt.ylabel("Number of Languages")
-            plt.xlabel("LLM")
-            plt.grid(True, axis='y', linestyle='--', alpha=0.7)
-            plt.tight_layout()
-            plt.show()
-
-    def full_analysis(self):
-        """Analisi completa con regression test statistics"""
-        print("Computing regression test statistics...")
-        self.compute_regression_test_statistics()
-        
-        print("Computing performance statistics (regression test passed only)...")
-        self.compute_statistics()
-        
-        print("Finding best models...")
-        self.find_best_models()
-        self.find_best_models_by_language()
-        
-        # Stampa i risultati
-        self.print_regression_test_summary()
-        self.print_summary()
-        
-        # Visualizzazioni
-        self.plot_regression_test_results()
-        self.plot_llm_performance()
-        self.plot_best_llm_by_language()
-
-    def print_dataset_statistics(self, charts: bool = False):
+    def print_dataset_statistics(self):
         root_dir = Path("dataset")
         dataset_path = root_dir / "dataset.json"
         
@@ -397,30 +690,42 @@ class StatsHandler:
             if len(involved_langs) > 1:
                 print(f"  - {fname_stem}: {len(entries)} entry da linguaggi: {', '.join(sorted(involved_langs))}")
 
-        # Funzione per plottare i grafici
-        def plot_bar_chart(counter, title, xlabel):
-            if not counter:
-                print(f"[INFO] Nessun dato per: {title}")
-                return
-            labels, values = zip(*sorted(counter.items(), key=lambda x: -x[1]))
-            plt.figure(figsize=(10, 6))
-            plt.bar(labels, values, color="skyblue")
-            plt.title(title)
-            plt.xlabel(xlabel)
-            plt.ylabel("Numero di entry")
-            plt.xticks(rotation=45, ha="right")
-            plt.tight_layout()
-            plt.show()
+ 
 
-        # Visualizzazione grafica
-        if charts:
-            plot_bar_chart(language_counter, "Entry per Linguaggio", "Linguaggio")
-            plot_bar_chart(source_counter, "Entry per Fonte", "Fonte")
+    def full_analysis(self):
+        """Analisi completa includendo le nuove funzionalità per le versioni"""
+        print("Loading output files...")
+        self.load_output_files()
+        
+        print("Computing regression test statistics...")
+        self.compute_regression_test_statistics()
+        
+        print("Computing version statistics...")
+        self.compute_version_statistics()
+        self.compute_version_comparison()
+        
+        # Stampa risultati
+        self.print_regression_test_summary()
+        self.print_version_statistics()
+        
+        # Visualizzazioni
+        print("Generating visualizations...")
+        self.plot_version_comparison()
+        self.plot_cluster_version_heatmap()
+        self.plot_version_trend_analysis()
+        
+        # Esporta risultati
+        self.export_version_analysis()
 
-            cross_lang_distribution = Counter()
-            for fname_stem, entries in clusters_cross_language.items():
-                involved_langs = set(e["language"] for e in entries)
-                if len(involved_langs) > 1:
-                    cross_lang_distribution[len(involved_langs)] += 1
 
-            plot_bar_chart(cross_lang_distribution, "Esercizi con Presenza Cross-Linguaggio", "Numero di Linguaggi Coinvolti")
+# Esempio di utilizzo
+if __name__ == "__main__":
+    
+    cluster_name = "raindrops"  # o None per tutti i cluster
+    handler = StatsHandler(str(utility_paths.OUTPUT_DIR_FILEPATH), cluster_filter=cluster_name)
+    
+    
+    handler.full_version_analysis()
+    
+    # analisi completa originale + versioni
+    # handler.full_analysis()

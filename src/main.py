@@ -335,7 +335,7 @@ def adjusPaths():
         with open(jsonDataset_file, 'w', encoding='utf-8') as f:
             json.dump(data, f, indent=4)
         print(f"Dataset aggiornato (paths aggiornati)\n{c} entry aggiornate")
-        #print_dataset_statistics()
+        
     else:
         print("Nessun'entry da aggiornare.")     
 
@@ -410,7 +410,7 @@ if __name__ == "__main__":
     if args.adjust_licenses : adjust_licenses()
     if args.adjust_paths : adjusPaths()
     if args.create_focused_cluster : createFocusedCluster()
-    if args.statistics : stats_handler.print_dataset_statistics(args.charts)
+    if args.statistics : stats_handler.print_dataset_statistics()
     if args.analysis : stats_handler.full_analysis()
      
     
