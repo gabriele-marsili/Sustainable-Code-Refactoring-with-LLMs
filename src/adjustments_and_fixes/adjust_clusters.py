@@ -5,6 +5,44 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
 from utility_dir import utility_paths
 import json
+
+def adjust_out_cluster():
+    cluster_path = utility_paths.CLUSTERS_DIR_FILEPATH / "cluster_raindrops.json"
+    out_path = utility_paths.OUTPUT_DIR_FILEPATH / "raindrops_results_1.json"
+    
+    with open(cluster_path,"r",encoding="utf-8") as f:
+        cluster_data = json.load(f)
+        
+    cluster_ids = []
+    for _, entries in cluster_data.items():
+        cluster_ids += [entry['id'] for entry in entries]
+      
+    with open(out_path, "r",encoding="utf-8") as f :
+        out_data = json.load(f)
+    
+    c = 0
+    
+    for lang in out_data['results']:
+        entries = out_data['results'][lang]
+        indexes_of_entry_to_remove = []
+        for i,entry in enumerate(entries) : 
+            if entry['id'] not in cluster_ids:
+                print(f"removing entry {entry['id']} by result file")
+                indexes_of_entry_to_remove.append(i)
+                c += 1
+                                
+        for i in reversed(indexes_of_entry_to_remove):
+            del out_data['results'][lang][i]
+            
+            
+    with open(out_path, 'w', encoding='utf-8') as f:
+        json.dump(out_data, f, indent=2, ensure_ascii=False)
+    
+    print(f"removed {c} files")
+
+        
+            
+
 def main():    
     for file_path in os.listdir(utility_paths.OUTPUT_DIR_FILEPATH):        
         file_path = utility_paths.OUTPUT_DIR_FILEPATH / file_path
@@ -41,4 +79,5 @@ def main():
                     
 
 if __name__ == "__main__":
-    main()
+    #main()
+    adjust_out_cluster()
