@@ -167,11 +167,12 @@ class StatsHandler:
                     results = run_data.get('results', {})
                     
                     for language, entries in results.items():
+                        en_counter = 0
                         for entry in entries:
                             #print(f"entry:\n{entry}")
                             llm_results = entry['LLM_results']
-                            #if run_number == 1 : 
-                            version_data['entry_count'] += len(llm_results)  # Conta LLM_results
+                            if run_number == 1 : 
+                                version_data['entry_count'] += len(llm_results)  # Conta LLM_results
                             
                             for llm_result in llm_results:
                                 version_data['execution_times'].append(llm_result.get('execution_time_ms', 0))
@@ -734,7 +735,7 @@ class StatsHandler:
                     try : 
                         counter += len(entry["LLM_results"])                    
                     except Exception as e : 
-                        print(f"entry : {entry['id']} file {f_name} version {version}")
+                        print(f"entry : {entry['id']} file {f_name}")
                         raise e
                     
         return (counter,not_llm_entry_counter )
@@ -759,14 +760,8 @@ class StatsHandler:
         return (counter,not_llm_entry_counter )
   
 
-# Esempio di utilizzo
-if __name__ == "__main__":
-    
-    cluster_name = "raindrops"  # o None per tutti i cluster
-    handler = StatsHandler(str(utility_paths.OUTPUT_DIR_FILEPATH), cluster_filter=cluster_name)
-    
-    
-    #handler.full_version_analysis()
+
+def count(handler: StatsHandler) :    
     for version in range(1,5):
         
         f_name = f"cluster_raindrops.json"
@@ -781,5 +776,16 @@ if __name__ == "__main__":
     
     
 
+
+# Esempio di utilizzo
+if __name__ == "__main__":
+    
+    cluster_name = "raindrops"  # o None per tutti i cluster
+    handler = StatsHandler(str(utility_paths.OUTPUT_DIR_FILEPATH), cluster_filter=cluster_name)
+    
+    
+    handler.full_version_analysis()
+    #count(handler)
+    
     # analisi completa originale + versioni
-    # handler.full_analysis()
+    #handler.full_analysis()

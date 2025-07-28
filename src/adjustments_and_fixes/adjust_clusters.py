@@ -6,9 +6,9 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 from utility_dir import utility_paths
 import json
 def main():    
-    for file_path in os.listdir(utility_paths.OUTPUT_DIR_FILEPATH):
-        print(f"file path = {file_path}")
+    for file_path in os.listdir(utility_paths.OUTPUT_DIR_FILEPATH):        
         file_path = utility_paths.OUTPUT_DIR_FILEPATH / file_path
+        print(f"file path = {file_path}")
         if os.path.isfile(file_path):
             with open(file_path,"r",encoding="utf-8") as f:
                 data = json.load(f)
@@ -25,7 +25,8 @@ def main():
             if "LLM_results" in entry:
                 llms_to_remove = []
                 for j, llm in enumerate(entry["LLM_results"]):
-                    if llm.get("filename", "").endswith(".js"):
+                    #if llm.get("filename", "").endswith(".js"):
+                    if llm.get("path", "").endswith(".js"):
                         llms_to_remove.append(j)
                 
                 # Rimuovi gli LLM_results con file .js (in ordine inverso per non alterare gli indici)
