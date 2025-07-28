@@ -1,21 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const FACTOR_RAINDROP_PAIRS = [
+    [3, 'Pling'],
+    [5, 'Plang'],
+    [7, 'Plong']
+];
 class Raindrops {
-    constructor() {
-        this.mappings = [
-            [3, 'Pling'],
-            [5, 'Plang'],
-            [7, 'Plong']
-        ];
-    }
     convert(n) {
-        let result = '';
-        for (const [divisor, sound] of this.mappings) {
-            if (n % divisor === 0) {
-                result += sound;
+        let dropString = '';
+        for (const [factor, drop] of FACTOR_RAINDROP_PAIRS) {
+            if (n % factor === 0) {
+                dropString += drop;
             }
         }
-        return result || n.toString();
+        return dropString || n.toString();
     }
 }
 exports.default = Raindrops;

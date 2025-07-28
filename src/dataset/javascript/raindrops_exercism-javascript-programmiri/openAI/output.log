@@ -1,44 +1,266 @@
 (node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-PASS ./raindrops_testSuite.js (10.75 s)
+FAIL ./raindrops_testSuite.js (10.331 s)
   Raindrops
-    ✓ converts 1 (206 ms)
-    ✓ converts 3 (35 ms)
-    ✓ converts 5 (6 ms)
-    ✓ converts 7 (55 ms)
-    ✓ converts 6 (4 ms)
-    ✓ converts 9 (82 ms)
-    ✓ converts 10 (11 ms)
-    ✓ converts 14 (11 ms)
-    ✓ converts 15 (11 ms)
-    ✓ converts 21 (28 ms)
-    ✓ converts 25 (23 ms)
-    ✓ converts 35 (8 ms)
-    ✓ converts 49 (2 ms)
-    ✓ converts 52 (1 ms)
-    ✓ converts 105 (1 ms)
-    ✓ converts 12121 (22 ms)
+    ✓ converts 1 (60 ms)
+    ✕ converts 3 (35 ms)
+    ✕ converts 5 (6 ms)
+    ✕ converts 7 (4 ms)
+    ✕ converts 6 (2 ms)
+    ✕ converts 9 (4 ms)
+    ✕ converts 10 (5 ms)
+    ✕ converts 14 (4 ms)
+    ✕ converts 15 (5 ms)
+    ✕ converts 21 (7 ms)
+    ✕ converts 25 (3 ms)
+    ✕ converts 35 (4 ms)
+    ✕ converts 49 (1 ms)
+    ✓ converts 52 (7 ms)
+    ✕ converts 105 (5 ms)
+    ✓ converts 12121 (2 ms)
 
-Test Suites: 1 passed, 1 total
-Tests:       16 passed, 16 total
+  ● Raindrops › converts 3
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "Pling"
+    Received: "3"
+
+      4 |   test('converts 1', () => expect(convert(1)).toEqual('1'));
+      5 |
+    > 6 |   test('converts 3', () => expect(convert(3)).toEqual('Pling'));
+        |                                               ^
+      7 |
+      8 |   test('converts 5', () => expect(convert(5)).toEqual('Plang'));
+      9 |
+
+      at Object.<anonymous> (raindrops_testSuite.js:6:47)
+
+  ● Raindrops › converts 5
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "Plang"
+    Received: "5"
+
+       6 |   test('converts 3', () => expect(convert(3)).toEqual('Pling'));
+       7 |
+    >  8 |   test('converts 5', () => expect(convert(5)).toEqual('Plang'));
+         |                                               ^
+       9 |
+      10 |   test('converts 7', () => expect(convert(7)).toEqual('Plong'));
+      11 |
+
+      at Object.<anonymous> (raindrops_testSuite.js:8:47)
+
+  ● Raindrops › converts 7
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "Plong"
+    Received: "7"
+
+       8 |   test('converts 5', () => expect(convert(5)).toEqual('Plang'));
+       9 |
+    > 10 |   test('converts 7', () => expect(convert(7)).toEqual('Plong'));
+         |                                               ^
+      11 |
+      12 |   test('converts 6', () => expect(convert(6)).toEqual('Pling'));
+      13 |
+
+      at Object.<anonymous> (raindrops_testSuite.js:10:47)
+
+  ● Raindrops › converts 6
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "Pling"
+    Received: "6"
+
+      10 |   test('converts 7', () => expect(convert(7)).toEqual('Plong'));
+      11 |
+    > 12 |   test('converts 6', () => expect(convert(6)).toEqual('Pling'));
+         |                                               ^
+      13 |
+      14 |   test('converts 9', () => expect(convert(9)).toEqual('Pling'));
+      15 |
+
+      at Object.<anonymous> (raindrops_testSuite.js:12:47)
+
+  ● Raindrops › converts 9
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "Pling"
+    Received: "9"
+
+      12 |   test('converts 6', () => expect(convert(6)).toEqual('Pling'));
+      13 |
+    > 14 |   test('converts 9', () => expect(convert(9)).toEqual('Pling'));
+         |                                               ^
+      15 |
+      16 |   test('converts 10', () => expect(convert(10)).toEqual('Plang'));
+      17 |
+
+      at Object.<anonymous> (raindrops_testSuite.js:14:47)
+
+  ● Raindrops › converts 10
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "Plang"
+    Received: "10"
+
+      14 |   test('converts 9', () => expect(convert(9)).toEqual('Pling'));
+      15 |
+    > 16 |   test('converts 10', () => expect(convert(10)).toEqual('Plang'));
+         |                                                 ^
+      17 |
+      18 |   test('converts 14', () => expect(convert(14)).toEqual('Plong'));
+      19 |
+
+      at Object.<anonymous> (raindrops_testSuite.js:16:49)
+
+  ● Raindrops › converts 14
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "Plong"
+    Received: "14"
+
+      16 |   test('converts 10', () => expect(convert(10)).toEqual('Plang'));
+      17 |
+    > 18 |   test('converts 14', () => expect(convert(14)).toEqual('Plong'));
+         |                                                 ^
+      19 |
+      20 |   test('converts 15', () => expect(convert(15)).toEqual('PlingPlang'));
+      21 |
+
+      at Object.<anonymous> (raindrops_testSuite.js:18:49)
+
+  ● Raindrops › converts 15
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "PlingPlang"
+    Received: "15"
+
+      18 |   test('converts 14', () => expect(convert(14)).toEqual('Plong'));
+      19 |
+    > 20 |   test('converts 15', () => expect(convert(15)).toEqual('PlingPlang'));
+         |                                                 ^
+      21 |
+      22 |   test('converts 21', () => expect(convert(21)).toEqual('PlingPlong'));
+      23 |
+
+      at Object.<anonymous> (raindrops_testSuite.js:20:49)
+
+  ● Raindrops › converts 21
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "PlingPlong"
+    Received: "21"
+
+      20 |   test('converts 15', () => expect(convert(15)).toEqual('PlingPlang'));
+      21 |
+    > 22 |   test('converts 21', () => expect(convert(21)).toEqual('PlingPlong'));
+         |                                                 ^
+      23 |
+      24 |   test('converts 25', () => expect(convert(25)).toEqual('Plang'));
+      25 |
+
+      at Object.<anonymous> (raindrops_testSuite.js:22:49)
+
+  ● Raindrops › converts 25
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "Plang"
+    Received: "25"
+
+      22 |   test('converts 21', () => expect(convert(21)).toEqual('PlingPlong'));
+      23 |
+    > 24 |   test('converts 25', () => expect(convert(25)).toEqual('Plang'));
+         |                                                 ^
+      25 |
+      26 |   test('converts 35', () => expect(convert(35)).toEqual('PlangPlong'));
+      27 |
+
+      at Object.<anonymous> (raindrops_testSuite.js:24:49)
+
+  ● Raindrops › converts 35
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "PlangPlong"
+    Received: "35"
+
+      24 |   test('converts 25', () => expect(convert(25)).toEqual('Plang'));
+      25 |
+    > 26 |   test('converts 35', () => expect(convert(35)).toEqual('PlangPlong'));
+         |                                                 ^
+      27 |
+      28 |   test('converts 49', () => expect(convert(49)).toEqual('Plong'));
+      29 |
+
+      at Object.<anonymous> (raindrops_testSuite.js:26:49)
+
+  ● Raindrops › converts 49
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "Plong"
+    Received: "49"
+
+      26 |   test('converts 35', () => expect(convert(35)).toEqual('PlangPlong'));
+      27 |
+    > 28 |   test('converts 49', () => expect(convert(49)).toEqual('Plong'));
+         |                                                 ^
+      29 |
+      30 |   test('converts 52', () => expect(convert(52)).toEqual('52'));
+      31 |
+
+      at Object.<anonymous> (raindrops_testSuite.js:28:49)
+
+  ● Raindrops › converts 105
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "PlingPlangPlong"
+    Received: "105"
+
+      30 |   test('converts 52', () => expect(convert(52)).toEqual('52'));
+      31 |
+    > 32 |   test('converts 105', () => expect(convert(105)).toEqual('PlingPlangPlong'));
+         |                                                   ^
+      33 |
+      34 |   test('converts 12121', () => expect(convert(12121)).toEqual('12121'));
+      35 | });
+
+      at Object.<anonymous> (raindrops_testSuite.js:32:51)
+
+Test Suites: 1 failed, 1 total
+Tests:       13 failed, 3 passed, 16 total
 Snapshots:   0 total
-Time:        13.806 s
+Time:        12.712 s
 Ran all test suites.
+Command exited with non-zero status 1
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 2.87
-	System time (seconds): 3.05
+	User time (seconds): 3.65
+	System time (seconds): 2.30
 	Percent of CPU this job got: 14%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:39.58
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:40.85
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 81280
+	Maximum resident set size (kbytes): 77012
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 15405
-	Voluntary context switches: 6706
-	Involuntary context switches: 4977
+	Minor (reclaiming a frame) page faults: 15849
+	Voluntary context switches: 6617
+	Involuntary context switches: 6111
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16
@@ -46,4 +268,4 @@ Ran all test suites.
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 0
+	Exit status: 1

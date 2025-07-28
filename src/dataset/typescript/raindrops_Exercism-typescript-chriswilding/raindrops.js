@@ -2,20 +2,17 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Rainsdrops {
     convert(n) {
-        let result = "";
-        const isDivisibleBy3 = n % 3 === 0;
-        const isDivisibleBy5 = n % 5 === 0;
-        const isDivisibleBy7 = n % 7 === 0;
-        if (isDivisibleBy3) {
-            result += "Pling";
+        let output = '';
+        if (n % 3 === 0) {
+            output += 'Pling';
         }
-        if (isDivisibleBy5) {
-            result += "Plang";
+        if (n % 5 === 0) {
+            output += 'Plang';
         }
-        if (isDivisibleBy7) {
-            result += "Plong";
+        if (n % 7 === 0) {
+            output += 'Plong';
         }
-        return result || n.toString();
+        return output || n.toString();
     }
 }
 exports.default = Rainsdrops;

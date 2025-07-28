@@ -139,10 +139,10 @@ class TestRunner:
                 if base_only : 
                     self.total_tests += 1
                 elif llm_only: 
-                    self.total_tests += len(entry["LLMs"])
+                    self.total_tests += len([x for x in entry["LLMs"] if f"_v{prompt_version}" in x['filename']]) 
                 else : 
                     self.total_tests += 1
-                    self.total_tests += len(entry["LLMs"])                    
+                    self.total_tests+= len([x for x in entry["LLMs"] if f"_v{prompt_version}" in x['filename']]) 
             
         
        
@@ -886,6 +886,9 @@ if __name__ == "__main__":
     parser.add_argument("--prompt-version", type=int,
                    help="Choose prompt version related to LLMs files")
     
+    parser.add_argument("--run_quantity", type=int,default=1,
+                   help="Choose quantity of runs")
+
     args = parser.parse_args()
     
     if not args.no_docker_cache: run_with_docker_cache = False
@@ -895,7 +898,7 @@ if __name__ == "__main__":
         silent_mode = True
     
     success = False
-    for i in range(1,6): #1 to 5 included
+    for i in range(1,(args.run_quantity+1)): #1 to args.run_quantity included
         out_file = f"{args.output_file}_{i}"
         success = main(
             base_only=args.base_only, 
@@ -938,6 +941,9 @@ if __name__ == "__main__":
         
         
         
-# python3 run_tests.py --llm-only --cluster-name cluster_raindrops --output-file raindrops_results_v2 --webhook --prompt-version 2 --silent
-# python3 run_tests.py --llm-only --cluster-name cluster_raindrops --output-file raindrops_results_v3 --webhook --prompt-version 3 --silent
-# python3 run_tests.py --llm-only --cluster-name cluster_raindrops --output-file raindrops_results_v4 --webhook --prompt-version 4 --silent
+# python3 run_tests.py --llm-only --cluster-name cluster_raindrops --output-file raindrops_results_v2 --webhook --prompt-version 2 --silent --run_quantity 5
+# python3 run_tests.py --llm-only --cluster-name cluster_raindrops --output-file raindrops_results_v3 --webhook --prompt-version 3 --silent --run_quantity 5
+# python3 run_tests.py --llm-only --cluster-name cluster_raindrops --output-file raindrops_results_v4 --webhook --prompt-version 4 --silent --run_quantity 5
+
+#debug : 
+# python3 run_tests.py --llm-only --cluster-name debug_cluster --output-file debug_result_v1 --webhook --prompt-version 1 --silent

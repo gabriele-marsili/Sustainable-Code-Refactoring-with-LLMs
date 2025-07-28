@@ -168,9 +168,10 @@ class StatsHandler:
                     
                     for language, entries in results.items():
                         for entry in entries:
-                            llm_results = entry.get('LLM_results', [])
-                            if run_number == 1 : 
-                                version_data['entry_count'] += len(llm_results)  # Conta LLM_results
+                            #print(f"entry:\n{entry}")
+                            llm_results = entry['LLM_results']
+                            #if run_number == 1 : 
+                            version_data['entry_count'] += len(llm_results)  # Conta LLM_results
                             
                             for llm_result in llm_results:
                                 version_data['execution_times'].append(llm_result.get('execution_time_ms', 0))
@@ -717,6 +718,46 @@ class StatsHandler:
         # Esporta risultati
         self.export_version_analysis()
 
+    def count_entries_result_file(self, f_name:str):
+        counter = 0
+        not_llm_entry_counter = 0
+        final_path = self.output_directory / f_name
+        with open(final_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            
+        if data :            
+            results_obj = data['results']
+            for key in results_obj :
+                language_entries = results_obj[key]
+                for entry in language_entries:
+                    not_llm_entry_counter  += 1
+                    try : 
+                        counter += len(entry["LLM_results"])                    
+                    except Exception as e : 
+                        print(f"entry : {entry['id']} file {f_name} version {version}")
+                        raise e
+                    
+        return (counter,not_llm_entry_counter )
+                
+
+    def count_entries_cluster(self, f_name:str, version:int):
+        counter = 0
+        not_llm_entry_counter = 0
+        final_path = utility_paths.CLUSTERS_DIR_FILEPATH / f_name
+        with open(final_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            
+        if data :            
+            for key in data :
+                language_entries = data[key]
+                for entry in language_entries:
+                    not_llm_entry_counter  += 1
+                    quantity = len([x for x in entry["LLMs"] if f"_v{version}" in x['filename']]) 
+                    if quantity != 3 : raise Exception(f"quantity = {quantity} for f name : {f_name} version {version} | entry:\n{entry}")
+                    counter += quantity
+                    
+        return (counter,not_llm_entry_counter )
+  
 
 # Esempio di utilizzo
 if __name__ == "__main__":
@@ -725,7 +766,20 @@ if __name__ == "__main__":
     handler = StatsHandler(str(utility_paths.OUTPUT_DIR_FILEPATH), cluster_filter=cluster_name)
     
     
-    handler.full_version_analysis()
+    #handler.full_version_analysis()
+    for version in range(1,5):
+        
+        f_name = f"cluster_raindrops.json"
+        (llm_entry_quantity, not_llm_entry_quantity) = handler.count_entries_cluster(f_name,version)
+        print(f"quanitity of entries for file {f_name} : {not_llm_entry_quantity} | llm entries v {version} : {llm_entry_quantity}")
+
+
+        for run in range(1,6) :             
+            f_name = f"raindrops_results_v{version}_{run}.json"
+            (llm_entry_quantity, not_llm_entry_quantity) = handler.count_entries_result_file(f_name)
+            print(f"quanitity of entries for file {f_name} : {not_llm_entry_quantity} | llm entries : {llm_entry_quantity}")
     
+    
+
     # analisi completa originale + versioni
     # handler.full_analysis()

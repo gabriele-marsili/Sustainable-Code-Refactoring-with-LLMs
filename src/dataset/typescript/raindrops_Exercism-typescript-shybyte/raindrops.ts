@@ -1,9 +1,17 @@
+const FACTOR_RAINDROP_PAIRS: Array<[number, string]> = [
+    [3, 'Pling'],
+    [5, 'Plang'],
+    [7, 'Plong']
+];
+
 export default class Raindrops {
-    convert(n: number) {
-        let result = '';
-        if (n % 3 === 0) result += 'Pling';
-        if (n % 5 === 0) result += 'Plang';
-        if (n % 7 === 0) result += 'Plong';
-        return result || n.toString();
+    convert(n: number): string {
+        let dropString = '';
+        for (const [factor, drop] of FACTOR_RAINDROP_PAIRS) {
+            if (n % factor === 0) {
+                dropString += drop;
+            }
+        }
+        return dropString || n.toString();
     }
 }

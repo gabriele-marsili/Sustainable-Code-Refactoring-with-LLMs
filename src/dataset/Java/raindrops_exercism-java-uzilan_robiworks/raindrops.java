@@ -1,11 +1,36 @@
 class RaindropConverter {
 
     String convert(int number) {
-        StringBuilder output = new StringBuilder(8);
-        if (number % 3 == 0) output.append("Pling");
-        if (number % 5 == 0) output.append("Plang");
-        if (number % 7 == 0) output.append("Plong");
-        return output.length() == 0 ? Integer.toString(number) : output.toString();
+        boolean divisible = false;
+        char[] buffer = new char[16];
+        int index = 0;
+
+        if (number % 3 == 0) {
+            buffer[index++] = 'P';
+            buffer[index++] = 'l';
+            buffer[index++] = 'i';
+            buffer[index++] = 'n';
+            buffer[index++] = 'g';
+            divisible = true;
+        }
+        if (number % 5 == 0) {
+            buffer[index++] = 'P';
+            buffer[index++] = 'l';
+            buffer[index++] = 'a';
+            buffer[index++] = 'n';
+            buffer[index++] = 'g';
+            divisible = true;
+        }
+        if (number % 7 == 0) {
+            buffer[index++] = 'P';
+            buffer[index++] = 'l';
+            buffer[index++] = 'o';
+            buffer[index++] = 'n';
+            buffer[index++] = 'g';
+            divisible = true;
+        }
+
+        return divisible ? new String(buffer, 0, index) : Integer.toString(number);
     }
 
 }

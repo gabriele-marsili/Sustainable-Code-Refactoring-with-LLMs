@@ -4,7 +4,7 @@ exports.convert = convert;
 function convert(num) {
     let result = '';
     if (num % 3 === 0) {
-        result = 'Pling';
+        result += 'Pling';
     }
     if (num % 5 === 0) {
         result += 'Plang';
@@ -12,5 +12,5 @@ function convert(num) {
     if (num % 7 === 0) {
         result += 'Plong';
     }
-    return result || String(num);
+    return result.length > 0 ? result : String(num);
 }
