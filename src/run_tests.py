@@ -59,23 +59,34 @@ class TestRunner:
         global time_passed, files_executed, total_files, tests_passed, error_quantity
         """Aggiorna il progresso in modo thread-safe"""
         with self.progress_lock:
+            # Incrementa il contatore dei test completati
+            self.completed_tests += 1
             
-            if not success:
+            # Incrementa il contatore dei test passati se il test ha avuto successo
+            if success:
+                self.passed_tests += 1
+            else:
                 self.failed_tests.append(test_id)
-            progress = (self.completed_tests / self.total_tests) * 100
-            progress_passed = (self.passed_tests / self.completed_tests) * 100
-            c_time = time.time()
-            elapsed_time_s = c_time - self.start_time
-            hours = int(elapsed_time_s // 3600)
-            minutes = int((elapsed_time_s % 3600) // 60)
-            secs = int(elapsed_time_s % 60)
-            time_passed = f"{hours:02d}h {minutes:02d}min {secs:02d}s"
-            print(f"🔄 Progresso test: {self.completed_tests}/{self.total_tests} ({progress:.1f}%)\n🟩 Passed :  {self.passed_tests}/{self.completed_tests} ({progress_passed:.1f}%)\n⏳ Time passed : {time_passed}")
-            tests_passed = self.passed_tests
-            files_executed = self.completed_tests
-            total_files = self.total_tests
-            error_quantity = self.completed_tests - self.passed_tests
-    
+
+        # Calcola progress solo se total_tests > 0
+        progress = (self.completed_tests / self.total_tests) * 100 if self.total_tests > 0 else 0
+        
+        # Calcola progress_passed solo se completed_tests > 0
+        progress_passed = (self.passed_tests / self.completed_tests) * 100 if self.completed_tests > 0 else 0
+        
+        c_time = time.time()
+        elapsed_time_s = c_time - self.start_time
+        hours = int(elapsed_time_s // 3600)
+        minutes = int((elapsed_time_s % 3600) // 60)
+        secs = int(elapsed_time_s % 60)
+        time_passed = f"{hours:02d}h {minutes:02d}min {secs:02d}s"
+        print(f"🔄 Progresso test: {self.completed_tests}/{self.total_tests} ({progress:.1f}%)\n🟩 Passed :  {self.passed_tests}/{self.completed_tests} ({progress_passed:.1f}%)\n⏳ Time passed : {time_passed}")
+        tests_passed = self.passed_tests
+        files_executed = self.completed_tests
+        total_files = self.total_tests
+        error_quantity = self.completed_tests - self.passed_tests
+        
+            
     def run_test_worker(self, test_info,run_with_docker_cache=True,prompt_version = 1):
         """Worker per eseguire un singolo test"""
         entry, lang, test_type = test_info
@@ -392,7 +403,7 @@ class TestRunner:
             #print(result.stdout)  
             container_err_flag = False
             err_msg = ""
-            self.completed_tests += 1
+            #self.completed_tests += 1
             if result.returncode != 0:                                            
                 if lang == "javascript":
                     self.convert_commonjs_to_esm(entry['testUnitFilePath'])
@@ -413,7 +424,7 @@ class TestRunner:
                 
             else: 
                 if not silent_mode : print(f"🟢 Test unit executed for entry {entry['id']}")
-                self.passed_tests += 1
+                #self.passed_tests += 1
 
             # Debug:
             #print(f"🔎 Controllo output.log in {mount_path}")

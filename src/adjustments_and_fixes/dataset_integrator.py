@@ -70,8 +70,9 @@ class GitHubAPI:
         try:
             response = self.session.get(url, timeout=30)
             response.raise_for_status()
-            json_data = response.json() if isinstance(response.json(), list) else [response.json()]
-            if json_data['license'] == "null" : return "None"
+            json_data = response.json()[0] if isinstance(response.json(), list) else response.json()
+
+            if json_data['license'] is None or json_data['license'] == "null" : return "None"
             return json_data['license']
         except requests.RequestException as e:
             logging.error(f"Error getting License:\n{e}")
@@ -113,23 +114,18 @@ class GitHubAPI:
             logging.error(f"Error getting repository contents: {e}")
             return []
     
-    def download_file(self, repo_full_name: str, file_path: str) -> Optional[str]:
+    def download_file(self, download_url: str) -> Optional[str]:
         """Download a file from a GitHub repository."""
         self._rate_limit()
         
-        url = f"{self.RAW_URL}/{repo_full_name}/{file_path}"
+        
         
         try:
-            response = self.session.get(url, timeout=30)
-            if response.status_code == 404:
-                # Try with master branch
-                url = f"{self.RAW_URL}/{repo_full_name}/master/{file_path}"
-                response = self.session.get(url, timeout=30)
-            
+            response = self.session.get(download_url, timeout=30)            
             response.raise_for_status()
             return response.text
         except requests.RequestException as e:
-            logging.error(f"Error downloading file {file_path}: {e}")
+            logging.error(f"Error downloading file by url {download_url}: {e}")
             return None
 
 
@@ -322,7 +318,11 @@ class ExercismDatasetUpdater:
         for file_info in main_files:
             if file_info['type'] != "file" : continue
         
-            content = self.github.download_file(repo_full_name, file_info['path'])
+            
+            download_url = file_info['download_url']
+            print(f"download_url:\n{download_url}")
+            if file_info['type'] != "file" or download_url == None : continue
+            content = self.github.download_file(download_url)
             
             if content is None:
                 continue
@@ -343,7 +343,12 @@ class ExercismDatasetUpdater:
         
         # Download test files
         for file_info in test_files:            
-            content = self.github.download_file(repo_full_name, file_info['path'])
+            
+            download_url = file_info['download_url']
+            print(f"download_url:\n{download_url}")
+            if file_info['type'] != "file" or download_url == None : continue
+            
+            content = self.github.download_file(download_url)
             
             if content is None:
                 continue
@@ -425,8 +430,14 @@ clean:
             code_path = f"{language}/{exercise_dir.name}/src"
             test_path = f"{language}/{exercise_dir.name}/test"
         else:
-            code_path = f"Java/{exercise_dir.name}"
-            test_path = f"Java/{exercise_dir.name}"
+            code_path = f"Java/{exercise_dir.name}/"+(main_filename or f"{exercise}.{language}")
+            test_path = f"Java/{exercise_dir.name}/"+f"{exercise}Test.{language}"
+        
+        l_type = "None"
+        try:
+            l_type = self.github.getLicense(repo_full_name)
+        except Exception as e:
+            print(f"exception in get l:\n{e}")
         
         return ExerciseEntry(
             id=entry_id,
@@ -435,7 +446,7 @@ clean:
             source=f"Exercism ({source})",
             code_snippet_file_path=code_path,
             test_unit_file_path=test_path,
-            license_type=self.github.getLicense(repo_full_name),
+            license_type=l_type,
             download_date=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             character_quantity=char_count,
             word_quantity=word_count
@@ -488,6 +499,7 @@ clean:
                     language, exercise, source, main_filename, 
                     exercise_dir, char_count, word_count,repo_name
                 )
+                print("entry created")
                 
                 # Add to dataset
                 if language not in dataset:
@@ -499,7 +511,7 @@ clean:
                 return True
                 
             except Exception as e:
-                self.logger.error(f"Error processing {exercise} from {repo_name}: {e}")
+                print(f"Error processing {exercise} from {repo_name}:\n{e}")
                 if exercise_dir.exists():
                     shutil.rmtree(exercise_dir)
                 continue
