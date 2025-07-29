@@ -947,3 +947,4 @@ if __name__ == "__main__":
 
 #debug : 
 # python3 run_tests.py --llm-only --cluster-name debug_cluster --output-file debug_result_v1 --webhook --prompt-version 1 --silent
+# python3 run_tests.py --base-only --cluster-name debug_cluster --output-file debug_java_entries --webhook --silent

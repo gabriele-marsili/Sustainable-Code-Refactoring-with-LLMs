@@ -639,11 +639,10 @@ class StatsHandler:
             print(f"  ✅ Passed: {passed}/{total} ({pass_rate:.1f}%)")
             print(f"  ❌ Failed: {failed}/{total} ({100-pass_rate:.1f}%)")
 
-
     def print_dataset_statistics(self):
         root_dir = Path("dataset")
         dataset_path = root_dir / "dataset.json"
-        
+
         if not dataset_path.exists():
             print(f"[ERRORE] File non trovato: {dataset_path}")
             return
@@ -687,12 +686,19 @@ class StatsHandler:
                     print(f"  {lang} - {fname}: {len(entries)} occorrenze")
 
         print("\nCluster cross-linguaggio (esercizi in più linguaggi):")
-        for fname_stem, entries in clusters_cross_language.items():
+
+        # Ordina i cluster cross-linguaggio per numero decrescente di linguaggi coinvolti
+        sorted_cross_lang_clusters = sorted(
+            clusters_cross_language.items(),
+            key=lambda item: len(set(e["language"] for e in item[1])),
+            reverse=True
+        )
+
+        for fname_stem, entries in sorted_cross_lang_clusters:
             involved_langs = set(e["language"] for e in entries)
             if len(involved_langs) > 1:
                 print(f"  - {fname_stem}: {len(entries)} entry da linguaggi: {', '.join(sorted(involved_langs))}")
-
- 
+    
 
     def full_analysis(self):
         """Analisi completa includendo le nuove funzionalità per le versioni"""

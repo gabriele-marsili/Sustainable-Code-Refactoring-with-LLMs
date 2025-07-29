@@ -2,6 +2,12 @@ import json
 import pathlib
 from typing import Dict, List, Set, Any
 import logging
+import os
+import sys
+# Aggiungi la directory parent (src) al path
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+
+
 from utility_dir import utility_paths
 # Configurazione logging
 logging.basicConfig(
