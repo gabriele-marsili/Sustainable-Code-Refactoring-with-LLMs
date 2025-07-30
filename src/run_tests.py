@@ -110,8 +110,7 @@ class TestRunner:
             
             self._update_progress(test_id, success)
             
-            if not silent_mode:
-                print(f"results in run_ test_worker :\n{results}")
+            #if not silent_mode: print(f"results in run_ test_worker :\n{results}")
                 
             return {
                 'test_id': test_id,
@@ -176,7 +175,7 @@ class TestRunner:
                 result = future.result()
                 test_results.append(result)
                 
-                if not silent_mode : print(f"task result:\n{result}")
+                #if not silent_mode : print(f"task result:\n{result}")
                 
                 # aggiornamento dell'entry (se il test ha successo)
                 if result['success'] and result['results']:
@@ -326,6 +325,8 @@ class TestRunner:
     
     
     def run_container(self,lang, mount_path, container_name, exercise_name:str, file_name:str, entry, LLM_dirName = "", run_with_cache=True, already_called = False):
+        log_file = mount_path / "output.log"  
+        if not silent_mode : print(f"mount_path = {mount_path}")   
         try:
             if not silent_mode : print(f"mount_path = {mount_path}")
             dockerfile_path = DOCKER_DIR / lang.lower()
@@ -403,6 +404,14 @@ class TestRunner:
             #print(result.stdout)  
             container_err_flag = False
             err_msg = ""
+            
+            # Verifica che il file output.log esista prima di procedere
+            if not log_file.exists():
+                if not silent_mode: print(f"⚠️ output.log non trovato in {log_file}, creazione file vuoto")
+                log_file.touch()  # Crea un file vuoto se non esiste
+                container_err_flag = True
+                err_msg = f"❌ output.log non generato per {entry['id']} - {LLM_dirName}"
+
             #self.completed_tests += 1
             if result.returncode != 0:                                            
                 if lang == "javascript":
@@ -431,7 +440,7 @@ class TestRunner:
             #print("📂 content post-run:", list(mount_path.iterdir()))
 
             #copia del log file nella directory dell'esercizio
-            log_file = mount_path / "output.log"     
+            
             
     
             final_log = LOGS_DIR / f"{container_name}_{exercise_name}_{uuid.uuid4().hex[:8]}.log"
@@ -439,16 +448,38 @@ class TestRunner:
             if not final_log.exists():
                 final_log.touch()
             
-            shutil.copy(log_file, final_log)
-            
+            # Copia solo se il file sorgente esiste
+            if log_file.exists():
+                shutil.copy(log_file, final_log)
+            else:
+                if not silent_mode: print(f"⚠️ Impossibile copiare log: {log_file} non esiste")
+                # Crea un log di errore
+                with open(final_log, 'w') as f:
+                    f.write(f"Errore: output.log non generato per {entry['id']}\n")
+                    f.write(f"Docker result: {result.stdout if result.stdout else 'No output'}\n")
+                    f.write(f"Return code: {result.returncode}\n")
+
+            # CORREZIONE: Inizializza target_log_path solo se necessario
             if LLM_dirName != "":
-                target_log_path = mount_path / LLM_dirName / "output.log"
+                llm_dir_path = mount_path / LLM_dirName
+                if not llm_dir_path.exists():
+                    llm_dir_path.mkdir(parents=True, exist_ok=True)
+                    
+                target_log_path = llm_dir_path / "output.log"
                 if not silent_mode : print(f"target_log_path = {target_log_path}")
                 
                 if not target_log_path.exists():
                     target_log_path.touch()   
                 
-                shutil.copy(log_file, target_log_path) 
+                # Copia solo se il file sorgente esiste
+                if log_file and log_file.exists():
+                    try:
+                        shutil.copy(log_file, target_log_path)
+                    except Exception as copy_error:
+                        if not silent_mode: print(f"⚠️ Errore nella copia del log LLM: {copy_error}")
+                else:
+                    if not silent_mode: print(f"⚠️ Impossibile copiare log LLM: {log_file} non esiste o è None")
+
             
             
             # Salva anche il file di risorse, se presente
@@ -463,8 +494,14 @@ class TestRunner:
             return (log_file, container_err_flag)
         
         except Exception as e :
-            if not silent_mode : print(f"\nexception in run container :\n{e}")
-
+            if not silent_mode : print(f"\n‼️❌ exception in run container :\n{e}\n")
+            # In caso di eccezione, assicurati che venga restituito un file log valido
+            error_log = LOGS_DIR / f"{container_name}_{exercise_name}_error_{uuid.uuid4().hex[:8]}.log"
+            error_log.touch()
+            with open(error_log, 'w') as f:
+                f.write(f"Eccezione durante l'esecuzione: {str(e)}\n")
+            return (error_log, True)
+            
     def parse_metrics_typescript(self,log_path):
         #print(f"parsing ts metrics of logpath : {log_path}")
         metrics = {

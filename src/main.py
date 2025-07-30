@@ -53,24 +53,24 @@ def load_github_token():
     return None
 
 def main():
-    parser = argparse.ArgumentParser(description="Crea dataset di coppie codice-test")
-    parser.add_argument(
+    parser_2 = argparse.ArgumentParser(description="Crea dataset di coppie codice-test")
+    parser_2.add_argument(
         '--languages', '-l', 
         nargs='+', 
         default=['python', 'java', 'javascript', 'typescript','rust','go'],
         help='Linguaggi da processare (default: python java javascript typescript rust go). Supportati: python, java, javascript, typescript, cpp, c, go, rust, csharp, ruby, php'
     )
-    parser.add_argument(
+    parser_2.add_argument(
         '--output-dir', '-o',
         default='dataset',
         help='Directory di output (default: dataset)'
     )
-    parser.add_argument(
+    parser_2.add_argument(
         '--setup-token', '-t',
         action='store_true',
         help='Configura il token GitHub'
     )
-    parser.add_argument(
+    parser_2.add_argument(
         '--sources', '-s',
         nargs='+',
         default=[
@@ -122,19 +122,19 @@ def main():
         ],
         help='Fonti da utilizzare (default: tutte)'
     )
-    parser.add_argument(
+    parser_2.add_argument(
         '--max-files', '-m',
         type=int,
         default=None,
         help='Numero massimo di file per linguaggio (default: nessun limite)'
     )
-    parser.add_argument(
+    parser_2.add_argument(
         '--list-languages',
         action='store_true',
         help='Mostra tutti i linguaggi supportati'
     )
     
-    args = parser.parse_args()
+    args = parser_2.parse_args()
     
     # Mostra linguaggi supportati se richiesto
     if args.list_languages:

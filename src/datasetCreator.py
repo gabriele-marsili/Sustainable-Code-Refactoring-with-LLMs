@@ -11,6 +11,7 @@ from fileMetadata import Metadata
 import os
 import json
 import shutil
+from dotenv import load_dotenv
 
 class CodeTestDatasetCreator:
     def __init__(self, root_dir: str = "dataset"):
@@ -741,7 +742,24 @@ class CodeTestDatasetCreator:
                 json.dump(self.dataset_content, f, indent=4)
         except Exception as e:
             print(f"Errore nel salvare il file JSON: {e}")
-           
+    
+    def is_camel_case_version(self, str1: str, str2: str) -> bool:
+        # Rimuove eventuali estensioni
+        str1 = str1.split('.')[0]
+        str2 = str2.split('.')[0]
+
+        # Funzione per convertire snake_case in CamelCase o camelCase
+        def to_camel_case(snake: str) -> str:
+            parts = snake.split('_')
+            return parts[0] + ''.join(word.capitalize() for word in parts[1:])
+
+        camel = to_camel_case(str1)
+        pascal = camel[0].upper() + camel[1:]
+
+        # Match esatto o come prefisso
+        return str2.startswith(camel) or str2.startswith(pascal)
+
+    
     def save_dataset_entry(self,entry,language:str):    
         file_id = entry['id']
         if file_id in self.processed_ids:
@@ -949,7 +967,7 @@ class CodeTestDatasetCreator:
     def process_files_to_add(self,files,exercism_name:str,source:str,repo,lang_ext:str = ".go") -> List[str]:
         code_paths = []
         for f in files :
-            if (exercism_name.lower() in str(f['name']).lower()) and str(f['name']).endswith(lang_ext):
+            if self.is_camel_case_version(exercism_name,f['name']) and str(f['name']).endswith(lang_ext):
                 print(f"adding file {f['name']} to exercism {exercism_name}")
                                     
                 # Crea la struttura delle directory
@@ -1019,26 +1037,36 @@ class CodeTestDatasetCreator:
                                             java_dir_content = self.get_github_contents(repo,el['path'])
                                             #exercise_dir/src/main/java or exercise_dir/src/test/java
                                             for f in java_dir_content : 
-                                                if file_name.lower() in str(f['name']).lower() and f['type'] == "file" and str(f['name']).endswith('.java'):
+                                                cc_test = self.is_camel_case_version(file_name,f['name'])
+                                                if cc_test and f['type'] == "file" and str(f['name']).endswith('.java'):
                                                     files_to_add.append(f)
                                                     if element['name'] == "main" : 
                                                         code_snippet_present = True
                                                         code_snippet_filename = f['name']
+                                                        print(f"🟢 code snippet found for file {f['name']}")
                                                     if element['name'] == "test" : 
                                                         test_file_present = True
                                                         test_file_filename = f['name']
+                                                        print(f"🟢 test file found for file {f['name']}")
+                                                else : 
+                                                    print(f"cc_test = {cc_test} for file {f['name']} -> file_name = {file_name}")
                                                     
                                         
-                                        if file_name.lower() in str(el['name']).lower() and el['type'] == "file" and str(el['name']).endswith('.java'):
+                                        cc_test_2 = self.is_camel_case_version(file_name,el['name'])
+                                        if cc_test_2 and el['type'] == "file" and str(el['name']).endswith('.java'):
                                             files_to_add.append(el)
                                             if element['name'] == "main" : 
                                                 code_snippet_present = True
                                                 code_snippet_filename = el['name']
+                                                print(f"🟢 code snippet found for file {el['name']}")
                                                 
                                             if element['name'] == "test" : 
                                                 test_file_present = True
                                                 test_file_filename = el['name']
-
+                                                print(f"🟢 test file found for file {el['name']}")
+                                        else :
+                                            print(f"cc_test_2 = {cc_test_2} for file {el['name']} -> file_name = {file_name}")
+                                               
                                 
 
                                                                                                                     
@@ -1053,7 +1081,9 @@ class CodeTestDatasetCreator:
                         codeSnippetFilePath = ""
                         testUnitFilePath = ""
                         for p in code_paths : 
-                            p = p.replace("dataset/","")
+                            
+                            p = (str(p)).replace("dataset/","")
+                            p = (str(p)).replace("java/","Java/")
                             
                             if test_file_filename in p :
                                 testUnitFilePath = p
@@ -1078,6 +1108,9 @@ class CodeTestDatasetCreator:
                             "wordQuantity":  metadata['wordQuantity']
                         }
                         self.save_dataset_entry(entry,'java')
+
+                    else:
+                        print(f"🟡 pairs not found for file {file_name}")
                     
                     """
                     if src_dir_content and test_dir_content :
@@ -1881,6 +1914,7 @@ class CodeTestDatasetCreator:
 # Utilizzo per test rapidi (rimuovere o commentare in produzione)
 if __name__ == "__main__":
     creator = CodeTestDatasetCreator()
+    load_dotenv()
     creator.github_token = os.getenv("GITHUB_TOKEN") # Carica il token da variabile d'ambiente
     print(f"creator.github_token = {creator.github_token}")
     # Esegui l'estrazione con tutti i linguaggi e le nuove fonti
