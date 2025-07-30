@@ -93,7 +93,8 @@ def main():
             #"all_ts"
             #"all_c",
             #"all_cpp",
-            "all_go"
+            #"all_go"
+            "all_java"
         ],
         choices=[
             #'java-thomasZumsteg',
@@ -115,7 +116,9 @@ def main():
             #"all_ts"
             #"all_c",
             #"all_cpp",
-            "all_go"
+            #"all_go"
+            "all_java"
+            
         ],
         help='Fonti da utilizzare (default: tutte)'
     )

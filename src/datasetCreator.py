@@ -741,7 +741,28 @@ class CodeTestDatasetCreator:
                 json.dump(self.dataset_content, f, indent=4)
         except Exception as e:
             print(f"Errore nel salvare il file JSON: {e}")
-            
+           
+    def save_dataset_entry(self,entry,language:str):    
+        file_id = entry['id']
+        if file_id in self.processed_ids:
+            print(f"  ID {file_id} già processato, saltando l'aggiunta al JSON.")
+            return
+
+        lang_lower = language.lower()
+        if lang_lower not in self.dataset_content:
+            self.dataset_content[lang_lower] = []
+
+       
+        self.dataset_content[lang_lower].append(entry)
+        self.processed_ids.add(file_id) # Aggiungi l'ID al set di quelli processati
+
+        # Salva il file JSON dopo ogni aggiunta per persistenza
+        try:
+            with open(self.jsonDataset_file, 'w', encoding='utf-8') as f:
+                json.dump(self.dataset_content, f, indent=4)
+        except Exception as e:
+            print(f"Errore nel salvare il file JSON (save dataset entry):\n{e}")
+
     
     def get_file_metadata(self, filePath:str, fileName:str):
         metadata = Metadata(filePath,fileName)
@@ -794,7 +815,8 @@ class CodeTestDatasetCreator:
         """Esegue l'estrazione completa del dataset"""
         if sources is None:
             sources = [
-                'all_go'
+                #'all_go'
+                'all_java'
             ]
         if languages is None:
             languages = ['python', 'java', 'javascript', 'typescript', 'cpp', 'go', 'rust', 'csharp', 'ruby', 'php']
@@ -807,8 +829,18 @@ class CodeTestDatasetCreator:
         print("=== Inizio creazione dataset con soluzioni umane ===")
         print(f"Linguaggi target: {', '.join(self.target_languages)}")
 
-        try:   
+        try:
+            if "all_java" in sources:
+                repos = [ #internalDirIsPresent True <==> dir 'java' in root dir of repo
+                    {"repo" : "rabestro/exercism-solutions-java", "name" : "rabestro","internalDirIsPresent":False, "source":"Exercism","licenseType":"MIT"},
+                    {"repo" : "ValMati/exercism-java", "name" : "ValMati","internalDirIsPresent":False, "source":"Exercism","licenseType":"MIT"},
+                    {"repo" : "tusktenon/exercism-java", "name" : "tusktenon","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
+                    {"repo" : "zzorgg/Exercism", "name" : "zzorgg","internalDirIsPresent":True, "source":"Exercism","licenseType":"None"},
+                ]
+                self.process_all_java(repos)  
+                
             
+            """
             if "all_go" in sources : 
                 repos = [
                     {"repo" : "rootulp/exercism", "name" : "rootulp","internalDirIsPresent":True, "source":"Exercism","licenseType":"MIT"},
@@ -818,7 +850,7 @@ class CodeTestDatasetCreator:
                 ]
                 self.process_all_go(repos)  
             
-            """
+            
             if "all_cpp" in sources : 
                 repos = [
                     #{"repo" : "johnngugi/exercism-cpp", "name" : "johnngugi","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
@@ -914,36 +946,169 @@ class CodeTestDatasetCreator:
     def get_dataset_go_entries(self):
         self.dataset_content.get("go", [])                    
        
-    def process_files_to_add(self,files,exercism_name:str,source:str,repo):
+    def process_files_to_add(self,files,exercism_name:str,source:str,repo,lang_ext:str = ".go") -> List[str]:
+        code_paths = []
         for f in files :
-            if not (exercism_name in str(f['name'])) and str(f['name']).endswith("go"):
+            if (exercism_name.lower() in str(f['name']).lower()) and str(f['name']).endswith(lang_ext):
                 print(f"adding file {f['name']} to exercism {exercism_name}")
                                     
                 # Crea la struttura delle directory
                 source_for_path = source.replace(" ","_")
                 source_for_path = source_for_path.replace("(","")
                 source_for_path = source_for_path.replace(")","")
-                lang_dir = self.root_dir / "go"
+                lang_dir = self.root_dir / lang_ext.replace(".","")
                 code_dir = lang_dir / (exercism_name+"_"+source_for_path)
                 
                 file_content = self.get_file_content(repo, f['path'])
                 complete_path = code_dir / f['name']
                 self.save_file_content(file_content,complete_path)
                 print(f"✅ saved file {complete_path} (to exercism {exercism_name})")
+                code_paths.append(complete_path)
+        
+        return code_paths
                 
-
-                
-                
-
+   
+    def process_all_java(self, repos):
+        for r in repos:
+            repo = r["repo"]
+            name = r["name"]
+            internalDirIsPresent = r["internalDirIsPresent"]
+            source = r["source"]
+            licenseType = r["licenseType"]
+            if not name in source : 
+                fullName = name
+                if not "java" in name : fullName = "java_"+fullName
+                source += f" ({fullName})"
+            counter = 0
+        
+            print(f"\nProcessing repo {repo} (Java) ({source})")  
+            if internalDirIsPresent : repo_contents = self.get_github_contents(repo,"java")
+            else : repo_contents = self.get_github_contents(repo)
+            
+            for item in repo_contents :
+                if item["type"] == "dir" and item["name"] != ".gradle":
+                    file_name:str= item["name"]
                     
+                    code_snippet_present = False
+                    test_file_present = False
+                    
+                                                                
+                    if internalDirIsPresent:
+                        conent = self.get_github_contents(repo, "java/"+file_name)
+                    else:
+                        conent = self.get_github_contents(repo, file_name)
+                        
+                    file_name = file_name.replace("-","_")
+                    print(f"\nProcessing filename : {file_name}")
+                                                         
+                    code_snippet_filename = ""                                        
+                    test_file_filename = ""                                        
+                    
+                    files_to_add = []
+                    for f_item in conent: #exercise_dir     
+                        if f_item["type"] == "dir" and f_item['name'] == "src": #exercise_dir/src
+                            src_dir_content = self.get_github_contents(repo,f_item['path'])
+                            for element in src_dir_content : 
+                                
+                                #exercise_dir/src/main or exercise_dir/src/test
+                                if element["type"] == "dir" and (element['name'] == "main" or element['name'] == "test"):
+                                    dir_content = self.get_github_contents(repo,element['path'])
+                                    for el in dir_content : 
+                                        
+                                        if el['type'] == "dir" and el['name'] == "java":
+                                            java_dir_content = self.get_github_contents(repo,el['path'])
+                                            #exercise_dir/src/main/java or exercise_dir/src/test/java
+                                            for f in java_dir_content : 
+                                                if file_name.lower() in str(f['name']).lower() and f['type'] == "file" and str(f['name']).endswith('.java'):
+                                                    files_to_add.append(f)
+                                                    if element['name'] == "main" : 
+                                                        code_snippet_present = True
+                                                        code_snippet_filename = f['name']
+                                                    if element['name'] == "test" : 
+                                                        test_file_present = True
+                                                        test_file_filename = f['name']
+                                                    
+                                        
+                                        if file_name.lower() in str(el['name']).lower() and el['type'] == "file" and str(el['name']).endswith('.java'):
+                                            files_to_add.append(el)
+                                            if element['name'] == "main" : 
+                                                code_snippet_present = True
+                                                code_snippet_filename = el['name']
+                                                
+                                            if element['name'] == "test" : 
+                                                test_file_present = True
+                                                test_file_filename = el['name']
+
+                                
+
+                                                                                                                    
+                    #file_id = f"go_{file_name}_{source}"
+                    
+                    #check if main & test file are present
+                    
+                    if code_snippet_present and test_file_present:  
+                        code_paths : List[str] = self.process_files_to_add(files_to_add,file_name,source,repo,'.java')
+                        counter += 1
+                        e_id = f"Java_{file_name}_{source}"
+                        codeSnippetFilePath = ""
+                        testUnitFilePath = ""
+                        for p in code_paths : 
+                            p = p.replace("dataset/","")
+                            
+                            if test_file_filename in p :
+                                testUnitFilePath = p
+                                continue
+                            
+                            if code_snippet_filename in p: 
+                                codeSnippetFilePath = p
+                        
+                        parsed_path = Path(__file__).parent / "dataset" / codeSnippetFilePath  
+                        metadata = self.get_file_metadata(parsed_path,code_snippet_filename)
+                        
+                        entry = {
+                            "id": e_id,
+                            "filename": code_snippet_filename,
+                            "language": "Java",
+                            "source": source,
+                            "codeSnippetFilePath": codeSnippetFilePath,
+                            "testUnitFilePath": testUnitFilePath,
+                            "licenseType": licenseType,
+                            "downloadDate": metadata['downloadDate'],
+                            "characterQuantity":  metadata['characterQuantity'],
+                            "wordQuantity":  metadata['wordQuantity']
+                        }
+                        self.save_dataset_entry(entry,'java')
+                    
+                    """
+                    if src_dir_content and test_dir_content :
+                        print(f"Creating pair for file : {file_name} (by dir)")
+                        self.create_code_pair_by_dir(repo,src_dir_content,test_dir_content, "go",file_name, source, go_mod_File,licenseType,build_dir_content)
+                        counter +=1
+                    elif len(src_dir_fileArr) > 0 and len(test_dir_fileArr) > 0:
+                        main_file_is_present = False
+                        for file in src_dir_fileArr:
+                            #print(F"f name : {file['name']}")
+                            if file_name in file["name"] and not "test" in file["name"] and str(file["name"]).endswith(".go") :
+                                main_file_is_present = True
+                                break
+                            
+                        if not main_file_is_present:
+                            print(f"Skip creation pair for file : {file_name} (by arr) : main file NOT found")                        
+                        else:
+                            print(f"Creating pair for file : {file_name} (by arr)")                    
+                            self.create_code_pair_by_array(repo,src_dir_fileArr,test_dir_fileArr, "go",file_name, source, go_mod_File,licenseType)
+                            counter +=1
+                    """
+                        
+                        
+            print(f"\nProcessed {counter} java pairs for repo {repo} | {name} | {source}")
                 
-                
-       
+    
     def process_all_go(self, repos):
         for r in repos:
             repo = r["repo"]
             name = r["name"]
-            ts_internal_dir = r["internalDirIsPresent"]
+            internalDirIsPresent = r["internalDirIsPresent"]
             source = r["source"]
             licenseType = r["licenseType"]
             if not name in source : 
@@ -953,7 +1118,7 @@ class CodeTestDatasetCreator:
             counter = 0
         
             print(f"\nProcessing repo {repo} (go) ({source})")  
-            if ts_internal_dir : repo_contents = self.get_github_contents(repo,"go")
+            if internalDirIsPresent : repo_contents = self.get_github_contents(repo,"go")
             else : repo_contents = self.get_github_contents(repo)
             
             for item in repo_contents :
@@ -961,7 +1126,7 @@ class CodeTestDatasetCreator:
                     file_name:str= item["name"]
                     
                                                                 
-                    if ts_internal_dir:
+                    if internalDirIsPresent:
                         conent = self.get_github_contents(repo, "go/"+file_name)
                     else:
                         conent = self.get_github_contents(repo, file_name)
@@ -1032,13 +1197,13 @@ class CodeTestDatasetCreator:
     
         
     #repositories already processed
-    """
-       
+   
+    """ 
     def process_all_cpp(self, repos):
         for r in repos:
             repo = r["repo"]
             name = r["name"]
-            ts_internal_dir = r["internalDirIsPresent"]
+            internalDirIsPresent = r["internalDirIsPresent"]
             source = r["source"]
             licenseType = r["licenseType"]
             if not name in source : 
@@ -1046,7 +1211,7 @@ class CodeTestDatasetCreator:
             counter = 0
         
             print(f"\nProcessing repo {repo} (cpp) ({source})")  
-            if ts_internal_dir : repo_contents = self.get_github_contents(repo,"cpp")
+            if internalDirIsPresent : repo_contents = self.get_github_contents(repo,"cpp")
             else : repo_contents = self.get_github_contents(repo)
             
             for item in repo_contents :
@@ -1054,7 +1219,7 @@ class CodeTestDatasetCreator:
                     file_name:str= item["name"]
                     
                                                                 
-                    if ts_internal_dir:
+                    if internalDirIsPresent:
                         conent = self.get_github_contents(repo, "cpp/"+file_name)
                     else:
                         conent = self.get_github_contents(repo, file_name)
@@ -1120,7 +1285,7 @@ class CodeTestDatasetCreator:
         for r in repos:
             repo = r["repo"]
             name = r["name"]
-            ts_internal_dir = r["internalDirIsPresent"]
+            internalDirIsPresent = r["internalDirIsPresent"]
             source = r["source"]
             licenseType = r["licenseType"]
             if not name in source : 
@@ -1128,7 +1293,7 @@ class CodeTestDatasetCreator:
             counter = 0
         
             print(f"\nProcessing repo {repo} (c) ({source})")  
-            if ts_internal_dir : repo_contents = self.get_github_contents(repo,"c")
+            if internalDirIsPresent : repo_contents = self.get_github_contents(repo,"c")
             else : repo_contents = self.get_github_contents(repo)
             
             for item in repo_contents :
@@ -1136,7 +1301,7 @@ class CodeTestDatasetCreator:
                     file_name:str= item["name"]
                     
                                                                 
-                    if ts_internal_dir:
+                    if internalDirIsPresent:
                         conent = self.get_github_contents(repo, "c/"+file_name)
                     else:
                         conent = self.get_github_contents(repo, file_name)
@@ -1192,13 +1357,13 @@ class CodeTestDatasetCreator:
         for r in repos:
             repo = r["repo"]
             name = r["name"]
-            ts_internal_dir = r["tsInternalDirIsPresent"]
+            internalDirIsPresent = r["tsInternalDirIsPresent"]
             source = r["source"]
                         
             counter = 0
         
             print(f"\nProcessing repo {repo} (ts) ({source})")  
-            if ts_internal_dir : repo_contents = self.get_github_contents(repo,"typescript")
+            if internalDirIsPresent : repo_contents = self.get_github_contents(repo,"typescript")
             else : repo_contents = self.get_github_contents(repo)
             
             for item in repo_contents :
@@ -1206,7 +1371,7 @@ class CodeTestDatasetCreator:
                     file_name = item["name"]
                     print(f"\nProcessing filename : {file_name}")
                                                                 
-                    if ts_internal_dir:
+                    if internalDirIsPresent:
                         conent = self.get_github_contents(repo, "typescript/"+file_name)
                     else:
                         conent = self.get_github_contents(repo, file_name)
@@ -1740,7 +1905,8 @@ if __name__ == "__main__":
             #"all_ts"
             #"all_c",
             #"all_cpp",
-            "all_go"
+            #"all_go"
+            "all_java"
         ],
         languages=[
             'python', 'javascript', 'java', 'cpp', 'go', 'rust', 'typescript',
