@@ -32,8 +32,8 @@ class ExerciseEntry:
     filename: str
     language: str
     source: str
-    code_snippet_file_path: str
-    test_unit_file_path: str
+    codeSnippetFilePath: str
+    testUnitFilePath: str
     license_type: str
     download_date: str
     character_quantity: int
@@ -444,8 +444,8 @@ clean:
             filename=main_filename or f"{exercise}.{language}",
             language=language,
             source=f"Exercism ({source})",
-            code_snippet_file_path=code_path,
-            test_unit_file_path=test_path,
+            codeSnippetFilePath=code_path,
+            testUnitFilePath=test_path,
             license_type=l_type,
             download_date=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             character_quantity=char_count,

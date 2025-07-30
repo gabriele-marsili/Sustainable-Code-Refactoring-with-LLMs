@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.hamcrest:hamcrest:2.2'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['.'] // considera la root del progetto come sorgente main
+            include 'Anagram.java'
+        }
+    }
+    test {
+        java {
+            srcDirs = ['.'] // considera la root del progetto come sorgente test
+            include 'AnagramTest.java'
+        }
+    }
+}
+
+test {
+    useJUnitPlatform() // opzionale se usi JUnit 5, ma non serve per JUnit 4
+    testLogging {
+        exceptionFormat = 'short'
+        showStandardStreams = true
+        events = ["passed", "failed", "skipped"]
+    }
+}
