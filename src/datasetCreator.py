@@ -322,7 +322,7 @@ class CodeTestDatasetCreator:
         if file_id in self.processed_ids:
             print(f"      Saltando: {file_id} (già presente)")
             return
-    
+
         # Crea la struttura delle directory
         source_for_path = source.replace(" ","_")
         source_for_path = source_for_path.replace("(","")
@@ -369,34 +369,52 @@ class CodeTestDatasetCreator:
                     shutil.rmtree(code_dir,True)
                     raise e
             elif file['type'] == "file" and self.is_valid_fileExt(str(file["name"])):
-                if exercise_name in file['name'] and ".go" in file['name'] and not "test" in file['name']:
-                    mainFile = file
+                # FIX: Migliora la logica per identificare il file principale
+                if language == "go":
+                    if exercise_name in file['name'] and ".go" in file['name'] and not "test" in file['name']:
+                        mainFile = file
+                elif language == "cpp":
+                    if exercise_name in file['name'] and ".cpp" in file['name'] and not "test" in file['name']:
+                        mainFile = file
+                elif language == "c":
+                    if exercise_name in file['name'] and ".c" in file['name'] and not "test" in file['name']:
+                        mainFile = file
+                elif language == "java":
+                    if exercise_name in file['name'] and ".java" in file['name'] and not "test" in file['name']:
+                        mainFile = file
                     
                 fileContent = self.get_file_content(repo, file['path'])
                 complete_path = src_dir / file['name']
                 if not self.save_file_content(fileContent,complete_path):                     
                     shutil.rmtree(code_dir,True)
                     raise Exception(f"Error saving file {file['name']} in dir {src_dir}")
-             
+            
         # Nomi dei file
         code_filename = f"{exercise_name}.{self.get_file_extension(language)}"
         test_filename = f"{exercise_name}_testSuite.{self.get_file_extension(language)}"
 
         try:
-            if mainFile : localFilePath = src_dir / mainFile['name']
-            else : localFilePath = src_dir / exercise_name
-                        
+            # FIX: Costruisci correttamente il percorso del file principale
+            if mainFile:
+                localFilePath = src_dir / mainFile['name']
+            else:
+                # Se non troviamo un file principale specifico, usa il nome dell'esercizio
+                localFilePath = src_dir / f"{exercise_name}.{self.get_file_extension(language)}"
+            
+            # Assicurati che il percorso sia assoluto
+            if not localFilePath.is_absolute():
+                localFilePath = localFilePath.resolve()
             
             self.add_to_json_dataset_v2(file_id,code_filename,test_filename,src_dir,test_dir,language,source,localFilePath,license)   
-            self.processed_ids.add(file_id) # Aggiungi l'ID al set degli ID processati
-            self.language_counts[language] = self.language_counts.get(language, 0) + 1 # Incrementa il contatore del linguaggio
+            self.processed_ids.add(file_id)
+            self.language_counts[language] = self.language_counts.get(language, 0) + 1
 
             print(f"      ✓ Aggiunta coppia: {exercise_name} ({language}) da {source}. Totale per {language}: {self.language_counts[language]}")
 
         except Exception as e:
+            print(f"Errore in create_code_pair_by_array: {e}")
             shutil.rmtree(code_dir,True)
             raise e
-        
 
     def create_single_code_test_pair(self, repo: str, code_file: Dict, test_file: Dict,
                                    language: str, exercise_name: str, source: str):
@@ -789,9 +807,10 @@ class CodeTestDatasetCreator:
             'characterQuantity':metadata.character_count(),
             'wordQuantity':metadata.word_count()
         }
-    
+
+
     def add_to_json_dataset_v2(self, file_id: str, code_name: str, test_name: str,
-                           code_path: str, test_path: str, language: str, source: str, localFilePath:Path,license:str):
+                        code_path: str, test_path: str, language: str, source: str, localFilePath:Path,license:str):
         """Aggiunge una entry al dataset JSON e lo salva"""
         if file_id in self.processed_ids:
             print(f"  ID {file_id} già processato, saltando l'aggiunta al JSON.")
@@ -800,27 +819,57 @@ class CodeTestDatasetCreator:
         lang_lower = language.lower()
         if lang_lower not in self.dataset_content:
             self.dataset_content[lang_lower] = []
-
-        parsedPath = str(localFilePath)
-        if not parsedPath.endswith(".c") and language == "c" : parsedPath += ".c"
-        parsedPath = Path(__file__).parent / parsedPath        
-        parsedPath = str(parsedPath.resolve())
+       
+        if isinstance(localFilePath, Path):
+            # Se localFilePath è già un Path, usalo direttamente
+            if localFilePath.exists():
+                parsedPath = str(localFilePath.resolve())
+            else:
+                # Se il file non esiste, prova a costruire il percorso relativo alla root del progetto
+                parsedPath = str((Path(__file__).parent / localFilePath).resolve())
+        else:
+            # Se è una stringa, convertila in Path
+            local_path = Path(localFilePath)
+            if local_path.is_absolute() and local_path.exists():
+                parsedPath = str(local_path.resolve())
+            else:
+                # Prova come percorso relativo alla root del progetto
+                parsedPath = str((Path(__file__).parent / local_path).resolve())
         
+        # Aggiungi estensione .c se necessario per il linguaggio C
+        if not parsedPath.endswith(".c") and language == "c":
+            parsedPath += ".c"
 
-        new_entry = {
-            "id": file_id, # Aggiunto l'ID per facilitare il tracking
-            "filename": code_name,
-            "language": language,
-            "source": source,
-            "codeSnippetFilePath": str(code_path),
-            "testUnitFilePath": str(test_path),   
-            "licenseType":license        
-        }
-        new_entry.update(self.get_file_metadata(parsedPath,code_name))
-        
+        # Verifica che il file esista prima di creare i metadati
+        if not Path(parsedPath).exists():
+            print(f"🟡 Attenzione: File non trovato per metadati: {parsedPath}")
+            # Crea entry senza metadati se il file non esiste
+            new_entry = {
+                "id": file_id,
+                "filename": code_name,
+                "language": language,
+                "source": source,
+                "codeSnippetFilePath": str(code_path),
+                "testUnitFilePath": str(test_path),   
+                "licenseType": license,
+                "downloadDate": "N/A",
+                "characterQuantity": 0,
+                "wordQuantity": 0
+            }
+        else:
+            new_entry = {
+                "id": file_id,
+                "filename": code_name,
+                "language": language,
+                "source": source,
+                "codeSnippetFilePath": str(code_path),
+                "testUnitFilePath": str(test_path),   
+                "licenseType": license        
+            }
+            new_entry.update(self.get_file_metadata(parsedPath, code_name))
         
         self.dataset_content[lang_lower].append(new_entry)
-        self.processed_ids.add(file_id) # Aggiungi l'ID al set di quelli processati
+        self.processed_ids.add(file_id)
 
         # Salva il file JSON dopo ogni aggiunta per persistenza
         try:
@@ -848,6 +897,33 @@ class CodeTestDatasetCreator:
         print(f"Linguaggi target: {', '.join(self.target_languages)}")
 
         try:
+            
+                
+             
+            if "all_cpp" in sources : 
+                repos = [
+                    {"repo" : "Gabin221/Exercism", "name" : "Gabin221","internalDirIsPresent":True, "source":"Exercism","licenseType":"MIT"},
+                    {"repo" : "S0l0m4n/exercism-cpp", "name" : "S0l0m4n","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
+                    {"repo" : "stungeye/Exercism-Praxis", "name" : "stungeye","internalDirIsPresent":True, "source":"Exercism","licenseType":"None"},
+                    {"repo" : "RockLloque/Exercism", "name" : "RockLloque","internalDirIsPresent":True, "source":"Exercism","licenseType":"MIT"},
+                    {"repo" : "thefullarcticfox/cpp_exercisms", "name" : "thefullarcticfox","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
+                    {"repo" : "viniciusjavs/exercism-cpp", "name" : "viniciusjavs","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
+                    #{"repo" : "", "name" : "","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
+                                        
+                    #{"repo" : "johnngugi/exercism-cpp", "name" : "johnngugi","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
+                    #{"repo" : "ThomasZumsteg/exercism-cpp", "name" : "ThomasZumsteg","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
+                    #{"repo" : "Akshive/Exercism-cpp-solutions", "name" : "Akshive","internalDirIsPresent":False, "source":"Exercism","licenseType":"MIT"},
+                    #{"repo" : "cmccandless/ExercismSolutions-cpp", "name" : "cmccandless","internalDirIsPresent":False, "source":"Exercism","licenseType":"MIT"},
+                    #{"repo" : "pawelo091991/Cpp-Exercism-Solutions", "name" : "pawelo091991","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
+                    #{"repo" : "denniskovshov/exercism-cpp", "name" : "denniskovshov","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"}                    
+                    #{"repo" : "viniciusjavs/exercism-cpp", "name" : "viniciusjavs","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
+                    #{"repo" : "blogscot/exercism-cpp", "name" : "blogscot","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
+                    #{"repo" : "MaxyMoos/exercism_cpp", "name" : "MaxyMoos","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
+                    
+                ]
+                self.process_all_cpp(repos)  
+           
+            """
             if "all_java" in sources:
                 repos = [ #internalDirIsPresent True <==> dir 'java' in root dir of repo
                     {"repo" : "rabestro/exercism-solutions-java", "name" : "rabestro","internalDirIsPresent":False, "source":"Exercism","licenseType":"MIT"},
@@ -857,8 +933,6 @@ class CodeTestDatasetCreator:
                 ]
                 self.process_all_java(repos)  
                 
-            
-            """
             if "all_go" in sources : 
                 repos = [
                     {"repo" : "rootulp/exercism", "name" : "rootulp","internalDirIsPresent":True, "source":"Exercism","licenseType":"MIT"},
@@ -868,22 +942,6 @@ class CodeTestDatasetCreator:
                 ]
                 self.process_all_go(repos)  
             
-            
-            if "all_cpp" in sources : 
-                repos = [
-                    #{"repo" : "johnngugi/exercism-cpp", "name" : "johnngugi","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
-                    #{"repo" : "ThomasZumsteg/exercism-cpp", "name" : "ThomasZumsteg","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
-                    #{"repo" : "Akshive/Exercism-cpp-solutions", "name" : "Akshive","internalDirIsPresent":False, "source":"Exercism","licenseType":"MIT"},
-                    #{"repo" : "cmccandless/ExercismSolutions-cpp", "name" : "cmccandless","internalDirIsPresent":False, "source":"Exercism","licenseType":"MIT"},
-                    #{"repo" : "pawelo091991/Cpp-Exercism-Solutions", "name" : "pawelo091991","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
-                    #{"repo" : "denniskovshov/exercism-cpp", "name" : "denniskovshov","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"}                    
-                    {"repo" : "viniciusjavs/exercism-cpp", "name" : "viniciusjavs","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
-                    {"repo" : "blogscot/exercism-cpp", "name" : "blogscot","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
-                    {"repo" : "MaxyMoos/exercism_cpp", "name" : "MaxyMoos","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"},
-                    #{"repo" : "", "name" : "","internalDirIsPresent":False, "source":"Exercism","licenseType":"None"}
-                    
-                ]
-                self.process_all_cpp(repos)  
             
             
             if "all_c" in sources : 
@@ -1231,7 +1289,7 @@ class CodeTestDatasetCreator:
         
     #repositories already processed
    
-    """ 
+   
     def process_all_cpp(self, repos):
         for r in repos:
             repo = r["repo"]
@@ -1284,7 +1342,8 @@ class CodeTestDatasetCreator:
                                 if is_test_dir : test_dir_fileArr.append(f)
                                 else : src_dir_fileArr.append(f)
                         
-                        if f_item['type'] == "file" and file_name in f_item["name"]: 
+                        
+                        if f_item['type'] == "file" and (file_name in f_item["name"] or self.is_camel_case_version(file_name,f_item['name'])): 
                             if "test" in f_item["name"]:
                                 test_dir_fileArr.append(f_item)
                             else:
@@ -1303,17 +1362,17 @@ class CodeTestDatasetCreator:
                                 break
                             
                         if not main_file_is_present:
-                            print(f"Skip creation pair for file : {file_name} (by arr) : main file NOT found")                        
+                            print(f"🤨 Skip creation pair for file : {file_name} (by arr) : main file NOT found")                        
                         else:
-                            print(f"Creating pair for file : {file_name} (by arr)")                    
+                            print(f"🟢 Creating pair for file : {file_name} (by arr)")                    
                             self.create_code_pair_by_array(repo,src_dir_fileArr,test_dir_fileArr, "cpp",file_name, source, makeFile,licenseType)
                             counter +=1
                     
                         
                         
-            print(f"\nProcessed {counter} c++ pairs for repo {repo} | {name} | {source}")
+            print(f"\n👀 Processed {counter} c++ pairs for repo {repo} | {name} | {source}")
     
-        
+    """     
     def process_all_c(self, repos):
         for r in repos:
             repo = r["repo"]
@@ -1938,9 +1997,9 @@ if __name__ == "__main__":
             #"samajammin",
             #"all_ts"
             #"all_c",
-            #"all_cpp",
+            "all_cpp",
             #"all_go"
-            "all_java"
+            #"all_java"
         ],
         languages=[
             'python', 'javascript', 'java', 'cpp', 'go', 'rust', 'typescript',

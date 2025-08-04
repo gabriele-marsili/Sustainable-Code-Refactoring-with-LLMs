@@ -1,0 +1,665 @@
+=== ERRORI DI COMPILAZIONE ===
+🔨 Compilando test/complex_numbers_test.cpp...
+g++ -std=c++17 -I src -I test -I /usr/local/include -I. -c test/complex_numbers_test.cpp -o obj/complex_numbers_test.o
+In file included from test/complex_numbers_test.cpp:5:
+test/complex_numbers_test.cpp: In function 'void require_approx_equal(const complex_numbers::Complex&, const complex_numbers::Complex&)':
+test/complex_numbers_test.cpp:25:13: error: 'Approx' was not declared in this scope
+   25 |     REQUIRE(Approx(lhs.real()).margin(eps) == rhs.real());
+      |             ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/complex_numbers_test.cpp:25:5: note: in expansion of macro 'REQUIRE'
+   25 |     REQUIRE(Approx(lhs.real()).margin(eps) == rhs.real());
+      |     ^~~~~~~
+test/complex_numbers_test.cpp:25:13: note: suggested alternatives:
+   25 |     REQUIRE(Approx(lhs.real()).margin(eps) == rhs.real());
+      |             ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/complex_numbers_test.cpp:25:5: note: in expansion of macro 'REQUIRE'
+   25 |     REQUIRE(Approx(lhs.real()).margin(eps) == rhs.real());
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/complex_numbers_test.cpp:25:13: error: 'Approx' was not declared in this scope
+   25 |     REQUIRE(Approx(lhs.real()).margin(eps) == rhs.real());
+      |             ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/complex_numbers_test.cpp:25:5: note: in expansion of macro 'REQUIRE'
+   25 |     REQUIRE(Approx(lhs.real()).margin(eps) == rhs.real());
+      |     ^~~~~~~
+test/complex_numbers_test.cpp:25:13: note: suggested alternatives:
+   25 |     REQUIRE(Approx(lhs.real()).margin(eps) == rhs.real());
+      |             ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/complex_numbers_test.cpp:25:5: note: in expansion of macro 'REQUIRE'
+   25 |     REQUIRE(Approx(lhs.real()).margin(eps) == rhs.real());
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/complex_numbers_test.cpp: In function 'void CATCH2_INTERNAL_TEST_0()':
+test/complex_numbers_test.cpp:32:13: error: 'Approx' was not declared in this scope
+   32 |     REQUIRE(Approx(1.0) == c.real());
+      |             ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/complex_numbers_test.cpp:32:5: note: in expansion of macro 'REQUIRE'
+   32 |     REQUIRE(Approx(1.0) == c.real());
+      |     ^~~~~~~
+test/complex_numbers_test.cpp:32:13: note: suggested alternatives:
+   32 |     REQUIRE(Approx(1.0) == c.real());
+      |             ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/complex_numbers_test.cpp:32:5: note: in expansion of macro 'REQUIRE'
+   32 |     REQUIRE(Approx(1.0) == c.real());
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/complex_numbers_test.cpp:32:13: error: 'Approx' was not declared in this scope
+   32 |     REQUIRE(Approx(1.0) == c.real());
+      |             ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/complex_numbers_test.cpp:32:5: note: in expansion of macro 'REQUIRE'
+   32 |     REQUIRE(Approx(1.0) == c.real());
+      |     ^~~~~~~
+test/complex_numbers_test.cpp:32:13: note: suggested alternatives:
+   32 |     REQUIRE(Approx(1.0) == c.real());
+      |             ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/complex_numbers_test.cpp:32:5: note: in expansion of macro 'REQUIRE'
+   32 |     REQUIRE(Approx(1.0) == c.real());
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/complex_numbers_test.cpp: In function 'void CATCH2_INTERNAL_TEST_2()':
+test/complex_numbers_test.cpp:38:13: error: 'Approx' was not declared in this scope
+   38 |     REQUIRE(Approx(0.0).margin(eps) == c.real());
+      |             ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/complex_numbers_test.cpp:38:5: note: in expansion of macro 'REQUIRE'
+   38 |     REQUIRE(Approx(0.0).margin(eps) == c.real());
+      |     ^~~~~~~
+test/complex_numbers_test.cpp:38:13: note: suggested alternatives:
+   38 |     REQUIRE(Approx(0.0).margin(eps) == c.real());
+      |             ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/complex_numbers_test.cpp:38:5: note: in expansion of macro 'REQUIRE'
+   38 |     REQUIRE(Approx(0.0).margin(eps) == c.real());
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/complex_numbers_test.cpp:38:13: error: 'Approx' was not declared in this scope
+   38 |     REQUIRE(Approx(0.0).margin(eps) == c.real());
+      |             ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/complex_numbers_test.cpp:38:5: note: in expansion of macro 'REQUIRE'
+   38 |     REQUIRE(Approx(0.0).margin(eps) == c.real());
+      |     ^~~~~~~
+test/complex_numbers_test.cpp:38:13: note: suggested alternatives:
+   38 |     REQUIRE(Approx(0.0).margin(eps) == c.real());
+      |             ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/complex_numbers_test.cpp:38:5: note: in expansion of macro 'REQUIRE'
+   38 |     REQUIRE(Approx(0.0).margin(eps) == c.real());
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/complex_numbers_test.cpp: In function 'void CATCH2_INTERNAL_TEST_4()':
+test/complex_numbers_test.cpp:44:13: error: 'Approx' was not declared in this scope
+   44 |     REQUIRE(Approx(1.0) == c.real());
+      |             ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/complex_numbers_test.cpp:44:5: note: in expansion of macro 'REQUIRE'
+   44 |     REQUIRE(Approx(1.0) == c.real());
+      |     ^~~~~~~
+test/complex_numbers_test.cpp:44:13: note: suggested alternatives:
+   44 |     REQUIRE(Approx(1.0) == c.real());
+      |             ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/complex_numbers_test.cpp:44:5: note: in expansion of macro 'REQUIRE'
+   44 |     REQUIRE(Approx(1.0) == c.real());
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/complex_numbers_test.cpp:44:13: error: 'Approx' was not declared in this scope
+   44 |     REQUIRE(Approx(1.0) == c.real());
+      |             ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/complex_numbers_test.cpp:44:5: note: in expansion of macro 'REQUIRE'
+   44 |     REQUIRE(Approx(1.0) == c.real());
+      |     ^~~~~~~
+test/complex_numbers_test.cpp:44:13: note: suggested alternatives:
+   44 |     REQUIRE(Approx(1.0) == c.real());
+      |             ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/complex_numbers_test.cpp:44:5: note: in expansion of macro 'REQUIRE'
+   44 |     REQUIRE(Approx(1.0) == c.real());
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/complex_numbers_test.cpp: In function 'void CATCH2_INTERNAL_TEST_6()':
+test/complex_numbers_test.cpp:50:13: error: 'Approx' was not declared in this scope
+   50 |     REQUIRE(Approx(0.0).margin(eps) == c.imag());
+      |             ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/complex_numbers_test.cpp:50:5: note: in expansion of macro 'REQUIRE'
+   50 |     REQUIRE(Approx(0.0).margin(eps) == c.imag());
+      |     ^~~~~~~
+test/complex_numbers_test.cpp:50:13: note: suggested alternatives:
+   50 |     REQUIRE(Approx(0.0).margin(eps) == c.imag());
+      |             ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/complex_numbers_test.cpp:50:5: note: in expansion of macro 'REQUIRE'
+   50 |     REQUIRE(Approx(0.0).margin(eps) == c.imag());
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/complex_numbers_test.cpp:50:13: error: 'Approx' was not declared in this scope
+   50 |     REQUIRE(Approx(0.0).margin(eps) == c.imag());
+      |             ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/complex_numbers_test.cpp:50:5: note: in expansion of macro 'REQUIRE'
+   50 |     REQUIRE(Approx(0.0).margin(eps) == c.imag());
+      |     ^~~~~~~
+test/complex_numbers_test.cpp:50:13: note: suggested alternatives:
+   50 |     REQUIRE(Approx(0.0).margin(eps) == c.imag());
+      |             ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/complex_numbers_test.cpp:50:5: note: in expansion of macro 'REQUIRE'
+   50 |     REQUIRE(Approx(0.0).margin(eps) == c.imag());
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/complex_numbers_test.cpp: In function 'void CATCH2_INTERNAL_TEST_8()':
+test/complex_numbers_test.cpp:56:13: error: 'Approx' was not declared in this scope
+   56 |     REQUIRE(Approx(1.0) == c.imag());
+      |             ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/complex_numbers_test.cpp:56:5: note: in expansion of macro 'REQUIRE'
+   56 |     REQUIRE(Approx(1.0) == c.imag());
+      |     ^~~~~~~
+test/complex_numbers_test.cpp:56:13: note: suggested alternatives:
+   56 |     REQUIRE(Approx(1.0) == c.imag());
+      |             ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/complex_numbers_test.cpp:56:5: note: in expansion of macro 'REQUIRE'
+   56 |     REQUIRE(Approx(1.0) == c.imag());
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/complex_numbers_test.cpp:56:13: error: 'Approx' was not declared in this scope
+   56 |     REQUIRE(Approx(1.0) == c.imag());
+      |             ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/complex_numbers_test.cpp:56:5: note: in expansion of macro 'REQUIRE'
+   56 |     REQUIRE(Approx(1.0) == c.imag());
+      |     ^~~~~~~
+test/complex_numbers_test.cpp:56:13: note: suggested alternatives:
+   56 |     REQUIRE(Approx(1.0) == c.imag());
+      |             ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/complex_numbers_test.cpp:56:5: note: in expansion of macro 'REQUIRE'
+   56 |     REQUIRE(Approx(1.0) == c.imag());
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/complex_numbers_test.cpp: In function 'void CATCH2_INTERNAL_TEST_10()':
+test/complex_numbers_test.cpp:62:13: error: 'Approx' was not declared in this scope
+   62 |     REQUIRE(Approx(2.0) == c.imag());
+      |             ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/complex_numbers_test.cpp:62:5: note: in expansion of macro 'REQUIRE'
+   62 |     REQUIRE(Approx(2.0) == c.imag());
+      |     ^~~~~~~
+test/complex_numbers_test.cpp:62:13: note: suggested alternatives:
+   62 |     REQUIRE(Approx(2.0) == c.imag());
+      |             ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/complex_numbers_test.cpp:62:5: note: in expansion of macro 'REQUIRE'
+   62 |     REQUIRE(Approx(2.0) == c.imag());
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/complex_numbers_test.cpp:62:13: error: 'Approx' was not declared in this scope
+   62 |     REQUIRE(Approx(2.0) == c.imag());
+      |             ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/complex_numbers_test.cpp:62:5: note: in expansion of macro 'REQUIRE'
+   62 |     REQUIRE(Approx(2.0) == c.imag());
+      |     ^~~~~~~
+test/complex_numbers_test.cpp:62:13: note: suggested alternatives:
+   62 |     REQUIRE(Approx(2.0) == c.imag());
+      |             ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/complex_numbers_test.cpp:62:5: note: in expansion of macro 'REQUIRE'
+   62 |     REQUIRE(Approx(2.0) == c.imag());
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/complex_numbers_test.cpp: In function 'void CATCH2_INTERNAL_TEST_38()':
+test/complex_numbers_test.cpp:159:13: error: 'Approx' was not declared in this scope
+  159 |     REQUIRE(Approx(5.0) == c.abs());
+      |             ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/complex_numbers_test.cpp:159:5: note: in expansion of macro 'REQUIRE'
+  159 |     REQUIRE(Approx(5.0) == c.abs());
+      |     ^~~~~~~
+test/complex_numbers_test.cpp:159:13: note: suggested alternatives:
+  159 |     REQUIRE(Approx(5.0) == c.abs());
+      |             ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/complex_numbers_test.cpp:159:5: note: in expansion of macro 'REQUIRE'
+  159 |     REQUIRE(Approx(5.0) == c.abs());
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/complex_numbers_test.cpp:159:13: error: 'Approx' was not declared in this scope
+  159 |     REQUIRE(Approx(5.0) == c.abs());
+      |             ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/complex_numbers_test.cpp:159:5: note: in expansion of macro 'REQUIRE'
+  159 |     REQUIRE(Approx(5.0) == c.abs());
+      |     ^~~~~~~
+test/complex_numbers_test.cpp:159:13: note: suggested alternatives:
+  159 |     REQUIRE(Approx(5.0) == c.abs());
+      |             ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/complex_numbers_test.cpp:159:5: note: in expansion of macro 'REQUIRE'
+  159 |     REQUIRE(Approx(5.0) == c.abs());
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/complex_numbers_test.cpp: In function 'void CATCH2_INTERNAL_TEST_40()':
+test/complex_numbers_test.cpp:165:13: error: 'Approx' was not declared in this scope
+  165 |     REQUIRE(Approx(5.0) == c.abs());
+      |             ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/complex_numbers_test.cpp:165:5: note: in expansion of macro 'REQUIRE'
+  165 |     REQUIRE(Approx(5.0) == c.abs());
+      |     ^~~~~~~
+test/complex_numbers_test.cpp:165:13: note: suggested alternatives:
+  165 |     REQUIRE(Approx(5.0) == c.abs());
+      |             ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/complex_numbers_test.cpp:165:5: note: in expansion of macro 'REQUIRE'
+  165 |     REQUIRE(Approx(5.0) == c.abs());
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/complex_numbers_test.cpp:165:13: error: 'Approx' was not declared in this scope
+  165 |     REQUIRE(Approx(5.0) == c.abs());
+      |             ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/complex_numbers_test.cpp:165:5: note: in expansion of macro 'REQUIRE'
+  165 |     REQUIRE(Approx(5.0) == c.abs());
+      |     ^~~~~~~
+test/complex_numbers_test.cpp:165:13: note: suggested alternatives:
+  165 |     REQUIRE(Approx(5.0) == c.abs());
+      |             ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/complex_numbers_test.cpp:165:5: note: in expansion of macro 'REQUIRE'
+  165 |     REQUIRE(Approx(5.0) == c.abs());
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/complex_numbers_test.cpp: In function 'void CATCH2_INTERNAL_TEST_42()':
+test/complex_numbers_test.cpp:173:13: error: 'Approx' was not declared in this scope
+  173 |     REQUIRE(Approx(5.0) == c.abs());
+      |             ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/complex_numbers_test.cpp:173:5: note: in expansion of macro 'REQUIRE'
+  173 |     REQUIRE(Approx(5.0) == c.abs());
+      |     ^~~~~~~
+test/complex_numbers_test.cpp:173:13: note: suggested alternatives:
+  173 |     REQUIRE(Approx(5.0) == c.abs());
+      |             ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/complex_numbers_test.cpp:173:5: note: in expansion of macro 'REQUIRE'
+  173 |     REQUIRE(Approx(5.0) == c.abs());
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/complex_numbers_test.cpp:173:13: error: 'Approx' was not declared in this scope
+  173 |     REQUIRE(Approx(5.0) == c.abs());
+      |             ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/complex_numbers_test.cpp:173:5: note: in expansion of macro 'REQUIRE'
+  173 |     REQUIRE(Approx(5.0) == c.abs());
+      |     ^~~~~~~
+test/complex_numbers_test.cpp:173:13: note: suggested alternatives:
+  173 |     REQUIRE(Approx(5.0) == c.abs());
+      |             ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/complex_numbers_test.cpp:173:5: note: in expansion of macro 'REQUIRE'
+  173 |     REQUIRE(Approx(5.0) == c.abs());
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/complex_numbers_test.cpp: In function 'void CATCH2_INTERNAL_TEST_44()':
+test/complex_numbers_test.cpp:181:13: error: 'Approx' was not declared in this scope
+  181 |     REQUIRE(Approx(5.0) == c.abs());
+      |             ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/complex_numbers_test.cpp:181:5: note: in expansion of macro 'REQUIRE'
+  181 |     REQUIRE(Approx(5.0) == c.abs());
+      |     ^~~~~~~
+test/complex_numbers_test.cpp:181:13: note: suggested alternatives:
+  181 |     REQUIRE(Approx(5.0) == c.abs());
+      |             ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/complex_numbers_test.cpp:181:5: note: in expansion of macro 'REQUIRE'
+  181 |     REQUIRE(Approx(5.0) == c.abs());
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/complex_numbers_test.cpp:181:13: error: 'Approx' was not declared in this scope
+  181 |     REQUIRE(Approx(5.0) == c.abs());
+      |             ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/complex_numbers_test.cpp:181:5: note: in expansion of macro 'REQUIRE'
+  181 |     REQUIRE(Approx(5.0) == c.abs());
+      |     ^~~~~~~
+test/complex_numbers_test.cpp:181:13: note: suggested alternatives:
+  181 |     REQUIRE(Approx(5.0) == c.abs());
+      |             ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/complex_numbers_test.cpp:181:5: note: in expansion of macro 'REQUIRE'
+  181 |     REQUIRE(Approx(5.0) == c.abs());
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/complex_numbers_test.cpp: In function 'void CATCH2_INTERNAL_TEST_46()':
+test/complex_numbers_test.cpp:187:13: error: 'Approx' was not declared in this scope
+  187 |     REQUIRE(Approx(5.0) == c.abs());
+      |             ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/complex_numbers_test.cpp:187:5: note: in expansion of macro 'REQUIRE'
+  187 |     REQUIRE(Approx(5.0) == c.abs());
+      |     ^~~~~~~
+test/complex_numbers_test.cpp:187:13: note: suggested alternatives:
+  187 |     REQUIRE(Approx(5.0) == c.abs());
+      |             ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/complex_numbers_test.cpp:187:5: note: in expansion of macro 'REQUIRE'
+  187 |     REQUIRE(Approx(5.0) == c.abs());
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/complex_numbers_test.cpp:187:13: error: 'Approx' was not declared in this scope
+  187 |     REQUIRE(Approx(5.0) == c.abs());
+      |             ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/complex_numbers_test.cpp:187:5: note: in expansion of macro 'REQUIRE'
+  187 |     REQUIRE(Approx(5.0) == c.abs());
+      |     ^~~~~~~
+test/complex_numbers_test.cpp:187:13: note: suggested alternatives:
+  187 |     REQUIRE(Approx(5.0) == c.abs());
+      |             ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/complex_numbers_test.cpp:187:5: note: in expansion of macro 'REQUIRE'
+  187 |     REQUIRE(Approx(5.0) == c.abs());
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+make: *** [Makefile:40: obj/complex_numbers_test.o] Error 1

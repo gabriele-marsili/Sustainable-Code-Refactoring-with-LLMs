@@ -105,7 +105,7 @@ def main():
     """
     # Nomi dei file
     bad_entries_file = "../clusters/bad_entries.json"
-    dataset_file = "../dataset/dataset.json"
+    dataset_file = "../dataset/dataset.json" #"../clusters/debug_cluster_cpp.json"
     backup_file = "../dataset/dataset_backup.json"
     
     try:

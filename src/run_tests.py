@@ -328,9 +328,12 @@ class TestRunner:
         log_file = mount_path / "output.log"  
         if not silent_mode : print(f"mount_path = {mount_path}")   
         try:
+            
             if not silent_mode : print(f"mount_path = {mount_path}")
+            
             dockerfile_path = DOCKER_DIR / lang.lower()
             run_sh_path = dockerfile_path / "run.sh"
+            if not silent_mode : print(f"run_sh_path = {run_sh_path}")
             
             target_run_sh = mount_path / "run.sh"    
             shutil.copy(run_sh_path, target_run_sh) #copia run.sh da docker directory a directory esercizio
@@ -381,6 +384,22 @@ class TestRunner:
                 if nm.exists() and not nm.is_symlink():                
                     shutil.rmtree(nm)
 
+
+            if lang.lower() == "cpp":
+                # Usa la nuova logica di configurazione dell'ambiente
+                framework = self.setup_cpp_test_environment(entry, mount_path)
+                
+                if not silent_mode:
+                    print(f"🔧 Ambiente C++ configurato con framework: {framework}")
+                
+                # Copia anche il Makefile standard se non è stato ancora copiato
+                if not (mount_path / "Makefile").exists():
+                    makefile_src = DOCKER_DIR / "cpp" / "Makefile"
+                    if makefile_src.exists():
+                        shutil.copy(makefile_src, mount_path / "Makefile")
+                        if not silent_mode:
+                            print(f"📄 Copiato Makefile standard per {entry['id']}")
+
             #build del container docker tramite subprocess
             if run_with_cache : subprocess.run(["docker", "build", "-t", container_name, str(dockerfile_path)], check=True)
             else : subprocess.run(["docker", "build", "--no-cache", "-t", container_name, str(dockerfile_path)], check=True)
@@ -397,6 +416,7 @@ class TestRunner:
             else :
                 result = subprocess.run([
                     "docker", "run", "--rm",
+                    "--memory=4g",
                     "-v", f"{mount_path}:/app",
                     container_name
                 ], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
@@ -584,6 +604,174 @@ class TestRunner:
         except subprocess.CalledProcessError as e:
             print(f"❌ Errore nella creazione del container {container_name}: {e.stderr}")
             raise # Propaga l'errore per fallire l'intera esecuzione
+        
+        
+    def detect_test_framework(self, entry):
+        """Rileva quale framework di test viene utilizzato"""
+        test_file_path_in_entry = entry.get("testUnitFilePath")
+        if not test_file_path_in_entry:
+            return "unknown"
+        
+        testFile_filename = str(entry['filename']).replace(".cpp", "_test.cpp")
+        abs_test_file_path = DATASET_DIR / test_file_path_in_entry / testFile_filename
+        
+        if not abs_test_file_path.exists():
+            return "unknown"
+        
+        try:
+            with open(abs_test_file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+                
+                # Rileva Catch2 (varie versioni)
+                catch_patterns = [
+                    '#include "test/catch.hpp"',
+                    '#include "../.common/test/catch.hpp"',
+                    '#include "catch.hpp"',
+                    '#include <catch2/catch.hpp>',
+                    '#include <catch2/catch_all.hpp>',
+                    '#include "catch_amalgamated.hpp"'
+                ]
+                
+                for pattern in catch_patterns:
+                    if pattern in content:
+                        return "catch2"
+                
+                # Rileva Boost.Test
+                boost_patterns = [
+                    '#include <boost/test/',
+                    'BOOST_TEST_',
+                    'BOOST_AUTO_TEST_',
+                    'BOOST_CHECK'
+                ]
+                
+                for pattern in boost_patterns:
+                    if pattern in content:
+                        return "boost"
+                        
+        except Exception as e:
+            if not silent_mode:
+                print(f"⚠️ Errore nella lettura del file di test {abs_test_file_path}: {e}")
+        
+        return "unknown"
+
+    def fix_catch_includes(self, test_file_path):
+        """Corregge gli include per Catch2"""
+        try:
+            with open(test_file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            # Sostituzioni per gli include di Catch2
+            replacements = {
+                '#include "../.common/test/catch.hpp"': '#include "catch_amalgamated.hpp"',
+                '#include "test/catch.hpp"': '#include "catch_amalgamated.hpp"',
+                '#include "catch.hpp"': '#include "catch_amalgamated.hpp"',
+                '#include <catch2/catch.hpp>': '#include <catch2/catch_all.hpp>',
+            }
+            
+            modified = False
+            for old, new in replacements.items():
+                if old in content:
+                    content = content.replace(old, new)
+                    modified = True
+                    if not silent_mode:
+                        print(f"🔧 Sostituito {old} con {new}")
+            
+            if modified:
+                # Backup del file originale
+                backup_path = test_file_path.with_suffix('.cpp.backup')
+                shutil.copy(test_file_path, backup_path)
+                
+                # Scrivi il file modificato
+                with open(test_file_path, 'w', encoding='utf-8') as f:
+                    f.write(content)
+                
+                if not silent_mode:
+                    print(f"✅ File di test modificato: {test_file_path}")
+            
+            return modified
+            
+        except Exception as e:
+            if not silent_mode:
+                print(f"❌ Errore nella correzione degli include: {e}")
+            return False
+
+    def setup_cpp_test_environment(self, entry, mount_path):
+        """Configura l'ambiente di test per C++"""
+        
+        # Rileva il framework di test
+        framework = self.detect_test_framework(entry)
+        
+        if not silent_mode:
+            print(f"🔍 Framework rilevato per {entry['id']}: {framework}")
+        
+        if framework == "catch2":
+            return self.setup_catch2_environment(entry, mount_path)
+        elif framework == "boost":
+            return self.setup_boost_environment(entry, mount_path)
+        else:
+            # Default a Boost se non rilevato
+            if not silent_mode:
+                print(f"⚠️ Framework sconosciuto, uso Boost come default")
+            return self.setup_boost_environment(entry, mount_path)
+
+    def setup_catch2_environment(self, entry, mount_path):
+        """Configura l'ambiente per test Catch2"""
+        
+        # Copia i file Catch2
+        catch_files = [
+            "catch_amalgamated.hpp",
+            "catch_amalgamated.cpp", 
+            "catch_main.cpp"
+        ]
+        
+        for catch_file in catch_files:
+            src_file = DOCKER_DIR / "cpp" / catch_file
+            if src_file.exists():
+                shutil.copy(src_file, mount_path / catch_file)
+                if not silent_mode:
+                    print(f"📄 Copiato {catch_file}")
+        
+        # Correggi gli include nei file di test
+        test_file_path_in_entry = entry.get("testUnitFilePath")
+        if test_file_path_in_entry:
+            testFile_filename = str(entry['filename']).replace(".cpp", "_test.cpp")
+            abs_test_file_path = DATASET_DIR / test_file_path_in_entry / testFile_filename
+            
+            if abs_test_file_path.exists():
+                self.fix_catch_includes(abs_test_file_path)
+        
+        # Usa Makefile specifico per Catch2
+        makefile_template_path = DOCKER_DIR / "cpp" / "Makefile.catch"
+        if makefile_template_path.exists():
+            with open(makefile_template_path, 'r', encoding='utf-8') as f:
+                makefile_content = f.read()
+
+            # Sostituzioni specifiche
+            exercise_filename = entry['filename']
+            test_filename = exercise_filename.replace(".cpp", "_test.cpp")
+
+            makefile_content = makefile_content.replace("YOUR_EXERCISE_NAME.cpp", exercise_filename)
+            makefile_content = makefile_content.replace("YOUR_EXERCISE_NAME_test.cpp", test_filename)
+
+            with open(mount_path / "Makefile", 'w', encoding='utf-8') as f:
+                f.write(makefile_content)
+                
+            if not silent_mode:
+                print(f"📄 Makefile Catch2 configurato per {entry['id']}")
+        
+        return "catch2"
+
+    def setup_boost_environment(self, entry, mount_path):
+        """Configura l'ambiente per test Boost.Test"""
+        
+        # Usa il Makefile standard per Boost
+        makefile_src = DOCKER_DIR / "cpp" / "Makefile"
+        if makefile_src.exists():
+            shutil.copy(makefile_src, mount_path / "Makefile")
+            if not silent_mode:
+                print(f"📄 Makefile Boost configurato per {entry['id']}")
+        
+        return "boost"
         
     def run_tests_on_entry(self, entry, lang, base_only=False, llm_only=False, run_with_docker_cache=True,prompt_version = 1):
         path = DATASET_DIR / Path(entry["testUnitFilePath"]).parent
@@ -996,3 +1184,4 @@ if __name__ == "__main__":
 #debug : 
 # python3 run_tests.py --llm-only --cluster-name debug_cluster --output-file debug_result_v1 --webhook --prompt-version 1 --silent
 # python3 run_tests.py --base-only --cluster-name debug_cluster --output-file debug_java_entries --webhook --silent
+# python3 run_tests.py --base-only --cluster-name debug_cluster_cpp --output-file debug_cpp_entries --webhook --silent

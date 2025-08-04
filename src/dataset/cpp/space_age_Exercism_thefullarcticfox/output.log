@@ -1,0 +1,445 @@
+=== ERRORI DI COMPILAZIONE ===
+🔨 Compilando test/space_age_test.cpp...
+g++ -std=c++17 -I src -I test -I /usr/local/include -I. -c test/space_age_test.cpp -o obj/space_age_test.o
+In file included from test/space_age_test.cpp:2:
+test/space_age_test.cpp: In function 'void CATCH2_INTERNAL_TEST_2()':
+test/space_age_test.cpp:22:31: error: 'Approx' was not declared in this scope
+   22 |     REQUIRE(age.on_earth() == Approx(31.69).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/space_age_test.cpp:22:5: note: in expansion of macro 'REQUIRE'
+   22 |     REQUIRE(age.on_earth() == Approx(31.69).margin(accuracy));
+      |     ^~~~~~~
+test/space_age_test.cpp:22:31: note: suggested alternatives:
+   22 |     REQUIRE(age.on_earth() == Approx(31.69).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/space_age_test.cpp:22:5: note: in expansion of macro 'REQUIRE'
+   22 |     REQUIRE(age.on_earth() == Approx(31.69).margin(accuracy));
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/space_age_test.cpp:22:31: error: 'Approx' was not declared in this scope
+   22 |     REQUIRE(age.on_earth() == Approx(31.69).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/space_age_test.cpp:22:5: note: in expansion of macro 'REQUIRE'
+   22 |     REQUIRE(age.on_earth() == Approx(31.69).margin(accuracy));
+      |     ^~~~~~~
+test/space_age_test.cpp:22:31: note: suggested alternatives:
+   22 |     REQUIRE(age.on_earth() == Approx(31.69).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/space_age_test.cpp:22:5: note: in expansion of macro 'REQUIRE'
+   22 |     REQUIRE(age.on_earth() == Approx(31.69).margin(accuracy));
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/space_age_test.cpp: In function 'void CATCH2_INTERNAL_TEST_4()':
+test/space_age_test.cpp:29:31: error: 'Approx' was not declared in this scope
+   29 |     REQUIRE(age.on_earth() == Approx(67.65).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/space_age_test.cpp:29:5: note: in expansion of macro 'REQUIRE'
+   29 |     REQUIRE(age.on_earth() == Approx(67.65).margin(accuracy));
+      |     ^~~~~~~
+test/space_age_test.cpp:29:31: note: suggested alternatives:
+   29 |     REQUIRE(age.on_earth() == Approx(67.65).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/space_age_test.cpp:29:5: note: in expansion of macro 'REQUIRE'
+   29 |     REQUIRE(age.on_earth() == Approx(67.65).margin(accuracy));
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/space_age_test.cpp:29:31: error: 'Approx' was not declared in this scope
+   29 |     REQUIRE(age.on_earth() == Approx(67.65).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/space_age_test.cpp:29:5: note: in expansion of macro 'REQUIRE'
+   29 |     REQUIRE(age.on_earth() == Approx(67.65).margin(accuracy));
+      |     ^~~~~~~
+test/space_age_test.cpp:29:31: note: suggested alternatives:
+   29 |     REQUIRE(age.on_earth() == Approx(67.65).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/space_age_test.cpp:29:5: note: in expansion of macro 'REQUIRE'
+   29 |     REQUIRE(age.on_earth() == Approx(67.65).margin(accuracy));
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/space_age_test.cpp: In function 'void CATCH2_INTERNAL_TEST_6()':
+test/space_age_test.cpp:37:31: error: 'Approx' was not declared in this scope
+   37 |     REQUIRE(age.on_earth() == Approx(6.02).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/space_age_test.cpp:37:5: note: in expansion of macro 'REQUIRE'
+   37 |     REQUIRE(age.on_earth() == Approx(6.02).margin(accuracy));
+      |     ^~~~~~~
+test/space_age_test.cpp:37:31: note: suggested alternatives:
+   37 |     REQUIRE(age.on_earth() == Approx(6.02).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/space_age_test.cpp:37:5: note: in expansion of macro 'REQUIRE'
+   37 |     REQUIRE(age.on_earth() == Approx(6.02).margin(accuracy));
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/space_age_test.cpp:37:31: error: 'Approx' was not declared in this scope
+   37 |     REQUIRE(age.on_earth() == Approx(6.02).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/space_age_test.cpp:37:5: note: in expansion of macro 'REQUIRE'
+   37 |     REQUIRE(age.on_earth() == Approx(6.02).margin(accuracy));
+      |     ^~~~~~~
+test/space_age_test.cpp:37:31: note: suggested alternatives:
+   37 |     REQUIRE(age.on_earth() == Approx(6.02).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/space_age_test.cpp:37:5: note: in expansion of macro 'REQUIRE'
+   37 |     REQUIRE(age.on_earth() == Approx(6.02).margin(accuracy));
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/space_age_test.cpp: In function 'void CATCH2_INTERNAL_TEST_8()':
+test/space_age_test.cpp:45:31: error: 'Approx' was not declared in this scope
+   45 |     REQUIRE(age.on_earth() == Approx(73.83).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/space_age_test.cpp:45:5: note: in expansion of macro 'REQUIRE'
+   45 |     REQUIRE(age.on_earth() == Approx(73.83).margin(accuracy));
+      |     ^~~~~~~
+test/space_age_test.cpp:45:31: note: suggested alternatives:
+   45 |     REQUIRE(age.on_earth() == Approx(73.83).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/space_age_test.cpp:45:5: note: in expansion of macro 'REQUIRE'
+   45 |     REQUIRE(age.on_earth() == Approx(73.83).margin(accuracy));
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/space_age_test.cpp:45:31: error: 'Approx' was not declared in this scope
+   45 |     REQUIRE(age.on_earth() == Approx(73.83).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/space_age_test.cpp:45:5: note: in expansion of macro 'REQUIRE'
+   45 |     REQUIRE(age.on_earth() == Approx(73.83).margin(accuracy));
+      |     ^~~~~~~
+test/space_age_test.cpp:45:31: note: suggested alternatives:
+   45 |     REQUIRE(age.on_earth() == Approx(73.83).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/space_age_test.cpp:45:5: note: in expansion of macro 'REQUIRE'
+   45 |     REQUIRE(age.on_earth() == Approx(73.83).margin(accuracy));
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/space_age_test.cpp: In function 'void CATCH2_INTERNAL_TEST_10()':
+test/space_age_test.cpp:53:31: error: 'Approx' was not declared in this scope
+   53 |     REQUIRE(age.on_earth() == Approx(28.58).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/space_age_test.cpp:53:5: note: in expansion of macro 'REQUIRE'
+   53 |     REQUIRE(age.on_earth() == Approx(28.58).margin(accuracy));
+      |     ^~~~~~~
+test/space_age_test.cpp:53:31: note: suggested alternatives:
+   53 |     REQUIRE(age.on_earth() == Approx(28.58).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/space_age_test.cpp:53:5: note: in expansion of macro 'REQUIRE'
+   53 |     REQUIRE(age.on_earth() == Approx(28.58).margin(accuracy));
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/space_age_test.cpp:53:31: error: 'Approx' was not declared in this scope
+   53 |     REQUIRE(age.on_earth() == Approx(28.58).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/space_age_test.cpp:53:5: note: in expansion of macro 'REQUIRE'
+   53 |     REQUIRE(age.on_earth() == Approx(28.58).margin(accuracy));
+      |     ^~~~~~~
+test/space_age_test.cpp:53:31: note: suggested alternatives:
+   53 |     REQUIRE(age.on_earth() == Approx(28.58).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/space_age_test.cpp:53:5: note: in expansion of macro 'REQUIRE'
+   53 |     REQUIRE(age.on_earth() == Approx(28.58).margin(accuracy));
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/space_age_test.cpp: In function 'void CATCH2_INTERNAL_TEST_12()':
+test/space_age_test.cpp:61:31: error: 'Approx' was not declared in this scope
+   61 |     REQUIRE(age.on_earth() == Approx(95.06).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/space_age_test.cpp:61:5: note: in expansion of macro 'REQUIRE'
+   61 |     REQUIRE(age.on_earth() == Approx(95.06).margin(accuracy));
+      |     ^~~~~~~
+test/space_age_test.cpp:61:31: note: suggested alternatives:
+   61 |     REQUIRE(age.on_earth() == Approx(95.06).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/space_age_test.cpp:61:5: note: in expansion of macro 'REQUIRE'
+   61 |     REQUIRE(age.on_earth() == Approx(95.06).margin(accuracy));
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/space_age_test.cpp:61:31: error: 'Approx' was not declared in this scope
+   61 |     REQUIRE(age.on_earth() == Approx(95.06).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/space_age_test.cpp:61:5: note: in expansion of macro 'REQUIRE'
+   61 |     REQUIRE(age.on_earth() == Approx(95.06).margin(accuracy));
+      |     ^~~~~~~
+test/space_age_test.cpp:61:31: note: suggested alternatives:
+   61 |     REQUIRE(age.on_earth() == Approx(95.06).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/space_age_test.cpp:61:5: note: in expansion of macro 'REQUIRE'
+   61 |     REQUIRE(age.on_earth() == Approx(95.06).margin(accuracy));
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/space_age_test.cpp: In function 'void CATCH2_INTERNAL_TEST_14()':
+test/space_age_test.cpp:69:31: error: 'Approx' was not declared in this scope
+   69 |     REQUIRE(age.on_earth() == Approx(101.72).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/space_age_test.cpp:69:5: note: in expansion of macro 'REQUIRE'
+   69 |     REQUIRE(age.on_earth() == Approx(101.72).margin(accuracy));
+      |     ^~~~~~~
+test/space_age_test.cpp:69:31: note: suggested alternatives:
+   69 |     REQUIRE(age.on_earth() == Approx(101.72).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/space_age_test.cpp:69:5: note: in expansion of macro 'REQUIRE'
+   69 |     REQUIRE(age.on_earth() == Approx(101.72).margin(accuracy));
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/space_age_test.cpp:69:31: error: 'Approx' was not declared in this scope
+   69 |     REQUIRE(age.on_earth() == Approx(101.72).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/space_age_test.cpp:69:5: note: in expansion of macro 'REQUIRE'
+   69 |     REQUIRE(age.on_earth() == Approx(101.72).margin(accuracy));
+      |     ^~~~~~~
+test/space_age_test.cpp:69:31: note: suggested alternatives:
+   69 |     REQUIRE(age.on_earth() == Approx(101.72).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/space_age_test.cpp:69:5: note: in expansion of macro 'REQUIRE'
+   69 |     REQUIRE(age.on_earth() == Approx(101.72).margin(accuracy));
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/space_age_test.cpp: In function 'void CATCH2_INTERNAL_TEST_16()':
+test/space_age_test.cpp:77:31: error: 'Approx' was not declared in this scope
+   77 |     REQUIRE(age.on_earth() == Approx(260.16).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/space_age_test.cpp:77:5: note: in expansion of macro 'REQUIRE'
+   77 |     REQUIRE(age.on_earth() == Approx(260.16).margin(accuracy));
+      |     ^~~~~~~
+test/space_age_test.cpp:77:31: note: suggested alternatives:
+   77 |     REQUIRE(age.on_earth() == Approx(260.16).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:470:37: note: in definition of macro 'CATCH_INTERNAL_IGNORE_BUT_WARN'
+  470 |         (void)__builtin_constant_p( __VA_ARGS__ ) /* NOLINT(cppcoreguidelines-pro-type-vararg, \
+      |                                     ^~~~~~~~~~~
+./catch_amalgamated.hpp:6371:26: note: in expansion of macro 'INTERNAL_CATCH_TEST'
+ 6371 |   #define REQUIRE( ... ) INTERNAL_CATCH_TEST( "REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__  )
+      |                          ^~~~~~~~~~~~~~~~~~~
+test/space_age_test.cpp:77:5: note: in expansion of macro 'REQUIRE'
+   77 |     REQUIRE(age.on_earth() == Approx(260.16).margin(accuracy));
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+test/space_age_test.cpp:77:31: error: 'Approx' was not declared in this scope
+   77 |     REQUIRE(age.on_earth() == Approx(260.16).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/space_age_test.cpp:77:5: note: in expansion of macro 'REQUIRE'
+   77 |     REQUIRE(age.on_earth() == Approx(260.16).margin(accuracy));
+      |     ^~~~~~~
+test/space_age_test.cpp:77:31: note: suggested alternatives:
+   77 |     REQUIRE(age.on_earth() == Approx(260.16).margin(accuracy));
+      |                               ^~~~~~
+./catch_amalgamated.hpp:5723:63: note: in definition of macro 'INTERNAL_CATCH_TEST'
+ 5723 |     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+      |                                                               ^~~~~~~~~~~
+test/space_age_test.cpp:77:5: note: in expansion of macro 'REQUIRE'
+   77 |     REQUIRE(age.on_earth() == Approx(260.16).margin(accuracy));
+      |     ^~~~~~~
+./catch_amalgamated.hpp:3106:11: note:   'Catch::Approx'
+ 3106 |     class Approx {
+      |           ^~~~~~
+./catch_amalgamated.hpp:13160:45: note:   'Catch::Matchers::Approx'
+13160 |     ApproxMatcher<T, AllocComp, AllocMatch> Approx( std::vector<T, AllocComp> const& comparator ) {
+      |                                             ^~~~~~
+make: *** [Makefile:40: obj/space_age_test.o] Error 1

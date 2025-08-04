@@ -1,4 +1,4 @@
-#include "../src/two_fer.h"
+#include "two_fer.h"
 #include "test/catch.hpp"
 #include <string>
 
