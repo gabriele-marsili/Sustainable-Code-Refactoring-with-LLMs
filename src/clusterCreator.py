@@ -12,7 +12,7 @@ CLUSTER_ALREADY_CREATED = [
     "raindrops",
     "bob",
     "leap",
-    "pangram"
+    #"pangram"
 ]
 
 class ClusterCreator : 
@@ -109,3 +109,7 @@ class ClusterCreator :
         print(f"\nCartella '{self.FOCUSED_CLUSTER_DIR}' creata con i file degli esercizi.")
         print(f"Metadati salvati in '{self.FOCUSED_CLUSTER_JSON}'.")
         
+
+if __name__ == "__main__":
+    c_creator = ClusterCreator()
+    c_creator.start()

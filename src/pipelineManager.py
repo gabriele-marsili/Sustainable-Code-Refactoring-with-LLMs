@@ -10,7 +10,7 @@ import subprocess
 import signal
 import sys
 
-from llm_generator import LLMGenerator
+from LLMs_generator_engine.llm_generator import LLMGenerator
 from utility_dir import utility_paths
 # Setup logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')

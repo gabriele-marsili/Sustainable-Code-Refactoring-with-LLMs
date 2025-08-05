@@ -21,6 +21,8 @@ BAD_ENTRIES_CLUSTER_FILEPATH = CLUSTERS_DIR_FILEPATH / "bad_entries_cluster.json
 DEBUG_CLUSTER_FILEPATH = CLUSTERS_DIR_FILEPATH / "debug_cluster.json"
 LLM_CONFIGS_FILEPATH = SRC_DIR / "llm_configs.json"
 
+PROMPTS_DIR_FILEPATH = SRC_DIR / "prompts"
+
 if __name__ == "__main__":
     print(f"Current file directory: {CURRENT_FILE_DIR}")
     print(f"SRC_DIR: {SRC_DIR}")
