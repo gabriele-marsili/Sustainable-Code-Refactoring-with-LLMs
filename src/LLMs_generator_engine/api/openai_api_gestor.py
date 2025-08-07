@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from pathlib import Path
 import re
 from typing import List, Union
 from anthropic.types import TextBlock
@@ -32,7 +33,7 @@ class OpenAIApiGestor:
                 if 'gpt4o' not in content:
                     raise Exception(f"gpt4o not found in config file content:\n{content}.")
                 self.openai_config = content['gpt4o']
-                print(f"self.openai_config:\n{self.openai_config}")
+                #print(f"self.openai_config:\n{self.openai_config}")
                 
                 
         except Exception as e:
@@ -69,7 +70,7 @@ class OpenAIApiGestor:
             try:
                 #print(f"Attempt {i + 1}/{retries}...")
                 t = self.openai_config.get("temperature",0.1)
-                print(f"temperature = {t}")
+                #print(f"temperature = {t}")
                 
                 response = self.client.chat.completions.create(
                     model="chatgpt-4o-latest",
@@ -97,9 +98,9 @@ class OpenAIApiGestor:
         print(f"❌ API call failed after {retries} attempts")
         return None
     
-    def generate_and_save_LLM_code_by_files(self, prompt_file_path : str, base_snippet_code_file_path:str, exercise_dir_file_path:str, prompt_version_number:int, exercise_name:str):
+    def generate_and_save_LLM_code_by_files(self, prompt_file_path : Path, base_snippet_code_file_path:Path, exercise_dir_file_path:Path, prompt_version_number:int, exercise_name:str) -> bool:
         """Generate LLM code with APIs, then save it in dataset"""        
-        print(f"Generazione codice per l'esercizio '{exercise_name}'...")
+        #print(f"Generazione codice per l'esercizio '{exercise_name}'...")
         
         # 1. Preparazione della richiesta API
         # Estrai l'estensione del file per il nome del nuovo file
@@ -107,22 +108,30 @@ class OpenAIApiGestor:
             file_ext = os.path.splitext(base_snippet_code_file_path)[1].lstrip('.')
         except IndexError:
             print("❌ Errore: L'estensione del file non può essere determinata.")
-            return
+            return False
 
+        file_name = f"ChatGPT4_{exercise_name}_v{prompt_version_number}.{file_ext}"
+        openai_dir = exercise_dir_file_path / "openAI"
+        output_file_path = openai_dir / file_name
+
+        if os.path.exists(str(output_file_path)):
+            print(f"-> file {output_file_path} already exists, skip generation")
+            return True
+        
         # Genera il prompt finale
         final_prompt = prompt_generator.create_api_prompt_from_files(prompt_file_path, base_snippet_code_file_path)
         
         if not final_prompt:
             print("❌ Errore: Impossibile generare il prompt finale. Operazione annullata.")
-            return
+            return False
 
         # 3. Chiamata API
         generated_code = self.make_api_call(final_prompt)
-        print(f"🧠 Output API (prima della regex):\n{generated_code}")
+        #print(f"🧠 Output API (prima della regex):\n{generated_code}")
 
         if generated_code is None:
             print("❌ La chiamata API non ha prodotto un risultato valido.")
-            return
+            return False
 
         # 4. Prova a estrarre codice da blocco markdown (```) se esiste
         code_match = re.search(r'```(?:\w+)?\n(.*?)```', generated_code, re.DOTALL)
@@ -133,23 +142,22 @@ class OpenAIApiGestor:
 
         # 5. Costruisci path e salva
         try:
-            file_name = f"ChatGPT4_{exercise_name}_v{prompt_version_number}.{file_ext}"
-            openai_dir = exercise_dir_file_path / "openAI"
-            output_file_path = openai_dir / file_name
 
             os.makedirs(openai_dir, exist_ok=True)
 
             with open(output_file_path, 'w', encoding='utf-8') as f:
                 f.write(extracted_code)
 
-            print(f"✅ Codice generato e salvato in: {output_file_path}")
+            #print(f"✅ Codice generato e salvato in: {output_file_path}")
+            return True
         except Exception as e:
             print(f"❌ Errore durante il salvataggio del file: {e}")
+            return False
                 
 if __name__ == "__main__":
     #test
     gestor = OpenAIApiGestor()
     prompt_f_path = utility_paths.PROMPTS_DIR_FILEPATH / "promptV1.txt"
-    base_code_f_p = utility_paths.DATASET_DIR / "javascript/bob_exercism-javascript-ffflorian/bob.js"
-    ex_dir_f_p = utility_paths.DATASET_DIR / "javascript/bob_exercism-javascript-ffflorian"
+    base_code_f_p = utility_paths.DATASET_DIR / "python/bob/bob.py"
+    ex_dir_f_p = utility_paths.DATASET_DIR / "python/bob"
     gestor.generate_and_save_LLM_code_by_files(prompt_f_path,base_code_f_p,ex_dir_f_p,1,"bob")

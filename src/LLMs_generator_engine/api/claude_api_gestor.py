@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from pathlib import Path
 import re
 from typing import List, Union
 from anthropic.types import TextBlock
@@ -39,7 +40,7 @@ class ClaudeApiGestor:
                 self.input_cost_per_m_tokens_usd = self.claude_config.get("input_cost_per_m_tokens_usd", 3.0)
                 self.output_cost_per_m_tokens_usd = self.claude_config.get("output_cost_per_m_tokens_usd", 15.0)
                 self.total_spent_usd = self.claude_config.get("total_spent_usd",0.0)
-                print(f"\n\nself.total_spent_usd = {self.total_spent_usd}\n")
+                #print(f"\n\nself.total_spent_usd = {self.total_spent_usd}\n")
                 
         except Exception as e:
             print(f"❌ Errore loading LLM config by file:\n{e}")
@@ -52,10 +53,12 @@ class ClaudeApiGestor:
     def _save_budget(self):
         """Update budget in LLMs config file for claude model"""
         try:
-            model_name = self.claude_config.get("model", "claude_sonnet4")
-            self.budget_data.setdefault(model_name, {})["total_spent_usd"] = self.total_spent_usd
             
-            content = {}
+            content = {
+                "claude_sonnet4" : {
+                    "total_spent_usd" : self.total_spent_usd
+                }
+            }
             with open(self.llm_config_json_file_path, "r", encoding="utf-8") as f:
                 content = json.load(f)
             
@@ -96,7 +99,7 @@ class ClaudeApiGestor:
         # 2. retry logic:
         retries = 3
         delay = 1
-        for i in range(retries):
+        for _ in range(retries):
             try:
                 #print(f"Attempt {i + 1}/{retries}...")
                 message = self.client.messages.create(
@@ -117,12 +120,14 @@ class ClaudeApiGestor:
                     ]
                 )
                 
+                #print(f"\nclaude api response:\n\n{message}\n")
+                
                 # 3. cost update
                 actual_cost = self._calculate_cost(message.usage.input_tokens, message.usage.output_tokens)
                 self.total_spent_usd += actual_cost
                 self._save_budget() 
                 
-                #print(f"✅ API call done, cost: ${actual_cost:.4f}. Total cost: ${self.total_spent_usd:.4f}")
+                print(f"✅ API call done, cost: ${actual_cost:.4f}. Total cost: ${self.total_spent_usd:.4f}")
                 
                 return message.content
             
@@ -138,9 +143,9 @@ class ClaudeApiGestor:
         print(f"❌ API call failed after {retries} attempts")
         return None
     
-    def generate_and_save_LLM_code_by_files(self, prompt_file_path : str, base_snippet_code_file_path:str, exercise_dir_file_path:str, prompt_version_number:int, exercise_name:str):
+    def generate_and_save_LLM_code_by_files(self, prompt_file_path : Path, base_snippet_code_file_path:Path, exercise_dir_file_path:Path, prompt_version_number:int, exercise_name:str) -> bool:
         """Generate LLM code with APIs, then save it in dataset"""        
-        print(f"Generazione codice per l'esercizio '{exercise_name}'...")
+        #print(f"Generazione codice per l'esercizio '{exercise_name}'...")
         
         # 1. Preparazione della richiesta API
         # Estrai l'estensione del file per il nome del nuovo file
@@ -148,14 +153,23 @@ class ClaudeApiGestor:
             file_ext = os.path.splitext(base_snippet_code_file_path)[1].lstrip('.')
         except IndexError:
             print("❌ Errore: L'estensione del file non può essere determinata.")
-            return
+            return False
+
+        # Prepara il percorso e il nome del file
+        file_name = f"ClaudeSonnet4_{exercise_name}_v{prompt_version_number}.{file_ext}"
+        claude_dir = exercise_dir_file_path / "claude"
+        output_file_path = os.path.join(claude_dir, file_name)
+
+        if os.path.exists(str(output_file_path)):
+            print(f"-> file {output_file_path} already exists, skip generation")
+            return True
 
         # Genera il prompt finale
         final_prompt = prompt_generator.create_api_prompt_from_files(prompt_file_path, base_snippet_code_file_path)
         
         if not final_prompt:
             print("❌ Errore: Impossibile generare il prompt finale. Operazione annullata.")
-            return
+            return False
 
         # 2. Chiamata API
         api_res = self.make_api_call(final_prompt)
@@ -174,10 +188,6 @@ class ClaudeApiGestor:
             if code_match:
                 extracted_code = code_match.group(1).strip()
                 
-                # Prepara il percorso e il nome del file
-                file_name = f"ClaudeSonnet4_{exercise_name}_v{prompt_version_number}.{file_ext}"
-                claude_dir = exercise_dir_file_path / "claude"
-                output_file_path = os.path.join(claude_dir, file_name)
                 
                 # Crea la directory di destinazione se non esiste
                 os.makedirs(claude_dir, exist_ok=True)
@@ -186,14 +196,18 @@ class ClaudeApiGestor:
                 try:
                     with open(output_file_path, 'w', encoding='utf-8') as f:
                         f.write(extracted_code)
-                    print(f"✅ Codice generato e salvato in: {output_file_path}")
+                    #print(f"✅ Codice generato e salvato in: {output_file_path}")
+                    return True
                 except Exception as e:
                     print(f"❌ Errore durante il salvataggio del file: {e}")
+                    return False
             else:
                 print("⚠️ Attenzione: Nessun blocco di codice trovato nell'output dell'API.")
                 print(f"Output completo dell'API:\n{full_text_output}")
+                return False
         else:
             print("❌ La chiamata API non ha prodotto un risultato valido.")
+            return False
         
 if __name__ == "__main__":
     #test

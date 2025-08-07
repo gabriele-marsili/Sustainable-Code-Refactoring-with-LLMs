@@ -16,7 +16,8 @@ from library_installer import install_external_dependencies
 from utility_dir import utility_paths
 import argparse
 from datetime import datetime
-from disordInteraction import create_webhook_reporter
+from discordInteraction import create_webhook_reporter
+from dotenv import load_dotenv
 
 BASE_DIR = utility_paths.SRC_DIR
 DATASET_DIR = utility_paths.DATASET_DIR
@@ -1049,7 +1050,9 @@ def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cach
         """
 
     if webhook : 
-        WEBHOOK_URL = "https://discord.com/api/webhooks/1396529284327411857/zm_1miPBBZivw5gWUeXZpixwPdNItX3jaLQXa0rNFLmnXzv95neYStPxBbN6wFkabLen"
+        load_dotenv()
+
+        WEBHOOK_URL = os.getenv('DISCORD_WEBHOOK') 
     
         # Crea reporter
         reporter = create_webhook_reporter(WEBHOOK_URL, "Test Results Bot")
