@@ -1198,8 +1198,8 @@ if __name__ == "__main__":
 
 # raindrops LLM prompt V1 to V5 (x5) => raindrops_results_v1_1 to raindrops_results_v5_5
 # ✅ python3 run_tests.py --llm-only --cluster-name cluster_raindrops --output-file raindrops_results_v1 --webhook --silent --run_quantity 5 --prompt-version 1
-# python3 run_tests.py --llm-only --cluster-name cluster_raindrops --output-file raindrops_results_v2 --webhook --silent --run_quantity 5 --prompt-version 2
-# python3 run_tests.py --llm-only --cluster-name cluster_raindrops --output-file raindrops_results_v3 --webhook --silent --run_quantity 5 --prompt-version 3
+# ✅ python3 run_tests.py --llm-only --cluster-name cluster_raindrops --output-file raindrops_results_v2 --webhook --silent --run_quantity 5 --prompt-version 2
+# ✅ python3 run_tests.py --llm-only --cluster-name cluster_raindrops --output-file raindrops_results_v3 --webhook --silent --run_quantity 5 --prompt-version 3
 # python3 run_tests.py --llm-only --cluster-name cluster_raindrops --output-file raindrops_results_v4 --webhook --silent --run_quantity 5 --prompt-version 4
 # python3 run_tests.py --llm-only --cluster-name cluster_raindrops --output-file raindrops_results_v5 --webhook --silent --run_quantity 5 --prompt-version 5
 
