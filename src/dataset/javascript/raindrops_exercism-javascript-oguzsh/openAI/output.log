@@ -1,25 +1,25 @@
-(node:22) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-FAIL ./raindrops_testSuite.js (10.632 s)
+FAIL ./raindrops_testSuite.js (11.279 s)
   Raindrops
-    ✓ the sound for 1 is 1 (31 ms)
-    ✕ the sound for 3 is Pling (28 ms)
-    ✕ the sound for 5 is Plang (5 ms)
-    ✕ the sound for 7 is Plong (8 ms)
-    ✕ the sound for 6 is Pling as it has a factor 3 (1 ms)
-    ✓ 2 to the power 3 does not make a raindrop sound as 3 is the exponent not the base
-    ✕ the sound for 9 is Pling as it has a factor 3 (6 ms)
-    ✕ the sound for 10 is Plang as it has a factor 5 (6 ms)
-    ✕ the sound for 14 is Plong as it has a factor of 7 (1 ms)
-    ✕ the sound for 15 is PlingPlang as it has factors 3 and 5 (2 ms)
-    ✕ the sound for 21 is PlingPlong as it has factors 3 and 7 (11 ms)
-    ✕ the sound for 25 is Plang as it has a factor 5 (7 ms)
-    ✕ the sound for 27 is Pling as it has a factor 3 (12 ms)
-    ✕ the sound for 35 is PlangPlong as it has factors 5 and 7 (8 ms)
-    ✕ the sound for 49 is Plong as it has a factor 7
-    ✓ the sound for 52 is 52 (6 ms)
-    ✕ the sound for 105 is PlingPlangPlong as it has factors 3, 5 and 7 (10 ms)
-    ✕ the sound for 3125 is Plang as it has a factor 5 (10 ms)
+    ✓ the sound for 1 is 1 (78 ms)
+    ✕ the sound for 3 is Pling (26 ms)
+    ✕ the sound for 5 is Plang (1 ms)
+    ✕ the sound for 7 is Plong (7 ms)
+    ✕ the sound for 6 is Pling as it has a factor 3 (2 ms)
+    ✓ 2 to the power 3 does not make a raindrop sound as 3 is the exponent not the base (4 ms)
+    ✕ the sound for 9 is Pling as it has a factor 3 (15 ms)
+    ✕ the sound for 10 is Plang as it has a factor 5 (20 ms)
+    ✕ the sound for 14 is Plong as it has a factor of 7 (15 ms)
+    ✕ the sound for 15 is PlingPlang as it has factors 3 and 5 (9 ms)
+    ✕ the sound for 21 is PlingPlong as it has factors 3 and 7 (12 ms)
+    ✕ the sound for 25 is Plang as it has a factor 5 (19 ms)
+    ✕ the sound for 27 is Pling as it has a factor 3 (8 ms)
+    ✕ the sound for 35 is PlangPlong as it has factors 5 and 7 (14 ms)
+    ✕ the sound for 49 is Plong as it has a factor 7 (16 ms)
+    ✓ the sound for 52 is 52 (9 ms)
+    ✕ the sound for 105 is PlingPlangPlong as it has factors 3, 5 and 7 (4 ms)
+    ✕ the sound for 3125 is Plang as it has a factor 5 (6 ms)
 
   ● Raindrops › the sound for 3 is Pling
 
@@ -278,24 +278,24 @@ FAIL ./raindrops_testSuite.js (10.632 s)
 Test Suites: 1 failed, 1 total
 Tests:       15 failed, 3 passed, 18 total
 Snapshots:   0 total
-Time:        12.913 s
+Time:        13.258 s
 Ran all test suites.
 Command exited with non-zero status 1
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 3.71
-	System time (seconds): 2.38
+	User time (seconds): 2.65
+	System time (seconds): 2.89
 	Percent of CPU this job got: 15%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:40.01
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:36.23
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 80784
+	Maximum resident set size (kbytes): 84692
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 15067
-	Voluntary context switches: 6684
-	Involuntary context switches: 5865
+	Minor (reclaiming a frame) page faults: 14889
+	Voluntary context switches: 6730
+	Involuntary context switches: 5196
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

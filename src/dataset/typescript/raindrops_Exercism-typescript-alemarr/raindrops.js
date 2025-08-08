@@ -1,18 +1,26 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.convert = convert;
-const dividers = [
+// Using an array of tuples instead of a Map for slightly better iteration performance
+// and potentially lower memory overhead in this specific scenario, as the keys are fixed and small.
+const sounds = [
     [3, "Pling"],
     [5, "Plang"],
     [7, "Plong"],
 ];
 function convert(input) {
-    let result = "";
-    for (let i = 0; i < dividers.length; i++) {
-        const [divider, sound] = dividers[i];
+    let converted = "";
+    // Using a for...of loop for potentially better performance than forEach,
+    // as it avoids the overhead of a callback function.
+    for (const [divider, sound] of sounds) {
         if (input % divider === 0) {
-            result += sound;
+            converted += sound;
         }
     }
-    return result || input.toString();
+    // Directly returning the input as a string if no sounds were added,
+    // avoiding the intermediate 'converted.length === 0' check in the return statement.
+    if (converted.length === 0) {
+        return input.toString();
+    }
+    return converted;
 }
