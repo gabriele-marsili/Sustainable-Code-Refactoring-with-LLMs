@@ -71,7 +71,8 @@ class LLMGenerator :
                     for entry in entries : #itera le entries
                         for prompt_v, prompt_path in enumerate(prompt_file_paths, start=1):
                             code_file_path = utility_paths.DATASET_DIR / entry['codeSnippetFilePath']
-                            dir_name = entry['codeSnippetFilePath'].split("/")[0]
+                            parts = str(entry['codeSnippetFilePath']).split("/")
+                            dir_name = str(parts[0])+"/"+str(parts[1])
                             exercise_dir_filepath = utility_paths.DATASET_DIR / dir_name
                             filename = entry['filename']
                             if language == "c" or language == "cpp" :

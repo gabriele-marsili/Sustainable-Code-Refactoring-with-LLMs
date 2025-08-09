@@ -150,10 +150,21 @@ def main():
     """
     Funzione principale dello script.
     """    
+    #raindrops = utility_paths.CLUSTERS_DIR_FILEPATH / "cluster_raindrops.json"
+    bob = utility_paths.CLUSTERS_DIR_FILEPATH / "cluster_bob.json"
+    pangram = utility_paths.CLUSTERS_DIR_FILEPATH / "cluster_pangram.json"
+    leap = utility_paths.CLUSTERS_DIR_FILEPATH / "cluster_leap.json"
+
+    clusters = [
+        bob,
+        pangram,
+        leap
+    ]
             
-    raindrops_path = utility_paths.CLUSTERS_DIR_FILEPATH / "cluster_raindrops.json"
-    process_json_file(raindrops_path)
-    #process_json_file(utility_paths.DATASET_JSON_FILEPATH)
+    for cluster in clusters : 
+        process_json_file(cluster)
+    
+    
 
 if __name__ == "__main__":
     main()

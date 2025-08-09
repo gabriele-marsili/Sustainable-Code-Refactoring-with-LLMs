@@ -1,53 +1,53 @@
-(node:22) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(node:24) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-PASS ./bob_testSuite.js (13.316 s)
+PASS ./bob_testSuite.js (13.522 s)
   Bob
-    ✓ stating something (141 ms)
-    ✓ shouting (9 ms)
-    ✓ shouting gibberish (11 ms)
+    ✓ stating something (111 ms)
+    ✓ shouting (1 ms)
+    ✓ shouting gibberish (5 ms)
     ✓ asking a question (6 ms)
-    ✓ asking a numeric question (11 ms)
-    ✓ asking gibberish (5 ms)
-    ✓ talking forcefully (7 ms)
-    ✓ using acronyms in regular speech (6 ms)
-    ✓ forceful question (32 ms)
-    ✓ shouting numbers (5 ms)
-    ✓ no letters (7 ms)
-    ✓ question with no letters (5 ms)
-    ✓ shouting with special characters (6 ms)
-    ✓ shouting with no exclamation mark (1 ms)
-    ✓ statement containing question mark (2 ms)
-    ✓ non-letters with question (2 ms)
-    ✓ prattling on (7 ms)
-    ✓ silence (3 ms)
-    ✓ prolonged silence (1 ms)
-    ✓ alternate silence (1 ms)
+    ✓ asking a numeric question (16 ms)
+    ✓ asking gibberish (1 ms)
+    ✓ talking forcefully
+    ✓ using acronyms in regular speech (12 ms)
+    ✓ forceful question (1 ms)
+    ✓ shouting numbers (6 ms)
+    ✓ no letters (6 ms)
+    ✓ question with no letters (8 ms)
+    ✓ shouting with special characters (1 ms)
+    ✓ shouting with no exclamation mark (2 ms)
+    ✓ statement containing question mark (1 ms)
+    ✓ non-letters with question (1 ms)
+    ✓ prattling on (8 ms)
+    ✓ silence
+    ✓ prolonged silence (11 ms)
+    ✓ alternate silence (4 ms)
     ✓ multiple line question (1 ms)
-    ✓ starting with whitespace (2 ms)
+    ✓ starting with whitespace (57 ms)
     ✓ ending with whitespace (1 ms)
-    ✓ other whitespace (3 ms)
-    ✓ non-question ending with whitespace (13 ms)
+    ✓ other whitespace (5 ms)
+    ✓ non-question ending with whitespace (21 ms)
 
 Test Suites: 1 passed, 1 total
 Tests:       25 passed, 25 total
 Snapshots:   0 total
-Time:        16.736 s
+Time:        16.464 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 3.11
+	User time (seconds): 3.95
 	System time (seconds): 3.86
-	Percent of CPU this job got: 13%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:50.15
+	Percent of CPU this job got: 16%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:46.70
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 76952
+	Maximum resident set size (kbytes): 80308
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 16359
-	Voluntary context switches: 6774
-	Involuntary context switches: 5038
+	Minor (reclaiming a frame) page faults: 15891
+	Voluntary context switches: 6671
+	Involuntary context switches: 6346
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

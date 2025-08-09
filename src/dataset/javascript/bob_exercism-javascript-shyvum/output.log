@@ -1,8 +1,8 @@
-(node:22) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-PASS ./bob_testSuite.js (16.418 s)
+PASS ./bob_testSuite.js (28.564 s)
   Bob
-    ✓ stating something (80 ms)
+    ✓ stating something (161 ms)
     ○ skipped shouting
     ○ skipped shouting gibberish
     ○ skipped asking a question
@@ -31,23 +31,23 @@ PASS ./bob_testSuite.js (16.418 s)
 Test Suites: 1 passed, 1 total
 Tests:       24 skipped, 1 passed, 25 total
 Snapshots:   0 total
-Time:        25.535 s
+Time:        33.082 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 3.02
-	System time (seconds): 3.36
-	Percent of CPU this job got: 9%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:08.61
+	User time (seconds): 3.55
+	System time (seconds): 3.77
+	Percent of CPU this job got: 10%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:13.23
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 73272
+	Maximum resident set size (kbytes): 69444
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 16892
-	Voluntary context switches: 6499
-	Involuntary context switches: 5921
+	Minor (reclaiming a frame) page faults: 18264
+	Voluntary context switches: 6524
+	Involuntary context switches: 6513
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

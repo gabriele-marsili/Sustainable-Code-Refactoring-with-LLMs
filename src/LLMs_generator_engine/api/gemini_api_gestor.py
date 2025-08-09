@@ -90,7 +90,8 @@ class GeminiAIApiGestor:
             print("❌ Errore: impossibile determinare estensione file.")
             return False
         
-        file_name = f"GeminiFlash_{exercise_name}_v{prompt_version_number}.{file_ext}"
+        e_name = (exercise_name.split("."))[0]
+        file_name = f"GeminiFlash_{e_name}_v{prompt_version_number}.{file_ext}"
         gemini_dir = exercise_dir_file_path / "gemini"
         output_file_path = gemini_dir / file_name
         
@@ -121,7 +122,7 @@ class GeminiAIApiGestor:
             with open(output_file_path, 'w', encoding='utf-8') as f:
                 f.write(extracted_code)
 
-            #print(f"✅ Codice salvato in: {output_file_path}")
+            print(f"✅ (gemini) Codice salvato in: {output_file_path}")
             return True
         except Exception as e:
             print(f"❌ Errore salvataggio file: {e}")
@@ -131,6 +132,6 @@ class GeminiAIApiGestor:
 if __name__ == "__main__":
     gestor = GeminiAIApiGestor()
     prompt_f_path = utility_paths.PROMPTS_DIR_FILEPATH / "promptV1.txt"
-    base_code_f_p = utility_paths.DATASET_DIR / "javascript/bob_exercism-javascript-ffflorian/bob.js"
-    ex_dir_f_p = utility_paths.DATASET_DIR / "javascript/bob_exercism-javascript-ffflorian"
+    base_code_f_p = utility_paths.DATASET_DIR / "python/bob/bob.py"
+    ex_dir_f_p = utility_paths.DATASET_DIR / "python/bob"
     gestor.generate_and_save_LLM_code_by_files(prompt_f_path, base_code_f_p, ex_dir_f_p, 1, "bob")

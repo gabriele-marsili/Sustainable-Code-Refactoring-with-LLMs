@@ -110,7 +110,8 @@ class OpenAIApiGestor:
             print("❌ Errore: L'estensione del file non può essere determinata.")
             return False
 
-        file_name = f"ChatGPT4_{exercise_name}_v{prompt_version_number}.{file_ext}"
+        e_name = (exercise_name.split("."))[0]
+        file_name = f"ChatGPT4_{e_name}_v{prompt_version_number}.{file_ext}"
         openai_dir = exercise_dir_file_path / "openAI"
         output_file_path = openai_dir / file_name
 
@@ -148,7 +149,7 @@ class OpenAIApiGestor:
             with open(output_file_path, 'w', encoding='utf-8') as f:
                 f.write(extracted_code)
 
-            #print(f"✅ Codice generato e salvato in: {output_file_path}")
+            print(f"✅ (openAI) Codice salvato in: {output_file_path}")
             return True
         except Exception as e:
             print(f"❌ Errore durante il salvataggio del file: {e}")
