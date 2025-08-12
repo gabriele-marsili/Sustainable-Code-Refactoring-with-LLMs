@@ -1,39 +1,39 @@
-PASS ./leap.test.ts (31.627 s)
+PASS ./leap.test.ts (18.854 s)
   A leap year
-    ✓ year not divisible by 4 in common year (56 ms)
-    ✓ year divisible by 2, not divisible by 4 in common year (6 ms)
+    ✓ year not divisible by 4 in common year (37 ms)
+    ✓ year divisible by 2, not divisible by 4 in common year (3 ms)
     ✓ year divisible by 4, not divisible by 100 in leap year (1 ms)
-    ✓ year divisible by 4 and 5 is still a leap year
+    ✓ year divisible by 4 and 5 is still a leap year (5 ms)
     ✓ year divisible by 100, not divisible by 400 in common year (4 ms)
-    ✓ year divisible by 100 but not by 3 is still not a leap year (6 ms)
+    ✓ year divisible by 100 but not by 3 is still not a leap year (1 ms)
     ✓ year divisible by 400 in leap year (1 ms)
-    ✓ year divisible by 400 but not by 125 is still a leap year (1 ms)
-    ✓ year divisible by 200, not divisible by 400 in common year (2 ms)
+    ✓ year divisible by 400 but not by 125 is still a leap year
+    ✓ year divisible by 200, not divisible by 400 in common year (3 ms)
 
 Test Suites: 1 passed, 1 total
 Tests:       9 passed, 9 total
 Snapshots:   0 total
-Time:        34.948 s
+Time:        22.425 s
 Ran all test suites.
 Test results written to: output.log
 	Command being timed: "npx jest --json --outputFile=output.log"
-	User time (seconds): 16.60
-	System time (seconds): 9.63
-	Percent of CPU this job got: 51%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:51.34
+	User time (seconds): 9.91
+	System time (seconds): 4.57
+	Percent of CPU this job got: 37%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:38.48
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 213048
+	Maximum resident set size (kbytes): 216604
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 62768
-	Voluntary context switches: 1782
-	Involuntary context switches: 10734
+	Minor (reclaiming a frame) page faults: 63641
+	Voluntary context switches: 2003
+	Involuntary context switches: 7631
 	Swaps: 0
 	File system inputs: 0
-	File system outputs: 80
+	File system outputs: 72
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0

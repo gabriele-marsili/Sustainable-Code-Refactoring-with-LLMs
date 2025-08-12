@@ -1,6 +1,9 @@
-import string
 def is_pangram(sentence):
-	pangram = string.ascii_lowercase
-	arr = sentence.lower()
-	return set(pangram).issubset(arr)
-
+    seen = set()
+    sentence_lower = sentence.lower()
+    for char in sentence_lower:
+        if 'a' <= char <= 'z':
+            seen.add(char)
+            if len(seen) == 26:
+                return True
+    return False

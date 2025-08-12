@@ -1,0 +1,43 @@
+(node:22) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS ./pangram_testSuite.js (21.147 s)
+  Pangram()
+    ✓ empty sentence (201 ms)
+    ✓ perfect lower case (12 ms)
+    ✓ only lower case (6 ms)
+    ✓ missing the letter 'x' (6 ms)
+    ✓ missing the letter 'h' (32 ms)
+    ✓ with underscores (16 ms)
+    ✓ with numbers (8 ms)
+    ✓ missing letters replaced by numbers (16 ms)
+    ✓ mixed case and punctuation (11 ms)
+    ✓ case insensitive (19 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       10 passed, 10 total
+Snapshots:   0 total
+Time:        24.578 s
+Ran all test suites.
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 4.01
+	System time (seconds): 5.14
+	Percent of CPU this job got: 12%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:15.51
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 72104
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 17694
+	Voluntary context switches: 6910
+	Involuntary context switches: 4703
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

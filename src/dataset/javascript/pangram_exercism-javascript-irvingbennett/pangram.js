@@ -1,24 +1,20 @@
 export const isPangram = (text) => {
-  // console.log(text);
   if (text.length < 26) { return false }
-  let alphabet = ["a", "b", "c", "d", "e", "f",
-  "g", "h", "i", "j", "k", "l", "m", "n", "o",
-  "p", "q", "r", "s", "t", "u", "v", "w", "x",
-  "y", "z"];
-  let letters = {}
-  for (let letter of alphabet) {
-    letters[letter] = 0;
-  }
-  for (let letter of text.toLowerCase().split("")) {
-    if (alphabet.includes(letter)) {
-      letters[letter] += 1;
+  
+  const seen = new Set();
+  
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+    if (char >= 'a' && char <= 'z') {
+      seen.add(char);
+    } else if (char >= 'A' && char <= 'Z') {
+      seen.add(char.toLowerCase());
+    }
+    
+    if (seen.size === 26) {
+      return true;
     }
   }
-  for (let letter in letters) {
-    if (letters[letter] === 0) {
-      return false
-    }
-  }
-  // console.log(letters)
-  return true
+  
+  return false;
 };

@@ -1,36 +1,36 @@
-PASS ./leap.test.ts (23.772 s)
+PASS ./leap.test.ts (26.991 s)
   A leap year
-    ✓ is not very common (40 ms)
-    ✓ is introduced every 4 years to adjust about a day (7 ms)
+    ✓ is not very common (76 ms)
+    ✓ is introduced every 4 years to adjust about a day (18 ms)
     ✓ is skipped every 100 years to remove an extra day (1 ms)
-    ✓ is reintroduced every 400 years to adjust another day (5 ms)
+    ✓ is reintroduced every 400 years to adjust another day (2 ms)
     Additional example of a leap year that
       ✓ is not a leap year (11 ms)
-      ✓ is a common leap year (1 ms)
-      ✓ is skipped every 100 years (2 ms)
-      ✓ is reintroduced every 400 years (1 ms)
+      ✓ is a common leap year (4 ms)
+      ✓ is skipped every 100 years (13 ms)
+      ✓ is reintroduced every 400 years (2 ms)
 
 Test Suites: 1 passed, 1 total
 Tests:       8 passed, 8 total
 Snapshots:   0 total
-Time:        26.739 s
+Time:        31.605 s
 Ran all test suites.
 Test results written to: output.log
 	Command being timed: "npx jest --json --outputFile=output.log"
-	User time (seconds): 15.65
-	System time (seconds): 9.12
-	Percent of CPU this job got: 58%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:42.47
+	User time (seconds): 12.66
+	System time (seconds): 5.63
+	Percent of CPU this job got: 35%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:51.49
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 215816
+	Maximum resident set size (kbytes): 214772
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 63366
-	Voluntary context switches: 1784
-	Involuntary context switches: 11150
+	Minor (reclaiming a frame) page faults: 62976
+	Voluntary context switches: 1953
+	Involuntary context switches: 8934
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 80

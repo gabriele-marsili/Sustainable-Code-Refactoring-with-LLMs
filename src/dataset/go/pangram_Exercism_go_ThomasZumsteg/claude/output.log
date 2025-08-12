@@ -1,0 +1,37 @@
+=== RUN   TestPangram
+    pangram_test.go:12: PASS: sentence empty
+    pangram_test.go:12: PASS: recognizes a perfect lower case pangram
+    pangram_test.go:12: PASS: pangram with only lower case
+    pangram_test.go:12: PASS: missing character 'x'
+    pangram_test.go:12: PASS: another missing character, e.g. 'h'
+    pangram_test.go:12: PASS: pangram with underscores
+    pangram_test.go:12: PASS: pangram with numbers
+    pangram_test.go:12: PASS: missing letters replaced by numbers
+    pangram_test.go:12: PASS: pangram with mixed case and punctuation
+    pangram_test.go:12: PASS: upper and lower case versions of the same character should not be counted separately
+--- PASS: TestPangram (0.15s)
+PASS
+ok  	esercizio	0.343s
+	Command being timed: "go test -v"
+	User time (seconds): 34.82
+	System time (seconds): 67.23
+	Percent of CPU this job got: 46%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 3:41.17
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 195624
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 709849
+	Voluntary context switches: 42685
+	Involuntary context switches: 63214
+	Swaps: 0
+	File system inputs: 24
+	File system outputs: 171608
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
