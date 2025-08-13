@@ -2,39 +2,27 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Pangram {
     constructor(phrase) {
-        // Convert the phrase to lowercase once during construction.
-        // This avoids repeated conversions in isPangram and simplifies character checks.
         this.phrase = phrase.toLowerCase();
     }
     isPangram() {
-        // Use a boolean array (or a bitmask for ultimate optimization) to track
-        // the presence of each letter 'a' through 'z'.
-        // This provides O(1) average-case lookup and insertion, and avoids
-        // the overhead of Set's hashing or regex's string processing.
-        const seenLetters = new Array(26).fill(false);
-        let uniqueLetterCount = 0; // Keep track of how many unique letters we've found
-        // Iterate over the phrase characters directly.
-        // This avoids creating an intermediate array via `match()` and then iterating it.
-        for (const char of this.phrase) {
-            const charCode = char.charCodeAt(0);
-            // Check if the character is a lowercase English letter ('a' to 'z').
-            // ASCII values: 'a' is 97, 'z' is 122.
+        let seenLettersBitmask = 0;
+        const allLettersMask = (1 << 26) - 1; // A bitmask where all 26 bits (0-25) are set to 1
+        // Iterate directly over the phrase string
+        for (let i = 0; i < this.phrase.length; i++) {
+            const charCode = this.phrase.charCodeAt(i);
+            // Check if the character is a lowercase English alphabet letter ('a' to 'z')
+            // 'a' has char code 97, 'z' has char code 122
             if (charCode >= 97 && charCode <= 122) {
-                const index = charCode - 97; // Map 'a' to 0, 'b' to 1, ..., 'z' to 25
-                // If this letter hasn't been seen before, mark it as seen and increment the count.
-                if (!seenLetters[index]) {
-                    seenLetters[index] = true;
-                    uniqueLetterCount++;
-                    // Early exit: If we have found all 26 unique letters, it's a pangram.
-                    // This stops processing the rest of the string, saving CPU cycles.
-                    if (uniqueLetterCount === 26) {
-                        return true;
-                    }
+                const letterIndex = charCode - 97; // Calculate 0-25 index for the letter
+                seenLettersBitmask |= (1 << letterIndex); // Set the corresponding bit in the mask
+                // Early exit: If all 26 bits are set, we've found all letters
+                if (seenLettersBitmask === allLettersMask) {
+                    return true;
                 }
             }
         }
-        // If the loop finishes, check if we found all 26 unique letters.
-        return uniqueLetterCount === 26;
+        // After iterating through the entire phrase, check if all 26 bits were set
+        return seenLettersBitmask === allLettersMask;
     }
 }
 exports.default = Pangram;

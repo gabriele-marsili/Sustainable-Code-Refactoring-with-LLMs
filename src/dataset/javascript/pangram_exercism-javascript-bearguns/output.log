@@ -1,37 +1,37 @@
 (node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-PASS ./pangram_testSuite.js (11.094 s)
+PASS ./pangram_testSuite.js (11.192 s)
   Pangram()
-    ✓ empty sentence (110 ms)
-    ✓ pangram with only lower case (5 ms)
-    ✓ missing character 'x' (11 ms)
-    ✓ another missing character 'x' (3 ms)
-    ✓ pangram with underscores (12 ms)
-    ✓ pangram with numbers (5 ms)
-    ✓ missing letters replaced by numbers (21 ms)
-    ✓ pangram with mixed case and punctuation (4 ms)
-    ✓ pangram with non-ascii characters (7 ms)
+    ✓ empty sentence (94 ms)
+    ✓ pangram with only lower case (2 ms)
+    ✓ missing character 'x' (2 ms)
+    ✓ another missing character 'x' (6 ms)
+    ✓ pangram with underscores (3 ms)
+    ✓ pangram with numbers (13 ms)
+    ✓ missing letters replaced by numbers (37 ms)
+    ✓ pangram with mixed case and punctuation (15 ms)
+    ✓ pangram with non-ascii characters (3 ms)
 
 Test Suites: 1 passed, 1 total
 Tests:       9 passed, 9 total
 Snapshots:   0 total
-Time:        13.4 s
+Time:        13.339 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 2.90
-	System time (seconds): 3.40
+	User time (seconds): 2.73
+	System time (seconds): 3.27
 	Percent of CPU this job got: 14%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:42.91
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:40.08
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 79940
+	Maximum resident set size (kbytes): 78044
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 15508
-	Voluntary context switches: 6577
-	Involuntary context switches: 5837
+	Minor (reclaiming a frame) page faults: 15499
+	Voluntary context switches: 6619
+	Involuntary context switches: 5407
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

@@ -1,38 +1,38 @@
 (node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-PASS ./pangram_testSuite.js (22.613 s)
+PASS ./pangram_testSuite.js (10.095 s)
   Pangram()
-    ✓ empty sentence (175 ms)
-    ✓ perfect lower case (2 ms)
-    ✓ only lower case (2 ms)
-    ✓ missing the letter 'x' (7 ms)
-    ✓ missing the letter 'h' (11 ms)
-    ✓ with underscores (39 ms)
-    ✓ with numbers (26 ms)
-    ✓ missing letters replaced by numbers (22 ms)
-    ✓ mixed case and punctuation (8 ms)
-    ✓ case insensitive (2 ms)
+    ✓ empty sentence (88 ms)
+    ✓ perfect lower case (11 ms)
+    ✓ only lower case (7 ms)
+    ✓ missing the letter 'x' (31 ms)
+    ✓ missing the letter 'h' (3 ms)
+    ✓ with underscores (64 ms)
+    ✓ with numbers (3 ms)
+    ✓ missing letters replaced by numbers (6 ms)
+    ✓ mixed case and punctuation (7 ms)
+    ✓ case insensitive (3 ms)
 
 Test Suites: 1 passed, 1 total
 Tests:       10 passed, 10 total
 Snapshots:   0 total
-Time:        25.485 s
+Time:        12.694 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 3.42
-	System time (seconds): 3.74
-	Percent of CPU this job got: 13%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:51.27
+	User time (seconds): 2.97
+	System time (seconds): 3.17
+	Percent of CPU this job got: 15%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:39.32
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 84008
+	Maximum resident set size (kbytes): 76516
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 14864
-	Voluntary context switches: 6687
-	Involuntary context switches: 5571
+	Minor (reclaiming a frame) page faults: 15303
+	Voluntary context switches: 6674
+	Involuntary context switches: 5443
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

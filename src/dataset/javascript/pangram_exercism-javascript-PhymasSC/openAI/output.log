@@ -1,38 +1,38 @@
 (node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-PASS ./pangram_testSuite.js (13.315 s)
+PASS ./pangram_testSuite.js (8.558 s)
   Pangram()
-    ✓ empty sentence (48 ms)
-    ✓ perfect lower case (21 ms)
-    ✓ only lower case (10 ms)
-    ✓ missing the letter 'x' (8 ms)
-    ✓ missing the letter 'h' (25 ms)
+    ✓ empty sentence (42 ms)
+    ✓ perfect lower case (1 ms)
+    ✓ only lower case (36 ms)
+    ✓ missing the letter 'x' (4 ms)
+    ✓ missing the letter 'h' (3 ms)
     ✓ with underscores (1 ms)
-    ✓ with numbers (4 ms)
-    ✓ missing letters replaced by numbers (4 ms)
+    ✓ with numbers (5 ms)
+    ✓ missing letters replaced by numbers (2 ms)
     ✓ mixed case and punctuation (2 ms)
-    ✓ case insensitive (5 ms)
+    ✓ case insensitive (3 ms)
 
 Test Suites: 1 passed, 1 total
 Tests:       10 passed, 10 total
 Snapshots:   0 total
-Time:        16.956 s
+Time:        10.562 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 3.43
-	System time (seconds): 4.83
-	Percent of CPU this job got: 12%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:04.75
+	User time (seconds): 2.53
+	System time (seconds): 2.81
+	Percent of CPU this job got: 14%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:37.93
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 77328
+	Maximum resident set size (kbytes): 78092
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 17098
-	Voluntary context switches: 6813
-	Involuntary context switches: 5270
+	Minor (reclaiming a frame) page faults: 14880
+	Voluntary context switches: 6698
+	Involuntary context switches: 5178
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

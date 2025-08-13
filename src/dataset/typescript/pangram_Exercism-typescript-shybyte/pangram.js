@@ -1,47 +1,41 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const ALPHABET_SIZE = 26;
+// Pre-calculate the target mask representing all 26 bits set.
+// This allows for an efficient single comparison to check if all letters have been found.
+const ALL_LETTERS_MASK = (1 << ALPHABET_SIZE) - 1;
 class Pangram {
     constructor(text) {
         this.text = text;
     }
     isPangram() {
-        // Use a fixed-size boolean array to track seen letters.
-        // This avoids the overhead of a Set (hashing, object creation) and
-        // large intermediate string/array allocations.
-        const seenLetters = new Array(ALPHABET_SIZE).fill(false);
-        let distinctCount = 0;
-        // Iterate directly over the input string to minimize memory allocations
-        // and avoid costly string manipulations like toLowerCase(), replace(), and split().
-        for (let i = 0; i < this.text.length; i++) {
+        let seenLettersMask = 0;
+        const textLength = this.text.length;
+        // Iterate through the string character by character.
+        // This avoids creating intermediate strings and arrays,
+        // reducing memory allocation and garbage collection overhead.
+        for (let i = 0; i < textLength; i++) {
             const charCode = this.text.charCodeAt(i);
-            let index;
-            // Check if the character is an English lowercase letter (a-z)
-            if (charCode >= 97 && charCode <= 122) { // 'a' (97) to 'z' (122)
-                index = charCode - 97;
+            // Check if the character is a lowercase letter (a-z)
+            if (charCode >= 97 /* 'a' */ && charCode <= 122 /* 'z' */) {
+                // Set the corresponding bit in the mask.
+                // Example: 'a' maps to bit 0, 'b' to bit 1, etc.
+                seenLettersMask |= (1 << (charCode - 97));
             }
-            // Check if the character is an English uppercase letter (A-Z)
-            else if (charCode >= 65 && charCode <= 90) { // 'A' (65) to 'Z' (90)
-                index = charCode - 65;
+            // Check if the character is an uppercase letter (A-Z)
+            else if (charCode >= 65 /* 'A' */ && charCode <= 90 /* 'Z' */) {
+                // Map uppercase letters to the same bit positions as their lowercase counterparts.
+                seenLettersMask |= (1 << (charCode - 65));
             }
-            else {
-                // If it's not an alphabetic character, skip it.
-                continue;
-            }
-            // If this letter hasn't been seen yet, mark it and increment the count.
-            // This check prevents redundant operations for already seen letters.
-            if (!seenLetters[index]) {
-                seenLetters[index] = true;
-                distinctCount++;
-                // Early exit: If all 26 distinct letters are found, it's a pangram.
-                // This significantly reduces execution time for long texts that are pangrams.
-                if (distinctCount === ALPHABET_SIZE) {
-                    return true;
-                }
+            // Early exit: If all 26 bits are set in the mask, it means all letters
+            // have been found, so we can return true immediately.
+            // This minimizes unnecessary iterations, saving CPU cycles and energy.
+            if (seenLettersMask === ALL_LETTERS_MASK) {
+                return true;
             }
         }
-        // After iterating through the entire text, return true only if all 26 distinct letters were found.
-        return distinctCount === ALPHABET_SIZE;
+        // After checking all characters, return true if all 26 bits are set in the mask.
+        return seenLettersMask === ALL_LETTERS_MASK;
     }
 }
 exports.default = Pangram;

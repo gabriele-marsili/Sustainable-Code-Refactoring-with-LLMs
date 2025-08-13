@@ -13,7 +13,6 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
 var _Pangram_input;
 Object.defineProperty(exports, "__esModule", { value: true });
 const isLowerCaseASCIILetter = (input) => {
-    // This function's signature and core logic are preserved as per requirements.
     const c = input.charCodeAt(0);
     return c >= 97 && c < 123;
 };
@@ -23,41 +22,44 @@ class Pangram {
         __classPrivateFieldSet(this, _Pangram_input, input, "f");
     }
     isPangram() {
-        // Use a bitmask (an integer) to efficiently track the presence of each of the 26 lowercase ASCII letters.
-        // This is significantly more memory-efficient and faster than using a Set for a fixed, small alphabet,
-        // as it avoids object overhead and hash table operations.
-        let seenLettersMask = 0; // Each bit from 0 to 25 will represent a letter 'a' through 'z'.
-        const ALL_LETTERS_MASK = (1 << 26) - 1; // Represents all 26 bits set (e.g., binary 11...1 for 26 ones).
-        // Iterate over the input string character by character.
-        // This avoids creating a new, potentially large, string for the entire lowercase version of the input
-        // via `this.#input.toLowerCase()`, which can be a significant memory and CPU overhead.
+        // A Set is an efficient data structure for tracking unique characters.
+        const seen = new Set();
+        // Define the target number of unique letters for a pangram.
+        const PANGRAM_SIZE = 26; // 'a' through 'z'
+        // Iterate through the input string character by character.
+        // This avoids creating a new, potentially large, lowercase string
+        // using `this.#input.toLowerCase()`, which saves memory and CPU cycles.
         for (let i = 0; i < __classPrivateFieldGet(this, _Pangram_input, "f").length; i++) {
-            let charCode = __classPrivateFieldGet(this, _Pangram_input, "f").charCodeAt(i);
-            // Convert uppercase ASCII letters to their lowercase equivalents.
-            // 'A' (ASCII 65) to 'Z' (ASCII 90) become 'a' (97) to 'z' (122) by adding 32.
+            const charCode = __classPrivateFieldGet(this, _Pangram_input, "f").charCodeAt(i);
+            let lowerCaseChar = null;
+            // Check if the character is an ASCII uppercase letter (A-Z).
+            // ASCII 'A' is 65, 'Z' is 90.
             if (charCode >= 65 && charCode <= 90) {
-                charCode += 32;
+                // Convert uppercase to lowercase by adding 32 to its ASCII code.
+                // (e.g., 'A' (65) + 32 = 'a' (97))
+                lowerCaseChar = String.fromCharCode(charCode + 32);
             }
-            // Check if the character (potentially lowercased) is a lowercase ASCII letter.
-            // This logic effectively replaces the original `isLowerCaseASCIILetter(c)` calls
-            // after the implicit `toLowerCase()` on the entire string.
-            if (charCode >= 97 && charCode <= 122) {
-                // Calculate the 0-based index for the letter (0 for 'a', 1 for 'b', ..., 25 for 'z').
-                const letterIndex = charCode - 97;
-                // Set the corresponding bit in the `seenLettersMask`.
-                // Bitwise OR is very fast.
-                seenLettersMask |= (1 << letterIndex);
-                // Early exit: If all 26 unique letters have been found (i.e., all 26 bits are set),
-                // we can stop processing the rest of the string immediately. This significantly
-                // reduces execution time for long strings that are pangrams early on.
-                if (seenLettersMask === ALL_LETTERS_MASK) {
+            // Check if the character is an ASCII lowercase letter (a-z).
+            // ASCII 'a' is 97, 'z' is 122.
+            else if (charCode >= 97 && charCode <= 122) {
+                // The character is already lowercase.
+                lowerCaseChar = String.fromCharCode(charCode);
+            }
+            // If the character is a recognized ASCII letter (either uppercase or lowercase),
+            // add its lowercase form to the Set.
+            if (lowerCaseChar !== null) {
+                seen.add(lowerCaseChar);
+                // Early exit optimization: If we have already found all 26 unique
+                // letters, there's no need to continue processing the rest of the string.
+                // This significantly improves performance for pangrams found early
+                // in long strings and reduces unnecessary computations.
+                if (seen.size === PANGRAM_SIZE) {
                     return true;
                 }
             }
         }
-        // After iterating through the entire string, return true if all 26 bits are set,
-        // meaning all lowercase ASCII letters were found. Otherwise, return false.
-        return seenLettersMask === ALL_LETTERS_MASK;
+        // After iterating through the entire string, return true if all 26 letters were seen.
+        return seen.size === PANGRAM_SIZE;
     }
 }
 _Pangram_input = new WeakMap();

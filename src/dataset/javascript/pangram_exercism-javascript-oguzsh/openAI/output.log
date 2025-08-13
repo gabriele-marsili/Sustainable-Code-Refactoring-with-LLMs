@@ -1,38 +1,38 @@
 (node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-PASS ./pangram_testSuite.js (37.834 s)
+PASS ./pangram_testSuite.js (12.55 s)
   Pangram()
-    ✓ empty sentence (125 ms)
-    ✓ perfect lower case (3 ms)
-    ✓ only lower case (2 ms)
-    ✓ missing the letter 'x' (7 ms)
-    ✓ missing the letter 'h' (2 ms)
-    ✓ with underscores (3 ms)
-    ✓ with numbers (3 ms)
-    ✓ missing letters replaced by numbers (19 ms)
-    ✓ mixed case and punctuation (8 ms)
-    ✓ case insensitive (9 ms)
+    ✓ empty sentence (99 ms)
+    ✓ perfect lower case (15 ms)
+    ✓ only lower case (53 ms)
+    ✓ missing the letter 'x' (9 ms)
+    ✓ missing the letter 'h' (27 ms)
+    ✓ with underscores (20 ms)
+    ✓ with numbers (7 ms)
+    ✓ missing letters replaced by numbers (7 ms)
+    ✓ mixed case and punctuation (5 ms)
+    ✓ case insensitive (2 ms)
 
 Test Suites: 1 passed, 1 total
 Tests:       10 passed, 10 total
 Snapshots:   0 total
-Time:        50.927 s
+Time:        19.943 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 6.62
-	System time (seconds): 9.44
+	User time (seconds): 2.23
+	System time (seconds): 2.80
 	Percent of CPU this job got: 10%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:36.73
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:46.99
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 69652
+	Maximum resident set size (kbytes): 75724
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 17938
-	Voluntary context switches: 6994
-	Involuntary context switches: 6322
+	Minor (reclaiming a frame) page faults: 16052
+	Voluntary context switches: 6686
+	Involuntary context switches: 4961
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

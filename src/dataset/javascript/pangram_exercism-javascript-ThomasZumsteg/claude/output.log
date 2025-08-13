@@ -1,33 +1,33 @@
 (node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-PASS ./pangram_testSuite.js (30.524 s)
+PASS ./pangram_testSuite.js (12.306 s)
   Pangram()
-    ✓ empty sentence (252 ms)
-    ✓ pangram with only lower case (7 ms)
-    ✓ missing character 'x' (15 ms)
-    ✓ pangram with mixed case and punctuation (18 ms)
-    ✓ pangram with non-ascii characters (19 ms)
+    ✓ empty sentence (54 ms)
+    ✓ pangram with only lower case (2 ms)
+    ✓ missing character 'x' (8 ms)
+    ✓ pangram with mixed case and punctuation (7 ms)
+    ✓ pangram with non-ascii characters (8 ms)
 
 Test Suites: 1 passed, 1 total
 Tests:       5 passed, 5 total
 Snapshots:   0 total
-Time:        35.231 s
+Time:        16.175 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 4.02
-	System time (seconds): 4.97
-	Percent of CPU this job got: 9%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:37.04
+	User time (seconds): 2.23
+	System time (seconds): 2.50
+	Percent of CPU this job got: 10%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:46.07
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 69140
+	Maximum resident set size (kbytes): 73096
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 17451
-	Voluntary context switches: 6837
-	Involuntary context switches: 5589
+	Minor (reclaiming a frame) page faults: 16118
+	Voluntary context switches: 6614
+	Involuntary context switches: 4796
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

@@ -3,31 +3,38 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.isPangram = void 0;
 const TOTAL_CHARS = 26;
 const isPangram = (sentence) => {
-    // Use a boolean array to track found letters.
-    // Index 0 corresponds to 'a', 1 to 'b', ..., 25 to 'z'.
-    const foundLetters = new Array(TOTAL_CHARS).fill(false);
-    let uniqueCount = 0; // Counts how many unique alphabetic characters have been found
-    // Iterate over each character in the sentence
+    // Use a boolean array to track which letters of the alphabet have been seen.
+    // This is highly memory-efficient for a fixed, small alphabet size (26 letters).
+    // Each index corresponds to a letter: 0 for 'a', 1 for 'b', ..., 25 for 'z'.
+    const seenLetters = new Array(TOTAL_CHARS).fill(false);
+    let foundCount = 0; // Counter for the number of unique letters found so far.
+    // Iterate over each character in the input sentence.
+    // A simple for loop is generally faster than methods like forEach for arrays/strings
+    // and avoids creating iterators.
     for (let i = 0; i < sentence.length; i++) {
-        const char = sentence[i].toLowerCase();
-        // Check if the character is an English alphabet letter ('a' through 'z')
-        if (char >= 'a' && char <= 'z') {
-            const charCode = char.charCodeAt(0);
-            // Calculate the index for the boolean array (e.g., 'a' -> 0, 'b' -> 1)
-            const index = charCode - 'a'.charCodeAt(0);
-            // If this letter hasn't been found yet
-            if (!foundLetters[index]) {
-                foundLetters[index] = true; // Mark it as found
-                uniqueCount++; // Increment the count of unique letters
-                // Optimization: If we have found all 26 unique letters,
-                // we can short-circuit and immediately return true.
-                if (uniqueCount === TOTAL_CHARS) {
+        const char = sentence[i];
+        // Convert the character to lowercase and get its ASCII (UTF-16) code.
+        // This handles case-insensitivity without creating new strings for the entire sentence.
+        const charCode = char.toLowerCase().charCodeAt(0);
+        // Check if the character is a lowercase English alphabet letter ('a' through 'z').
+        // 'a' has char code 97, 'z' has char code 122.
+        if (charCode >= 97 && charCode <= 122) {
+            // Calculate the index for the `seenLetters` array (0-25).
+            const index = charCode - 97;
+            // If this letter has not been seen before, mark it as seen and increment the count.
+            if (!seenLetters[index]) {
+                seenLetters[index] = true;
+                foundCount++;
+                // Optimization: If all 26 unique letters have been found,
+                // we can immediately return true without processing the rest of the sentence.
+                // This significantly reduces execution time and resource usage for long pangrams.
+                if (foundCount === TOTAL_CHARS) {
                     return true;
                 }
             }
         }
     }
-    // After checking all characters, return true if all 26 unique letters were found
-    return uniqueCount === TOTAL_CHARS;
+    // After iterating through the entire sentence, check if exactly 26 unique letters were found.
+    return foundCount === TOTAL_CHARS;
 };
 exports.isPangram = isPangram;
