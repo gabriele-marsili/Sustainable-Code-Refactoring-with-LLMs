@@ -89,13 +89,17 @@ def process_json_file(input_file_path, output_file_path=None):
         # Processa ogni linguaggio nel JSON
         for language, entries in data.items():
             print(f"\nProcessando linguaggio: {language}")
-            
+                         
             for entry in entries:
                 entry_id = entry.get('id', 'ID sconosciuto')
                 entry_filename = entry['filename']
                 print(f"  Processando entry: {entry_id}")
                 
-                exercise_path = str(entry['codeSnippetFilePath']).replace("/"+entry['filename'],"")
+                if language == "java":
+                    parts = str(entry['codeSnippetFilePath']).split("/")
+                    exercise_path = parts[0] + "/" + parts[1]
+                else :
+                    exercise_path = str(entry['codeSnippetFilePath']).replace("/"+entry['filename'],"")
                 if entry['language'] == "c" or entry['language'] == "cpp":
                     exercise_path = exercise_path.replace("/src","")
                 exercise_path = utility_paths.DATASET_DIR / exercise_path
@@ -104,10 +108,15 @@ def process_json_file(input_file_path, output_file_path=None):
                 
                 # Processa ogni percorso LLM
                 for dir_name in DIRS:
+                    print(f"exercise_path = {exercise_path}")
+                    print(f"dir_name = {dir_name}")
+                    
                     complete_dir_path = exercise_path / dir_name
+                    print(f"complete_dir_path = {complete_dir_path}")
                     
                     if os.path.isdir(str(complete_dir_path)):
                         for LLM_file in os.scandir(str(complete_dir_path)):  
+                            print(f"LLM file name : {LLM_file.name}\nentry_filename = {entry_filename}")
                             if LLM_file.is_file() and not LLM_file.name.endswith(".json") and not LLM_file.name.endswith("config.js")  and not LLM_file.name.endswith(".log") and not LLM_file.name.endswith(".sh") and not LLM_file.name.endswith(".h") and LLM_file.name != entry_filename:
                                 path = LLM_file.path
                         
@@ -152,13 +161,13 @@ def main():
     """    
     #raindrops = utility_paths.CLUSTERS_DIR_FILEPATH / "cluster_raindrops.json"
     bob = utility_paths.CLUSTERS_DIR_FILEPATH / "cluster_bob.json"
-    pangram = utility_paths.CLUSTERS_DIR_FILEPATH / "cluster_pangram.json"
-    leap = utility_paths.CLUSTERS_DIR_FILEPATH / "cluster_leap.json"
+    #pangram = utility_paths.CLUSTERS_DIR_FILEPATH / "cluster_pangram.json"
+    #leap = utility_paths.CLUSTERS_DIR_FILEPATH / "cluster_leap.json"
 
     clusters = [
         bob,
-        pangram,
-        leap
+        #pangram,
+        #leap
     ]
             
     for cluster in clusters : 

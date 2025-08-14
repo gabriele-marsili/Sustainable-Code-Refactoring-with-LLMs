@@ -760,7 +760,11 @@ class StatsHandler:
                 for entry in language_entries:
                     not_llm_entry_counter  += 1
                     quantity = len([x for x in entry["LLMs"] if f"_v{version}" in x['filename']]) 
-                    if quantity != 3 : raise Exception(f"quantity = {quantity} for f name : {f_name} version {version} | entry:\n{entry}")
+                    
+                    if quantity != 3 : 
+                        s = f"quantity = {quantity} for f name : {f_name} version {version} | entry:\n{entry}"
+                        raise Exception(s)
+                    
                     counter += quantity
                     
         return (counter,not_llm_entry_counter )
@@ -770,13 +774,13 @@ class StatsHandler:
 def count(handler: StatsHandler) :    
     for version in range(1,5):
         
-        f_name = f"cluster_raindrops.json"
+        f_name = f"cluster_bob.json"
         (llm_entry_quantity, not_llm_entry_quantity) = handler.count_entries_cluster(f_name,version)
         print(f"quanitity of entries for file {f_name} : {not_llm_entry_quantity} | llm entries v {version} : {llm_entry_quantity}")
 
 
         for run in range(1,6) :             
-            f_name = f"raindrops_results_v{version}_{run}.json"
+            f_name = f"bob_results_v{version}_{run}.json"
             (llm_entry_quantity, not_llm_entry_quantity) = handler.count_entries_result_file(f_name)
             print(f"quanitity of entries for file {f_name} : {not_llm_entry_quantity} | llm entries : {llm_entry_quantity}")
     
@@ -786,12 +790,12 @@ def count(handler: StatsHandler) :
 # Esempio di utilizzo
 if __name__ == "__main__":
     
-    cluster_name = "raindrops"  # o None per tutti i cluster
+    cluster_name = None#"raindrops"  # o None per tutti i cluster
     handler = StatsHandler(str(utility_paths.OUTPUT_DIR_FILEPATH), cluster_filter=cluster_name)
     
     
-    handler.full_version_analysis()
-    #count(handler)
+    #handler.full_version_analysis()
+    count(handler)
     
     # analisi completa originale + versioni
     #handler.full_analysis()
