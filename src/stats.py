@@ -175,13 +175,16 @@ class StatsHandler:
                                 version_data['entry_count'] += len(llm_results)  # Conta LLM_results
                             
                             for llm_result in llm_results:
-                                version_data['execution_times'].append(llm_result.get('execution_time_ms', 0))
-                                version_data['cpu_usages'].append(llm_result.get('CPU_usage', 0))
-                                version_data['ram_usages'].append(llm_result.get('RAM_usage', 0))
-                                
                                 test_passed = llm_result.get('regrationTestPassed', False)
+    
+                                if test_passed:
+                                    version_data['execution_times'].append(llm_result.get('execution_time_ms', 0))
+                                    version_data['cpu_usages'].append(llm_result.get('CPU_usage', 0))
+                                    version_data['ram_usages'].append(llm_result.get('RAM_usage', 0))
+                                
                                 version_data['regression_tests_passed'].append(1 if test_passed else 0)
                                 version_data['regression_tests_total'].append(1)
+                                
                                 
                                 version_data['llm_results'].append({
                                     'cluster': cluster_name,
@@ -197,18 +200,22 @@ class StatsHandler:
                 
                 # Calcola statistiche aggregate per questa versione
                 if version_data['execution_times']:
+                    cpu_usages_clean = [x for x in version_data['cpu_usages'] if x is not None]
+                    ram_usages_clean = [x for x in version_data['ram_usages'] if x is not None]
+                    exec_times_clean = [x for x in version_data['execution_times'] if x is not None]                    
+                    
                     stats = {
-                        'avg_execution_time': mean(version_data['execution_times']),
-                        'std_execution_time': stdev(version_data['execution_times']) if len(version_data['execution_times']) > 1 else 0,
-                        'avg_cpu_usage': mean(version_data['cpu_usages']),
-                        'std_cpu_usage': stdev(version_data['cpu_usages']) if len(version_data['cpu_usages']) > 1 else 0,
-                        'avg_ram_usage': mean(version_data['ram_usages']),
-                        'std_ram_usage': stdev(version_data['ram_usages']) if len(version_data['ram_usages']) > 1 else 0,
+                        'avg_execution_time': mean(exec_times_clean),
+                        'std_execution_time': stdev(exec_times_clean) if len(exec_times_clean) > 1 else 0,
+                        'avg_cpu_usage': mean(cpu_usages_clean) if cpu_usages_clean else 0,
+                        'std_cpu_usage': stdev(cpu_usages_clean) if len(cpu_usages_clean) > 1 else 0,
+                        'avg_ram_usage': mean(ram_usages_clean) if ram_usages_clean else 0,
+                        'std_ram_usage': stdev(ram_usages_clean) if len(ram_usages_clean) > 1 else 0,
                         'total_tests': sum(version_data['regression_tests_total']),
                         'tests_passed': sum(version_data['regression_tests_passed']),
                         'pass_rate': (sum(version_data['regression_tests_passed']) / sum(version_data['regression_tests_total']) * 100) if sum(version_data['regression_tests_total']) > 0 else 0,
-                        'total_entries': version_data['entry_count'],  # Nuovo campo
-                        'sample_count': len(version_data['execution_times']),
+                        'total_entries': version_data['entry_count'],
+                        'sample_count': len(exec_times_clean),
                         'llm_results': version_data['llm_results']
                     }
                     
@@ -741,7 +748,7 @@ class StatsHandler:
                     try : 
                         counter += len(entry["LLM_results"])                    
                     except Exception as e : 
-                        print(f"entry : {entry['id']} file {f_name}")
+                        print(f"\nentry : {entry}\nfile {f_name}\n")
                         raise e
                     
         return (counter,not_llm_entry_counter )
@@ -774,13 +781,13 @@ class StatsHandler:
 def count(handler: StatsHandler) :    
     for version in range(1,5):
         
-        f_name = f"cluster_bob.json"
+        f_name = f"cluster_leap.json"
         (llm_entry_quantity, not_llm_entry_quantity) = handler.count_entries_cluster(f_name,version)
         print(f"quanitity of entries for file {f_name} : {not_llm_entry_quantity} | llm entries v {version} : {llm_entry_quantity}")
 
 
         for run in range(1,6) :             
-            f_name = f"bob_results_v{version}_{run}.json"
+            f_name = f"leap_results_v{version}_{run}.json"
             (llm_entry_quantity, not_llm_entry_quantity) = handler.count_entries_result_file(f_name)
             print(f"quanitity of entries for file {f_name} : {not_llm_entry_quantity} | llm entries : {llm_entry_quantity}")
     
@@ -790,12 +797,12 @@ def count(handler: StatsHandler) :
 # Esempio di utilizzo
 if __name__ == "__main__":
     
-    cluster_name = None#"raindrops"  # o None per tutti i cluster
+    cluster_name = None #"raindrops"  # o None per tutti i cluster
     handler = StatsHandler(str(utility_paths.OUTPUT_DIR_FILEPATH), cluster_filter=cluster_name)
     
     
     #handler.full_version_analysis()
-    count(handler)
+    #count(handler)
     
     # analisi completa originale + versioni
-    #handler.full_analysis()
+    handler.full_analysis()
