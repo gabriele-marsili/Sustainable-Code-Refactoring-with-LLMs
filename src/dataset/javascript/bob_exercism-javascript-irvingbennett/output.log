@@ -2,18 +2,18 @@
 (Use `node --trace-warnings ...` to show where the warning was created)
 PASS ./bob_testSuite.js
   Bob
-    ✓ stating something (2 ms)
+    ✓ stating something (7 ms)
     ✓ shouting
     ✓ shouting gibberish
     ✓ asking a question (1 ms)
     ✓ asking a numeric question
     ✓ asking gibberish
     ✓ talking forcefully
-    ✓ using acronyms in regular speech (1 ms)
-    ✓ forceful question
+    ✓ using acronyms in regular speech
+    ✓ forceful question (1 ms)
     ✓ shouting numbers
     ✓ no letters
-    ✓ question with no letters (1 ms)
+    ✓ question with no letters
     ✓ shouting with special characters
     ✓ shouting with no exclamation mark
     ✓ statement containing question mark
@@ -24,30 +24,30 @@ PASS ./bob_testSuite.js
     ✓ alternate silence
     ✓ multiple line question
     ✓ starting with whitespace
-    ✓ ending with whitespace
+    ✓ ending with whitespace (1 ms)
     ✓ other whitespace
-    ✓ non-question ending with whitespace (2 ms)
+    ✓ non-question ending with whitespace
 
 Test Suites: 1 passed, 1 total
 Tests:       25 passed, 25 total
 Snapshots:   0 total
-Time:        0.367 s
+Time:        0.246 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 0.28
-	System time (seconds): 0.07
-	Percent of CPU this job got: 38%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.91
+	User time (seconds): 0.29
+	System time (seconds): 0.08
+	Percent of CPU this job got: 40%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.93
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 83180
+	Maximum resident set size (kbytes): 82320
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 14237
-	Voluntary context switches: 7620
-	Involuntary context switches: 2580
+	Minor (reclaiming a frame) page faults: 14364
+	Voluntary context switches: 7602
+	Involuntary context switches: 3178
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

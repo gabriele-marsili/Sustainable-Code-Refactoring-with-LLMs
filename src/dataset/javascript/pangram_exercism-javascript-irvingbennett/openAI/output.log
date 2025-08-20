@@ -1,38 +1,38 @@
 (node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-PASS ./pangram_testSuite.js (8.66 s)
+PASS ./pangram_testSuite.js
   Pangram()
-    ✓ empty sentence (75 ms)
-    ✓ perfect lower case (2 ms)
-    ✓ only lower case (9 ms)
-    ✓ missing the letter 'x' (1 ms)
-    ✓ missing the letter 'h' (7 ms)
-    ✓ with underscores (1 ms)
-    ✓ with numbers (9 ms)
-    ✓ missing letters replaced by numbers (5 ms)
-    ✓ mixed case and punctuation (6 ms)
-    ✓ case insensitive (7 ms)
+    ✓ empty sentence (2 ms)
+    ✓ perfect lower case
+    ✓ only lower case
+    ✓ missing the letter 'x'
+    ✓ missing the letter 'h' (1 ms)
+    ✓ with underscores
+    ✓ with numbers
+    ✓ missing letters replaced by numbers
+    ✓ mixed case and punctuation
+    ✓ case insensitive
 
 Test Suites: 1 passed, 1 total
 Tests:       10 passed, 10 total
 Snapshots:   0 total
-Time:        10.638 s
+Time:        0.473 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 2.48
-	System time (seconds): 2.99
-	Percent of CPU this job got: 14%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:38.35
+	User time (seconds): 0.33
+	System time (seconds): 0.09
+	Percent of CPU this job got: 37%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.17
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 78744
+	Maximum resident set size (kbytes): 81464
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 14208
-	Voluntary context switches: 6691
-	Involuntary context switches: 5290
+	Minor (reclaiming a frame) page faults: 14094
+	Voluntary context switches: 7580
+	Involuntary context switches: 3085
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

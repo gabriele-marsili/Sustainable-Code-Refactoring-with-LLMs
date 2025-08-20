@@ -1,34 +1,20 @@
-test/test_pangram.c:112:test_null:PASS
-test/test_pangram.c:113:test_empty_sentence:PASS
-test/test_pangram.c:114:test_lowercase_pangram:PASS
-test/test_pangram.c:115:test_uppercase_pangram:PASS
-test/test_pangram.c:116:test_missing_character_x:PASS
-test/test_pangram.c:117:test_another_missing_x:PASS
-test/test_pangram.c:118:test_pangram_with_underscores:PASS
-test/test_pangram.c:119:test_pangram_with_numbers:PASS
-test/test_pangram.c:120:test_missing_letters_replaced_by_numbers:PASS
-test/test_pangram.c:121:test_mixed_case_and_punctuation:PASS
-test/test_pangram.c:122:test_non_ascii_characters:PASS
-test/test_pangram.c:123:test_pangram_in_alphabet_other_than_ascii:PASS
-
------------------------
-12 Tests 0 Failures 0 Ignored 
-OK
+qemu-x86_64: Could not open '/lib64/ld-linux-x86-64.so.2': No such file or directory
+Command exited with non-zero status 255
 	Command being timed: "./tests.out"
 	User time (seconds): 0.00
 	System time (seconds): 0.00
-	Percent of CPU this job got: 7%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.02
+	Percent of CPU this job got: 33%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.00
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 1152
+	Maximum resident set size (kbytes): 3456
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 1
-	Minor (reclaiming a frame) page faults: 74
-	Voluntary context switches: 5
-	Involuntary context switches: 12
+	Minor (reclaiming a frame) page faults: 784
+	Voluntary context switches: 19
+	Involuntary context switches: 5
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 0
@@ -36,4 +22,4 @@ OK
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 0
+	Exit status: 255

@@ -1,37 +1,37 @@
 (node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-PASS ./pangram_testSuite.js (8.681 s)
+PASS ./pangram_testSuite.js
   Pangram()
-    ✓ empty sentence (43 ms)
-    ✓ pangram with only lower case (3 ms)
-    ✓ missing character 'x' (2 ms)
-    ✓ another missing character 'x' (3 ms)
-    ✓ pangram with underscores (2 ms)
+    ✓ empty sentence (1 ms)
+    ✓ pangram with only lower case
+    ✓ missing character 'x'
+    ✓ another missing character 'x'
+    ✓ pangram with underscores
     ✓ pangram with numbers (1 ms)
-    ✓ missing letters replaced by numbers (10 ms)
-    ✓ pangram with mixed case and punctuation (4 ms)
-    ✓ pangram with non-ascii characters (8 ms)
+    ✓ missing letters replaced by numbers
+    ✓ pangram with mixed case and punctuation
+    ✓ pangram with non-ascii characters
 
 Test Suites: 1 passed, 1 total
 Tests:       9 passed, 9 total
 Snapshots:   0 total
-Time:        10.866 s
+Time:        0.377 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 2.47
-	System time (seconds): 2.93
-	Percent of CPU this job got: 14%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:37.97
+	User time (seconds): 0.34
+	System time (seconds): 0.10
+	Percent of CPU this job got: 37%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.18
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 77888
+	Maximum resident set size (kbytes): 81244
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 14411
-	Voluntary context switches: 6661
-	Involuntary context switches: 5224
+	Minor (reclaiming a frame) page faults: 14040
+	Voluntary context switches: 7563
+	Involuntary context switches: 2642
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

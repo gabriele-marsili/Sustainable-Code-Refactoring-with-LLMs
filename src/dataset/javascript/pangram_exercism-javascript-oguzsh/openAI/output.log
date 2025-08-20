@@ -1,38 +1,38 @@
-(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(node:22) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-PASS ./pangram_testSuite.js (12.55 s)
+PASS ./pangram_testSuite.js
   Pangram()
-    ✓ empty sentence (99 ms)
-    ✓ perfect lower case (15 ms)
-    ✓ only lower case (53 ms)
-    ✓ missing the letter 'x' (9 ms)
-    ✓ missing the letter 'h' (27 ms)
-    ✓ with underscores (20 ms)
-    ✓ with numbers (7 ms)
-    ✓ missing letters replaced by numbers (7 ms)
-    ✓ mixed case and punctuation (5 ms)
-    ✓ case insensitive (2 ms)
+    ✓ empty sentence (3 ms)
+    ✓ perfect lower case
+    ✓ only lower case (1 ms)
+    ✓ missing the letter 'x'
+    ✓ missing the letter 'h'
+    ✓ with underscores (2 ms)
+    ✓ with numbers (1 ms)
+    ✓ missing letters replaced by numbers
+    ✓ mixed case and punctuation
+    ✓ case insensitive (1 ms)
 
 Test Suites: 1 passed, 1 total
 Tests:       10 passed, 10 total
 Snapshots:   0 total
-Time:        19.943 s
+Time:        0.394 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 2.23
-	System time (seconds): 2.80
-	Percent of CPU this job got: 10%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:46.99
+	User time (seconds): 0.26
+	System time (seconds): 0.07
+	Percent of CPU this job got: 39%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.85
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 75724
+	Maximum resident set size (kbytes): 80848
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 16052
-	Voluntary context switches: 6686
-	Involuntary context switches: 4961
+	Minor (reclaiming a frame) page faults: 13864
+	Voluntary context switches: 7529
+	Involuntary context switches: 3048
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

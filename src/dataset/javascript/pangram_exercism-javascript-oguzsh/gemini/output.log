@@ -1,38 +1,38 @@
 (node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-PASS ./pangram_testSuite.js (30.438 s)
+PASS ./pangram_testSuite.js
   Pangram()
-    ✓ empty sentence (1500 ms)
-    ✓ perfect lower case (16 ms)
-    ✓ only lower case (13 ms)
-    ✓ missing the letter 'x' (8 ms)
-    ✓ missing the letter 'h' (55 ms)
-    ✓ with underscores (24 ms)
-    ✓ with numbers (12 ms)
-    ✓ missing letters replaced by numbers (1 ms)
-    ✓ mixed case and punctuation (14 ms)
-    ✓ case insensitive (224 ms)
+    ✓ empty sentence (1 ms)
+    ✓ perfect lower case
+    ✓ only lower case
+    ✓ missing the letter 'x'
+    ✓ missing the letter 'h' (1 ms)
+    ✓ with underscores
+    ✓ with numbers (4 ms)
+    ✓ missing letters replaced by numbers
+    ✓ mixed case and punctuation
+    ✓ case insensitive
 
 Test Suites: 1 passed, 1 total
 Tests:       10 passed, 10 total
 Snapshots:   0 total
-Time:        33.536 s
+Time:        0.59 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 2.51
-	System time (seconds): 2.98
-	Percent of CPU this job got: 8%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:01.35
+	User time (seconds): 0.28
+	System time (seconds): 0.08
+	Percent of CPU this job got: 30%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.21
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 73372
+	Maximum resident set size (kbytes): 80384
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 15095
-	Voluntary context switches: 6754
-	Involuntary context switches: 4568
+	Minor (reclaiming a frame) page faults: 13986
+	Voluntary context switches: 7548
+	Involuntary context switches: 2770
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

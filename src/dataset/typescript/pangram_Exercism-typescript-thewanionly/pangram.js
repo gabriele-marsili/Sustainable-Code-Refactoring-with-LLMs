@@ -1,17 +1,23 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isPangram = isPangram;
-const MIN_CHAR_CODE = 97; //char code of 'a'
-const MAX_CHAR_CODE = 122; //char code of 'z'
+const MIN_CHAR_CODE = 97; // char code of 'a'
+const MAX_CHAR_CODE = 122; // char code of 'z'
 const TOTAL_ALPHABET_LETTERS = 26;
 function isPangram(sentence) {
-    // Change all characters to lowercase. Remove characters that are not a letter
-    let sentenceArray = sentence
-        .toLowerCase()
-        .split('')
-        .filter((character) => character.charCodeAt(0) >= MIN_CHAR_CODE && character.charCodeAt(0) <= MAX_CHAR_CODE);
-    // Remove duplicates
-    sentenceArray = [...new Set(sentenceArray)];
-    // Check length. If it is 26, then all alphabet letters are in the array hence it is a pangram
-    return sentenceArray.length === TOTAL_ALPHABET_LETTERS;
+    const uniqueLetters = new Set();
+    for (let i = 0; i < sentence.length; i++) {
+        const char = sentence[i].toLowerCase();
+        const charCode = char.charCodeAt(0);
+        // Check if the character is a lowercase alphabet letter
+        if (charCode >= MIN_CHAR_CODE && charCode <= MAX_CHAR_CODE) {
+            uniqueLetters.add(char);
+            // Early exit: If all 26 unique letters have been found, it's a pangram
+            if (uniqueLetters.size === TOTAL_ALPHABET_LETTERS) {
+                return true;
+            }
+        }
+    }
+    // After iterating through the entire sentence, check if all 26 unique letters were found
+    return uniqueLetters.size === TOTAL_ALPHABET_LETTERS;
 }

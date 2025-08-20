@@ -1,38 +1,38 @@
-(node:22) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-PASS ./pangram_testSuite.js (12.328 s)
+PASS ./pangram_testSuite.js
   Pangram()
-    ✓ empty sentence (86 ms)
-    ✓ recognizes a perfect lower case pangram (7 ms)
-    ✓ pangram with only lower case (4 ms)
-    ✓ missing character 'x' (7 ms)
-    ✓ another missing character, e.g. 'h' (6 ms)
-    ✓ pangram with underscores (18 ms)
-    ✓ pangram with numbers (5 ms)
-    ✓ missing letters replaced by numbers (6 ms)
-    ✓ pangram with mixed case and punctuation (5 ms)
-    ✓ upper and lower case versions of the same character should not be counted separately (4 ms)
+    ✓ empty sentence (2 ms)
+    ✓ recognizes a perfect lower case pangram
+    ✓ pangram with only lower case
+    ✓ missing character 'x'
+    ✓ another missing character, e.g. 'h'
+    ✓ pangram with underscores
+    ✓ pangram with numbers
+    ✓ missing letters replaced by numbers
+    ✓ pangram with mixed case and punctuation
+    ✓ upper and lower case versions of the same character should not be counted separately (1 ms)
 
 Test Suites: 1 passed, 1 total
 Tests:       10 passed, 10 total
 Snapshots:   0 total
-Time:        14.264 s
+Time:        0.315 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 2.61
-	System time (seconds): 3.19
-	Percent of CPU this job got: 15%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:37.94
+	User time (seconds): 0.34
+	System time (seconds): 0.10
+	Percent of CPU this job got: 36%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.24
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 78720
+	Maximum resident set size (kbytes): 81764
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 13941
-	Voluntary context switches: 6659
-	Involuntary context switches: 5209
+	Minor (reclaiming a frame) page faults: 13852
+	Voluntary context switches: 7553
+	Involuntary context switches: 2196
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

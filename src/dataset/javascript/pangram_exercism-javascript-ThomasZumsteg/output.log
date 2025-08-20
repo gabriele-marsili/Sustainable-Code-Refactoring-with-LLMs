@@ -2,32 +2,32 @@
 (Use `node --trace-warnings ...` to show where the warning was created)
 PASS ./pangram_testSuite.js
   Pangram()
-    ✓ empty sentence (1 ms)
-    ✓ pangram with only lower case (2 ms)
-    ✓ missing character 'x'
+    ✓ empty sentence (6 ms)
+    ✓ pangram with only lower case
+    ✓ missing character 'x' (2 ms)
     ✓ pangram with mixed case and punctuation
     ✓ pangram with non-ascii characters
 
 Test Suites: 1 passed, 1 total
 Tests:       5 passed, 5 total
 Snapshots:   0 total
-Time:        0.306 s
+Time:        0.545 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 0.23
+	User time (seconds): 0.28
 	System time (seconds): 0.08
-	Percent of CPU this job got: 36%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.88
+	Percent of CPU this job got: 35%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.03
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 82700
+	Maximum resident set size (kbytes): 81060
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 14063
-	Voluntary context switches: 7504
-	Involuntary context switches: 3090
+	Minor (reclaiming a frame) page faults: 13961
+	Voluntary context switches: 7557
+	Involuntary context switches: 5003
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

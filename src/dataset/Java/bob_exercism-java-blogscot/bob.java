@@ -1,16 +1,36 @@
 public class Bob {
 
   private boolean isShouting(String text) {
-    return text.toUpperCase().equals(text) &&
-        text.codePoints().mapToObj(i -> (char) i).anyMatch(Character::isLetter);
+    boolean hasLetter = false;
+    for (int i = 0; i < text.length(); i++) {
+      char c = text.charAt(i);
+      if (Character.isLetter(c)) {
+        hasLetter = true;
+        if (Character.isLowerCase(c)) {
+          return false;
+        }
+      }
+    }
+    return hasLetter;
   }
 
   String hey(String text) {
-    var letters = text.replaceAll("([^\\w?])", "");
-    if (isShouting(letters) && letters.endsWith("?")) return "Calm down, I know what I'm doing!";
-    if (isShouting(letters)) return "Whoa, chill out!";
-    if (letters.endsWith("?")) return "Sure.";
-    if (letters.isBlank()) return "Fine. Be that way!";
+    StringBuilder letters = new StringBuilder(text.length());
+    for (int i = 0; i < text.length(); i++) {
+      char c = text.charAt(i);
+      if (Character.isLetterOrDigit(c) || c == '?') {
+        letters.append(c);
+      }
+    }
+    
+    String cleanText = letters.toString();
+    boolean endsWithQuestion = cleanText.endsWith("?");
+    boolean shouting = isShouting(cleanText);
+    
+    if (shouting && endsWithQuestion) return "Calm down, I know what I'm doing!";
+    if (shouting) return "Whoa, chill out!";
+    if (endsWithQuestion) return "Sure.";
+    if (cleanText.isEmpty()) return "Fine. Be that way!";
     return "Whatever.";
   }
 

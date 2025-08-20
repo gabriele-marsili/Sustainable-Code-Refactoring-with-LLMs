@@ -1,35 +1,33 @@
-(node:22) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
-(Use `node --trace-warnings ...` to show where the warning was created)
-PASS ./leap_testSuite.js (12.107 s)
-  Leap year
-    ✓ is not very common (145 ms)
-    ✓ is introduced every 4 years to adjust about a day (10 ms)
-    ✓ is skipped every 100 years to remove an extra day (1 ms)     ✓ is reintroduced every 400 years to adjust another day (6 ms)
-    Additional example of a leap year that
-      ✓ is not a leap year (11 ms)      ✓ is a common leap year (5 ms)
-      ✓ is skipped every 100 years (1 ms)
-      ✓ is reintroduced every 400 years (5 ms)
+FAIL ./leap_testSuite.js
+  ● Test suite failed to run
 
-TeTest Suites: 1 passed, 1 total
-Tests:       8 passed, 8 total
+    SyntaxError: The requested module './leap' does not provide an export named 'default'
+
+      at Runtime.linkAndEvaluateModule (node_modules/jest-runtime/build/index.js:708:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
 Snapshots:   0 total
-Time:        14.729 s
+Time:        0.33 s
 Ran all test suites.
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Command exited with non-zero status 1
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 2.67
-	System time (seconds): 2.92
-	Percent of CPU this job got: 13%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:40.14
+	User time (seconds): 0.26
+	System time (seconds): 0.06
+	Percent of CPU this job got: 38%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.87
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 77496
+	Maximum resident set size (kbytes): 81756
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 16473
-	Voluntary context switches: 6712
-	Involuntary context switches: 5221
+	Minor (reclaiming a frame) page faults: 14167
+	Voluntary context switches: 7596
+	Involuntary context switches: 2494
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16
@@ -37,4 +35,4 @@ Ran all test suites.
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 0
+	Exit status: 1

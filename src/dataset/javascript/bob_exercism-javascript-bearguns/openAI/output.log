@@ -1,44 +1,45 @@
-(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(node:22) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-PASS ./bob_testSuite.js (20.949 s)
+PASS ./bob_testSuite.js
   Bob
-    ✓ stating something (113 ms)
-    ✓ shouting (30 ms)
-    ✓ asking a question (72 ms)
-    ✓ talking forcefully (96 ms)
-    ✓ using acronyms in regular speech (171 ms)
-    ✓ forceful questions (68 ms)
-    ✓ shouting numbers (30 ms)
-    ✓ only numbers (13 ms)
-    ✓ question with only numbers (46 ms)
-    ✓ shouting with special characters (81 ms)
-    ✓ shouting with umlauts (253 ms)
-    ✓ calmly speaking about umlauts (62 ms)
-    ✓ shouting with no exclamation mark (5 ms)
-    ✓ statement containing question mark (58 ms)
-    ✓ prattling on (90 ms)
-    ✓ silence (39 ms)
-    ✓ prolonged silence (16 ms)
-TTest Suites: 1 passed, 1 total
+    ✓ stating something (3 ms)
+    ✓ shouting (1 ms)
+    ✓ asking a question
+    ✓ talking forcefully (1 ms)
+    ✓ using acronyms in regular speech
+    ✓ forceful questions
+    ✓ shouting numbers
+    ✓ only numbers
+    ✓ question with only numbers (1 ms)
+    ✓ shouting with special characters
+    ✓ shouting with umlauts (1 ms)
+    ✓ calmly speaking about umlauts
+    ✓ shouting with no exclamation mark
+    ✓ statement containing question mark (1 ms)
+    ✓ prattling on
+    ✓ silence
+    ✓ prolonged silence
+
+Test Suites: 1 passed, 1 total
 Tests:       17 passed, 17 total
 Snapshots:   0 total
-Time:        25.507 s
+Time:        0.432 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 3.41
-	System time (seconds): 3.61
-	Percent of CPU this job got: 13%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:50.58
+	User time (seconds): 0.40
+	System time (seconds): 0.09
+	Percent of CPU this job got: 38%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.28
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 76248
+	Maximum resident set size (kbytes): 82308
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 16069
-	Voluntary context switches: 7547
-	Involuntary context switches: 4934
+	Minor (reclaiming a frame) page faults: 13792
+	Voluntary context switches: 7413
+	Involuntary context switches: 3643
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

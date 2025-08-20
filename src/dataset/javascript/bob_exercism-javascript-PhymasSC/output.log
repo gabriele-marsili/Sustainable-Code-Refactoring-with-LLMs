@@ -1,53 +1,53 @@
-(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(node:22) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
 PASS ./bob_testSuite.js
   Bob
-    ✓ stating something (2 ms)
-    ✓ shouting
-    ✓ shouting gibberish (1 ms)
+    ✓ stating something (4 ms)
+    ✓ shouting (1 ms)
+    ✓ shouting gibberish
     ✓ asking a question
-    ✓ asking a numeric question (2 ms)
+    ✓ asking a numeric question (1 ms)
     ✓ asking gibberish
     ✓ talking forcefully
     ✓ using acronyms in regular speech
     ✓ forceful question
-    ✓ shouting numbers
+    ✓ shouting numbers (1 ms)
     ✓ no letters
-    ✓ question with no letters
+    ✓ question with no letters (1 ms)
     ✓ shouting with special characters
-    ✓ shouting with no exclamation mark (1 ms)
+    ✓ shouting with no exclamation mark
     ✓ statement containing question mark (1 ms)
     ✓ non-letters with question
     ✓ prattling on
     ✓ silence
     ✓ prolonged silence
-    ✓ alternate silence
-    ✓ multiple line question (1 ms)
+    ✓ alternate silence (1 ms)
+    ✓ multiple line question
     ✓ starting with whitespace
     ✓ ending with whitespace
     ✓ other whitespace
-    ✓ non-question ending with whitespace (1 ms)
+    ✓ non-question ending with whitespace (2 ms)
 
 Test Suites: 1 passed, 1 total
 Tests:       25 passed, 25 total
 Snapshots:   0 total
-Time:        0.296 s
+Time:        0.301 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 0.27
-	System time (seconds): 0.07
-	Percent of CPU this job got: 43%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.79
+	User time (seconds): 0.31
+	System time (seconds): 0.09
+	Percent of CPU this job got: 39%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.04
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 82724
+	Maximum resident set size (kbytes): 82548
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 14429
-	Voluntary context switches: 7584
-	Involuntary context switches: 3115
+	Minor (reclaiming a frame) page faults: 14403
+	Voluntary context switches: 7671
+	Involuntary context switches: 2205
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

@@ -1,39 +1,31 @@
+import java.util.BitSet;
+
 class PangramChecker {
 
   boolean isPangram(String input) {
-    if (input == null || input.length() < 26) {
-      return false; // A pangram must contain at least 26 letters. This is a quick exit.
-    }
-
-    boolean[] foundLetters = new boolean[26]; // Represents 'a' through 'z'
-    int uniqueLetterCount = 0; // Count of unique lowercase English letters found
-
-    for (int i = 0; i < input.length(); i++) {
+    if (input.length() < 26) return false;
+    
+    BitSet letters = new BitSet(26);
+    int count = 0;
+    
+    for (int i = 0; i < input.length() && count < 26; i++) {
       char c = input.charAt(i);
-
-      if (c >= 'a' && c <= 'z') {
-        int index = c - 'a';
-        if (!foundLetters[index]) {
-          foundLetters[index] = true;
-          uniqueLetterCount++;
-        }
-      } else if (c >= 'A' && c <= 'Z') {
-        // Convert uppercase to lowercase index
+      if (c >= 'A' && c <= 'Z') {
         int index = c - 'A';
-        if (!foundLetters[index]) {
-          foundLetters[index] = true;
-          uniqueLetterCount++;
+        if (!letters.get(index)) {
+          letters.set(index);
+          count++;
         }
-      }
-
-      // Early exit: if we've found all 26 letters, no need to continue scanning
-      if (uniqueLetterCount == 26) {
-        return true;
+      } else if (c >= 'a' && c <= 'z') {
+        int index = c - 'a';
+        if (!letters.get(index)) {
+          letters.set(index);
+          count++;
+        }
       }
     }
-
-    // After iterating through the entire string, check if all 26 letters were found
-    return uniqueLetterCount == 26;
+    
+    return count == 26;
   }
 
 }

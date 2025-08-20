@@ -1,37 +1,37 @@
 (node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-PASS ./leap_testSuite.js (21.939 s)
+PASS ./leap_testSuite.js
   A leap year
-    ✓ year not divisible by 4 in common year (135 ms)
-    ✓ year divisible by 2, not divisible by 4 in common year (1 ms)
-    ✓ year divisible by 4, not divisible by 100 in leap year (1 ms)
-    ✓ year divisible by 4 and 5 is still a leap year (15 ms)
-    ✓ year divisible by 100, not divisible by 400 in common year (10 ms)
-    ✓ year divisible by 100 but not by 3 is still not a leap year (1 ms)
-    ✓ year divisible by 400 in leap year
+    ✓ year not divisible by 4 in common year
+    ✓ year divisible by 2, not divisible by 4 in common year
+    ✓ year divisible by 4, not divisible by 100 in leap year
+    ✓ year divisible by 4 and 5 is still a leap year
+    ✓ year divisible by 100, not divisible by 400 in common year (1 ms)
+    ✓ year divisible by 100 but not by 3 is still not a leap year
+    ✓ year divisible by 400 in leap year (2 ms)
     ✓ year divisible by 400 but not by 125 is still a leap year
-    ✓ year divisible by 200, not divisible by 400 in common year (1 ms)
+    ✓ year divisible by 200, not divisible by 400 in common year
 
 Test Suites: 1 passed, 1 total
 Tests:       9 passed, 9 total
 Snapshots:   0 total
-Time:        25.074 s
+Time:        0.447 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 2.57
-	System time (seconds): 2.94
-	Percent of CPU this job got: 8%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:05.45
+	User time (seconds): 0.28
+	System time (seconds): 0.10
+	Percent of CPU this job got: 31%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.22
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 72856
+	Maximum resident set size (kbytes): 80136
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 15500
-	Voluntary context switches: 6494
-	Involuntary context switches: 6021
+	Minor (reclaiming a frame) page faults: 14018
+	Voluntary context switches: 7537
+	Involuntary context switches: 1999
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

@@ -1,33 +1,33 @@
 (node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-PASS ./leap_testSuite.js (9.104 s)
+PASS ./leap_testSuite.js
   A leap year
-    ✓ year not divisible by 4: common year (100 ms)
-    ✓ year divisible by 4, not divisible by 100: leap year (1 ms)
-    ✓ year divisible by 100, not divisible by 400: common year (24 ms)
-    ✓ year divisible by 400: leap year (1 ms)
-    ✓ year divisible by 200, not divisible by 400: common year (6 ms)
+    ✓ year not divisible by 4: common year (3 ms)
+    ✓ year divisible by 4, not divisible by 100: leap year
+    ✓ year divisible by 100, not divisible by 400: common year
+    ✓ year divisible by 400: leap year
+    ✓ year divisible by 200, not divisible by 400: common year
 
 Test Suites: 1 passed, 1 total
 Tests:       5 passed, 5 total
 Snapshots:   0 total
-Time:        11.508 s
+Time:        0.287 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 2.55
-	System time (seconds): 2.77
-	Percent of CPU this job got: 13%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:38.13
+	User time (seconds): 0.25
+	System time (seconds): 0.07
+	Percent of CPU this job got: 39%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.84
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 78096
+	Maximum resident set size (kbytes): 80980
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 15345
-	Voluntary context switches: 6593
-	Involuntary context switches: 5271
+	Minor (reclaiming a frame) page faults: 13969
+	Voluntary context switches: 7513
+	Involuntary context switches: 2563
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16
