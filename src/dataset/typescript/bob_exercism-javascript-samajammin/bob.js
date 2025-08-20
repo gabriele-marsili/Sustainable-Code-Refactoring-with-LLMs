@@ -7,7 +7,7 @@ class Bob {
                 return 'Fine. Be that way!';
             case /[A-Z]/.test(message) && message === message.toUpperCase():
                 return 'Whoa, chill out!';
-            case message.endsWith('?'):
+            case /\?$/.test(message):
                 return 'Sure.';
             default:
                 return 'Whatever.';

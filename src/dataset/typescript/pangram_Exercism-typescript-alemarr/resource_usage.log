@@ -1,40 +1,40 @@
-PASS ./pangram.test.ts (18.207 s)
+PASS ./pangram.test.ts
   Pangram()
-    ✓ empty sentence (25 ms)
-    ✓ perfect lower case (6 ms)
-    ✓ only lower case (4 ms)
-    ✓ missing the letter 'x' (5 ms)
-    ✓ missing the letter 'h' (5 ms)
-    ✓ with underscores (7 ms)
-    ✓ with numbers (3 ms)
-    ✓ missing letters replaced by numbers (1 ms)
-    ✓ mixed case and punctuation (4 ms)
-    ✓ a-m and A-M are 26 different characters but not a pangram (47 ms)
+    ✓ empty sentence (1 ms)
+    ✓ perfect lower case (1 ms)
+    ✓ only lower case
+    ✓ missing the letter 'x'
+    ✓ missing the letter 'h' (1 ms)
+    ✓ with underscores
+    ✓ with numbers
+    ✓ missing letters replaced by numbers
+    ✓ mixed case and punctuation
+    ✓ a-m and A-M are 26 different characters but not a pangram
 
 Test Suites: 1 passed, 1 total
 Tests:       10 passed, 10 total
 Snapshots:   0 total
-Time:        19.75 s
+Time:        2.229 s
 Ran all test suites.
 Test results written to: output.log
 	Command being timed: "npx jest --json --outputFile=output.log"
-	User time (seconds): 9.08
-	System time (seconds): 3.92
-	Percent of CPU this job got: 43%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:30.09
+	User time (seconds): 1.35
+	System time (seconds): 0.08
+	Percent of CPU this job got: 54%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:02.64
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 217504
+	Maximum resident set size (kbytes): 224956
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 63643
-	Voluntary context switches: 2057
-	Involuntary context switches: 7995
+	Minor (reclaiming a frame) page faults: 65898
+	Voluntary context switches: 1956
+	Involuntary context switches: 3370
 	Swaps: 0
 	File system inputs: 0
-	File system outputs: 88
+	File system outputs: 72
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0

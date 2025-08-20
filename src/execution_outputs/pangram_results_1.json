@@ -1,1129 +1,309 @@
 {
-  "execution_date": "2025-07-20 19:56:26",
-  "results": {
-    "python": [
-      {
-        "id": "pangram_26",
-        "filename": "pangram.py",
-        "language": "python",
-        "CPU_usage": 13.0,
-        "RAM_usage": 14592,
-        "execution_time_ms": 909,
-        "LLM_results": [
-          {
-            "execution_time_ms": 5760,
-            "CPU_usage": 14.0,
-            "RAM_usage": 76096,
-            "regrationTestPassed": false,
-            "LLM_type": "openAI",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/python/26/openAI/ChatGPT4_pangram_v4.py",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/python/26/openAI/output.log"
-          },
-          {
-            "execution_time_ms": 5350,
-            "CPU_usage": 15.0,
-            "RAM_usage": 80484,
-            "regrationTestPassed": false,
-            "LLM_type": "claude",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/ClaudeSonnet4_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/output.log"
-          },
-          {
-            "execution_time_ms": 5310,
-            "CPU_usage": 14.0,
-            "RAM_usage": 82736,
-            "regrationTestPassed": false,
-            "LLM_type": "gemini",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/GeminiFlash_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/output.log"
-          }
+    "execution_date": "2025-08-20 16:17:21",
+    "results": {
+        "python": [
+            {
+                "id": "pangram_26",
+                "filename": "pangram.py",
+                "language": "python",
+                "CPU_usage": 44.0,
+                "RAM_usage": 13824,
+                "execution_time_ms": 30,
+                "regrationTestPassed": true,
+                "base_log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/pangram/output.log"
+            }
+        ],
+        "javascript": [
+            {
+                "id": "javascript_pangram_exercism-javascript-bearguns_bearguns",
+                "filename": "pangram.js",
+                "language": "javascript",
+                "CPU_usage": 28.0,
+                "RAM_usage": 82660,
+                "execution_time_ms": 370,
+                "regrationTestPassed": true,
+                "base_log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/pangram_exercism-javascript-bearguns/output.log"
+            },
+            {
+                "id": "javascript_pangram_exercism-javascript-PhymasSC_PhymasSC",
+                "filename": "pangram.js",
+                "language": "javascript",
+                "CPU_usage": 32.0,
+                "RAM_usage": 81212,
+                "execution_time_ms": 360,
+                "regrationTestPassed": true,
+                "base_log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/pangram_exercism-javascript-PhymasSC/output.log"
+            },
+            {
+                "id": "javascript_pangram_exercism-javascript-irvingbennett_irvingbennett",
+                "filename": "pangram.js",
+                "language": "javascript",
+                "CPU_usage": 37.0,
+                "RAM_usage": 81036,
+                "execution_time_ms": 380,
+                "regrationTestPassed": true,
+                "base_log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/pangram_exercism-javascript-irvingbennett/output.log"
+            },
+            {
+                "id": "javascript_pangram_exercism-javascript-programmiri_programmiri",
+                "filename": "pangram.js",
+                "language": "javascript",
+                "CPU_usage": 30.0,
+                "RAM_usage": 81316,
+                "execution_time_ms": 380,
+                "regrationTestPassed": true,
+                "base_log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/pangram_exercism-javascript-programmiri/output.log"
+            },
+            {
+                "id": "javascript_pangram_exercism-javascript-ffflorian_ffflorian",
+                "filename": "pangram.js",
+                "language": "javascript",
+                "CPU_usage": 29.0,
+                "RAM_usage": 83204,
+                "execution_time_ms": 390,
+                "regrationTestPassed": true,
+                "base_log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/pangram_exercism-javascript-ffflorian/output.log"
+            },
+            {
+                "id": "javascript_pangram_exercism-javascript-oguzsh_oguzsh",
+                "filename": "pangram.js",
+                "language": "javascript",
+                "CPU_usage": 30.0,
+                "RAM_usage": 81240,
+                "execution_time_ms": 430,
+                "regrationTestPassed": true,
+                "base_log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/pangram_exercism-javascript-oguzsh/output.log"
+            },
+            {
+                "id": "javascript_pangram_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
+                "filename": "pangram.js",
+                "language": "javascript",
+                "CPU_usage": 32.0,
+                "RAM_usage": 82592,
+                "execution_time_ms": 500,
+                "regrationTestPassed": true,
+                "base_log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/pangram_exercism-javascript-ThomasZumsteg/output.log"
+            }
+        ],
+        "typescript": [
+            {
+                "id": "typescript_pangram_Exercism-typescript-chriswilding",
+                "filename": "pangram.ts",
+                "language": "typescript",
+                "CPU_usage": 66.0,
+                "RAM_usage": 224752,
+                "execution_time_ms": 2169,
+                "regrationTestPassed": true,
+                "base_log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/pangram_Exercism-typescript-chriswilding/output.log"
+            },
+            {
+                "id": "typescript_pangram_Exercism-typescript-uzilan_uzilan",
+                "filename": "pangram.ts",
+                "language": "typescript",
+                "CPU_usage": 50.0,
+                "RAM_usage": 220156,
+                "execution_time_ms": 2898,
+                "regrationTestPassed": true,
+                "base_log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/pangram_Exercism-typescript-uzilan/output.log"
+            },
+            {
+                "id": "typescript_pangram_Exercism-typescript-thewanionly_thewanionly",
+                "filename": "pangram.ts",
+                "language": "typescript",
+                "CPU_usage": 47.0,
+                "RAM_usage": 223904,
+                "execution_time_ms": 2988,
+                "regrationTestPassed": true,
+                "base_log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/pangram_Exercism-typescript-thewanionly/output.log"
+            },
+            {
+                "id": "typescript_pangram_Exercism-typescript-shybyte_shybyte",
+                "filename": "pangram.ts",
+                "language": "typescript",
+                "CPU_usage": 47.0,
+                "RAM_usage": 223320,
+                "execution_time_ms": 2895,
+                "regrationTestPassed": true,
+                "base_log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/pangram_Exercism-typescript-shybyte/output.log"
+            },
+            {
+                "id": "typescript_pangram_Exercism-typescript-chriswilding_chriswilding",
+                "filename": "pangram.ts",
+                "language": "typescript",
+                "CPU_usage": 48.0,
+                "RAM_usage": 220260,
+                "execution_time_ms": 3041,
+                "regrationTestPassed": true,
+                "base_log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/pangram_Exercism-typescript-chriswilding/output.log"
+            },
+            {
+                "id": "typescript_pangram_Exercism-typescript-FilipeCerejo_FilipeCerejo",
+                "filename": "pangram.ts",
+                "language": "typescript",
+                "CPU_usage": 69.0,
+                "RAM_usage": 218928,
+                "execution_time_ms": 1885,
+                "regrationTestPassed": true,
+                "base_log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/pangram_Exercism-typescript-FilipeCerejo/output.log"
+            },
+            {
+                "id": "typescript_pangram_Exercism-typescript-alemarr_alemarr",
+                "filename": "pangram.ts",
+                "language": "typescript",
+                "CPU_usage": 63.0,
+                "RAM_usage": 220604,
+                "execution_time_ms": 2257,
+                "regrationTestPassed": true,
+                "base_log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/pangram_Exercism-typescript-alemarr/output.log"
+            },
+            {
+                "id": "typescript_pangram_exercism-javascript-samajammin_samajammin",
+                "filename": "pangram.ts",
+                "language": "typescript",
+                "CPU_usage": 71.0,
+                "RAM_usage": 224356,
+                "execution_time_ms": 1998,
+                "regrationTestPassed": true,
+                "base_log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/pangram_exercism-javascript-samajammin/output.log"
+            }
+        ],
+        "java": [
+            {
+                "id": "Java_pangram_exercism-java-blogscot",
+                "filename": "pangram.java",
+                "language": "Java",
+                "CPU_usage": 22.0,
+                "RAM_usage": 48232,
+                "execution_time_ms": 1770,
+                "regrationTestPassed": false,
+                "base_log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/pangram_exercism-java-blogscot/output.log"
+            },
+            {
+                "id": "Java_pangram_exercism-java-blogscot_blogscot",
+                "filename": "pangram.java",
+                "language": "Java",
+                "CPU_usage": 34.0,
+                "RAM_usage": 46028,
+                "execution_time_ms": 120,
+                "regrationTestPassed": true,
+                "base_log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/pangram_exercism-java-blogscot/output.log"
+            }
+        ],
+        "c": [
+            {
+                "id": "c_pangram_Exercism (HeitorMP)",
+                "filename": "pangram.c",
+                "language": "c",
+                "CPU_usage": 40.0,
+                "RAM_usage": 3456,
+                "execution_time_ms": 0,
+                "regrationTestPassed": false,
+                "base_log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/pangram_Exercism_HeitorMP/output.log"
+            },
+            {
+                "id": "c_pangram_Exercism (ThomasZumsteg)",
+                "filename": "pangram.c",
+                "language": "c",
+                "CPU_usage": 25.0,
+                "RAM_usage": 3456,
+                "execution_time_ms": 0,
+                "regrationTestPassed": false,
+                "base_log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/pangram_Exercism_ThomasZumsteg/output.log"
+            },
+            {
+                "id": "c_pangram_Exercism (paddydoyle)",
+                "filename": "pangram.c",
+                "language": "c",
+                "CPU_usage": 0.0,
+                "RAM_usage": 3456,
+                "execution_time_ms": 0,
+                "regrationTestPassed": false,
+                "base_log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/pangram_Exercism_paddydoyle/output.log"
+            },
+            {
+                "id": "c_pangram_Exercism (m3g4d1v3r)",
+                "filename": "pangram.c",
+                "language": "c",
+                "CPU_usage": 0.0,
+                "RAM_usage": 3456,
+                "execution_time_ms": 0,
+                "regrationTestPassed": false,
+                "base_log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/pangram_Exercism_m3g4d1v3r/output.log"
+            },
+            {
+                "id": "c_pangram_Exercism (vlzware)",
+                "filename": "pangram.c",
+                "language": "c",
+                "CPU_usage": 25.0,
+                "RAM_usage": 3456,
+                "execution_time_ms": 0,
+                "regrationTestPassed": false,
+                "base_log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/pangram_Exercism_vlzware/output.log"
+            }
+        ],
+        "cpp": [
+            {
+                "id": "cpp_pangram_Exercism (johnngugi)",
+                "filename": "pangram.cpp",
+                "language": "cpp",
+                "CPU_usage": 7.0,
+                "RAM_usage": 4096,
+                "execution_time_ms": 0,
+                "regrationTestPassed": true,
+                "base_log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/pangram_Exercism_johnngugi/output.log"
+            },
+            {
+                "id": "cpp_pangram_Exercism (thefullarcticfox)",
+                "filename": "pangram.cpp",
+                "language": "cpp",
+                "CPU_usage": 16.0,
+                "RAM_usage": 3968,
+                "execution_time_ms": 0,
+                "regrationTestPassed": true,
+                "base_log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/pangram_Exercism_thefullarcticfox/output.log"
+            }
+        ],
+        "go": [
+            {
+                "id": "go_pangram_Exercism (go_rootulp)",
+                "filename": "pangram.go",
+                "language": "go",
+                "CPU_usage": 52.0,
+                "RAM_usage": 226840,
+                "execution_time_ms": 7010,
+                "regrationTestPassed": true,
+                "base_log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/pangram_Exercism_go_rootulp/output.log"
+            },
+            {
+                "id": "go_pangram_Exercism (go_ThomasZumsteg)",
+                "filename": "pangram.go",
+                "language": "go",
+                "CPU_usage": 52.0,
+                "RAM_usage": 226816,
+                "execution_time_ms": 6820,
+                "regrationTestPassed": true,
+                "base_log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/pangram_Exercism_go_ThomasZumsteg/output.log"
+            },
+            {
+                "id": "go_pangram_Exercism (go_thinkverse)",
+                "filename": "pangram.go",
+                "language": "go",
+                "CPU_usage": 51.0,
+                "RAM_usage": 220500,
+                "execution_time_ms": 6789,
+                "regrationTestPassed": true,
+                "base_log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/pangram_Exercism_go_thinkverse/output.log"
+            },
+            {
+                "id": "go_pangram_Exercism (go_drapala)",
+                "filename": "pangram.go",
+                "language": "go",
+                "CPU_usage": 104.0,
+                "RAM_usage": 234336,
+                "execution_time_ms": 6380,
+                "regrationTestPassed": true,
+                "base_log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/pangram_Exercism_go_drapala/output.log"
+            }
         ]
-      }
-    ],
-    "javascript": [
-      {
-        "id": "javascript_pangram_exercism-javascript-bearguns_bearguns",
-        "filename": "pangram.js",
-        "language": "javascript",
-        "CPU_usage": 12.0,
-        "RAM_usage": 80072,
-        "execution_time_ms": 7160,
-        "LLM_results": [
-          {
-            "execution_time_ms": 5760,
-            "CPU_usage": 14.0,
-            "RAM_usage": 76096,
-            "regrationTestPassed": false,
-            "LLM_type": "openAI",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/javascript/pangram_exercism-javascript-bearguns_bearguns/openAI/ChatGPT4_pangram_v4.js",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/javascript/pangram_exercism-javascript-bearguns_bearguns/openAI/output.log"
-          },
-          {
-            "execution_time_ms": 5350,
-            "CPU_usage": 15.0,
-            "RAM_usage": 80484,
-            "regrationTestPassed": false,
-            "LLM_type": "claude",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/ClaudeSonnet4_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/output.log"
-          },
-          {
-            "execution_time_ms": 5310,
-            "CPU_usage": 14.0,
-            "RAM_usage": 82736,
-            "regrationTestPassed": false,
-            "LLM_type": "gemini",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/GeminiFlash_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/output.log"
-          }
-        ]
-      },
-      {
-        "id": "javascript_pangram_exercism-javascript-PhymasSC_PhymasSC",
-        "filename": "pangram.js",
-        "language": "javascript",
-        "CPU_usage": 12.0,
-        "RAM_usage": 75704,
-        "execution_time_ms": 7100,
-        "LLM_results": [
-          {
-            "execution_time_ms": 5760,
-            "CPU_usage": 14.0,
-            "RAM_usage": 76096,
-            "regrationTestPassed": false,
-            "LLM_type": "openAI",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/javascript/pangram_exercism-javascript-PhymasSC_PhymasSC/openAI/ChatGPT4_pangram_v4.js",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/javascript/pangram_exercism-javascript-PhymasSC_PhymasSC/openAI/output.log"
-          },
-          {
-            "execution_time_ms": 5350,
-            "CPU_usage": 15.0,
-            "RAM_usage": 80484,
-            "regrationTestPassed": false,
-            "LLM_type": "claude",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/ClaudeSonnet4_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/output.log"
-          },
-          {
-            "execution_time_ms": 5310,
-            "CPU_usage": 14.0,
-            "RAM_usage": 82736,
-            "regrationTestPassed": false,
-            "LLM_type": "gemini",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/GeminiFlash_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/output.log"
-          }
-        ]
-      },
-      {
-        "id": "javascript_pangram_exercism-javascript-irvingbennett_irvingbennett",
-        "filename": "pangram.js",
-        "language": "javascript",
-        "CPU_usage": 13.0,
-        "RAM_usage": 78060,
-        "execution_time_ms": 7420,
-        "LLM_results": [
-          {
-            "execution_time_ms": 5760,
-            "CPU_usage": 14.0,
-            "RAM_usage": 76096,
-            "regrationTestPassed": false,
-            "LLM_type": "openAI",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/javascript/pangram_exercism-javascript-irvingbennett_irvingbennett/openAI/ChatGPT4_pangram_v4.js",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/javascript/pangram_exercism-javascript-irvingbennett_irvingbennett/openAI/output.log"
-          },
-          {
-            "execution_time_ms": 5350,
-            "CPU_usage": 15.0,
-            "RAM_usage": 80484,
-            "regrationTestPassed": false,
-            "LLM_type": "claude",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/ClaudeSonnet4_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/output.log"
-          },
-          {
-            "execution_time_ms": 5310,
-            "CPU_usage": 14.0,
-            "RAM_usage": 82736,
-            "regrationTestPassed": false,
-            "LLM_type": "gemini",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/GeminiFlash_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/output.log"
-          }
-        ]
-      },
-      {
-        "id": "javascript_pangram_exercism-javascript-programmiri_programmiri",
-        "filename": "pangram.js",
-        "language": "javascript",
-        "CPU_usage": 12.0,
-        "RAM_usage": 79268,
-        "execution_time_ms": 7130,
-        "LLM_results": [
-          {
-            "execution_time_ms": 5760,
-            "CPU_usage": 14.0,
-            "RAM_usage": 76096,
-            "regrationTestPassed": false,
-            "LLM_type": "openAI",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/javascript/pangram_exercism-javascript-programmiri_programmiri/openAI/ChatGPT4_pangram_v4.js",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/javascript/pangram_exercism-javascript-programmiri_programmiri/openAI/output.log"
-          },
-          {
-            "execution_time_ms": 5350,
-            "CPU_usage": 15.0,
-            "RAM_usage": 80484,
-            "regrationTestPassed": false,
-            "LLM_type": "claude",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/ClaudeSonnet4_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/output.log"
-          },
-          {
-            "execution_time_ms": 5310,
-            "CPU_usage": 14.0,
-            "RAM_usage": 82736,
-            "regrationTestPassed": false,
-            "LLM_type": "gemini",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/GeminiFlash_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/output.log"
-          }
-        ]
-      },
-      {
-        "id": "javascript_pangram_exercism-javascript-ffflorian_ffflorian",
-        "filename": "pangram.js",
-        "language": "javascript",
-        "CPU_usage": 10.0,
-        "RAM_usage": 70552,
-        "execution_time_ms": 7290,
-        "LLM_results": [
-          {
-            "execution_time_ms": 5760,
-            "CPU_usage": 14.0,
-            "RAM_usage": 76096,
-            "regrationTestPassed": false,
-            "LLM_type": "openAI",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/javascript/pangram_exercism-javascript-ffflorian_ffflorian/openAI/ChatGPT4_pangram_v4.js",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/javascript/pangram_exercism-javascript-ffflorian_ffflorian/openAI/output.log"
-          },
-          {
-            "execution_time_ms": 5350,
-            "CPU_usage": 15.0,
-            "RAM_usage": 80484,
-            "regrationTestPassed": false,
-            "LLM_type": "claude",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/ClaudeSonnet4_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/output.log"
-          },
-          {
-            "execution_time_ms": 5310,
-            "CPU_usage": 14.0,
-            "RAM_usage": 82736,
-            "regrationTestPassed": false,
-            "LLM_type": "gemini",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/GeminiFlash_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/output.log"
-          }
-        ]
-      },
-      {
-        "id": "javascript_pangram_exercism-javascript-oguzsh_oguzsh",
-        "filename": "pangram.js",
-        "language": "javascript",
-        "CPU_usage": 10.0,
-        "RAM_usage": 70656,
-        "execution_time_ms": 7660,
-        "LLM_results": [
-          {
-            "execution_time_ms": 5760,
-            "CPU_usage": 14.0,
-            "RAM_usage": 76096,
-            "regrationTestPassed": false,
-            "LLM_type": "openAI",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/javascript/pangram_exercism-javascript-oguzsh_oguzsh/openAI/ChatGPT4_pangram_v4.js",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/javascript/pangram_exercism-javascript-oguzsh_oguzsh/openAI/output.log"
-          },
-          {
-            "execution_time_ms": 5350,
-            "CPU_usage": 15.0,
-            "RAM_usage": 80484,
-            "regrationTestPassed": false,
-            "LLM_type": "claude",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/ClaudeSonnet4_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/output.log"
-          },
-          {
-            "execution_time_ms": 5310,
-            "CPU_usage": 14.0,
-            "RAM_usage": 82736,
-            "regrationTestPassed": false,
-            "LLM_type": "gemini",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/GeminiFlash_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/output.log"
-          }
-        ]
-      },
-      {
-        "id": "javascript_pangram_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
-        "filename": "pangram.js",
-        "language": "javascript",
-        "CPU_usage": 8.0,
-        "RAM_usage": 69820,
-        "execution_time_ms": 7880,
-        "LLM_results": [
-          {
-            "execution_time_ms": 5760,
-            "CPU_usage": 14.0,
-            "RAM_usage": 76096,
-            "regrationTestPassed": false,
-            "LLM_type": "openAI",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/javascript/pangram_exercism-javascript-ThomasZumsteg_ThomasZumsteg/openAI/ChatGPT4_pangram_v4.js",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/javascript/pangram_exercism-javascript-ThomasZumsteg_ThomasZumsteg/openAI/output.log"
-          },
-          {
-            "execution_time_ms": 5350,
-            "CPU_usage": 15.0,
-            "RAM_usage": 80484,
-            "regrationTestPassed": false,
-            "LLM_type": "claude",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/ClaudeSonnet4_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/output.log"
-          },
-          {
-            "execution_time_ms": 5310,
-            "CPU_usage": 14.0,
-            "RAM_usage": 82736,
-            "regrationTestPassed": false,
-            "LLM_type": "gemini",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/GeminiFlash_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/output.log"
-          }
-        ]
-      }
-    ],
-    "typescript": [
-      {
-        "id": "typescript_pangram_Exercism-typescript-chriswilding",
-        "filename": "pangram.ts",
-        "language": "typescript",
-        "CPU_usage": 70.0,
-        "RAM_usage": 217600,
-        "execution_time_ms": 16302,
-        "LLM_results": [
-          {
-            "execution_time_ms": 5760,
-            "CPU_usage": 14.0,
-            "RAM_usage": 76096,
-            "regrationTestPassed": false,
-            "LLM_type": "openAI",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/typescript/pangram_Exercism-typescript-chriswilding/openAI/ChatGPT4_pangram_v4.ts",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/typescript/pangram_Exercism-typescript-chriswilding/openAI/output.log"
-          },
-          {
-            "execution_time_ms": 5350,
-            "CPU_usage": 15.0,
-            "RAM_usage": 80484,
-            "regrationTestPassed": false,
-            "LLM_type": "claude",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/ClaudeSonnet4_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/output.log"
-          },
-          {
-            "execution_time_ms": 5310,
-            "CPU_usage": 14.0,
-            "RAM_usage": 82736,
-            "regrationTestPassed": false,
-            "LLM_type": "gemini",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/GeminiFlash_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/output.log"
-          }
-        ]
-      },
-      {
-        "id": "typescript_pangram_Exercism-typescript-uzilan_uzilan",
-        "filename": "pangram.ts",
-        "language": "typescript",
-        "CPU_usage": 92.0,
-        "RAM_usage": 217424,
-        "execution_time_ms": 10025,
-        "LLM_results": [
-          {
-            "execution_time_ms": 5760,
-            "CPU_usage": 14.0,
-            "RAM_usage": 76096,
-            "regrationTestPassed": false,
-            "LLM_type": "openAI",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/typescript/pangram_Exercism-typescript-uzilan_uzilan/openAI/ChatGPT4_pangram_v4.ts",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/typescript/pangram_Exercism-typescript-uzilan_uzilan/openAI/output.log"
-          },
-          {
-            "execution_time_ms": 5350,
-            "CPU_usage": 15.0,
-            "RAM_usage": 80484,
-            "regrationTestPassed": false,
-            "LLM_type": "claude",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/ClaudeSonnet4_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/output.log"
-          },
-          {
-            "execution_time_ms": 5310,
-            "CPU_usage": 14.0,
-            "RAM_usage": 82736,
-            "regrationTestPassed": false,
-            "LLM_type": "gemini",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/GeminiFlash_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/output.log"
-          }
-        ]
-      },
-      {
-        "id": "typescript_pangram_Exercism-typescript-thewanionly_thewanionly",
-        "filename": "pangram.ts",
-        "language": "typescript",
-        "CPU_usage": 59.0,
-        "RAM_usage": 217588,
-        "execution_time_ms": 32811,
-        "LLM_results": [
-          {
-            "execution_time_ms": 5760,
-            "CPU_usage": 14.0,
-            "RAM_usage": 76096,
-            "regrationTestPassed": false,
-            "LLM_type": "openAI",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/typescript/pangram_Exercism-typescript-thewanionly_thewanionly/openAI/ChatGPT4_pangram_v4.ts",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/typescript/pangram_Exercism-typescript-thewanionly_thewanionly/openAI/output.log"
-          },
-          {
-            "execution_time_ms": 5350,
-            "CPU_usage": 15.0,
-            "RAM_usage": 80484,
-            "regrationTestPassed": false,
-            "LLM_type": "claude",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/ClaudeSonnet4_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/output.log"
-          },
-          {
-            "execution_time_ms": 5310,
-            "CPU_usage": 14.0,
-            "RAM_usage": 82736,
-            "regrationTestPassed": false,
-            "LLM_type": "gemini",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/GeminiFlash_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/output.log"
-          }
-        ]
-      },
-      {
-        "id": "typescript_pangram_Exercism-typescript-shybyte_shybyte",
-        "filename": "pangram.ts",
-        "language": "typescript",
-        "CPU_usage": 57.0,
-        "RAM_usage": 214088,
-        "execution_time_ms": 33499,
-        "LLM_results": [
-          {
-            "execution_time_ms": 5760,
-            "CPU_usage": 14.0,
-            "RAM_usage": 76096,
-            "regrationTestPassed": false,
-            "LLM_type": "openAI",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/typescript/pangram_Exercism-typescript-shybyte_shybyte/openAI/ChatGPT4_pangram_v4.ts",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/typescript/pangram_Exercism-typescript-shybyte_shybyte/openAI/output.log"
-          },
-          {
-            "execution_time_ms": 5350,
-            "CPU_usage": 15.0,
-            "RAM_usage": 80484,
-            "regrationTestPassed": false,
-            "LLM_type": "claude",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/ClaudeSonnet4_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/output.log"
-          },
-          {
-            "execution_time_ms": 5310,
-            "CPU_usage": 14.0,
-            "RAM_usage": 82736,
-            "regrationTestPassed": false,
-            "LLM_type": "gemini",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/GeminiFlash_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/output.log"
-          }
-        ]
-      },
-      {
-        "id": "typescript_pangram_Exercism-typescript-chriswilding_chriswilding",
-        "filename": "pangram.ts",
-        "language": "typescript",
-        "CPU_usage": 68.0,
-        "RAM_usage": 216796,
-        "execution_time_ms": 23774,
-        "LLM_results": [
-          {
-            "execution_time_ms": 5760,
-            "CPU_usage": 14.0,
-            "RAM_usage": 76096,
-            "regrationTestPassed": false,
-            "LLM_type": "openAI",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/typescript/pangram_Exercism-typescript-chriswilding_chriswilding/openAI/ChatGPT4_pangram_v4.ts",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/typescript/pangram_Exercism-typescript-chriswilding_chriswilding/openAI/output.log"
-          },
-          {
-            "execution_time_ms": 5350,
-            "CPU_usage": 15.0,
-            "RAM_usage": 80484,
-            "regrationTestPassed": false,
-            "LLM_type": "claude",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/ClaudeSonnet4_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/output.log"
-          },
-          {
-            "execution_time_ms": 5310,
-            "CPU_usage": 14.0,
-            "RAM_usage": 82736,
-            "regrationTestPassed": false,
-            "LLM_type": "gemini",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/GeminiFlash_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/output.log"
-          }
-        ]
-      },
-      {
-        "id": "typescript_pangram_Exercism-typescript-FilipeCerejo_FilipeCerejo",
-        "filename": "pangram.ts",
-        "language": "typescript",
-        "CPU_usage": 59.0,
-        "RAM_usage": 213424,
-        "execution_time_ms": 39618,
-        "LLM_results": [
-          {
-            "execution_time_ms": 5760,
-            "CPU_usage": 14.0,
-            "RAM_usage": 76096,
-            "regrationTestPassed": false,
-            "LLM_type": "openAI",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/typescript/pangram_Exercism-typescript-FilipeCerejo_FilipeCerejo/openAI/ChatGPT4_pangram_v4.ts",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/typescript/pangram_Exercism-typescript-FilipeCerejo_FilipeCerejo/openAI/output.log"
-          },
-          {
-            "execution_time_ms": 5350,
-            "CPU_usage": 15.0,
-            "RAM_usage": 80484,
-            "regrationTestPassed": false,
-            "LLM_type": "claude",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/ClaudeSonnet4_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/output.log"
-          },
-          {
-            "execution_time_ms": 5310,
-            "CPU_usage": 14.0,
-            "RAM_usage": 82736,
-            "regrationTestPassed": false,
-            "LLM_type": "gemini",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/GeminiFlash_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/output.log"
-          }
-        ]
-      },
-      {
-        "id": "typescript_pangram_Exercism-typescript-alemarr_alemarr",
-        "filename": "pangram.ts",
-        "language": "typescript",
-        "CPU_usage": 42.0,
-        "RAM_usage": 217212,
-        "execution_time_ms": 35283,
-        "LLM_results": [
-          {
-            "execution_time_ms": 5760,
-            "CPU_usage": 14.0,
-            "RAM_usage": 76096,
-            "regrationTestPassed": false,
-            "LLM_type": "openAI",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/typescript/pangram_Exercism-typescript-alemarr_alemarr/openAI/ChatGPT4_pangram_v4.ts",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/typescript/pangram_Exercism-typescript-alemarr_alemarr/openAI/output.log"
-          },
-          {
-            "execution_time_ms": 5350,
-            "CPU_usage": 15.0,
-            "RAM_usage": 80484,
-            "regrationTestPassed": false,
-            "LLM_type": "claude",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/ClaudeSonnet4_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/output.log"
-          },
-          {
-            "execution_time_ms": 5310,
-            "CPU_usage": 14.0,
-            "RAM_usage": 82736,
-            "regrationTestPassed": false,
-            "LLM_type": "gemini",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/GeminiFlash_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/output.log"
-          }
-        ]
-      },
-      {
-        "id": "typescript_pangram_exercism-javascript-samajammin_samajammin",
-        "filename": "pangram.ts",
-        "language": "typescript",
-        "CPU_usage": 43.0,
-        "RAM_usage": 215796,
-        "execution_time_ms": 35303,
-        "LLM_results": [
-          {
-            "execution_time_ms": 5760,
-            "CPU_usage": 14.0,
-            "RAM_usage": 76096,
-            "regrationTestPassed": false,
-            "LLM_type": "openAI",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/typescript/pangram_exercism-javascript-samajammin_samajammin/openAI/ChatGPT4_pangram_v4.ts",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/typescript/pangram_exercism-javascript-samajammin_samajammin/openAI/output.log"
-          },
-          {
-            "execution_time_ms": 5350,
-            "CPU_usage": 15.0,
-            "RAM_usage": 80484,
-            "regrationTestPassed": false,
-            "LLM_type": "claude",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/ClaudeSonnet4_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/output.log"
-          },
-          {
-            "execution_time_ms": 5310,
-            "CPU_usage": 14.0,
-            "RAM_usage": 82736,
-            "regrationTestPassed": false,
-            "LLM_type": "gemini",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/GeminiFlash_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/output.log"
-          }
-        ]
-      }
-    ],
-    "java": [
-      {
-        "id": "Java_pangram_exercism-java-blogscot",
-        "filename": "pangram.java",
-        "language": "Java",
-        "CPU_usage": 27.0,
-        "RAM_usage": 47480,
-        "execution_time_ms": 2350,
-        "LLM_results": [
-          {
-            "execution_time_ms": 5760,
-            "CPU_usage": 14.0,
-            "RAM_usage": 76096,
-            "regrationTestPassed": false,
-            "LLM_type": "openAI",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/java/pangram_exercism-java-blogscot/openAI/ChatGPT4_pangram_v4.java",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/java/pangram_exercism-java-blogscot/openAI/output.log"
-          },
-          {
-            "execution_time_ms": 5350,
-            "CPU_usage": 15.0,
-            "RAM_usage": 80484,
-            "regrationTestPassed": false,
-            "LLM_type": "claude",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/ClaudeSonnet4_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/output.log"
-          },
-          {
-            "execution_time_ms": 5310,
-            "CPU_usage": 14.0,
-            "RAM_usage": 82736,
-            "regrationTestPassed": false,
-            "LLM_type": "gemini",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/GeminiFlash_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/output.log"
-          }
-        ]
-      },
-      {
-        "id": "Java_pangram_exercism-java-uzilan_robiworks",
-        "filename": "pangram.java",
-        "language": "Java",
-        "CPU_usage": 28.0,
-        "RAM_usage": 47304,
-        "execution_time_ms": 2480,
-        "LLM_results": [
-          {
-            "execution_time_ms": 5760,
-            "CPU_usage": 14.0,
-            "RAM_usage": 76096,
-            "regrationTestPassed": false,
-            "LLM_type": "openAI",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/java/pangram_exercism-java-uzilan_robiworks/openAI/ChatGPT4_pangram_v4.java",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/java/pangram_exercism-java-uzilan_robiworks/openAI/output.log"
-          },
-          {
-            "execution_time_ms": 5350,
-            "CPU_usage": 15.0,
-            "RAM_usage": 80484,
-            "regrationTestPassed": false,
-            "LLM_type": "claude",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/ClaudeSonnet4_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/output.log"
-          },
-          {
-            "execution_time_ms": 5310,
-            "CPU_usage": 14.0,
-            "RAM_usage": 82736,
-            "regrationTestPassed": false,
-            "LLM_type": "gemini",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/GeminiFlash_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/output.log"
-          }
-        ]
-      },
-      {
-        "id": "Java_pangram_exercism-java-blogscot_blogscot",
-        "filename": "pangram.java",
-        "language": "Java",
-        "CPU_usage": 26.0,
-        "RAM_usage": 47580,
-        "execution_time_ms": 2280,
-        "LLM_results": [
-          {
-            "execution_time_ms": 5760,
-            "CPU_usage": 14.0,
-            "RAM_usage": 76096,
-            "regrationTestPassed": false,
-            "LLM_type": "openAI",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/java/pangram_exercism-java-blogscot_blogscot/openAI/ChatGPT4_pangram_v4.java",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/java/pangram_exercism-java-blogscot_blogscot/openAI/output.log"
-          },
-          {
-            "execution_time_ms": 5350,
-            "CPU_usage": 15.0,
-            "RAM_usage": 80484,
-            "regrationTestPassed": false,
-            "LLM_type": "claude",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/ClaudeSonnet4_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/output.log"
-          },
-          {
-            "execution_time_ms": 5310,
-            "CPU_usage": 14.0,
-            "RAM_usage": 82736,
-            "regrationTestPassed": false,
-            "LLM_type": "gemini",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/GeminiFlash_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/output.log"
-          }
-        ]
-      },
-      {
-        "id": "Java_pangram_exercism-java-ThomasZumsteg_ThomasZumsteg",
-        "filename": "pangram.java",
-        "language": "Java",
-        "CPU_usage": 27.0,
-        "RAM_usage": 46660,
-        "execution_time_ms": 1990,
-        "LLM_results": [
-          {
-            "execution_time_ms": 5760,
-            "CPU_usage": 14.0,
-            "RAM_usage": 76096,
-            "regrationTestPassed": false,
-            "LLM_type": "openAI",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/java/pangram_exercism-java-ThomasZumsteg_ThomasZumsteg/openAI/ChatGPT4_pangram_v4.java",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/java/pangram_exercism-java-ThomasZumsteg_ThomasZumsteg/openAI/output.log"
-          },
-          {
-            "execution_time_ms": 5350,
-            "CPU_usage": 15.0,
-            "RAM_usage": 80484,
-            "regrationTestPassed": false,
-            "LLM_type": "claude",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/ClaudeSonnet4_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/output.log"
-          },
-          {
-            "execution_time_ms": 5310,
-            "CPU_usage": 14.0,
-            "RAM_usage": 82736,
-            "regrationTestPassed": false,
-            "LLM_type": "gemini",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/GeminiFlash_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/output.log"
-          }
-        ]
-      }
-    ],
-    "c": [
-      {
-        "id": "c_pangram_Exercism (HeitorMP)",
-        "filename": "pangram.c",
-        "language": "c",
-        "CPU_usage": 14.0,
-        "RAM_usage": 1152,
-        "execution_time_ms": 10,
-        "LLM_results": [
-          {
-            "execution_time_ms": 5760,
-            "CPU_usage": 14.0,
-            "RAM_usage": 76096,
-            "regrationTestPassed": false,
-            "LLM_type": "openAI",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/c/pangram_Exercism (HeitorMP)/openAI/ChatGPT4_pangram_v4.c",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/c/pangram_Exercism (HeitorMP)/openAI/output.log"
-          },
-          {
-            "execution_time_ms": 5350,
-            "CPU_usage": 15.0,
-            "RAM_usage": 80484,
-            "regrationTestPassed": false,
-            "LLM_type": "claude",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/ClaudeSonnet4_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/output.log"
-          },
-          {
-            "execution_time_ms": 5310,
-            "CPU_usage": 14.0,
-            "RAM_usage": 82736,
-            "regrationTestPassed": false,
-            "LLM_type": "gemini",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/GeminiFlash_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/output.log"
-          }
-        ]
-      },
-      {
-        "id": "c_pangram_Exercism (ThomasZumsteg)",
-        "filename": "pangram.c",
-        "language": "c",
-        "CPU_usage": 11.0,
-        "RAM_usage": 1280,
-        "execution_time_ms": 0,
-        "LLM_results": [
-          {
-            "execution_time_ms": 5760,
-            "CPU_usage": 14.0,
-            "RAM_usage": 76096,
-            "regrationTestPassed": false,
-            "LLM_type": "openAI",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/c/pangram_Exercism (ThomasZumsteg)/openAI/ChatGPT4_pangram_v4.c",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/c/pangram_Exercism (ThomasZumsteg)/openAI/output.log"
-          },
-          {
-            "execution_time_ms": 5350,
-            "CPU_usage": 15.0,
-            "RAM_usage": 80484,
-            "regrationTestPassed": false,
-            "LLM_type": "claude",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/ClaudeSonnet4_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/output.log"
-          },
-          {
-            "execution_time_ms": 5310,
-            "CPU_usage": 14.0,
-            "RAM_usage": 82736,
-            "regrationTestPassed": false,
-            "LLM_type": "gemini",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/GeminiFlash_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/output.log"
-          }
-        ]
-      },
-      {
-        "id": "c_pangram_Exercism (paddydoyle)",
-        "filename": "pangram.c",
-        "language": "c",
-        "CPU_usage": 8.0,
-        "RAM_usage": 1152,
-        "execution_time_ms": 0,
-        "LLM_results": [
-          {
-            "execution_time_ms": 5760,
-            "CPU_usage": 14.0,
-            "RAM_usage": 76096,
-            "regrationTestPassed": false,
-            "LLM_type": "openAI",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/c/pangram_Exercism (paddydoyle)/openAI/ChatGPT4_pangram_v4.c",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/c/pangram_Exercism (paddydoyle)/openAI/output.log"
-          },
-          {
-            "execution_time_ms": 5350,
-            "CPU_usage": 15.0,
-            "RAM_usage": 80484,
-            "regrationTestPassed": false,
-            "LLM_type": "claude",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/ClaudeSonnet4_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/output.log"
-          },
-          {
-            "execution_time_ms": 5310,
-            "CPU_usage": 14.0,
-            "RAM_usage": 82736,
-            "regrationTestPassed": false,
-            "LLM_type": "gemini",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/GeminiFlash_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/output.log"
-          }
-        ]
-      },
-      {
-        "id": "c_pangram_Exercism (m3g4d1v3r)",
-        "filename": "pangram.c",
-        "language": "c",
-        "CPU_usage": 9.0,
-        "RAM_usage": 1152,
-        "execution_time_ms": 0,
-        "LLM_results": [
-          {
-            "execution_time_ms": 5760,
-            "CPU_usage": 14.0,
-            "RAM_usage": 76096,
-            "regrationTestPassed": false,
-            "LLM_type": "openAI",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/c/pangram_Exercism (m3g4d1v3r)/openAI/ChatGPT4_pangram_v4.c",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/c/pangram_Exercism (m3g4d1v3r)/openAI/output.log"
-          },
-          {
-            "execution_time_ms": 5350,
-            "CPU_usage": 15.0,
-            "RAM_usage": 80484,
-            "regrationTestPassed": false,
-            "LLM_type": "claude",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/ClaudeSonnet4_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/output.log"
-          },
-          {
-            "execution_time_ms": 5310,
-            "CPU_usage": 14.0,
-            "RAM_usage": 82736,
-            "regrationTestPassed": false,
-            "LLM_type": "gemini",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/GeminiFlash_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/output.log"
-          }
-        ]
-      },
-      {
-        "id": "c_pangram_Exercism (vlzware)",
-        "filename": "pangram.c",
-        "language": "c",
-        "CPU_usage": 3.0,
-        "RAM_usage": 1152,
-        "execution_time_ms": 0,
-        "LLM_results": [
-          {
-            "execution_time_ms": 5760,
-            "CPU_usage": 14.0,
-            "RAM_usage": 76096,
-            "regrationTestPassed": false,
-            "LLM_type": "openAI",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/c/pangram_Exercism (vlzware)/openAI/ChatGPT4_pangram_v4.c",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/c/pangram_Exercism (vlzware)/openAI/output.log"
-          },
-          {
-            "execution_time_ms": 5350,
-            "CPU_usage": 15.0,
-            "RAM_usage": 80484,
-            "regrationTestPassed": false,
-            "LLM_type": "claude",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/ClaudeSonnet4_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/output.log"
-          },
-          {
-            "execution_time_ms": 5310,
-            "CPU_usage": 14.0,
-            "RAM_usage": 82736,
-            "regrationTestPassed": false,
-            "LLM_type": "gemini",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/GeminiFlash_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/output.log"
-          }
-        ]
-      }
-    ],
-    "cpp": [
-      {
-        "id": "cpp_pangram_Exercism (johnngugi)",
-        "filename": "pangram.cpp",
-        "language": "cpp",
-        "CPU_usage": 12.0,
-        "RAM_usage": 4608,
-        "execution_time_ms": 10,
-        "LLM_results": [
-          {
-            "execution_time_ms": 5760,
-            "CPU_usage": 14.0,
-            "RAM_usage": 76096,
-            "regrationTestPassed": false,
-            "LLM_type": "openAI",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/cpp/pangram_Exercism (johnngugi)/openAI/ChatGPT4_pangram_v4.cpp",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/cpp/pangram_Exercism (johnngugi)/openAI/output.log"
-          },
-          {
-            "execution_time_ms": 5350,
-            "CPU_usage": 15.0,
-            "RAM_usage": 80484,
-            "regrationTestPassed": false,
-            "LLM_type": "claude",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/ClaudeSonnet4_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/output.log"
-          },
-          {
-            "execution_time_ms": 5310,
-            "CPU_usage": 14.0,
-            "RAM_usage": 82736,
-            "regrationTestPassed": false,
-            "LLM_type": "gemini",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/GeminiFlash_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/output.log"
-          }
-        ]
-      }
-    ],
-    "go": [
-      {
-        "id": "go_pangram_Exercism (go_rootulp)",
-        "filename": "pangram.go",
-        "language": "go",
-        "CPU_usage": 47.0,
-        "RAM_usage": 204836,
-        "execution_time_ms": 127490,
-        "LLM_results": [
-          {
-            "execution_time_ms": 5760,
-            "CPU_usage": 14.0,
-            "RAM_usage": 76096,
-            "regrationTestPassed": false,
-            "LLM_type": "openAI",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/go/pangram_Exercism (go_rootulp)/openAI/ChatGPT4_pangram_v4.go",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/go/pangram_Exercism (go_rootulp)/openAI/output.log"
-          },
-          {
-            "execution_time_ms": 5350,
-            "CPU_usage": 15.0,
-            "RAM_usage": 80484,
-            "regrationTestPassed": false,
-            "LLM_type": "claude",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/ClaudeSonnet4_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/output.log"
-          },
-          {
-            "execution_time_ms": 5310,
-            "CPU_usage": 14.0,
-            "RAM_usage": 82736,
-            "regrationTestPassed": false,
-            "LLM_type": "gemini",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/GeminiFlash_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/output.log"
-          }
-        ]
-      },
-      {
-        "id": "go_pangram_Exercism (go_ThomasZumsteg)",
-        "filename": "pangram.go",
-        "language": "go",
-        "CPU_usage": 47.0,
-        "RAM_usage": 202332,
-        "execution_time_ms": 127830,
-        "LLM_results": [
-          {
-            "execution_time_ms": 5760,
-            "CPU_usage": 14.0,
-            "RAM_usage": 76096,
-            "regrationTestPassed": false,
-            "LLM_type": "openAI",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/go/pangram_Exercism (go_ThomasZumsteg)/openAI/ChatGPT4_pangram_v4.go",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/go/pangram_Exercism (go_ThomasZumsteg)/openAI/output.log"
-          },
-          {
-            "execution_time_ms": 5350,
-            "CPU_usage": 15.0,
-            "RAM_usage": 80484,
-            "regrationTestPassed": false,
-            "LLM_type": "claude",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/ClaudeSonnet4_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/output.log"
-          },
-          {
-            "execution_time_ms": 5310,
-            "CPU_usage": 14.0,
-            "RAM_usage": 82736,
-            "regrationTestPassed": false,
-            "LLM_type": "gemini",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/GeminiFlash_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/output.log"
-          }
-        ]
-      },
-      {
-        "id": "go_pangram_Exercism (go_thinkverse)",
-        "filename": "pangram.go",
-        "language": "go",
-        "CPU_usage": 47.0,
-        "RAM_usage": 206560,
-        "execution_time_ms": 128650,
-        "LLM_results": [
-          {
-            "execution_time_ms": 5760,
-            "CPU_usage": 14.0,
-            "RAM_usage": 76096,
-            "regrationTestPassed": false,
-            "LLM_type": "openAI",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/go/pangram_Exercism (go_thinkverse)/openAI/ChatGPT4_pangram_v4.go",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/go/pangram_Exercism (go_thinkverse)/openAI/output.log"
-          },
-          {
-            "execution_time_ms": 5350,
-            "CPU_usage": 15.0,
-            "RAM_usage": 80484,
-            "regrationTestPassed": false,
-            "LLM_type": "claude",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/ClaudeSonnet4_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/output.log"
-          },
-          {
-            "execution_time_ms": 5310,
-            "CPU_usage": 14.0,
-            "RAM_usage": 82736,
-            "regrationTestPassed": false,
-            "LLM_type": "gemini",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/GeminiFlash_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/output.log"
-          }
-        ]
-      },
-      {
-        "id": "go_pangram_Exercism (go_drapala)",
-        "filename": "pangram.go",
-        "language": "go",
-        "CPU_usage": 53.0,
-        "RAM_usage": 200468,
-        "execution_time_ms": 131519,
-        "LLM_results": [
-          {
-            "execution_time_ms": 5760,
-            "CPU_usage": 14.0,
-            "RAM_usage": 76096,
-            "regrationTestPassed": false,
-            "LLM_type": "openAI",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/go/pangram_Exercism (go_drapala)/openAI/ChatGPT4_pangram_v4.go",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/go/pangram_Exercism (go_drapala)/openAI/output.log"
-          },
-          {
-            "execution_time_ms": 5350,
-            "CPU_usage": 15.0,
-            "RAM_usage": 80484,
-            "regrationTestPassed": false,
-            "LLM_type": "claude",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/ClaudeSonnet4_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/output.log"
-          },
-          {
-            "execution_time_ms": 5310,
-            "CPU_usage": 14.0,
-            "RAM_usage": 82736,
-            "regrationTestPassed": false,
-            "LLM_type": "gemini",
-            "path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/GeminiFlash_{f_name}_v4.{ext}",
-            "log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/output.log"
-          }
-        ]
-      }
-    ]
-  }
+    }
 }
