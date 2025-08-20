@@ -1,14 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""
-Enhanced Metrics Handler for Code Complexity Analysis
-Based on "Enhancing LLM-Based Code Generation with Complexity Metrics: A Feedback-Driven Approach"
-
-This module extracts language-agnostic complexity metrics from code files to analyze
-energy efficiency improvements introduced by LLM-generated code variants.
-"""
-
 import argparse
 import json
 import math
@@ -17,7 +9,6 @@ import re
 import sys
 from collections import  defaultdict
 from typing import Dict, List, Optional, Any, Tuple
-
 
 # Add parent directory to path for imports
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
@@ -561,17 +552,7 @@ def process_dataset_json(json_path: str, output_path: Optional[str] = None) -> s
 def main():
     parser = argparse.ArgumentParser(
         description="Enhanced Language-Agnostic Code Complexity Metrics Extractor",
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-This tool extracts complexity metrics from code files to analyze energy efficiency
-improvements introduced by LLM-generated code variants. Based on the research paper:
-"Enhancing LLM-Based Code Generation with Complexity Metrics: A Feedback-Driven Approach"
-
-Metrics are categorized by importance for energy efficiency analysis:
-- High importance: Halstead metrics, LOC, nesting depth, math operations
-- Medium importance: Cyclomatic complexity, maintainability index, loops, variables
-- Keyword metrics: Language-agnostic semantic constructs
-        """
+        formatter_class=argparse.RawDescriptionHelpFormatter
     )
     
     parser.add_argument(

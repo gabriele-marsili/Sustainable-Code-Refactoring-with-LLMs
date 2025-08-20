@@ -1,14 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""
-Enhanced Energy Efficiency Metrics Statistics Analysis
-
-This module analyzes the correlation between code complexity metrics (from the research paper)
-and energy efficiency improvements introduced by LLM-generated code variants.
-
-Based on: "Enhancing LLM-Based Code Generation with Complexity Metrics: A Feedback-Driven Approach"
-"""
 
 import os
 import json
@@ -23,6 +15,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score
 import warnings
+import argparse
 
 warnings.filterwarnings('ignore')
 
@@ -36,7 +29,7 @@ from utility_dir import utility_paths  # noqa: E402
 # =============================================================================
 
 OUTPUT_DIR_FILEPATH = str(utility_paths.OUTPUT_DIR_FILEPATH)
-CLUSTER_METRICS_FILE = str(utility_paths.CLUSTERS_DIR_FILEPATH / "cluster_bob.with_metrics.json")
+
 
 # Metrics categories based on the research paper
 HIGH_IMPORTANCE_METRICS = [
@@ -55,7 +48,7 @@ KEYWORD_METRICS = [
     'exception_handling', 'logical_operators', 'return_statements'
 ]
 
-# Energy efficiency proxy calculations
+# Energy efficiency calculations
 ENERGY_METRICS = ['CPU_usage', 'RAM_usage', 'execution_time_ms']
 
 # =============================================================================
@@ -165,7 +158,7 @@ def calculate_energy_efficiency_metrics(base_metrics: Dict, llm_metrics: Dict) -
     else:
         improvements['time_improvement_pct'] = 0
     
-    # Combined energy proxy (CPU% * execution_time)
+    # Combined energy (CPU% * execution_time)
     base_energy = base_cpu * (base_time / 1000.0) if base_time > 0 else 0
     llm_energy = llm_cpu * (llm_time / 1000.0) if llm_time > 0 else 0
     
@@ -609,12 +602,30 @@ def generate_comprehensive_report(df: pd.DataFrame) -> Dict[str, Any]:
 
 def main():
     """Main analysis pipeline."""
-    print("="*60)
-    print("ENHANCED ENERGY EFFICIENCY METRICS ANALYSIS")
-    print("="*60)
-    
+    parser = argparse.ArgumentParser(
+        description="Enhanced Language-Agnostic Code Complexity Metrics Extractor",
+        formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+    parser.add_argument(
+        "--input", "-i", 
+        required=True,
+        help="Cluster name (with .json ext) of input file"
+    )
+    args = parser.parse_args()
+
+
+    # Construct full input path
+    if os.path.isabs(args.input):
+        CLUSTER_METRICS_FILE = str(args.input)
+    else:
+        CLUSTER_METRICS_FILE = str(os.path.join(utility_paths.CLUSTERS_DIR_FILEPATH, args.input))
+
+    if not os.path.exists(CLUSTER_METRICS_FILE):
+        print(f"[ERROR] Input file not found: {CLUSTER_METRICS_FILE}", file=sys.stderr)
+        sys.exit(1)
+
     # Load data
-    print("\n[1/6] Loading data...")
+    print(f"\n[1/6] Loading data for cluster {CLUSTER_METRICS_FILE}...")
     cluster_data = load_cluster_metrics(CLUSTER_METRICS_FILE)
     exec_results = load_execution_results(OUTPUT_DIR_FILEPATH)
     
