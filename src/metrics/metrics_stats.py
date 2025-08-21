@@ -13,11 +13,11 @@ import sys
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score
-import warnings
 import argparse
 
+import warnings
+warnings.filterwarnings("ignore", category=RuntimeWarning)
 
-warnings.filterwarnings("ignore")
 
 # Add parent directory to path for imports
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
@@ -94,7 +94,7 @@ def find_output_files_for_exercise(
         exercise_name: Name of the exercise
 
     Returns:
-        Tuple of (base_files, llm_files_v3)
+        Tuple of (base_files, llm_files_v4)
     """
     # Pattern for base files: {exercise_name}_results_{exec_number}.json
     base_pattern = f"{exercise_name}_results_*.json"
@@ -103,15 +103,15 @@ def find_output_files_for_exercise(
     # Filter out version files (those containing _v)
     base_files = [f for f in base_files if "_v" not in os.path.basename(f)]
 
-    # Pattern for LLM v3 files: {exercise_name}_results_v3_{exec_number}.json
-    llm_v3_pattern = f"{exercise_name}_results_v3_*.json"
-    llm_v3_files = glob.glob(os.path.join(output_dir, llm_v3_pattern))
+    # Pattern for LLM v4 files: {exercise_name}_results_v4_{exec_number}.json
+    llm_v4_pattern = f"{exercise_name}_results_v4_*.json"
+    llm_v4_files = glob.glob(os.path.join(output_dir, llm_v4_pattern))
 
     print(
-        f"[INFO] Found {len(base_files)} base files and {len(llm_v3_files)} LLM v3 files for exercise '{exercise_name}'"
+        f"[INFO] Found {len(base_files)} base files and {len(llm_v4_files)} LLM v4 files for exercise '{exercise_name}'"
     )
 
-    return sorted(base_files), sorted(llm_v3_files)
+    return sorted(base_files), sorted(llm_v4_files)
 
 
 # =============================================================================
@@ -155,7 +155,6 @@ def load_execution_results(file_paths: List[str]) -> List[Dict[str, Any]]:
     print(f"[INFO] Successfully loaded {len(all_results)} execution result files")
     return all_results
 
-
 def calculate_average_energy_metrics(
     exec_results: List[Dict[str, Any]], is_llm: bool = False
 ) -> Dict[str, Dict[str, float]]:
@@ -172,12 +171,13 @@ def calculate_average_energy_metrics(
     energy_data = {}
 
     for result_file in exec_results:
-        data = result_file["data"]
+        data = result_file["data"] #json data 
 
         for lang, entries in data.get("results", {}).items():
             for entry in entries:
                 entry_id = entry.get("id", "")
 
+                #metriche LLM indipendenti da LLM type (aggregate)
                 if is_llm:
                     # For LLM results, aggregate across all LLM types
                     for llm_result in entry.get("LLM_results", []):
@@ -190,18 +190,24 @@ def calculate_average_energy_metrics(
                                     "llm_type": llm_result.get("LLM_type", "unknown"),
                                 }
 
+                            #Handle None values explicitly
+                            cpu_usage = llm_result.get("CPU_usage")
+                            ram_usage = llm_result.get("RAM_usage")
+                            exec_time = llm_result.get("execution_time_ms")
+                            
+                            # Only append non-None values, convert None to 0
                             energy_data[entry_id]["CPU_usage"].append(
-                                llm_result.get("CPU_usage", 0)
+                                cpu_usage if cpu_usage is not None else 0
                             )
                             energy_data[entry_id]["RAM_usage"].append(
-                                llm_result.get("RAM_usage", 0)
+                                ram_usage if ram_usage is not None else 0
                             )
                             energy_data[entry_id]["execution_time_ms"].append(
-                                llm_result.get("execution_time_ms", 0)
+                                exec_time if exec_time is not None else 0
                             )
                 else:
                     # For base results
-                    if entry.get("regrationTestPassed", False):
+                    if entry.get("regrationTestPassed", False): #filter for only entries with regression test passed 
                         if entry_id not in energy_data:
                             energy_data[entry_id] = {
                                 "CPU_usage": [],
@@ -209,14 +215,20 @@ def calculate_average_energy_metrics(
                                 "execution_time_ms": [],
                             }
 
+                        
+                        cpu_usage = entry.get("CPU_usage")
+                        ram_usage = entry.get("RAM_usage")
+                        exec_time = entry.get("execution_time_ms")
+
+                        #handle none values : 
                         energy_data[entry_id]["CPU_usage"].append(
-                            entry.get("CPU_usage", 0)
+                            cpu_usage if cpu_usage is not None else 0
                         )
                         energy_data[entry_id]["RAM_usage"].append(
-                            entry.get("RAM_usage", 0)
+                            ram_usage if ram_usage is not None else 0
                         )
                         energy_data[entry_id]["execution_time_ms"].append(
-                            entry.get("execution_time_ms", 0)
+                            exec_time if exec_time is not None else 0
                         )
 
     # Calculate averages
@@ -225,7 +237,12 @@ def calculate_average_energy_metrics(
         averaged_data[entry_id] = {}
         for metric_name, values in metrics.items():
             if metric_name != "llm_type" and values:
-                averaged_data[entry_id][metric_name] = np.mean(values)
+                # Additional safety: filter out any remaining None values before mean calculation
+                clean_values = [v for v in values if v is not None]
+                if clean_values:
+                    averaged_data[entry_id][metric_name] = np.mean(clean_values)
+                else:
+                    averaged_data[entry_id][metric_name] = 0.0
             elif metric_name == "llm_type":
                 averaged_data[entry_id][metric_name] = values
 
@@ -247,7 +264,13 @@ def calculate_energy_efficiency_improvements(
     """
     improvements = {}
 
-    # CPU efficiency improvement (lower is better)
+    #improvements (higher = better) : 
+    #quanto una determinata metrica migliora rispetto alla metrica di base 
+    #es : se ho base time = 2000 e llm time = 1000 avrò 
+    # improv = (2000-1000)/2000 = 0.5 = 50%
+    
+    
+    # CPU efficiency improvement (higher is better)
     base_cpu = base_metrics.get("CPU_usage", 0)
     llm_cpu = llm_metrics.get("CPU_usage", 0)
     if base_cpu > 0:
@@ -255,7 +278,7 @@ def calculate_energy_efficiency_improvements(
     else:
         improvements["cpu_improvement_pct"] = 0
 
-    # Memory efficiency improvement (lower is better)
+    # Memory efficiency improvement (higher is better)
     base_ram = base_metrics.get("RAM_usage", 0)
     llm_ram = llm_metrics.get("RAM_usage", 0)
     if base_ram > 0:
@@ -263,7 +286,7 @@ def calculate_energy_efficiency_improvements(
     else:
         improvements["ram_improvement_pct"] = 0
 
-    # Execution time improvement (lower is better)
+    # Execution time improvement (higher is better)
     base_time = base_metrics.get("execution_time_ms", 0)
     llm_time = llm_metrics.get("execution_time_ms", 0)
     if base_time > 0:
@@ -298,9 +321,9 @@ def calculate_energy_efficiency_improvements(
 
 
 def create_analysis_dataframe(
-    cluster_data: Dict[str, Any],
-    base_energy: Dict[str, Dict[str, float]],
-    llm_energy: Dict[str, Dict[str, float]],
+    cluster_data: Dict[str, Any], #original cluster data with article's metrics 
+    base_energy: Dict[str, Dict[str, float]], #average energy metrics (CPU, RAM, time) for base snippets 
+    llm_energy: Dict[str, Dict[str, float]], #average energy metrics (CPU, RAM, time) for LLMs
 ) -> pd.DataFrame:
     """
     Create analysis DataFrame combining complexity metrics and energy improvements.
@@ -320,14 +343,14 @@ def create_analysis_dataframe(
 
     rows = []
 
-    for lang, entries in cluster_data.items():
+    for lang, entries in cluster_data.items(): #iter cluster data   
         for entry in entries:
             entry_id = entry.get("id", "")
             # print(f"entry_id: {entry_id}\n")
 
-            # Get base metrics
+            # Get base article's metrics (related to base code snippet)
             base_metrics = entry.get("base_metrics", {})
-            # print(f"base_metrics: {base_metrics}\n")
+            
             if not base_metrics:
                 continue
 
@@ -341,6 +364,7 @@ def create_analysis_dataframe(
 
             # print(f"base_complexity: {base_complexity}\n")
             # print(f"entry LLMs:\n{entry.get("LLMs", [])}\n")
+            
             # Process LLM variants
             for llm_entry in entry.get("LLMs", []):
                 llm_metrics = llm_entry.get("metrics", {})
@@ -358,15 +382,7 @@ def create_analysis_dataframe(
                             if isinstance(value, (int, float)):
                                 llm_complexity[f"llm_{metric_name}"] = value
 
-                # Calculate energy improvements if both base and LLM energy data exist
-                # print(f"entry id: {entry_id}")
-
-                # if entry_id not in base_energy :
-                # print(f"entry id not in base energy:\n{base_energy}")
-
-                # if entry_id not in llm_energy :
-                # print(f"entry id not in llm energy:\n{llm_energy}")
-
+                # Calculate energy improvements if both base and LLM energy data exist                
                 if entry_id in base_energy and entry_id in llm_energy:
                     energy_improvements = calculate_energy_efficiency_improvements(
                         base_energy[entry_id], llm_energy[entry_id]
@@ -522,1350 +538,420 @@ def perform_regression_analysis(df: pd.DataFrame) -> Dict[str, Any]:
 # =============================================================================
 
 
-def create_correlation_heatmap(correlation_matrix: pd.DataFrame, title: str):
-    """Create and display correlation heatmap."""
-    if correlation_matrix.empty:
-        print(f"[WARN] Empty correlation matrix for: {title}")
-        return
-
-    plt.figure(figsize=(12, 8))
-
-    # Create mask for better visualization
-    mask = np.abs(correlation_matrix) < 0.1
-
-    sns.heatmap(
-        correlation_matrix,
-        annot=True,
-        fmt=".3f",
-        cmap="RdBu_r",
-        center=0,
-        square=True,
-        mask=mask,
-        cbar_kws={"shrink": 0.8},
-    )
-
-    plt.title(title, fontsize=14, fontweight="bold")
-    plt.xlabel("Energy Efficiency Metrics", fontsize=12)
-    plt.ylabel("Complexity Metrics", fontsize=12)
-    plt.xticks(rotation=45, ha="right")
-    plt.yticks(rotation=0)
-    plt.tight_layout()
-    plt.show()
-
-
-def create_scatter_plots(df: pd.DataFrame):
-    """Create scatter plots showing relationships between metrics and improvements."""
+def create_energy_improvement_overview(df: pd.DataFrame, exercise_name: str):
+    """
+    Creates a single, proportional bar chart showing average energy efficiency
+    improvements with a clear visual representation of success rate.
+    """
     if df.empty:
-        return
-
-    efficiency_metrics = [col for col in df.columns if "improvement_pct" in col]
-    key_complexity_metrics = []
-
-    # Find top correlated metrics
-    for metric_prefix in HIGH_IMPORTANCE_METRICS[:5]:  # Top 5 high importance
-        metric_name = f"llm_{metric_prefix}"
-        if metric_name in df.columns:
-            key_complexity_metrics.append(metric_name)
-
-    if not efficiency_metrics or not key_complexity_metrics:
-        print("[WARN] No suitable metrics found for scatter plots")
-        return
-
-    # Create scatter plots
-    fig, axes = plt.subplots(2, 2, figsize=(15, 12))
-    fig.suptitle(
-        "Complexity Metrics vs Energy Improvements", fontsize=16, fontweight="bold"
-    )
-
-    plot_idx = 0
-    for i, efficiency_metric in enumerate(efficiency_metrics[:4]):  # Max 4 plots
-        if plot_idx >= 4:
-            break
-
-        ax = axes[plot_idx // 2, plot_idx % 2]
-
-        # Find best correlated complexity metric for this efficiency metric
-        correlations = []
-        for complexity_metric in key_complexity_metrics:
-            if complexity_metric in df.columns and efficiency_metric in df.columns:
-                corr = df[complexity_metric].corr(df[efficiency_metric])
-                if not pd.isna(corr):
-                    correlations.append((abs(corr), complexity_metric, corr))
-
-        if correlations:
-            correlations.sort(reverse=True)
-            best_complexity_metric = correlations[0][1]
-            correlation_value = correlations[0][2]
-
-            # Create scatter plot
-            scatter_data = df[[best_complexity_metric, efficiency_metric]].dropna()
-
-            if len(scatter_data) > 0:
-                sns.scatterplot(
-                    data=scatter_data,
-                    x=best_complexity_metric,
-                    y=efficiency_metric,
-                    alpha=0.7,
-                    ax=ax,
-                )
-
-                # Add trend line
-                z = np.polyfit(
-                    scatter_data[best_complexity_metric],
-                    scatter_data[efficiency_metric],
-                    1,
-                )
-                p = np.poly1d(z)
-                ax.plot(
-                    scatter_data[best_complexity_metric],
-                    p(scatter_data[best_complexity_metric]),
-                    "r--",
-                    alpha=0.8,
-                    linewidth=2,
-                )
-
-                ax.set_title(
-                    f"{efficiency_metric.replace('_', ' ').title()}\nvs {best_complexity_metric.replace('llm_', '').replace('_', ' ').title()}\n(r={correlation_value:.3f})"
-                )
-                ax.set_xlabel(
-                    best_complexity_metric.replace("llm_", "").replace("_", " ").title()
-                )
-                ax.set_ylabel(efficiency_metric.replace("_", " ").title())
-                ax.grid(True, alpha=0.3)
-
-        plot_idx += 1
-
-    # Hide unused subplots
-    for i in range(plot_idx, 4):
-        axes[i // 2, i % 2].set_visible(False)
-
-    plt.tight_layout()
-    plt.show()
-
-
-def create_feature_importance_plot(regression_results: Dict[str, Any]):
-    """Create feature importance plots from regression results."""
-    if not regression_results:
-        print("[WARN] No regression results available")
-        return
-
-    n_plots = len(regression_results)
-    if n_plots == 0:
-        return
-
-    fig, axes = plt.subplots(
-        (n_plots + 1) // 2, 2, figsize=(15, 6 * ((n_plots + 1) // 2))
-    )
-    if n_plots == 1:
-        axes = [axes]
-    elif n_plots == 2:
-        axes = axes.flatten()
-    else:
-        axes = axes.flatten()
-
-    plot_idx = 0
-    for target_metric, results in regression_results.items():
-        if "feature_importance" not in results:
-            continue
-
-        importance_df = results["feature_importance"].head(10)  # Top 10
-
-        ax = axes[plot_idx] if n_plots > 1 else axes[0]
-
-        # Create horizontal bar plot
-        bars = ax.barh(
-            range(len(importance_df)),
-            importance_df["abs_coefficient"],
-            color=["green" if x >= 0 else "red" for x in importance_df["coefficient"]],
-        )
-
-        ax.set_yticks(range(len(importance_df)))
-        ax.set_yticklabels(
-            [
-                metric.replace("llm_", "").replace("_", " ").title()
-                for metric in importance_df["metric"]
-            ]
-        )
-        ax.set_xlabel("Absolute Coefficient Value")
-        ax.set_title(
-            f"Most Predictive Metrics for {target_metric.replace('_', ' ').title()}\n(R² = {results['r2_score']:.3f})"
-        )
-
-        # Add value labels on bars
-        for i, (bar, coef) in enumerate(zip(bars, importance_df["coefficient"])):
-            ax.text(
-                bar.get_width() + 0.01,
-                bar.get_y() + bar.get_height() / 2,
-                f"{coef:.3f}",
-                ha="left",
-                va="center",
-                fontsize=9,
-            )
-
-        ax.grid(True, alpha=0.3, axis="x")
-        plot_idx += 1
-
-    # Hide unused subplots
-    for i in range(plot_idx, len(axes)):
-        axes[i].set_visible(False)
-
-    plt.tight_layout()
-    plt.show()
-
-
-def create_energy_improvement_summary(df: pd.DataFrame):
-    """Create summary visualizations of energy improvements."""
-    if df.empty:
+        print("No data available for energy improvement overview.")
         return
 
     efficiency_metrics = [col for col in df.columns if "improvement_pct" in col]
     if not efficiency_metrics:
-        print("[WARN] No efficiency metrics found for summary")
+        print("No efficiency metrics found in data.")
         return
 
-    # Summary statistics
-    fig, axes = plt.subplots(1, 2, figsize=(15, 6))
+    # Calculate means and success rates
+    analysis_data = []
+    for metric in efficiency_metrics:
+        data = df[metric].dropna()
+        if len(data) > 0:
+            mean = data.mean()
+            success_rate = (data > 0).sum() / len(data) * 100
+            analysis_data.append({
+                'metric': metric.replace("_improvement_pct", "").replace("_", " ").title(),
+                'mean_improvement': mean,
+                'success_rate': success_rate
+            })
+    
+    if not analysis_data:
+        print("No valid data for visualization.")
+        return
 
-    # Box plot of improvements
-    improvement_data = df[efficiency_metrics].melt(
-        var_name="Metric", value_name="Improvement_%"
-    )
-    improvement_data["Metric"] = (
-        improvement_data["Metric"]
-        .str.replace("_improvement_pct", "")
-        .str.replace("_", " ")
-        .str.title()
-    )
+    df_plot = pd.DataFrame(analysis_data)
+    
+    # Create the plot
+    fig, ax = plt.subplots(figsize=(10, 8))
+    
+    # Sort by mean improvement for better readability
+    df_plot = df_plot.sort_values('mean_improvement', ascending=False)
+    
+    # Use a diverging color scheme
+    colors = ['#2E8B57' if mean > 0 else '#CD5C5C' for mean in df_plot['mean_improvement']]
+    
+    # Main bar plot for mean improvement
+    bars = ax.barh(df_plot['metric'], df_plot['mean_improvement'], color=colors, alpha=0.8,
+                   edgecolor='black', linewidth=1.5, height=0.6)
 
-    sns.boxplot(data=improvement_data, x="Metric", y="Improvement_%", ax=axes[0])
-    axes[0].set_title(
-        "Distribution of Energy Improvements", fontsize=14, fontweight="bold"
-    )
-    axes[0].set_xlabel("Improvement Type")
-    axes[0].set_ylabel("Improvement (%)")
-    axes[0].tick_params(axis="x", rotation=45)
-    axes[0].axhline(y=0, color="red", linestyle="--", alpha=0.7)
-    axes[0].grid(True, alpha=0.3)
-
-    # Mean improvements by LLM type
-    if "llm_type" in df.columns:
-        llm_improvements = df.groupby("llm_type")[efficiency_metrics].mean()
-
-        llm_improvements.plot(kind="bar", ax=axes[1])
-        axes[1].set_title(
-            "Average Energy Improvements by LLM Type", fontsize=14, fontweight="bold"
-        )
-        axes[1].set_xlabel("LLM Type")
-        axes[1].set_ylabel("Average Improvement (%)")
-        axes[1].legend(
-            title="Improvement Type", bbox_to_anchor=(1.05, 1), loc="upper left"
-        )
-        axes[1].tick_params(axis="x", rotation=45)
-        axes[1].axhline(y=0, color="red", linestyle="--", alpha=0.7)
-        axes[1].grid(True, alpha=0.3)
+    # Add a secondary axis for success rate
+    ax2 = ax.twiny()
+    ax2.plot(df_plot['success_rate'], df_plot['metric'], 'o--', color='#1E90FF', 
+             markersize=10, linewidth=2, label='Success Rate (%)')
+    ax2.set_xlim(0, 100)
+    ax2.set_xlabel('Success Rate (%)', fontsize=12, color='#1E90FF', fontweight='bold')
+    ax2.tick_params(axis='x', colors='#1E90FF')
+    
+    # Add text labels
+    for bar in bars:
+        width = bar.get_width()
+        label_pos = width if width >= 0 else width - 5
+        color = 'black'
+        ax.text(label_pos + (3 if width >= 0 else -3), bar.get_y() + bar.get_height()/2,
+                f'{width:+.1f}%', ha='left' if width >= 0 else 'right', va='center',
+                fontsize=11, fontweight='bold', color=color)
+    
+    # Final plot customization
+    ax.axvline(x=0, color='gray', linestyle='--', linewidth=1.5, alpha=0.7)
+    ax.set_title(f'Average Energy Efficiency Improvement\n({exercise_name})',
+                 fontsize=16, fontweight='bold', pad=20)
+    ax.set_xlabel('Mean Improvement (%)', fontsize=12, fontweight='bold')
+    ax.set_ylabel('Energy Metric', fontsize=12, fontweight='bold')
+    ax.grid(axis='x', linestyle='--', alpha=0.5)
+    
+    # Create a single legend
+    lines, labels = ax.get_legend_handles_labels()
+    lines2, labels2 = ax2.get_legend_handles_labels()
+    ax2.legend(lines + lines2, labels + labels2, loc='upper left')
 
     plt.tight_layout()
     plt.show()
 
 
-def create_energy_overview_dashboard(df: pd.DataFrame, exercise_name: str):
-    """Create a more organized and readable energy improvement overview."""
-    if df.empty:
-        return
-
-    # Create separate figures instead of one crowded dashboard
-    create_improvement_summary_plot(df, exercise_name)
-    create_correlation_analysis_plot(df, exercise_name)
-    create_distribution_comparison_plot(df, exercise_name)
-    create_efficiency_trends_plot(df, exercise_name)
-
-
-def create_improvement_summary_plot(df: pd.DataFrame, exercise_name: str):
-    """Create a clear summary of energy improvements."""
-    if df.empty:
-        return
-
-    efficiency_metrics = [col for col in df.columns if "improvement_pct" in col]
-    if not efficiency_metrics:
-        return
-
-    plt.figure(figsize=(12, 8))
-
-    means = [df[metric].mean() for metric in efficiency_metrics]
-    metric_names = [
-        metric.replace("_improvement_pct", "").replace("_", " ").title()
-        for metric in efficiency_metrics
-    ]
-
-    colors = ["#2E8B57" if mean > 0 else "#CD5C5C" for mean in means]
-
-    bars = plt.bar(metric_names, means, color=colors, alpha=0.7, edgecolor="black")
-    plt.axhline(y=0, color="black", linestyle="-", linewidth=2)
-    plt.ylabel("Average Improvement (%)")
-    plt.title(
-        f"Energy Efficiency Improvements - {exercise_name}", fontweight="bold", pad=20
-    )
-    plt.grid(True, alpha=0.3, axis="y")
-    plt.xticks(rotation=45, ha="right")
-
-    # Add value labels
-    for bar, mean in zip(bars, means):
-        height = bar.get_height()
-        plt.text(
-            bar.get_x() + bar.get_width() / 2,
-            height + (0.01 if height >= 0 else -0.02),
-            f"{mean:.1f}%",
-            ha="center",
-            va="bottom" if height >= 0 else "top",
-            fontweight="bold",
-        )
-
-    plt.tight_layout()
-    plt.show()
-
-
-def create_correlation_analysis_plot(df: pd.DataFrame, exercise_name: str):
-    """Create a focused correlation heatmap."""
+def create_correlation_analysis_detailed(df: pd.DataFrame, exercise_name: str):
+    """
+    Creates a single, proportional heatmap showing the correlation between
+    LLM code complexity metrics and energy efficiency improvements.
+    Highlights strong positive and negative correlations.
+    """
     correlations = calculate_correlation_analysis(df)
-
-    if (
-        not correlations
-        or "overall" not in correlations
-        or correlations["overall"].empty
-    ):
+    
+    if not correlations or "overall" not in correlations or correlations["overall"].empty:
+        print("No correlation data available for analysis.")
         return
 
-    plt.figure(figsize=(14, 10))
-
-    # Get top 10 most correlated metrics
     corr_data = correlations["overall"]
-    top_metrics = (
-        corr_data.abs().max(axis=1).sort_values(ascending=False).head(10).index
-    )
-    top_corr_data = corr_data.loc[top_metrics]
-
-    sns.heatmap(
-        top_corr_data,
-        annot=True,
-        fmt=".2f",
-        cmap="RdBu_r",
-        center=0,
-        square=True,
-        cbar_kws={"shrink": 0.8},
-        linewidths=0.5,
-    )
-
-    plt.title(
-        f"Top Complexity vs Efficiency Correlations - {exercise_name}",
-        fontweight="bold",
-        pad=20,
-    )
-    plt.xlabel("Energy Efficiency Metrics", fontweight="bold")
-    plt.ylabel("Code Complexity Metrics", fontweight="bold")
-    plt.xticks(rotation=45, ha="right")
-    plt.yticks(rotation=0)
-
-    plt.tight_layout()
-    plt.show()
-
-
-def create_distribution_comparison_plot(df: pd.DataFrame, exercise_name: str):
-    """Create a clear comparison of base vs LLM performance."""
-    if df.empty:
-        return
-
-    fig, axes = plt.subplots(1, 3, figsize=(18, 6))
-    fig.suptitle(
-        f"Performance Distribution Comparison - {exercise_name}",
-        fontsize=16,
-        fontweight="bold",
-    )
-
-    metrics_to_compare = [
-        ("base_cpu", "llm_cpu", "CPU Usage (%)"),
-        ("base_ram", "llm_ram", "RAM Usage (MB)"),
-        ("base_time", "llm_time", "Execution Time (ms)"),
-    ]
-
-    for idx, (base_metric, llm_metric, ylabel) in enumerate(metrics_to_compare):
-        if base_metric in df.columns and llm_metric in df.columns:
-            data = [df[base_metric].dropna(), df[llm_metric].dropna()]
-            axes[idx].boxplot(data, labels=["Base", "LLM"])
-            axes[idx].set_ylabel(ylabel)
-            axes[idx].set_title(ylabel.split(" (")[0])
-            axes[idx].grid(True, alpha=0.3)
+    
+    # Filter to show only meaningful correlations (|r| > 0.1)
+    mask = np.abs(corr_data) < 0.1
+    
+    fig, ax = plt.subplots(figsize=(12, 10))
+    
+    # Custom diverging colormap
+    from matplotlib.colors import LinearSegmentedColormap
+    colors = ['#d73027', '#f46d43', '#fee08b', '#ffffff', 
+              '#e6f598', '#abdda4', '#3288bd']
+    cmap = LinearSegmentedColormap.from_list('custom_diverging', colors)
+    
+    # Create the heatmap
+    sns.heatmap(corr_data, annot=True, fmt='.2f', cmap=cmap, center=0,
+                square=False, mask=mask, cbar_kws={'label': 'Correlation Coefficient'},
+                linewidths=0.5, linecolor='gray', annot_kws={'size': 10, 'weight': 'bold'},
+                ax=ax)
+    
+    # Enhance labels for readability
+    y_labels = [label.replace("llm_", "").replace("_", " ").title() 
+                for label in corr_data.index]
+    x_labels = [label.replace("_improvement_pct", " Improvement").replace("_", " ").title() 
+                for label in corr_data.columns]
+    
+    ax.set_yticklabels(y_labels, rotation=0, fontsize=10, fontweight='bold')
+    ax.set_xticklabels(x_labels, rotation=45, ha='right', fontsize=10, fontweight='bold')
+    
+    ax.set_title(f'Complexity-Efficiency Correlation Heatmap\n({exercise_name})', 
+                 fontsize=16, fontweight='bold', pad=20)
+    ax.set_xlabel('Energy Efficiency Improvement', fontsize=12, fontweight='bold')
+    ax.set_ylabel('LLM Code Complexity Metric', fontsize=12, fontweight='bold')
+    
+    # Add an annotation box to explain the interpretation
+    text_box = """
+    INTERPRETATION:
+    • Positive correlation (blue) indicates that higher complexity
+      is associated with better energy efficiency.
+    • Negative correlation (red) indicates that higher complexity
+      is associated with worse energy efficiency.
+    • Only correlations with absolute value > 0.1 are shown.
+    """
+    ax.text(1.02, 0.98, text_box, transform=ax.transAxes,
+             fontsize=10, verticalalignment='top', horizontalalignment='left',
+             bbox=dict(boxstyle='round,pad=0.5', facecolor='white', alpha=0.7))
 
     plt.tight_layout()
     plt.show()
 
 
-def create_efficiency_trends_plot(df: pd.DataFrame, exercise_name: str):
-    """Create a focused trends analysis."""
+def create_performance_comparison_detailed(df: pd.DataFrame, exercise_name: str):
+    """
+    Creates a single, multi-panel plot comparing the performance distributions
+    of base code vs. LLM-generated code for each energy metric.
+    """
     if df.empty:
+        print("No data available for performance comparison.")
         return
 
-    efficiency_metrics = [col for col in df.columns if "improvement_pct" in col]
-    if not efficiency_metrics:
+    # Define metrics to compare (base vs LLM pairs)
+    comparison_metrics = []
+    for energy_metric in ["cpu", "ram", "time", "energy_proxy"]:
+        base_col = f"base_{energy_metric}"
+        llm_col = f"llm_{energy_metric}"
+        if base_col in df.columns and llm_col in df.columns:
+            comparison_metrics.append((base_col, llm_col, energy_metric))
+
+    if not comparison_metrics:
+        print("No matching base/LLM metric pairs found.")
         return
-
-    plt.figure(figsize=(10, 8))
-
-    # Prepare data for scatter plot
-    x_metric = (
-        "cpu_improvement_pct"
-        if "cpu_improvement_pct" in efficiency_metrics
-        else efficiency_metrics[0]
-    )
-    y_metric = (
-        "time_improvement_pct"
-        if "time_improvement_pct" in efficiency_metrics
-        else efficiency_metrics[1]
-    )
-
-    if x_metric in df.columns and y_metric in df.columns:
-        x_data = df[x_metric].dropna()
-        y_data = df[y_metric].dropna()
-
-        # Align data
-        common_idx = x_data.index.intersection(y_data.index)
-        if len(common_idx) > 0:
-            x_aligned = x_data[common_idx]
-            y_aligned = y_data[common_idx]
-
-            # Color points based on quadrant
-            colors = []
-            for x_val, y_val in zip(x_aligned, y_aligned):
-                if x_val > 0 and y_val > 0:
-                    colors.append("#2E8B57")  # Green - both improved
-                elif x_val < 0 and y_val < 0:
-                    colors.append("#CD5C5C")  # Red - both degraded
-                else:
-                    colors.append("#FFD700")  # Yellow - mixed results
-
-            plt.scatter(
-                x_aligned, y_aligned, c=colors, alpha=0.7, s=60, edgecolors="black"
-            )
-
-            plt.axhline(y=0, color="black", linestyle="--", alpha=0.5)
-            plt.axvline(x=0, color="black", linestyle="--", alpha=0.5)
-
-            plt.xlabel(
-                x_metric.replace("_improvement_pct", "").replace("_", " ").title()
-            )
-            plt.ylabel(
-                y_metric.replace("_improvement_pct", "").replace("_", " ").title()
-            )
-            plt.title("Efficiency Improvements Correlation", fontweight="bold")
-            plt.grid(True, alpha=0.3)
-
-            # Add quadrant labels
-            plt.text(
-                0.8,
-                0.8,
-                "Both Improved",
-                transform=plt.gca().transAxes,
-                ha="center",
-                va="center",
-                fontweight="bold",
-                bbox=dict(boxstyle="round", facecolor="#2E8B57", alpha=0.3),
-            )
-            plt.text(
-                0.2,
-                0.2,
-                "Both Degraded",
-                transform=plt.gca().transAxes,
-                ha="center",
-                va="center",
-                fontweight="bold",
-                bbox=dict(boxstyle="round", facecolor="#CD5C5C", alpha=0.3),
-            )
-
-    plt.tight_layout()
-    plt.show()
-
-
-def create_detailed_correlation_analysis(df: pd.DataFrame, exercise_name: str):
-    """Create detailed correlation analysis with clear explanations."""
-    if df.empty:
-        return
-
-    correlations = calculate_correlation_analysis(df)
-
-    if not correlations:
-        print("[WARN] No correlation data available")
-        return
-
-    fig, axes = plt.subplots(2, 2, figsize=(20, 16))
-    fig.suptitle(
-        f"Detailed Correlation Analysis - {exercise_name}",
-        fontsize=18,
-        fontweight="bold",
-    )
-
-    plot_idx = 0
-
-    for correlation_type, correlation_data in correlations.items():
-        if correlation_data.empty or plot_idx >= 4:
+        
+    n_metrics = len(comparison_metrics)
+    fig, axes = plt.subplots(1, n_metrics, figsize=(4 * n_metrics, 8), sharey=False)
+    
+    if n_metrics == 1:
+        axes = [axes] # Ensure axes is an iterable for the loop
+        
+    for idx, (base_col, llm_col, metric_name) in enumerate(comparison_metrics):
+        ax = axes[idx]
+        
+        base_data = df[base_col].dropna()
+        llm_data = df[llm_col].dropna()
+        
+        if len(base_data) == 0 or len(llm_data) == 0:
+            ax.text(0.5, 0.5, 'No Data Available', ha='center', va='center', 
+                    transform=ax.transAxes, fontsize=12)
+            ax.set_title(f'{metric_name.title()} Performance')
             continue
 
-        ax = axes[plot_idx // 2, plot_idx % 2]
-
-        # Create enhanced heatmap
-        mask = np.abs(correlation_data) < 0.1  # Mask weak correlations
-
-        sns.heatmap(
-            correlation_data,
-            annot=True,
-            fmt=".3f",
-            cmap="RdBu_r",
-            center=0,
-            square=True,
-            mask=mask,
-            cbar_kws={"shrink": 0.8},
-            ax=ax,
-            linewidths=0.5,
-            linecolor="white",
-        )
-
-        # Enhance labels
-        y_labels = [
-            label.replace("llm_", "").replace("_", " ").title()
-            for label in correlation_data.index
-        ]
-        x_labels = [
-            label.replace("_improvement_pct", "").replace("_", " ").title()
-            for label in correlation_data.columns
-        ]
-
-        ax.set_yticklabels(y_labels, rotation=0)
-        ax.set_xticklabels(x_labels, rotation=45, ha="right")
-
-        title = f"{correlation_type.replace('_', ' ').title()} Complexity Metrics"
-        ax.set_title(title, fontweight="bold", pad=20)
-        ax.set_xlabel("Energy Efficiency Improvements", fontweight="bold")
-        ax.set_ylabel("Code Complexity Metrics", fontweight="bold")
-
-        # Add significance indicators
-        for i, row_label in enumerate(correlation_data.index):
-            for j, col_label in enumerate(correlation_data.columns):
-                corr_val = correlation_data.iloc[i, j]
-                if abs(corr_val) > 0.5:
-                    # Strong correlation - add a star
-                    ax.text(
-                        j + 0.5,
-                        i + 0.7,
-                        "★",
-                        ha="center",
-                        va="center",
-                        color="yellow",
-                        fontsize=12,
-                        fontweight="bold",
-                    )
-                elif abs(corr_val) > 0.3:
-                    # Moderate correlation - add a circle
-                    ax.text(
-                        j + 0.5,
-                        i + 0.7,
-                        "●",
-                        ha="center",
-                        va="center",
-                        color="orange",
-                        fontsize=8,
-                        fontweight="bold",
-                    )
-
-        plot_idx += 1
-
-    # Hide unused subplots
-    for i in range(plot_idx, 4):
-        axes[i // 2, i % 2].set_visible(False)
-
-    # Add legend for significance indicators
-    legend_text = (
-        "Correlation Strength Indicators:\n"
-        "★ Strong correlation (|r| > 0.5)\n"
-        "● Moderate correlation (|r| > 0.3)\n"
-        "Weak correlations (|r| < 0.1) are masked"
-    )
-
-    fig.text(
-        0.02,
-        0.02,
-        legend_text,
-        fontsize=10,
-        verticalalignment="bottom",
-        bbox=dict(boxstyle="round,pad=0.5", facecolor="lightblue", alpha=0.8),
-    )
-
+        # Create side-by-side violin plots
+        violin_data = [base_data, llm_data]
+        parts = ax.violinplot(violin_data, positions=[1, 2], showmeans=True, showmedians=True)
+        
+        # Color violins: red for base, green for LLM
+        colors = ['#CD5C5C', '#2E8B57']
+        for pc, color in zip(parts['bodies'], colors):
+            pc.set_facecolor(color)
+            pc.set_alpha(0.7)
+            pc.set_edgecolor('black')
+        
+        # Customize statistical lines
+        parts['cmeans'].set_color('blue')
+        parts['cmeans'].set_linewidth(3)
+        parts['cmedians'].set_color('navy')
+        parts['cmedians'].set_linewidth(2)
+        parts['cmedians'].set_linestyle('--')
+        
+        # Labels and formatting
+        ax.set_xticks([1, 2])
+        ax.set_xticklabels(['Base\nCode', 'LLM\nOptimized'], fontsize=12, fontweight='bold')
+        
+        # Dynamic y-axis label
+        if metric_name == "cpu":
+            ylabel = "CPU Usage (%)"
+        elif metric_name == "ram":
+            ylabel = "RAM Usage (MB)"
+        elif metric_name == "time":
+            ylabel = "Execution Time (ms)"
+        else:
+            ylabel = "Energy Proxy"
+        
+        ax.set_ylabel(ylabel, fontsize=12, fontweight='bold')
+        ax.set_title(f'{metric_name.title()}', fontsize=14, fontweight='bold')
+        ax.grid(True, alpha=0.3)
+        
+        # Add statistical summary
+        base_mean = base_data.mean()
+        llm_mean = llm_data.mean()
+        
+        # Highlight improvement with text
+        if base_mean > 0:
+            improvement = ((base_mean - llm_mean) / base_mean) * 100
+            
+            # Use color to highlight positive/negative improvement
+            text_color = '#2E8B57' if improvement > 0 else '#CD5C5C'
+            ax.text(0.5, 0.95, f'Δ: {improvement:+.1f}%', transform=ax.transAxes,
+                    fontsize=12, fontweight='bold', ha='center', va='top', color=text_color)
+        
+    plt.suptitle(f'Detailed Performance Comparison\n({exercise_name})',
+                 fontsize=18, fontweight='bold', y=1.02)
     plt.tight_layout()
     plt.show()
 
 
-def create_complexity_impact_analysis(df: pd.DataFrame, exercise_name: str):
-    """Create analysis showing which complexity metrics have the most impact on energy efficiency."""
-    if df.empty:
-        return
-
-    # Perform regression analysis
-    regression_results = perform_regression_analysis(df)
-
+def create_predictive_analysis_detailed(regression_results: Dict[str, Any], exercise_name: str):
+    """
+    Creates a single plot with a comprehensive heatmap showing which complexity metrics
+    are most predictive of energy improvements.
+    """
     if not regression_results:
-        print("[WARN] No regression results available")
+        print("No regression results available for predictive analysis.")
         return
 
-    fig, axes = plt.subplots(2, 2, figsize=(20, 16))
-    fig.suptitle(
-        f"Complexity Metrics Impact on Energy Efficiency - {exercise_name}",
-        fontsize=18,
-        fontweight="bold",
-    )
-
-    plot_idx = 0
-    colors = [
-        "#2E8B57",
-        "#4682B4",
-        "#CD853F",
-        "#9370DB",
-    ]  # Different colors for each metric
-
+    # Combine all feature importance data into a single DataFrame
+    all_features = {}
     for target_metric, results in regression_results.items():
-        if plot_idx >= 4:
-            break
+        if "feature_importance" in results and not results["feature_importance"].empty:
+            importance_df = results["feature_importance"].head(10)  # Top 10 features
+            
+            for _, row in importance_df.iterrows():
+                feature_name = row["metric"].replace("llm_", "").replace("_", " ").title()
+                if feature_name not in all_features:
+                    all_features[feature_name] = {}
+                
+                all_features[feature_name][target_metric] = row["coefficient"]
 
-        ax = axes[plot_idx // 2, plot_idx % 2]
+    if not all_features:
+        print("No predictive features found.")
+        return
 
-        if "feature_importance" not in results:
-            continue
+    # Create the matrix for the heatmap
+    feature_matrix = pd.DataFrame(all_features).T.fillna(0)
+    
+    # Rename columns for better display
+    column_names = [col.replace("_improvement_pct", " Improvement").replace("_", " ").title() 
+                    for col in feature_matrix.columns]
+    feature_matrix.columns = column_names
+    
+    fig, ax = plt.subplots(figsize=(12, 10))
+    
+    # Create the heatmap
+    sns.heatmap(feature_matrix, annot=True, fmt='.3f', cmap='RdBu_r', center=0,
+                cbar_kws={'label': 'Coefficient Impact'}, linewidths=0.5,
+                annot_kws={'size': 10, 'weight': 'bold'}, ax=ax)
+    
+    ax.set_title(f'Predictive Power of Complexity Metrics\n({exercise_name})', 
+                 fontsize=16, fontweight='bold', pad=20)
+    ax.set_xlabel('Energy Efficiency Metrics', fontsize=12, fontweight='bold')
+    ax.set_ylabel('Code Complexity Features', fontsize=12, fontweight='bold')
+    
+    # Add a text box with summary information
+    r2_scores_text = "\n".join([f"• {target.replace('_improvement_pct', '').title()}: R² = {results['r2_score']:.3f}"
+                                for target, results in regression_results.items()])
+    
+    text_box = f"""
+    MODEL PERFORMANCE (R² SCORE):
+    {r2_scores_text}
 
-        # Get top 10 most important features
-        importance_df = results["feature_importance"].head(10)
-
-        if len(importance_df) == 0:
-            continue
-
-        # Create horizontal bar plot
-        y_pos = np.arange(len(importance_df))
-        bars = ax.barh(
-            y_pos,
-            importance_df["abs_coefficient"],
-            color=[
-                colors[plot_idx] if coef >= 0 else "#CD5C5C"
-                for coef in importance_df["coefficient"]
-            ],
-            alpha=0.8,
-            edgecolor="black",
-            linewidth=1,
-        )
-
-        # Customize labels
-        metric_labels = [
-            metric.replace("llm_", "").replace("_", " ").title()
-            for metric in importance_df["metric"]
-        ]
-        ax.set_yticks(y_pos)
-        ax.set_yticklabels(metric_labels)
-
-        # Add coefficient values on bars
-        for i, (bar, coef, abs_coef) in enumerate(
-            zip(bars, importance_df["coefficient"], importance_df["abs_coefficient"])
-        ):
-            ax.text(
-                abs_coef + 0.01,
-                bar.get_y() + bar.get_height() / 2,
-                f"{coef:.3f}",
-                ha="left",
-                va="center",
-                fontweight="bold",
-                fontsize=9,
-            )
-
-        ax.set_xlabel("Impact Strength (|Coefficient|)", fontweight="bold")
-        ax.set_title(
-            f"{target_metric.replace('_improvement_pct', '').replace('_', ' ').title()} Improvement\n"
-            f"Prediction (R² = {results['r2_score']:.3f})",
-            fontweight="bold",
-            pad=15,
-        )
-        ax.grid(True, alpha=0.3, axis="x")
-
-        # Add interpretation text
-        r2_interpretation = (
-            "Excellent"
-            if results["r2_score"] > 0.8
-            else "Good"
-            if results["r2_score"] > 0.6
-            else "Moderate"
-            if results["r2_score"] > 0.4
-            else "Weak"
-        )
-
-        ax.text(
-            0.02,
-            0.98,
-            f"Predictive Power: {r2_interpretation}",
-            transform=ax.transAxes,
-            fontsize=10,
-            verticalalignment="top",
-            bbox=dict(boxstyle="round,pad=0.3", facecolor="lightyellow", alpha=0.8),
-        )
-
-        plot_idx += 1
-
-    # Hide unused subplots
-    for i in range(plot_idx, 4):
-        axes[i // 2, i % 2].set_visible(False)
-
-    # Add interpretation guide
-    interpretation_text = (
-        "Interpretation Guide:\n"
-        "• Longer bars = stronger impact on energy efficiency\n"
-        "• Green bars = positive coefficients (higher complexity → better efficiency)\n"
-        "• Red bars = negative coefficients (higher complexity → worse efficiency)\n"
-        "• R² score indicates how well complexity metrics predict efficiency improvements\n"
-        "• Higher R² (closer to 1.0) = better prediction accuracy"
-    )
-
-    fig.text(
-        0.02,
-        0.02,
-        interpretation_text,
-        fontsize=11,
-        verticalalignment="bottom",
-        bbox=dict(boxstyle="round,pad=0.5", facecolor="lightgray", alpha=0.9),
-    )
+    INTERPRETATION:
+    • Blue cells indicate that increasing the complexity metric
+      positively impacts energy efficiency.
+    • Red cells indicate that increasing the complexity metric
+      negatively impacts energy efficiency.
+    • Higher R² scores mean the model is better at predicting
+      the improvement based on complexity metrics.
+    """
+    
+    ax.text(1.02, 0.98, text_box, transform=ax.transAxes,
+             fontsize=10, verticalalignment='top', horizontalalignment='left',
+             bbox=dict(boxstyle='round,pad=0.5', facecolor='white', alpha=0.7))
 
     plt.tight_layout()
     plt.show()
 
 
-def create_energy_trends_analysis(df: pd.DataFrame, exercise_name: str):
-    """Create detailed analysis of energy efficiency trends."""
+def create_final_summary_report(df: pd.DataFrame, exercise_name: str):
+    """
+    Creates a single, comprehensive summary report combining key statistics
+    and actionable recommendations in a structured, visual format.
+    """
     if df.empty:
+        print("No data available for summary report.")
         return
 
-    fig, axes = plt.subplots(2, 3, figsize=(24, 16))
-    fig.suptitle(
-        f"Energy Efficiency Trends Analysis - {exercise_name}",
-        fontsize=18,
-        fontweight="bold",
+    fig, ax = plt.subplots(figsize=(10, 12))
+    ax.axis('off')
+
+    # Overall Assessment Section
+    efficiency_metrics = [col for col in df.columns if "improvement_pct" in col]
+    scores = []
+    if efficiency_metrics:
+        for metric in efficiency_metrics:
+            data = df[metric].dropna()
+            if len(data) > 0:
+                mean_improvement = data.mean()
+                success_rate = (data > 0).sum() / len(data) * 100
+                scores.append((mean_improvement + success_rate) / 2)
+    
+    avg_score = sum(scores) / len(scores) if scores else 0
+    
+    if avg_score > 15:
+        overall_grade = "EXCELLENT 👍"
+        grade_color = "#2E8B57"
+    elif avg_score > 5:
+        overall_grade = "GOOD 😊"
+        grade_color = "#90EE90"
+    elif avg_score > -5:
+        overall_grade = "MIXED ⚖️"
+        grade_color = "#FFD700"
+    else:
+        overall_grade = "NEEDS WORK 👎"
+        grade_color = "#CD5C5C"
+
+    assessment_text = f"""
+    
+    <span style='font-size: 20pt; font-weight: bold;'>OVERALL ASSESSMENT:</span>
+    <span style='font-size: 16pt; font-weight: bold; color: {grade_color};'>{overall_grade}</span>
+    
+    • Average Performance Score: <span style='font-weight: bold;'>{avg_score:.1f}</span>
+    • LLM Optimization Impact: <span style='font-weight: bold; color: {'#2E8B57' if avg_score > 0 else '#CD5C5C'};'>{'POSITIVE' if avg_score > 0 else 'NEGATIVE'}</span>
+    
+    ---
+    
+    <span style='font-size: 16pt; font-weight: bold;'>KEY FINDINGS:</span>
+    """
+
+    # Key Findings Section (Top 3 improvements)
+    findings = []
+    if efficiency_metrics:
+        for metric in efficiency_metrics:
+            data = df[metric].dropna()
+            if len(data) > 0:
+                mean_improvement = data.mean()
+                success_rate = (data > 0).sum() / len(data) * 100
+                findings.append({
+                    'metric': metric.replace("_improvement_pct", "").replace("_", " ").title(),
+                    'mean': mean_improvement,
+                    'success': success_rate
+                })
+        
+        findings.sort(key=lambda x: x['mean'], reverse=True)
+        findings_text = ""
+        for i, f in enumerate(findings[:3]):
+            findings_text += f"""
+    • <span style='font-weight: bold;'>{i+1}. {f['metric']}:</span>
+      - Avg. Improvement: <span style='font-weight: bold;'>{f['mean']:+.1f}%</span>
+      - Success Rate: <span style='font-weight: bold;'>{f['success']:.1f}%</span>
+    """
+    
+    # Recommendations Section
+    recommendations_text = f"""
+    ---
+    
+    <span style='font-size: 16pt; font-weight: bold;'>ACTIONABLE RECOMMENDATIONS:</span>
+    
+    • <span style='font-weight: bold; color: #2E8B57;'>LEVERAGE STRENGTHS:</span>
+      Focus on patterns that led to improvements in metrics like '{findings[0]['metric']}' to further optimize code.
+      
+    • <span style='font-weight: bold; color: #CD5C5C;'>ADDRESS WEAKNESSES:</span>
+      Investigate and refactor LLM-generated code that degrades performance, especially in metrics that showed negative improvement.
+      
+    • <span style='font-weight: bold; color: #4682B4;'>SEEK BALANCE:</span>
+      Use complexity metrics (e.g., from the correlation analysis) as a guide to generate code that is both efficient and maintainable.
+    """
+    
+    # Final text composition
+    final_text = (
+        assessment_text + 
+        findings_text + 
+        recommendations_text
     )
 
-    # Define colors
-    colors = {
-        "base": "#CD5C5C",  # Indian Red
-        "llm": "#2E8B57",  # Sea Green
-        "improvement": "#4682B4",  # Steel Blue
-        "degradation": "#FF6347",  # Tomato
-    }
+    ax.text(0.02, 0.98, final_text, transform=ax.transAxes,
+            fontsize=12, verticalalignment='top', horizontalalignment='left',
+            fontfamily='monospace',
+            bbox=dict(boxstyle="round,pad=1", facecolor="#F5F5F5", edgecolor="#E0E0E0"))
 
-    # 1. Raw energy consumption comparison
-    ax1 = axes[0, 0]
-    if "base_cpu" in df.columns and "llm_cpu" in df.columns:
-        base_cpu = df["base_cpu"].dropna()
-        llm_cpu = df["llm_cpu"].dropna()
-
-        if len(base_cpu) > 0 and len(llm_cpu) > 0:
-            # Create violin plot
-            violin_parts = ax1.violinplot([base_cpu, llm_cpu], positions=[1, 2])
-
-            for pc, color in zip(
-                violin_parts["bodies"], [colors["base"], colors["llm"]]
-            ):
-                pc.set_facecolor(color)
-                pc.set_alpha(0.7)
-
-            # Add mean lines
-            ax1.hlines(
-                base_cpu.mean(),
-                0.8,
-                1.2,
-                colors=colors["base"],
-                linestyles="solid",
-                linewidth=3,
-            )
-            ax1.hlines(
-                llm_cpu.mean(),
-                1.8,
-                2.2,
-                colors=colors["llm"],
-                linestyles="solid",
-                linewidth=3,
-            )
-
-            ax1.set_xticks([1, 2])
-            ax1.set_xticklabels(["Base Code", "LLM Code"])
-            ax1.set_ylabel("CPU Usage (%)")
-            ax1.set_title("CPU Usage Distribution", fontweight="bold")
-            ax1.grid(True, alpha=0.3)
-
-            # Add statistics text
-            stats_text = (
-                f"Base: μ={base_cpu.mean():.2f}%, σ={base_cpu.std():.2f}%\n"
-                f"LLM: μ={llm_cpu.mean():.2f}%, σ={llm_cpu.std():.2f}%"
-            )
-            ax1.text(
-                0.02,
-                0.98,
-                stats_text,
-                transform=ax1.transAxes,
-                verticalalignment="top",
-                fontsize=9,
-                bbox=dict(boxstyle="round,pad=0.3", facecolor="white", alpha=0.8),
-            )
-
-    # 2. Memory usage comparison
-    ax2 = axes[0, 1]
-    if "base_ram" in df.columns and "llm_ram" in df.columns:
-        base_ram = df["base_ram"].dropna()
-        llm_ram = df["llm_ram"].dropna()
-
-        if len(base_ram) > 0 and len(llm_ram) > 0:
-            violin_parts = ax2.violinplot([base_ram, llm_ram], positions=[1, 2])
-
-            for pc, color in zip(
-                violin_parts["bodies"], [colors["base"], colors["llm"]]
-            ):
-                pc.set_facecolor(color)
-                pc.set_alpha(0.7)
-
-            ax2.hlines(
-                base_ram.mean(),
-                0.8,
-                1.2,
-                colors=colors["base"],
-                linestyles="solid",
-                linewidth=3,
-            )
-            ax2.hlines(
-                llm_ram.mean(),
-                1.8,
-                2.2,
-                colors=colors["llm"],
-                linestyles="solid",
-                linewidth=3,
-            )
-
-            ax2.set_xticks([1, 2])
-            ax2.set_xticklabels(["Base Code", "LLM Code"])
-            ax2.set_ylabel("RAM Usage (MB)")
-            ax2.set_title("Memory Usage Distribution", fontweight="bold")
-            ax2.grid(True, alpha=0.3)
-
-            stats_text = (
-                f"Base: μ={base_ram.mean():.2f} MB, σ={base_ram.std():.2f} MB\n"
-                f"LLM: μ={llm_ram.mean():.2f} MB, σ={llm_ram.std():.2f} MB"
-            )
-            ax2.text(
-                0.02,
-                0.98,
-                stats_text,
-                transform=ax2.transAxes,
-                verticalalignment="top",
-                fontsize=9,
-                bbox=dict(boxstyle="round,pad=0.3", facecolor="white", alpha=0.8),
-            )
-
-    # 3. Execution time comparison
-    ax3 = axes[0, 2]
-    if "base_time" in df.columns and "llm_time" in df.columns:
-        base_time = df["base_time"].dropna()
-        llm_time = df["llm_time"].dropna()
-
-        if len(base_time) > 0 and len(llm_time) > 0:
-            violin_parts = ax3.violinplot([base_time, llm_time], positions=[1, 2])
-
-            for pc, color in zip(
-                violin_parts["bodies"], [colors["base"], colors["llm"]]
-            ):
-                pc.set_facecolor(color)
-                pc.set_alpha(0.7)
-
-            ax3.hlines(
-                base_time.mean(),
-                0.8,
-                1.2,
-                colors=colors["base"],
-                linestyles="solid",
-                linewidth=3,
-            )
-            ax3.hlines(
-                llm_time.mean(),
-                1.8,
-                2.2,
-                colors=colors["llm"],
-                linestyles="solid",
-                linewidth=3,
-            )
-
-            ax3.set_xticks([1, 2])
-            ax3.set_xticklabels(["Base Code", "LLM Code"])
-            ax3.set_ylabel("Execution Time (ms)")
-            ax3.set_title("Execution Time Distribution", fontweight="bold")
-            ax3.grid(True, alpha=0.3)
-
-            stats_text = (
-                f"Base: μ={base_time.mean():.2f} ms, σ={base_time.std():.2f} ms\n"
-                f"LLM: μ={llm_time.mean():.2f} ms, σ={llm_time.std():.2f} ms"
-            )
-            ax3.text(
-                0.02,
-                0.98,
-                stats_text,
-                transform=ax3.transAxes,
-                verticalalignment="top",
-                fontsize=9,
-                bbox=dict(boxstyle="round,pad=0.3", facecolor="white", alpha=0.8),
-            )
-
-    # 4. Energy efficiency improvements scatter matrix
-    ax4 = axes[1, 0]
-    efficiency_metrics = [col for col in df.columns if "improvement_pct" in col]
-
-    if len(efficiency_metrics) >= 2:
-        x_metric = efficiency_metrics[0]  # cpu_improvement_pct
-        y_metric = (
-            efficiency_metrics[2]
-            if len(efficiency_metrics) > 2
-            else efficiency_metrics[1]
-        )  # time_improvement_pct
-
-        x_data = df[x_metric].dropna()
-        y_data = df[y_metric].dropna()
-
-        if len(x_data) > 0 and len(y_data) > 0:
-            # Align data
-            common_idx = x_data.index.intersection(y_data.index)
-            if len(common_idx) > 0:
-                x_aligned = x_data[common_idx]
-                y_aligned = y_data[common_idx]
-
-                # Color points based on quadrants
-                colors_scatter = []
-                for x_val, y_val in zip(x_aligned, y_aligned):
-                    if x_val > 0 and y_val > 0:
-                        colors_scatter.append(colors["improvement"])
-                    elif x_val < 0 and y_val < 0:
-                        colors_scatter.append(colors["degradation"])
-                    else:
-                        colors_scatter.append("#FFD700")  # Gold for mixed results
-
-                ax4.scatter(
-                    x_aligned,
-                    y_aligned,
-                    c=colors_scatter,
-                    alpha=0.7,
-                    s=60,
-                    edgecolors="black",
-                    linewidth=0.5,
-                )
-
-                ax4.axhline(y=0, color="black", linestyle="--", alpha=0.5)
-                ax4.axvline(x=0, color="black", linestyle="--", alpha=0.5)
-
-                ax4.set_xlabel(
-                    x_metric.replace("_improvement_pct", "").replace("_", " ").title()
-                    + " Improvement (%)"
-                )
-                ax4.set_ylabel(
-                    y_metric.replace("_improvement_pct", "").replace("_", " ").title()
-                    + " Improvement (%)"
-                )
-                ax4.set_title("Efficiency Improvements Correlation", fontweight="bold")
-                ax4.grid(True, alpha=0.3)
-
-                # Add correlation coefficient
-                corr_coef = np.corrcoef(x_aligned, y_aligned)[0, 1]
-                ax4.text(
-                    0.05,
-                    0.95,
-                    f"Correlation: r = {corr_coef:.3f}",
-                    transform=ax4.transAxes,
-                    fontsize=10,
-                    verticalalignment="top",
-                    bbox=dict(boxstyle="round,pad=0.3", facecolor="white", alpha=0.8),
-                )
-
-    # 5. Improvement distribution by magnitude
-    ax5 = axes[1, 1]
-    if efficiency_metrics:
-        # Combine all improvement percentages
-        all_improvements = []
-        metric_labels = []
-
-        for metric in efficiency_metrics:
-            if metric in df.columns:
-                improvements = df[metric].dropna()
-                all_improvements.extend(improvements)
-                metric_labels.extend(
-                    [metric.replace("_improvement_pct", "").replace("_", " ").title()]
-                    * len(improvements)
-                )
-
-        if all_improvements:
-            # Create histogram with different colors for positive and negative improvements
-            bins = np.linspace(min(all_improvements), max(all_improvements), 30)
-
-            positive_improvements = [x for x in all_improvements if x > 0]
-            negative_improvements = [x for x in all_improvements if x < 0]
-
-            if positive_improvements:
-                ax5.hist(
-                    positive_improvements,
-                    bins=bins,
-                    alpha=0.7,
-                    color=colors["improvement"],
-                    label=f"Improvements ({len(positive_improvements)})",
-                    edgecolor="black",
-                    linewidth=0.5,
-                )
-            if negative_improvements:
-                ax5.hist(
-                    negative_improvements,
-                    bins=bins,
-                    alpha=0.7,
-                    color=colors["degradation"],
-                    label=f"Degradations ({len(negative_improvements)})",
-                    edgecolor="black",
-                    linewidth=0.5,
-                )
-
-            ax5.axvline(x=0, color="black", linestyle="-", linewidth=2, alpha=0.8)
-            ax5.set_xlabel("Efficiency Change (%)")
-            ax5.set_ylabel("Frequency")
-            ax5.set_title(
-                "Distribution of Energy Efficiency Changes", fontweight="bold"
-            )
-            ax5.legend()
-            ax5.grid(True, alpha=0.3)
-
-            # Add statistics
-            mean_improvement = np.mean(all_improvements)
-            stats_text = (
-                f"Mean: {mean_improvement:.2f}%\n"
-                f"Std: {np.std(all_improvements):.2f}%\n"
-                f"Improved: {len(positive_improvements)}/{len(all_improvements)} "
-                f"({len(positive_improvements) / len(all_improvements) * 100:.1f}%)"
-            )
-            ax5.text(
-                0.05,
-                0.95,
-                stats_text,
-                transform=ax5.transAxes,
-                verticalalignment="top",
-                fontsize=9,
-                bbox=dict(boxstyle="round,pad=0.3", facecolor="white", alpha=0.8),
-            )
-
-    # 6. LLM type comparison (if available)
-    ax6 = axes[1, 2]
-    if "llm_type" in df.columns and "cpu_improvement_pct" in df.columns:
-        llm_types = df["llm_type"].unique()
-
-        if len(llm_types) > 1:
-            improvements_by_llm = []
-            llm_labels = []
-
-            for llm_type in llm_types:
-                llm_data = df[df["llm_type"] == llm_type][
-                    "cpu_improvement_pct"
-                ].dropna()
-                if len(llm_data) > 0:
-                    improvements_by_llm.append(llm_data)
-                    llm_labels.append(llm_type)
-
-            if improvements_by_llm:
-                box_plot = ax6.boxplot(
-                    improvements_by_llm, labels=llm_labels, patch_artist=True
-                )
-
-                # Color boxes
-                colors_list = plt.cm.Set3(np.linspace(0, 1, len(improvements_by_llm)))
-                for patch, color in zip(box_plot["boxes"], colors_list):
-                    patch.set_facecolor(color)
-                    patch.set_alpha(0.7)
-
-                ax6.axhline(y=0, color="black", linestyle="-", linewidth=2, alpha=0.8)
-                ax6.set_ylabel("CPU Improvement (%)")
-                ax6.set_title("CPU Efficiency by LLM Type", fontweight="bold")
-                ax6.grid(True, alpha=0.3, axis="y")
-                ax6.tick_params(axis="x", rotation=45)
-
-                # Add mean values as text
-                for i, (data, label) in enumerate(zip(improvements_by_llm, llm_labels)):
-                    mean_val = np.mean(data)
-                    ax6.text(
-                        i + 1,
-                        ax6.get_ylim()[1] * 0.9,
-                        f"μ={mean_val:.1f}%",
-                        ha="center",
-                        va="center",
-                        fontweight="bold",
-                        bbox=dict(
-                            boxstyle="round,pad=0.2", facecolor="white", alpha=0.8
-                        ),
-                    )
-
+    fig.suptitle(f'Executive Summary Report: {exercise_name}', 
+                 fontsize=18, fontweight='bold', y=0.98)
+    
     plt.tight_layout()
     plt.show()
-
-
-def create_summary_insights_report(df: pd.DataFrame, exercise_name: str):
-    """Create a summary report with key insights and actionable recommendations."""
-    if df.empty:
-        print("No data available for summary report")
-        return
-
-    print("\n" + "=" * 100)
-    print(f"📊 COMPREHENSIVE ANALYSIS SUMMARY - {exercise_name}")
-    print("=" * 100)
-
-    # Basic statistics
-    total_comparisons = len(df)
-    unique_entries = df["entry_id"].nunique() if "entry_id" in df.columns else "N/A"
-
-    print("\n📈 DATASET OVERVIEW:")
-    print(f"   • Total code comparisons analyzed: {total_comparisons}")
-    print(f"   • Unique code entries: {unique_entries}")
-
-    if "llm_type" in df.columns:
-        llm_types = df["llm_type"].unique()
-        print(f"   • LLM types tested: {', '.join(llm_types)}")
-
-    if "language" in df.columns:
-        languages = df["language"].unique()
-        print(f"   • Programming languages: {', '.join(languages)}")
-
-    # Energy efficiency summary
-    efficiency_metrics = [col for col in df.columns if "improvement_pct" in col]
-
-    if efficiency_metrics:
-        print("\n⚡ ENERGY EFFICIENCY IMPROVEMENTS:")
-
-        overall_improvements = {}
-        for metric in efficiency_metrics:
-            if metric in df.columns:
-                data = df[metric].dropna()
-                if len(data) > 0:
-                    mean_improvement = data.mean()
-                    positive_cases = (data > 0).sum()
-                    total_cases = len(data)
-                    improvement_rate = (
-                        (positive_cases / total_cases * 100) if total_cases > 0 else 0
-                    )
-
-                    metric_name = (
-                        metric.replace("_improvement_pct", "").replace("_", " ").title()
-                    )
-                    overall_improvements[metric_name] = {
-                        "mean": mean_improvement,
-                        "rate": improvement_rate,
-                        "positive": positive_cases,
-                        "total": total_cases,
-                    }
-
-                    status = (
-                        "✅ IMPROVED"
-                        if mean_improvement > 0
-                        else "❌ DEGRADED"
-                        if mean_improvement < 0
-                        else "➖ NEUTRAL"
-                    )
-                    print(
-                        f"   • {metric_name}: {mean_improvement:+.2f}% average {status}"
-                    )
-                    print(
-                        f"     └─ {positive_cases}/{total_cases} cases improved ({improvement_rate:.1f}%)"
-                    )
-
-        # Find best and worst performing metrics
-        if overall_improvements:
-            best_metric = max(overall_improvements.items(), key=lambda x: x[1]["mean"])
-            worst_metric = min(overall_improvements.items(), key=lambda x: x[1]["mean"])
-
-            print(
-                f"\n   🏆 Best improvement: {best_metric[0]} ({best_metric[1]['mean']:+.2f}%)"
-            )
-            print(
-                f"   ⚠️  Worst change: {worst_metric[0]} ({worst_metric[1]['mean']:+.2f}%)"
-            )
-
-    # Correlation insights
-    correlations = calculate_correlation_analysis(df)
-    if correlations and "overall" in correlations and not correlations["overall"].empty:
-        print("\n🔗 KEY CORRELATIONS:")
-
-        corr_df = correlations["overall"]
-
-        # Find strongest positive and negative correlations
-        strong_correlations = []
-        for metric in corr_df.index:
-            for efficiency in corr_df.columns:
-                corr_val = corr_df.loc[metric, efficiency]
-                if abs(corr_val) > 0.3:  # Significant correlation
-                    strong_correlations.append((metric, efficiency, corr_val))
-
-        # Sort by absolute correlation strength
-        strong_correlations.sort(key=lambda x: abs(x[2]), reverse=True)
-
-        if strong_correlations:
-            print("   Top correlations found:")
-            for metric, efficiency, corr_val in strong_correlations[:5]:
-                metric_clean = metric.replace("llm_", "").replace("_", " ").title()
-                efficiency_clean = (
-                    efficiency.replace("_improvement_pct", "").replace("_", " ").title()
-                )
-
-                if corr_val > 0:
-                    relationship = "Higher complexity → Better efficiency"
-                    icon = "📈"
-                else:
-                    relationship = "Higher complexity → Worse efficiency"
-                    icon = "📉"
-
-                print(
-                    f"   • {icon} {metric_clean} ↔ {efficiency_clean}: r={corr_val:.3f}"
-                )
-                print(f"     └─ {relationship}")
-        else:
-            print("   • No significant correlations found (|r| > 0.3)")
-
-    # Regression analysis insights
-    regression_results = perform_regression_analysis(df)
-    if regression_results:
-        print("\n🎯 PREDICTIVE ANALYSIS:")
-
-        best_predictions = []
-        for target, results in regression_results.items():
-            r2_score = results.get("r2_score", 0)
-            if r2_score > 0.3:  # Decent predictive power
-                best_predictions.append((target, r2_score, results))
-
-        best_predictions.sort(key=lambda x: x[1], reverse=True)
-
-        if best_predictions:
-            print("   Energy efficiency predictability:")
-            for target, r2_score, results in best_predictions:
-                target_clean = (
-                    target.replace("_improvement_pct", "").replace("_", " ").title()
-                )
-
-                if r2_score > 0.8:
-                    quality = "Excellent"
-                    icon = "🎯"
-                elif r2_score > 0.6:
-                    quality = "Good"
-                    icon = "✅"
-                elif r2_score > 0.4:
-                    quality = "Moderate"
-                    icon = "⚠️"
-                else:
-                    quality = "Weak"
-                    icon = "❌"
-
-                print(
-                    f"   • {icon} {target_clean}: R² = {r2_score:.3f} ({quality} prediction)"
-                )
-
-                # Show top predictive metrics
-                if "feature_importance" in results:
-                    top_features = results["feature_importance"].head(3)
-                    print("     └─ Key predictive metrics:")
-                    for _, row in top_features.iterrows():
-                        feature_clean = (
-                            row["metric"].replace("llm_", "").replace("_", " ").title()
-                        )
-                        coef_direction = (
-                            "increases" if row["coefficient"] > 0 else "decreases"
-                        )
-                        print(
-                            f"        • {feature_clean} ({coef_direction} efficiency)"
-                        )
-        else:
-            print("   • Low predictive power across all efficiency metrics")
-
-    # Generate actionable recommendations
-    print("\n💡 ACTIONABLE RECOMMENDATIONS:")
-
-    recommendations = []
-
-    # Based on correlation analysis
-    if correlations and "overall" in correlations and not correlations["overall"].empty:
-        corr_df = correlations["overall"]
-
-        # Find metrics that consistently correlate with improvements
-        positive_correlations = {}
-        negative_correlations = {}
-
-        for metric in corr_df.index:
-            pos_count = (corr_df.loc[metric] > 0.3).sum()
-            neg_count = (corr_df.loc[metric] < -0.3).sum()
-
-            if pos_count > neg_count and pos_count > 0:
-                avg_corr = corr_df.loc[metric][corr_df.loc[metric] > 0.3].mean()
-                positive_correlations[metric] = avg_corr
-            elif neg_count > pos_count and neg_count > 0:
-                avg_corr = corr_df.loc[metric][corr_df.loc[metric] < -0.3].mean()
-                negative_correlations[metric] = avg_corr
-
-        if positive_correlations:
-            top_positive = max(positive_correlations.items(), key=lambda x: x[1])
-            metric_name = top_positive[0].replace("llm_", "").replace("_", " ").title()
-            recommendations.append(
-                f"🔍 Focus on increasing {metric_name} - shows consistent positive correlation with energy efficiency"
-            )
-
-        if negative_correlations:
-            top_negative = min(negative_correlations.items(), key=lambda x: x[1])
-            metric_name = top_negative[0].replace("llm_", "").replace("_", " ").title()
-            recommendations.append(
-                f"⚠️  Monitor and potentially reduce {metric_name} - shows consistent negative correlation with energy efficiency"
-            )
-
-    # Based on current performance
-    if efficiency_metrics:
-        # Find metrics that need improvement
-        needs_improvement = []
-        for metric in efficiency_metrics:
-            if metric in df.columns:
-                data = df[metric].dropna()
-                if len(data) > 0:
-                    mean_val = data.mean()
-                    improvement_rate = (data > 0).mean()
-                    if mean_val < 0 or improvement_rate < 0.5:
-                        metric_name = (
-                            metric.replace("_improvement_pct", "")
-                            .replace("_", " ")
-                            .title()
-                        )
-                        needs_improvement.append(
-                            (metric_name, mean_val, improvement_rate)
-                        )
-
-        if needs_improvement:
-            worst_metric = min(needs_improvement, key=lambda x: x[1])
-            recommendations.append(
-                f"🚨 Priority: Improve {worst_metric[0]} efficiency - currently showing {worst_metric[1]:.1f}% average change with only {worst_metric[2] * 100:.1f}% success rate"
-            )
-
-    # Generic recommendations
-    recommendations.extend(
-        [
-            "📊 Continue monitoring energy metrics to identify trends and patterns",
-            "🔄 Consider iterative optimization focusing on the most predictive complexity metrics",
-            "📈 Validate improvements with larger datasets to ensure statistical significance",
-        ]
-    )
-
-    # Print recommendations
-    if recommendations:
-        for i, rec in enumerate(recommendations, 1):
-            print(f"   {i}. {rec}")
-
-    print("\n" + "=" * 100)
-    print(
-        "📋 Analysis complete! Use these insights to guide LLM code optimization strategies."
-    )
-    print("=" * 100 + "\n")
 
 
 # =============================================================================
@@ -1961,6 +1047,7 @@ def generate_comprehensive_report(df: pd.DataFrame) -> Dict[str, Any]:
 
 def main():
     """Main analysis pipeline."""
+    #obtain input file 
     parser = argparse.ArgumentParser(
         description="Enhanced Language-Agnostic Code Complexity Metrics Analysis",
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -1989,7 +1076,7 @@ def main():
     exercise_name = extract_exercise_name_from_cluster(CLUSTER_METRICS_FILE)
     print(f"[INFO] Analyzing exercise: {exercise_name}")
 
-    # Load data
+    # Load data by input cluster file
     print("\n[1/7] Loading cluster data...")
     cluster_data = load_cluster_metrics(CLUSTER_METRICS_FILE)
 
@@ -1997,28 +1084,29 @@ def main():
         print("[ERROR] Failed to load cluster data")
         return
 
-    # Find corresponding output files
+    # Find corresponding output files (1-5 execution files for base code snippet + 1-5exec files for v4 = best prompt v)
     print(f"\n[2/7] Finding output files for exercise '{exercise_name}'...")
-    base_files, llm_v3_files = find_output_files_for_exercise(
+    base_files, llm_v4_files = find_output_files_for_exercise(
         OUTPUT_DIR_FILEPATH, exercise_name
     )
     # print(f"\nbase_files\n{base_files}")
-    # print(f"\nllm_v3_files\n{llm_v3_files}")
+    # print(f"\nllm_v4_files\n{llm_v4_files}")
 
     if not base_files:
         print(f"[ERROR] No base execution files found for exercise '{exercise_name}'")
         return
 
-    if not llm_v3_files:
-        print(f"[ERROR] No LLM v3 execution files found for exercise '{exercise_name}'")
+    if not llm_v4_files:
+        print(f"[ERROR] No LLM v4 execution files found for exercise '{exercise_name}'")
         return
 
     # Load execution results
+    # get arrays of base results : each item of arr is a dict with keys : filename, filepath and data (json parsed file content)
     print("\n[3/7] Loading execution results...")
-    base_exec_results = load_execution_results(base_files)
+    base_exec_results = load_execution_results(base_files) 
     # print(f"\nbase_exec_results\n{base_exec_results}")
 
-    llm_exec_results = load_execution_results(llm_v3_files)
+    llm_exec_results = load_execution_results(llm_v4_files)
     # print(f"\nllm_exec_results\n{llm_exec_results}")
 
     if not base_exec_results or not llm_exec_results:
@@ -2034,6 +1122,7 @@ def main():
 
     print(f"[INFO] Base energy data for {len(base_energy_avg)} entries")
     print(f"[INFO] LLM energy data for {len(llm_energy_avg)} entries")
+    #len base_energy_avg could be different by len llm_energy_avg if there are entry in which all LLMs fails regression test
 
     if not base_energy_avg or not llm_energy_avg:
         print("[ERROR] No energy data available for analysis")
@@ -2087,37 +1176,28 @@ def main():
                 f"  - {positive_cases}/{total_cases} cases showed improvement ({positive_cases / total_cases * 100:.1f}%)"
             )
 
-    # Create visualizations
-    print("\n[7/7] Creating visualizations...")
-
-    # Energy improvement summary
-    #create_energy_improvement_summary(df)
-    create_energy_overview_dashboard(df, exercise_name)
-
-    # Correlation heatmaps
-    """
-    if "correlations" in report:
-        for correlation_type, correlation_data in report["correlations"].items():
-            if not correlation_data.empty:
-                title = f"{correlation_type.replace('_', ' ').title()} Complexity Metrics vs Energy Efficiency"
-                create_correlation_heatmap(correlation_data, title)
-                create_detailed_correlation_analysis(df, exercise_name)
+    # Create enhanced visualizations
+    print("\n[7/7] Creating enhanced single-screen visualizations...")
+    print("Creating comprehensive energy improvement overview...")
+    create_energy_improvement_overview(df, exercise_name)
     
-
-    # Scatter plots
-    create_scatter_plots(df)
-
-    create_complexity_impact_analysis(df, exercise_name)
-
-    create_energy_trends_analysis(df, exercise_name)
-
-    create_summary_insights_report(df, exercise_name)
-    """
-
-    # Feature importance plots
+    print("Creating detailed correlation analysis...")
+    create_correlation_analysis_detailed(df, exercise_name)
+    
+    print("Creating performance comparison analysis...")
+    create_performance_comparison_detailed(df, exercise_name)
+    
     if "regressions" in report and report["regressions"]:
-        create_feature_importance_plot(report["regressions"])
+        print("Creating predictive analysis...")
+        create_predictive_analysis_detailed(report["regressions"], exercise_name)
+    
+    print("Creating final summary report...")
+    create_final_summary_report(df, exercise_name)
 
+    print(f"\nAnalysis complete for exercise '{exercise_name}'!")
+    print("All visualizations are now displayed as single, comprehensive screens.")
+    print("Each chart provides clear interpretation guides and actionable insights.")
+    
     # Print key insights
     print("\n🔍 KEY INSIGHTS:")
     for insight in report.get("insights", []):
@@ -2180,3 +1260,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+ 
