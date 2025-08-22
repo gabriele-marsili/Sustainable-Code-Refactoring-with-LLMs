@@ -9,6 +9,7 @@ from utility_dir import utility_paths  # noqa: E402
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
+#from scipy import stats
 
 
 
@@ -121,33 +122,54 @@ def analyze_correlations(df):
 def plot_results(df, corr):
     # Heatmap delle correlazioni
     plt.figure(figsize=(max(8, len(corr.columns) * 0.7), 
-                        max(6, len(corr.index) * 0.5)))  # dinamico
+                        max(6, len(corr.index) * 0.5)))
     sns.heatmap(corr, annot=True, cmap="coolwarm", center=0, fmt=".2f",
                 annot_kws={"size": 8})
     plt.title("Correlation between Complexity Metrics and Energy Improvements", fontsize=12, pad=20)
-    plt.xticks(rotation=45, ha="right")  # evita sovrapposizioni
+    plt.xticks(rotation=45, ha="right")
     plt.yticks(rotation=0)
     plt.tight_layout()
     plt.show()
 
-    # Scatter plot: Cyclomatic Complexity vs CPU Improvement
-    plt.figure(figsize=(7,5))
-    sns.scatterplot(data=df, x="cyclomatic_complexity", y="CPU", hue="model", alpha=0.7)
+    # Pairplot: scatter matrix con regressione lineare
+    selected_cols = [
+        "cyclomatic_complexity",
+        "maintainability_index",
+        "halstead_volume",
+        "halstead_difficulty",
+        "loc",
+        "CPU_improvement",
+        "RAM_improvement",
+        "execution_time_improvement"
+    ]
+    sns.pairplot(
+        df[selected_cols + ["model"]],
+        hue="model",
+        diag_kind="kde",
+        kind="reg",
+        plot_kws={'line_kws': {"color": "red"}, 'scatter_kws': {"alpha": 0.6}}
+    )
+    plt.suptitle("Pairplot: Complexity Metrics vs Energy Improvements", y=1.02)
+    plt.show()
+
+    # Boxplot: distribuzione dei miglioramenti per modello
+    for metric in ["CPU_improvement", "RAM_improvement", "execution_time_improvement"]:
+        plt.figure(figsize=(7,5))
+        sns.boxplot(data=df, x="model", y=metric)
+        plt.title(f"Distribution of {metric.replace('_', ' ').title()} by Model", fontsize=12, pad=15)
+        plt.xlabel("Model")
+        plt.ylabel(metric.replace("_", " ").title())
+        plt.tight_layout()
+        plt.show()
+
+    # Regression plots singoli: relazioni chiave
+    sns.lmplot(data=df, x="cyclomatic_complexity", y="CPU_improvement", hue="model", height=5, aspect=1.2)
     plt.title("Cyclomatic Complexity vs CPU Improvement", fontsize=12, pad=15)
-    plt.xlabel("Cyclomatic Complexity")
-    plt.ylabel("CPU Improvement (%)")
-    plt.tight_layout()
     plt.show()
 
-    # Scatter plot: Maintainability Index vs Execution Time Improvement
-    plt.figure(figsize=(7,5))
-    sns.scatterplot(data=df, x="maintainability_index", y="execution time", hue="model", alpha=0.7)
+    sns.lmplot(data=df, x="maintainability_index", y="execution_time_improvement", hue="model", height=5, aspect=1.2)
     plt.title("Maintainability Index vs Execution Time Improvement", fontsize=12, pad=15)
-    plt.xlabel("Maintainability Index")
-    plt.ylabel("Execution Time Improvement (%)")
-    plt.tight_layout()
     plt.show()
-
 
 if __name__ == "__main__":
     

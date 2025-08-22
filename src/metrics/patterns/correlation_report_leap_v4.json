@@ -1,0 +1,68 @@
+{
+  "pattern_energy_correlation": {
+    "openAI": {
+      "cpu_correlation": -0.25434671389102004,
+      "cpu_p_value": 0.2415326364853847,
+      "ram_correlation": -0.012206064056759901,
+      "ram_p_value": 0.9559189164490587,
+      "execution_time_correlation": 0.299191356808223,
+      "execution_time_p_value": 0.16548304080868237,
+      "sample_size": 23
+    },
+    "gemini": {
+      "cpu_correlation": -0.25433061260437684,
+      "cpu_p_value": 0.24156345617003314,
+      "ram_correlation": 0.016511615031234467,
+      "ram_p_value": 0.9403931467907769,
+      "execution_time_correlation": 0.29930929201344014,
+      "execution_time_p_value": 0.16530827580148563,
+      "sample_size": 23
+    },
+    "claude": {
+      "cpu_correlation": -0.25414638287388175,
+      "cpu_p_value": 0.2419162752263339,
+      "ram_correlation": 0.985987651207077,
+      "ram_p_value": 8.097860501072337e-18,
+      "execution_time_correlation": 0.3013530921216657,
+      "execution_time_p_value": 0.1623000344810826,
+      "sample_size": 23
+    }
+  },
+  "llm_performance": {},
+  "statistical_analysis": {
+    "overall": {
+      "cpu_correlation": -0.2542745723318891,
+      "cpu_p_value": 0.0349994828635037,
+      "ram_correlation": 0.5473799797294031,
+      "ram_p_value": 1.1321611924058376e-06,
+      "execution_time_correlation": 0.299951488428723,
+      "execution_time_p_value": 0.012279354361702174,
+      "total_samples": 69
+    }
+  },
+  "summary": {
+    "strongest_correlation": {
+      "metric": "ram_correlation",
+      "value": 0.985987651207077,
+      "llm": "claude",
+      "significance": "significant",
+      "p_value": 8.097860501072337e-18
+    },
+    "pattern_distribution": {
+      "most_common_patterns": {
+        "Decorator": 3
+      },
+      "pattern_type_distribution": {
+        "Structural": 3
+      }
+    },
+    "energy_improvement_stats": {
+      "mean_cpu_improvement": 3652.1980373463134,
+      "mean_ram_improvement": 0.009922693071047402,
+      "mean_time_improvement": 101.41629534013211,
+      "std_cpu_improvement": 1097.0337352979143,
+      "std_ram_improvement": 0.1248036640119603,
+      "std_time_improvement": 73.87808167741966
+    }
+  }
+}

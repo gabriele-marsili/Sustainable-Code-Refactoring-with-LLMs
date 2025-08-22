@@ -23,9 +23,11 @@ LLM_CONFIGS_FILEPATH = SRC_DIR / "llm_configs.json"
 
 PROMPTS_DIR_FILEPATH = SRC_DIR / "prompts"
 
-METRICS_DIR_FILEPATH = SRC_DIR / 'metrics'
+
 METRICS_DIR_FILEPATH = SRC_DIR / 'metrics'
 ENERGY_METRICS_REPORTS_DIR_FILEPATH = METRICS_DIR_FILEPATH / 'energy_metrics_reports'
+
+PATTERN_REPORTS_DIR = METRICS_DIR_FILEPATH / "patterns"
 
 if __name__ == "__main__":
     print(f"Current file directory: {CURRENT_FILE_DIR}")

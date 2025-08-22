@@ -1,0 +1,73 @@
+{
+  "pattern_energy_correlation": {
+    "openAI": {
+      "cpu_correlation": -0.5272167877220021,
+      "cpu_p_value": 0.024556001701951966,
+      "ram_correlation": 0.0031436352461927837,
+      "ram_p_value": 0.9901226433839718,
+      "execution_time_correlation": 0.6404947170826163,
+      "execution_time_p_value": 0.004188489474204805,
+      "sample_size": 18
+    },
+    "gemini": {
+      "cpu_correlation": -0.5272307589943112,
+      "cpu_p_value": 0.024551510498819814,
+      "ram_correlation": -0.18284970558010477,
+      "ram_p_value": 0.4676977033781069,
+      "execution_time_correlation": 0.6396915145434272,
+      "execution_time_p_value": 0.004251506270064458,
+      "sample_size": 18
+    },
+    "claude": {
+      "cpu_correlation": -0.5272133340107278,
+      "cpu_p_value": 0.024557112030352844,
+      "ram_correlation": -0.09345456917332659,
+      "ram_p_value": 0.7122483193022657,
+      "execution_time_correlation": 0.6397936214529497,
+      "execution_time_p_value": 0.004243452594989948,
+      "sample_size": 18
+    }
+  },
+  "llm_performance": {},
+  "statistical_analysis": {
+    "overall": {
+      "cpu_correlation": -0.5272202924018216,
+      "cpu_p_value": 4.202779921973604e-05,
+      "ram_correlation": -0.05697743821769609,
+      "ram_p_value": 0.6823689258268315,
+      "execution_time_correlation": 0.6399929201222055,
+      "execution_time_p_value": 1.882452348467587e-07,
+      "total_samples": 54
+    }
+  },
+  "summary": {
+    "strongest_correlation": {
+      "metric": "execution_time_correlation",
+      "value": 0.6404947170826163,
+      "llm": "openAI",
+      "significance": "significant",
+      "p_value": 0.004188489474204805
+    },
+    "pattern_distribution": {
+      "most_common_patterns": {
+        "Builder": 5,
+        "Early Return": 3,
+        "Factory Method": 2,
+        "Decorator": 2
+      },
+      "pattern_type_distribution": {
+        "Code Quality": 3,
+        "Creational": 7,
+        "Structural": 2
+      }
+    },
+    "energy_improvement_stats": {
+      "mean_cpu_improvement": 3052.22144030098,
+      "mean_ram_improvement": 0.04532068737538486,
+      "mean_time_improvement": 197.4214619003933,
+      "std_cpu_improvement": 1284.5084588984525,
+      "std_ram_improvement": 0.18769984301719422,
+      "std_time_improvement": 127.65485911205961
+    }
+  }
+}

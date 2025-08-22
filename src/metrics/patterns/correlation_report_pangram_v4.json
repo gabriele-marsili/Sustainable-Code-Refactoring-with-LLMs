@@ -1,0 +1,68 @@
+{
+  "pattern_energy_correlation": {
+    "openAI": {
+      "cpu_correlation": NaN,
+      "cpu_p_value": NaN,
+      "ram_correlation": NaN,
+      "ram_p_value": NaN,
+      "execution_time_correlation": NaN,
+      "execution_time_p_value": NaN,
+      "sample_size": 21
+    },
+    "gemini": {
+      "cpu_correlation": -0.5650804428441033,
+      "cpu_p_value": 0.007602103739310475,
+      "ram_correlation": -0.05432734045395105,
+      "ram_p_value": 0.8150728399072067,
+      "execution_time_correlation": 0.5373390111304203,
+      "execution_time_p_value": 0.012004452281836555,
+      "sample_size": 21
+    },
+    "claude": {
+      "cpu_correlation": -0.6276562937804581,
+      "cpu_p_value": 0.0030490023676470043,
+      "ram_correlation": -0.12982970883353762,
+      "ram_p_value": 0.5853762984269681,
+      "execution_time_correlation": 0.6137350175800921,
+      "execution_time_p_value": 0.003998403834080514,
+      "sample_size": 20
+    }
+  },
+  "llm_performance": {},
+  "statistical_analysis": {
+    "overall": {
+      "cpu_correlation": -0.47280732117098156,
+      "cpu_p_value": 0.00010426743728140299,
+      "ram_correlation": -0.03033043900709979,
+      "ram_p_value": 0.8149728282841974,
+      "execution_time_correlation": 0.4536313601514028,
+      "execution_time_p_value": 0.00021316928155799337,
+      "total_samples": 62
+    }
+  },
+  "summary": {
+    "strongest_correlation": {
+      "metric": "cpu_correlation",
+      "value": -0.6276562937804581,
+      "llm": "claude",
+      "significance": "significant",
+      "p_value": 0.0030490023676470043
+    },
+    "pattern_distribution": {
+      "most_common_patterns": {
+        "Early Return": 2
+      },
+      "pattern_type_distribution": {
+        "Code Quality": 2
+      }
+    },
+    "energy_improvement_stats": {
+      "mean_cpu_improvement": 3252.256795614847,
+      "mean_ram_improvement": 0.018202767509119283,
+      "mean_time_improvement": 166.2042655811176,
+      "std_cpu_improvement": 1165.1709649875595,
+      "std_ram_improvement": 0.12620008687250175,
+      "std_time_improvement": 119.23481104225543
+    }
+  }
+}
