@@ -289,11 +289,10 @@ class TestRunner:
         test_file_path.write_text(new_content)
 
 
-    def add_bad_entry_id(self, entry_id: str, err_msg: str = "", log_file: Path = None,language:str=""):
+    def add_bad_entry_id(self, entry_id: str, err_msg: str = "", log_file: str = "",language:str=""):
         if not silent_mode : print(f"✍🏻 Writing bad entry: {entry_id}")
         
-        # Converte log_file in stringa, se fornito come Path
-        log_file_path = str(log_file) if log_file is not None else ""
+        
 
         # Percorso assoluto al JSON
         bad_entries_path = Path(BAD_ENTRIES_JSON)
@@ -313,7 +312,7 @@ class TestRunner:
         dati["entries"].append({
             "id": entry_id,
             "error_message": err_msg,
-            "log_file_path": log_file_path,
+            "log_file_path": log_file,
             "language":language
         })
 
@@ -972,7 +971,7 @@ class TestRunner:
             )
             print(f"📊 Statistiche salvate: {total_entries} entry totali, {entries_with_llm} con risultati LLM")
 
-def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cache = True, use_dataset = False, use_bad_entries = False,use_debug_cluster = False,cluster_name ="",output_file:str=None,webhook=False, prompt_version = 1):
+def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cache = True, use_dataset = False, use_bad_entries = False,use_debug_cluster = False,cluster_name ="",output_file:str="",webhook=False, prompt_version = 1):
     """Esegue test suites su code snippet e codigi generati dagli LLMs.
     Attualmente sfrutta il cluster scelto anziché il dataset"""
         
@@ -1050,7 +1049,7 @@ def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cach
     if webhook : 
         load_dotenv()
 
-        WEBHOOK_URL = os.getenv('DISCORD_WEBHOOK') 
+        WEBHOOK_URL = os.getenv('DISCORD_WEBHOOK') or ""
     
         # Crea reporter
         reporter = create_webhook_reporter(WEBHOOK_URL, "Test Results Bot")
