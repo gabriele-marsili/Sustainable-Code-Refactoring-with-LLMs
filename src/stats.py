@@ -918,12 +918,22 @@ class StatsHandler:
             reverse=True,
         )
 
+        total_entries_quantity  = 0
+        c_names= []
         for fname_stem, entries in sorted_cross_lang_clusters:
+            c_names.append(fname_stem)
             involved_langs = set(e["language"] for e in entries)
             if len(involved_langs) > 1:
                 print(
                     f"  - {fname_stem}: {len(entries)} entry da linguaggi: {', '.join(sorted(involved_langs))}"
                 )
+
+            total_entries_quantity += len(entries)
+
+        print(f"\nc_names : {c_names}")
+        
+        print(f"\nTotal cluster quantity in dataset : {len(sorted_cross_lang_clusters)}")
+        print(f"\nTotal entries quantity in dataset : {total_entries_quantity}")
 
     def full_analysis(self):
         """Analisi completa includendo le nuove funzionalità per le versioni"""
