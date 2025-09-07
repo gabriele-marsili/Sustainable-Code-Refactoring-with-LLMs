@@ -1,0 +1,49 @@
+#include "./atbash_cipher.h"
+#include <algorithm>
+#include <cctype>
+#include <string>
+#include <vector>
+
+namespace atbash {
+using std::string;
+
+static const string from = "0123456789abcdefghijklmnopqrstuvwxyz";
+static const string to = "0123456789zyxwvutsrqponmlkjihgfedcba";
+
+string encode(const string& text) {
+  std::vector<char> encoded;
+  encoded.reserve(text.length() * 1.2); // Pre-allocate space
+
+  int letterCount = 0;
+  for (char letter : text) {
+    char lowerLetter = tolower(letter);
+    size_t pos = from.find(lowerLetter);
+    if (pos == string::npos) continue;
+    encoded.push_back(to[pos]);
+    if (++letterCount % 5 == 0) {
+      encoded.push_back(' ');
+    }
+  }
+
+  if (!encoded.empty() && encoded.back() == ' ') {
+    encoded.pop_back(); // Remove trailing space
+  }
+
+  return string(encoded.begin(), encoded.end());
+}
+
+string decode(const string& text) {
+  std::vector<char> decoded;
+  decoded.reserve(text.length());
+
+  for (char letter : text) {
+    if (isspace(letter)) continue;
+    size_t pos = to.find(letter);
+    if (pos != string::npos) {
+      decoded.push_back(from[pos]);
+    }
+  }
+  return string(decoded.begin(), decoded.end());
+}
+
+}  // namespace atbash

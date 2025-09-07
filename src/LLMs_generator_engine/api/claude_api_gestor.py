@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from pathlib import Path
 import re
-from typing import List, Union
+
 from anthropic.types import TextBlock
 import sys
 import os

@@ -1,0 +1,50 @@
+export class Squares {
+
+  private _count: number;
+  
+  constructor(count: number) {
+    this._count = count;
+  }
+
+  get sumOfSquares(): number {
+    const n = this._count;
+    return (n * (n + 1) * (2 * n + 1)) / 6;
+  }
+
+  private recSumOfSquares(c: number, sum = 0): number {
+    if(c === 0) {
+      return sum;
+    }
+
+    return this.recSumOfSquares(c - 1, sum + c * c);
+  }
+
+  get squareOfSum(): unknown {
+    const n = this._count;
+    const sum = (n * (n + 1)) / 2;
+    return sum * sum;
+  }
+
+  private recSquareOfSum(c: number, sum = 0): number {
+    if(c === 0) {
+      return sum * sum;
+    }
+
+    return this.recSquareOfSum(c - 1, sum + c);
+  }
+
+  get difference(): number {
+    const n = this._count;
+    const sumOfSquares = (n * (n + 1) * (2 * n + 1)) / 6;
+    const sum = (n * (n + 1)) / 2;
+    return sum * sum - sumOfSquares;
+  }
+
+  private recDifference(n: number, sum = 0, sumSquares = 0): number {
+    if (n === 0) {
+      return sum * sum - sumSquares;
+    }
+  
+    return this.recDifference(n - 1, sum + n, sumSquares + n * n);
+  }
+}

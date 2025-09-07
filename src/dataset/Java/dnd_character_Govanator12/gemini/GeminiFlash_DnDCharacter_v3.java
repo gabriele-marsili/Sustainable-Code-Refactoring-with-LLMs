@@ -1,0 +1,94 @@
+import java.util.Arrays;
+import java.util.Random;
+
+public class DnDCharacter {
+
+    private int strength;
+    private int dexterity;
+    private int constitution;
+    private int intelligence;
+    private int wisdom;
+    private int charisma;
+    private int hitpoints;
+
+    private static final Random random = new Random();
+
+    public DnDCharacter() {
+        this.strength = randomDieTotal();
+        this.dexterity = randomDieTotal();
+        this.constitution = randomDieTotal();
+        this.wisdom = randomDieTotal();
+        this.intelligence = randomDieTotal();
+        this.charisma = randomDieTotal();
+        this.hitpoints = 10 + modifier(constitution);
+    }
+
+    int ability() {
+        int randomValue = random.nextInt(6);
+        switch (randomValue) {
+            case 0:
+                return getCharisma();
+            case 1:
+                return getConstitution();
+            case 2:
+                return getDexterity();
+            case 3:
+                return getIntelligence();
+            case 4:
+                return getWisdom();
+            case 5:
+                return getStrength();
+            default:
+                return -1;
+        }
+    }
+
+    int randomDieTotal() {
+        int[] numbers = new int[4];
+
+        for (int i = 0; i < 4; i++) {
+            numbers[i] = random.nextInt(6) + 1;
+        }
+
+        Arrays.sort(numbers);
+        int totalMinusMin = 0;
+        for (int i = 1; i < numbers.length; i++) {
+            totalMinusMin += numbers[i];
+        }
+
+        return totalMinusMin;
+    }
+
+    int modifier(double input) {
+        double hpModifier = (input - 10) / 2;
+        return (int) Math.floor(hpModifier);
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public int getDexterity() {
+        return dexterity;
+    }
+
+    public int getConstitution() {
+        return constitution;
+    }
+
+    public int getIntelligence() {
+        return intelligence;
+    }
+
+    public int getWisdom() {
+        return wisdom;
+    }
+
+    public int getCharisma() {
+        return charisma;
+    }
+
+    public int getHitpoints() {
+        return hitpoints;
+    }
+}

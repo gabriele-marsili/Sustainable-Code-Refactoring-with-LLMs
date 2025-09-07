@@ -1,0 +1,83 @@
+#include "anagram.h"
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <ctype.h>
+
+int comp(const void* element_1, const void* element_2) {
+    return *(const char*)element_1 - *(const char*)element_2;
+}
+
+char *lower(const char word[MAX_STR_LEN]) {
+    int len = strlen(word);
+    char *word_lower = malloc(len + 1);
+    for(int i = 0; i < len; i++)
+        word_lower[i] = tolower(word[i]);
+    word_lower[len] = '\0';
+    return word_lower;
+}
+
+char *letters(const char word[MAX_STR_LEN]) {
+    int len = strlen(word);
+    char *letters = malloc(len + 1);
+    for(int i = 0; i < len; i++)
+        letters[i] = tolower(word[i]);
+    letters[len] = '\0';
+    qsort(letters, len, sizeof(char), comp);
+    return letters;
+}
+
+int is_anagram(const char *word1, const char *word2) {
+    int len1 = strlen(word1);
+    int len2 = strlen(word2);
+    
+    if(len1 != len2)
+        return 0;
+    
+    for(int i = 0; i < len1; i++) {
+        if(tolower(word1[i]) != tolower(word2[i])) {
+            break;
+        }
+        if(i == len1 - 1)
+            return 0;
+    }
+    
+    char *sorted1 = letters(word1);
+    char *sorted2 = letters(word2);
+    int result = !strcmp(sorted1, sorted2);
+    free(sorted1);
+    free(sorted2);
+    return result;
+}
+
+struct Vector anagrams_for(char *anagram, struct Vector words) {
+    struct Vector matches = {
+        malloc(sizeof(char *) * words.size),
+        0
+    };
+    
+    char *anagram_sorted = letters(anagram);
+    
+    for(int i = 0; i < words.size; i++) {
+        if(strlen(words.vec[i]) == strlen(anagram)) {
+            char *word_sorted = letters(words.vec[i]);
+            if(!strcmp(word_sorted, anagram_sorted)) {
+                int same_word = 1;
+                int len = strlen(anagram);
+                for(int j = 0; j < len; j++) {
+                    if(tolower(words.vec[i][j]) != tolower(anagram[j])) {
+                        same_word = 0;
+                        break;
+                    }
+                }
+                if(!same_word) {
+                    matches.vec[matches.size++] = words.vec[i];
+                }
+            }
+            free(word_sorted);
+        }
+    }
+    
+    free(anagram_sorted);
+    return matches;
+}

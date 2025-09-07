@@ -1,0 +1,19 @@
+#include "reverse_string.h"
+
+char *reverse(const char *value) {
+    if (value == NULL) return NULL;
+    
+    size_t input_len = strlen(value);
+    char *result = malloc(input_len + 1);
+    if (result == NULL) return NULL;
+    
+    char *dest = result;
+    const char *src = value + input_len - 1;
+    
+    while (src >= value) {
+        *dest++ = *src--;
+    }
+    *dest = '\0';
+    
+    return result;
+}

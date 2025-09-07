@@ -1,0 +1,46 @@
+package anagram
+
+import (
+	"strings"
+)
+
+func Detect(subject string, candidates []string) (anagrams []string) {
+	subjectLower := strings.ToLower(subject)
+	subjectOccurrences := getOccurences(subjectLower)
+	
+	for _, c := range candidates {
+		if len(c) != len(subject) {
+			continue
+		}
+		
+		candidateLower := strings.ToLower(c)
+		if subjectLower == candidateLower {
+			continue
+		}
+		
+		if mapsEqual(subjectOccurrences, getOccurences(candidateLower)) {
+			anagrams = append(anagrams, c)
+		}
+	}
+	return anagrams
+}
+
+func getOccurences(input string) (occurences map[rune]int) {
+	occurences = make(map[rune]int, len(input))
+	for _, r := range input {
+		occurences[r]++
+	}
+	return occurences
+}
+
+func mapsEqual(a, b map[rune]int) bool {
+	if len(a) != len(b) {
+		return false
+	}
+	for k, v := range a {
+		if b[k] != v {
+			return false
+		}
+	}
+	return true
+}

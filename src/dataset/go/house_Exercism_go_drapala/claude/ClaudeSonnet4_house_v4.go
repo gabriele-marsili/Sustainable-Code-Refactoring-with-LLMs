@@ -1,0 +1,51 @@
+package house
+
+import "strings"
+
+var nounToActionMap = map[string]string{
+	"house that Jack built.":           "",
+	"malt":                             "lay in the",
+	"rat":                              "ate the",
+	"cat":                              "killed the",
+	"dog":                              "worried the",
+	"cow with the crumpled horn":       "tossed the",
+	"maiden all forlorn":               "milked the",
+	"man all tattered and torn":        "kissed the",
+	"priest all shaven and shorn":      "married the",
+	"rooster that crowed in the morn":  "woke the",
+	"farmer sowing his corn":           "kept the",
+	"horse and the hound and the horn": "belonged to the",
+}
+
+var sequence = []string{"house that Jack built.", "malt", "rat", "cat", "dog", "cow with the crumpled horn", "maiden all forlorn", "man all tattered and torn", "priest all shaven and shorn", "rooster that crowed in the morn", "farmer sowing his corn", "horse and the hound and the horn"}
+
+func Verse(v int) string {
+	var builder strings.Builder
+	builder.Grow(200)
+	
+	builder.WriteString("This is the ")
+	builder.WriteString(sequence[v-1])
+	
+	for i := v - 2; i >= 0; i-- {
+		builder.WriteString("\nthat ")
+		builder.WriteString(nounToActionMap[sequence[i+1]])
+		builder.WriteByte(' ')
+		builder.WriteString(sequence[i])
+	}
+	
+	return builder.String()
+}
+
+func Song() string {
+	var builder strings.Builder
+	builder.Grow(3000)
+	
+	for i := 1; i <= len(sequence); i++ {
+		builder.WriteString(Verse(i))
+		if i != len(sequence) {
+			builder.WriteString("\n\n")
+		}
+	}
+	
+	return builder.String()
+}

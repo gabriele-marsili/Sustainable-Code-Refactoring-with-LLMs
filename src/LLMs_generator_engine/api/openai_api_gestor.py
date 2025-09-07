@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 from pathlib import Path
 import re
-from typing import List, Union
-from anthropic.types import TextBlock
+
 import sys
 import os
 
@@ -15,6 +14,7 @@ import json
 import time
 from dotenv import load_dotenv
 import openai
+from openai import AzureOpenAI
 
 class OpenAIApiGestor:
     
@@ -22,8 +22,16 @@ class OpenAIApiGestor:
         self.llm_config_json_file_path = utility_paths.SRC_DIR / "LLMs_generator_engine" / "llm_configs.json"
         
         load_dotenv()
-        self.api_key = os.getenv('OPENAI_API_KEY')
-        self.client = openai.OpenAI(api_key=self.api_key)
+        self.api_key = os.getenv('AZURE_KEY_1')
+        self.azure_endpoint = os.getenv('AZURE_ENDPOINT')
+        print(f"\napi_key = {self.api_key}")
+        print(f"\nazure_endpoint = {self.azure_endpoint}")
+        self.client = AzureOpenAI(
+            api_key=self.api_key,
+            api_version="2024-02-01",
+            azure_endpoint=self.azure_endpoint
+        )
+        #openai.OpenAI(api_key=self.api_key)
         
             
         # Load config and budget                 
@@ -73,7 +81,7 @@ class OpenAIApiGestor:
                 #print(f"temperature = {t}")
                 
                 response = self.client.chat.completions.create(
-                    model="chatgpt-4o-latest",
+                    model="gpt-4o",
                     messages=[
                         {"role": "system", "content": "You are an experienced software engineer.Respond only with updated code, without further explanation."},
                         {"role": "user", "content": prompt}

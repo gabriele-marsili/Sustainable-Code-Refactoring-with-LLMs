@@ -1,0 +1,39 @@
+package queenattack
+
+import (
+	"errors"
+	"math"
+)
+
+/*CanQueenAttack determines if two queens on a chess board can attack eachother
+and also determines if the placements are valid*/
+func CanQueenAttack(white, black string) (bool, error) {
+	if !inRange(white) || !inRange(black) {
+		return false, errors.New("Pieces are not in a valid location")
+	}
+	if white == black {
+		return false, errors.New("Pieces are not in a valid location")
+	}
+
+	rowdist, coldist := distances(white, black)
+	return rowdist == 0 || coldist == 0 || math.Abs(float64(rowdist)) == math.Abs(float64(coldist)), nil
+}
+
+/*distances calucates the distnaces between two peices on a chess board*/
+func distances(white, black string) (int, int) {
+	whiterow := int(white[0] - 'a')
+	whitecol := int(white[1] - '1')
+	blackrow := int(black[0] - 'a')
+	blackcol := int(black[1] - '1')
+	return whiterow - blackrow, whitecol - blackcol
+}
+
+/*inRange determines if a chess piece is on the board*/
+func inRange(piece string) bool {
+	if len(piece) != 2 {
+		return false
+	}
+	row := piece[0] >= 'a' && piece[0] <= 'h'
+	col := piece[1] >= '1' && piece[1] <= '8'
+	return row && col
+}

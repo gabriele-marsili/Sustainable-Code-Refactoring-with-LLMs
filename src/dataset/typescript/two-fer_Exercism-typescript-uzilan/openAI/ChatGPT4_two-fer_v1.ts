@@ -1,0 +1,1 @@
+export const twoFer = (input = 'you'): string => `One for ${input}, one for me.`;

@@ -1,0 +1,42 @@
+package flatten
+
+func Flatten(nested interface{}) []interface{} {
+	slice, ok := nested.([]interface{})
+	if !ok {
+		return []interface{}{}
+	}
+	
+	capacity := estimateCapacity(slice)
+	result := make([]interface{}, 0, capacity)
+	
+	return flattenRecursive(slice, result)
+}
+
+func flattenRecursive(slice []interface{}, result []interface{}) []interface{} {
+	for _, element := range slice {
+		if element == nil {
+			continue
+		}
+		if nestedSlice, ok := element.([]interface{}); ok {
+			result = flattenRecursive(nestedSlice, result)
+		} else {
+			result = append(result, element)
+		}
+	}
+	return result
+}
+
+func estimateCapacity(slice []interface{}) int {
+	capacity := 0
+	for _, element := range slice {
+		if element == nil {
+			continue
+		}
+		if nestedSlice, ok := element.([]interface{}); ok {
+			capacity += estimateCapacity(nestedSlice)
+		} else {
+			capacity++
+		}
+	}
+	return capacity
+}

@@ -1,0 +1,44 @@
+#include "dnd_character.h"
+
+int ability(void)
+{
+    static int seeded = 0;
+    if (!seeded) {
+        srand(time(NULL));
+        seeded = 1;
+    }
+    
+    int dice[4];
+    int sum = 0;
+    int min_val = 7;
+    
+    for (int i = 0; i < 4; i++) {
+        dice[i] = (rand() % 6) + 1;
+        sum += dice[i];
+        if (dice[i] < min_val) {
+            min_val = dice[i];
+        }
+    }
+    
+    return sum - min_val;
+}
+
+int modifier(int score)
+{
+    return (score >> 1) - 5;
+}
+
+dnd_character_t make_dnd_character(void)
+{
+    dnd_character_t character;
+    
+    character.strength = ability();
+    character.dexterity = ability();
+    character.constitution = ability();
+    character.intelligence = ability();
+    character.wisdom = ability();
+    character.charisma = ability();
+    character.hitpoints = 10 + modifier(character.constitution);
+    
+    return character;
+}
