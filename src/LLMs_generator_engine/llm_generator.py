@@ -12,7 +12,132 @@ from discordInteraction import DiscordWebhookReporter
 from dotenv import load_dotenv
 from datetime import datetime
 
-clusters_already_processed = ["leap", "raindrops", "pangram", "bob"]
+clusters_already_processed = [
+    "leap",
+    "raindrops",
+    "pangram",
+    "bob",
+    "find_peak_element",
+    "a0133clonegraph",
+    "kth_smallest",
+    "valid_anagram",
+    "log_levels",
+    "count_triplets_with_sum_k",
+    "a0139wordbreak",
+    "a0131palindromepartitioning",
+    "luhn",
+    "merge_sorted_array",
+    "two_bucket",
+    "maximum_depth_of_binary_tree",
+    "a0211addandsearchworddatastructuredesign",
+    "octal",
+    "a0199binarytreerightsideview",
+    "perfect_numbers",
+    "two_sum",
+    "squeaky_clean",
+    "armstrong_numbers",
+    "set_matrix_zeroes",
+    "state_of_tic_tac_toe",
+    "simple_cipher",
+    "acronym",
+    "a0129sumroottoleafnumbers",
+    "luhn_validator",
+    "run_length_encoding",
+    "dn_dcharacter",
+    "a0109convertsortedlisttobinarysearchtree",
+    "postfix_evaluate",
+    "zebra_puzzle",
+    "atbash_cipher",
+    "a0096uniquebinarysearchtrees",
+    "summary_ranges",
+    "killer_sudoku_helper",
+    "contains_duplicate",
+    "check_if_point_inside_polygon",
+    "a0151reversewordsinastring",
+    "reverse_string",
+    "lasagna",
+    "odd_sum",
+    "majority_element",
+    "a0165compareversionnumbers",
+    "reverse_array",
+    "twofer",
+    "card_tricks",
+    "longest_palindromic_substring",
+    "a0063uniquepathsii",
+    "bottle_song",
+    "proverb",
+    "a0056mergeintervals",
+    "longest_repeating_character_replacement",
+    "encode_and_decode_strings",
+    "tournament",
+    "elons_toys",
+    "gross_store",
+    "lucky_numbers",
+    "book_store",
+    "dominoes",
+    "a0090subsetsii",
+    "split_coins",
+    "eliuds_eggs",
+    "two_sum_ii_input_array_is_sorted",
+    "list_ops",
+    "weather_forecast",
+    "reverse_integer",
+    "a0094binarytreeinordertraversal",
+    "a0208implementtrieprefixtree",
+    "high_score_board",
+    "flatten_array",
+    "minimum_window_substring",
+    "complex_numbers",
+    "a0086partitionlist",
+    "a0061rotatelist",
+    "tree_building",
+    "a0144binarytreepreordertraversal",
+    "rational_numbers",
+    "dnd_character",
+    "power",
+    "house",
+    "need_for_speed",
+    "rotational_cipher",
+    "vehicle_purchase",
+    "collatz_conjecture",
+    "connect",
+    "bank_account_action_invalid_exception",
+    "candy",
+    "secrets",
+    "chaitanas_colossal_coaster",
+    "two_fer",
+    "bracket_push",
+    "square_root",
+    "protein_translator",
+    "rectangles",
+    "find_el_smaller_left_bigger_right",
+    "a0152maximumproductsubarray",
+    "binary_tree_right_side_view",
+    "salary_calculator",
+    "calculate_area_of_polygon",
+    "rail_fence_cipher",
+    "sort_rgb_array",
+    "a0073setmatrixzeros",
+    "product_of_array_except_self",
+    "a0093restore_ip_addresses",
+    "find_missing_number_in_second_array",
+    "scale_generator",
+    "markdown",
+    "bowling",
+    "a0216combination_sumiii",
+    "a0143reorderlist",
+    "all_your_base",
+    "simple_linked_list",
+    "container_with_most_water",
+    "minimum_size_subarray_sum",
+    "ransom_note",
+    "poker",
+    "strain",
+    "annalyns_infiltration",
+    "pascals_triangle",
+    "variable_length_quantity",
+    "isogram",
+]
 
 prompt_file_paths = [
     utility_paths.PROMPTS_DIR_FILEPATH / "promptV1.txt",
@@ -152,7 +277,71 @@ class LLMGenerator:
                 f"❌ Errore durante la generazione dei file: {e}"
             )
 
+    def check_status(self):
+        cluster_not_completed = []
+        cluster_not_processed = []
+        for cluster_name in os.listdir(
+            utility_paths.CLUSTERS_DIR_FILEPATH
+        ):  # itera i clusters
+            if (
+                cluster_name in clusters_already_processed
+                or "with_metrics" in cluster_name
+                or "debug_" in cluster_name
+                or "focused_" in cluster_name
+                or "bad_entries" in cluster_name
+            ):
+                continue
+            cluster_name = cluster_name.replace("cluster_", "").removesuffix(".json")
+            if cluster_name in clusters_already_processed:
+                continue
+            else:
+                print(f"\n- Generating LLMs files for cluster {cluster_name}\n")
+
+                file_name = f"cluster_{cluster_name}.json"
+                cluster_path = utility_paths.CLUSTERS_DIR_FILEPATH / file_name
+
+                json_file_content = None
+                with open(cluster_path, "r", encoding="utf-8") as f:
+                    json_file_content = json.load(f)
+
+                if json_file_content:
+                    addedd = False
+                    for language, entries in json_file_content.items():
+                        if addedd:
+                            break
+
+                        for entry in entries:
+                            if len(entry["LLMs"]) == 12:
+                                # clusters_already_processed.append(cluster_name)
+                                pass
+                            elif len(entry["LLMs"]) > 0:
+                                cluster_not_completed.append(cluster_name)
+                                addedd = True
+                                break
+                            else:
+                                cluster_not_processed.append(cluster_name)
+                                addedd = True
+                                break
+
+                    if not addedd:
+                        clusters_already_processed.append(cluster_name)
+
+        m1 = f"\nclusters not processed : {len(cluster_not_processed)}"
+
+        m2 = f"\nclusters not completed : {len(cluster_not_completed)}"
+
+        m3 = f"\nclusters processed : {len(clusters_already_processed)}"
+
+        msg = f"Generation by LLMs status:\n{m1}\n{m2}\n{m3}"
+
+        self.reporter.send_simple_message(msg)
+
+        print(m1 + f"\n\n{cluster_not_processed}")
+        print(m2 + f"\n\n{cluster_not_completed}")
+        print(m3 + f"\n\n{clusters_already_processed}")
+
 
 if __name__ == "__main__":
     generator = LLMGenerator()
-    generator.generate_llms_files_for_chosen_clusters()
+    # generator.generate_llms_files_for_chosen_clusters()
+    generator.check_status()
