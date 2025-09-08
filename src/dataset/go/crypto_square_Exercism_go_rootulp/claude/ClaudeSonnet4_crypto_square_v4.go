@@ -1,0 +1,88 @@
+package cryptosquare
+
+import (
+	"math"
+	"strings"
+	"unicode"
+)
+
+func Encode(plainText string) (cipherText string) {
+	stripped := stripFormatting(plainText)
+	if len(stripped) == 0 {
+		return ""
+	}
+	numCols, numRows := getRectangleDimensions(len(stripped))
+	rectangle := getRectangle(stripped, numCols, numRows)
+	encoded := getEncoded(rectangle, numCols, numRows)
+	return strings.Join(splitEveryN(encoded, numRows), " ")
+}
+
+func stripFormatting(plainText string) string {
+	var builder strings.Builder
+	builder.Grow(len(plainText))
+	for _, r := range strings.ToLower(plainText) {
+		if unicode.IsLetter(r) || unicode.IsDigit(r) {
+			builder.WriteRune(r)
+		}
+	}
+	return builder.String()
+}
+
+func getRectangleDimensions(messageLength int) (numCols int, numRows int) {
+	x := int(math.Sqrt(float64(messageLength)))
+	if x*x >= messageLength {
+		return x, x
+	} else if (x+1)*x >= messageLength {
+		return x + 1, x
+	} else {
+		return x + 1, x + 1
+	}
+}
+
+func getRectangle(message string, numCols int, numRows int) [][]rune {
+	rectangle := make([][]rune, numRows)
+	for i := range rectangle {
+		rectangle[i] = make([]rune, numCols)
+	}
+	
+	messageRunes := []rune(message)
+	index := 0
+	for row := 0; row < numRows; row++ {
+		for col := 0; col < numCols; col++ {
+			if index >= len(messageRunes) {
+				rectangle[row][col] = ' '
+			} else {
+				rectangle[row][col] = messageRunes[index]
+				index++
+			}
+		}
+	}
+	return rectangle
+}
+
+func getEncoded(rectangle [][]rune, numCols int, numRows int) string {
+	var builder strings.Builder
+	builder.Grow(numCols * numRows)
+	for col := 0; col < numCols; col++ {
+		for row := 0; row < numRows; row++ {
+			builder.WriteRune(rectangle[row][col])
+		}
+	}
+	return builder.String()
+}
+
+func splitEveryN(message string, n int) []string {
+	if n <= 0 || len(message) == 0 {
+		return []string{}
+	}
+	
+	chunks := make([]string, 0, (len(message)+n-1)/n)
+	for i := 0; i < len(message); i += n {
+		end := i + n
+		if end > len(message) {
+			end = len(message)
+		}
+		chunks = append(chunks, message[i:end])
+	}
+	return chunks
+}

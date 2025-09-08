@@ -1,0 +1,16 @@
+#include <ctype.h>
+#include <string.h>
+#include "isogram.h"
+
+int isIsogram(char *word) {
+    int seen[26] = {0};
+    for (int i = 0; word[i] != '\0'; i++) {
+        char letter = tolower(word[i]);
+        if (letter >= 'a' && letter <= 'z') {
+            if (seen[letter - 'a'])
+                return 0;
+            seen[letter - 'a'] = 1;
+        }
+    }
+    return 1;
+}

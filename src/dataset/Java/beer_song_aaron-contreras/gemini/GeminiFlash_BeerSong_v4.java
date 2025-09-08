@@ -1,0 +1,26 @@
+public class BeerSong {
+
+    public String sing(int beers, int amountTaken) {
+
+        int finalVerse = Math.max(beers - amountTaken, -1); // Ensure finalVerse is not less than -1
+        StringBuilder builder = new StringBuilder();
+
+        for (; beers > finalVerse; beers--) {
+
+            if (beers == 1) {
+                builder.append("1 bottle of beer on the wall, 1 bottle of beer.\nTake it down and pass it around, no more bottles of beer on the wall.\n\n");
+            } else if (beers == 0) {
+                builder.append("No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n\n");
+                break;
+            } else {
+                builder.append(beers).append(" bottles of beer on the wall, ").append(beers).append(" bottles of beer.\n")
+                        .append("Take one down and pass it around, ").append(beers - 1).append(beers - 1 == 1 ? " bottle" : " bottles").append(" of beer on the wall.\n\n");
+            }
+        }
+        return builder.toString();
+    }
+
+    public String singSong() {
+        return sing(99,100);
+    }
+}

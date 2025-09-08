@@ -1,0 +1,1 @@
+Please provide the code snippet you'd like me to optimize.

@@ -1,0 +1,47 @@
+#include "pascals_triangle.h"
+#include <stdlib.h>
+
+void free_triangle(uint8_t **triangle, size_t rows) {
+    if (triangle == NULL) return;
+    for (size_t idx = 0; idx < rows; idx++) {
+        free(triangle[idx]);
+    }
+    free(triangle);
+}
+
+uint8_t **create_triangle(size_t rows) {
+    if (rows == 0) {
+        uint8_t **triangle = malloc(sizeof(uint8_t *));
+        if (!triangle) return NULL;
+        triangle[0] = malloc(sizeof(uint8_t));
+        if (!triangle[0]) {
+            free(triangle);
+            return NULL;
+        }
+        triangle[0][0] = 0;
+        return triangle;
+    }
+
+    uint8_t **triangle = malloc(sizeof(uint8_t *) * rows);
+    if (!triangle) return NULL;
+
+    for (size_t row = 0; row < rows; row++) {
+        triangle[row] = malloc(sizeof(uint8_t) * (row + 1));
+        if (!triangle[row]) {
+            // Clean up previously allocated rows
+            for (size_t i = 0; i < row; i++) {
+                free(triangle[i]);
+            }
+            free(triangle);
+            return NULL;
+        }
+        triangle[row][0] = 1; // First element is always 1
+        if (row > 0) {
+            triangle[row][row] = 1; // Last element is always 1
+            for (size_t column = 1; column < row; column++) {
+                triangle[row][column] = triangle[row - 1][column - 1] + triangle[row - 1][column];
+            }
+        }
+    }
+    return triangle;
+}

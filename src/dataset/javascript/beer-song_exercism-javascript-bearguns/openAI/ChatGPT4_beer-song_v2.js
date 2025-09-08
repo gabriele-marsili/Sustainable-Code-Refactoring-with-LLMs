@@ -1,0 +1,53 @@
+class BeerSong {
+  constructor() {
+    this.actions = {
+      onemore: "\nTake it down and pass it around, ",
+      nomore: "\nGo to the store and buy some more, ",
+      def: "\nTake one down and pass it around, "
+    };
+  }
+
+  actionBuilder(num) {
+    if (num === 0) return this.actions.nomore;
+    if (num === 1) return this.actions.onemore;
+    return this.actions.def;
+  }
+
+  howManyBottles(num) {
+    if (num === 0) return "No more bottles of beer";
+    if (num === 1) return "1 bottle of beer";
+    return `${num} bottles of beer`;
+  }
+
+  nextVerse(num) {
+    const nextAmt = num - 1;
+    const ofBeer = " on the wall.\n";
+    return (nextAmt === -1 ? this.howManyBottles(99) : this.howManyBottles(nextAmt)) + ofBeer.toLowerCase();
+  }
+
+  songBuilder(num) {
+    const bottles = this.howManyBottles(num);
+    return `${bottles} on the wall, ${bottles.toLowerCase()}.${this.actionBuilder(num)}${this.nextVerse(num)}`;
+  }
+
+  verse(num) {
+    return this.songBuilder(num);
+  }
+
+  sing(...args) {
+    if (args.length === 1) {
+      const start = args[0];
+      return Array.from({ length: start + 1 }, (_, i) => this.songBuilder(start - i)).join("\n");
+    }
+
+    return args
+      .map((arg, i) =>
+        i === args.length - 1
+          ? this.songBuilder(arg)
+          : `${this.songBuilder(arg)}\n${this.songBuilder(arg - 1)}`
+      )
+      .join("\n");
+  }
+}
+
+export default BeerSong;
