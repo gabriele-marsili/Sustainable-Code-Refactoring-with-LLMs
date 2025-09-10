@@ -11,6 +11,7 @@ from api import gemini_api_gestor, claude_api_gestor, openai_api_gestor
 from discordInteraction import DiscordWebhookReporter
 from dotenv import load_dotenv
 from datetime import datetime
+import atexit
 
 clusters_already_processed = [
     "leap",
@@ -146,6 +147,12 @@ prompt_file_paths = [
     utility_paths.PROMPTS_DIR_FILEPATH / "promptV4.txt",
 ]
 
+
+def print_status():
+    generator = LLMGenerator()
+    generator.check_status()
+
+atexit.register(print_status)
 
 class LLMGenerator:
     def __init__(self):
@@ -343,5 +350,5 @@ class LLMGenerator:
 
 if __name__ == "__main__":
     generator = LLMGenerator()
-    # generator.generate_llms_files_for_chosen_clusters()
-    generator.check_status()
+    generator.generate_llms_files_for_chosen_clusters()
+    

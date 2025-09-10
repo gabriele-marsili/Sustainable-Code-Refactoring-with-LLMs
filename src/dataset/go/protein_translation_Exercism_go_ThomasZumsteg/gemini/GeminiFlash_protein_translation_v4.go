@@ -1,0 +1,45 @@
+package protein
+
+var codonMap = map[string]string{
+	"AUG": "Methionine",
+	"UUU": "Phenylalanine",
+	"UUC": "Phenylalanine",
+	"UUA": "Leucine",
+	"UUG": "Leucine",
+	"UCU": "Serine",
+	"UCC": "Serine",
+	"UCA": "Serine",
+	"UCG": "Serine",
+	"UAU": "Tyrosine",
+	"UAC": "Tyrosine",
+	"UGU": "Cysteine",
+	"UGC": "Cysteine",
+	"UGG": "Tryptophan",
+	"UAA": "STOP",
+	"UAG": "STOP",
+	"UGA": "STOP",
+}
+
+func FromCodon(codon string) string {
+	protein, ok := codonMap[codon]
+	if !ok {
+		panic("Not a valid codon: " + codon)
+	}
+	return protein
+}
+
+func FromRNA(rna string) []string {
+	result := make([]string, 0, len(rna)/3)
+	for i := 0; i < len(rna); i += 3 {
+		if i+3 > len(rna) {
+			break
+		}
+		codon := rna[i : i+3]
+		protein := FromCodon(codon)
+		if protein == "STOP" {
+			return result
+		}
+		result = append(result, protein)
+	}
+	return result
+}

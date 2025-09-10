@@ -1,0 +1,18 @@
+type Color = 'black' | 'brown' | 'red' | 'orange' | 'yellow' | 'green' | 'blue' | 'violet' | 'grey' | 'white';
+
+const COLOR_MAP: Record<Color, number> = {
+  black: 0,
+  brown: 1,
+  red: 2,
+  orange: 3,
+  yellow: 4,
+  green: 5,
+  blue: 6,
+  violet: 7,
+  grey: 8,
+  white: 9,
+};
+
+export const colorCode = (color: Color): number => COLOR_MAP[color];
+
+export const COLORS: Array<Color> = Object.keys(COLOR_MAP) as Array<Color>;

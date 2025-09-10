@@ -1,0 +1,5 @@
+#include "resistor_color_duo.h"
+
+uint16_t color_code(const resistor_band_t *color_band) {
+    return color_band[0] * 10 + color_band[1];
+}

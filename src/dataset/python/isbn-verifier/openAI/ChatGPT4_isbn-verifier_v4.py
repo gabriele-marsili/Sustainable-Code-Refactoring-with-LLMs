@@ -1,0 +1,7 @@
+def is_valid(isbn):
+    clnisbn = isbn.replace('-', '')
+    if len(clnisbn) == 10 and (clnisbn[:-1].isdigit() and (clnisbn[-1].isdigit() or clnisbn[-1] == 'X')):
+        sumisbn = sum(int(d) * (10 - i) for i, d in enumerate(clnisbn[:-1]))
+        sumisbn += 10 if clnisbn[-1] == 'X' else int(clnisbn[-1])
+        return sumisbn % 11 == 0
+    return False

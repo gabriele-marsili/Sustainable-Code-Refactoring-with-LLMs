@@ -1,0 +1,59 @@
+const DEFAULT_STUDENTS: Student[] = [
+  'Alice',
+  'Bob',
+  'Charlie',
+  'David',
+  'Eve',
+  'Fred',
+  'Ginny',
+  'Harriet',
+  'Ileana',
+  'Joseph',
+  'Kincaid',
+  'Larry',
+]
+
+const PLANT_CODES = {
+  G: 'grass',
+  V: 'violets',
+  R: 'radishes',
+  C: 'clover',
+} as const
+
+type Student = string
+type Plant = typeof PLANT_CODES[keyof typeof PLANT_CODES]
+type Plants = Plant[]
+type Pots = Plants[]
+
+export class Garden {
+  private _pots: Pots;
+  private _students: Student[];
+  private _studentIndex: Map<Student, number>;
+
+  constructor(diagram: string, students = DEFAULT_STUDENTS) {
+    this._pots = diagram.split('\n').map((line: string) => line.split('') as Plant[]);
+    this._students = [...students].sort((a, b) => (a < b ? -1 : 1));
+    this._studentIndex = new Map<Student, number>();
+    for (let i = 0; i < this._students.length; i++) {
+      this._studentIndex.set(this._students[i], i);
+    }
+  }
+
+  public plants(student: Student): Plants {
+    const firstPlantIdx = this._studentIndex.get(student) ?? -1;
+
+    if (firstPlantIdx === -1) {
+      return [];
+    }
+
+    const plantIndex = firstPlantIdx * 2;
+    const plants: Plants = [
+      PLANT_CODES[this._pots[0][plantIndex] as keyof typeof PLANT_CODES],
+      PLANT_CODES[this._pots[0][plantIndex + 1] as keyof typeof PLANT_CODES],
+      PLANT_CODES[this._pots[1][plantIndex] as keyof typeof PLANT_CODES],
+      PLANT_CODES[this._pots[1][plantIndex + 1] as keyof typeof PLANT_CODES],
+    ];
+
+    return plants;
+  }
+}

@@ -1,0 +1,37 @@
+export default class Minesweeper {
+  annotate(board: string[]): string[] {
+    const rows = board.length;
+    if (rows === 0) {
+      return [];
+    }
+    const cols = board[0].length;
+    const annotatedBoard: string[] = new Array(rows);
+
+    for (let i = 0; i < rows; i++) {
+      annotatedBoard[i] = '';
+      for (let j = 0; j < cols; j++) {
+        if (board[i][j] === '*') {
+          annotatedBoard[i] += '*';
+        } else {
+          let mineCount = 0;
+          for (let rowOffset = -1; rowOffset <= 1; rowOffset++) {
+            for (let colOffset = -1; colOffset <= 1; colOffset++) {
+              if (rowOffset === 0 && colOffset === 0) {
+                continue;
+              }
+              const newRow = i + rowOffset;
+              const newCol = j + colOffset;
+
+              if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols && board[newRow][newCol] === '*') {
+                mineCount++;
+              }
+            }
+          }
+          annotatedBoard[i] += mineCount === 0 ? ' ' : mineCount.toString();
+        }
+      }
+    }
+
+    return annotatedBoard;
+  }
+}

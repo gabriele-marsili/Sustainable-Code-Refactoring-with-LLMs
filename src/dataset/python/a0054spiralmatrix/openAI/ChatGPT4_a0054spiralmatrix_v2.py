@@ -1,0 +1,32 @@
+from typing import List
+
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        if not matrix or not matrix[0]:
+            return []
+        
+        top, bottom, left, right = 0, len(matrix) - 1, 0, len(matrix[0]) - 1
+        ret = []
+        
+        while top <= bottom and left <= right:
+            # Traverse from left to right
+            ret.extend(matrix[top][left:right + 1])
+            top += 1
+            
+            # Traverse from top to bottom
+            for i in range(top, bottom + 1):
+                ret.append(matrix[i][right])
+            right -= 1
+            
+            if top <= bottom:
+                # Traverse from right to left
+                ret.extend(matrix[bottom][right:left - 1:-1])
+                bottom -= 1
+            
+            if left <= right:
+                # Traverse from bottom to top
+                for i in range(bottom, top - 1, -1):
+                    ret.append(matrix[i][left])
+                left += 1
+        
+        return ret

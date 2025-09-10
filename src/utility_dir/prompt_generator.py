@@ -53,10 +53,13 @@ def create_api_prompt_from_files(prompt_template_path: str, code_file_path: str)
         formatted_prompt = prompt_template.replace('{language}', language)
         formatted_prompt = formatted_prompt.replace('{code}', code_content)
         
+        if code_content == "" or not code_content:
+            return None
+
         return formatted_prompt
 
     except FileNotFoundError:
-        print(f"Errore: Uno dei file non è stato trovato. Controlla i percorsi.")
+        print("Errore: Uno dei file non è stato trovato. Controlla i percorsi.")
         return ""
     except Exception as e:
         print(f"Si è verificato un errore: {e}")

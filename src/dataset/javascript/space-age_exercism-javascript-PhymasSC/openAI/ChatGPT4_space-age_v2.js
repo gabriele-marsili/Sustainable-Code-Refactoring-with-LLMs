@@ -1,0 +1,15 @@
+const SECONDS_IN_EARTH_YEAR = 31557600;
+
+const ORBITAL_PERIODS = {
+  mercury: SECONDS_IN_EARTH_YEAR * 0.2408467,
+  venus: SECONDS_IN_EARTH_YEAR * 0.61519726,
+  earth: SECONDS_IN_EARTH_YEAR,
+  mars: SECONDS_IN_EARTH_YEAR * 1.8808158,
+  jupiter: SECONDS_IN_EARTH_YEAR * 11.862615,
+  saturn: SECONDS_IN_EARTH_YEAR * 29.447498,
+  uranus: SECONDS_IN_EARTH_YEAR * 84.016846,
+  neptune: SECONDS_IN_EARTH_YEAR * 164.79132
+};
+
+export const age = (planet, ageInSeconds) => 
+  Math.round((ageInSeconds / ORBITAL_PERIODS[planet]) * 100) / 100;

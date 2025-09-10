@@ -1,0 +1,17 @@
+const SECONDS_IN_YEAR = 31557600;
+
+const planetYears = {
+  earth: 1 / SECONDS_IN_YEAR,
+  mercury: 0.2408467 / SECONDS_IN_YEAR,
+  venus: 0.61519726 / SECONDS_IN_YEAR,
+  mars: 1.8808158 / SECONDS_IN_YEAR,
+  jupiter: 11.862615 / SECONDS_IN_YEAR,
+  saturn: 29.447498 / SECONDS_IN_YEAR,
+  uranus: 84.016846 / SECONDS_IN_YEAR,
+  neptune: 164.79132 / SECONDS_IN_YEAR
+};
+
+export const age = (planet: keyof typeof planetYears, seconds: number) => {
+  const years = seconds * planetYears[planet];
+  return Math.round(years * 100) / 100;
+};
