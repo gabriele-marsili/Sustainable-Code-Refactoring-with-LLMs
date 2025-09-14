@@ -1,0 +1,98 @@
+package expenses
+
+import "fmt"
+
+// Record represents an expense record.
+type Record struct {
+	Day      int
+	Amount   float64
+	Category string
+}
+
+// DaysPeriod represents a period of days for expenses.
+type DaysPeriod struct {
+	From int
+	To   int
+}
+
+// Predicate represents a generic filtering function.
+type Predicate func(Record) bool
+
+// Filter returns the records for which the predicate function returns true.
+func Filter(in []Record, predicate Predicate) []Record {
+	if len(in) == 0 {
+		return nil
+	}
+	
+	out := make([]Record, 0, len(in)/4)
+	
+	for i := range in {
+		if predicate(in[i]) {
+			out = append(out, in[i])
+		}
+	}
+	
+	return out
+}
+
+// ByDaysPeriod returns predicate function that returns true when
+// the day of the record is inside the period of day and false otherwise
+func ByDaysPeriod(p DaysPeriod) Predicate {
+	return func(r Record) bool {
+		return p.From <= r.Day && r.Day <= p.To
+	}
+}
+
+// ByCategory returns predicate function that returns true when
+// the category of the record is the same as the provided category
+// and false otherwise
+func ByCategory(c string) Predicate {
+	return func(r Record) bool {
+		return r.Category == c
+	}
+}
+
+// TotalByPeriod returns total amount of expenses for records
+// inside the period p
+func TotalByPeriod(in []Record, p DaysPeriod) float64 {
+	if len(in) == 0 {
+		return 0.0
+	}
+	
+	sum := 0.0
+	for i := range in {
+		if p.From <= in[i].Day && in[i].Day <= p.To {
+			sum += in[i].Amount
+		}
+	}
+	
+	return sum
+}
+
+// CategoryExpenses returns total amount of expenses for records
+// in category c that are also inside the period p.
+// An error must be returned only if there are no records in the list that belong
+// to the given category, regardless of period of time.
+func CategoryExpenses(in []Record, p DaysPeriod, c string) (float64, error) {
+	if len(in) == 0 {
+		return 0, fmt.Errorf("unknown category entertainment")
+	}
+	
+	sum := 0.0
+	categoryFound := false
+	
+	for i := range in {
+		if in[i].Category == c {
+			categoryFound = true
+			if p.From <= in[i].Day && in[i].Day <= p.To {
+				sum += in[i].Amount
+			}
+		}
+	}
+	
+	if !categoryFound {
+		return 0, fmt.Errorf("unknown category entertainment")
+	}
+	
+	return sum, nil
+}

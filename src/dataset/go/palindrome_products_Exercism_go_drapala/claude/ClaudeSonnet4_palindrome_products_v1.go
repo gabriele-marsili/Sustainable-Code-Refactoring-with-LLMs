@@ -1,0 +1,117 @@
+package palindrome
+
+import (
+	"fmt"
+	"strconv"
+)
+
+type Product struct {
+	Value   int
+	Factorizations [][2]int // An array of 2-length-arrays of ints
+}
+
+// If the product exists, find it's index in the array
+func ProductIndex(value int, products []Product) int {
+	for i, product := range products {
+		if product.Value == value {
+			return i
+		}
+	}
+	return -1
+}
+
+// Find if a multiplication factor already exists in array
+func FactorInArray(factors [][2]int, num1, num2 int) bool{
+	for _, factor := range factors {
+		if factor[0] == num2 && factor[1] == num1 { // If factor is in array, it must be the other permutation
+			return true
+		}
+	}
+	return false
+}
+
+// Append to products slice if palindrome
+func appendPalindromes(num1, num2 int, products *[]Product, productMap map[int]int) {
+	value := num1 * num2
+	if isPalindrome(value) {
+		// 1. If product already exists in array, append factor to it
+		// 	1a. Append factor only if it is unique - considering flipped permutations
+		// 2. If product is new, append it to array
+		if existing_index, exists := productMap[value]; exists { // Since product already exists in array, append factor to it
+			if !FactorInArray((*products)[existing_index].Factorizations, num1, num2) { // Check if unique
+				(*products)[existing_index].Factorizations = append((*products)[existing_index].Factorizations, [2]int{num1, num2})
+			}
+		} else { // Product is new, append it to array
+			product := Product{
+				Value:   value,
+				Factorizations: [][2]int{{num1, num2}},
+			}
+			*products = append(*products, product)
+			productMap[value] = len(*products) - 1
+		}
+	}
+}
+
+// Get all products within a given range (inclusive)
+func getProducts(fmin, fmax int) []Product {
+	products := make([]Product, 0)
+	productMap := make(map[int]int)
+	var num1, num2 int
+	// Start from left
+	for num1 = fmin; num1 <= fmax; num1++ {
+		for num2 = num1; num2 <= fmax; num2++ { // Start from num1 to avoid duplicates
+			appendPalindromes(num1, num2, &products, productMap)
+			if num1 != num2 { // Add the reverse only if different
+				appendPalindromes(num2, num1, &products, productMap)
+			}
+		}
+	}
+	return products
+}
+
+// Check if an integer is palindrome via numeric reversal
+func isPalindrome(value int) bool {
+	if value < 10 { // Single digit is automatically palindrome
+		return true
+	}
+	original := value
+	reversed := 0
+	for value > 0 {
+		reversed = reversed*10 + value%10
+		value /= 10
+	}
+	return original == reversed
+}
+
+// Find min and max products from the completed slice
+func findMinAndMax(products[]Product) (Product, Product) {
+	// Initial guesses
+	min_product := products[0]
+	max_product := products[0]
+	// Update initial guesses
+	for _, product := range products {
+		if product.Value < min_product.Value {
+			min_product = product
+		}
+		if product.Value > max_product.Value {
+			max_product = product 
+		}
+	}
+	return min_product, max_product
+}
+
+// Main function called from test cases
+func Products(fmin, fmax int) (Product, Product, error) {
+	// Error handling
+	if fmax <= fmin {
+		return Product{}, Product{}, fmt.Errorf("fmin > fmax")
+	}
+	// Get all Palindrome Products and Factorizations
+	palindrome_products := getProducts(fmin, fmax)
+	if len(palindrome_products) != 0 {
+		min_product, max_product := findMinAndMax(palindrome_products)
+		return min_product, max_product, nil
+	} else {
+		return Product{}, Product{}, fmt.Errorf("no palindromes")
+	}
+}

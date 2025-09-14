@@ -1,0 +1,30 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public final class DiamondPrinter {
+    public static List<String> printToList(char targetLetter) {
+        int size = targetLetter - 'A';
+        int lineLength = 2 * size + 1;
+        List<String> result = new ArrayList<>(2 * size + 1);
+        
+        char[] line = new char[lineLength];
+        
+        for (int i = 0; i <= size; i++) {
+            char currentChar = (char) ('A' + i);
+            java.util.Arrays.fill(line, ' ');
+            line[size - i] = currentChar;
+            line[size + i] = currentChar;
+            result.add(new String(line));
+        }
+        
+        for (int i = size - 1; i >= 0; i--) {
+            char currentChar = (char) ('A' + i);
+            java.util.Arrays.fill(line, ' ');
+            line[size - i] = currentChar;
+            line[size + i] = currentChar;
+            result.add(new String(line));
+        }
+        
+        return result;
+    }
+}

@@ -1,0 +1,51 @@
+package spiralmatrix
+
+func SpiralMatrix(depth int) [][]int {
+	if depth == 0 {
+		return [][]int{}
+	}
+	
+	result := make([][]int, depth)
+	for i := range result {
+		result[i] = make([]int, depth)
+	}
+	
+	top, bottom, left, right := 0, depth-1, 0, depth-1
+	num := 1
+	
+	for top <= bottom && left <= right {
+		// Fill top row
+		for col := left; col <= right; col++ {
+			result[top][col] = num
+			num++
+		}
+		top++
+		
+		// Fill right column
+		for row := top; row <= bottom; row++ {
+			result[row][right] = num
+			num++
+		}
+		right--
+		
+		// Fill bottom row (if exists)
+		if top <= bottom {
+			for col := right; col >= left; col-- {
+				result[bottom][col] = num
+				num++
+			}
+			bottom--
+		}
+		
+		// Fill left column (if exists)
+		if left <= right {
+			for row := bottom; row >= top; row-- {
+				result[row][left] = num
+				num++
+			}
+			left++
+		}
+	}
+	
+	return result
+}

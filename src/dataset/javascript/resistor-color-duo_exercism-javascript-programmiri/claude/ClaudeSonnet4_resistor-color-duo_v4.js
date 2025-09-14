@@ -1,0 +1,29 @@
+const colorMap = {
+  'black': 0,
+  'brown': 1,
+  'red': 2,
+  'orange': 3,
+  'yellow': 4,
+  'green': 5,
+  'blue': 6,
+  'violet': 7,
+  'grey': 8,
+  'white': 9,
+};
+
+function getColorCode(name) {
+  return colorMap[name];
+}
+
+function value(colorNameList) {
+  let result = 0;
+  const length = colorNameList.length;
+  
+  for (let i = 0; i < length; i++) {
+    result = result * 10 + colorMap[colorNameList[i]];
+  }
+  
+  return result;
+}
+
+export { value };

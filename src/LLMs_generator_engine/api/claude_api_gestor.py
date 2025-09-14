@@ -174,7 +174,7 @@ class ClaudeApiGestor:
 
         # 2. Chiamata API
         api_res = self.make_api_call(final_prompt)
-
+        
         # 3. Estrazione e salvataggio del codice
         if api_res is not None:
             # L'output dell'API Anthropic è una lista di TextBlock.

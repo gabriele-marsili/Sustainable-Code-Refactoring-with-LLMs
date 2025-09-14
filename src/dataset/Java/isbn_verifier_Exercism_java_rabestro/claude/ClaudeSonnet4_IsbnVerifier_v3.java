@@ -1,0 +1,42 @@
+import static java.lang.Character.getNumericValue;
+
+class IsbnVerifier {
+
+    boolean isValid(String stringToVerify) {
+        if (stringToVerify == null || stringToVerify.length() < 10) {
+            return false;
+        }
+        
+        int digitCount = 0;
+        int checkSum = 0;
+        
+        for (int i = 0; i < stringToVerify.length(); i++) {
+            char c = stringToVerify.charAt(i);
+            
+            if (c == '-') {
+                continue;
+            }
+            
+            if (digitCount == 9) {
+                if (c == 'X') {
+                    checkSum += 10;
+                } else if (c >= '0' && c <= '9') {
+                    checkSum += getNumericValue(c);
+                } else {
+                    return false;
+                }
+                digitCount++;
+                break;
+            }
+            
+            if (c >= '0' && c <= '9') {
+                checkSum += (10 - digitCount) * getNumericValue(c);
+                digitCount++;
+            } else {
+                return false;
+            }
+        }
+        
+        return digitCount == 10 && checkSum % 11 == 0;
+    }
+}

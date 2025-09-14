@@ -138,7 +138,270 @@ clusters_already_processed = [
     "pascals_triangle",
     "variable_length_quantity",
     "isogram",
+    "scramblies",
+    "hashtag_generator",
+    "spiral_traversal",
+    "count_ip_addresses",
+    "custom_set",
+    "diamond_printer",
+    "a0200numberofislands",
+    "freelancer_rates",
+    "climbing_staircase",
+    "a0113pathsumii",
+    "a0064minimumpathsum",
+    "nth_fibonacci_number",
+    "a0098validatebinarysearchtree",
+    "forth",
+    "gotta_snatch_em_all",
+    "a0095uniquebinarysearchtreesii",
+    "a0162findpeakelement",
+    "evaluate_reverse_polish_notation",
+    "a0146lrucache",
+    "pig_latin",
+    "allergies",
+    "queen",
+    "interest_is_interesting",
+    "guidos_gorgeous_lasagna",
+    "captains_log",
+    "coordinate_transformation",
+    "grep",
+    "prime_calculator",
+    "accumulate",
+    "spiral_matrix",
+    "blackjack",
+    "meetup_schedule",
+    "mixed_juices",
+    "a0142linkedlistcycleii",
+    "welcome_to_tech_palace",
+    "minimum_absolute_difference_in_bst",
+    "letter_combinations",
+    "min_swaps",
+    "a0000blank",
+    "paasio",
+    "little_sisters_vocab",
+    "kindergarten_garden",
+    "a0130surroundedregions",
+    "largest_series_product",
+    "mean_square_error",
+    "react",
+    "find_element_range_sorted_array",
+    "perfect_rectangle",
+    "minesweeper",
+    "a0210coursescheduleii",
+    "log_levels_alt",
+    "hello_world",
+    "wordy",
+    "a0179largestnumber",
+    "linked_list",
+    "snakes_and_ladders",
+    "secret_handshake",
+    "a0120triangle",
+    "a0138copylistwithrandompointer",
+    "resistor_color_duo",
+    "diffie_hellman",
+    "shuffle_array",
+    "elons_toy_car",
+    "darts",
+    "a0089graycode",
+    "chessboard",
+    "parallel_letter_frequency",
+    "a0071simplitypath",
+    "a0134gasstation",
+    "amusement_park",
+    "ghost_gobble_arcade_game",
+    "a0207courseschedule",
+    "a0075sortcolors",
+    "error_handling",
+    "longest_increasing_subarray",
+    "a0001twosum",
+    "a0060permutationsequence",
+    "a0078subsets",
+    "savings_account",
+    "random_sample",
+    "a0091decodeways",
+    "little_sisters_essay",
+    "generate_parentheses",
+    "party_robot",
+    "min_cost_coloring",
+    "valid_sudoku",
+    "merge_intervals",
+    "ledger",
+    "number_of_islands",
+    "isbn_verifier",
+    "election_day",
+    "basic_calculator",
+    "word_search",
+    "matching_brackets",
+    "diamond",
+    "find_busiest_interval",
+    "title_case",
+    "a0059spiralmatrixii",
+    "find_first_missing_positive",
+    "typoglycemia_generator",
+    "pov",
+    "change",
+    "valid_palindrome",
+    "protein_translation",
+    "sum_non_adjecent",
+    "parsing_log_files",
+    "high_scores",
+    "find_el_where_k_greater_or_equal",
+    "a0215kthlargestelementinanarray",
+    "circular_buffer",
+    "a0150evaluatereversepolishnotation",
+    "queens_problem",
+    "valid_parentheses",
+    "lasagna_master",
+    "count_positives",
+    "a0201bitwiseandofnumbersrange",
+    "flatten_deep_list",
+    "best_time_to_buy_and_sell_stock",
+    "word_break",
+    "difference_of_squares_calculator",
+    "rotate_array",
+    "the_farm",
+    "fancy_sequence",
+    "a0105constructbinarytreefrompreorderandinordertraversal",
+    "find_one_missing_number",
+    "river_sizes",
+    "jump_game",
+    "a0187repeateddnasequences",
+    "a0114flattenbinarytreetolinkedlist",
+    "cars_assemble",
+    "reverse_ascending_sublists",
+    "animal_magic",
+    "zipper",
+    "longest_common_prefix",
+    "count_divisibles_in_range",
+    "a0102binarytreelevelordertraversal",
+    "sublist",
+    "reverse_vowels",
+    "ozans_playlist",
+    "anagram_indices",
+    "knapsack",
+    "min_stack",
+    "logs_logs_logs",
+    "count_consecutive_sums",
+    "pig_latin_translator",
+    "a0209minimumsizesubarraysum",
+    "a0153findminimuminrotatedsortedarray",
+    "domain_name",
+    "ocr_numbers",
+    "jedliks_toy_car",
+    "linked_list_cycle",
+    "spiral_matrix_builder",
+    "permutation_in_string",
+    "currency_exchange",
+    "binary_search",
+    "longest_common_subsequence",
+    "meteorology",
+    "a0148sortlist",
+    "bank_account",
+    "find_min_path",
+    "matrix",
+    "a0127wordladder",
+    "a0166fractiontorecurringdecimal",
+    "sliding_window_maximum",
+    "palindrome_integer",
+    "largest_series_product_calculator",
+    "a0116populatingnextrightpointersineachnode",
+    "find_two_missing_numbers",
+    "longest_consecutive_sequence",
+    "airport_robot",
+    "a0077combinations",
+    "bird_watcher",
+    "yacht",
+    "a0055jumpgame",
+    "saddle_points",
+    "longest_substring_without_repeating_characters",
+    "ordered_digits",
+    "minesweeper_board",
+    "palindrome_products",
+    "reverse_all_lists",
+    "a0079wordsearch",
+    "optical_character_reader",
+    "search_2d_matrix",
+    "a0147insertionsortlist",
+    "unique_paths",
+    "robot_simulator",
+    "resistor_color_trio",
+    "resistor_color",
+    "smallest_multiple",
+    "group_anagrams",
+    "a0082removeduplicatesfromsortedlistii",
+    "binary_search_tree",
+    "check_if_two_rectangles_overlap",
+    "making_the_grade",
+    "football_match_reports",
+    "a0213houserobberii",
+    "a0054spiralmatrix",
+    "a0103binarytreezigzaglevelordertraversal",
+    "transpose",
+    "expenses",
+    "a0062uniquepaths",
+    "a0092reverselinkedlistii",
+    "swap_first_and_last_word",
+    "find_unpaired",
+    "a0074search2dmatrix",
+    "power_set",
+    "a0080removeduplicatesfromsortedarrayii",
+    "sorting_room",
+    "census",
+    "resistor_color_enum",
+    "pythagorean_triplet",
+    "card_games",
+    "reverse_words_in_sentence",
+    "three_sum",
+    "alphametics",
+    "bowling_game_log",
+    "human_readable_numbers",
+    "booking_up_for_beauty",
+    "human_readable_numbers.test.js",
+    "hashtag_generator.test.js",
+    "domain_name.test.js",
+    "scramblies.test.js",
+    "title_case.test.js",
+    "typoglycemia_generator.test.js",
+    "mean_square_error.test.js",
+    "spiral_traversal.test.js",
+    "prime_factors",
+    "say",
+    "word_count",
+    "clock",
+    "gigasecond",
+    "scrabble_score",
+    "rna_transcription",
+    "grade_school",
+    "hamming",
+    "difference_of_squares",
+    "queen_attack",
+    "grains",
+    "anagram",
+    "crypto_square",
+    "nth_prime",
+    "meetup",
+    "sieve",
+    "space_age",
+    "phone_number",
+    "triangle",
+    "roman_numerals",
+    "binary",
+    "trinary",
+    "robot_name",
+    "hexadecimal",
+    "series",
+    "sum_of_multiples",
+    "etl",
+    "nucleotide_count",
+    "food_chain",
+    "twelve_days",
+    "pangram_checker",
+    "beer_song",
 ]
+
+clusters_not_completed = []
+
+clusters_not_processed = []
 
 prompt_file_paths = [
     utility_paths.PROMPTS_DIR_FILEPATH / "promptV1.txt",
@@ -152,7 +415,9 @@ def print_status():
     generator = LLMGenerator()
     generator.check_status()
 
+
 atexit.register(print_status)
+
 
 class LLMGenerator:
     def __init__(self):
@@ -183,7 +448,10 @@ class LLMGenerator:
                 cluster_name = cluster_name.replace("cluster_", "").removesuffix(
                     ".json"
                 )
-                if cluster_name in clusters_already_processed:
+                if (
+                    cluster_name in clusters_already_processed
+                    # or cluster_name in clusters_not_completed
+                ):
                     continue
                 else:
                     print(f"\n- Generating LLMs files for cluster {cluster_name}\n")
@@ -278,6 +546,17 @@ class LLMGenerator:
                         custom_message=f"📦 Generazione file per cluster `{cluster_name}` completata!",
                     )
 
+                    if (
+                        percent >= 99.99
+                        or total_generated_files == total_expected_files
+                    ):
+                        clusters_already_processed.append(cluster_name)
+                    elif percent > 0:
+                        clusters_not_completed.append(cluster_name)
+
+                    else:
+                        clusters_not_processed.append(cluster_name)
+
         except Exception as e:
             print(f"❌ Exception in generate_llms_files_for_chosen_clusters:\n{e}")
             self.reporter.send_simple_message(
@@ -285,8 +564,15 @@ class LLMGenerator:
             )
 
     def check_status(self):
-        cluster_not_completed = []
-        cluster_not_processed = []
+        for cluster_name in clusters_not_completed:
+            if cluster_name in clusters_already_processed:
+                clusters_not_completed.remove(cluster_name)
+
+        for cluster_name in clusters_not_processed:
+            if cluster_name in clusters_already_processed:
+                clusters_not_processed.remove(cluster_name)
+
+        entries_to_process = 0
         for cluster_name in os.listdir(
             utility_paths.CLUSTERS_DIR_FILEPATH
         ):  # itera i clusters
@@ -301,8 +587,9 @@ class LLMGenerator:
             cluster_name = cluster_name.replace("cluster_", "").removesuffix(".json")
             if cluster_name in clusters_already_processed:
                 continue
+
             else:
-                print(f"\n- Generating LLMs files for cluster {cluster_name}\n")
+                print(f"\n- Checking status for cluster {cluster_name}\n")
 
                 file_name = f"cluster_{cluster_name}.json"
                 cluster_path = utility_paths.CLUSTERS_DIR_FILEPATH / file_name
@@ -312,30 +599,39 @@ class LLMGenerator:
                     json_file_content = json.load(f)
 
                 if json_file_content:
-                    addedd = False
-                    for language, entries in json_file_content.items():
-                        if addedd:
-                            break
+                    total_cluster_entries = 0
+                    processed = 0
+                    partially_processed = 0
+                    NOT_processed = 0
 
-                        for entry in entries:
+                    for _language, entries in json_file_content.items():
+                        total_cluster_entries += len(entries)
+
+                        for i, entry in enumerate(entries):
                             if len(entry["LLMs"]) == 12:
-                                # clusters_already_processed.append(cluster_name)
-                                pass
+                                # print(f"🟢 entry {entry['id']} with all 12 LLMs files | {i}/{total_cluster_entries} | cluster = {cluster_name}")
+                                processed += 1
                             elif len(entry["LLMs"]) > 0:
-                                cluster_not_completed.append(cluster_name)
-                                addedd = True
-                                break
+                                # print(f"🟡 entry {entry['id']} with all > 0 LLMs files | {i}/{total_cluster_entries} | cluster = {cluster_name} added to cluster not completed")
+                                partially_processed += 1
                             else:
-                                cluster_not_processed.append(cluster_name)
-                                addedd = True
-                                break
+                                # print(f"🔴 entry {entry['id']} with all 12 LLMs files | {i}/{total_cluster_entries} | cluster = {cluster_name}")
+                                NOT_processed += 1
 
-                    if not addedd:
+                    print(
+                        f"Cluster {cluster_name}:\nprocessed : {processed}/{total_cluster_entries}\nNOT_processed : {NOT_processed}/{total_cluster_entries}\npartially_processed : {partially_processed}/{total_cluster_entries}\n\n"
+                    )
+                    if processed == total_cluster_entries:
                         clusters_already_processed.append(cluster_name)
+                    elif NOT_processed == total_cluster_entries:
+                        clusters_not_processed.append(cluster_name)
+                        entries_to_process += NOT_processed
+                    else:
+                        clusters_not_completed.append(cluster_name)
 
-        m1 = f"\nclusters not processed : {len(cluster_not_processed)}"
+        m1 = f"\nclusters not processed : {len(clusters_not_processed)}"
 
-        m2 = f"\nclusters not completed : {len(cluster_not_completed)}"
+        m2 = f"\nclusters not completed : {len(clusters_not_completed)}"
 
         m3 = f"\nclusters processed : {len(clusters_already_processed)}"
 
@@ -343,12 +639,16 @@ class LLMGenerator:
 
         self.reporter.send_simple_message(msg)
 
-        print(m1 + f"\n\n{cluster_not_processed}")
-        print(m2 + f"\n\n{cluster_not_completed}")
+        print(m1 + f"\n\n{clusters_not_processed}")
+        print(m2 + f"\n\n{clusters_not_completed}")
         print(m3 + f"\n\n{clusters_already_processed}")
+
+        print(
+            f"\nTotal entries to processed : {entries_to_process}\nEstimated $ : {entries_to_process * 0.02} $"
+        )
 
 
 if __name__ == "__main__":
     generator = LLMGenerator()
-    generator.generate_llms_files_for_chosen_clusters()
-    
+    #generator.generate_llms_files_for_chosen_clusters()
+    generator.check_status()

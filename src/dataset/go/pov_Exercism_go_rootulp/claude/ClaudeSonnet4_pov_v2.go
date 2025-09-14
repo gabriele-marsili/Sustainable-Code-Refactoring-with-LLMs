@@ -1,0 +1,147 @@
+package pov
+
+type Tree struct {
+	value string
+	children []*Tree
+	parent *Tree
+}
+
+// New creates and returns a new Tree with the given root value and children.
+func New(value string, children ...*Tree) *Tree {
+	if len(children) == 0 {
+		return &Tree{value: value}
+	}
+	
+	node := &Tree{
+		value: value,
+		children: make([]*Tree, len(children)),
+	}
+	copy(node.children, children)
+	
+	for _, child := range node.children {
+		child.parent = node
+	}
+
+	return node
+}
+
+// Value returns the value at the root of a tree.
+func (tr *Tree) Value() string {
+	return tr.value
+}
+
+// Children returns a slice containing the children of a tree.
+// There is no need to sort the elements in the result slice,
+// they can be in any order.
+func (tr *Tree) Children() []*Tree {
+	return tr.children
+}
+
+// String describes a tree in a compact S-expression format.
+// This helps to make test outputs more readable.
+// Feel free to adapt this method as you see fit.
+func (tr *Tree) String() string {
+	if tr == nil {
+		return "nil"
+	}
+	if len(tr.children) == 0 {
+		return tr.value
+	}
+	
+	result := "(" + tr.value
+	for _, ch := range tr.children {
+		result += " " + ch.String()
+	}
+	return result + ")"
+}
+
+// POV problem-specific functions
+
+// FromPov returns the pov from the node specified in the argument.
+func (tr *Tree) FromPov(from string) *Tree {
+	fromTree := tr.findNode(from)
+	if fromTree == nil {
+		return nil
+	}
+
+	if fromTree.parent == nil {
+		return fromTree
+	}
+
+	// construct path from `from` to `root`
+	pathLen := 0
+	for p := fromTree; p != nil; p = p.parent {
+		pathLen++
+	}
+	
+	path := make([]*Tree, 0, pathLen)
+	for p := fromTree; p != nil; p = p.parent {
+		path = append(path, p)
+	}
+
+	fromTree.parent = nil
+	for i := 0; i < len(path)-1; i++ {
+		flip(path[i], path[i+1])
+	}
+	return fromTree
+}
+
+// PathTo returns the shortest path between two nodes in the tree.
+func (tr *Tree) PathTo(from, to string) []string {
+	newPov := tr.FromPov(to)
+	if newPov == nil {
+		return nil
+	}
+	fromNode := newPov.findNode(from)
+	if fromNode == nil {
+		return nil
+	}
+	
+	// Count path length first
+	pathLen := 1
+	for p := fromNode.parent; p != nil; p = p.parent {
+		pathLen++
+		if p.value == to {
+			break
+		}
+	}
+	
+	path := make([]string, 0, pathLen)
+	path = append(path, fromNode.value)
+	for p := fromNode.parent; p != nil; p = p.parent {
+		path = append(path, p.value)
+		if p.value == to {
+			return path
+		}
+	}
+	return nil
+}
+
+func (tr *Tree) findNode(value string) *Tree {
+	if tr.value == value {
+		return tr
+	}
+	for _, child := range tr.children {
+		if found := child.findNode(value); found != nil {
+			return found
+		}
+	}
+	return nil
+}
+
+func flip(child *Tree, parent *Tree) {
+	parent.parent = child
+	parent.removeChild(child)
+	child.children = append(child.children, parent)
+}
+
+func (tr *Tree) removeChild(child *Tree) {
+	children := tr.children
+	for i, ch := range children {
+		if ch == child {
+			copy(children[i:], children[i+1:])
+			tr.children = children[:len(children)-1]
+			return
+		}
+	}
+}

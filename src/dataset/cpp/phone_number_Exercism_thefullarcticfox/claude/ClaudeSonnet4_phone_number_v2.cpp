@@ -1,0 +1,52 @@
+#include "phone_number.h"
+#include <stdexcept>
+
+namespace phone_number {
+	phone_number::phone_number(const std::string& phone_number) {
+		_number.reserve(11); // Reserve space to avoid reallocations
+		
+		for (char digit : phone_number) {
+			if (std::isdigit(digit)) {
+				_number.push_back(digit);
+			} else if (digit != ' ' && digit != '.' && digit != '+' && 
+					   digit != '-' && digit != '(' && digit != ')') {
+				throw std::domain_error("invalid number");
+			}
+		}
+		
+		const size_t size = _number.size();
+		if (size < 10 || size > 11)
+			throw std::domain_error("invalid number length");
+		
+		if (size == 11) {
+			if (_number[0] != '1')
+				throw std::domain_error("invalid country code");
+			_number.erase(0, 1); // More efficient than substr assignment
+		}
+		
+		if (_number[0] < '2')
+			throw std::domain_error("invalid area code");
+		if (_number[3] < '2')
+			throw std::domain_error("invalid exchange code");
+	}
+
+	const std::string&	phone_number::number() const {
+		return _number;
+	}
+
+	std::string			phone_number::area_code() const {
+		return _number.substr(0, 3);
+	}
+
+	phone_number::operator std::string() const {
+		std::string result;
+		result.reserve(14); // Reserve exact space: "(123) 456-7890"
+		result += '(';
+		result += _number.substr(0, 3);
+		result += ") ";
+		result += _number.substr(3, 3);
+		result += '-';
+		result += _number.substr(6);
+		return result;
+	}
+}  // namespace phone_number

@@ -1,0 +1,41 @@
+package erratum
+
+import (
+	"fmt"
+)
+
+type opener func() (Resource, error)
+
+func Use(open opener, s string) (err error) {
+	resource, err := retry(5, open)
+	if err != nil {
+		return err
+	}
+	defer resource.Close()
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Printf("recovered from %v\n", r)
+			switch e := r.(type) {
+			case FrobError:
+				resource.Defrob(e.defrobTag)
+				err = e
+			case error:
+				err = e
+			}
+		}
+	}()
+	resource.Frob(s)
+	return nil
+}
+
+func retry(attempts int, f func() (Resource, error)) (Resource, error) {
+	var r Resource
+	var err error
+	for i := 0; i < attempts; i++ {
+		r, err = f()
+		if err == nil {
+			return r, nil
+		}
+	}
+	return nil, err
+}
