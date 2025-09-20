@@ -1,56 +1,91 @@
 (node:22) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-PASS ./pig-latin_testSuite.js
+FAIL ./pig-latin_testSuite.js
   Pig Latin
     ay is added to words that start with vowels
       ✓ word beginning with a (1 ms)
       ✓ word beginning with e
-      ✓ word beginning with i (1 ms)
+      ✓ word beginning with i
       ✓ word beginning with o
-      ✓ word beginning with u (1 ms)
+      ✓ word beginning with u
       ✓ word beginning with a vowel and followed by a qu
     first letter and ay are moved to the end of words that start with consonants
-      ✓ word beginning with p (1 ms)
-      ✓ word beginning with k
-      ✓ word beginning with x
+      ✓ word beginning with p
+      ✓ word beginning with k (1 ms)
+      ✓ word beginning with x (1 ms)
       ✓ word beginning with q without a following u
     some letter clusters are treated like a single consonant
-      ✓ word beginning with ch (1 ms)
+      ✓ word beginning with ch
       ✓ word beginning with qu
-      ✓ word beginning with qu and a preceding consonant
+      ✕ word beginning with qu and a preceding consonant (1 ms)
       ✓ word beginning with th
       ✓ word beginning with thr
       ✓ word beginning with sch
     some letter clusters are treated like a single vowel
       ✓ word beginning with yt
-      ✓ word beginning with xr (1 ms)
+      ✓ word beginning with xr
     position of y in a word determines if it is a consonant or a vowel
       ✓ y is treated like a consonant at the beginning of a word
-      ✓ y is treated like a vowel at the end of a consonant cluster (1 ms)
+      ✓ y is treated like a vowel at the end of a consonant cluster
       ✓ y as second letter in two letter word
     phrases are translated
-      ✓ a whole phrase
+      ✕ a whole phrase
 
-Test Suites: 1 passed, 1 total
-Tests:       22 passed, 22 total
+  ● Pig Latin › some letter clusters are treated like a single consonant › word beginning with qu and a preceding consonant
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "aresquay"
+    Received: "quaresay"
+
+      56 |
+      57 |     test('word beginning with qu and a preceding consonant', () => {
+    > 58 |       expect(translate('square')).toEqual('aresquay');
+         |                                   ^
+      59 |     });
+      60 |
+      61 |     test('word beginning with th', () => {
+
+      at Object.<anonymous> (pig-latin_testSuite.js:58:35)
+
+  ● Pig Latin › phrases are translated › a whole phrase
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "ickquay astfay unray"
+    Received: "ickquay astfay nruay"
+
+       98 |   describe('phrases are translated', () => {
+       99 |     test('a whole phrase', () => {
+    > 100 |       expect(translate('quick fast run')).toEqual('ickquay astfay unray');
+          |                                           ^
+      101 |     });
+      102 |   });
+      103 | });
+
+      at Object.<anonymous> (pig-latin_testSuite.js:100:43)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 20 passed, 22 total
 Snapshots:   0 total
-Time:        0.448 s
+Time:        0.298 s
 Ran all test suites.
+Command exited with non-zero status 1
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 0.23
-	System time (seconds): 0.09
-	Percent of CPU this job got: 25%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.28
+	User time (seconds): 0.25
+	System time (seconds): 0.07
+	Percent of CPU this job got: 36%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.89
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 82560
+	Maximum resident set size (kbytes): 84408
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 14269
-	Voluntary context switches: 7602
-	Involuntary context switches: 1870
+	Minor (reclaiming a frame) page faults: 14477
+	Voluntary context switches: 7630
+	Involuntary context switches: 2654
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16
@@ -58,4 +93,4 @@ Ran all test suites.
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 0
+	Exit status: 1

@@ -9,16 +9,14 @@ const dividers = [
 function convert(input) {
     let result = "";
     // Using a for...of loop is often more readable and can sometimes be slightly
-    // more performant in modern JavaScript engines due to optimizations.
-    // It also avoids the overhead of indexing.
+    // more efficient than a traditional for loop with an index, as it avoids
+    // the overhead of index lookups.
     for (const [divider, sound] of dividers) {
-        // The modulo operator is efficient.
         if (input % divider === 0) {
-            // String concatenation is optimized by modern JS engines.
             result += sound;
         }
     }
-    // This is a concise way to return the result or the string representation of the input.
-    // It leverages the truthiness of non-empty strings.
+    // Using a ternary operator is concise and efficient for this conditional return.
+    // The logical OR (||) is already efficient for checking if `result` is empty.
     return result || input.toString();
 }

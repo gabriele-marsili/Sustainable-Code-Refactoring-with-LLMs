@@ -1,19 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class Raindrops {
-    constructor() {
-        this.mappings = [
-            [3, 'Pling'],
-            [5, 'Plang'],
-            [7, 'Plong']
-        ];
-    }
     convert(n) {
         let result = '';
-        for (const [divisor, sound] of this.mappings) {
-            if (n % divisor === 0) {
-                result += sound;
-            }
+        const isPling = n % 3 === 0;
+        const isPlang = n % 5 === 0;
+        const isPlong = n % 7 === 0;
+        if (isPling) {
+            result += 'Pling';
+        }
+        if (isPlang) {
+            result += 'Plang';
+        }
+        if (isPlong) {
+            result += 'Plong';
         }
         return result || n.toString();
     }

@@ -2,45 +2,45 @@
 (Use `node --trace-warnings ...` to show where the warning was created)
 PASS ./raindrops_testSuite.js
   Raindrops
-    ✓ the sound for 1 is 1 (3 ms)
+    ✓ the sound for 1 is 1 (1 ms)
     ✓ the sound for 3 is Pling
     ✓ the sound for 5 is Plang
     ✓ the sound for 7 is Plong
     ✓ the sound for 6 is Pling as it has a factor 3
-    ✓ 2 to the power 3 does not make a raindrop sound as 3 is the exponent not the base
-    ✓ the sound for 9 is Pling as it has a factor 3 (1 ms)
-    ✓ the sound for 10 is Plang as it has a factor 5
-    ✓ the sound for 14 is Plong as it has a factor of 7 (1 ms)
+    ✓ 2 to the power 3 does not make a raindrop sound as 3 is the exponent not the base (2 ms)
+    ✓ the sound for 9 is Pling as it has a factor 3
+    ✓ the sound for 10 is Plang as it has a factor 5 (1 ms)
+    ✓ the sound for 14 is Plong as it has a factor of 7
     ✓ the sound for 15 is PlingPlang as it has factors 3 and 5
     ✓ the sound for 21 is PlingPlong as it has factors 3 and 7
     ✓ the sound for 25 is Plang as it has a factor 5
-    ✓ the sound for 27 is Pling as it has a factor 3
-    ✓ the sound for 35 is PlangPlong as it has factors 5 and 7 (1 ms)
+    ✓ the sound for 27 is Pling as it has a factor 3 (1 ms)
+    ✓ the sound for 35 is PlangPlong as it has factors 5 and 7
     ✓ the sound for 49 is Plong as it has a factor 7
-    ✓ the sound for 52 is 52
+    ✓ the sound for 52 is 52 (4 ms)
     ✓ the sound for 105 is PlingPlangPlong as it has factors 3, 5 and 7
     ✓ the sound for 3125 is Plang as it has a factor 5
 
 Test Suites: 1 passed, 1 total
 Tests:       18 passed, 18 total
 Snapshots:   0 total
-Time:        0.226 s
+Time:        0.353 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 0.25
+	User time (seconds): 0.24
 	System time (seconds): 0.06
-	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.67
+	Percent of CPU this job got: 26%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.15
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 83396
+	Maximum resident set size (kbytes): 82640
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 14362
-	Voluntary context switches: 7605
-	Involuntary context switches: 2049
+	Minor (reclaiming a frame) page faults: 14401
+	Voluntary context switches: 7656
+	Involuntary context switches: 1196
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

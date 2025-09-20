@@ -3655,6 +3655,7 @@ def print_analysis_results(results: ClusterAnalysisResults, runned_base, runned_
         print(f"clusters_already_processed = {sorted(all_fully_executed)}")
         print()
 
+    """
     print(
         f"\n(base) Clusters executed in this run ({len(base_cluster_processed_in_this_exec)}):\n{base_cluster_processed_in_this_exec}"
     )
@@ -3668,6 +3669,7 @@ def print_analysis_results(results: ClusterAnalysisResults, runned_base, runned_
     print(
         f"\nRunned LLM({len(runned_llm)}/{total_clusters} : {len(runned_llm) / total_cluster_quantity * 100}%) (at least 1 correct runned entry in output file):\n{runned_llm}"
     )
+    """
 
    
 

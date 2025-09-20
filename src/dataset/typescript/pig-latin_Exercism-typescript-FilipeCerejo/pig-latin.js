@@ -5,24 +5,19 @@ function translate(word) {
     return word
         .split(' ')
         .map((w) => {
-        const lower = w.toLowerCase();
-        const firstChar = lower[0];
-        if (firstChar === 'a' || firstChar === 'e' || firstChar === 'i' || firstChar === 'o' || firstChar === 'u') {
-            return lower + 'ay';
+        const lowerW = w.toLowerCase();
+        if (/^[aeiou]/.test(lowerW)) {
+            return lowerW + 'ay';
         }
-        if (lower.startsWith('squ')) {
-            return lower.substring(3) + 'squay';
+        const consonantClusterMatch = lowerW.match(/^(ch|qu|squ|th|thr|sch)/);
+        if (consonantClusterMatch) {
+            const cluster = consonantClusterMatch[0];
+            return lowerW.substring(cluster.length) + cluster + 'ay';
         }
-        if (lower.startsWith('thr')) {
-            return lower.substring(3) + 'thray';
+        if (/^[^aeiou]/.test(lowerW)) {
+            return lowerW.substring(1) + lowerW[0] + 'ay';
         }
-        if (lower.startsWith('sch')) {
-            return lower.substring(3) + 'schay';
-        }
-        if (lower.startsWith('ch') || lower.startsWith('qu') || lower.startsWith('th')) {
-            return lower.substring(2) + lower.substring(0, 2) + 'ay';
-        }
-        return lower.substring(1) + firstChar + 'ay';
+        return lowerW;
     })
         .join(' ');
 }

@@ -1,18 +1,18 @@
-(node:22) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
 PASS ./raindrops_testSuite.js
   Raindrops
-    ✓ the sound for 1 is 1 (1 ms)
-    ✓ the sound for 3 is Pling
+    ✓ the sound for 1 is 1 (2 ms)
+    ✓ the sound for 3 is Pling (1 ms)
     ✓ the sound for 5 is Plang
     ✓ the sound for 7 is Plong
-    ✓ the sound for 6 is Pling as it has a factor 3
-    ✓ 2 to the power 3 does not make a raindrop sound as 3 is the exponent not the base (1 ms)
-    ✓ the sound for 9 is Pling as it has a factor 3
+    ✓ the sound for 6 is Pling as it has a factor 3 (4 ms)
+    ✓ 2 to the power 3 does not make a raindrop sound as 3 is the exponent not the base
+    ✓ the sound for 9 is Pling as it has a factor 3 (3 ms)
     ✓ the sound for 10 is Plang as it has a factor 5
-    ✓ the sound for 14 is Plong as it has a factor of 7
+    ✓ the sound for 14 is Plong as it has a factor of 7 (1 ms)
     ✓ the sound for 15 is PlingPlang as it has factors 3 and 5
-    ✓ the sound for 21 is PlingPlong as it has factors 3 and 7 (1 ms)
+    ✓ the sound for 21 is PlingPlong as it has factors 3 and 7
     ✓ the sound for 25 is Plang as it has a factor 5
     ✓ the sound for 27 is Pling as it has a factor 3
     ✓ the sound for 35 is PlangPlong as it has factors 5 and 7
@@ -24,23 +24,23 @@ PASS ./raindrops_testSuite.js
 Test Suites: 1 passed, 1 total
 Tests:       18 passed, 18 total
 Snapshots:   0 total
-Time:        0.381 s
+Time:        0.66 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
 	User time (seconds): 0.29
-	System time (seconds): 0.08
-	Percent of CPU this job got: 36%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.05
+	System time (seconds): 0.06
+	Percent of CPU this job got: 27%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.29
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 83372
+	Maximum resident set size (kbytes): 82796
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 14196
-	Voluntary context switches: 7592
-	Involuntary context switches: 3525
+	Minor (reclaiming a frame) page faults: 14608
+	Voluntary context switches: 7630
+	Involuntary context switches: 3046
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

@@ -2,15 +2,15 @@
 (Use `node --trace-warnings ...` to show where the warning was created)
 PASS ./raindrops_testSuite.js
   Raindrops
-    ✓ converts 1 (1 ms)
-    ✓ converts 3
+    ✓ converts 1 (2 ms)
+    ✓ converts 3 (1 ms)
     ✓ converts 5
     ✓ converts 7
     ✓ converts 6 (2 ms)
     ✓ converts 9
     ✓ converts 10
-    ✓ converts 14
-    ✓ converts 15 (1 ms)
+    ✓ converts 14 (1 ms)
+    ✓ converts 15
     ✓ converts 21
     ✓ converts 25
     ✓ converts 35
@@ -22,23 +22,23 @@ PASS ./raindrops_testSuite.js
 Test Suites: 1 passed, 1 total
 Tests:       16 passed, 16 total
 Snapshots:   0 total
-Time:        0.202 s
+Time:        0.435 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 0.25
-	System time (seconds): 0.07
-	Percent of CPU this job got: 43%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.74
+	User time (seconds): 0.47
+	System time (seconds): 0.18
+	Percent of CPU this job got: 49%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.34
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 81432
+	Maximum resident set size (kbytes): 80708
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 13945
-	Voluntary context switches: 7358
-	Involuntary context switches: 3467
+	Minor (reclaiming a frame) page faults: 14119
+	Voluntary context switches: 7600
+	Involuntary context switches: 1298
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

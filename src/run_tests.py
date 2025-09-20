@@ -1411,10 +1411,7 @@ if __name__ == "__main__":
         
         
 # source venv/bin/activate
-
-
-#python3 run_tests.py --llm-only --cluster-name cluster_hashtag_generator.test.js --output-file cluster_hashtag_generator.test.js_results_v2 --webhook --prompt-version 2 --silent --run_quantity 5
-        
+  
 # python3 run_tests.py --llm-only --cluster-name cluster_raindrops --output-file raindrops_results_v2 --webhook --prompt-version 2 --silent --run_quantity 5
 # python3 run_tests.py --llm-only --cluster-name cluster_raindrops --output-file raindrops_results_v3 --webhook --prompt-version 3 --silent --run_quantity 5
 # python3 run_tests.py --llm-only --cluster-name cluster_raindrops --output-file raindrops_results_v4 --webhook --prompt-version 4 --silent --run_quantity 5

@@ -1,882 +1,621 @@
-import json 
+#run all
+import json
 import subprocess
 import os
 import time
 from utility_dir import utility_paths
 from dataclasses import dataclass, field
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, List, Tuple, Set
 import atexit
-import threading
-import queue
-import concurrent.futures
-from pathlib import Path
 import logging
-from datetime import datetime
+from pathlib import Path
+import concurrent.futures
+import threading
+from collections import defaultdict
+import re
 
-# Clusters già processati
-clusters_already_processed_base = ['raindrops', 'leap', 'pangram','bob','reverse_all_lists', 'elons_toy_car', 'pig_latin_translator', 'find_el_smaller_left_bigger_right', 'queens_problem', 'three_sum', 'check_if_point_inside_polygon', 'find_two_missing_numbers', 'a0059spiralmatrixii', 'a0094binarytreeinordertraversal', 'the_farm', 'sorting_room', 'a0138copylistwithrandompointer', 'election_day', 'a0152maximumproductsubarray', 'min_cost_coloring', 'a0116populatingnextrightpointersineachnode', 'unique_paths', 'bottle_song', 'container_with_most_water', 'linked_list_cycle', 'valid_parentheses', 'random_sample', 'check_if_two_rectangles_overlap', 'a0201bitwiseandofnumbersrange', 'chaitanas_colossal_coaster', 'a0144binarytreepreordertraversal', 'longest_common_prefix', 'count_divisibles_in_range', 'queen', 'nth_fibonacci_number', 'calculate_area_of_polygon', 'log_levels_alt', 'party_robot', 'meetup_schedule', 'sum_non_adjecent', 'card_games', 'zebra_puzzle', 'dn_dcharacter', 'complex_numbers', 'count_positives', 'a0215kthlargestelementinanarray', 'power_set', 'squeaky_clean', 'need_for_speed', 'rail_fence_cipher', 'a0120triangle', 'census', 'reverse_vowels', 'basic_calculator', 'prime_calculator', 'smallest_multiple', 'a0074search2dmatrix', 'a0055jumpgame', 'blackjack', 'best_time_to_buy_and_sell_stock', 'cars_assemble', 'welcome_to_tech_palace', 'summary_ranges', 'lasagna', 'a0064minimumpathsum', 'min_swaps', 'a0153findminimuminrotatedsortedarray', 'majority_element', 'a0114flattenbinarytreetolinkedlist', 'killer_sudoku_helper', 'a0147insertionsortlist', 'meteorology', 'find_first_missing_positive', 'a0127wordladder', 'ledger', 'a0207courseschedule', 'forth', 'palindrome_integer', 'tournament', 'a0092reverselinkedlistii', 'valid_anagram', 'longest_common_subsequence', 'mixed_juices', 'a0056mergeintervals', 'card_tricks', 'book_store', 'a0109convertsortedlisttobinarysearchtree', 'resistor_color_enum', 'snakes_and_ladders', 'freelancer_rates', 'making_the_grade', 'bowling', 'a0075sortcolors', 'log_levels', 'number_of_islands', 'merge_intervals', 'debug_cpp_entries_1', 'largest_series_product_calculator', 'valid_sudoku', 'longest_palindromic_substring', 'river_sizes', 'a0131palindromepartitioning', 'minimum_window_substring', 'reverse_integer', 'savings_account', 'little_sisters_vocab', 'bank_account_action_invalid_exception', 'error_handling', 'find_peak_element', 'a0001twosum', 'a0162findpeakelement', 'diamond_printer', 'interest_is_interesting', 'swap_first_and_last_word', 'little_sisters_essay', 'two_sum', 'a0151reversewordsinastring', 'a0000blank', 'product_of_array_except_self', 'a0213houserobberii', 'flatten_deep_list', 'lucky_numbers', 'weather_forecast', 'grep', 'secret_handshake', 'merge_sorted_array', 'reverse_string', 'find_one_missing_number', 'evaluate_reverse_polish_notation', 'rotate_array', 'a0089graycode', 'a0133clonegraph', 'postfix_evaluate', 'parsing_log_files', 'change', 'a0143reorderlist', 'a0093restore_ip_addresses', 'bob', 'candy', 'a0062uniquepaths', 'permutation_in_string', 'airport_robot', 'a0199binarytreerightsideview', 'odd_sum', 'bowling_game_log', 'tree_building', 'a0102binarytreelevelordertraversal', 'simple_linked_list', 'ransom_note', 'annalyns_infiltration', 'letter_combinations', 'a0073setmatrixzeros', 'a0098validatebinarysearchtree', 'yacht', 'minimum_absolute_difference_in_bst', 'animal_magic', 'poker', 'climbing_staircase', 'find_busiest_interval', 'a0079wordsearch', 'a0096uniquebinarysearchtrees', 'secrets', 'find_el_where_k_greater_or_equal', 'pangram', 'word_break', 'a0148sortlist', 'encode_and_decode_strings', 'gotta_snatch_em_all', 'a0130surroundedregions', 'paasio', 'find_missing_number_in_second_array', 'ghost_gobble_arcade_game', 'a0071simplitypath', 'a0146lrucache', 'a0086partitionlist', 'pythagorean_triplet', 'sort_rgb_array', 'count_consecutive_sums', 'a0082removeduplicatesfromsortedlistii', 'count_triplets_with_sum_k', 'a0103binarytreezigzaglevelordertraversal', 'a0134gasstation', 'valid_palindrome', 'a0165compareversionnumbers', 'guidos_gorgeous_lasagna', 'a0095uniquebinarysearchtreesii', 'chessboard', 'high_score_board', 'a0200numberofislands', 'logs_logs_logs', 'two_sum_ii_input_array_is_sorted', 'a0105constructbinarytreefrompreorderandinordertraversal', 'state_of_tic_tac_toe', 'a0210coursescheduleii', 'pig_latin', 'sliding_window_maximum', 'a0061rotatelist', 'word_search', 'a0080removeduplicatesfromsortedarrayii', 'longest_increasing_subarray', 'difference_of_squares_calculator', 'power', 'fancy_sequence', 'scale_generator', 'a0179largestnumber', 'a0090subsetsii', 'anagram_indices', 'jedliks_toy_car', 'parallel_letter_frequency', 'armstrong_numbers', 'reverse_ascending_sublists', 'pov', 'a0054spiralmatrix', 'a0142linkedlistcycleii', 'pangram_checker', 'luhn_validator', 'ordered_digits', 'find_min_path', 'set_matrix_zeroes', 'raindrops', 'split_coins', 'crypto_square', 'a0150evaluatereversepolishnotation', 'a0209minimumsizesubarraysum', 'a0208implementtrieprefixtree', 'a0091decodeways', 'a0077combinations', 'captains_log', 'a0129sumroottoleafnumbers', 'a0187repeateddnasequences', 'contains_duplicate', 'protein_translator', 'booking_up_for_beauty', 'find_element_range_sorted_array', 'elons_toys', 'find_unpaired', 'a0216combination_sumiii', 'football_match_reports', 'shuffle_array', 'minimum_size_subarray_sum', 'count_ip_addresses', 'kth_smallest', 'proverb', 'a0211addandsearchworddatastructuredesign', 'a0063uniquepathsii', 'flatten_array', 'min_stack', 'longest_substring_without_repeating_characters', 'currency_exchange', 'optical_character_reader', 'reverse_array', 'diffie_hellman', 'gross_store', 'longest_consecutive_sequence', 'dominoes', 'a0060permutationsequence', 'maximum_depth_of_binary_tree', 'minesweeper_board', 'a0166fractiontorecurringdecimal', 'jump_game', 'variable_length_quantity', 'a0078subsets', 'binary_tree_right_side_view', 'reverse_words_in_sentence', 'a0113pathsumii', 'salary_calculator', 'search_2d_matrix', 'markdown', 'spiral_matrix_builder', 'leap', 'longest_repeating_character_replacement', 'expenses', 'knapsack', 'a0139wordbreak', 'perfect_rectangle', 'twofer', 'resistor_color_trio']
-clusters_already_processed_llm = ['raindrops', 'leap', 'pangram','bob','a0098validatebinarysearchtree', 'variable_length_quantity', 'lasagna', 'square_root', 'freelancer_rates', 'raindrops', 'a0093restore_ip_addresses', 'leap', 'a0165compareversionnumbers', 'power', 'rail_fence_cipher', 'valid_anagram', 'queen_attack', 'secrets', 'state_of_tic_tac_toe', 'squeaky_clean', 'a0211addandsearchworddatastructuredesign', 'weather_forecast', 'a0152maximumproductsubarray', 'difference_of_squares', 'find_peak_element', 'binary_tree_right_side_view', 'a0096uniquebinarysearchtrees', 'protein_translator', 'a0216combination_sumiii', 'sort_rgb_array', 'bowling', 'find_missing_number_in_second_array', 'gotta_snatch_em_all', 'merge_sorted_array', 'a0199binarytreerightsideview', 'summary_ranges', 'spiral_traversal', 'candy', 'need_for_speed', 'hamming', 'a0061rotatelist', 'contains_duplicate', 'encode_and_decode_strings', 'longest_palindromic_substring', 'dn_dcharacter', 'a0056mergeintervals', 'a0208implementtrieprefixtree', 'a0146lrucache', 'a0095uniquebinarysearchtreesii', 'a0113pathsumii', 'two_sum_ii_input_array_is_sorted', 'lucky_numbers', 'a0129sumroottoleafnumbers', 'card_tricks', 'scramblies', 'two_sum', 'isogram', 'a0094binarytreeinordertraversal', 'find_el_smaller_left_bigger_right', 'maximum_depth_of_binary_tree', 'pangram', 'nth_prime', 'majority_element', 'salary_calculator', 'atbash_cipher', 'postfix_evaluate', 'a0144binarytreepreordertraversal', 'reverse_string', 'ransom_note', 'proverb', 'log_levels', 'pangram_checker', 'climbing_staircase', 'a0133clonegraph', 'book_store', 'tree_building', 'poker', 'minimum_window_substring', 'annalyns_infiltration', 'collatz_conjecture', 'eliuds_eggs', 'human_readable_numbers.test.js', 'killer_sudoku_helper', 'a0073setmatrixzeros', 'grains', 'reverse_array', 'beer_song', 'gross_store', 'a0151reversewordsinastring', 'bottle_song', 'high_score_board', 'a0090subsetsii', 'a0064minimumpathsum', 'twofer', 'split_coins', 'hashtag_generator', 'a0131palindromepartitioning', 'anagram', 'simple_linked_list', 'all_your_base', 'elons_toys', 'two_fer', 'tournament', 'scale_generator', 'a0109convertsortedlisttobinarysearchtree', 'a0063uniquepathsii', 'evaluate_reverse_polish_notation', 'odd_sum', 'a0086partitionlist', 'bank_account_action_invalid_exception', 'set_matrix_zeroes', 'nth_fibonacci_number', 'clock', 'a0143reorderlist', 'kth_smallest', 'dominoes', 'longest_repeating_character_replacement', 'count_triplets_with_sum_k', 'a0139wordbreak', 'reverse_integer', 'zebra_puzzle', 'luhn_validator', 'perfect_numbers', 'calculate_area_of_polygon', 'chaitanas_colossal_coaster', 'a0162findpeakelement', 'say', 'markdown', 'minimum_size_subarray_sum', 'check_if_point_inside_polygon', 'house', 'forth']
+# Cluster state management
+execution_state = {
+    "base_clusters_processed": [],
+    "llm_clusters_processed": [],
+    "failed_clusters": [],
+    "skipped_clusters": [],
+    "start_time": time.time()
+}
 
-# Enhanced execution status tracking
 @dataclass
-class ExecutionStatus:
-    """Enhanced classe per tracciare lo stato di esecuzione di un cluster"""
+class ClusterExecutionStatus:
+    """Status di esecuzione di un singolo cluster"""
     cluster_name: str
     total_executions: int = 0
-    correct_executions: int = 0
-    incorrect_entries: List[Dict] = field(default_factory=list)
-    last_execution_time: Optional[str] = None
-    estimated_completion_time: Optional[str] = None
+    successful_executions: int = 0
+    failed_executions: int = 0
+    error_details: List[Dict] = field(default_factory=list)
+    completion_percentage: float = 0.0
+    last_execution_time: str = ""
     
-    @property
-    def completion_percentage(self) -> float:
-        return (self.correct_executions / self.total_executions * 100) if self.total_executions > 0 else 0
-    
-    @property
-    def status(self) -> str:
-        if self.correct_executions == 0:
-            return "not_executed"
-        elif self.correct_executions == self.total_executions:
-            return "fully_executed"
+    def update_status(self, success: bool, execution_time: float, error_msg: str = ""):
+        """Aggiorna lo status di esecuzione"""
+        self.total_executions += 1
+        if success:
+            self.successful_executions += 1
         else:
-            return "partially_executed"
+            self.failed_executions += 1
+            self.error_details.append({
+                "execution": self.total_executions,
+                "error": error_msg,
+                "timestamp": time.strftime('%Y-%m-%d %H:%M:%S')
+            })
+        
+        self.completion_percentage = (self.successful_executions / self.total_executions) * 100
+        self.last_execution_time = time.strftime('%Y-%m-%d %H:%M:%S')
     
     @property
-    def error_percentage(self) -> float:
-        if not hasattr(self, '_total_entries') or self._total_entries == 0:
-            return 0.0
-        return (len(self.incorrect_entries) / self._total_entries) * 100
-
-
-@dataclass
-class ContainerManager:
-    """Gestisce i container Docker riutilizzabili per linguaggio"""
-    active_containers: Dict[str, str] = field(default_factory=dict)
-    container_lock: threading.Lock = field(default_factory=threading.Lock)
-    container_usage_count: Dict[str, int] = field(default_factory=dict)
+    def is_healthy(self) -> bool:
+        """Determina se il cluster ha un buon tasso di successo"""
+        if self.total_executions == 0:
+            return True
+        return self.completion_percentage >= 80.0
     
-    def get_or_create_container(self, language: str) -> str:
-        """Ottiene un container esistente o ne crea uno nuovo se necessario"""
-        with self.container_lock:
-            if language in self.active_containers:
-                # Incrementa usage counter
-                self.container_usage_count[language] = self.container_usage_count.get(language, 0) + 1
-                return self.active_containers[language]
-            
-            # Crea nuovo container
-            container_name = f"test_{language.lower()}_shared_{int(time.time())}"
-            self.active_containers[language] = container_name
-            self.container_usage_count[language] = 1
-            return container_name
-    
-    def cleanup_unused_containers(self, threshold_hours: int = 1):
-        """Pulisce container non utilizzati da più di threshold_hours"""
-        #_current_time = time.time()
-        to_remove = []
-        
-        with self.container_lock:
-            for language, container_name in self.active_containers.items():
-                try:
-                    # Controlla quando è stato creato il container
-                    result = subprocess.run([
-                        "docker", "inspect", "--format", "{{.Created}}", container_name
-                    ], capture_output=True, text=True, check=True)
-                    
-                    creation_time = datetime.fromisoformat(result.stdout.strip().replace('Z', '+00:00'))
-                    age_hours = (datetime.now(creation_time.tzinfo) - creation_time).total_seconds() / 3600
-                    
-                    if age_hours > threshold_hours and self.container_usage_count.get(language, 0) == 0:
-                        to_remove.append(language)
-                        
-                except subprocess.CalledProcessError:
-                    # Container non esiste più, rimuovilo dalla lista
-                    to_remove.append(language)
-            
-            for language in to_remove:
-                container_name = self.active_containers.pop(language, None)
-                self.container_usage_count.pop(language, None)
-                if container_name:
-                    self._stop_and_remove_container(container_name)
-    
-    def _stop_and_remove_container(self, container_name: str):
-        """Helper per fermare e rimuovere un container"""
-        try:
-            subprocess.run(["docker", "stop", container_name], 
-                         capture_output=True, timeout=30)
-            subprocess.run(["docker", "rm", container_name], 
-                         capture_output=True, timeout=30)
-        except (subprocess.CalledProcessError, subprocess.TimeoutExpired):
-            pass  # Container potrebbe essere già stato rimosso
-    
-    def cleanup_all(self):
-        """Pulisce tutti i container attivi"""
-        with self.container_lock:
-            for container_name in self.active_containers.values():
-                self._stop_and_remove_container(container_name)
-            self.active_containers.clear()
-            self.container_usage_count.clear()
-
+    @property 
+    def should_retry(self) -> bool:
+        """Determina se il cluster dovrebbe essere riprovato"""
+        return self.failed_executions > 0 and self.completion_percentage < 60.0
 
 @dataclass
-class ExecutionMetadata:
-    """Metadati di esecuzione persistenti"""
-    clusters_completed: Dict[str, Dict] = field(default_factory=dict)
-    execution_history: List[Dict] = field(default_factory=list)
-    last_update: str = field(default_factory=lambda: datetime.now().isoformat())
-    total_execution_time: float = 0.0
+class OptimizedClusterAnalyzer:
+    """Analizzatore ottimizzato per lo stato dei cluster"""
+    base_clusters: Dict[str, ClusterExecutionStatus] = field(default_factory=dict)
+    llm_clusters: Dict[str, ClusterExecutionStatus] = field(default_factory=dict)
     
-    @classmethod
-    def load_from_file(cls, filepath: Path) -> 'ExecutionMetadata':
-        """Carica metadati da file"""
-        if filepath.exists():
-            try:
-                with open(filepath, 'r', encoding='utf-8') as f:
-                    data = json.load(f)
-                return cls(**data)
-            except (json.JSONDecodeError, TypeError):
-                logging.warning(f"Corrupted metadata file {filepath}, creating new one")
-        return cls()
-    
-    def save_to_file(self, filepath: Path):
-        """Salva metadati su file"""
-        filepath.parent.mkdir(parents=True, exist_ok=True)
-        with open(filepath, 'w', encoding='utf-8') as f:
-            json.dump({
-                'clusters_completed': self.clusters_completed,
-                'execution_history': self.execution_history,
-                'last_update': datetime.now().isoformat(),
-                'total_execution_time': self.total_execution_time
-            }, f, indent=2)
-
-
-class EnhancedTestOrchestrator:
-    """Orchestratore migliorato per l'esecuzione dei test"""
-    
-    def __init__(self, max_workers: int = None, metadata_file: str = "execution_metadata.json"):
-        self.max_workers = max_workers or min(os.cpu_count(), 8)
-        self.container_manager = ContainerManager()
-        self.metadata_file = Path(utility_paths.OUTPUT_DIR_FILEPATH) / metadata_file
-        self.metadata = ExecutionMetadata.load_from_file(self.metadata_file)
-        self.execution_queue = queue.PriorityQueue()
-        self.results_lock = threading.Lock()
-        self.start_time = time.time()
-        
-        # Setup logging
+    def __post_init__(self):
+        self.logger = logging.getLogger(f"{__name__}.ClusterAnalyzer")
         self._setup_logging()
+    
+    def _setup_logging(self):
+        """Setup logging"""
+        log_dir = utility_paths.SRC_DIR / "logs" / "cluster_analysis"
+        log_dir.mkdir(parents=True, exist_ok=True)
         
-        # Register cleanup
+        log_file = log_dir / f"analysis_{int(time.time())}.log"
+        
+        handler = logging.FileHandler(log_file)
+        handler.setLevel(logging.DEBUG)
+        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+        handler.setFormatter(formatter)
+        
+        self.logger.setLevel(logging.INFO)
+        self.logger.addHandler(handler)
+    
+    def analyze_existing_outputs(self) -> Tuple[Set[str], Set[str]]:
+        """Analizza output esistenti per determinare cluster già completati"""
+        output_dir = utility_paths.OUTPUT_DIR_FILEPATH
+        if not output_dir.exists():
+            self.logger.warning(f"Output directory non trovata: {output_dir}")
+            return set(), set()
+        
+        completed_base = set()
+        completed_llm = set()
+        
+        # Pattern di riconoscimento file
+        base_pattern = re.compile(r'([^/]+)_results_(\d+)\.json$')
+        llm_pattern = re.compile(r'([^/]+)_results_v(\d+)_(\d+)\.json$')
+        
+        # Contatori per cluster
+        base_counts = defaultdict(int)
+        llm_counts = defaultdict(lambda: defaultdict(int))
+        
+        for filename in output_dir.iterdir():
+            if not filename.is_file() or not filename.name.endswith('.json'):
+                continue
+            
+            # Controlla pattern base
+            base_match = base_pattern.match(filename.name)
+            if base_match:
+                cluster_name = base_match.group(1)
+                if self._validate_output_file(filename):
+                    base_counts[cluster_name] += 1
+                    if base_counts[cluster_name] >= 5:  # Richiesti 5 file per completamento
+                        completed_base.add(cluster_name)
+                continue
+            
+            # Controlla pattern LLM
+            llm_match = llm_pattern.match(filename.name)
+            if llm_match:
+                cluster_name = llm_match.group(1)
+                prompt_version = int(llm_match.group(2))
+                if self._validate_output_file(filename):
+                    llm_counts[cluster_name][prompt_version] += 1
+                    
+                    # Controlla se tutte le versioni prompt sono complete
+                    if all(llm_counts[cluster_name][v] >= 5 for v in range(1, 5)):
+                        completed_llm.add(cluster_name)
+        
+        self.logger.info(f"Trovati {len(completed_base)} cluster base completati")
+        self.logger.info(f"Trovati {len(completed_llm)} cluster LLM completati")
+        
+        return completed_base, completed_llm
+    
+    def _validate_output_file(self, file_path: Path) -> bool:
+        """Validazione veloce di un file di output"""
+        try:
+            with open(file_path, 'r') as f:
+                data = json.load(f)
+            
+            results = data.get('results', {})
+            if not results:
+                return False
+            
+            # Controllo base: almeno una entry con ID
+            for lang, entries in results.items():
+                if not entries:
+                    continue
+                for entry in entries:
+                    if 'id' in entry and 'filename' in entry:
+                        return True
+            
+            return False
+        except (json.JSONDecodeError, IOError, KeyError):
+            return False
+    
+    def get_execution_priority(self, available_clusters: List[str], 
+                             completed_base: Set[str], completed_llm: Set[str]) -> Tuple[List[str], List[str]]:
+        """Determina priorità di esecuzione basata su fallimenti precedenti e dipendenze"""
+        
+        pending_base = [c for c in available_clusters if c not in completed_base]
+        pending_llm = [c for c in available_clusters if c not in completed_llm]
+        
+        # Ordina per priorità (cluster più piccoli prima, cluster con meno fallimenti prima)
+        def get_cluster_priority(cluster_name: str) -> Tuple[int, int, str]:
+            cluster_path = utility_paths.CLUSTERS_DIR_FILEPATH / f"cluster_{cluster_name}.json"
+            
+            # Dimensione cluster (entry count)
+            size = 0
+            try:
+                with open(cluster_path, 'r') as f:
+                    data = json.load(f)
+                size = sum(len(entries) for entries in data.values())
+            except Exception:
+                size = 999  # Penalizza cluster non leggibili
+            
+            # Fallimenti precedenti
+            status = self.base_clusters.get(cluster_name) or self.llm_clusters.get(cluster_name)
+            failure_count = status.failed_executions if status else 0
+            
+            return (failure_count, size, cluster_name)
+        
+        pending_base.sort(key=get_cluster_priority)
+        pending_llm.sort(key=get_cluster_priority)
+        
+        return pending_base, pending_llm
+
+class OptimizedClusterRunner:
+    """Runner ottimizzato per esecuzione parallela e intelligente dei cluster"""
+    
+    def __init__(self, max_concurrent_clusters=2):
+        self.max_concurrent_clusters = max_concurrent_clusters
+        self.analyzer = OptimizedClusterAnalyzer()
+        self.lock = threading.RLock()
+        
+        # Statistics tracking
+        self.stats = {
+            'total_clusters_processed': 0,
+            'successful_clusters': 0,
+            'failed_clusters': 0,
+            'skipped_clusters': 0,
+            'start_time': time.time()
+        }
+        
+        self._setup_logging()
         atexit.register(self.cleanup)
     
     def _setup_logging(self):
-        """Configura sistema di logging avanzato"""
-        log_dir = Path(utility_paths.SRC_DIR) / "logs" / "orchestrator"
+        """Setup logging per il runner"""
+        log_dir = utility_paths.SRC_DIR / "logs" / "cluster_runner"
         log_dir.mkdir(parents=True, exist_ok=True)
         
-        log_file = log_dir / f"execution_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
+        log_file = log_dir / f"runner_{int(time.time())}.log"
         
-        logging.basicConfig(
-            level=logging.INFO,
-            format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-            handlers=[
-                logging.FileHandler(log_file),
-                logging.StreamHandler()
-            ]
-        )
-        self.logger = logging.getLogger(__name__)
+        # Setup logger
+        self.logger = logging.getLogger(f"{__name__}.ClusterRunner")
+        self.logger.setLevel(logging.INFO)
+        
+        # File handler
+        file_handler = logging.FileHandler(log_file)
+        file_handler.setLevel(logging.DEBUG)
+        
+        # Console handler
+        console_handler = logging.StreamHandler()
+        console_handler.setLevel(logging.INFO)
+        
+        # Formatter
+        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+        file_handler.setFormatter(formatter)
+        console_handler.setFormatter(formatter)
+        
+        self.logger.addHandler(file_handler)
+        self.logger.addHandler(console_handler)
     
-    def analyze_cluster_completion(self) -> Dict[str, ExecutionStatus]:
-        """Analisi migliorata dello stato dei cluster"""
-        output_dir = Path(utility_paths.OUTPUT_DIR_FILEPATH)
-        results = {}
+    def get_available_clusters(self) -> List[str]:
+        """Ottiene tutti i cluster disponibili con filtri ottimizzati"""
+        available_clusters = []
+        clusters_dir = utility_paths.CLUSTERS_DIR_FILEPATH
         
-        if not output_dir.exists():
-            self.logger.warning(f"Output directory not found: {output_dir}")
-            return results
+        if not clusters_dir.exists():
+            self.logger.error(f"Directory cluster non trovata: {clusters_dir}")
+            return []
         
-        for filename in output_dir.glob("*.json"):
-            if filename.name == self.metadata_file.name:
+        for cluster_file in clusters_dir.iterdir():
+            if not cluster_file.is_file() or not cluster_file.name.endswith('.json'):
                 continue
-                
-            cluster_name, file_type, correct_count, incorrect_entries, total_entries = self._analyze_output_file(filename)
             
-            if cluster_name not in results:
-                results[cluster_name] = ExecutionStatus(cluster_name)
-                results[cluster_name]._total_entries = 0
-            
-            status = results[cluster_name]
-            status.total_executions += 1
-            status._total_entries += total_entries
-            
-            # Considera file come corretto se ha meno del 5% di errori
-            error_percentage = (len(incorrect_entries) / total_entries * 100) if total_entries > 0 else 100
-            if error_percentage <= 5:
-                status.correct_executions += 1
-            
-            status.incorrect_entries.extend(incorrect_entries)
-            status.last_execution_time = datetime.now().isoformat()
-        
-        return results
-    
-    def _analyze_output_file(self, filepath: Path) -> Tuple[str, str, int, List[Dict], int]:
-        """Analizza un singolo file di output"""
-        filename = filepath.name
-        cluster_name, file_type, prompt_version, execution_number = self._parse_filename(filename)
-        
-        try:
-            with open(filepath, "r", encoding="utf-8") as f:
-                content = json.load(f)
-        except (json.JSONDecodeError, FileNotFoundError) as e:
-            self.logger.error(f"Error reading file {filename}: {e}")
-            return cluster_name, file_type, 0, [{"filename": filename, "error": str(e)}], 1
-        
-        if not content or "results" not in content:
-            return cluster_name, file_type, 0, [{"filename": filename, "error": "No results"}], 1
-        
-        correct_count = 0
-        incorrect_entries = []
-        total_entries = 0
-        
-        for language, entries in content["results"].items():
-            if not isinstance(entries, list):
-                continue
-                
-            for entry in entries:
-                total_entries += 1
-                entry_id = entry.get("id", "UNKNOWN_ID")
-                
-                if self._is_entry_correct(entry):
-                    correct_count += 1
-                else:
-                    incorrect_entries.append({
-                        "filename": filename,
-                        "entry_id": entry_id,
-                        "cluster_name": cluster_name,
-                        "language": language
-                    })
-        
-        return cluster_name, file_type, correct_count, incorrect_entries, total_entries
-    
-    def _parse_filename(self, filename: str) -> Tuple[str, str, int, int]:
-        """Parse filename migliorato"""
-        basename = filename.replace(".json", "")
-        
-        if "_results_v" in basename:
-            parts = basename.split("_results_v")
-            cluster_name = parts[0]
-            
-            version_exec = parts[1]
-            if "_" in version_exec:
-                prompt_version_str, execution_number_str = version_exec.split("_", 1)
-            else:
-                prompt_version_str = version_exec
-                execution_number_str = "1"
-            
-            try:
-                prompt_version = int(prompt_version_str)
-                execution_number = int(execution_number_str)
-            except ValueError:
-                prompt_version = 1
-                execution_number = 1
-                
-            return cluster_name, "llm", prompt_version, execution_number
-        
-        elif "_results_" in basename:
-            parts = basename.split("_results_")
-            cluster_name = parts[0]
-            
-            try:
-                execution_number = int(parts[1])
-            except (ValueError, IndexError):
-                execution_number = 1
-                
-            return cluster_name, "base", 1, execution_number
-        
-        elif basename.endswith("_results"):
-            cluster_name = basename.replace("_results", "")
-            return cluster_name, "base", 1, 1
-        
-        return basename, "base", 1, 1
-    
-    def _is_entry_correct(self, entry: Dict) -> bool:
-        """Verifica se un'entry è corretta"""
-        required_base_fields = ["CPU_usage", "RAM_usage", "execution_time_ms", "regrationTestPassed", "base_log"]
-        required_llm_fields = ["CPU_usage", "RAM_usage", "execution_time_ms", "regrationTestPassed"]
-        
-        if "LLM_results" in entry:
-            if not isinstance(entry["LLM_results"], list):
-                return False
-            
-            for llm_result in entry["LLM_results"]:
-                if not all(field in llm_result for field in required_llm_fields):
-                    return False
-            return True
-        else:
-            return all(field in entry for field in required_base_fields)
-    
-    def get_clusters_to_execute(self) -> List[str]:
-        """Ottiene lista dei cluster da eseguire"""
-        all_clusters = []
-        clusters_dir = Path(utility_paths.CLUSTERS_DIR_FILEPATH)
-        
-        for cluster_file in clusters_dir.glob("cluster_*.json"):
-            cluster_name = cluster_file.stem.replace("cluster_", "")
-            
-            # Skip clusters con pattern specifici
-            if any(pattern in cluster_name for pattern in [
-                "with_metrics", "debug_", "focused_", "bad_entries"
+            # Filtra cluster di debug/test
+            if any(skip_pattern in cluster_file.name.lower() for skip_pattern in [
+                'with_metrics', 'debug_', 'focused_', 'bad_entries', 'test_'
             ]):
                 continue
             
-            all_clusters.append(cluster_name)
+            # Estrai nome cluster
+            cluster_name = cluster_file.stem.replace("cluster_", "")
+            available_clusters.append(cluster_name)
         
-        # Filtra cluster già completati
-        completed_analysis = self.analyze_cluster_completion()
-        clusters_to_execute = []
-        
-        for cluster in all_clusters:
-            if cluster not in completed_analysis or completed_analysis[cluster].status != "fully_executed":
-                clusters_to_execute.append(cluster)
-        
-        return sorted(clusters_to_execute)
+        self.logger.info(f"Trovati {len(available_clusters)} cluster disponibili")
+        return sorted(available_clusters)
     
-    def execute_cluster_parallel(self, cluster_name: str, execution_type: str = "both") -> bool:
-        """Esecuzione parallela migliorata di un cluster"""
-        self.logger.info(f"Starting execution of cluster: {cluster_name} (type: {execution_type})")
-        start_time = time.time()
-        
-        try:
-            tasks = []
+    def run_cluster_base(self, cluster_name: str, max_retries=2) -> bool:
+        """Esecuzione ottimizzata test base per cluster"""
+        for attempt in range(max_retries + 1):
+            start_time = time.time()
             
-            if execution_type in ["both", "base"]:
-                # Base executions (5 runs)
-                for run in range(1, 6):
-                    tasks.append({
-                        'type': 'base',
-                        'cluster': cluster_name,
-                        'run': run,
-                        'priority': 1  # High priority for base tests
-                    })
-            
-            if execution_type in ["both", "llm"]:
-                # LLM executions (4 prompt versions, 5 runs each)
-                for version in range(1, 5):
-                    for run in range(1, 6):
-                        tasks.append({
-                            'type': 'llm',
+            try:
+                self.logger.info(f"Esecuzione BASE cluster {cluster_name} (tentativo {attempt + 1})")
+                
+                cmd = [
+                    "python3", "run_tests_v2.py",
+                    "--base-only",
+                    "--cluster-name", f"cluster_{cluster_name}",
+                    "--output-file", f"{cluster_name}_results",
+                    "--webhook",
+                    "--silent",
+                    "--run_quantity", "5",
+                    "--prompt-version", "1"
+                ]
+                
+                result = subprocess.run(cmd, capture_output=True, text=True, timeout=1800)  # 30 min timeout
+                
+                execution_time = time.time() - start_time
+                
+                if result.returncode == 0:
+                    self.logger.info(f"BASE cluster {cluster_name} completato in {execution_time:.2f}s")
+                    
+                    # Aggiorna statistics
+                    with self.lock:
+                        execution_state["base_clusters_processed"].append(cluster_name)
+                        self.stats['successful_clusters'] += 1
+                    
+                    return True
+                else:
+                    error_msg = f"Errore BASE {cluster_name}: {result.stderr[-500:] if result.stderr else 'Unknown error'}"
+                    self.logger.warning(error_msg)
+                    
+                    if attempt < max_retries:
+                        wait_time = (attempt + 1) * 30  # Backoff progressivo
+                        self.logger.info(f"Retry BASE {cluster_name} in {wait_time}s...")
+                        time.sleep(wait_time)
+                        continue
+                    else:
+                        with self.lock:
+                            execution_state["failed_clusters"].append({
+                                'cluster': cluster_name,
+                                'type': 'base',
+                                'error': error_msg
+                            })
+                        return False
+                        
+            except subprocess.TimeoutExpired:
+                error_msg = f"Timeout BASE cluster {cluster_name} dopo {execution_time:.1f}s"
+                self.logger.error(error_msg)
+                
+                if attempt < max_retries:
+                    continue
+                else:
+                    with self.lock:
+                        execution_state["failed_clusters"].append({
                             'cluster': cluster_name,
-                            'version': version,
-                            'run': run,
-                            'priority': 2  # Lower priority for LLM tests
+                            'type': 'base',
+                            'error': error_msg
                         })
-            
-            # Execute tasks with thread pool
-            with concurrent.futures.ThreadPoolExecutor(max_workers=min(self.max_workers, len(tasks))) as executor:
-                future_to_task = {
-                    executor.submit(self._execute_single_task, task): task 
-                    for task in tasks
-                }
+                    return False
+                    
+            except Exception as e:
+                error_msg = f"Eccezione BASE {cluster_name}: {str(e)}"
+                self.logger.error(error_msg)
                 
-                success_count = 0
-                total_tasks = len(tasks)
-                
-                for future in concurrent.futures.as_completed(future_to_task):
-                    task = future_to_task[future]
-                    try:
-                        success = future.result()
-                        if success:
-                            success_count += 1
-                        
-                        progress = (success_count / total_tasks) * 100
-                        self.logger.info(f"Cluster {cluster_name} progress: {success_count}/{total_tasks} ({progress:.1f}%)")
-                        
-                    except Exception as e:
-                        self.logger.error(f"Task failed: {task}, error: {e}")
-            
-            execution_time = time.time() - start_time
-            self.logger.info(f"Completed cluster {cluster_name} in {execution_time:.2f}s ({success_count}/{total_tasks} successful)")
-            
-            # Update metadata
-            self._update_execution_metadata(cluster_name, execution_time, success_count, total_tasks)
-            
-            return success_count == total_tasks
-            
-        except Exception as e:
-            self.logger.error(f"Exception in cluster {cluster_name}: {e}")
-            return False
-    
-    def _execute_single_task(self, task: Dict) -> bool:
-        """Esegue un singolo task (base o LLM)"""
-        cluster_name = task['cluster']
+                if attempt < max_retries:
+                    time.sleep(60)  # Pausa più lunga per eccezioni
+                    continue
+                else:
+                    with self.lock:
+                        execution_state["failed_clusters"].append({
+                            'cluster': cluster_name,
+                            'type': 'base',
+                            'error': error_msg
+                        })
+                    return False
         
-        try:
-            if task['type'] == 'base':
-                return self._run_base_test(cluster_name, task['run'])
+        return False
+    
+    def run_cluster_llm(self, cluster_name: str, max_retries=2) -> bool:
+        """Esecuzione ottimizzata test LLM per cluster"""
+        success_count = 0
+        
+        for version in range(1, 5):  # Prompt versions 1-4
+            for attempt in range(max_retries + 1):
+                start_time = time.time()
+                
+                try:
+                    self.logger.info(f"Esecuzione LLM cluster {cluster_name} v{version} (tentativo {attempt + 1})")
+                    
+                    cmd = [
+                        "python3", "run_tests_v2.py",
+                        "--llm-only",
+                        "--cluster-name", f"cluster_{cluster_name}",
+                        "--output-file", f"{cluster_name}_results_v{version}",
+                        "--webhook",
+                        "--silent",
+                        "--run_quantity", "5",
+                        "--prompt-version", str(version)
+                    ]
+                    
+                    result = subprocess.run(cmd, capture_output=True, text=True, timeout=2400)  # 40 min timeout
+                    
+                    execution_time = time.time() - start_time
+                    
+                    if result.returncode == 0:
+                        self.logger.info(f"LLM cluster {cluster_name} v{version} completato in {execution_time:.2f}s")
+                        success_count += 1
+                        break  # Esci dal loop retry per questa versione
+                    else:
+                        error_msg = f"Errore LLM {cluster_name} v{version}: {result.stderr[-500:] if result.stderr else 'Unknown error'}"
+                        self.logger.warning(error_msg)
+                        
+                        if attempt < max_retries:
+                            wait_time = (attempt + 1) * 45
+                            self.logger.info(f"Retry LLM {cluster_name} v{version} in {wait_time}s...")
+                            time.sleep(wait_time)
+                        else:
+                            self.logger.error(f"Fallimento definitivo LLM {cluster_name} v{version}")
+                            
+                except subprocess.TimeoutExpired:
+                    error_msg = f"Timeout LLM cluster {cluster_name} v{version} dopo {execution_time:.1f}s"
+                    self.logger.error(error_msg)
+                    
+                    if attempt < max_retries:
+                        continue
+                    else:
+                        break
+                        
+                except Exception as e:
+                    error_msg = f"Eccezione LLM {cluster_name} v{version}: {str(e)}"
+                    self.logger.error(error_msg)
+                    
+                    if attempt < max_retries:
+                        time.sleep(90)
+                        continue
+                    else:
+                        break
+        
+        # Considera successo se almeno 3 su 4 versioni sono completate
+        success = success_count >= 3
+        
+        with self.lock:
+            if success:
+                execution_state["llm_clusters_processed"].append(cluster_name)
+                self.stats['successful_clusters'] += 1
             else:
-                return self._run_llm_test(cluster_name, task['version'], task['run'])
-        except Exception as e:
-            self.logger.error(f"Task execution failed: {task}, error: {e}")
-            return False
+                execution_state["failed_clusters"].append({
+                    'cluster': cluster_name,
+                    'type': 'llm',
+                    'error': f"Solo {success_count}/4 versioni completate"
+                })
+        
+        return success
     
-    def _run_base_test(self, cluster_name: str, run_number: int) -> bool:
-        """Esegue un test base"""
-
-        parsed_cluster_name = cluster_name.replace("cluster_","").replace(".json","")
-        if parsed_cluster_name in clusters_already_processed_base : 
-            return True
+    def run_cluster_batch(self, cluster_list: List[str], cluster_type: str) -> Dict[str, bool]:
+        """Esecuzione batch ottimizzata con parallelismo controllato"""
+        results = {}
         
-
-        cmd = [
-            "python3", "run_tests.py",
-            "--base-only",
-            "--cluster-name", f"cluster_{cluster_name}",
-            "--output-file", f"{cluster_name}_results_{run_number}",
-            "--webhook", #"--silent",
-            "--run_quantity", "5",
-            "--prompt-version", "1"
-        ]
+        if not cluster_list:
+            return results
         
-        result = subprocess.run(cmd, capture_output=True, text=True)
+        self.logger.info(f"Inizio batch {cluster_type}: {len(cluster_list)} cluster")
         
-        if result.returncode != 0:
-            self.logger.error(f"BASE test failed for {cluster_name}_run_{run_number}: {result.stderr}")
-            return False
+        # Funzione wrapper per esecuzione
+        def execute_cluster(cluster_name: str) -> Tuple[str, bool]:
+            try:
+                if cluster_type == "base":
+                    success = self.run_cluster_base(cluster_name)
+                else:
+                    success = self.run_cluster_llm(cluster_name)
+                
+                return cluster_name, success
+            except Exception as e:
+                self.logger.error(f"Errore esecuzione {cluster_name}: {e}")
+                return cluster_name, False
         
-        return True
-    
-    def _run_llm_test(self, cluster_name: str, version: int, run_number: int) -> bool:
-        """Esegue un test LLM"""
-        
-        parsed_cluster_name = cluster_name.replace("cluster_","").replace(".json","")
-        if parsed_cluster_name in clusters_already_processed_llm : 
-            return True
-        
-        cmd = [
-            "python3", "run_tests.py",
-            "--llm-only",
-            "--cluster-name", f"cluster_{cluster_name}",
-            "--output-file", f"{cluster_name}_results_v{version}_{run_number}",
-            "--webhook", #"--silent",
-            "--run_quantity", "5",
-            "--prompt-version", str(version)
-        ]
-        
-        result = subprocess.run(cmd, capture_output=True, text=True)
-        
-        if result.returncode != 0:
-            self.logger.error(f"LLM test failed for {cluster_name}_v{version}_run_{run_number}: {result.stderr}")
-            return False
-        
-        return True
-    
-    def _update_execution_metadata(self, cluster_name: str, execution_time: float, success_count: int, total_tasks: int):
-        """Aggiorna metadati di esecuzione"""
-        with self.results_lock:
-            self.metadata.clusters_completed[cluster_name] = {
-                'completion_time': datetime.now().isoformat(),
-                'execution_time_seconds': execution_time,
-                'success_rate': success_count / total_tasks,
-                'total_tasks': total_tasks
+        # Esecuzione parallela controllata
+        with concurrent.futures.ThreadPoolExecutor(max_workers=self.max_concurrent_clusters) as executor:
+            # Submit tasks
+            future_to_cluster = {
+                executor.submit(execute_cluster, cluster): cluster 
+                for cluster in cluster_list
             }
             
-            self.metadata.execution_history.append({
-                'cluster': cluster_name,
-                'timestamp': datetime.now().isoformat(),
-                'execution_time': execution_time,
-                'success_count': success_count,
-                'total_tasks': total_tasks
-            })
-            
-            self.metadata.total_execution_time += execution_time
-            self.metadata.save_to_file(self.metadata_file)
+            # Collect results con progress tracking
+            completed = 0
+            for future in concurrent.futures.as_completed(future_to_cluster):
+                cluster_name = future_to_cluster[future]
+                
+                try:
+                    cluster_name, success = future.result(timeout=3600)  # 1 hour max per cluster
+                    results[cluster_name] = success
+                    
+                    completed += 1
+                    progress = (completed / len(cluster_list)) * 100
+                    
+                    status = "SUCCESS" if success else "FAILED"
+                    self.logger.info(f"{cluster_type.upper()} Progress: {completed}/{len(cluster_list)} ({progress:.1f}%) - {cluster_name}: {status}")
+                    
+                except concurrent.futures.TimeoutError:
+                    self.logger.error(f"Timeout globale per {cluster_name}")
+                    results[cluster_name] = False
+                except Exception as e:
+                    self.logger.error(f"Eccezione future per {cluster_name}: {e}")
+                    results[cluster_name] = False
+        
+        successful = sum(1 for success in results.values() if success)
+        self.logger.info(f"Batch {cluster_type} completato: {successful}/{len(cluster_list)} successi")
+        
+        return results
     
-    def run_all_clusters(self, execution_type: str = "both") -> bool:
-        """Esecuzione di tutti i cluster con gestione avanzata"""
-        clusters_to_execute = self.get_clusters_to_execute()
+    def run_all_clusters(self) -> bool:
+        """Esecuzione completa e ottimizzata di tutti i cluster"""
+        start_time = time.time()
         
-        if not clusters_to_execute:
-            self.logger.info("No clusters to execute - all completed")
-            return True
+        self.logger.info("Inizio esecuzione completa cluster")
         
-        self.logger.info(f"Starting execution of {len(clusters_to_execute)} clusters")
-        
-        total_success = 0
-        total_failed = 0
-        
-        for i, cluster in enumerate(clusters_to_execute, 1):
-            self.logger.info(f"Processing cluster {i}/{len(clusters_to_execute)}: {cluster}")
+        try:
+            # Step 1: Analisi stato attuale
+            available_clusters = self.get_available_clusters()
+            completed_base, completed_llm = self.analyzer.analyze_existing_outputs()
             
-            if self.execute_cluster_parallel(cluster, execution_type):
-                total_success += 1
-            else:
-                total_failed += 1
+            # Step 2: Determina cluster da processare
+            pending_base, pending_llm = self.analyzer.get_execution_priority(
+                available_clusters, completed_base, completed_llm
+            )
             
-            # Cleanup containers periodically
-            if i % 10 == 0:
-                self.container_manager.cleanup_unused_containers()
+            self.logger.info(f"Cluster da processare: {len(pending_base)} BASE, {len(pending_llm)} LLM")
             
-            progress = (i / len(clusters_to_execute)) * 100
-            self.logger.info(f"Overall progress: {i}/{len(clusters_to_execute)} ({progress:.1f}%)")
+            # Step 3: Esecuzione sequenziale per tipo (BASE prima di LLM)
+            base_results = {}
+            llm_results = {}
+            
+            if pending_base:
+                self.logger.info("=== ESECUZIONE CLUSTER BASE ===")
+                base_results = self.run_cluster_batch(pending_base, "base")
+            
+            if pending_llm:
+                self.logger.info("=== ESECUZIONE CLUSTER LLM ===")
+                # Piccola pausa per permettere cleanup tra batch
+                time.sleep(30)
+                llm_results = self.run_cluster_batch(pending_llm, "llm")
+            
+            # Step 4: Statistiche finali
+            total_time = time.time() - start_time
+            self._print_final_statistics(base_results, llm_results, total_time)
+            
+            # Considera successo se almeno 80% dei cluster sono completati
+            total_attempted = len(base_results) + len(llm_results)
+            total_successful = sum(base_results.values()) + sum(llm_results.values())
+            
+            success_rate = (total_successful / total_attempted) * 100 if total_attempted > 0 else 100
+            
+            return success_rate >= 80.0
+            
+        except Exception as e:
+            self.logger.error(f"Errore critico in run_all_clusters: {e}")
+            return False
+        finally:
+            self.cleanup()
+    
+    def _print_final_statistics(self, base_results: Dict[str, bool], 
+                               llm_results: Dict[str, bool], total_time: float):
+        """Stampa statistiche finali ottimizzate"""
         
-        # Final statistics
-        total_time = time.time() - self.start_time
-        self.logger.info(f"Execution completed - Success: {total_success}, Failed: {total_failed}")
-        self.logger.info(f"Total time: {total_time:.2f}s, Average per cluster: {total_time/len(clusters_to_execute):.2f}s")
+        base_success = sum(1 for success in base_results.values() if success)
+        base_total = len(base_results)
         
-        return total_failed == 0
+        llm_success = sum(1 for success in llm_results.values() if success)
+        llm_total = len(llm_results)
+        
+        total_success = base_success + llm_success
+        total_attempted = base_total + llm_total
+        
+        hours = int(total_time // 3600)
+        minutes = int((total_time % 3600) // 60)
+        seconds = int(total_time % 60)
+        
+        print("\n" + "="*80)
+        print("STATISTICHE FINALI ESECUZIONE CLUSTER")
+        print("="*80)
+        
+        print(f"Tempo totale esecuzione: {hours:02d}h {minutes:02d}m {seconds:02d}s")
+        print()
+        
+        print("RISULTATI BASE:")
+        print(f"  Completati con successo: {base_success}/{base_total} ({(base_success/base_total*100):.1f}%)" if base_total > 0 else "  Nessun cluster BASE processato")
+        
+        print("RISULTATI LLM:")
+        print(f"  Completati con successo: {llm_success}/{llm_total} ({(llm_success/llm_total*100):.1f}%)" if llm_total > 0 else "  Nessun cluster LLM processato")
+        
+        print()
+        print("TOTALE:")
+        print(f"  Cluster processati: {total_attempted}")
+        print(f"  Successi: {total_success}")
+        print(f"  Fallimenti: {total_attempted - total_success}")
+        print(f"  Tasso di successo: {(total_success/total_attempted*100):.1f}%" if total_attempted > 0 else "  N/A")
+        
+        # Cluster falliti
+        failed_clusters = execution_state.get("failed_clusters", [])
+        if failed_clusters:
+            print(f"\nCLUSTER FALLITI ({len(failed_clusters)}):")
+            for failure in failed_clusters[-10]:  # Mostra solo gli ultimi 10
+                print(f"  - {failure.get('cluster', 'Unknown')} ({failure.get('type', 'unknown')}): {failure.get('error', 'Unknown error')[:100]}...")
+        
+        print("="*80)
+        
+        # Log dettagliato
+        self.logger.info(f"Esecuzione completata: {total_success}/{total_attempted} successi in {total_time:.1f}s")
     
     def cleanup(self):
-        """Cleanup resources"""
-        self.logger.info("Cleaning up resources...")
-        self.container_manager.cleanup_all()
-        self.metadata.save_to_file(self.metadata_file)
-    
-    def print_status_report(self):
-        """Stampa report dettagliato dello stato"""
-        analysis = self.analyze_cluster_completion()
+        """Cleanup finale"""
+        self.logger.info("Cleanup esecuzione cluster completato")
         
-        if not analysis:
-            print("No execution data found.")
-            return
-        
-        print("="*80)
-        print("ENHANCED CLUSTER EXECUTION STATUS REPORT")
-        print("="*80)
-        
-        stats = {
-            'fully_executed': 0,
-            'partially_executed': 0,
-            'not_executed': 0,
-            'total': len(analysis)
-        }
-        
-        for status in analysis.values():
-            stats[status.status] += 1
-        
-        print(f"Total clusters: {stats['total']}")
-        print(f"✅ Fully executed: {stats['fully_executed']} ({stats['fully_executed']/stats['total']*100:.1f}%)")
-        print(f"🔶 Partially executed: {stats['partially_executed']} ({stats['partially_executed']/stats['total']*100:.1f}%)")
-        print(f"❌ Not executed: {stats['not_executed']} ({stats['not_executed']/stats['total']*100:.1f}%)")
-        
-        # Show recent execution history
-        if self.metadata.execution_history:
-            print("\n📈 RECENT EXECUTION HISTORY:")
-            for entry in self.metadata.execution_history[-10:]:  # Last 10
-                print(f"  {entry['timestamp'][:19]} - {entry['cluster']} - {entry['execution_time']:.1f}s")
-        
-        print("="*80)
-
-
-@dataclass
-class ClusterAnalysisResults:
-    """Classe per contenere i risultati dell'analisi dei cluster"""
-    base_clusters: Dict[str, ExecutionStatus] = field(default_factory=dict)
-    llm_clusters: Dict[str, ExecutionStatus] = field(default_factory=dict)
-    
-    def get_statistics(self, cluster_type: str) -> Dict[str, int]:
-        clusters = self.base_clusters if cluster_type == "base" else self.llm_clusters
-        stats = {"fully_executed": 0, "partially_executed": 0, "not_executed": 0, "total": len(clusters)}
-        
-        for status in clusters.values():
-            stats[status.status] += 1
-        
-        return stats
-
-
-
-def parse_filename(filename: str) -> Tuple[str, str, int, int]:
-    """
-    Parsea il nome del file per estrarre informazioni
-    Returns: (cluster_name, file_type, prompt_version, execution_number)
-    file_type: 'base' o 'llm'
-    """
-    # Rimuovi estensione .json
-    basename = filename.replace(".json", "")
-    
-    # Pattern per file LLM: {cluster_name}_results_v{prompt_version}_{execution_number}
-    if "_results_v" in basename:
-        parts = basename.split("_results_v")
-        cluster_name = parts[0]
-        
-        # Estrai prompt_version e execution_number
-        version_exec = parts[1]
-        if "_" in version_exec:
-            prompt_version_str, execution_number_str = version_exec.split("_", 1)
-        else:
-            prompt_version_str = version_exec
-            execution_number_str = "1"
-        
+        # Salva stato finale se necessario
         try:
-            prompt_version = int(prompt_version_str)
-            execution_number = int(execution_number_str)
-        except ValueError:
-            prompt_version = 1
-            execution_number = 1
-            
-        return cluster_name, "llm", prompt_version, execution_number
-    
-    # Pattern per file base: {cluster_name}_results_{execution_number}
-    elif "_results_" in basename:
-        parts = basename.split("_results_")
-        cluster_name = parts[0]
-        
-        try:
-            execution_number = int(parts[1])
-        except (ValueError, IndexError):
-            execution_number = 1
-            
-        return cluster_name, "base", 1, execution_number
-    
-    # Pattern per file base senza numero: {cluster_name}_results
-    elif basename.endswith("_results"):
-        cluster_name = basename.replace("_results", "")
-        return cluster_name, "base", 1, 1
-    
-    # Fallback
-    return basename, "base", 1, 1
- 
-
-
-def is_entry_correct(entry: Dict) -> bool:
-    """
-    Verifica se un'entry è corretta controllando la presenza dei campi obbligatori
-    """
-    required_base_fields = ["CPU_usage", "RAM_usage", "execution_time_ms", "regrationTestPassed", "base_log"]
-    required_llm_fields = ["CPU_usage", "RAM_usage", "execution_time_ms", "regrationTestPassed"]
-    
-    # Se ha LLM_results, controlla i campi LLM
-    if "LLM_results" in entry:
-        if not isinstance(entry["LLM_results"], list):
-            return False
-        
-        for llm_result in entry["LLM_results"]:
-            if not all(field in llm_result for field in required_llm_fields):
-                return False
-        return True
-    else:
-        # Altrimenti controlla i campi base
-        return all(field in entry for field in required_base_fields)
-
-
-def analyze_output_file(filepath: str, filename: str) -> Tuple[str, str, int, List[Dict], int]:
-    """
-    Analizza un singolo file di output
-    Returns: (cluster_name, file_type, correct_entries_count, incorrect_entries_list, total_entries_count)
-    """
-    cluster_name, file_type, prompt_version, execution_number = parse_filename(filename)
-    
-    try:
-        with open(filepath, "r", encoding="utf-8") as f:
-            content = json.load(f)
-    except (json.JSONDecodeError, FileNotFoundError) as e:
-        print(f"⚠️ Error reading file {filename}: {e}")
-        return cluster_name, file_type, 0, [{"filename": filename, "entry_id": "FILE_ERROR", "cluster_name": cluster_name, "error": str(e)}], 1
-    
-    if not content or "results" not in content:
-        return cluster_name, file_type, 0, [{"filename": filename, "entry_id": "NO_RESULTS", "cluster_name": cluster_name}], 1
-    
-    results = content["results"]
-    correct_count = 0
-    incorrect_entries = []
-    total_entries = 0
-    
-    for language, entries in results.items():
-        if not isinstance(entries, list):
-            continue
-            
-        for entry in entries:
-            total_entries += 1
-            entry_id = entry.get("id", "UNKNOWN_ID")
-            
-            if is_entry_correct(entry):
-                correct_count += 1
-            else:
-                incorrect_entries.append({
-                    "filename": filename,
-                    "entry_id": entry_id,
-                    "cluster_name": cluster_name,
-                    "language": language,
-                    "missing_fields": [field for field in ["CPU_usage", "RAM_usage", "execution_time_ms", "regrationTestPassed", "base_log"] if field not in entry]
-                })
-    
-    return cluster_name, file_type, correct_count, incorrect_entries, total_entries
-
-
-
-def check_clusters_already_executed():
-    """
-    Funzione migliorata per analizzare lo stato di esecuzione dei cluster
-    """
-    print("🔍 Analyzing cluster execution status...\n")
-    
-    output_dir = utility_paths.OUTPUT_DIR_FILEPATH
-    if not os.path.exists(output_dir):
-        print(f"❌ Output directory not found: {output_dir}")
-        return
-    
-    results = ClusterAnalysisResults()
-    
-    # Analizza tutti i file di output
-    for filename in os.listdir(output_dir):
-        if not filename.endswith(".json"):
-            continue
-            
-        filepath = os.path.join(output_dir, filename)
-        cluster_name, file_type, correct_count, incorrect_entries, total_entries = analyze_output_file(filepath, filename)
-        
-        # Seleziona il dizionario appropriato
-        clusters_dict = results.base_clusters if file_type == "base" else results.llm_clusters
-        
-        # Inizializza o aggiorna lo status del cluster
-        if cluster_name not in clusters_dict:
-            clusters_dict[cluster_name] = ExecutionStatus(cluster_name)
-            clusters_dict[cluster_name]._total_entries = 0
-        
-        status = clusters_dict[cluster_name]
-        status.total_executions += 1
-        status._total_entries += total_entries
-        
-        # Calcola la percentuale di errore per questo file
-        error_percentage = (len(incorrect_entries) / total_entries * 100) if total_entries > 0 else 100
-        
-        # Considera il file come eseguito se ha meno del 10% di errori
-        if error_percentage <= 10:
-            status.correct_executions += 1
-        
-        # Aggiungi sempre le entries incorrette per il tracking
-        status.incorrect_entries.extend(incorrect_entries)
-    
-    # Stampa risultati
-    print_analysis_results(results)
-    
-    return results
-
-
-def print_analysis_results(results: ClusterAnalysisResults):
-    """Stampa i risultati dell'analisi in modo formattato"""
-    
-    def print_cluster_category(clusters_dict: Dict[str, ExecutionStatus], category: str, cluster_type: str):
-        filtered_clusters = {name: status for name, status in clusters_dict.items() if status.status == category}
-        
-        if not filtered_clusters:
-            print("  📋 None")
-            return
-        
-        for name, status in filtered_clusters.items():
-            completion = status.completion_percentage
-            error_pct = status.error_percentage if hasattr(status, 'error_percentage') else 0
-            print(f"  📋 {name} ({status.correct_executions}/{status.total_executions} executions - {completion:.1f}%) [errors: {error_pct:.1f}%]")
-            
-            # Mostra entries incorrette per cluster parzialmente eseguiti
-            if category == "partially_executed" and status.incorrect_entries:
-                print(f"      ⚠️  Incorrect entries: {len(status.incorrect_entries)}")
-                for entry in status.incorrect_entries[:3]:  # Mostra solo le prime 3
-                    entry_id = entry.get("entry_id", "UNKNOWN")
-                    filename = entry.get("filename", "UNKNOWN")
-                    print(f"         - {entry_id} in {filename}")
-                if len(status.incorrect_entries) > 3:
-                    print(f"         - ... and {len(status.incorrect_entries) - 3} more")
-    
-    def print_statistics(cluster_type: str):
-        stats = results.get_statistics(cluster_type)
-        total = stats["total"]
-        
-        if total == 0:
-            print(f"📊 No {cluster_type} clusters found\n")
-            return
-        
-        print(f"📊 {cluster_type.upper()} CLUSTERS STATISTICS:")
-        print(f"  Total clusters: {total}")
-        print(f"  ✅ Fully executed: {stats['fully_executed']} ({stats['fully_executed']/total*100:.1f}%)")
-        print(f"  🔶 Partially executed: {stats['partially_executed']} ({stats['partially_executed']/total*100:.1f}%)")
-        print(f"  ❌ Not executed: {stats['not_executed']} ({stats['not_executed']/total*100:.1f}%)")
-        print()
-    
-    # Stampa statistiche generali
-    print("="*60)
-    print("📈 CLUSTER EXECUTION ANALYSIS RESULTS")
-    print("="*60)
-    
-    print_statistics("base")
-    print_statistics("llm")
-    
-    # Dettaglio per tipo di cluster
-    for cluster_type, clusters_dict in [("BASE", results.base_clusters), ("LLM", results.llm_clusters)]:
-        if not clusters_dict:
-            continue
-            
-        print(f"\n🔍 {cluster_type} CLUSTERS DETAILED STATUS:")
-        print("-" * 40)
-        
-        print("✅ FULLY EXECUTED CLUSTERS:")
-        print_cluster_category(clusters_dict, "fully_executed", cluster_type.lower())
-        
-        print("\n🔶 PARTIALLY EXECUTED CLUSTERS:")
-        print_cluster_category(clusters_dict, "partially_executed", cluster_type.lower())
-        
-        print("\n❌ NOT EXECUTED CLUSTERS:")
-        print_cluster_category(clusters_dict, "not_executed", cluster_type.lower())
-        
-        print()
-    
-    # Summary finale
-    base_stats = results.get_statistics("base")
-    llm_stats = results.get_statistics("llm")
-    total_clusters = base_stats["total"] + llm_stats["total"]
-    total_completed = base_stats["fully_executed"] + llm_stats["fully_executed"]
-    
-    print("="*60)
-    print("🎯 FINAL SUMMARY:")
-    print(f"  Total clusters analyzed: {total_clusters}")
-    print(f"  Total fully completed: {total_completed} ({total_completed/total_clusters*100:.1f}%)")
-    print("="*60)
-    
-    # Stampa gli array di clusters eseguiti per uso futuro
-    print("\n📝 CLUSTERS ARRAYS FOR FUTURE REFERENCE:")
-    print("-" * 50)
-    
-    # Base clusters eseguiti
-    fully_executed_base = [name for name, status in results.base_clusters.items() if status.status == "fully_executed"]
-    if fully_executed_base:
-        print("🔵 FULLY EXECUTED BASE CLUSTERS:")
-        print(f"clusters_already_processed_base = {fully_executed_base}")
-        print()
-    
-    # LLM clusters eseguiti  
-    fully_executed_llm = [name for name, status in results.llm_clusters.items() if status.status == "fully_executed"]
-    if fully_executed_llm:
-        print("🟡 FULLY EXECUTED LLM CLUSTERS:")
-        print(f"clusters_already_processed_llm = {fully_executed_llm}")
-        print()
-    
-    # Combinato (tutti i clusters completamente eseguiti)
-    all_fully_executed = list(set(fully_executed_base + fully_executed_llm))
-    if all_fully_executed:
-        print("🟢 ALL FULLY EXECUTED CLUSTERS (COMBINED):")
-        print(f"clusters_already_processed = {sorted(all_fully_executed)}")
-        print()
-        
-    print("💡 You can copy these arrays to avoid re-running completed clusters in future executions.")
-    
-
+            state_file = utility_paths.OUTPUT_DIR_FILEPATH / "execution_state.json"
+            with open(state_file, 'w') as f:
+                json.dump(execution_state, f, indent=2, default=str)
+        except Exception as e:
+            self.logger.warning(f"Impossibile salvare stato esecuzione: {e}")
 
 def main():
-    """Main function con orchestratore migliorato"""
-    orchestrator = EnhancedTestOrchestrator(max_workers=8)
+    """Main function ottimizzata"""
+    print("Avvio Optimized Cluster Runner...")
+    print("="*60)
     
-    # Print initial status
-    orchestrator.print_status_report()
+    # Configura runner con parallelismo controllato
+    max_concurrent = min(os.cpu_count() or 2, 3)  # Max 3 cluster concorrenti
+    runner = OptimizedClusterRunner(max_concurrent_clusters=max_concurrent)
     
-    # Run all clusters
-    success = orchestrator.run_all_clusters(execution_type="both")
-    
-    # Print final status
-    orchestrator.print_status_report()
-    
-    return success
-
+    try:
+        success = runner.run_all_clusters()
+        
+        if success:
+            print("\nTutti i cluster sono stati processati con successo!")
+            return 0
+        else:
+            print("\nAlcuni cluster hanno fallito. Controlla i log per dettagli.")
+            return 1
+            
+    except KeyboardInterrupt:
+        print("\nInterruzione utente rilevata. Cleanup in corso...")
+        runner.cleanup()
+        return 130
+    except Exception as e:
+        print(f"\nErrore critico: {e}")
+        runner.cleanup()
+        return 1
 
 if __name__ == "__main__":
-    atexit.register(check_clusters_already_executed)    
-    
-    success = main()
-    exit(0 if success else 1)
+    exit(main())
