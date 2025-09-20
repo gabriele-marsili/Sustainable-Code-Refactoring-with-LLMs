@@ -8,7 +8,7 @@
     allergies_test.go:13: PASS: Allergic to []string{"strawberries", "tomatoes", "chocolate", "pollen", "cats"}
     allergies_test.go:13: PASS: Allergic to []string{"eggs", "peanuts", "shellfish", "strawberries", "tomatoes", "chocolate", "pollen", "cats"}
     allergies_test.go:13: PASS: Allergic to []string{"eggs", "shellfish", "strawberries", "tomatoes", "chocolate", "pollen", "cats"}
---- PASS: TestAllergies (0.01s)
+--- PASS: TestAllergies (0.00s)
 === RUN   TestAllergicTo
     allergies_test.go:37: PASS: AllergicTo(0, peanuts) false
     allergies_test.go:37: PASS: AllergicTo(0, cats) false
@@ -21,27 +21,27 @@
     allergies_test.go:37: PASS: AllergicTo(9, peanuts) false
     allergies_test.go:37: PASS: AllergicTo(9, shellfish) false
     allergies_test.go:37: PASS: AllergicTo(9, strawberries) true
---- PASS: TestAllergicTo (0.01s)
+--- PASS: TestAllergicTo (0.00s)
 PASS
-ok  	esercizio	0.071s
+ok  	esercizio	0.003s
 	Command being timed: "go test -v"
-	User time (seconds): 28.39
-	System time (seconds): 58.56
-	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 3:00.02
+	User time (seconds): 5.66
+	System time (seconds): 0.71
+	Percent of CPU this job got: 62%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:10.23
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 199468
+	Maximum resident set size (kbytes): 226960
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 7
-	Minor (reclaiming a frame) page faults: 708552
-	Voluntary context switches: 39757
-	Involuntary context switches: 49568
+	Major (requiring I/O) page faults: 55
+	Minor (reclaiming a frame) page faults: 731235
+	Voluntary context switches: 23561
+	Involuntary context switches: 31092
 	Swaps: 0
-	File system inputs: 304
-	File system outputs: 171896
+	File system inputs: 21216
+	File system outputs: 172232
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0

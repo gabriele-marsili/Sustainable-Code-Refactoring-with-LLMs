@@ -1,47 +1,47 @@
 (node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-PASS ./linked-list_testSuite.js (32.295 s)
+PASS ./linked-list_testSuite.js
   LinkedList
-    ✓ pop gets last element from the list (145 ms)
-    ✓ push/pop respectively add/remove at the end of the list (8 ms)
-    ✓ shift gets element from the list (1 ms)
-    ✓ shift gets first element from the list (4 ms)
-    ✓ unshift adds element at the start of the list (2 ms)
-    ✓ pop, push, shift, and unshift can be used in any order (3 ms)
-    ✓ count an empty list (1 ms)
-    ✓ count a list with items (5 ms)
-    ✓ count is correct after mutation (2 ms)
-    ✓ popping to empty doesn't break the list (11 ms)
-    ✓ shifting to empty doesn't break the list (1 ms)
-    ✓ deletes the only element (1 ms)
-    ✓ deletes the element with the specified value from the list (24 ms)
-    ✓ deletes the element with the specified value from the list, re-assigns tail (14 ms)
-    ✓ deletes the element with the specified value from the list, re-assigns head (21 ms)
-    ✓ deletes the first of two elements (64 ms)
-    ✓ deletes the second of two elements (1 ms)
-    ✓ delete does not modify the list if the element is not found (16 ms)
+    ✓ pop gets last element from the list (6 ms)
+    ✓ push/pop respectively add/remove at the end of the list (1 ms)
+    ✓ shift gets element from the list
+    ✓ shift gets first element from the list
+    ✓ unshift adds element at the start of the list
+    ✓ pop, push, shift, and unshift can be used in any order (1 ms)
+    ✓ count an empty list
+    ✓ count a list with items
+    ✓ count is correct after mutation
+    ✓ popping to empty doesn't break the list (1 ms)
+    ✓ shifting to empty doesn't break the list
+    ✓ deletes the only element (2 ms)
+    ✓ deletes the element with the specified value from the list (2 ms)
+    ✓ deletes the element with the specified value from the list, re-assigns tail
+    ✓ deletes the element with the specified value from the list, re-assigns head (2 ms)
+    ✓ deletes the first of two elements (3 ms)
+    ✓ deletes the second of two elements
+    ✓ delete does not modify the list if the element is not found
     ✓ deletes only the first occurrence
 
 Test Suites: 1 passed, 1 total
 Tests:       19 passed, 19 total
 Snapshots:   0 total
-Time:        39.056 s
+Time:        0.329 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 3.32
-	System time (seconds): 4.08
-	Percent of CPU this job got: 8%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:25.04
+	User time (seconds): 0.25
+	System time (seconds): 0.07
+	Percent of CPU this job got: 38%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.87
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 69976
+	Maximum resident set size (kbytes): 82556
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 17786
-	Voluntary context switches: 6873
-	Involuntary context switches: 5497
+	Minor (reclaiming a frame) page faults: 14115
+	Voluntary context switches: 7372
+	Involuntary context switches: 3266
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

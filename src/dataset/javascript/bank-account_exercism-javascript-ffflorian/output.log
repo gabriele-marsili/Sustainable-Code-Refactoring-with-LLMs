@@ -1,43 +1,43 @@
 (node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-PASS ./bank-account_testSuite.js (30.737 s)
+PASS ./bank-account_testSuite.js
   Bank Account
-    ✓ newly opened account has zero balance (183 ms)
-    ✓ can deposit money (17 ms)
-    ✓ can deposit money sequentially (14 ms)
-    ✓ can withdraw money (1 ms)
-    ✓ can withdraw money sequentially (20 ms)
-    ✓ checking balance of closed account throws error (456 ms)
-    ✓ deposit into closed account throws error (10 ms)
-    ✓ withdraw from closed account throws error (6 ms)
-    ✓ close already closed account throws error (17 ms)
-    ✓ open already opened account throws error (8 ms)
-    ✓ reopened account does not retain balance (29 ms)
-    ✓ cannot withdraw more than deposited (7 ms)
-    ✓ cannot withdraw negative amount (3 ms)
-    ✓ cannot deposit negative amount (8 ms)
-    ✓ changing balance directly throws error (62 ms)
+    ✓ newly opened account has zero balance (3 ms)
+    ✓ can deposit money
+    ✓ can deposit money sequentially
+    ✓ can withdraw money
+    ✓ can withdraw money sequentially
+    ✓ checking balance of closed account throws error (2 ms)
+    ✓ deposit into closed account throws error
+    ✓ withdraw from closed account throws error (1 ms)
+    ✓ close already closed account throws error (2 ms)
+    ✓ open already opened account throws error
+    ✓ reopened account does not retain balance (2 ms)
+    ✓ cannot withdraw more than deposited
+    ✓ cannot withdraw negative amount
+    ✓ cannot deposit negative amount
+    ✓ changing balance directly throws error (1 ms)
 
 Test Suites: 1 passed, 1 total
 Tests:       15 passed, 15 total
 Snapshots:   0 total
-Time:        36.626 s
+Time:        0.301 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 3.17
-	System time (seconds): 4.02
-	Percent of CPU this job got: 9%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:17.55
+	User time (seconds): 0.22
+	System time (seconds): 0.07
+	Percent of CPU this job got: 34%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.87
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 70712
+	Maximum resident set size (kbytes): 81772
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 18125
-	Voluntary context switches: 6675
-	Involuntary context switches: 6049
+	Minor (reclaiming a frame) page faults: 14311
+	Voluntary context switches: 7608
+	Involuntary context switches: 631
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

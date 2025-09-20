@@ -7,7 +7,7 @@ import re
 import uuid
 #from tempFileGestor import TempTestFile
 import concurrent.futures
-from threading import Lock
+import threading 
 import multiprocessing
 import sys
 import time
@@ -16,6 +16,10 @@ from utility_dir import utility_paths
 import argparse
 from discordInteraction import create_webhook_reporter
 from dotenv import load_dotenv
+from dataclasses import dataclass, field
+import atexit
+from typing import Dict
+import logging
 
 BASE_DIR = utility_paths.SRC_DIR
 DATASET_DIR = utility_paths.DATASET_DIR
@@ -38,22 +42,138 @@ total_files = 0
 tests_passed = 0
 error_quantity = 0
 
+@dataclass
+class ContainerManager:
+    """Gestisce i container Docker riutilizzabili per linguaggio"""
+    active_containers: Dict[str, str] = field(default_factory=dict)
+    container_lock: threading.Lock = field(default_factory=threading.Lock)
+    container_usage_count: Dict[str, int] = field(default_factory=dict)
+    base_container_names: Dict[str, str] = field(default_factory=dict)  # Nomi base per linguaggio
+
+    
+    def get_or_create_container(self, language: str) -> str:
+        """Ottiene un container esistente o ne crea uno nuovo se necessario"""
+        with self.container_lock:
+            # Usa nome base fisso per linguaggio per evitare conflitti
+            if language not in self.base_container_names:
+                self.base_container_names[language] = f"test_{language.lower()}_shared"
+            
+            base_name = self.base_container_names[language]
+            
+            if language in self.active_containers:
+                # Verifica che il container sia ancora attivo
+                container_name = self.active_containers[language]
+                try:
+                    result = subprocess.run([
+                        "docker", "inspect", "--format", "{{.State.Status}}", container_name
+                    ], capture_output=True, text=True, check=True)
+                    
+                    # Se esiste ed è utilizzabile, incrementa usage
+                    if "exited" not in result.stdout.strip().lower():
+                        self.container_usage_count[language] = self.container_usage_count.get(language, 0) + 1
+                        return container_name
+                except subprocess.CalledProcessError:
+                    # Container non esiste più, rimuovilo dalla lista
+                    del self.active_containers[language]
+                    self.container_usage_count.pop(language, None)
+            
+            # Pulisci eventuali container esistenti con lo stesso nome
+            self._cleanup_existing_containers(base_name)
+            
+            # Assegna il nome base fisso
+            self.active_containers[language] = base_name
+            self.container_usage_count[language] = 1
+            return base_name
+    
+    def _cleanup_existing_containers(self, container_name: str):
+        """Pulisce container esistenti con lo stesso nome"""
+        try:
+            # Ferma container se in esecuzione
+            subprocess.run(["docker", "stop", container_name], 
+                         capture_output=True, timeout=10)
+        except (subprocess.CalledProcessError, subprocess.TimeoutExpired):
+            pass
+        
+        try:
+            # Rimuovi container se esiste
+            subprocess.run(["docker", "rm", container_name], 
+                         capture_output=True, timeout=10)
+        except (subprocess.CalledProcessError, subprocess.TimeoutExpired):
+            pass
+        
+        try:
+            # Rimuovi anche l'immagine se esiste per evitare conflitti
+            subprocess.run(["docker", "rmi", container_name], 
+                         capture_output=True, timeout=10)
+        except (subprocess.CalledProcessError, subprocess.TimeoutExpired):
+            pass
+    
+    def cleanup_all(self):
+        """Pulisce tutti i container attivi"""
+        with self.container_lock:
+            for container_name in self.active_containers.values():
+                self._stop_and_remove_container(container_name)
+            self.active_containers.clear()
+            self.container_usage_count.clear()
+            self.base_container_names.clear()
+    
+    def _stop_and_remove_container(self, container_name: str):
+        """Helper per fermare e rimuovere un container"""
+        try:
+            subprocess.run(["docker", "stop", container_name], 
+                         capture_output=True, timeout=30)
+            subprocess.run(["docker", "rm", container_name], 
+                         capture_output=True, timeout=30)
+        except (subprocess.CalledProcessError, subprocess.TimeoutExpired):
+            pass
+
+
 
 class TestRunner:
     """Gestisce l'esecuzione concorrente dei test"""
     
     def __init__(self, max_workers=None):
         self.max_workers = max_workers or min(multiprocessing.cpu_count(), 4)
-        self.progress_lock = Lock()
+        self.progress_lock = threading.Lock()
         self.completed_tests = 0
         self.total_tests = 0
         self.passed_tests = 0
         self.failed_tests = []
         self.start_time = time.time()        
+        self.container_manager = ContainerManager()  # Sostituisce container_pool
+       
         self.container_pool = {}  # Dizionario per memorizzare i nomi dei container per linguaggio
 
-
+        # Setup logging
+        self._setup_logging()
+        
+        # Register cleanup
+        atexit.register(self.cleanup)
     
+    def _setup_logging(self):
+        """Configura sistema di logging"""
+        log_dir = Path(BASE_DIR) / "logs" / "test_runner"
+        log_dir.mkdir(parents=True, exist_ok=True)
+        
+        from datetime import datetime
+        log_file = log_dir / f"test_runner_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
+        
+        logging.basicConfig(
+            level=logging.INFO,
+            format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+            handlers=[
+                logging.FileHandler(log_file),
+                logging.StreamHandler()
+            ]
+        )
+        self.logger = logging.getLogger(__name__)
+    
+    def cleanup(self):
+        """Cleanup resources al termine"""
+        if not silent_mode:
+            print("Cleaning up containers...")
+        self.container_manager.cleanup_all()
+
     def _update_progress(self, test_id, success=True):
         global time_passed, files_executed, total_files, tests_passed, error_quantity
         """Aggiorna il progresso in modo thread-safe"""
@@ -324,14 +444,17 @@ class TestRunner:
     
     def run_container(self,lang, mount_path, container_name, exercise_name:str, file_name:str, entry, LLM_dirName = "", run_with_cache=True, already_called = False):
         log_file = mount_path / "output.log"  
-        if not silent_mode : print(f"mount_path = {mount_path}")   
+        if not silent_mode : 
+            print(f"mount_path = {mount_path}")   
         try:
             
-            if not silent_mode : print(f"mount_path = {mount_path}")
+            if not silent_mode : 
+                print(f"mount_path = {mount_path}")
             
             dockerfile_path = DOCKER_DIR / lang.lower()
             run_sh_path = dockerfile_path / "run.sh"
-            if not silent_mode : print(f"run_sh_path = {run_sh_path}")
+            if not silent_mode : 
+                print(f"run_sh_path = {run_sh_path}")
             
             target_run_sh = mount_path / "run.sh"    
             shutil.copy(run_sh_path, target_run_sh) #copia run.sh da docker directory a directory esercizio
@@ -399,23 +522,23 @@ class TestRunner:
                             print(f"📄 Copiato Makefile standard per {entry['id']}")
 
             #build del container docker tramite subprocess
-            if run_with_cache : subprocess.run(["docker", "build", "-t", container_name, str(dockerfile_path)], check=True)
-            else : subprocess.run(["docker", "build", "--no-cache", "-t", container_name, str(dockerfile_path)], check=True)
+            if run_with_cache : 
+                subprocess.run(["docker", "build", "-t", container_name, str(dockerfile_path)], check=True)
+            else : 
+                subprocess.run(["docker", "build", "--no-cache", "-t", container_name, str(dockerfile_path)], check=True)
             
             #esecuzione di run.sh => compilazione + esecuzione test unit 
-            if lang.lower() == "java" :           
-                if not silent_mode : print(f"file name : {file_name}")
+            if lang.lower() == "java":
                 result = subprocess.run([
                     "docker", "run", "--rm",
                     "-v", f"{mount_path}:/app",
                     container_name, file_name
                 ], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
-            
-            else :
+            else:
                 result = subprocess.run([
                     "docker", "run", "--rm",
                     "--memory=4g",
-                    "-v", f"{mount_path}:/app",
+                    "-v", f"{mount_path}:/app", 
                     container_name
                 ], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
 
@@ -425,7 +548,8 @@ class TestRunner:
             
             # Verifica che il file output.log esista prima di procedere
             if not log_file.exists():
-                if not silent_mode: print(f"⚠️ output.log non trovato in {log_file}, creazione file vuoto")
+                if not silent_mode: 
+                    print(f"⚠️ output.log non trovato in {log_file}, creazione file vuoto")
                 log_file.touch()  # Crea un file vuoto se non esiste
                 container_err_flag = True
                 err_msg = f"❌ output.log non generato per {entry['id']} - {LLM_dirName}"
@@ -434,7 +558,8 @@ class TestRunner:
             if result.returncode != 0:                                            
                 if lang == "javascript":
                     self.convert_commonjs_to_esm(entry['testUnitFilePath'])
-                    if not already_called : return self.run_container(lang, mount_path, container_name, exercise_name, file_name, entry, LLM_dirName , run_with_cache, True)
+                    if not already_called : 
+                        return self.run_container(lang, mount_path, container_name, exercise_name, file_name, entry, LLM_dirName , run_with_cache, True)
                 
                 if lang == "python" and not already_called:
                     test_path = DATASET_DIR / entry['testUnitFilePath']                                        
@@ -445,12 +570,14 @@ class TestRunner:
                     return self.run_container(lang, mount_path, container_name, exercise_name, file_name, entry, LLM_dirName , run_with_cache, True)
                 
                 err_msg = f"❌‼ Errore nel container {entry['id']} - {LLM_dirName} | result:\n{result}\n"
-                if not silent_mode : print(err_msg)
+                if not silent_mode : 
+                    print(err_msg)
                 container_err_flag = True
                 
                 
             else: 
-                if not silent_mode : print(f"🟢 Test unit executed for entry {entry['id']}")
+                if not silent_mode : 
+                    print(f"🟢 Test unit executed for entry {entry['id']}")
                 #self.passed_tests += 1
 
             # Debug:
@@ -470,7 +597,8 @@ class TestRunner:
             if log_file.exists():
                 shutil.copy(log_file, final_log)
             else:
-                if not silent_mode: print(f"⚠️ Impossibile copiare log: {log_file} non esiste")
+                if not silent_mode: 
+                    print(f"⚠️ Impossibile copiare log: {log_file} non esiste")
                 # Crea un log di errore
                 with open(final_log, 'w') as f:
                     f.write(f"Errore: output.log non generato per {entry['id']}\n")
@@ -484,7 +612,8 @@ class TestRunner:
                     llm_dir_path.mkdir(parents=True, exist_ok=True)
                     
                 target_log_path = llm_dir_path / "output.log"
-                if not silent_mode : print(f"target_log_path = {target_log_path}")
+                if not silent_mode : 
+                    print(f"target_log_path = {target_log_path}")
                 
                 if not target_log_path.exists():
                     target_log_path.touch()   
@@ -494,9 +623,11 @@ class TestRunner:
                     try:
                         shutil.copy(log_file, target_log_path)
                     except Exception as copy_error:
-                        if not silent_mode: print(f"⚠️ Errore nella copia del log LLM: {copy_error}")
+                        if not silent_mode: 
+                            print(f"⚠️ Errore nella copia del log LLM: {copy_error}")
                 else:
-                    if not silent_mode: print(f"⚠️ Impossibile copiare log LLM: {log_file} non esiste o è None")
+                    if not silent_mode: 
+                        print(f"⚠️ Impossibile copiare log LLM: {log_file} non esiste o è None")
 
             
             
@@ -512,7 +643,8 @@ class TestRunner:
             return (log_file, container_err_flag)
         
         except Exception as e :
-            if not silent_mode : print(f"\n‼️❌ exception in run container :\n{e}\n")
+            if not silent_mode : 
+                print(f"\n‼️❌ exception in run container :\n{e}\n")
             # In caso di eccezione, assicurati che venga restituito un file log valido
             error_log = LOGS_DIR / f"{container_name}_{exercise_name}_error_{uuid.uuid4().hex[:8]}.log"
             error_log.touch()
@@ -575,35 +707,83 @@ class TestRunner:
 
 
     def setup_container(self, lang, run_with_docker_cache):
-        container_name = f"test_{lang.lower()}_persistant"
+        """Configura container riutilizzabile per il linguaggio specificato"""
+        container_name = self.container_manager.get_or_create_container(lang)
         
+        # Verifica se il container/immagine esiste già ed è utilizzabile
         try:
-            # Controllo se il container esiste già e lo rimuovo per evitare conflitti da esecuzioni precedenti
-            subprocess.run(["docker", "stop", container_name], capture_output=True, text=True)
-            subprocess.run(["docker", "rm", container_name], capture_output=True, text=True)
+            result = subprocess.run([
+                "docker", "inspect", "--type=image", container_name
+            ], capture_output=True, text=True)
+            
+            if result.returncode == 0:
+                if not silent_mode:
+                    print(f"✅ Riutilizzo immagine esistente per {lang}: {container_name}")
+                return container_name
         except subprocess.CalledProcessError:
-            pass # Non fare nulla se il container non esiste
+            pass
         
-        print(f"➡️ Creazione e avvio del container per {lang}...")
+        if not silent_mode:
+            print(f"🔄 Creazione nuova immagine per {lang}: {container_name}")
         
+        # Forza pulizia prima della build
         try:
-            # Costruisci il container
-            dockerfile_path = DOCKER_DIR / lang.lower()
-            if run_with_docker_cache:
-                subprocess.run(["docker", "build", "-t", container_name, str(dockerfile_path)], check=True)
-            else:
-                subprocess.run(["docker", "build", "--no-cache", "-t", container_name, str(dockerfile_path)], check=True)
-            
-            # Avvia il container in background
-            subprocess.run(["docker", "run", "-d", "--name", container_name, "-v", f"{BASE_DIR.resolve()}:/app", container_name], check=True)
-            
-            self.container_pool[lang] = container_name
-            print(f"✅ Container {container_name} creato e avviato.")
-        except subprocess.CalledProcessError as e:
-            print(f"❌ Errore nella creazione del container {container_name}: {e.stderr}")
-            raise # Propaga l'errore per fallire l'intera esecuzione
+            subprocess.run(["docker", "rmi", "-f", container_name], 
+                        capture_output=True, timeout=30)
+        except (subprocess.CalledProcessError, subprocess.TimeoutExpired):
+            pass
         
-        
+        max_retries = 3
+        for attempt in range(max_retries):
+            try:
+                dockerfile_path = DOCKER_DIR / lang.lower()
+                
+                build_cmd = ["docker", "build", "-t", container_name, str(dockerfile_path)]
+                if not run_with_docker_cache:
+                    build_cmd.insert(2, "--no-cache")
+                
+                result = subprocess.run(build_cmd, capture_output=True, text=True, timeout=600)
+                
+                if result.returncode == 0:
+                    self.logger.info(f"Container {container_name} creato per {lang}")
+                    return container_name
+                else:
+                    error_msg = f"Build fallita (tentativo {attempt + 1}/{max_retries}): {result.stderr}"
+                    self.logger.warning(error_msg)
+                    
+                    if attempt == max_retries - 1:
+                        raise subprocess.CalledProcessError(result.returncode, build_cmd, result.stdout, result.stderr)
+                    
+                    # Attendi prima di riprovare
+                    time.sleep(2)
+                    
+            except subprocess.TimeoutExpired:
+                error_msg = f"Timeout nella build del container (tentativo {attempt + 1}/{max_retries})"
+                self.logger.warning(error_msg)
+                
+                if attempt == max_retries - 1:
+                    raise
+                
+                time.sleep(5)
+            
+            except subprocess.CalledProcessError as e:
+                if attempt == max_retries - 1:
+                    error_msg = f"Errore nella creazione del container {container_name}: {e.stderr if e.stderr else e}"
+                    self.logger.error(error_msg)
+                    if not silent_mode:
+                        print(f"❌ {error_msg}")
+                    raise
+                
+                # Pulizia per il retry
+                try:
+                    subprocess.run(["docker", "rmi", "-f", container_name], 
+                                capture_output=True, timeout=30)
+                except:
+                    pass
+                
+                time.sleep(2)
+            
+            
     def detect_test_framework(self, entry):
         """Rileva quale framework di test viene utilizzato"""
         test_file_path_in_entry = entry.get("testUnitFilePath")
@@ -774,11 +954,44 @@ class TestRunner:
     def run_tests_on_entry(self, entry, lang, base_only=False, llm_only=False, run_with_docker_cache=True,prompt_version = 1):
         path = DATASET_DIR / Path(entry["testUnitFilePath"]).parent
         
-        container_name = self.container_pool.get(lang)
+         # Ottieni/crea container per il linguaggio con retry
+        max_setup_retries = 3
+        container_name = None
+        
+        for setup_attempt in range(max_setup_retries):
+            try:
+                container_name = self.container_manager.get_or_create_container(lang)
+                
+                # Verifica che l'immagine esista, altrimenti creala
+                result = subprocess.run([
+                    "docker", "inspect", "--type=image", container_name
+                ], capture_output=True, text=True)
+                
+                if result.returncode != 0:
+                    # Immagine non esiste, creala
+                    container_name = self.setup_container(lang, run_with_docker_cache)
+                
+                break  # Setup riuscito
+                
+            except Exception as e:
+                self.logger.warning(f"Setup container fallito (tentativo {setup_attempt + 1}/{max_setup_retries}): {e}")
+                
+                if setup_attempt == max_setup_retries - 1:
+                    # Ultimo tentativo fallito, solleva eccezione
+                    raise Exception(f"Impossibile configurare container per {lang} dopo {max_setup_retries} tentativi")
+                
+                # Attendi prima di riprovare
+                time.sleep(3)
+                
+                # Pulisci stato corrotto
+                if lang in self.container_manager.active_containers:
+                    with self.container_manager.container_lock:
+                        del self.container_manager.active_containers[lang]
+                        self.container_manager.container_usage_count.pop(lang, None)
+        
         if not container_name:
-            # Questo caso non dovrebbe verificarsi se la pre-inizializzazione funziona
-            raise Exception(f"🤨 Container per il linguaggio '{lang}' non trovato.")
-
+            raise Exception(f"Container per {lang} non disponibile")
+        
         results = {}
         parts = str(entry["codeSnippetFilePath"]).split("/")
         codeSnippetFileName = parts.pop()
@@ -786,14 +999,18 @@ class TestRunner:
         
         # Esegui i test sul codice base
         if not llm_only:
-            if not silent_mode : print(f"\n➡️ Testing base code: {entry['id']}\n➡️ path : {path}")
+            if not silent_mode : 
+                print(f"\n➡️ Testing base code: {entry['id']}\n➡️ path : {path}")
                         
             (base_log,container_err_flag) = self.run_container(lang, path.resolve(), container_name, entry["id"],codeSnippetFileName, entry,"",run_with_docker_cache)
             
             base_metrics = None
-            if lang != "typescript" : base_metrics =  self.parse_metrics(base_log)
-            else : base_metrics = self.parse_metrics_typescript(base_log)
-            if container_err_flag : base_metrics['regrationTestPassed'] = False
+            if lang != "typescript" : 
+                base_metrics =  self.parse_metrics(base_log)
+            else : 
+                base_metrics = self.parse_metrics_typescript(base_log)
+            if container_err_flag : 
+                base_metrics['regrationTestPassed'] = False
             results.update(base_metrics)
             
             #salva path log 
@@ -971,21 +1188,28 @@ class TestRunner:
             )
             print(f"📊 Statistiche salvate: {total_entries} entry totali, {entries_with_llm} con risultati LLM")
 
-def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cache = True, use_dataset = False, use_bad_entries = False,use_debug_cluster = False,cluster_name ="",output_file:str="",webhook=False, prompt_version = 1):
+def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cache = True, use_dataset = False, use_bad_entries = False,use_debug_cluster = False,cluster_name ="",output_file:str=None,webhook=False, prompt_version = 1):
     """Esegue test suites su code snippet e codigi generati dagli LLMs.
     Attualmente sfrutta il cluster scelto anziché il dataset"""
         
-    if not output_file : raise Exception("❌ Missing output file to save result")
-    if not prompt_version : prompt_version = 1    
-    if not output_file.endswith(".json"):output_file = output_file + ".json"
+    if not output_file : 
+        raise Exception("❌ Missing output file to save result")
+    if not prompt_version : 
+        prompt_version = 1    
+    if not output_file.endswith(".json"):
+        output_file = output_file + ".json"
     
-    if not base_only and (prompt_version < 1 or prompt_version > 4) : raise Exception(f"❌ Invalid prompt verison : {prompt_version}")
+    if not base_only and (prompt_version < 1 or prompt_version > 4) : 
+        raise Exception(f"❌ Invalid prompt verison : {prompt_version}")
         
     chosen_path = CLUSTER_JSON
-    if use_dataset : chosen_path = DATASET_JSON_PATH
-    if use_bad_entries : chosen_path = BAD_ENTRIES_CLUSTER_JSON
+    if use_dataset : 
+        chosen_path = DATASET_JSON_PATH
+    if use_bad_entries : 
+        chosen_path = BAD_ENTRIES_CLUSTER_JSON
     if cluster_name and cluster_name != "" : 
-        if not (cluster_name.endswith(".json")):cluster_name = cluster_name + ".json"
+        if not (cluster_name.endswith(".json")):
+            cluster_name = cluster_name + ".json"
         chosen_path = utility_paths.CLUSTERS_DIR_FILEPATH / cluster_name
     if use_debug_cluster : 
         chosen_path = DEBUG_CLUSTER_JSON
@@ -993,7 +1217,8 @@ def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cach
             
         
         
-    if not silent_mode : print(f"chosen_path = {chosen_path}")
+    if not silent_mode : 
+        print(f"chosen_path = {chosen_path}")
         
     LOGS_DIR.mkdir(exist_ok=True)    
     cluster_data = None
@@ -1001,7 +1226,8 @@ def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cach
         with open(chosen_path, "r", encoding="utf-8") as f:
             cluster_data = json.load(f)
     except Exception as e:
-        if not silent_mode : print(f"❌ Errore caricamento cluster data: {e}")
+        if not silent_mode :
+            print(f"❌ Errore caricamento cluster data: {e}")
         return False
             
     
@@ -1013,7 +1239,12 @@ def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cach
     print("🐳 Pre-inizializzazione dei container Docker...")
     languages = set(cluster_data.keys())
     for lang in languages:
-        test_runner.setup_container(lang, run_with_docker_cache)
+        try:
+            container_name = test_runner.setup_container(lang, run_with_docker_cache)
+            test_runner.logger.info(f"Container {container_name} pronto per {lang}")
+        except Exception as e:
+            test_runner.logger.error(f"Errore setup container {lang}: {e}")
+            continue
 
     test_res = []
     try:
@@ -1027,11 +1258,14 @@ def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cach
     except Exception as e:
         print(f"❌ Errore run test concurrent: {e}")
     finally:
-       #  Pulizia dei container persistenti
-        for lang, container_name in test_runner.container_pool.items():
-            print(f"🛑 Fermo e rimuovo il container '{container_name}'...")
-            subprocess.run(["docker", "stop", container_name], check=True)
-            subprocess.run(["docker", "rm", container_name], check=True)
+        # Pulizia dei container persistenti
+        # Cleanup automatico tramite container manager
+
+        #for lang, container_name in test_runner.container_pool.items():
+        #    print(f"🛑 Fermo e rimuovo il container '{container_name}'...")
+        #    subprocess.run(["docker", "stop", container_name], check=True)
+        #    subprocess.run(["docker", "rm", container_name], check=True)
+
         print("✅ Pulizia dei container completata.")
 
         
@@ -1049,7 +1283,7 @@ def main(base_only=False, llm_only=False, max_workers=None, run_with_docker_cach
     if webhook : 
         load_dotenv()
 
-        WEBHOOK_URL = os.getenv('DISCORD_WEBHOOK') or ""
+        WEBHOOK_URL = os.getenv('DISCORD_WEBHOOK') 
     
         # Crea reporter
         reporter = create_webhook_reporter(WEBHOOK_URL, "Test Results Bot")
@@ -1177,6 +1411,9 @@ if __name__ == "__main__":
         
         
 # source venv/bin/activate
+
+
+#python3 run_tests.py --llm-only --cluster-name cluster_hashtag_generator.test.js --output-file cluster_hashtag_generator.test.js_results_v2 --webhook --prompt-version 2 --silent --run_quantity 5
         
 # python3 run_tests.py --llm-only --cluster-name cluster_raindrops --output-file raindrops_results_v2 --webhook --prompt-version 2 --silent --run_quantity 5
 # python3 run_tests.py --llm-only --cluster-name cluster_raindrops --output-file raindrops_results_v3 --webhook --prompt-version 3 --silent --run_quantity 5

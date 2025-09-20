@@ -1,0 +1,160 @@
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL ./grade-school_testSuite.js
+  School
+    ✓ a new school has an empty roster (1 ms)
+    ✕ adding a student adds them to the roster for the given grade (2 ms)
+    ✕ adding more students to the same grade adds them to the roster
+    ✕ adding students to different grades adds them to the roster
+    ✓ grade returns the students in that grade in alphabetical order
+    ✓ grade returns an empty array if there are no students in that grade
+    ✕ the students names in each grade in the roster are sorted
+
+  ● School › adding a student adds them to the roster for the given grade
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+    -   "2": Array [
+    +   "2": Set {
+          "Aimee",
+    -   ],
+    +   },
+      }
+
+      15 |     school.add('Aimee', 2);
+      16 |     var expectedDb = { 2 : [ 'Aimee' ] };
+    > 17 |     expect(school.roster()).toEqual(expectedDb);
+         |                             ^
+      18 |   });
+      19 |
+      20 |   it('adding more students to the same grade adds them to the roster', function() {
+
+      at Object.<anonymous> (grade-school_testSuite.js:17:29)
+
+  ● School › adding more students to the same grade adds them to the roster
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+    -   "2": Array [
+    +   "2": Set {
+          "Blair",
+          "James",
+          "Paul",
+    -   ],
+    +   },
+      }
+
+      23 |     school.add('Paul',2);
+      24 |     var expectedDb = { 2 : [ 'Blair', 'James', 'Paul' ] };
+    > 25 |     expect(school.roster()).toEqual(expectedDb);
+         |                             ^
+      26 |   });
+      27 |
+      28 |   it('adding students to different grades adds them to the roster', function() {
+
+      at Object.<anonymous> (grade-school_testSuite.js:25:29)
+
+  ● School › adding students to different grades adds them to the roster
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 4
+    + Received  + 4
+
+      Object {
+    -   "3": Array [
+    +   "3": Set {
+          "Chelsea",
+    -   ],
+    -   "7": Array [
+    +   },
+    +   "7": Set {
+          "Logan",
+    -   ],
+    +   },
+      }
+
+      30 |     school.add('Logan',7);
+      31 |     var expectedDb = { 3 : [ 'Chelsea' ], 7 : [ 'Logan' ] };
+    > 32 |     expect(school.roster()).toEqual(expectedDb);
+         |                             ^
+      33 |   });
+      34 |
+      35 |   it('grade returns the students in that grade in alphabetical order', function() {
+
+      at Object.<anonymous> (grade-school_testSuite.js:32:29)
+
+  ● School › the students names in each grade in the roster are sorted
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 7
+    + Received  + 7
+
+      Object {
+    -   "3": Array [
+    +   "3": Set {
+          "Kyle",
+    -   ],
+    -   "4": Array [
+    -     "Christopher",
+    +   },
+    +   "4": Set {
+          "Jennifer",
+    -   ],
+    -   "6": Array [
+    +     "Christopher",
+    +   },
+    +   "6": Set {
+          "Kareem",
+    -   ],
+    +   },
+      }
+
+      55 |       6 : [ 'Kareem' ]
+      56 |     };
+    > 57 |     expect(school.roster()).toEqual(sorted);
+         |                             ^
+      58 |   });
+      59 |
+      60 | });
+
+      at Object.<anonymous> (grade-school_testSuite.js:57:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       4 failed, 3 passed, 7 total
+Snapshots:   0 total
+Time:        0.26 s
+Ran all test suites.
+Command exited with non-zero status 1
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 0.23
+	System time (seconds): 0.07
+	Percent of CPU this job got: 43%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.71
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 83172
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 14429
+	Voluntary context switches: 7632
+	Involuntary context switches: 3921
+	Swaps: 0
+	File system inputs: 160
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

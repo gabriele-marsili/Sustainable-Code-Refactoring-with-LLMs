@@ -1,36 +1,20 @@
-test/test_react.c:328:test_input_cells_have_value:PASS
-test/test_react.c:329:test_input_cells_value_can_be_set:PASS
-test/test_react.c:330:test_compute_cells_calculate_initial_value:PASS
-test/test_react.c:331:test_compute_cells_take_inputs_in_the_right_order:PASS
-test/test_react.c:332:test_compute_cells_update_value_when_dependencies_are_changed:PASS
-test/test_react.c:333:test_compute_cells_can_depend_on_other_compute_cells:PASS
-test/test_react.c:334:test_compute_cells_fire_callbacks:PASS
-test/test_react.c:335:test_compute_cells_dont_access_callback_obj:PASS
-test/test_react.c:336:test_callbacks_only_fire_on_change:PASS
-test/test_react.c:337:test_callbacks_can_be_added_and_removed:PASS
-test/test_react.c:338:test_removing_most_recent_callback:PASS
-test/test_react.c:339:test_removing_a_callback_multiple_times:PASS
-test/test_react.c:340:test_callbacks_only_called_once_even_if_multiple_inputs_change:PASS
-test/test_react.c:341:test_callbacks_not_called_if_inputs_change_but_output_doesnt:PASS
-
------------------------
-14 Tests 0 Failures 0 Ignored 
-OK
+qemu-x86_64: Could not open '/lib64/ld-linux-x86-64.so.2': No such file or directory
+Command exited with non-zero status 255
 	Command being timed: "./tests.out"
 	User time (seconds): 0.00
 	System time (seconds): 0.00
-	Percent of CPU this job got: 8%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.02
+	Percent of CPU this job got: 50%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.00
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 1152
+	Maximum resident set size (kbytes): 3456
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 1
-	Minor (reclaiming a frame) page faults: 71
-	Voluntary context switches: 6
-	Involuntary context switches: 6
+	Minor (reclaiming a frame) page faults: 784
+	Voluntary context switches: 19
+	Involuntary context switches: 23
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 0
@@ -38,4 +22,4 @@ OK
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 0
+	Exit status: 255

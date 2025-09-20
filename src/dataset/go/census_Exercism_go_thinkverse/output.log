@@ -11,7 +11,7 @@
 === RUN   TestHasRequiredInfo/empty_map_as_address
 === RUN   TestHasRequiredInfo/missing_street
 === RUN   TestHasRequiredInfo/age_is_optional
---- PASS: TestHasRequiredInfo (0.01s)
+--- PASS: TestHasRequiredInfo (0.00s)
     --- PASS: TestHasRequiredInfo/no_data_collected (0.00s)
     --- PASS: TestHasRequiredInfo/all_data_collected (0.00s)
     --- PASS: TestHasRequiredInfo/missing_name (0.00s)
@@ -22,7 +22,7 @@
 === RUN   TestDelete/no_data_collected
 === RUN   TestDelete/all_data_collected
 === RUN   TestDelete/some_data_collected
---- PASS: TestDelete (0.01s)
+--- PASS: TestDelete (0.00s)
     --- PASS: TestDelete/no_data_collected (0.00s)
     --- PASS: TestDelete/all_data_collected (0.00s)
     --- PASS: TestDelete/some_data_collected (0.00s)
@@ -30,30 +30,30 @@
 === RUN   TestCount/no_data_collected
 === RUN   TestCount/all_data_collected
 === RUN   TestCount/some_data_collected
---- PASS: TestCount (0.01s)
+--- PASS: TestCount (0.00s)
     --- PASS: TestCount/no_data_collected (0.00s)
     --- PASS: TestCount/all_data_collected (0.00s)
     --- PASS: TestCount/some_data_collected (0.00s)
 PASS
-ok  	esercizio	0.061s
+ok  	esercizio	0.002s
 	Command being timed: "go test -v"
-	User time (seconds): 23.88
-	System time (seconds): 49.20
-	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:30.56
+	User time (seconds): 5.12
+	System time (seconds): 0.56
+	Percent of CPU this job got: 65%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:08.69
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 200088
+	Maximum resident set size (kbytes): 213656
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 5
-	Minor (reclaiming a frame) page faults: 720706
-	Voluntary context switches: 33016
-	Involuntary context switches: 44300
+	Major (requiring I/O) page faults: 6
+	Minor (reclaiming a frame) page faults: 722901
+	Voluntary context switches: 21617
+	Involuntary context switches: 17926
 	Swaps: 0
-	File system inputs: 0
-	File system outputs: 171920
+	File system inputs: 10464
+	File system outputs: 172280
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0

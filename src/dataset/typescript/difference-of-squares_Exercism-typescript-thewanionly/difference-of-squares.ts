@@ -1,19 +1,21 @@
 export class Squares {
-  count: number
+  private readonly sumOfN: number;
+  private readonly sumOfNSquares: number;
 
   constructor(count: number) {
-    this.count = count
+    this.sumOfN = (count * (count + 1)) / 2;
+    this.sumOfNSquares = (count * (count + 1) * (2 * count + 1)) / 6;
   }
 
   get sumOfSquares(): number {
-    return (this.count * (this.count + 1) * (2 * this.count + 1)) / 6
+    return this.sumOfNSquares;
   }
 
   get squareOfSum(): number {
-    return Math.pow((this.count * (this.count + 1)) / 2, 2)
+    return this.sumOfN * this.sumOfN;
   }
 
   get difference(): number {
-    return this.squareOfSum - this.sumOfSquares
+    return this.squareOfSum - this.sumOfSquares;
   }
 }

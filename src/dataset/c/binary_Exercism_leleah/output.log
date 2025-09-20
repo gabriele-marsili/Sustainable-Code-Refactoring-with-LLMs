@@ -1,37 +1,20 @@
-test/test_binary.c:105:test_binary_0_is_decimal_0:PASS
-test/test_binary.c:19:test_binary_1_is_decimal_1:IGNORE
-test/test_binary.c:25:test_binary_10_is_decimal_2:IGNORE
-test/test_binary.c:31:test_binary_11_is_decimal_3:IGNORE
-test/test_binary.c:37:test_binary_100_is_decimal_4:IGNORE
-test/test_binary.c:43:test_binary_1001_is_decimal_9:IGNORE
-test/test_binary.c:49:test_binary_11010_is_decimal_26:IGNORE
-test/test_binary.c:55:test_binary_10001101000_is_decimal_1128:IGNORE
-test/test_binary.c:61:test_binary_ignores_leading_zeros:IGNORE
-test/test_binary.c:67:test_2_is_not_a_valid_binary_digit:IGNORE
-test/test_binary.c:73:test_a_number_containing_a_non_binary_digit_is_invalid:IGNORE
-test/test_binary.c:79:test_a_number_with_trailing_non_binary_characters_is_invalid:IGNORE
-test/test_binary.c:85:test_a_number_with_leading_non_binary_characters_is_invalid:IGNORE
-test/test_binary.c:91:test_a_number_with_internal_non_binary_characters_is_invalid:IGNORE
-test/test_binary.c:97:test_a_number_and_a_word_whitespace_separated_is_invalid:IGNORE
-
------------------------
-15 Tests 0 Failures 14 Ignored 
-OK
+qemu-x86_64: Could not open '/lib64/ld-linux-x86-64.so.2': No such file or directory
+Command exited with non-zero status 255
 	Command being timed: "./tests.out"
 	User time (seconds): 0.00
 	System time (seconds): 0.00
-	Percent of CPU this job got: 5%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.01
+	Percent of CPU this job got: 50%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.00
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 1024
+	Maximum resident set size (kbytes): 3456
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 1
-	Minor (reclaiming a frame) page faults: 71
-	Voluntary context switches: 6
-	Involuntary context switches: 6
+	Minor (reclaiming a frame) page faults: 785
+	Voluntary context switches: 18
+	Involuntary context switches: 4
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 0
@@ -39,4 +22,4 @@ OK
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 0
+	Exit status: 255

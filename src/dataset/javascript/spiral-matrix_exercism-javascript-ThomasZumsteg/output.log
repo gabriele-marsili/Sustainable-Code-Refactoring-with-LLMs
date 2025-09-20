@@ -1,12 +1,12 @@
 (node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-FAIL ./spiral-matrix_testSuite.js (6.55 s)
+FAIL ./spiral-matrix_testSuite.js
   Spiral Matrix
-    ✕ empty spiral (29 ms)
-    ✕ trivial spiral (1 ms)
-    ✕ spiral of size 2 (2 ms)
-    ✕ spiral of size 3 (3 ms)
-    ✕ spiral of size 4 (4 ms)
+    ✕ empty spiral (2 ms)
+    ✕ trivial spiral
+    ✕ spiral of size 2
+    ✕ spiral of size 3
+    ✕ spiral of size 4
     ✕ spiral of size 5
 
   ● Spiral Matrix › empty spiral
@@ -96,24 +96,24 @@ FAIL ./spiral-matrix_testSuite.js (6.55 s)
 Test Suites: 1 failed, 1 total
 Tests:       6 failed, 6 total
 Snapshots:   0 total
-Time:        8.059 s
+Time:        0.318 s
 Ran all test suites.
 Command exited with non-zero status 1
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 2.05
-	System time (seconds): 2.27
-	Percent of CPU this job got: 19%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:22.38
+	User time (seconds): 0.22
+	System time (seconds): 0.10
+	Percent of CPU this job got: 35%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.90
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 83180
+	Maximum resident set size (kbytes): 82492
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 13725
-	Voluntary context switches: 6262
-	Involuntary context switches: 4989
+	Minor (reclaiming a frame) page faults: 14264
+	Voluntary context switches: 7621
+	Involuntary context switches: 883
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

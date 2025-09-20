@@ -1,39 +1,39 @@
 (node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-PASS ./matrix_testSuite.js (21.961 s)
+PASS ./matrix_testSuite.js
   Matrix
-    ✓ extract row from one number matrix (162 ms)
-    ✓ can extract row (9 ms)
-    ✓ extract row where numbers have different widths (18 ms)
-    ✓ can extract row from non-square matrix with no corresponding column (4 ms)
-    ✓ extract column from one number matrix (12 ms)
-    ✓ can extract column (16 ms)
-    ✓ can extract column from non-square matrix with no corresponding row (20 ms)
-    ✓ can extract column from non-square matrix with more columns than rows (24 ms)
-    ✓ extract column where numbers have different widths (25 ms)
+    ✓ extract row from one number matrix (2 ms)
+    ✓ can extract row
+    ✓ extract row where numbers have different widths
+    ✓ can extract row from non-square matrix with no corresponding column (1 ms)
+    ✓ extract column from one number matrix
+    ✓ can extract column
+    ✓ can extract column from non-square matrix with no corresponding row
+    ✓ can extract column from non-square matrix with more columns than rows (1 ms)
+    ✓ extract column where numbers have different widths
 
 Test Suites: 1 passed, 1 total
 Tests:       9 passed, 9 total
 Snapshots:   0 total
-Time:        26.901 s
+Time:        0.241 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 3.29
-	System time (seconds): 4.24
-	Percent of CPU this job got: 8%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:25.90
+	User time (seconds): 0.25
+	System time (seconds): 0.05
+	Percent of CPU this job got: 45%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.67
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 70764
+	Maximum resident set size (kbytes): 81608
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 17860
-	Voluntary context switches: 6894
-	Involuntary context switches: 5233
+	Minor (reclaiming a frame) page faults: 13979
+	Voluntary context switches: 7554
+	Involuntary context switches: 3524
 	Swaps: 0
-	File system inputs: 8
+	File system inputs: 0
 	File system outputs: 16
 	Socket messages sent: 0
 	Socket messages received: 0

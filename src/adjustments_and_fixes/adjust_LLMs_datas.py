@@ -24,7 +24,7 @@ def count_words_and_chars(file_path):
         tuple: (word_count, char_count)
     """
     file_path = utility_paths.DATASET_DIR / file_path
-    print(f"f path = {file_path}")
+    #print(f"f path = {file_path}")
     try:
         with open(file_path, "r", encoding="utf-8") as file:
             content = file.read()
@@ -38,10 +38,10 @@ def count_words_and_chars(file_path):
 
             return word_count, char_count
     except FileNotFoundError:
-        print(f"Attenzione: File non trovato: {file_path}")
+        print(f"🟡 Attenzione: File non trovato: {file_path}")
         return 0, 0
     except Exception as e:
-        print(f"Errore nella lettura del file {file_path}: {e}")
+        print(f"🟡 Errore nella lettura del file {file_path}: {e}")
         return 0, 0
 
 
@@ -89,45 +89,61 @@ def process_json_file(input_file_path, output_file_path=None):
         with open(input_file_path, "r", encoding="utf-8") as file:
             data = json.load(file)
 
-        print(f"Processando file JSON: {input_file_path}")
+        #print(f"Processando file JSON: {input_file_path}")
 
         DIRS = ["openAI", "claude", "gemini"]
 
         # Processa ogni linguaggio nel JSON
         for language, entries in data.items():
-            print(f"\nProcessando linguaggio: {language}")
+            #print(f"\nProcessando linguaggio: {language}")
 
             for entry in entries:
                 entry_id = entry.get("id", "ID sconosciuto")
                 entry_filename = entry["filename"]
-                print(f"  Processando entry: {entry_id}")
+                
+                if 'hashtag' in entry_id:
+                    print(f"  Processando entry: {entry_id}")
 
                 if language == "java":
                     parts = str(entry["codeSnippetFilePath"]).split("/")
                     exercise_path = parts[0] + "/" + parts[1]
                 else:
-                    exercise_path = str(entry["codeSnippetFilePath"]).replace(
-                        "/" + entry["filename"], ""
-                    )
+                    if ".test" not in entry['filename'] :
+                        exercise_path = str(entry["codeSnippetFilePath"]).replace(
+                            "/" + entry["filename"], ""
+                        )
+                    else:
+                        parts = str(entry['codeSnippetFilePath']).split("/")
+                        exercise_path = ""
+                        for i in range(len(parts)-1):
+                            if i == 0:                                
+                                exercise_path = parts[i]
+                            else:
+                                exercise_path += "/"+parts[i]
+
                 if entry["language"] == "c" or entry["language"] == "cpp":
                     exercise_path = exercise_path.replace("/src", "")
+                
                 exercise_path = utility_paths.DATASET_DIR / exercise_path
+
+                #src/dataset/javascript/hashtagGenerator.test.js/
 
                 llms_data = []
 
                 # Processa ogni percorso LLM
                 for dir_name in DIRS:
-                    print(f"exercise_path = {exercise_path}")
-                    print(f"dir_name = {dir_name}")
+                    if 'hashtag' in entry_id:
+                        print(f"exercise_path = {exercise_path}")
+                        print(f"dir_name = {dir_name}")
 
                     complete_dir_path = exercise_path / dir_name
-                    print(f"complete_dir_path = {complete_dir_path}")
+                    if 'hashtag' in entry_id:
+                        print(f"complete_dir_path = {complete_dir_path}")
 
                     if os.path.isdir(str(complete_dir_path)):
                         for LLM_file in os.scandir(str(complete_dir_path)):
-                            print(
-                                f"LLM file name : {LLM_file.name}\nentry_filename = {entry_filename}"
-                            )
+                            if 'hashtag' in entry_id:
+                                print(f"LLM file name : {LLM_file.name}\nentry_filename = {entry_filename}")
                             if (
                                 LLM_file.is_file()
                                 and not LLM_file.name.endswith(".json")
@@ -155,9 +171,8 @@ def process_json_file(input_file_path, output_file_path=None):
                                 }
 
                                 llms_data.append(llm_obj)
-                                print(
-                                    f"      Tipo: {llm_type}, Parole: {word_count}, Caratteri: {char_count}"
-                                )
+                                if 'hashtag' in entry_id:
+                                    print(f"      Tipo: {llm_type}, Parole: {word_count}, Caratteri: {char_count}")
 
                 # Sostituisci LLM_codeSnippetFilePaths con LLMs
                 entry["LLMs"] = llms_data
@@ -166,15 +181,34 @@ def process_json_file(input_file_path, output_file_path=None):
         with open(output_file_path, "w", encoding="utf-8") as file:
             json.dump(data, file, indent=4, ensure_ascii=False)
 
-        print(f"\nFile JSON aggiornato salvato in: {output_file_path}")
+        if 'hashtag' in entry_id:
+            print(f"\nFile JSON aggiornato salvato in: {output_file_path}")
 
     except FileNotFoundError:
-        print(f"Errore: File JSON non trovato: {input_file_path}")
+        print(f"❌Errore: File JSON non trovato: {input_file_path}")
     except json.JSONDecodeError as e:
-        print(f"Errore nella decodifica JSON: {e}")
+        print(f"❌Errore nella decodifica JSON: {e}")
     except Exception as e:
-        print(f"Errore generico: {e}")
+        print(f"❌Errore generico: {e}")
 
+
+def find_clusters_without_LLMs_data(cluster_paths):
+    report = []
+    for cluster_path in cluster_paths:
+        # Carica il file JSON
+        with open(cluster_path, "r", encoding="utf-8") as file:
+            data = json.load(file)
+
+        if data : 
+            for _language, entries in data.items():
+                for entry in entries:
+                    if 'LLMs' not in entry or len(entry['LLMs']) == 0 : 
+                        report.append({
+                            "entry_id" : entry['id'],
+                            "cluster_path" : cluster_path
+                        })
+
+    return report
 
 def main():
     """
@@ -199,16 +233,22 @@ def main():
         if cluster_name in clusters_already_processed:
             continue
         else:
-            print(f"\n- Generating LLMs files for cluster {cluster_name}\n")
+            #print(f"\n- Generating LLMs files for cluster {cluster_name}\n")
 
             file_name = f"cluster_{cluster_name}.json"
             cluster_path = utility_paths.CLUSTERS_DIR_FILEPATH / file_name
 
             clusters.append(cluster_path)
 
+    
+    
     for cluster in clusters:
         process_json_file(cluster)
 
+    report = find_clusters_without_LLMs_data(clusters)
+    print(f"Report of entries without LLMs ({len(report)}):\n")
+    for r in report :
+        print(f"\n{r}")
 
 if __name__ == "__main__":
     main()

@@ -1,15 +1,21 @@
-export  function flatten(arr: any[]): number[] {
-    let flattened: number[] = [];
-    recFlatten(arr, flattened);
-    return flattened;
-}
+export function flatten(arr: any[]): number[] {
+    const flattened: number[] = [];
+    const stack = [arr];
 
-function recFlatten(n: any[], flattened: number[]): void {
-    for (let i = 0; i < n.length; i++) {
-        if (typeof n[i] === 'number') {
-            flattened.push(n[i]);
-        } else if(n[i]) {
-            recFlatten(n[i], flattened);
+    while (stack.length > 0) {
+        const current = stack.pop();
+
+        if (Array.isArray(current)) {
+            for (let i = current.length - 1; i >= 0; i--) {
+                const item = current[i];
+                if (typeof item === 'number') {
+                    flattened.push(item);
+                } else if (Array.isArray(item)) {
+                    stack.push(item);
+                }
+            }
         }
     }
+
+    return flattened.reverse();
 }

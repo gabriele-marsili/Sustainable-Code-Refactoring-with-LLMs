@@ -1,0 +1,44 @@
+=== RUN   TestRunLengthEncode
+    run_length_encoding_test.go:11: PASS RunLengthEncode - empty string
+    run_length_encoding_test.go:11: PASS RunLengthEncode - single characters only are encoded without count
+    run_length_encoding_test.go:11: PASS RunLengthEncode - string with no single characters
+    run_length_encoding_test.go:11: PASS RunLengthEncode - single characters mixed with repeated characters
+    run_length_encoding_test.go:11: PASS RunLengthEncode - multiple whitespace mixed in string
+    run_length_encoding_test.go:11: PASS RunLengthEncode - lowercase characters
+--- PASS: TestRunLengthEncode (0.00s)
+=== RUN   TestRunLengthDecode
+    run_length_encoding_test.go:20: PASS RunLengthDecode - empty string
+    run_length_encoding_test.go:20: PASS RunLengthDecode - single characters only
+    run_length_encoding_test.go:20: PASS RunLengthDecode - string with no single characters
+    run_length_encoding_test.go:20: PASS RunLengthDecode - single characters with repeated characters
+    run_length_encoding_test.go:20: PASS RunLengthDecode - multiple whitespace mixed in string
+    run_length_encoding_test.go:20: PASS RunLengthDecode - lower case string
+--- PASS: TestRunLengthDecode (0.00s)
+=== RUN   TestRunLengthEncodeDecode
+    run_length_encoding_test.go:29: PASS encode followed by decode gives original string
+--- PASS: TestRunLengthEncodeDecode (0.00s)
+PASS
+ok  	esercizio	0.004s
+	Command being timed: "go test -v"
+	User time (seconds): 5.22
+	System time (seconds): 0.57
+	Percent of CPU this job got: 65%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:08.91
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 224960
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 727488
+	Voluntary context switches: 22424
+	Involuntary context switches: 18906
+	Swaps: 0
+	File system inputs: 7768
+	File system outputs: 172024
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

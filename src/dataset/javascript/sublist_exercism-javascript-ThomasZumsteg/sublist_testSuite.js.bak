@@ -1,4 +1,4 @@
-var List = require('./sublist');
+import List from './sublist';
 
 
 describe('sublist', function () {

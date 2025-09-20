@@ -1,0 +1,253 @@
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL ./flatten-array_testSuite.js
+  FlattenArray
+    ✓ empty (2 ms)
+    ✕ no nesting (3 ms)
+    ✓ flattens a nested array
+    ✕ flattens array with just integers present (1 ms)
+    ✕ 5 level nesting
+    ✕ 6 level nesting (1 ms)
+    ✕ undefined values are omitted from the final result
+    ✕ null values are omitted from the final result
+    ✕ 6 level nest list with null values
+    ✓ all values in nested list are null
+
+  ● FlattenArray › no nesting
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Array [
+    -   0,
+    -   1,
+        2,
+    +   1,
+    +   0,
+      ]
+
+       7 |
+       8 |   test('no nesting', () => {
+    >  9 |     expect(flatten([0, 1, 2])).toEqual([0, 1, 2]);
+         |                                ^
+      10 |   });
+      11 |
+      12 |   test('flattens a nested array', () => {
+
+      at Object.<anonymous> (flatten-array_testSuite.js:9:32)
+
+  ● FlattenArray › flattens array with just integers present
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 7
+    + Received  + 7
+
+      Array [
+    -   1,
+    -   2,
+    -   3,
+    -   4,
+    -   5,
+    -   6,
+    -   7,
+        8,
+    +   7,
+    +   6,
+    +   5,
+    +   4,
+    +   3,
+    +   2,
+    +   1,
+      ]
+
+      15 |
+      16 |   test('flattens array with just integers present', () => {
+    > 17 |     expect(flatten([1, [2, 3, 4, 5, 6, 7], 8])).toEqual([
+         |                                                 ^
+      18 |       1, 2, 3, 4, 5, 6, 7, 8,
+      19 |     ]);
+      20 |   });
+
+      at Object.<anonymous> (flatten-array_testSuite.js:17:49)
+
+  ● FlattenArray › 5 level nesting
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 7
+    + Received  + 7
+
+      Array [
+    -   0,
+    +   -2,
+    +   50,
+    +   4,
+    +   100,
+    +   8,
+    +   3,
+        2,
+        2,
+    -   3,
+    -   8,
+    -   100,
+    -   4,
+    -   50,
+    -   -2,
+    +   0,
+      ]
+
+      21 |
+      22 |   test('5 level nesting', () => {
+    > 23 |     expect(flatten([0, 2, [[2, 3], 8, 100, 4, [[[50]]]], -2])).toEqual([
+         |                                                                ^
+      24 |       0, 2, 2, 3, 8, 100, 4, 50, -2,
+      25 |     ]);
+      26 |   });
+
+      at Object.<anonymous> (flatten-array_testSuite.js:23:64)
+
+  ● FlattenArray › 6 level nesting
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 7
+    + Received  + 7
+
+      Array [
+    -   1,
+    -   2,
+    -   3,
+    -   4,
+    -   5,
+    -   6,
+    -   7,
+        8,
+    +   7,
+    +   6,
+    +   5,
+    +   4,
+    +   3,
+    +   2,
+    +   1,
+      ]
+
+      27 |
+      28 |   test('6 level nesting', () => {
+    > 29 |     expect(flatten([1, [2, [[3]], [4, [[5]]], 6, 7], 8])).toEqual([
+         |                                                           ^
+      30 |       1, 2, 3, 4, 5, 6, 7, 8,
+      31 |     ]);
+      32 |   });
+
+      at Object.<anonymous> (flatten-array_testSuite.js:29:59)
+
+  ● FlattenArray › undefined values are omitted from the final result
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+    -   1,
+        2,
+    +   1,
+      ]
+
+      33 |
+      34 |   test('undefined values are omitted from the final result', () => {
+    > 35 |     expect(flatten([1, 2, undefined])).toEqual([1, 2]);
+         |                                        ^
+      36 |   });
+      37 |
+      38 |   test('null values are omitted from the final result', () => {
+
+      at Object.<anonymous> (flatten-array_testSuite.js:35:40)
+
+  ● FlattenArray › null values are omitted from the final result
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+    -   1,
+        2,
+    +   1,
+      ]
+
+      37 |
+      38 |   test('null values are omitted from the final result', () => {
+    > 39 |     expect(flatten([1, 2, null])).toEqual([1, 2]);
+         |                                   ^
+      40 |   });
+      41 |
+      42 |   test('6 level nest list with null values', () => {
+
+      at Object.<anonymous> (flatten-array_testSuite.js:39:35)
+
+  ● FlattenArray › 6 level nest list with null values
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 5
+    + Received  + 5
+
+      Array [
+    -   0,
+    +   -2,
+    +   100,
+    +   8,
+    +   3,
+        2,
+        2,
+    -   3,
+    -   8,
+    -   100,
+    -   -2,
+    +   0,
+      ]
+
+      41 |
+      42 |   test('6 level nest list with null values', () => {
+    > 43 |     expect(flatten([0, 2, [[2, 3], 8, [[100]], null, [[null]]], -2])).toEqual([
+         |                                                                       ^
+      44 |       0, 2, 2, 3, 8, 100, -2,
+      45 |     ]);
+      46 |   });
+
+      at Object.<anonymous> (flatten-array_testSuite.js:43:71)
+
+Test Suites: 1 failed, 1 total
+Tests:       7 failed, 3 passed, 10 total
+Snapshots:   0 total
+Time:        0.308 s
+Ran all test suites.
+Command exited with non-zero status 1
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 0.27
+	System time (seconds): 0.05
+	Percent of CPU this job got: 37%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.89
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 84136
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 14423
+	Voluntary context switches: 7671
+	Involuntary context switches: 1547
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

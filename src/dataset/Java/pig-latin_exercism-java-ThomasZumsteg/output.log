@@ -1,29 +1,42 @@
 JUnit version 4.13.2
-..................
-Time: 0.669
+................E.E.
+Time: 0.021
+There were 2 failures:
+1) test[15](PigLatinTest)
+org.junit.ComparisonFailure: expected:<[yttria]ay> but was:<[iayttr]ay>
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at PigLatinTest.test(PigLatinTest.java:68)
+2) test[16](PigLatinTest)
+org.junit.ComparisonFailure: expected:<[xray]ay> but was:<[ayxr]ay>
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at PigLatinTest.test(PigLatinTest.java:68)
 
-OK (18 tests)
+FAILURES!!!
+Tests run: 18,  Failures: 2
 
-	Command being timed: "java -cp .:junit-4.13.2.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore PigLatinTest"
-	User time (seconds): 0.73
-	System time (seconds): 0.78
-	Percent of CPU this job got: 28%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:05.39
+Command exited with non-zero status 1
+	Command being timed: "java -cp .:junit-platform-console-standalone-1.10.0.jar:junit-jupiter-api-5.10.0.jar:junit-jupiter-engine-5.10.0.jar:junit-jupiter-params-5.10.0.jar:junit-4.13.2.jar:hamcrest-core-1.3.jar:assertj-core-3.24.2.jar org.junit.runner.JUnitCore PigLatinTest"
+	User time (seconds): 0.11
+	System time (seconds): 0.02
+	Percent of CPU this job got: 44%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.32
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 48672
+	Maximum resident set size (kbytes): 47052
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 7230
-	Voluntary context switches: 1530
-	Involuntary context switches: 1497
+	Minor (reclaiming a frame) page faults: 7267
+	Voluntary context switches: 982
+	Involuntary context switches: 1752
 	Swaps: 0
-	File system inputs: 0
-	File system outputs: 264
+	File system inputs: 56
+	File system outputs: 64
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 0
+	Exit status: 1

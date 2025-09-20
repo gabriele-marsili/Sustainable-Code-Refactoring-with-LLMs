@@ -1,54 +1,70 @@
 import java.util.Random;
-import java.util.stream.IntStream;
-import java.util.Arrays;
 
 public class Cipher {
     private int[] key;
 
     public Cipher() {
-        key = new Random()
-            .ints(100, 0 , 'z' - 'a')
-            .toArray();
+        Random random = new Random();
+        key = new int[100];
+        for (int i = 0; i < 100; i++) {
+            key[i] = random.nextInt(26);
+        }
     }
 
     public Cipher(String key) {
-        if(key.equals("") || key.chars().anyMatch(c -> c < 'a' || 'z' < c))
+        if (key.isEmpty()) {
             throw new IllegalArgumentException();
-        this.key = key
-            .chars()
-            .map(c -> c - 'a')
-            .toArray();
+        }
+        
+        int length = key.length();
+        this.key = new int[length];
+        
+        for (int i = 0; i < length; i++) {
+            char c = key.charAt(i);
+            if (c < 'a' || c > 'z') {
+                throw new IllegalArgumentException();
+            }
+            this.key[i] = c - 'a';
+        }
     }
 
     public String getKey() {
-        return Arrays.stream(key)
-            .map(c -> c + 'a')
-            .collect(StringBuilder::new,
-               StringBuilder::appendCodePoint, 
-               StringBuilder::append)
-            .toString();
+        StringBuilder sb = new StringBuilder(key.length);
+        for (int k : key) {
+            sb.append((char)(k + 'a'));
+        }
+        return sb.toString();
     }
 
     public String encode(String plainText) {
-        String cipherText = "";
-        for(int i = 0; i < plainText.length(); i++) {
-            cipherText += shift(plainText.charAt(i), key[i % key.length]);
+        int length = plainText.length();
+        StringBuilder result = new StringBuilder(length);
+        int keyLength = key.length;
+        
+        for (int i = 0; i < length; i++) {
+            result.append(shift(plainText.charAt(i), key[i % keyLength]));
         }
-        return cipherText;
+        return result.toString();
     }
 
     public String decode(String cipherText) {
-        String plainText = "";
-        for(int i = 0; i < cipherText.length(); i++) {
-            plainText += shift(cipherText.charAt(i), -key[i % key.length]);
+        int length = cipherText.length();
+        StringBuilder result = new StringBuilder(length);
+        int keyLength = key.length;
+        
+        for (int i = 0; i < length; i++) {
+            result.append(shift(cipherText.charAt(i), -key[i % keyLength]));
         }
-        return plainText;
+        return result.toString();
     }
 
-    private Character shift(Character c, int k) {
-        char s = (char)((int)c + k);
-        if( s < 'a') s += 'z' - 'a' + 1;
-        else if ('z' < s) s -= 'z' - 'a' + 1;
-        return s;
+    private char shift(char c, int k) {
+        int shifted = c + k;
+        if (shifted < 'a') {
+            shifted += 26;
+        } else if (shifted > 'z') {
+            shifted -= 26;
+        }
+        return (char) shifted;
     }
 }

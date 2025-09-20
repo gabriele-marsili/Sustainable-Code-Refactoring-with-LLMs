@@ -1,0 +1,40 @@
+=== RUN   TestRectangles
+    rectangles_test.go:12: PASS: no rows
+    rectangles_test.go:12: PASS: no columns
+    rectangles_test.go:12: PASS: no rectangles
+    rectangles_test.go:12: PASS: one rectangle
+    rectangles_test.go:12: PASS: two rectangles without shared parts
+    rectangles_test.go:12: PASS: five rectangles with shared parts
+    rectangles_test.go:12: PASS: rectangle of height 1 is counted
+    rectangles_test.go:12: PASS: rectangle of width 1 is counted
+    rectangles_test.go:12: PASS: 1x1 square is counted
+    rectangles_test.go:12: PASS: only complete rectangles are counted
+    rectangles_test.go:12: PASS: rectangles can be of different sizes
+    rectangles_test.go:12: PASS: corner is required for a rectangle to be complete
+    rectangles_test.go:12: PASS: large input with many rectangles
+--- PASS: TestRectangles (0.00s)
+PASS
+ok  	esercizio	0.003s
+	Command being timed: "go test -v"
+	User time (seconds): 5.40
+	System time (seconds): 0.69
+	Percent of CPU this job got: 54%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:11.14
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 218748
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 98
+	Minor (reclaiming a frame) page faults: 730751
+	Voluntary context switches: 23360
+	Involuntary context switches: 37176
+	Swaps: 0
+	File system inputs: 30816
+	File system outputs: 172128
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

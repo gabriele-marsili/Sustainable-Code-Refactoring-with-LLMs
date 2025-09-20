@@ -1,0 +1,47 @@
+=== RUN   TestDrive
+=== RUN   TestDrive/Drive_the_car_once.
+=== RUN   TestDrive/Drive_when_battery_percentage_is_below_battery_drain
+--- PASS: TestDrive (0.00s)
+    --- PASS: TestDrive/Drive_the_car_once. (0.00s)
+    --- PASS: TestDrive/Drive_when_battery_percentage_is_below_battery_drain (0.00s)
+=== RUN   TestDisplayDistance
+=== RUN   TestDisplayDistance/Car_displays_driven_distance
+--- PASS: TestDisplayDistance (0.00s)
+    --- PASS: TestDisplayDistance/Car_displays_driven_distance (0.00s)
+=== RUN   TestDisplayBattery
+=== RUN   TestDisplayBattery/Display_battery_percentage
+--- PASS: TestDisplayBattery (0.00s)
+    --- PASS: TestDisplayBattery/Display_battery_percentage (0.00s)
+=== RUN   TestCanFinish
+=== RUN   TestCanFinish/Car_has_100%_battery._Car_can_finish_the_race
+=== RUN   TestCanFinish/Car_has_40%_battery._Car_can_finish_the_race
+=== RUN   TestCanFinish/Car_has_30%_battery._Car_cannot_finish_the_race
+--- PASS: TestCanFinish (0.00s)
+    --- PASS: TestCanFinish/Car_has_100%_battery._Car_can_finish_the_race (0.00s)
+    --- PASS: TestCanFinish/Car_has_40%_battery._Car_can_finish_the_race (0.00s)
+    --- PASS: TestCanFinish/Car_has_30%_battery._Car_cannot_finish_the_race (0.00s)
+PASS
+ok  	esercizio	0.004s
+	Command being timed: "go test -v"
+	User time (seconds): 5.32
+	System time (seconds): 0.59
+	Percent of CPU this job got: 64%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:09.17
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 222328
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 41
+	Minor (reclaiming a frame) page faults: 731968
+	Voluntary context switches: 21590
+	Involuntary context switches: 18627
+	Swaps: 0
+	File system inputs: 16680
+	File system outputs: 172160
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

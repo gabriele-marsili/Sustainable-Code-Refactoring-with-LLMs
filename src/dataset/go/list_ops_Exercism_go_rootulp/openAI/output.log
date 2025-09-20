@@ -1,0 +1,58 @@
+=== RUN   TestFold
+    list_ops_test.go:77: PASS: foldl: empty list
+    list_ops_test.go:77: PASS: foldl: direction independent function applied to non-empty list
+    list_ops_test.go:77: PASS: foldl: direction dependent function applied to non-empty list
+    list_ops_test.go:77: PASS: foldr: empty list
+    list_ops_test.go:77: PASS: foldr: direction independent function applied to non-empty list
+    list_ops_test.go:77: PASS: foldr: direction dependent function applied to non-empty list
+--- PASS: TestFold (0.00s)
+=== RUN   TestFilterMethod
+    list_ops_test.go:114: PASS: filter: empty list
+    list_ops_test.go:114: PASS: filter: non-empty list
+--- PASS: TestFilterMethod (0.00s)
+=== RUN   TestLengthMethod
+    list_ops_test.go:146: PASS: length: empty list
+    list_ops_test.go:146: PASS: length: non-empty list
+--- PASS: TestLengthMethod (0.00s)
+=== RUN   TestMapMethod
+    list_ops_test.go:181: PASS: map: empty list
+    list_ops_test.go:181: PASS: map: non-empty list
+--- PASS: TestMapMethod (0.00s)
+=== RUN   TestReverseMethod
+    list_ops_test.go:213: PASS: reverse: empty list
+    list_ops_test.go:213: PASS: reverse: non-empty list
+--- PASS: TestReverseMethod (0.00s)
+=== RUN   TestAppendMethod
+    list_ops_test.go:255: PASS: append: empty list
+    list_ops_test.go:255: PASS: append: empty list to list
+    list_ops_test.go:255: PASS: append: non-empty lists
+--- PASS: TestAppendMethod (0.00s)
+=== RUN   TestConcatMethod
+    list_ops_test.go:290: PASS: concat: empty list
+    list_ops_test.go:290: PASS: concat: list of lists
+--- PASS: TestConcatMethod (0.00s)
+PASS
+ok  	esercizio	0.003s
+	Command being timed: "go test -v"
+	User time (seconds): 5.25
+	System time (seconds): 0.59
+	Percent of CPU this job got: 86%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:06.72
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 217444
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 137
+	Minor (reclaiming a frame) page faults: 734482
+	Voluntary context switches: 23693
+	Involuntary context switches: 19553
+	Swaps: 0
+	File system inputs: 56704
+	File system outputs: 172560
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

@@ -1,7 +1,7 @@
 === RUN   TestReadEmptyBuffer
     circular_buffer_test.go:22: NewBuffer(1)
     circular_buffer_test.go:43: ReadByte() fails as expected
---- PASS: TestReadEmptyBuffer (0.01s)
+--- PASS: TestReadEmptyBuffer (0.00s)
 === RUN   TestWriteAndReadOneItem
     circular_buffer_test.go:22: NewBuffer(1)
     circular_buffer_test.go:51: WriteByte(1)
@@ -15,7 +15,7 @@
     circular_buffer_test.go:34: ReadByte 1
     circular_buffer_test.go:34: ReadByte 2
     circular_buffer_test.go:43: ReadByte() fails as expected
---- PASS: TestWriteAndReadMultipleItems (0.02s)
+--- PASS: TestWriteAndReadMultipleItems (0.00s)
 === RUN   TestReset
     circular_buffer_test.go:22: NewBuffer(3)
     circular_buffer_test.go:51: WriteByte(1)
@@ -27,14 +27,14 @@
     circular_buffer_test.go:34: ReadByte 1
     circular_buffer_test.go:51: WriteByte(4)
     circular_buffer_test.go:34: ReadByte 3
---- PASS: TestReset (0.03s)
+--- PASS: TestReset (0.00s)
 === RUN   TestAlternateWriteAndRead
     circular_buffer_test.go:22: NewBuffer(2)
     circular_buffer_test.go:51: WriteByte(1)
     circular_buffer_test.go:34: ReadByte 1
     circular_buffer_test.go:51: WriteByte(2)
     circular_buffer_test.go:34: ReadByte 2
---- PASS: TestAlternateWriteAndRead (0.01s)
+--- PASS: TestAlternateWriteAndRead (0.00s)
 === RUN   TestReadOldestItem
     circular_buffer_test.go:22: NewBuffer(3)
     circular_buffer_test.go:51: WriteByte(1)
@@ -43,13 +43,13 @@
     circular_buffer_test.go:51: WriteByte(3)
     circular_buffer_test.go:34: ReadByte 2
     circular_buffer_test.go:34: ReadByte 3
---- PASS: TestReadOldestItem (0.03s)
+--- PASS: TestReadOldestItem (0.00s)
 === RUN   TestWriteFullBuffer
     circular_buffer_test.go:22: NewBuffer(2)
     circular_buffer_test.go:51: WriteByte(1)
     circular_buffer_test.go:51: WriteByte(2)
     circular_buffer_test.go:60: WriteByte(A) fails as expected
---- PASS: TestWriteFullBuffer (0.01s)
+--- PASS: TestWriteFullBuffer (0.00s)
 === RUN   TestOverwriteFull
     circular_buffer_test.go:22: NewBuffer(2)
     circular_buffer_test.go:51: WriteByte(1)
@@ -58,7 +58,7 @@
     circular_buffer_test.go:34: ReadByte 2
     circular_buffer_test.go:34: ReadByte A
     circular_buffer_test.go:43: ReadByte() fails as expected
---- PASS: TestOverwriteFull (0.02s)
+--- PASS: TestOverwriteFull (0.00s)
 === RUN   TestOverwriteNonFull
     circular_buffer_test.go:22: NewBuffer(2)
     circular_buffer_test.go:51: WriteByte(1)
@@ -66,7 +66,7 @@
     circular_buffer_test.go:34: ReadByte 1
     circular_buffer_test.go:34: ReadByte 2
     circular_buffer_test.go:43: ReadByte() fails as expected
---- PASS: TestOverwriteNonFull (0.01s)
+--- PASS: TestOverwriteNonFull (0.00s)
 === RUN   TestAlternateReadAndOverwrite
     circular_buffer_test.go:22: NewBuffer(5)
     circular_buffer_test.go:51: WriteByte(1)
@@ -88,27 +88,27 @@
     circular_buffer_test.go:34: ReadByte A
     circular_buffer_test.go:34: ReadByte B
     circular_buffer_test.go:43: ReadByte() fails as expected
---- PASS: TestAlternateReadAndOverwrite (0.01s)
+--- PASS: TestAlternateReadAndOverwrite (0.00s)
 PASS
-ok  	esercizio	0.294s
+ok  	esercizio	0.007s
 	Command being timed: "go test -v"
-	User time (seconds): 22.52
-	System time (seconds): 47.54
-	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:25.92
+	User time (seconds): 5.36
+	System time (seconds): 0.60
+	Percent of CPU this job got: 56%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:10.48
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 204780
+	Maximum resident set size (kbytes): 211232
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 6
-	Minor (reclaiming a frame) page faults: 715325
-	Voluntary context switches: 32970
-	Involuntary context switches: 43075
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 731902
+	Voluntary context switches: 25254
+	Involuntary context switches: 27020
 	Swaps: 0
-	File system inputs: 0
-	File system outputs: 172464
+	File system inputs: 18528
+	File system outputs: 172856
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0

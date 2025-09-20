@@ -1,44 +1,44 @@
 (node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-PASS ./ocr-numbers_testSuite.js (13.986 s)
+PASS ./ocr-numbers_testSuite.js
   ocr
-    ✓ recognizes zero (112 ms)
-    ✓ recognizes one (5 ms)
-    ✓ recognizes two (8 ms)
-    ✓ recognizes three (2 ms)
-    ✓ recognizes four (12 ms)
-    ✓ recognizes five (17 ms)
-    ✓ recognizes six (6 ms)
-    ✓ recognizes seven (12 ms)
-    ✓ recognizes eight (8 ms)
+    ✓ recognizes zero (1 ms)
+    ✓ recognizes one
+    ✓ recognizes two
+    ✓ recognizes three
+    ✓ recognizes four
+    ✓ recognizes five
+    ✓ recognizes six
+    ✓ recognizes seven
+    ✓ recognizes eight
     ✓ recognizes nine (1 ms)
-    ✓ recognizes ten (1 ms)
-    ✓ identifies garble (1 ms)
-    ✓ converts 110101100 (1 ms)
-    ✓ identifies garble mixed in (1 ms)
+    ✓ recognizes ten
+    ✓ identifies garble
+    ✓ converts 110101100
+    ✓ identifies garble mixed in
     ✓ converts 1234567890 (1 ms)
-    ✓ converts 123 456 789 (1 ms)
+    ✓ converts 123 456 789
 
 Test Suites: 1 passed, 1 total
 Tests:       16 passed, 16 total
 Snapshots:   0 total
-Time:        16.806 s
+Time:        0.167 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 2.25
-	System time (seconds): 2.15
-	Percent of CPU this job got: 10%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:41.96
+	User time (seconds): 0.21
+	System time (seconds): 0.07
+	Percent of CPU this job got: 53%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.54
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 81076
+	Maximum resident set size (kbytes): 82908
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 14179
-	Voluntary context switches: 5697
-	Involuntary context switches: 9230
+	Minor (reclaiming a frame) page faults: 14472
+	Voluntary context switches: 7440
+	Involuntary context switches: 367
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

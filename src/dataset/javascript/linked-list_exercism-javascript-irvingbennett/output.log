@@ -1,0 +1,52 @@
+(node:22) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS ./linked-list_testSuite.js
+  LinkedList
+    ✓ pop gets last element from the list (2 ms)
+    ✓ push/pop respectively add/remove at the end of the list
+    ✓ shift gets element from the list
+    ✓ shift gets first element from the list
+    ✓ unshift adds element at the start of the list (1 ms)
+    ✓ pop, push, shift, and unshift can be used in any order (1 ms)
+    ✓ count an empty list
+    ✓ count a list with items (1 ms)
+    ✓ count is correct after mutation
+    ✓ popping to empty doesn't break the list
+    ✓ shifting to empty doesn't break the list (1 ms)
+    ✓ deletes the only element
+    ✓ deletes the element with the specified value from the list (1 ms)
+    ✓ deletes the element with the specified value from the list, re-assigns tail
+    ✓ deletes the element with the specified value from the list, re-assigns head
+    ✓ deletes the first of two elements (3 ms)
+    ✓ deletes the second of two elements
+    ✓ delete does not modify the list if the element is not found
+    ✓ deletes only the first occurence
+
+Test Suites: 1 passed, 1 total
+Tests:       19 passed, 19 total
+Snapshots:   0 total
+Time:        0.316 s
+Ran all test suites.
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 0.27
+	System time (seconds): 0.06
+	Percent of CPU this job got: 35%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.95
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 84920
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 14732
+	Voluntary context switches: 7429
+	Involuntary context switches: 3574
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

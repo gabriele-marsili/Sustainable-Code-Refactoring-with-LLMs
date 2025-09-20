@@ -1,36 +1,34 @@
-var Cipher = function(key) {
-	/* Simple Caesarian shift Cipher */
-	if( key !== undefined && !key.match(/^[a-z]+$/) )
-		throw Error("Bad key");
-	this.key = key || "aaaaaaaaaa";
-}
-
-var a_ascii = 'a'.charCodeAt(0);
-var z_ascii = 'z'.charCodeAt(0);
-
-Cipher.prototype.encode = function(plainText) {
-	/* Encode a message */
-	return plainText.split('')
-		.map(function(letter, index) {
-				var c = letter.charCodeAt(0) + this.key[index % this.key.length].charCodeAt(0); 
-				c -= 2 * a_ascii
-				c %= z_ascii - a_ascii + 1;
-				c += a_ascii;
-				return String.fromCharCode(c);
-			}, this)
-		.join('');
+var Cipher = function (key) {
+  if (key !== undefined && !/^[a-z]+$/.test(key)) throw Error("Bad key");
+  this.key = key || "aaaaaaaaaa";
 };
 
-Cipher.prototype.decode = function(cipherText) {
-	/* Decode a message */
-	return cipherText.split('')
-		.map(function(letter, index) {
-				var c = letter.charCodeAt(0) - this.key[index % this.key.length].charCodeAt(0); 
-				c %= z_ascii - a_ascii + 1;
-				c += a_ascii;
-				return String.fromCharCode(c);
-			}, this)
-		.join('');
+const a_ascii = 97;
+const alphabetLength = 26;
+
+Cipher.prototype.encode = function (plainText) {
+  const keyLength = this.key.length;
+  return Array.from(plainText, (letter, index) => {
+    const c =
+      ((letter.charCodeAt(0) - a_ascii +
+        (this.key.charCodeAt(index % keyLength) - a_ascii)) %
+        alphabetLength) +
+      a_ascii;
+    return String.fromCharCode(c);
+  }).join('');
 };
 
-export default Cipher;;
+Cipher.prototype.decode = function (cipherText) {
+  const keyLength = this.key.length;
+  return Array.from(cipherText, (letter, index) => {
+    const c =
+      ((letter.charCodeAt(0) - a_ascii -
+        (this.key.charCodeAt(index % keyLength) - a_ascii) +
+        alphabetLength) %
+        alphabetLength) +
+      a_ascii;
+    return String.fromCharCode(c);
+  }).join('');
+};
+
+export default Cipher;

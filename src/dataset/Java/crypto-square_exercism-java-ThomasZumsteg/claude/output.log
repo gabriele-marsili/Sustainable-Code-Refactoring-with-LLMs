@@ -1,0 +1,52 @@
+JUnit version 4.13.2
+.E.....E......E..E.
+Time: 0.021
+There were 4 failures:
+1) normalizedCipherIsSplitIntoSegmentsOfCorrectSize(CryptoSquareTest)
+org.junit.ComparisonFailure: expected:<imtgdvs[ fearwer mayoogo anouuio ntnnlvt wttddes ]aohghn sseoau> but was:<imtgdvs[f earwerma yoogoano uuiontnn lvtwttdd es]aohghn sseoau>
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at CryptoSquareTest.normalizedCipherIsSplitIntoSegmentsOfCorrectSize(CryptoSquareTest.java:119)
+2) normalizedCipherTextIsSplitIntoSegmentsOfCorrectSizeWithPunctuation(CryptoSquareTest)
+org.junit.ComparisonFailure: expected:<hifei[ acedl veeol eddgo aatcu ]nyhht> but was:<hifei[a cedlve eoledd goaatc u]nyhht>
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at CryptoSquareTest.normalizedCipherTextIsSplitIntoSegmentsOfCorrectSizeWithPunctuation(CryptoSquareTest.java:127)
+3) normalizedCipherNotExactlyDivisibleBy5SpillsIntoSmallerSegment(CryptoSquareTest)
+org.junit.ComparisonFailure: expected:<msemo[ aanin dnin ndla etlt sh]ui> but was:<msemo[a anindn inndla etltsh ]ui>
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at CryptoSquareTest.normalizedCipherNotExactlyDivisibleBy5SpillsIntoSmallerSegment(CryptoSquareTest.java:111)
+4) normalizedCipherTextIsSplitByHeightOfSquare(CryptoSquareTest)
+org.junit.ComparisonFailure: expected:<vrel[ aepe mset paoo ]irpo> but was:<vrel[a epems etpao o]irpo>
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at CryptoSquareTest.normalizedCipherTextIsSplitByHeightOfSquare(CryptoSquareTest.java:103)
+
+FAILURES!!!
+Tests run: 15,  Failures: 4
+
+Command exited with non-zero status 1
+	Command being timed: "java -cp .:junit-platform-console-standalone-1.10.0.jar:junit-jupiter-api-5.10.0.jar:junit-jupiter-engine-5.10.0.jar:junit-jupiter-params-5.10.0.jar:junit-4.13.2.jar:hamcrest-core-1.3.jar:assertj-core-3.24.2.jar org.junit.runner.JUnitCore CryptoSquareTest"
+	User time (seconds): 0.11
+	System time (seconds): 0.03
+	Percent of CPU this job got: 98%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.15
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 46568
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 3
+	Minor (reclaiming a frame) page faults: 7269
+	Voluntary context switches: 1526
+	Involuntary context switches: 679
+	Swaps: 0
+	File system inputs: 2040
+	File system outputs: 64
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

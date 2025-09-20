@@ -12,7 +12,7 @@
 === RUN   TestParseCard/parse_jack
 === RUN   TestParseCard/parse_queen
 === RUN   TestParseCard/parse_king
---- PASS: TestParseCard (0.03s)
+--- PASS: TestParseCard (0.00s)
     --- PASS: TestParseCard/parse_ace (0.00s)
     --- PASS: TestParseCard/parse_two (0.00s)
     --- PASS: TestParseCard/parse_three (0.00s)
@@ -41,7 +41,7 @@
 === RUN   TestBlackjack/no_blackjack_with_two_figures
 === RUN   TestBlackjack/no_blackjack_with_king_and_five
 === RUN   TestBlackjack/no_blackjack_with_eight_and_five
---- PASS: TestBlackjack (0.03s)
+--- PASS: TestBlackjack (0.00s)
     --- PASS: TestBlackjack/blackjack_with_ten_(ace_first) (0.00s)
     --- PASS: TestBlackjack/blackjack_with_jack_(ace_first) (0.00s)
     --- PASS: TestBlackjack/blackjack_with_queen_(ace_first) (0.00s)
@@ -89,7 +89,7 @@
 === RUN   TestFirstTurn/score_of_10_with_two_for_dealer
 === RUN   TestFirstTurn/score_of_5_with_queen_for_dealer
 === RUN   TestFirstTurn/score_of_4_with_five_for_dealer
---- PASS: TestFirstTurn (0.07s)
+--- PASS: TestFirstTurn (0.00s)
     --- PASS: TestFirstTurn/pair_of_aces (0.00s)
     --- PASS: TestFirstTurn/pair_of_jacks (0.00s)
     --- PASS: TestFirstTurn/pair_of_kings (0.00s)
@@ -123,25 +123,25 @@
     --- PASS: TestFirstTurn/score_of_5_with_queen_for_dealer (0.00s)
     --- PASS: TestFirstTurn/score_of_4_with_five_for_dealer (0.00s)
 PASS
-ok  	esercizio	0.151s
+ok  	esercizio	0.006s
 	Command being timed: "go test -v"
-	User time (seconds): 23.17
-	System time (seconds): 48.69
-	Percent of CPU this job got: 49%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:26.54
+	User time (seconds): 5.58
+	System time (seconds): 0.70
+	Percent of CPU this job got: 57%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:10.94
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 206324
+	Maximum resident set size (kbytes): 228808
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 5
-	Minor (reclaiming a frame) page faults: 717704
-	Voluntary context switches: 32760
-	Involuntary context switches: 43970
+	Minor (reclaiming a frame) page faults: 732254
+	Voluntary context switches: 22330
+	Involuntary context switches: 24717
 	Swaps: 0
-	File system inputs: 0
-	File system outputs: 171968
+	File system inputs: 5704
+	File system outputs: 172328
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0

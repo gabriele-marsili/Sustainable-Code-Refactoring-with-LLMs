@@ -1,7 +1,15 @@
 export function keep(arr, fn) {
-  return arr.filter(val => fn(val));
+  const result = [];
+  for (const val of arr) {
+    if (fn(val)) result.push(val);
+  }
+  return result;
 }
 
 export function discard(arr, fn) {
-  return arr.filter(val => !fn(val));
+  const result = [];
+  for (const val of arr) {
+    if (!fn(val)) result.push(val);
+  }
+  return result;
 }

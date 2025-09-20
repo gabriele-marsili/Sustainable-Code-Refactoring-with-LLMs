@@ -1,6 +1,6 @@
-PASS ./isbn-verifier.test.ts (17.737 s)
+PASS ./isbn-verifier.test.ts
   ISBN Verifier
-    ✓ valid isbn number (92 ms)
+    ✓ valid isbn number (2 ms)
     ○ skipped invalid isbn check digit
     ○ skipped valid isbn number with a check digit of 10
     ○ skipped check digit is a character other than X
@@ -18,27 +18,27 @@ PASS ./isbn-verifier.test.ts (17.737 s)
 Test Suites: 1 passed, 1 total
 Tests:       13 skipped, 1 passed, 14 total
 Snapshots:   0 total
-Time:        18.876 s
+Time:        2.732 s
 Ran all test suites.
 Test results written to: output.log
 	Command being timed: "npx jest --json --outputFile=output.log"
-	User time (seconds): 8.05
-	System time (seconds): 4.00
-	Percent of CPU this job got: 37%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:32.12
+	User time (seconds): 1.45
+	System time (seconds): 0.12
+	Percent of CPU this job got: 46%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.42
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 216960
+	Maximum resident set size (kbytes): 222476
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 63417
-	Voluntary context switches: 1858
-	Involuntary context switches: 6994
+	Minor (reclaiming a frame) page faults: 65854
+	Voluntary context switches: 2010
+	Involuntary context switches: 13228
 	Swaps: 0
-	File system inputs: 0
-	File system outputs: 80
+	File system inputs: 456
+	File system outputs: 72
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0

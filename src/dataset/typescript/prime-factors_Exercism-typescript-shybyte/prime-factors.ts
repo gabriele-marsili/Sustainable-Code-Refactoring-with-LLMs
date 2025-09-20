@@ -1,21 +1,26 @@
 export default function calculatePrimeFactors(nArg: number) {
     if (nArg < 2) {
-        return []
+        return [];
     }
 
-    const result = []
-    let i = 2
-    let n = nArg
+    const result = [];
+    let n = nArg;
 
-    while (i <= Math.sqrt(n)) {
-        if (n % i === 0) {
-            n = n / i
-            result.push(i)
-        } else {
-            i += 1
+    while (n % 2 === 0) {
+        result.push(2);
+        n /= 2;
+    }
+
+    for (let i = 3; i * i <= n; i += 2) {
+        while (n % i === 0) {
+            result.push(i);
+            n /= i;
         }
     }
 
-    result.push(n)
-    return result
+    if (n > 1) {
+        result.push(n);
+    }
+
+    return result;
 }

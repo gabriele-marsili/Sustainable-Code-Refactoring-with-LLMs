@@ -1,0 +1,48 @@
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS ./triangle_testSuite.js
+  Triangle
+    ✓ equilateral triangles have equal sides (1 ms)
+    ✓ larger equilateral triangles also have equal sides (1 ms)
+    ✓ isosceles triangles have last two sides equal
+    ✓ isosceles trianges have first and last sides equal
+    ✓ isosceles triangles have two first sides equal
+    ✓ isosceles triangles have in fact exactly two sides equal
+    ✓ scalene triangles have no equal sides
+    ✓ scalene triangles have no equal sides at a larger scale too (1 ms)
+    ✓ scalene triangles have no equal sides in descending order either
+    ✓ very small triangles are legal
+    ✓ test triangles with no size are illegal
+    ✓ triangles with negative sides are illegal
+    ✓ triangles violating triangle inequality are illegal (1 ms)
+    ✓ edge cases of triangle inequality are in fact legal
+    ✓ triangles violating triangle inequality are illegal 2
+
+Test Suites: 1 passed, 1 total
+Tests:       15 passed, 15 total
+Snapshots:   0 total
+Time:        0.151 s
+Ran all test suites.
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 0.22
+	System time (seconds): 0.05
+	Percent of CPU this job got: 57%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.47
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 81988
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 14034
+	Voluntary context switches: 7433
+	Involuntary context switches: 359
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

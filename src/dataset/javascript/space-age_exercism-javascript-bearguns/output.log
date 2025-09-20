@@ -1,0 +1,35 @@
+Error: Cannot find module '/app/node_modules/yargs-parser/build/index.cjs'
+    at createEsmNotFoundErr (node:internal/modules/cjs/loader:1249:15)
+    at finalizeEsmResolution (node:internal/modules/cjs/loader:1237:15)
+    at resolveExports (node:internal/modules/cjs/loader:636:14)
+    at Module._findPath (node:internal/modules/cjs/loader:716:31)
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1198:27)
+    at Module._load (node:internal/modules/cjs/loader:1043:27)
+    at Module.require (node:internal/modules/cjs/loader:1298:19)
+    at require (node:internal/modules/helpers:182:18)
+    at Object.<anonymous> (/app/node_modules/yargs/build/index.cjs:1:60570)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+Command exited with non-zero status 1
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 0.02
+	System time (seconds): 0.02
+	Percent of CPU this job got: 58%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.08
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 46344
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 3305
+	Voluntary context switches: 870
+	Involuntary context switches: 166
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

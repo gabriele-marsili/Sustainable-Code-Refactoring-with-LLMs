@@ -1,43 +1,20 @@
-Memory error
-Memory error
-Memory error
-Memory error
-Memory error
-Memory error
-Memory error
-Memory error
-Memory error
-test/test_allergies.c:209:test_no_allergies_means_not_allergic:PASS
-test/test_allergies.c:210:test_is_allergic_to_eggs:PASS
-test/test_allergies.c:211:test_is_allergic_to_eggs_in_addition_to_other_stuff:PASS
-test/test_allergies.c:16:test_no_allergies_at_all:FAIL: Expected 0 Was -2047065072
-test/test_allergies.c:16:test_allergic_to_just_eggs:FAIL: Expected 1 Was -2047065072
-test/test_allergies.c:16:test_allergic_to_just_peanuts:FAIL: Expected 1 Was -2047065072
-test/test_allergies.c:16:test_allergic_to_just_strawberries:FAIL: Expected 1 Was -2047065072
-test/test_allergies.c:16:test_allergic_to_eggs_and_peanuts:FAIL: Expected 2 Was -2047065072
-test/test_allergies.c:16:test_allergic_to_more_than_eggs_but_not_peanuts:FAIL: Expected 2 Was -2047065072
-test/test_allergies.c:16:test_allergic_to_lots_of_stuff:FAIL: Expected 5 Was -2047065072
-test/test_allergies.c:16:test_allergic_to_everything:FAIL: Expected 8 Was -2047065072
-test/test_allergies.c:16:test_ignore_non_allergen_score_parts:FAIL: Expected 7 Was -2047065072
-
------------------------
-12 Tests 9 Failures 0 Ignored 
-FAIL
+qemu-x86_64: Could not open '/lib64/ld-linux-x86-64.so.2': No such file or directory
+Command exited with non-zero status 255
 	Command being timed: "./tests.out"
 	User time (seconds): 0.00
 	System time (seconds): 0.00
-	Percent of CPU this job got: 10%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.02
+	Percent of CPU this job got: 16%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.00
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 1152
+	Maximum resident set size (kbytes): 3456
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 1
-	Minor (reclaiming a frame) page faults: 73
-	Voluntary context switches: 5
-	Involuntary context switches: 15
+	Minor (reclaiming a frame) page faults: 783
+	Voluntary context switches: 20
+	Involuntary context switches: 38
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 0
@@ -45,4 +22,4 @@ FAIL
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 0
+	Exit status: 255

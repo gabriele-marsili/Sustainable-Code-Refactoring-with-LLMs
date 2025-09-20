@@ -1,17 +1,15 @@
 var Words = function() {}
 
 Words.prototype.count = function( wordString ) {
-	/* Counts the number of times each words appears */
-	var wordCount = {};
-	// Splits words on whitespace
-	wordString.trim().split(/\s+/).forEach( function(word) {
-		if(word in wordCount && !isNaN(wordCount[word]))
-			wordCount[word]++;
-		else
-			// Initilize new word
-			wordCount[word] = 1;
-	});
+	const wordCount = {};
+	const words = wordString.trim().split(/\s+/);
+
+	for (let i = 0; i < words.length; i++) {
+		const word = words[i];
+		wordCount[word] = (wordCount[word] || 0) + 1;
+	}
+
 	return wordCount;
 };
 
-export default Words;;
+export default Words;

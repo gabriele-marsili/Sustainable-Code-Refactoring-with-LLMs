@@ -1,47 +1,47 @@
 (node:22) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-PASS ./amusement-park_testSuite.js (10.858 s)
+PASS ./amusement-park_testSuite.js
   createVisitor
-    ✓ correctly assembles the visitor object (124 ms)
+    ✓ correctly assembles the visitor object (1 ms)
   revokeTicket
-    ✓ sets the ticketId to null (10 ms)
-    ✓ returns the same object that was passed in (3 ms)
-    ✓ does nothing if the ticket was already revoked (8 ms)
+    ✓ sets the ticketId to null
+    ✓ returns the same object that was passed in
+    ✓ does nothing if the ticket was already revoked
   ticketStatus
-    ✓ correctly identifies that a ticket is not in the tracking object (9 ms)
-    ✓ correctly identifies that a ticket is not sold (6 ms)
-    ✓ returns the correct string for a ticket that was sold (5 ms)
+    ✓ correctly identifies that a ticket is not in the tracking object
+    ✓ correctly identifies that a ticket is not sold
+    ✓ returns the correct string for a ticket that was sold
   simpleTicketStatus
-    ✓ identifies ticket that are not in the tracking object as invalid (9 ms)
-    ✓ identifies tickets that are not sold as invalid (7 ms)
-    ✓ returns the visitor name for tickets that were sold (75 ms)
-    ✓ tickets with "strange" name values are valid nevertheless (19 ms)
+    ✓ identifies ticket that are not in the tracking object as invalid (1 ms)
+    ✓ identifies tickets that are not sold as invalid
+    ✓ returns the visitor name for tickets that were sold (1 ms)
+    ✓ tickets with "strange" name values are valid nevertheless
   gtcVersion
-    ✓ determines the GTC version if it is present (9 ms)
-    ✓ returns nothing if there is no gtc object (7 ms)
-    ✓ returns nothing if there is a gtc object but no gtc version (2 ms)
-    ✓ does not modify the visitor object (29 ms)
+    ✓ determines the GTC version if it is present
+    ✓ returns nothing if there is no gtc object
+    ✓ returns nothing if there is a gtc object but no gtc version
+    ✓ does not modify the visitor object (2 ms)
 
 Test Suites: 1 passed, 1 total
 Tests:       15 passed, 15 total
 Snapshots:   0 total
-Time:        12.651 s
+Time:        0.271 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 2.56
-	System time (seconds): 2.77
-	Percent of CPU this job got: 13%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:39.26
+	User time (seconds): 0.26
+	System time (seconds): 0.05
+	Percent of CPU this job got: 56%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.57
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 84216
+	Maximum resident set size (kbytes): 82204
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 16429
-	Voluntary context switches: 6402
-	Involuntary context switches: 4454
+	Minor (reclaiming a frame) page faults: 14291
+	Voluntary context switches: 7424
+	Involuntary context switches: 973
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16
@@ -50,3 +50,4 @@ Ran all test suites.
 	Signals delivered: 0
 	Page size (bytes): 4096
 	Exit status: 0
+atus: 0

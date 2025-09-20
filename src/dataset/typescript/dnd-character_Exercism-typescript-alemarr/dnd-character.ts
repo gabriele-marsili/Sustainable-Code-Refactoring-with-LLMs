@@ -7,13 +7,17 @@ const rollDice = (): number => {
 };
 
 const getAbilityFromThrows = (numbers: number[]): number => {
-  return numbers
-    .sort((a, b) => a - b)
-    .slice(1, DICE_THROWS - 1)
-    .reduce((acc, diceRoll) => {
-      acc += diceRoll;
-      return acc;
-    }, 0);
+  let min = DICE_SIDES + 1;
+  let sum = 0;
+
+  for (const num of numbers) {
+    sum += num;
+    if (num < min) {
+      min = num;
+    }
+  }
+
+  return sum - min;
 };
 
 export class DnDCharacter {
@@ -64,7 +68,10 @@ export class DnDCharacter {
   }
 
   public static generateAbilityScore(): number {
-    const throws = Array.from({ length: DICE_THROWS }, () => rollDice())
+    const throws: number[] = [];
+    for (let i = 0; i < DICE_THROWS; i++) {
+      throws.push(rollDice());
+    }
 
     return getAbilityFromThrows(throws);
   }

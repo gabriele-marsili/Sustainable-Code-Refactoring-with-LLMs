@@ -1,0 +1,150 @@
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL ./list-ops_testSuite.js
+  List
+    append
+      ✓ appends two empty lists (1 ms)
+      ✓ appends an empty list to a non-empty list
+      ✓ appends two non-empty lists
+    concat
+      ✓ concatenates an empty list (1 ms)
+      ✓ concatenates a list of lists
+    filter
+      ✓ filters an empty list by a function
+      ✓ filters a non-empty list by a function
+    length
+      ✓ finds the length of a empty list
+      ✓ finds the length of a non-empty list
+    map
+      ✓ maps a function over an empty list
+      ✓ maps a function over a non-empty list
+    foldl
+      ✓ folds an empty list from the left with the given function
+      ✓ folds a non-empty list from the left with the given function (1 ms)
+    foldr
+      ✓ folds an empty list from the right with the given function
+      ✓ folds a non-empty list from the right with the given function
+    reverse
+      ✓ reverses an empty list
+      ✓ reverses a non-empty list
+    must not call native Array function
+      ✕ Array.prototype.map()
+      ✕ Array.prototype.filter()
+      ✕ Array.prototype.reduce()
+      ✕ Array.prototype.reduceRight()
+      ✕ Array.prototype.concat()
+      ✕ Array.prototype.reverse()
+
+  ● List › must not call native Array function › Array.prototype.map()
+
+    ReferenceError: spyOn is not defined
+
+      130 |
+      131 |     beforeAll(function () {
+    > 132 |       spyOn(list.values, 'map').and.callThrough();
+          |       ^
+      133 |       spyOn(list.values, 'filter').and.callThrough();
+      134 |       spyOn(list.values, 'reduce').and.callThrough();
+      135 |       spyOn(list.values, 'reduceRight').and.callThrough();
+
+      at Object.<anonymous> (list-ops_testSuite.js:132:7)
+
+  ● List › must not call native Array function › Array.prototype.filter()
+
+    ReferenceError: spyOn is not defined
+
+      130 |
+      131 |     beforeAll(function () {
+    > 132 |       spyOn(list.values, 'map').and.callThrough();
+          |       ^
+      133 |       spyOn(list.values, 'filter').and.callThrough();
+      134 |       spyOn(list.values, 'reduce').and.callThrough();
+      135 |       spyOn(list.values, 'reduceRight').and.callThrough();
+
+      at Object.<anonymous> (list-ops_testSuite.js:132:7)
+
+  ● List › must not call native Array function › Array.prototype.reduce()
+
+    ReferenceError: spyOn is not defined
+
+      130 |
+      131 |     beforeAll(function () {
+    > 132 |       spyOn(list.values, 'map').and.callThrough();
+          |       ^
+      133 |       spyOn(list.values, 'filter').and.callThrough();
+      134 |       spyOn(list.values, 'reduce').and.callThrough();
+      135 |       spyOn(list.values, 'reduceRight').and.callThrough();
+
+      at Object.<anonymous> (list-ops_testSuite.js:132:7)
+
+  ● List › must not call native Array function › Array.prototype.reduceRight()
+
+    ReferenceError: spyOn is not defined
+
+      130 |
+      131 |     beforeAll(function () {
+    > 132 |       spyOn(list.values, 'map').and.callThrough();
+          |       ^
+      133 |       spyOn(list.values, 'filter').and.callThrough();
+      134 |       spyOn(list.values, 'reduce').and.callThrough();
+      135 |       spyOn(list.values, 'reduceRight').and.callThrough();
+
+      at Object.<anonymous> (list-ops_testSuite.js:132:7)
+
+  ● List › must not call native Array function › Array.prototype.concat()
+
+    ReferenceError: spyOn is not defined
+
+      130 |
+      131 |     beforeAll(function () {
+    > 132 |       spyOn(list.values, 'map').and.callThrough();
+          |       ^
+      133 |       spyOn(list.values, 'filter').and.callThrough();
+      134 |       spyOn(list.values, 'reduce').and.callThrough();
+      135 |       spyOn(list.values, 'reduceRight').and.callThrough();
+
+      at Object.<anonymous> (list-ops_testSuite.js:132:7)
+
+  ● List › must not call native Array function › Array.prototype.reverse()
+
+    ReferenceError: spyOn is not defined
+
+      130 |
+      131 |     beforeAll(function () {
+    > 132 |       spyOn(list.values, 'map').and.callThrough();
+          |       ^
+      133 |       spyOn(list.values, 'filter').and.callThrough();
+      134 |       spyOn(list.values, 'reduce').and.callThrough();
+      135 |       spyOn(list.values, 'reduceRight').and.callThrough();
+
+      at Object.<anonymous> (list-ops_testSuite.js:132:7)
+
+Test Suites: 1 failed, 1 total
+Tests:       6 failed, 17 passed, 23 total
+Snapshots:   0 total
+Time:        0.359 s
+Ran all test suites.
+Command exited with non-zero status 1
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 0.27
+	System time (seconds): 0.07
+	Percent of CPU this job got: 36%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.94
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 83496
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 14582
+	Voluntary context switches: 7684
+	Involuntary context switches: 2044
+	Swaps: 0
+	File system inputs: 16
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

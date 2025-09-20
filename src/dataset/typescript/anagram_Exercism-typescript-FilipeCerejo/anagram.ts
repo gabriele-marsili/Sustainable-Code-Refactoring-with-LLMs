@@ -1,18 +1,20 @@
 export class Anagram {
-  private _input: string;
+  private readonly _input: string;
+  private readonly _sortedInput: string;
 
   constructor(input: string) {
     this._input = input.toLowerCase();
+    this._sortedInput = this.sortString(this._input);
   }
 
   public matches(...potentials: string[]): string[] {
-    let sortedInput = [...this._input].sort().join('');
-    let anagrams: string[] = [];
-    potentials.forEach((p) => {
-      let sortedP = [...p.toLowerCase()].sort().join('');
-      console.log('sortedInput', sortedInput, 'sortedP', sortedP);
-      if (sortedP === sortedInput && p.toLowerCase() !== this._input) anagrams.push(p);
+    return potentials.filter((p) => {
+      const lowerP = p.toLowerCase();
+      return lowerP !== this._input && this.sortString(lowerP) === this._sortedInput;
     });
-    return anagrams;
+  }
+
+  private sortString(str: string): string {
+    return str.split('').sort().join('');
   }
 }

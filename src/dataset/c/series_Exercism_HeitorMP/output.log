@@ -1,31 +1,20 @@
-test_series.c:128:test_slices_of_one_from_one:PASS
-test_series.c:129:test_slices_of_one_from_two:PASS
-test_series.c:130:test_slices_of_two:PASS
-test_series.c:131:test_slices_of_two_overlap:PASS
-test_series.c:132:test_slices_can_include_duplicates:PASS
-test_series.c:133:test_slices_of_a_long_series:PASS
-test_series.c:134:test_slice_length_is_too_large:PASS
-test_series.c:135:test_slice_length_cannot_be_zero:PASS
-test_series.c:136:test_empty_series_is_invalid:PASS
-
------------------------
-9 Tests 0 Failures 0 Ignored 
-OK
+qemu-x86_64: Could not open '/lib64/ld-linux-x86-64.so.2': No such file or directory
+Command exited with non-zero status 255
 	Command being timed: "./tests.out"
 	User time (seconds): 0.00
 	System time (seconds): 0.00
-	Percent of CPU this job got: 9%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.03
+	Percent of CPU this job got: 50%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.00
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 1152
+	Maximum resident set size (kbytes): 3456
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 1
-	Minor (reclaiming a frame) page faults: 74
-	Voluntary context switches: 6
-	Involuntary context switches: 5
+	Minor (reclaiming a frame) page faults: 785
+	Voluntary context switches: 19
+	Involuntary context switches: 4
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 0
@@ -33,4 +22,4 @@ OK
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 0
+	Exit status: 255

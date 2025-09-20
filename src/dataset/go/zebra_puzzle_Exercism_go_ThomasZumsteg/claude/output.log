@@ -1,0 +1,55 @@
+=== RUN   TestSolvePuzzle
+Items: [1 2 3 4]
+Items: [1 2 4 3]
+Items: [1 3 4 2]
+Items: [1 4 3 2]
+Items: [2 4 3 1]
+Items: [3 4 2 1]
+Items: [4 3 2 1]
+--- FAIL: TestSolvePuzzle (0.00s)
+panic: nope [recovered]
+	panic: nope
+
+goroutine 18 [running]:
+testing.tRunner.func1.2({0x11d1c0, 0x173228})
+	/usr/local/go/src/testing/testing.go:1545 +0x1c4
+testing.tRunner.func1()
+	/usr/local/go/src/testing/testing.go:1548 +0x360
+panic({0x11d1c0?, 0x173228?})
+	/usr/local/go/src/runtime/panic.go:914 +0x218
+esercizio.MakeSolutions(0x1240c0?)
+	/app/zebra_puzzle.go:59 +0xf0
+esercizio.SolvePuzzle()
+	/app/zebra_puzzle.go:121 +0x3a4
+esercizio.TestSolvePuzzle(0x400009c680)
+	/app/zebra_puzzle_test.go:7 +0x54
+testing.tRunner(0x400009c680, 0x14fb90)
+	/usr/local/go/src/testing/testing.go:1595 +0xe8
+created by testing.(*T).Run in goroutine 1
+	/usr/local/go/src/testing/testing.go:1648 +0x33c
+exit status 2
+FAIL	esercizio	0.011s
+Command exited with non-zero status 1
+	Command being timed: "go test -v"
+	User time (seconds): 6.06
+	System time (seconds): 0.64
+	Percent of CPU this job got: 97%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:06.86
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 213244
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 729555
+	Voluntary context switches: 20311
+	Involuntary context switches: 19206
+	Swaps: 0
+	File system inputs: 120
+	File system outputs: 172496
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

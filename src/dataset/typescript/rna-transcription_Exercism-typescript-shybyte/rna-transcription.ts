@@ -6,16 +6,20 @@ const DNA_TO_RNA: { [dna: string]: string } = {
 }
 
 class Transcriptor {
-    toRna(dna: string) {
-        const rna = dna
-            .split('')
-            .map((nucleotide) => DNA_TO_RNA[nucleotide])
-            .join('')
-
-        if (rna.length !== dna.length) {
-            throw 'Invalid input DNA.'
+    toRna(dna: string): string {
+        let rna = ''
+        
+        for (let i = 0; i < dna.length; i++) {
+            const nucleotide = dna[i]
+            const rnaBase = DNA_TO_RNA[nucleotide]
+            
+            if (rnaBase === undefined) {
+                throw 'Invalid input DNA.'
+            }
+            
+            rna += rnaBase
         }
-
+        
         return rna
     }
 }

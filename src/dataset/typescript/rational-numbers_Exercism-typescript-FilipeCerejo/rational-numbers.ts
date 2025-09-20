@@ -1,11 +1,11 @@
 export class Rational {
-
   private _a: number;
   private _b: number;
-  
+
   constructor(a: number, b: number) {
-    this._a = a;
-    this._b = b;
+    const gcd = Rational.gcd(Math.abs(a), Math.abs(b));
+    this._a = (b < 0 ? -a : a) / gcd;
+    this._b = Math.abs(b) / gcd;
   }
 
   public getA(): number {
@@ -14,6 +14,7 @@ export class Rational {
 
   public setA(value: number) {
     this._a = value;
+    this.normalize();
   }
 
   public getB(): number {
@@ -22,70 +23,59 @@ export class Rational {
 
   public setB(value: number) {
     this._b = value;
+    this.normalize();
   }
 
   add(rational: Rational) {
-    let numerator = this._a * rational.getB() + rational.getA() * this._b;
-    let denominator = this._b * rational.getB();
-    return this.reduce(numerator, denominator);
+    const numerator = this._a * rational._b + rational._a * this._b;
+    const denominator = this._b * rational._b;
+    return new Rational(numerator, denominator);
   }
 
   sub(rational: Rational) {
-    let numerator = this._a * rational.getB() - rational.getA() * this._b;
-    let denominator = this._b * rational.getB();
-    return this.reduce(numerator, denominator);
+    const numerator = this._a * rational._b - rational._a * this._b;
+    const denominator = this._b * rational._b;
+    return new Rational(numerator, denominator);
   }
 
   mul(rational: Rational) {
-    let numerator = this._a * rational.getA();
-    let denominator = this._b * rational.getB();
-    return this.reduce(numerator, denominator);
+    const numerator = this._a * rational._a;
+    const denominator = this._b * rational._b;
+    return new Rational(numerator, denominator);
   }
 
   div(rational: Rational) {
-    let numerator = this._a * rational.getB();
-    let denominator = rational.getA() * this._b;
-    return this.reduce(numerator, denominator);
+    const numerator = this._a * rational._b;
+    const denominator = this._b * rational._a;
+    return new Rational(numerator, denominator);
   }
 
   abs() {
-    let numerator = Math.abs(this._a);
-    let denominator = Math.abs(this._b);
-    return this.reduce(numerator, denominator);
+    return new Rational(Math.abs(this._a), this._b);
   }
 
   exprational(power: number) {
-    let numerator = Math.pow(this._a, power);
-    let denominator = Math.pow(this._b, power);
-    return this.reduce(numerator, denominator);
+    const numerator = Math.pow(this._a, power);
+    const denominator = Math.pow(this._b, power);
+    return new Rational(numerator, denominator);
   }
 
   expreal(base: number) {
-    let noRound = Math.pow(Math.pow(base, this._a), 1 / this._b);
-    return noRound > 1 ? Math.round(noRound) : noRound;
+    return Math.pow(base, this._a / this._b);
   }
 
-  reduce(a?: number, b?: number) {
+  private normalize() {
+    const gcd = Rational.gcd(Math.abs(this._a), Math.abs(this._b));
+    this._a = (this._b < 0 ? -this._a : this._a) / gcd;
+    this._b = Math.abs(this._b) / gcd;
+  }
 
-    let reduceA = a !== undefined ? a : this._a;
-    let reduceB = b !== undefined ? b : this._b;
-
-    if(reduceA === 0) return new Rational(0,1);
-    
-    let gcd = 1;
-   
-    for(let pointer = 1; pointer <= Math.abs(reduceA) && pointer <= Math.abs(reduceB); pointer++) {
-      if(reduceA % pointer === 0 && reduceB % pointer === 0) gcd = pointer;
+  private static gcd(a: number, b: number): number {
+    while (b !== 0) {
+      const temp = b;
+      b = a % b;
+      a = temp;
     }
-
-    //reduce
-    reduceA /= gcd;
-    reduceB /= gcd;
-
-    //'b' is always positive and 'a' has the negative sign if that is the case
-    reduceA = (reduceB/ Math.abs(reduceB)) * reduceA;
-    reduceB = Math.abs(reduceB);
-    
-    return new Rational(reduceA, reduceB);
+    return a;
   }
 }

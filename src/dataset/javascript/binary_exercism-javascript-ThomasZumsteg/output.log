@@ -1,38 +1,38 @@
-(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(node:22) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-PASS ./binary_testSuite.js (10.205 s)
+PASS ./binary_testSuite.js
   binary
-    ✓ 0 is decimal 0 (54 ms)
-    ✓ 1 is decimal 1 (2 ms)
-    ✓ 10 is decimal 2 (3 ms)
-    ✓ 11 is decimal 3 (6 ms)
-    ✓ 100 is decimal 4 (10 ms)
-    ✓ 1001 is decimal 9 (8 ms)
-    ✓ 11010 is decimal 26 (15 ms)
-    ✓ 10001101000 is decimal 1128 (4 ms)
-    ✓ 00011111 is decimal 31 (11 ms)
-    ✓ invalid inputs are decimal 0 (27 ms)
+    ✓ 0 is decimal 0 (1 ms)
+    ✓ 1 is decimal 1
+    ✓ 10 is decimal 2
+    ✓ 11 is decimal 3
+    ✓ 100 is decimal 4
+    ✓ 1001 is decimal 9
+    ✓ 11010 is decimal 26
+    ✓ 10001101000 is decimal 1128
+    ✓ 00011111 is decimal 31
+    ✓ invalid inputs are decimal 0
 
 Test Suites: 1 passed, 1 total
 Tests:       10 passed, 10 total
 Snapshots:   0 total
-Time:        12.519 s
+Time:        0.186 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 2.03
-	System time (seconds): 2.08
-	Percent of CPU this job got: 10%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:40.36
+	User time (seconds): 0.24
+	System time (seconds): 0.06
+	Percent of CPU this job got: 59%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.51
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 79800
+	Maximum resident set size (kbytes): 80796
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 14407
-	Voluntary context switches: 5951
-	Involuntary context switches: 7552
+	Minor (reclaiming a frame) page faults: 13930
+	Voluntary context switches: 7518
+	Involuntary context switches: 2384
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

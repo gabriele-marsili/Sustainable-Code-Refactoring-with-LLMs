@@ -1,4 +1,4 @@
-var Luhn = require('./luhn');
+import Luhn from './luhn';
 
 describe('Luhn',function() {
 

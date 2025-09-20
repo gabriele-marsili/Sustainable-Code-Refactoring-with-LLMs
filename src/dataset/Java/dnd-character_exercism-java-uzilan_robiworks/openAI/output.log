@@ -1,0 +1,60 @@
+JUnit version 4.13.2
+.E...E............E..E.
+Time: 0.028
+There were 4 failures:
+1) testAbilityModifierForScore3IsNegative4(DnDCharacterTest)
+java.lang.AssertionError: expected:<-4> but was:<-3>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:647)
+	at org.junit.Assert.assertEquals(Assert.java:633)
+	at DnDCharacterTest.testAbilityModifierForScore3IsNegative4(DnDCharacterTest.java:11)
+2) testAbilityModifierForScore5IsNegative3(DnDCharacterTest)
+java.lang.AssertionError: expected:<-3> but was:<-2>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:647)
+	at org.junit.Assert.assertEquals(Assert.java:633)
+	at DnDCharacterTest.testAbilityModifierForScore5IsNegative3(DnDCharacterTest.java:21)
+3) testAbilityModifierForScore7IsNegative2(DnDCharacterTest)
+java.lang.AssertionError: expected:<-2> but was:<-1>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:647)
+	at org.junit.Assert.assertEquals(Assert.java:633)
+	at DnDCharacterTest.testAbilityModifierForScore7IsNegative2(DnDCharacterTest.java:31)
+4) testAbilityModifierForScore9IsNegative1(DnDCharacterTest)
+java.lang.AssertionError: expected:<-1> but was:<0>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:647)
+	at org.junit.Assert.assertEquals(Assert.java:633)
+	at DnDCharacterTest.testAbilityModifierForScore9IsNegative1(DnDCharacterTest.java:41)
+
+FAILURES!!!
+Tests run: 19,  Failures: 4
+
+Command exited with non-zero status 1
+	Command being timed: "java -cp .:junit-platform-console-standalone-1.10.0.jar:junit-jupiter-api-5.10.0.jar:junit-jupiter-engine-5.10.0.jar:junit-jupiter-params-5.10.0.jar:junit-4.13.2.jar:hamcrest-core-1.3.jar:assertj-core-3.24.2.jar org.junit.runner.JUnitCore DnDCharacterTest"
+	User time (seconds): 0.11
+	System time (seconds): 0.01
+	Percent of CPU this job got: 66%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.20
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 46432
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 7149
+	Voluntary context switches: 1479
+	Involuntary context switches: 849
+	Swaps: 0
+	File system inputs: 1296
+	File system outputs: 64
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

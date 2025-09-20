@@ -1,0 +1,46 @@
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS ./strain_testSuite.js
+  strain
+    ✓ keeps on empty array returns empty array (3 ms)
+    ✓ keeps everything  (1 ms)
+    ✓ keeps first and last
+    ✓ keeps neither first nor last
+    ✓ keeps strings (1 ms)
+    ✓ keeps arrays
+    ✓ empty discard
+    ✓ discards nothing
+    ✓ discards first and last
+    ✓ discards neither first nor last (1 ms)
+    ✓ discards strings
+    ✓ discards arrays
+
+Test Suites: 1 passed, 1 total
+Tests:       12 passed, 12 total
+Snapshots:   0 total
+Time:        0.332 s
+Ran all test suites.
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 0.22
+	System time (seconds): 0.07
+	Percent of CPU this job got: 38%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.76
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 80512
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 13937
+	Voluntary context switches: 7321
+	Involuntary context switches: 2868
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+tus: 0

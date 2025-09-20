@@ -23,7 +23,7 @@
 === RUN   TestSolve/Should_not_concatenate_different_lines_to_find_a_horizontal_word
 === RUN   TestSolve/Should_not_wrap_around_horizontally_to_find_a_word
 === RUN   TestSolve/Should_not_wrap_around_vertically_to_find_a_word
---- PASS: TestSolve (0.11s)
+--- PASS: TestSolve (0.00s)
     --- PASS: TestSolve/Should_accept_an_initial_game_grid_and_a_target_search_word (0.00s)
     --- PASS: TestSolve/Should_locate_one_word_written_left_to_right (0.00s)
     --- PASS: TestSolve/Should_locate_the_same_word_written_left_to_right_in_a_different_position (0.00s)
@@ -36,7 +36,7 @@
     --- PASS: TestSolve/Should_locate_a_different_left_to_right_word_in_a_ten_line_grid (0.00s)
     --- PASS: TestSolve/Should_locate_multiple_words (0.00s)
     --- PASS: TestSolve/Should_locate_a_single_word_written_right_to_left (0.00s)
-    --- PASS: TestSolve/Should_locate_multiple_words_written_in_different_horizontal_directions (0.01s)
+    --- PASS: TestSolve/Should_locate_multiple_words_written_in_different_horizontal_directions (0.00s)
     --- PASS: TestSolve/Should_locate_words_written_top_to_bottom (0.00s)
     --- PASS: TestSolve/Should_locate_words_written_bottom_to_top (0.00s)
     --- PASS: TestSolve/Should_locate_words_written_top_left_to_bottom_right (0.00s)
@@ -49,25 +49,25 @@
     --- PASS: TestSolve/Should_not_wrap_around_horizontally_to_find_a_word (0.00s)
     --- PASS: TestSolve/Should_not_wrap_around_vertically_to_find_a_word (0.00s)
 PASS
-ok  	esercizio	0.147s
+ok  	esercizio	0.005s
 	Command being timed: "go test -v"
-	User time (seconds): 29.06
-	System time (seconds): 54.02
-	Percent of CPU this job got: 47%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:53.77
+	User time (seconds): 5.22
+	System time (seconds): 0.69
+	Percent of CPU this job got: 89%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:06.63
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 202968
+	Maximum resident set size (kbytes): 213672
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 5
-	Minor (reclaiming a frame) page faults: 718470
-	Voluntary context switches: 37918
-	Involuntary context switches: 50627
+	Major (requiring I/O) page faults: 4
+	Minor (reclaiming a frame) page faults: 733673
+	Voluntary context switches: 22446
+	Involuntary context switches: 24843
 	Swaps: 0
-	File system inputs: 0
-	File system outputs: 172120
+	File system inputs: 23264
+	File system outputs: 172456
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0

@@ -1,0 +1,135 @@
+(node:22) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL ./atbash-cipher_testSuite.js
+  Atbash Cipher
+    encode
+      ✓ encode yes (3 ms)
+      ✓ encode no (1 ms)
+      ✕ encode OMG (10 ms)
+      ✕ encode spaces
+      ✓ encode mindblowingly
+      ✕ encode numbers
+      ✕ encode deep thought (1 ms)
+      ✕ encode all the letters
+    decode
+      ✓ decode exercism (2 ms)
+      ✓ decode a sentence (2 ms)
+      ✓ decode numbers (1 ms)
+      ✓ decode all the letters (1 ms)
+      ✓ decode with too many spaces (1 ms)
+      ✓ decode with no spaces (1 ms)
+
+  ● Atbash Cipher › encode › encode OMG
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "lnt"
+    Received: "LNT"
+
+      12 |
+      13 |     test('encode OMG', () => {
+    > 14 |       expect(encode('OMG')).toEqual('lnt');
+         |                             ^
+      15 |     });
+      16 |
+      17 |     test('encode spaces', () => {
+
+      at Object.<anonymous> (atbash-cipher_testSuite.js:14:29)
+
+  ● Atbash Cipher › encode › encode spaces
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "lnt"
+    Received: "LNT"
+
+      16 |
+      17 |     test('encode spaces', () => {
+    > 18 |       expect(encode('O M G')).toEqual('lnt');
+         |                               ^
+      19 |     });
+      20 |
+      21 |     test('encode mindblowingly', () => {
+
+      at Object.<anonymous> (atbash-cipher_testSuite.js:18:31)
+
+  ● Atbash Cipher › encode › encode numbers
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "gvhgr mt123 gvhgr mt"
+    Received: "Gvhgr mt123 gvhgr mt"
+
+      26 |       const messageToEncode = 'Testing,1 2 3, testing.';
+      27 |       const expected = 'gvhgr mt123 gvhgr mt';
+    > 28 |       expect(encode(messageToEncode)).toEqual(expected);
+         |                                       ^
+      29 |     });
+      30 |
+      31 |     test('encode deep thought', () => {
+
+      at Object.<anonymous> (atbash-cipher_testSuite.js:28:39)
+
+  ● Atbash Cipher › encode › encode deep thought
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "gifgs rhurx grlm"
+    Received: "Gifgs rhurx grlm"
+
+      32 |       const messageToEncode = 'Truth is fiction.';
+      33 |       const expected = 'gifgs rhurx grlm';
+    > 34 |       expect(encode(messageToEncode)).toEqual(expected);
+         |                                       ^
+      35 |     });
+      36 |
+      37 |     test('encode all the letters', () => {
+
+      at Object.<anonymous> (atbash-cipher_testSuite.js:34:39)
+
+  ● Atbash Cipher › encode › encode all the letters
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt"
+    Received: "Gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt"
+
+      38 |       const messageToEncode = 'The quick brown fox jumps over the lazy dog.';
+      39 |       const expected = 'gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt';
+    > 40 |       expect(encode(messageToEncode)).toEqual(expected);
+         |                                       ^
+      41 |     });
+      42 |   });
+      43 |
+
+      at Object.<anonymous> (atbash-cipher_testSuite.js:40:39)
+
+Test Suites: 1 failed, 1 total
+Tests:       5 failed, 9 passed, 14 total
+Snapshots:   0 total
+Time:        0.67 s
+Ran all test suites.
+Command exited with non-zero status 1
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 0.38
+	System time (seconds): 0.10
+	Percent of CPU this job got: 29%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.63
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 82176
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 14405
+	Voluntary context switches: 7616
+	Involuntary context switches: 3958
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

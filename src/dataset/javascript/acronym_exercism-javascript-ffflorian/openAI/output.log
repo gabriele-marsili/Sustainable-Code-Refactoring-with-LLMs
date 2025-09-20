@@ -1,0 +1,192 @@
+(node:22) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL ./acronym_testSuite.js
+  Acronyms are produced from
+    ✕ title cased phrases (3 ms)
+    ✕ other title cased phrases
+    ✕ phrases with punctuation
+    ✕ phrases with all uppercase words
+    ✕ phrases with punctuation without whitespace (2 ms)
+    ✕ long phrases (1 ms)
+    ✕ phrases with consecutive delimiters (1 ms)
+    ✕ phrases with apostrophes
+    ✕ phrases with underscore emphasis
+
+  ● Acronyms are produced from › title cased phrases
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "PNG"
+    Received: "P"
+
+      4 |   // basic
+      5 |   test('title cased phrases', () => {
+    > 6 |     expect(parse('Portable Network Graphics')).toEqual('PNG');
+        |                                                ^
+      7 |   });
+      8 |
+      9 |   // lowercase words
+
+      at Object.<anonymous> (acronym_testSuite.js:6:48)
+
+  ● Acronyms are produced from › other title cased phrases
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "ROR"
+    Received: "R"
+
+       9 |   // lowercase words
+      10 |   test('other title cased phrases', () => {
+    > 11 |     expect(parse('Ruby on Rails')).toEqual('ROR');
+         |                                    ^
+      12 |   });
+      13 |
+      14 |   // punctuation
+
+      at Object.<anonymous> (acronym_testSuite.js:11:36)
+
+  ● Acronyms are produced from › phrases with punctuation
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "FIFO"
+    Received: "F"
+
+      14 |   // punctuation
+      15 |   test('phrases with punctuation', () => {
+    > 16 |     expect(parse('First In, First Out')).toEqual('FIFO');
+         |                                          ^
+      17 |   });
+      18 |
+      19 |   // all caps word
+
+      at Object.<anonymous> (acronym_testSuite.js:16:42)
+
+  ● Acronyms are produced from › phrases with all uppercase words
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "GIMP"
+    Received: "G"
+
+      19 |   // all caps word
+      20 |   test('phrases with all uppercase words', () => {
+    > 21 |     expect(parse('GNU Image Manipulation Program')).toEqual('GIMP');
+         |                                                     ^
+      22 |   });
+      23 |
+      24 |   // punctuation without whitespace
+
+      at Object.<anonymous> (acronym_testSuite.js:21:53)
+
+  ● Acronyms are produced from › phrases with punctuation without whitespace
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "CMOS"
+    Received: "C"
+
+      24 |   // punctuation without whitespace
+      25 |   test('phrases with punctuation without whitespace', () => {
+    > 26 |     expect(parse('Complementary metal-oxide semiconductor')).toEqual('CMOS');
+         |                                                              ^
+      27 |   });
+      28 |
+      29 |   // very long abbreviation
+
+      at Object.<anonymous> (acronym_testSuite.js:26:62)
+
+  ● Acronyms are produced from › long phrases
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "ROTFLSHTMDCOALM"
+    Received: "R"
+
+      33 |         'Rolling On The Floor Laughing So Hard That My Dogs Came Over And Licked Me'
+      34 |       )
+    > 35 |     ).toEqual('ROTFLSHTMDCOALM');
+         |       ^
+      36 |   });
+      37 |
+      38 |   // consecutive delimiters
+
+      at Object.<anonymous> (acronym_testSuite.js:35:7)
+
+  ● Acronyms are produced from › phrases with consecutive delimiters
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "SIMUFTA"
+    Received: "S"
+
+      38 |   // consecutive delimiters
+      39 |   test('phrases with consecutive delimiters', () => {
+    > 40 |     expect(parse('Something - I made up from thin air')).toEqual('SIMUFTA');
+         |                                                          ^
+      41 |   });
+      42 |
+      43 |   // apostrophes
+
+      at Object.<anonymous> (acronym_testSuite.js:40:58)
+
+  ● Acronyms are produced from › phrases with apostrophes
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "HC"
+    Received: "H"
+
+      43 |   // apostrophes
+      44 |   test('phrases with apostrophes', () => {
+    > 45 |     expect(parse("Halley's Comet")).toEqual('HC');
+         |                                     ^
+      46 |   });
+      47 |
+      48 |   // underscore emphasis
+
+      at Object.<anonymous> (acronym_testSuite.js:45:37)
+
+  ● Acronyms are produced from › phrases with underscore emphasis
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "TRNT"
+    Received: "T"
+
+      48 |   // underscore emphasis
+      49 |   test('phrases with underscore emphasis', () => {
+    > 50 |     expect(parse('The Road _Not_ Taken')).toEqual('TRNT');
+         |                                           ^
+      51 |   });
+      52 | });
+      53 |
+
+      at Object.<anonymous> (acronym_testSuite.js:50:43)
+
+Test Suites: 1 failed, 1 total
+Tests:       9 failed, 9 total
+Snapshots:   0 total
+Time:        0.362 s
+Ran allCommand exitedCommand exited with non-zero status 1
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 0.25
+	System time (seconds): 0.08
+	Percent of CPU this job got: 31%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.05
+	Average shared text size (krage unshared data size (kd data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total sizeMaximum resident set size (kbytset size (kbytes): 83304
+	Average resident set size (kbytes): 0
+	Major ) page faults: 0
+	Minor (recl0
+	Minor (reclaiming a frame) page faults: 14458
+	Voluntary context switchluntary context switches: 3212switches: 3208
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 1sages sent: 0
+	Socket messages ret messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 40us: 1
+it status: 1

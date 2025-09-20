@@ -1,0 +1,292 @@
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL ./simple-linked-list_testSuite.js
+  Element class
+    ✓ has constructor (1 ms)
+    ✓ value reflects constructor arg
+    ✓ has null for next by default
+  List class
+    ✓ has constructor
+    ✓ new lists should have length 0
+    ✓ can add a element
+    ✓ adding a element increments length
+    ✓ adding two elements increments twice
+    ✓ new Lists have a null head element
+    ✓ adding an Element to an empty list sets the head Element
+    ✓ adding a second Element updates the head Element
+    ✓ can get the next Element from the head
+    ✕ can be initialized with an array
+  Lists with multiple elements
+    ✓ with correct length
+    ✕ with correct head value
+    ✕ can traverse the list (1 ms)
+    ✓ can convert to an array (1 ms)
+    ✕ head of list is final element from input array
+    ✕ can convert longer list to an array (1 ms)
+    ✕ can be reversed (1 ms)
+    ✕ can be reversed when it has more elements
+    ✕ can reverse with many elements
+    ✕ can reverse a reversal
+
+  ● List class › can be initialized with an array
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 3
+    Received: 1
+
+      84 |     const list = new List([1, 2, 3]);
+      85 |     expect(list.length).toEqual(3);
+    > 86 |     expect(list.head.value).toEqual(3);
+         |                             ^
+      87 |   });
+      88 | });
+      89 |
+
+      at Object.<anonymous> (simple-linked-list_testSuite.js:86:29)
+
+  ● Lists with multiple elements › with correct head value
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 10
+    Received: 1
+
+       97 |   });
+       98 |   test('with correct head value', () => {
+    >  99 |     expect(list.head.value).toEqual(10);
+          |                             ^
+      100 |   });
+      101 |   test('can traverse the list', () => {
+      102 |     expect(list.head.next.next.next.value).toEqual(7);
+
+      at Object.<anonymous> (simple-linked-list_testSuite.js:99:29)
+
+  ● Lists with multiple elements › can traverse the list
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 7
+    Received: 4
+
+      100 |   });
+      101 |   test('can traverse the list', () => {
+    > 102 |     expect(list.head.next.next.next.value).toEqual(7);
+          |                                            ^
+      103 |   });
+      104 |   test('can convert to an array', () => {
+      105 |     const oneList = new List([1]);
+
+      at Object.<anonymous> (simple-linked-list_testSuite.js:102:44)
+
+  ● Lists with multiple elements › head of list is final element from input array
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 2
+    Received: 1
+
+      108 |   test('head of list is final element from input array', () => {
+      109 |     const twoList = new List([1, 2]);
+    > 110 |     expect(twoList.head.value).toEqual(2);
+          |                                ^
+      111 |   });
+      112 |   test('can convert longer list to an array', () => {
+      113 |     expect(list.toArray()).toEqual([10, 9, 8, 7, 6, 5, 4, 3, 2, 1]);
+
+      at Object.<anonymous> (simple-linked-list_testSuite.js:110:32)
+
+  ● Lists with multiple elements › can convert longer list to an array
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 9
+    + Received  + 9
+
+      Array [
+    -   10,
+    -   9,
+    -   8,
+    -   7,
+    -   6,
+    -   5,
+    -   4,
+    -   3,
+    -   2,
+        1,
+    +   2,
+    +   3,
+    +   4,
+    +   5,
+    +   6,
+    +   7,
+    +   8,
+    +   9,
+    +   10,
+      ]
+
+      111 |   });
+      112 |   test('can convert longer list to an array', () => {
+    > 113 |     expect(list.toArray()).toEqual([10, 9, 8, 7, 6, 5, 4, 3, 2, 1]);
+          |                            ^
+      114 |   });
+      115 |   test('can be reversed', () => {
+      116 |     const twoList = new List([1, 2]);
+
+      at Object.<anonymous> (simple-linked-list_testSuite.js:113:28)
+
+  ● Lists with multiple elements › can be reversed
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+    -   1,
+        2,
+    +   1,
+      ]
+
+      115 |   test('can be reversed', () => {
+      116 |     const twoList = new List([1, 2]);
+    > 117 |     expect(twoList.reverse().toArray()).toEqual([1, 2]);
+          |                                         ^
+      118 |   });
+      119 |   test('can be reversed when it has more elements', () => {
+      120 |     const threeList = new List([1, 2, 3]);
+
+      at Object.<anonymous> (simple-linked-list_testSuite.js:117:41)
+
+  ● Lists with multiple elements › can be reversed when it has more elements
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Array [
+    -   1,
+    -   2,
+        3,
+    +   2,
+    +   1,
+      ]
+
+      119 |   test('can be reversed when it has more elements', () => {
+      120 |     const threeList = new List([1, 2, 3]);
+    > 121 |     expect(threeList.reverse().toArray()).toEqual([1, 2, 3]);
+          |                                           ^
+      122 |   });
+      123 |   test('can reverse with many elements', () => {
+      124 |     expect(list.reverse().toArray()).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+
+      at Object.<anonymous> (simple-linked-list_testSuite.js:121:43)
+
+  ● Lists with multiple elements › can reverse with many elements
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 9
+    + Received  + 9
+
+      Array [
+    -   1,
+    -   2,
+    -   3,
+    -   4,
+    -   5,
+    -   6,
+    -   7,
+    -   8,
+    -   9,
+        10,
+    +   9,
+    +   8,
+    +   7,
+    +   6,
+    +   5,
+    +   4,
+    +   3,
+    +   2,
+    +   1,
+      ]
+
+      122 |   });
+      123 |   test('can reverse with many elements', () => {
+    > 124 |     expect(list.reverse().toArray()).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+          |                                      ^
+      125 |   });
+      126 |   test('can reverse a reversal', () => {
+      127 |     expect(list.reverse().reverse().toArray()).toEqual([
+
+      at Object.<anonymous> (simple-linked-list_testSuite.js:124:38)
+
+  ● Lists with multiple elements › can reverse a reversal
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 9
+    + Received  + 9
+
+      Array [
+    -   10,
+    -   9,
+    -   8,
+    -   7,
+    -   6,
+    -   5,
+    -   4,
+    -   3,
+    -   2,
+        1,
+    +   2,
+    +   3,
+    +   4,
+    +   5,
+    +   6,
+    +   7,
+    +   8,
+    +   9,
+    +   10,
+      ]
+
+      125 |   });
+      126 |   test('can reverse a reversal', () => {
+    > 127 |     expect(list.reverse().reverse().toArray()).toEqual([
+          |                                                ^
+      128 |       10, 9, 8, 7, 6, 5, 4, 3, 2, 1,
+      129 |     ]);
+      130 |   });
+
+      at Object.<anonymous> (simple-linked-list_testSuite.js:127:48)
+
+Test Suites: 1 failed, 1 total
+Tests:       9 failed, 14 passed, 23 total
+Snapshots:   0 total
+Time:        0.176 s
+Ran all test suites.
+Command exited with non-zero status 1
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 0.25
+	System time (seconds): 0.08
+	Percent of CPU this job got: 73%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.45
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 82996
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 14234
+	Voluntary context switches: 6911
+	Involuntary context switches: 205
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

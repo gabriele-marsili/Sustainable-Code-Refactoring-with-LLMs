@@ -1,39 +1,57 @@
-PASS ./acronym.test.ts (19.954 s)
+FAIL ./acronym.test.ts
   Acronym are produced from
-    ✓ title cased phrases (112 ms)
+    ✓ title cased phrases (4 ms)
     ✓ other title cased phrases (1 ms)
-    ✓ umlauts (2 ms)
-    ✓ inconsistently cased phrases (7 ms)
-    ✓ phrases with punctuation (4 ms)
-    ✓ other phrases with punctuation (5 ms)
-    ✓ phrases with punctuation and sentence casing (5 ms)
+    ✕ umlauts (2 ms)
+    ✓ inconsistently cased phrases (2 ms)
+    ✓ phrases with punctuation
+    ✓ other phrases with punctuation
+    ✓ phrases with punctuation and sentence casing
 
-Test Suites: 1 passed, 1 total
-Tests:       7 passed, 7 total
+  ● Acronym are produced from › umlauts
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "ÜR"
+    Received: "BRB"
+
+      11 |
+      12 |   it('umlauts', () => {
+    > 13 |     expect(Acronym.parse('Über Rübe')).toEqual('ÜR')
+         |                                        ^
+      14 |   })
+      15 |
+      16 |   it('inconsistently cased phrases', () => {
+
+      at Object.<anonymous> (acronym.test.ts:13:40)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 6 passed, 7 total
 Snapshots:   0 total
-Time:        22.64 s
+Time:        1.58 s
 Ran all test suites.
 Test results written to: output.log
+Command exited with non-zero status 1
 	Command being timed: "npx jest --json --outputFile=output.log"
-	User time (seconds): 12.24
-	System time (seconds): 5.94
-	Percent of CPU this job got: 36%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:50.37
+	User time (seconds): 1.51
+	System time (seconds): 0.11
+	Percent of CPU this job got: 73%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:02.20
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 218308
+	Maximum resident set size (kbytes): 224540
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 63849
-	Voluntary context switches: 1746
-	Involuntary context switches: 8236
+	Minor (reclaiming a frame) page faults: 66008
+	Voluntary context switches: 2576
+	Involuntary context switches: 5334
 	Swaps: 0
-	File system inputs: 0
+	File system inputs: 27440
 	File system outputs: 80
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 0
+	Exit status: 1

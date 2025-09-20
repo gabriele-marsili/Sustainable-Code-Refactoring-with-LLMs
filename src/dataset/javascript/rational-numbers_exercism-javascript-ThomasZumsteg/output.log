@@ -1,0 +1,94 @@
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL ./rational-numbers_testSuite.js
+  Addition
+    ✓ Add two positive rational numbers (2 ms)
+    ✓ Add a positive rational number and a negative rational number
+    ✓ Add two negative rational numbers
+    ✓ Add a rational number to its additive inverse (1 ms)
+  Subtraction
+    ✓ Subtract two positive rational numbers
+    ✓ Subtract a positive rational number and a negative rational number
+    ✓ Subtract two negative rational numbers
+    ✓ Subtract a rational number from itself (1 ms)
+  Multiplication
+    ✓ Multiply two positive rational numbers
+    ✓ Multiply a negative rational number by a positive rational number
+    ✓ Multiply two negative rational numbers
+    ✓ Multiply a rational number by its reciprocal (1 ms)
+    ✓ Multiply a rational number by 1
+    ✓ Multiply a rational number by 0
+  Division
+    ✓ Divide two positive rational numbers
+    ✓ Divide a positive rational number by a negative rational number
+    ✓ Divide two negative rational numbers
+    ✓ Divide a rational number by 1 (1 ms)
+  Absolute value
+    ✓ Absolute value of a positive rational number
+    ✓ Absolute value of a negative rational number
+    ✓ Absolute value of zero
+  Exponentiation of a rational number
+    ✓ Raise a positive rational number to a positive integer power
+    ✓ Raise a negative rational number to a positive integer power
+    ✓ Raise zero to an integer power (2 ms)
+    ✓ Raise one to an integer power (3 ms)
+    ✓ Raise a positive rational number to the power of zero
+    ✓ Raise a negative rational number to the power of zero
+  Exponentiation of a real number to a rational number
+    ✕ Raise a real number to a positive rational number (1 ms)
+    ✓ Raise a real number to a negative rational number
+    ✓ Raise a real number to a zero rational number
+  Reduction to lowest terms
+    ✓ Reduce a positive rational number to lowest terms
+    ✓ Reduce a negative rational number to lowest terms
+    ✓ Reduce a rational number with a negative denominator to lowest terms
+    ✓ Reduce zero to lowest terms
+    ✓ Reduce an integer to lowest terms
+    ✓ Reduce one to lowest terms
+
+  ● Exponentiation of a real number to a rational number › Raise a real number to a positive rational number
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 16
+    Received: 15.999999999999998
+
+      151 |   it('Raise a real number to a positive rational number', function () {
+      152 |     var expected = 16.0;
+    > 153 |     expect(new Rational(4, 3).expreal(8)).toEqual(expected);
+          |                                           ^
+      154 |   });
+      155 |
+      156 |   it('Raise a real number to a negative rational number', function () {
+
+      at Object.<anonymous> (rational-numbers_testSuite.js:153:43)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 35 passed, 36 total
+Snapshots:   0 total
+Time:        0.182 s
+Ran all test suites.
+Command exited with non-zero status 1
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 0.24
+	System time (seconds): 0.09
+	Percent of CPU this job got: 78%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.43
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 83128
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 14580
+	Voluntary context switches: 7286
+	Involuntary context switches: 300
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

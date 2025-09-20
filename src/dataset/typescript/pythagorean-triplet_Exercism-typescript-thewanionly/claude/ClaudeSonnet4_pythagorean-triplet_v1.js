@@ -1,0 +1,32 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.triplets = triplets;
+class Triplet {
+    constructor(a, b, c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
+    toArray() {
+        return [this.a, this.b, this.c];
+    }
+}
+function triplets({ sum, minFactor = 1, maxFactor }) {
+    const tripletsArr = [];
+    const maxLimit = maxFactor !== null && maxFactor !== void 0 ? maxFactor : sum;
+    // Find all 3 numbers that sum up to `sum`
+    for (let a = minFactor; a < maxLimit; a++) {
+        const maxB = Math.min(maxLimit, sum - a - minFactor);
+        for (let b = a + 1; b < maxB; b++) {
+            const c = sum - a - b;
+            // Early exit conditions
+            if (c <= b || c >= maxLimit)
+                continue;
+            // Check Pythagorean theorem
+            if (a * a + b * b === c * c) {
+                tripletsArr.push(new Triplet(a, b, c));
+            }
+        }
+    }
+    return tripletsArr;
+}

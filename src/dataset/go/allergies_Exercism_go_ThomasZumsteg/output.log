@@ -8,34 +8,34 @@
     allergies_test.go:29: PASS: Allergic to [strawberries tomatoes chocolate pollen cats]
     allergies_test.go:29: PASS: Allergic to [eggs peanuts shellfish strawberries tomatoes chocolate pollen cats]
     allergies_test.go:29: PASS: Allergic to [eggs shellfish strawberries tomatoes chocolate pollen cats]
---- PASS: TestAllergies (0.02s)
+--- PASS: TestAllergies (0.00s)
 === RUN   TestAllergicTo
     allergies_test.go:64: PASS: AllergicTo(0, peanuts) false
     allergies_test.go:64: PASS: AllergicTo(0, cats) false
     allergies_test.go:64: PASS: AllergicTo(0, strawberries) false
     allergies_test.go:64: PASS: AllergicTo(1, eggs) true
     allergies_test.go:64: PASS: AllergicTo(5, eggs) true
---- PASS: TestAllergicTo (0.01s)
+--- PASS: TestAllergicTo (0.00s)
 PASS
-ok  	esercizio	0.052s
+ok  	esercizio	0.004s
 	Command being timed: "go test -v"
-	User time (seconds): 28.10
-	System time (seconds): 53.70
-	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:49.41
+	User time (seconds): 5.66
+	System time (seconds): 0.72
+	Percent of CPU this job got: 63%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:10.05
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 200240
+	Maximum resident set size (kbytes): 219436
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 5
-	Minor (reclaiming a frame) page faults: 712602
-	Voluntary context switches: 36092
-	Involuntary context switches: 49524
+	Major (requiring I/O) page faults: 162
+	Minor (reclaiming a frame) page faults: 726989
+	Voluntary context switches: 24819
+	Involuntary context switches: 32486
 	Swaps: 0
-	File system inputs: 0
-	File system outputs: 171696
+	File system inputs: 66456
+	File system outputs: 172112
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0

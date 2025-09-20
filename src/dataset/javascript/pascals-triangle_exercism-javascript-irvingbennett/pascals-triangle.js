@@ -1,35 +1,21 @@
-//
-// This is only a SKELETON file for the 'Pascals Triangle' exercise. It's been provided as a
-// convenience to get you started writing code faster.
-//
-
 export const rows = (n) => {
-  let triangle = [];
-  if (n == 0) {
-    return triangle
+  if (n <= 0) {
+    return [];
   }
-  let row = 0;
-  for (let r = 1; r <= n; r++) {
-    triangle.push([])
-    if (r == 1) {      
-      triangle[row].push(r);
-    } else {
-      for (let x = 0; x < r; x++) {
-        if (x == 0) {
-          triangle[row].push(triangle[row-1][0]);
-        } else if (row == 1) {
-          triangle[row].push(triangle[row-1][0]);
-        } else {
-          if (x < row) {
-            triangle[row].push(triangle[row-1][x-1]+triangle[row-1][x]);
-          } else {
-            triangle[row].push(triangle[row-1][x-1])
-          }
-        }
-      }
+
+  const triangle = [[1]];
+
+  for (let i = 1; i < n; i++) {
+    const prevRow = triangle[i - 1];
+    const newRow = [1];
+
+    for (let j = 1; j < i; j++) {
+      newRow.push(prevRow[j - 1] + prevRow[j]);
     }
-    // console.log(triangle)
-    row++
+
+    newRow.push(1);
+    triangle.push(newRow);
   }
-  return triangle
+
+  return triangle;
 };

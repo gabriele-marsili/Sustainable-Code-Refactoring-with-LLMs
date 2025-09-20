@@ -1,0 +1,55 @@
+=== RUN   TestDecodeVarint
+    variable_length_quantity_test.go:23: PASS: case 0 | one byte
+    variable_length_quantity_test.go:23: PASS: case 1 | two bytes
+    variable_length_quantity_test.go:23: PASS: case 2 | three bytes
+    variable_length_quantity_test.go:23: PASS: case 3 | four bytes
+    variable_length_quantity_test.go:23: PASS: case 4 | maximum 32-bit integer
+    variable_length_quantity_test.go:23: PASS: case 5 | incomplete sequence causes error
+    variable_length_quantity_test.go:23: PASS: case 6 | incomplete sequence causes error, even if value is zero
+    variable_length_quantity_test.go:23: PASS: case 7 | multiple values
+--- PASS: TestDecodeVarint (0.00s)
+=== RUN   TestEncodeVarint
+    variable_length_quantity_test.go:32: PASS: case 0 | zero
+    variable_length_quantity_test.go:32: PASS: case 1 | arbitrary single byte
+    variable_length_quantity_test.go:32: PASS: case 2 | largest single byte
+    variable_length_quantity_test.go:32: PASS: case 3 | smallest double byte
+    variable_length_quantity_test.go:32: PASS: case 4 | arbitrary double byte
+    variable_length_quantity_test.go:32: PASS: case 5 | largest double byte
+    variable_length_quantity_test.go:32: PASS: case 6 | smallest triple byte
+    variable_length_quantity_test.go:32: PASS: case 7 | arbitrary triple byte
+    variable_length_quantity_test.go:32: PASS: case 8 | largest triple byte
+    variable_length_quantity_test.go:32: PASS: case 9 | smallest quadruple byte
+    variable_length_quantity_test.go:32: PASS: case 10 | arbitrary quadruple byte
+    variable_length_quantity_test.go:32: PASS: case 11 | largest quadruple byte
+    variable_length_quantity_test.go:32: PASS: case 12 | smallest quintuple byte
+    variable_length_quantity_test.go:32: PASS: case 13 | arbitrary quintuple byte
+    variable_length_quantity_test.go:32: PASS: case 14 | maximum 32-bit integer input
+    variable_length_quantity_test.go:32: PASS: case 15 | two single-byte values
+    variable_length_quantity_test.go:32: PASS: case 16 | two multi-byte values
+    variable_length_quantity_test.go:32: PASS: case 17 | many multi-byte values
+--- PASS: TestEncodeVarint (0.00s)
+PASS
+ok  	esercizio	0.005s
+	Command being timed: "go test -v"
+	User time (seconds): 5.41
+	System time (seconds): 0.67
+	Percent of CPU this job got: 55%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:11.02
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 232116
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 739024
+	Voluntary context switches: 25115
+	Involuntary context switches: 24037
+	Swaps: 0
+	File system inputs: 29592
+	File system outputs: 172896
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

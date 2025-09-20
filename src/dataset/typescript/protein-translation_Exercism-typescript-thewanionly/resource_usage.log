@@ -1,55 +1,56 @@
-PASS ./protein-translation.test.ts (28.637 s)
+PASS ./protein-translation.test.ts
   Translate input RNA sequences into proteins
-    ✓ Methionine RNA sequence (32 ms)
-    ✓ Phenylalanine RNA sequence 1 (7 ms)
-    ✓ Phenylalanine RNA sequence 2 (8 ms)
-    ✓ Leucine RNA sequence 1 (3 ms)
-    ✓ Leucine RNA sequence 2 (3 ms)
-    ✓ Serine RNA sequence 1 (1 ms)
-    ✓ Serine RNA sequence 2 (8 ms)
-    ✓ Serine RNA sequence 3 (1 ms)
-    ✓ Serine RNA sequence 4 (3 ms)
-    ✓ Tyrosine RNA sequence 1 (9 ms)
-    ✓ Tyrosine RNA sequence 2 (2 ms)
-    ✓ Cysteine RNA sequence 1 (2 ms)
-    ✓ Cysteine RNA sequence 2 (4 ms)
-    ✓ Tryptophan RNA sequence (23 ms)
-    ✓ STOP codon RNA sequence 1 (1 ms)
+    ✓ Methionine RNA sequence (1 ms)
+    ✓ Phenylalanine RNA sequence 1
+    ✓ Phenylalanine RNA sequence 2
+    ✓ Leucine RNA sequence 1
+    ✓ Leucine RNA sequence 2
+    ✓ Serine RNA sequence 1
+    ✓ Serine RNA sequence 2
+    ✓ Serine RNA sequence 3
+    ✓ Serine RNA sequence 4
+    ✓ Tyrosine RNA sequence 1
+    ✓ Tyrosine RNA sequence 2 (1 ms)
+    ✓ Cysteine RNA sequence 1
+    ✓ Cysteine RNA sequence 2
+    ✓ Tryptophan RNA sequence
+    ✓ STOP codon RNA sequence 1
     ✓ STOP codon RNA sequence 2
-    ✓ STOP codon RNA sequence 3 (1 ms)
+    ✓ STOP codon RNA sequence 3
     ✓ Translate RNA strand into correct protein list
-    ✓ Translation stops if STOP codon at beginning of sequence (14 ms)
-    ✓ Translation stops if STOP codon at end of two-codon sequence (7 ms)
-    ✓ Translation stops if STOP codon at end of three-codon sequence (6 ms)
-    ✓ Translation stops if STOP codon in middle of three-codon sequence (1 ms)
-    ✓ Translation stops if STOP codon in middle of six-codon sequence (1 ms)
+    ✓ Translation stops if STOP codon at beginning of sequence
+    ✓ Translation stops if STOP codon at end of two-codon sequence
+    ✓ Translation stops if STOP codon at end of three-codon sequence
+    ✓ Translation stops if STOP codon in middle of three-codon sequence
+    ✓ Translation stops if STOP codon in middle of six-codon sequence
 
 Test Suites: 1 passed, 1 total
 Tests:       23 passed, 23 total
 Snapshots:   0 total
-Time:        30.266 s
+Time:        1.939 s
 Ran all test suites.
 Test results written to: output.log
 	Command being timed: "npx jest --json --outputFile=output.log"
-	User time (seconds): 13.49
-	System time (seconds): 6.03
-	Percent of CPU this job got: 39%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:49.69
+	User time (seconds): 1.40
+	System time (seconds): 0.09
+	Percent of CPU this job got: 58%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:02.57
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 219792
+	Maximum resident set size (kbytes): 223392
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 63813
-	Voluntary context switches: 1892
-	Involuntary context switches: 8170
+	Minor (reclaiming a frame) page faults: 67888
+	Voluntary context switches: 2704
+	Involuntary context switches: 5514
 	Swaps: 0
-	File system inputs: 0
-	File system outputs: 104
+	File system inputs: 7344
+	File system outputs: 88
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
 	Exit status: 0
+0

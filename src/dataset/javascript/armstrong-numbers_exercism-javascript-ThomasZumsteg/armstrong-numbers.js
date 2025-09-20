@@ -1,7 +1,14 @@
 function validate(number) {
-    var digits = number.toString().split('');
-    return number == digits.reduce((acc, num) =>
-        Math.pow(parseInt(num), digits.length) + acc, 0);
+    const str = number.toString();
+    const length = str.length;
+    let sum = 0;
+    
+    for (let i = 0; i < length; i++) {
+        const digit = str.charCodeAt(i) - 48; // Convert char to digit without parseInt
+        sum += Math.pow(digit, length);
+    }
+    
+    return number === sum;
 }
 
-export default {validate: validate};;
+export default {validate: validate};

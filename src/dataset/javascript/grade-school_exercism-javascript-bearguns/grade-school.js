@@ -1,7 +1,7 @@
-'use strict'
+'use strict';
 class School {
   constructor() {
-    _this.fullroster = {};
+    this.fullroster = {};
   }
 
   roster() {
@@ -9,21 +9,15 @@ class School {
   }
 
   add(name, grade) {
-    // check for and add grade if not already in DB
     if (!this.fullroster[grade]) {
-      this.fullroster[grade] = [];
+      this.fullroster[grade] = new Set();
     }
-    this.fullroster[grade].push(name);
-    this.fullroster[grade] = this.fullroster[grade].sort(); // grades are to be kept in alphabetical order
+    this.fullroster[grade].add(name);
   }
 
   grade(grade) {
-    const roster = this.fullroster[grade];
-    if (!roster) {
-      return [];
-    }
-    return roster.sort();
+    return this.fullroster[grade] ? Array.from(this.fullroster[grade]).sort() : [];
   }
 }
 
-export default School;;
+export default School;

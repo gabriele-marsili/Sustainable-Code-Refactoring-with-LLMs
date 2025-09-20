@@ -1,0 +1,71 @@
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL ./luhn_testSuite.js
+  Luhn
+    ✓ check digit (1 ms)
+    ✓ check digit again
+    ✓ addends
+    ✕ too large added (3 ms)
+    ✓ checksum
+    ✓ checksum again
+    ✓ invalid number
+    ✓ invalid number (1 ms)
+    ✓ create valid number (3 ms)
+    ✓ create other valid number
+    ✓ create yet another valid number
+
+  ● Luhn › too large added
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Array [
+    -   7,
+    +   1,
+        6,
+        6,
+    -   1,
+    +   7,
+      ]
+
+      20 |   it('too large added',function() {
+      21 |     var luhn = new Luhn(8631);
+    > 22 |     expect(luhn.addends).toEqual([7, 6, 6, 1]);
+         |                          ^
+      23 |   });
+      24 |
+      25 |   it('checksum',function() {
+
+      at Object.<anonymous> (luhn_testSuite.js:22:26)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 10 passed, 11 total
+Snapshots:   0 total
+Time:        0.392 s
+Ran all test suites.
+Command exited with non-zero status 1
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 0.25
+	System time (seconds): 0.07
+	Percent of CPU this job got: 32%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.98
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 81988
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 14482
+	Voluntary context switches: 7116
+	Involuntary context switches: 2179
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

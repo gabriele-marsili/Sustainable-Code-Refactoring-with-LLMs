@@ -1,26 +1,32 @@
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class PigLatin {
+    private static final Pattern QU_PATTERN = Pattern.compile("([^aeio]*qu)(.*)");
+    private static final Pattern Y_PATTERN = Pattern.compile("^y[^aeiou]");
+    private static final Pattern DEFAULT_PATTERN = Pattern.compile("(.*?)([aeoiu].*)");
+
     public static String translate(String input) {
-        return Stream.of(input.split(" "))
-            .map(w -> translateWord(w))
-            .collect(Collectors.joining(" "));
+        String[] words = input.split(" ");
+        StringBuilder result = new StringBuilder();
+        for (String word : words) {
+            if (result.length() > 0) result.append(" ");
+            result.append(translateWord(word));
+        }
+        return result.toString();
     }
 
     private static String translateWord(String input) {
-        Matcher quMatch = Pattern.compile("([^aeio]*qu)(.*)").matcher(input);
-        Matcher yMatch = Pattern.compile("^y[^aeiou]").matcher(input);
-        Matcher defaultMacher = Pattern.compile("(.*?)([aeoiu].*)").matcher(input);
-
-        if(quMatch.find())
+        var quMatch = QU_PATTERN.matcher(input);
+        if (quMatch.matches()) {
             return quMatch.group(2) + quMatch.group(1) + "ay";
+        }
 
-        if(!yMatch.find() && defaultMacher.find() && 
-            !input.equals(defaultMacher.group(1) + "ay"))
-            return defaultMacher.group(2) + defaultMacher.group(1) + "ay";
+        var yMatch = Y_PATTERN.matcher(input);
+        var defaultMatcher = DEFAULT_PATTERN.matcher(input);
+        if (!yMatch.matches() && defaultMatcher.matches()) {
+            return defaultMatcher.group(2) + defaultMatcher.group(1) + "ay";
+        }
+
         return input + "ay";
     }
 }

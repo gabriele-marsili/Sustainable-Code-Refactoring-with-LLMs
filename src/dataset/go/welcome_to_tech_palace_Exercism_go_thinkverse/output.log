@@ -3,7 +3,7 @@
 === RUN   TestWelcomeMessage/Welcome_message_for_customer_with_only_lowercase_letters
 === RUN   TestWelcomeMessage/Welcome_message_for_customer_with_dash_in_name
 === RUN   TestWelcomeMessage/Welcome_message_for_customer_with_only_uppercase_letters
---- PASS: TestWelcomeMessage (0.01s)
+--- PASS: TestWelcomeMessage (0.00s)
     --- PASS: TestWelcomeMessage/Welcome_message_for_customer_with_first_letter_capitalized (0.00s)
     --- PASS: TestWelcomeMessage/Welcome_message_for_customer_with_only_lowercase_letters (0.00s)
     --- PASS: TestWelcomeMessage/Welcome_message_for_customer_with_dash_in_name (0.00s)
@@ -11,37 +11,37 @@
 === RUN   TestAddBorder
 === RUN   TestAddBorder/Add_border_with_10_stars_per_line
 === RUN   TestAddBorder/Add_border_with_2_stars_per_line
---- PASS: TestAddBorder (0.01s)
+--- PASS: TestAddBorder (0.00s)
     --- PASS: TestAddBorder/Add_border_with_10_stars_per_line (0.00s)
     --- PASS: TestAddBorder/Add_border_with_2_stars_per_line (0.00s)
 === RUN   TestCleanupMessage
 === RUN   TestCleanupMessage/Cleanup_message_with_many_stars_and_leading_and_trailing_whitespace
 === RUN   TestCleanupMessage/Cleanup_message_without_leading_or_trailing_whitespace
 === RUN   TestCleanupMessage/Cleanup_message_without_leading_whitespace
---- PASS: TestCleanupMessage (0.01s)
+--- PASS: TestCleanupMessage (0.00s)
     --- PASS: TestCleanupMessage/Cleanup_message_with_many_stars_and_leading_and_trailing_whitespace (0.00s)
     --- PASS: TestCleanupMessage/Cleanup_message_without_leading_or_trailing_whitespace (0.00s)
     --- PASS: TestCleanupMessage/Cleanup_message_without_leading_whitespace (0.00s)
 PASS
-ok  	esercizio	0.045s
+ok  	esercizio	0.002s
 	Command being timed: "go test -v"
-	User time (seconds): 23.83
-	System time (seconds): 48.26
-	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:28.68
+	User time (seconds): 5.43
+	System time (seconds): 0.66
+	Percent of CPU this job got: 64%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:09.43
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 203228
+	Maximum resident set size (kbytes): 217508
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 5
-	Minor (reclaiming a frame) page faults: 711622
-	Voluntary context switches: 32912
-	Involuntary context switches: 44603
+	Major (requiring I/O) page faults: 13
+	Minor (reclaiming a frame) page faults: 727424
+	Voluntary context switches: 22201
+	Involuntary context switches: 21419
 	Swaps: 0
-	File system inputs: 0
-	File system outputs: 171776
+	File system inputs: 9064
+	File system outputs: 172120
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0

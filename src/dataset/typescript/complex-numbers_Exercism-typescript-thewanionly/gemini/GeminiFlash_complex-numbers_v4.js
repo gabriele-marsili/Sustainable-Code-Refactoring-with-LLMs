@@ -1,0 +1,45 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ComplexNumber = void 0;
+class ComplexNumber {
+    constructor(real, imaginary) {
+        this.realPart = real;
+        this.imaginaryPart = imaginary;
+    }
+    get real() {
+        return this.realPart;
+    }
+    get imag() {
+        return this.imaginaryPart;
+    }
+    add(complexNumber) {
+        return new ComplexNumber(this.realPart + complexNumber.realPart, this.imaginaryPart + complexNumber.imaginaryPart);
+    }
+    sub(complexNumber) {
+        return new ComplexNumber(this.realPart - complexNumber.realPart, this.imaginaryPart - complexNumber.imaginaryPart);
+    }
+    div(complexNumber) {
+        const denominator = complexNumber.realPart * complexNumber.realPart + complexNumber.imaginaryPart * complexNumber.imaginaryPart;
+        const real = (this.realPart * complexNumber.realPart + this.imaginaryPart * complexNumber.imaginaryPart) / denominator;
+        const imaginary = (this.imaginaryPart * complexNumber.realPart - this.realPart * complexNumber.imaginaryPart) / denominator;
+        return new ComplexNumber(real, imaginary);
+    }
+    mul(complexNumber) {
+        const real = this.realPart * complexNumber.realPart - this.imaginaryPart * complexNumber.imaginaryPart;
+        const imaginary = this.imaginaryPart * complexNumber.realPart + this.realPart * complexNumber.imaginaryPart;
+        return new ComplexNumber(real, imaginary);
+    }
+    get abs() {
+        return Math.sqrt(this.realPart * this.realPart + this.imaginaryPart * this.imaginaryPart);
+    }
+    get conj() {
+        return new ComplexNumber(this.realPart, -this.imaginaryPart);
+    }
+    get exp() {
+        const expReal = Math.exp(this.realPart);
+        const real = expReal * Math.cos(this.imaginaryPart);
+        const imaginary = expReal * Math.sin(this.imaginaryPart);
+        return new ComplexNumber(real, imaginary);
+    }
+}
+exports.ComplexNumber = ComplexNumber;

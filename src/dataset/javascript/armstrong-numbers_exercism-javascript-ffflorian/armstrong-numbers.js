@@ -5,7 +5,14 @@
  * @returns {boolean}
  */
 export const isArmstrongNumber = candidate => {
-  const candidateArray = [...candidate.toString()].map(Number);
-  const result = candidateArray.reduce((acc, n) => acc + Math.pow(n, candidateArray.length), 0);
-  return result === candidate;
+  const candidateString = candidate.toString();
+  const numDigits = candidateString.length;
+  let sum = 0;
+
+  for (let i = 0; i < numDigits; i++) {
+    const digit = parseInt(candidateString[i], 10);
+    sum += Math.pow(digit, numDigits);
+  }
+
+  return sum === candidate;
 };

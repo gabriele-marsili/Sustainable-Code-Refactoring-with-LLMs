@@ -1,50 +1,50 @@
 (node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-PASS ./robot-simulator_testSuite.js (20.4 s)
+PASS ./robot-simulator_testSuite.js
   Robot
-    ✓ robot bearing (148 ms)
-    ✓ invalid robot bearing (1 ms)
-    ✓ turn right from north (4 ms)
+    ✓ robot bearing (4 ms)
+    ✓ invalid robot bearing
+    ✓ turn right from north
     ✓ turn right from east
-    ✓ turn right from south (3 ms)
-    ✓ turn right from west (2 ms)
-    ✓ turn left from north (1 ms)
-    ✓ turn left from east (21 ms)
-    ✓ turn left from south (6 ms)
-    ✓ turn left from west (3 ms)
-    ✓ robot coordinates (4 ms)
-    ✓ other robot coordinates (11 ms)
-    ✓ advance when facing north (9 ms)
-    ✓ advance when facing east (1 ms)
-    ✓ advance when facing south (3 ms)
-    ✓ advance when facing west (16 ms)
-    ✓ instructions for turning left (13 ms)
-    ✓ instructions for turning right (5 ms)
-    ✓ instructions for advancing (16 ms)
-    ✓ series of instructions (11 ms)
-    ✓ instruct robot (33 ms)
-    ✓ instruct many robots (42 ms)
+    ✓ turn right from south (5 ms)
+    ✓ turn right from west
+    ✓ turn left from north
+    ✓ turn left from east
+    ✓ turn left from south
+    ✓ turn left from west
+    ✓ robot coordinates (1 ms)
+    ✓ other robot coordinates
+    ✓ advance when facing north
+    ✓ advance when facing east
+    ✓ advance when facing south
+    ✓ advance when facing west (5 ms)
+    ✓ instructions for turning left
+    ✓ instructions for turning right
+    ✓ instructions for advancing
+    ✓ series of instructions
+    ✓ instruct robot (2 ms)
+    ✓ instruct many robots (2 ms)
 
 Test Suites: 1 passed, 1 total
 Tests:       22 passed, 22 total
 Snapshots:   0 total
-Time:        28.393 s
+Time:        0.308 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 3.04
-	System time (seconds): 2.89
-	Percent of CPU this job got: 9%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:59.59
+	User time (seconds): 0.25
+	System time (seconds): 0.07
+	Percent of CPU this job got: 39%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.83
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 73928
+	Maximum resident set size (kbytes): 83604
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 17623
-	Voluntary context switches: 6058
-	Involuntary context switches: 8425
+	Minor (reclaiming a frame) page faults: 14587
+	Voluntary context switches: 7222
+	Involuntary context switches: 2755
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16
@@ -53,3 +53,4 @@ Ran all test suites.
 	Signals delivered: 0
 	Page size (bytes): 4096
 	Exit status: 0
+xit status: 0

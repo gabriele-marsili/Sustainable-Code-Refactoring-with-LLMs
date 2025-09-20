@@ -1,44 +1,44 @@
-PASS ./run-length-encoding.test.ts (20.601 s)
+PASS ./run-length-encoding.test.ts
   run-length encode a string
-    ✓ empty string (40 ms)
-    ✓ single characters only are encoded without count (1 ms)
-    ✓ string with no single characters (14 ms)
-    ✓ single characters mixed with repeated characters (1 ms)
+    ✓ empty string (2 ms)
+    ✓ single characters only are encoded without count
+    ✓ string with no single characters (1 ms)
+    ✓ single characters mixed with repeated characters
     ✓ multiple whitespace mixed in string (1 ms)
     ✓ lowercase characters
   run-length decode a string
-    ✓ empty string (1 ms)
-    ✓ single characters only (2 ms)
+    ✓ empty string
+    ✓ single characters only
     ✓ string with no single characters (1 ms)
-    ✓ single characters with repeated characters (8 ms)
-    ✓ multiple whitespace mixed in string (4 ms)
-    ✓ lower case string (4 ms)
+    ✓ single characters with repeated characters
+    ✓ multiple whitespace mixed in string
+    ✓ lower case string
   encode and then decode
-    ✓ encode followed by decode gives original string (1 ms)
+    ✓ encode followed by decode gives original string
 
 Test Suites: 1 passed, 1 total
 Tests:       13 passed, 13 total
 Snapshots:   0 total
-Time:        21.93 s
+Time:        1.903 s
 Ran all test suites.
 Test results written to: output.log
 	Command being timed: "npx jest --json --outputFile=output.log"
-	User time (seconds): 9.01
-	System time (seconds): 4.71
-	Percent of CPU this job got: 38%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:35.75
+	User time (seconds): 1.39
+	System time (seconds): 0.07
+	Percent of CPU this job got: 53%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:02.73
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 216992
+	Maximum resident set size (kbytes): 225172
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 63328
-	Voluntary context switches: 1785
-	Involuntary context switches: 7034
+	Minor (reclaiming a frame) page faults: 66283
+	Voluntary context switches: 2648
+	Involuntary context switches: 3481
 	Swaps: 0
-	File system inputs: 0
+	File system inputs: 29688
 	File system outputs: 88
 	Socket messages sent: 0
 	Socket messages received: 0

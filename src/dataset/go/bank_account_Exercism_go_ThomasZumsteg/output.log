@@ -6,8 +6,8 @@
     bank_account_test.go:63: Account 'a' opened with initial balance of 10.
     bank_account_test.go:74: Deposit of 20 accepted to account 'a'
     bank_account_test.go:83: Account 'a' closed.
-    bank_account_test.go:84: &{0 false 0xc000100008}
---- PASS: TestSeqOpenDepositClose (0.01s)
+    bank_account_test.go:84: &{0 false 0x400000e120}
+--- PASS: TestSeqOpenDepositClose (0.00s)
 === RUN   TestMoreSeqCases
     bank_account_test.go:100: Account 'a' opened with initial balance of 10.
     bank_account_test.go:107: Account 'z' opened with initial balance of 0.
@@ -15,29 +15,29 @@
     bank_account_test.go:164: Account 'z' closed.
 --- PASS: TestMoreSeqCases (0.00s)
 === RUN   TestConcClose
---- PASS: TestConcClose (0.51s)
+--- PASS: TestConcClose (0.00s)
 === RUN   TestConcDeposit
---- PASS: TestConcDeposit (0.17s)
+--- PASS: TestConcDeposit (0.01s)
 PASS
-ok  	esercizio	0.742s
+ok  	esercizio	0.014s
 	Command being timed: "go test -v"
-	User time (seconds): 27.56
-	System time (seconds): 54.29
-	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:48.85
+	User time (seconds): 5.34
+	System time (seconds): 0.63
+	Percent of CPU this job got: 75%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:07.95
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 200596
+	Maximum resident set size (kbytes): 217424
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 4
-	Minor (reclaiming a frame) page faults: 715036
-	Voluntary context switches: 37136
-	Involuntary context switches: 49822
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 733076
+	Voluntary context switches: 21680
+	Involuntary context switches: 28319
 	Swaps: 0
-	File system inputs: 0
-	File system outputs: 171872
+	File system inputs: 208
+	File system outputs: 172216
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0

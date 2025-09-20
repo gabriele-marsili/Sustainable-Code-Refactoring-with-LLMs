@@ -1,0 +1,46 @@
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS ./mixed-juices_testSuite.js
+  timeToMixJuice
+    ✓ returns the correct time for 'Pure Strawberry Joy' (1 ms)
+    ✓ returns the correct times for all other standard menu items
+    ✓ returns the same time for all other juices
+  limesToCut
+    ✓ calculates the number of limes needed to reach the target supply
+    ✓ uses up all limes if there are not enough to reach the target
+    ✓ if no new wedges are needed, no limes are cut
+    ✓ works if no limes are available
+  remainingOrders
+    ✓ correctly determines the remaining orders
+    ✓ correctly handles orders that were started because there was time left
+    ✓ counts all orders as fulfilled if there is enough time
+    ✓ works if there is only very little time left
+
+Test Suites: 1 passed, 1 total
+Tests:       11 passed, 11 total
+Snapshots:   0 total
+Time:        0.108 s
+Ran all test suites.
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 0.19
+	System time (seconds): 0.05
+	Percent of CPU this job got: 78%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.32
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 81788
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 14263
+	Voluntary context switches: 6812
+	Involuntary context switches: 51
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

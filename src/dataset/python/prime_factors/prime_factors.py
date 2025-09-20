@@ -32,10 +32,10 @@ def prime_factors(n):
     # now n is odd
     i = 3
     while i * i <= n:
-        while n % i == 0:
-            factors.append(i)
-            n //= i
-
+        if n % i == 0:
+            while n % i == 0:
+                factors.append(i)
+                n //= i
         # increase by 2, no need to check if divisbile by even numbers
         i += 2
 

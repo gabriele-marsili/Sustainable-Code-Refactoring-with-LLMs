@@ -1,28 +1,32 @@
 export default class RotationalCipher {
   static readonly alphabet: string = 'abcdefghijklmnopqrstuvwxyz';
+  static readonly alphabetLength: number = RotationalCipher.alphabet.length;
 
-  static rotate(message: string, key: number) {
-    return message
-      .split('')
-      .map(char => {
-        let isUpperCase;
-        let newCharIndex;
+  static rotate(message: string, key: number): string {
+    if (key === 0) {
+      return message;
+    }
 
-        if (/[A-Z]/.test(char)) {
-          isUpperCase = true;
-          newCharIndex = this.alphabet.indexOf(char.toLowerCase());
-        } else if (/[a-z]/.test(char)) {
-          newCharIndex = this.alphabet.indexOf(char);
-        } else {
-          return char;
-        }
+    const rotatedChars: string[] = [];
 
-        newCharIndex = (newCharIndex + key) % 26;
+    for (let i = 0; i < message.length; i++) {
+      const char = message[i];
+      const charCode = char.charCodeAt(0);
 
-        return isUpperCase
-          ? this.alphabet[newCharIndex].toUpperCase()
-          : this.alphabet[newCharIndex];
-      })
-      .join('');
+      if (charCode >= 65 && charCode <= 90) {
+        // Uppercase letters
+        const rotatedCharCode = ((charCode - 65 + key) % RotationalCipher.alphabetLength) + 65;
+        rotatedChars.push(String.fromCharCode(rotatedCharCode));
+      } else if (charCode >= 97 && charCode <= 122) {
+        // Lowercase letters
+        const rotatedCharCode = ((charCode - 97 + key) % RotationalCipher.alphabetLength) + 97;
+        rotatedChars.push(String.fromCharCode(rotatedCharCode));
+      } else {
+        // Non-alphabetic characters
+        rotatedChars.push(char);
+      }
+    }
+
+    return rotatedChars.join('');
   }
 }

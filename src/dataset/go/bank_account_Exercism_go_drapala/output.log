@@ -6,37 +6,37 @@
     bank_account_test.go:57: Account 'a' opened with initial balance of 10.
     bank_account_test.go:68: Deposit of 20 accepted to account 'a'
     bank_account_test.go:77: Account 'a' closed.
---- PASS: TestSeqOpenDepositClose (0.01s)
+--- PASS: TestSeqOpenDepositClose (0.00s)
 === RUN   TestMoreSeqCases
     bank_account_test.go:93: Account 'a' opened with initial balance of 10.
     bank_account_test.go:100: Account 'z' opened with initial balance of 0.
     bank_account_test.go:131: Withdrawal of 3 accepted from account 'a'
     bank_account_test.go:157: Account 'z' closed.
---- PASS: TestMoreSeqCases (0.01s)
+--- PASS: TestMoreSeqCases (0.00s)
 === RUN   TestConcClose
---- PASS: TestConcClose (0.38s)
+--- PASS: TestConcClose (0.00s)
 === RUN   TestConcDeposit
---- PASS: TestConcDeposit (0.30s)
+--- PASS: TestConcDeposit (0.00s)
 PASS
-ok  	esercizio	0.728s
+ok  	esercizio	0.007s
 	Command being timed: "go test -v"
-	User time (seconds): 25.78
-	System time (seconds): 52.15
-	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:40.77
+	User time (seconds): 4.96
+	System time (seconds): 0.57
+	Percent of CPU this job got: 181%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.05
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 199636
+	Maximum resident set size (kbytes): 201600
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 4
-	Minor (reclaiming a frame) page faults: 718979
-	Voluntary context switches: 34658
-	Involuntary context switches: 46138
+	Major (requiring I/O) page faults: 2
+	Minor (reclaiming a frame) page faults: 730095
+	Voluntary context switches: 18282
+	Involuntary context switches: 12738
 	Swaps: 0
-	File system inputs: 0
-	File system outputs: 171984
+	File system inputs: 18584
+	File system outputs: 172320
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0

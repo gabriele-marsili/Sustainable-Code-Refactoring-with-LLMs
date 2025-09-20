@@ -1,0 +1,109 @@
+(node:22) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL ./beer-song_testSuite.js
+  BeerSong
+    ✕ prints an arbitrary verse (1 ms)
+    ✕ handles 1 bottle
+    ✕ handles 0 bottles
+    ✕ sings several verses
+    ✕ sings the rest of the verses
+
+  ● BeerSong › prints an arbitrary verse
+
+    TypeError: expected is not a function
+
+       6 |   it('prints an arbitrary verse', function() {
+       7 |     var expected = '8 bottles of beer on the wall, 8 bottles of beer.\nTake one down and pass it around, 7 bottles of beer on the wall.\n';
+    >  8 |     expected(song.verse(8)).toEqual(expected);
+         |     ^
+       9 |   });
+      10 |
+      11 |   it('handles 1 bottle', function() {
+
+      at Object.<anonymous> (beer-song_testSuite.js:8:5)
+
+  ● BeerSong › handles 1 bottle
+
+    TypeError: expected is not a function
+
+      11 |   it('handles 1 bottle', function() {
+      12 |     var expected = '1 bottle of beer on the wall, 1 bottle of beer.\nTake it down and pass it around, no more bottles of beer on the wall.\n';
+    > 13 |     expected(song.verse(1)).toEqual(expected);
+         |     ^
+      14 |   });
+      15 |
+      16 |   it('handles 0 bottles', function() {
+
+      at Object.<anonymous> (beer-song_testSuite.js:13:5)
+
+  ● BeerSong › handles 0 bottles
+
+    TypeError: expected is not a function
+
+      16 |   it('handles 0 bottles', function() {
+      17 |     var expected = 'No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n';
+    > 18 |     expected(song.verse(0)).toEqual(expected);
+         |     ^
+      19 |   });
+      20 |
+      21 |   it('sings several verses', function() {
+
+      at Object.<anonymous> (beer-song_testSuite.js:18:5)
+
+  ● BeerSong › sings several verses
+
+    TypeError: expected is not a function
+
+      21 |   it('sings several verses', function() {
+      22 |     var expected = '8 bottles of beer on the wall, 8 bottles of beer.\nTake one down and pass it around, 7 bottles of beer on the wall.\n\n7 bottles of beer on the wall, 7 bottles of beer.\nTake one down and pass it around, 6 bottles of beer on the wall.\n\n6 bottles of beer on the wall, 6 bottles of beer.\nTake one down and pass it around, 5 bottles of beer on the wall.\n';
+    > 23 |     expected(song.sing(8, 6)).toEqual(expected);
+         |     ^
+      24 |   });
+      25 |
+      26 |   it('sings the rest of the verses', function() {
+
+      at Object.<anonymous> (beer-song_testSuite.js:23:5)
+
+  ● BeerSong › sings the rest of the verses
+
+    TypeError: expected is not a function
+
+      26 |   it('sings the rest of the verses', function() {
+      27 |     var expected = '3 bottles of beer on the wall, 3 bottles of beer.\nTake one down and pass it around, 2 bottles of beer on the wall.\n\n2 bottles of beer on the wall, 2 bottles of beer.\nTake one down and pass it around, 1 bottle of beer on the wall.\n\n1 bottle of beer on the wall, 1 bottle of beer.\nTake it down and pass it around, no more bottles of beer on the wall.\n\nNo more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n';
+    > 28 |     expected(song.sing(3)).toEqual(expected);
+         |     ^
+      29 |   });
+      30 | });
+      31 |
+
+      at Object.<anonymous> (beer-song_testSuite.js:28:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       5 failed, 5 total
+Snapshots:   0 total
+Time:        0.272 s
+Ran all test suites.
+Command exited with non-zero status 1
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 0.22
+	System time (seconds): 0.06
+	Percent of CPU this job got: 42%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.68
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 81748
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 14071
+	Voluntary context switches: 7522
+	Involuntary context switches: 1959
+	Swaps: 0
+	File system inputs: 32
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

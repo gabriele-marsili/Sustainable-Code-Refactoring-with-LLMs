@@ -1,0 +1,35 @@
+Error: Cannot parse /app/package.json as JSON: Unexpected end of JSON input
+    at Object.worker (/app/node_modules/jest-haste-map/build/worker.js:128:13)
+    at HasteMap._processFile (/app/node_modules/jest-haste-map/build/index.js:637:8)
+    at HasteMap._buildHasteMap (/app/node_modules/jest-haste-map/build/index.js:684:28)
+    at /app/node_modules/jest-haste-map/build/index.js:379:33
+    at async /app/node_modules/@jest/core/build/cli/index.js:268:9
+    at async Promise.all (index 0)
+    at async buildContextsAndHasteMaps (/app/node_modules/@jest/core/build/cli/index.js:248:20)
+    at async _run10000 (/app/node_modules/@jest/core/build/cli/index.js:327:41)
+    at async runCLI (/app/node_modules/@jest/core/build/cli/index.js:198:3)
+    at async Object.run (/app/node_modules/jest-cli/build/run.js:130:37)
+Command exited with non-zero status 1
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 0.17
+	System time (seconds): 0.05
+	Percent of CPU this job got: 8%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:02.84
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 66472
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 9721
+	Voluntary context switches: 4219
+	Involuntary context switches: 1602
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

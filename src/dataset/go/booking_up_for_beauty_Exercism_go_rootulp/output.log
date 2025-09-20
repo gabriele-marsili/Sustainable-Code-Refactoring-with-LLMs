@@ -1,27 +1,27 @@
 === RUN   TestSchedule
+=== RUN   TestSchedule/Schedule_1
 === RUN   TestSchedule/Schedule_2
 === RUN   TestSchedule/Schedule_3
-=== RUN   TestSchedule/Schedule_1
 --- PASS: TestSchedule (0.00s)
+    --- PASS: TestSchedule/Schedule_1 (0.00s)
     --- PASS: TestSchedule/Schedule_2 (0.00s)
     --- PASS: TestSchedule/Schedule_3 (0.00s)
-    --- PASS: TestSchedule/Schedule_1 (0.00s)
 === RUN   TestHasPassed
+=== RUN   TestHasPassed/HasPassed_1
 === RUN   TestHasPassed/HasPassed_2
 === RUN   TestHasPassed/HasPassed_3
-=== RUN   TestHasPassed/HasPassed_1
---- PASS: TestHasPassed (0.01s)
+--- PASS: TestHasPassed (0.00s)
+    --- PASS: TestHasPassed/HasPassed_1 (0.00s)
     --- PASS: TestHasPassed/HasPassed_2 (0.00s)
     --- PASS: TestHasPassed/HasPassed_3 (0.00s)
-    --- PASS: TestHasPassed/HasPassed_1 (0.00s)
 === RUN   TestIsAfternoonAppointment
-=== RUN   TestIsAfternoonAppointment/IsAfternoonAppointment_1
 === RUN   TestIsAfternoonAppointment/IsAfternoonAppointment_2
 === RUN   TestIsAfternoonAppointment/IsAfternoonAppointment_3
+=== RUN   TestIsAfternoonAppointment/IsAfternoonAppointment_1
 --- PASS: TestIsAfternoonAppointment (0.00s)
-    --- PASS: TestIsAfternoonAppointment/IsAfternoonAppointment_1 (0.00s)
     --- PASS: TestIsAfternoonAppointment/IsAfternoonAppointment_2 (0.00s)
     --- PASS: TestIsAfternoonAppointment/IsAfternoonAppointment_3 (0.00s)
+    --- PASS: TestIsAfternoonAppointment/IsAfternoonAppointment_1 (0.00s)
 === RUN   TestDescription
 === RUN   TestDescription/Description_1
 === RUN   TestDescription/Description_2
@@ -35,25 +35,25 @@
 --- PASS: TestAnniversaryDate (0.00s)
     --- PASS: TestAnniversaryDate/AnniversaryDate_1 (0.00s)
 PASS
-ok  	esercizio	0.043s
+ok  	esercizio	0.004s
 	Command being timed: "go test -v"
-	User time (seconds): 22.79
-	System time (seconds): 47.64
-	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:25.44
+	User time (seconds): 7.49
+	System time (seconds): 0.76
+	Percent of CPU this job got: 65%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:12.53
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 205320
+	Maximum resident set size (kbytes): 214308
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 6
-	Minor (reclaiming a frame) page faults: 721342
-	Voluntary context switches: 33352
-	Involuntary context switches: 43088
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 737737
+	Voluntary context switches: 24658
+	Involuntary context switches: 21919
 	Swaps: 0
-	File system inputs: 0
-	File system outputs: 173080
+	File system inputs: 14200
+	File system outputs: 173424
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0

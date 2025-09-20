@@ -1,82 +1,68 @@
-var CustomSet = function(items) {
-	/* A set object */
-	this.items = [];
-	for(var i = 0; i < (items ? items.length : 0); i++)
-		this.put(items[i]);
-};
+class CustomSet {
+  constructor(items = []) {
+    this.items = new Set(items);
+  }
 
-// Tests if item is in a set
-CustomSet.prototype.member = function(item) { return this.items.indexOf(item) != -1 };
-// Number of elements in the set
-CustomSet.prototype.size = function() { return this.items.length };
-// Makes a list from a set
-CustomSet.prototype.toList = function() { return this.items };
+  member(item) {
+    return this.items.has(item);
+  }
 
-CustomSet.prototype.put = function(item) {
-	/* Insert an item into a set */
-	if(!this.member(item))
-		this.items.push(item);
-	this.items.sort();
-	return this;
-};
+  size() {
+    return this.items.size;
+  }
 
-CustomSet.prototype.eql = function(set_b) {
-	/* Compares two sets for equality */
-	if(this.items.length != set_b.items.length)
-		return false;
-	for(var i = 0; i < this.items.length; i++) {
-		if(this.items[i] !== set_b.items[i])
-			return false;
-	}
-	return true;
-};
+  toList() {
+    return Array.from(this.items);
+  }
 
-CustomSet.prototype.delete = function(item) {
-	/* Removes an item from a set */
-	this.items = this.items.filter(function(element){
-		return element != item;
-	});
-	return this;
-};
+  put(item) {
+    this.items.add(item);
+    return this;
+  }
 
-CustomSet.prototype.difference = function(set_b) {
-	/* Items in one set and not in another */
-	return new CustomSet( this.items.filter(function(item) {
-		return !set_b.member(item);
-	}));
-};
+  eql(set_b) {
+    if (this.size() !== set_b.size()) return false;
+    for (const item of this.items) {
+      if (!set_b.member(item)) return false;
+    }
+    return true;
+  }
 
-CustomSet.prototype.disjoint = function(set_b) {
-	/* Tests if there are no elements in common */
-	if(this.size() == 0 || set_b.size() == 0)
-		return true;
-	return this.toList().every(function(element) {
-		return !set_b.member(element);
-	});
-};
+  delete(item) {
+    this.items.delete(item);
+    return this;
+  }
 
-CustomSet.prototype.empty = function() {
-	/* Remove all items from the set */
-	this.items = [];
-	return this;
-};
+  difference(set_b) {
+    return new CustomSet([...this.items].filter(item => !set_b.member(item)));
+  }
 
-CustomSet.prototype.intersection = function(set_b) {
-	/* Items in both sets */
-	return new CustomSet(this.toList().filter(function(element) {
-		return set_b.member(element);
-	}));
-};
+  disjoint(set_b) {
+    for (const item of this.items) {
+      if (set_b.member(item)) return false;
+    }
+    return true;
+  }
 
+  empty() {
+    this.items.clear();
+    return this;
+  }
 
-CustomSet.prototype.subset = function(set_b) {
-	/* All elements of one set are contained in this set */
-	return set_b.toList().every(function(element) {return this.member(element)}, this);
-};
+  intersection(set_b) {
+    return new CustomSet([...this.items].filter(item => set_b.member(item)));
+  }
 
-CustomSet.prototype.union = function(set_b) {
-	/* Set containing elements from either set */
-	return new CustomSet([].concat(this.toList(), set_b.toList()));
-};
+  subset(set_b) {
+    for (const item of set_b.items) {
+      if (!this.member(item)) return false;
+    }
+    return true;
+  }
 
-export default CustomSet;;
+  union(set_b) {
+    return new CustomSet([...this.items, ...set_b.items]);
+  }
+}
+
+export default CustomSet;

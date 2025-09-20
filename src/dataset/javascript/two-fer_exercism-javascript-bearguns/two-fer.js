@@ -1,7 +1,5 @@
-class TwoFer {
+export default class TwoFer {
   twoFer(name) {
-    return `One for ${name || 'you'}, one for me.`;
+    return name ? `One for ${name}, one for me.` : 'One for you, one for me.';
   }
 }
-
-export default TwoFer;;

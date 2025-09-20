@@ -1,0 +1,46 @@
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS ./rectangles_testSuite.js
+  Rectangles
+    ✓ no rows (2 ms)
+    ✓ no columns
+    ✓ no rectangles
+    ✓ one rectangle
+    ✓ two rectangles without shared parts
+    ✓ five rectangles with shared parts
+    ✓ rectangle of height 1 is counted (1 ms)
+    ✓ rectangle of width 1 is counted
+    ✓ 1x1 square is counted
+    ✓ only complete rectangles are counted
+    ✓ rectangles can be of different sizes (1 ms)
+    ✓ corner is required for a rectangle to be complete
+    ✓ large input with many rectangles
+
+Test Suites: 1 passed, 1 total
+Tests:       13 passed, 13 total
+Snapshots:   0 total
+Time:        0.218 s
+Ran all test suites.
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 0.23
+	System time (seconds): 0.08
+	Percent of CPU this job got: 62%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.50
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 80920
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 13811
+	Voluntary context switches: 7102
+	Involuntary context switches: 959
+	Swaps: 0
+	File system inputs: 192
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

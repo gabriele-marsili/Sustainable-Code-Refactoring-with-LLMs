@@ -1,0 +1,58 @@
+=== RUN   TestUnits
+map[dozen:12 great_gross:1728 gross:144 half_of_a_dozen:6 quarter_of_a_dozen:3 small_gross:120]
+--- PASS: TestUnits (0.00s)
+=== RUN   TestAddItem
+map[dozen:12 great_gross:1728 gross:144 half_of_a_dozen:6 quarter_of_a_dozen:3 small_gross:120]
+=== RUN   TestAddItem/Invalid_measurement_unit
+=== RUN   TestAddItem/Valid_measurement_unit
+--- PASS: TestAddItem (0.00s)
+    --- PASS: TestAddItem/Invalid_measurement_unit (0.00s)
+    --- PASS: TestAddItem/Valid_measurement_unit (0.00s)
+=== RUN   TestRemoveItem
+map[dozen:12 great_gross:1728 gross:144 half_of_a_dozen:6 quarter_of_a_dozen:3 small_gross:120]
+=== RUN   TestRemoveItem/Item_Not_found_in_bill
+=== RUN   TestRemoveItem/Invalid_measurement_unit
+=== RUN   TestRemoveItem/Resulted_qty_less_than_0
+=== RUN   TestRemoveItem/Should_delete_the_item_if_0
+=== RUN   TestRemoveItem/Should_reduce_the_qty
+--- PASS: TestRemoveItem (0.00s)
+    --- PASS: TestRemoveItem/Item_Not_found_in_bill (0.00s)
+    --- PASS: TestRemoveItem/Invalid_measurement_unit (0.00s)
+    --- PASS: TestRemoveItem/Resulted_qty_less_than_0 (0.00s)
+    --- PASS: TestRemoveItem/Should_delete_the_item_if_0 (0.00s)
+    --- PASS: TestRemoveItem/Should_reduce_the_qty (0.00s)
+=== RUN   TestNewBill
+=== RUN   TestNewBill/Should_reset_customerbill
+--- PASS: TestNewBill (0.00s)
+    --- PASS: TestNewBill/Should_reset_customerbill (0.00s)
+=== RUN   TestGetItem
+=== RUN   TestGetItem/Item_Not_found_in_bill
+=== RUN   TestGetItem/Success
+--- PASS: TestGetItem (0.00s)
+    --- PASS: TestGetItem/Item_Not_found_in_bill (0.00s)
+    --- PASS: TestGetItem/Success (0.00s)
+PASS
+ok  	esercizio	0.003s
+	Command being timed: "go test -v"
+	User time (seconds): 5.19
+	System time (seconds): 0.59
+	Percent of CPU this job got: 65%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:08.85
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 222096
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 6
+	Minor (reclaiming a frame) page faults: 728748
+	Voluntary context switches: 22096
+	Involuntary context switches: 18957
+	Swaps: 0
+	File system inputs: 17184
+	File system outputs: 172432
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

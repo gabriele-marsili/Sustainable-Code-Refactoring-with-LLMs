@@ -1,47 +1,47 @@
-PASS ./simple-cipher.test.ts (30.985 s)
+PASS ./simple-cipher.test.ts
   Random key generation
-    ✓ generates keys at random (126 ms)
+    ✓ generates keys at random (1 ms)
   Random key cipher
-    ✓ has a key made of letters (2 ms)
-    ✓ has a key that is at least 100 characters long (38 ms)
-    ✓ can encode (2 ms)
-    ✓ can decode (2 ms)
-    ✓ is reversible (11 ms)
-  Substitution cipher
-    ✓ keeps the submitted key (2 ms)
-    ✓ can encode (2 ms)
+    ✓ has a key made of letters
+    ✓ has a key that is at least 100 characters long
+    ✓ can encode
     ✓ can decode (1 ms)
-    ✓ is reversible (2 ms)
-    ✓ : double shift encode (2 ms)
-    ✓ can wrap on encode (1 ms)
-    ✓ can wrap on decode (9 ms)
-    ✓ can encode messages longer than the key" (1 ms)
+    ✓ is reversible
+  Substitution cipher
+    ✓ keeps the submitted key (1 ms)
+    ✓ can encode
+    ✓ can decode
+    ✓ is reversible
+    ✓ : double shift encode (1 ms)
+    ✓ can wrap on encode
+    ✓ can wrap on decode
+    ✓ can encode messages longer than the key"
     ✓ can decode messages longer than the key (1 ms)
 
 Test Suites: 1 passed, 1 total
 Tests:       15 passed, 15 total
 Snapshots:   0 total
-Time:        34.393 s
+Time:        1.439 s
 Ran all test suites.
 Test results written to: output.log
 	Command being timed: "npx jest --json --outputFile=output.log"
-	User time (seconds): 15.27
-	System time (seconds): 6.87
-	Percent of CPU this job got: 41%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:53.83
+	User time (seconds): 1.41
+	System time (seconds): 0.09
+	Percent of CPU this job got: 73%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:02.05
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 216628
+	Maximum resident set size (kbytes): 225392
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 63319
-	Voluntary context switches: 1837
-	Involuntary context switches: 10222
+	Minor (reclaiming a frame) page faults: 66325
+	Voluntary context switches: 1915
+	Involuntary context switches: 6392
 	Swaps: 0
 	File system inputs: 0
-	File system outputs: 104
+	File system outputs: 88
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0

@@ -1,44 +1,44 @@
-PASS ./bank-account.test.ts (26.508 s)
+PASS ./bank-account.test.ts
   Bank Account
-    ✓ newly opened account has zero balance (43 ms)
-    ✓ can deposit money (5 ms)
-    ✓ can deposit money sequentially (2 ms)
-    ✓ can withdraw money (6 ms)
-    ✓ can withdraw money sequentially (4 ms)
-    ✓ checking balance of closed account throws error (125 ms)
-    ✓ deposit into closed account throws error (9 ms)
-    ✓ withdraw from closed account throws error (10 ms)
-    ✓ close already closed account throws error (16 ms)
-    ✓ open already opened account throws error (16 ms)
-    ✓ reopened account does not retain balance (5 ms)
-    ✓ cannot withdraw more than deposited (6 ms)
-    ✓ cannot withdraw negative amount (1 ms)
-    ✓ cannot deposit negative amount (5 ms)
-    ✓ changing balance directly throws error (13 ms)
+    ✓ newly opened account has zero balance (1 ms)
+    ✓ can deposit money
+    ✓ can deposit money sequentially
+    ✓ can withdraw money
+    ✓ can withdraw money sequentially (1 ms)
+    ✓ checking balance of closed account throws error (17 ms)
+    ✓ deposit into closed account throws error (1 ms)
+    ✓ withdraw from closed account throws error
+    ✓ close already closed account throws error (3 ms)
+    ✓ open already opened account throws error
+    ✓ reopened account does not retain balance (1 ms)
+    ✓ cannot withdraw more than deposited
+    ✓ cannot withdraw negative amount
+    ✓ cannot deposit negative amount
+    ✓ changing balance directly throws error
 
 Test Suites: 1 passed, 1 total
 Tests:       15 passed, 15 total
 Snapshots:   0 total
-Time:        28.461 s
+Time:        2.341 s
 Ran all test suites.
 Test results written to: output.log
 	Command being timed: "npx jest --json --outputFile=output.log"
-	User time (seconds): 10.99
-	System time (seconds): 4.65
-	Percent of CPU this job got: 44%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:35.45
+	User time (seconds): 1.47
+	System time (seconds): 0.11
+	Percent of CPU this job got: 47%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.31
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 217872
+	Maximum resident set size (kbytes): 224732
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 65018
-	Voluntary context switches: 1819
-	Involuntary context switches: 7836
+	Minor (reclaiming a frame) page faults: 66378
+	Voluntary context switches: 3261
+	Involuntary context switches: 5969
 	Swaps: 0
-	File system inputs: 0
+	File system inputs: 42288
 	File system outputs: 120
 	Socket messages sent: 0
 	Socket messages received: 0

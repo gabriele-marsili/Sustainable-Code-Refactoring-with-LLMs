@@ -13,44 +13,40 @@ export class SimpleCipher {
   }
 
   private buildKey() {
-    let aux = 0;
-    let key = '';
-    while(aux < 100) {
-      let idx = Math.floor(Math.random() * alphabet.length);
-      key += alphabet[idx];
-      aux++;
+    const chars = new Array(100);
+    for (let i = 0; i < 100; i++) {
+      chars[i] = alphabet[Math.floor(Math.random() * 26)];
     }
-    return key;
+    return chars.join('');
   }
 
-  private extendKey(text: string): void {
-    if(text.length > this._key.length) {
-      let timesRepeat = Math.ceil(text.length / this._key.length);
-      this._key = this._key.repeat(timesRepeat);
-    }
+  private getKeyChar(index: number): number {
+    return this._key.charCodeAt(index % this._key.length) - 97;
   }
   
   encode(text: string) {
-    this.extendKey(text); // if needed
-      
-    return [...text].map((t,idx) => {
-      let keyIdxDisplacment = this._key.charCodeAt(idx) - 97; //'a' in ASCII
-      let encodedLetter = t.charCodeAt(0) + keyIdxDisplacment;
-      if(encodedLetter > 122) //'z' in ASCII
-        encodedLetter -= alphabet.length;
-      return String.fromCharCode(encodedLetter);
-    }).join('');
+    let result = '';
+    for (let i = 0; i < text.length; i++) {
+      const keyDisplacement = this.getKeyChar(i);
+      let encodedChar = text.charCodeAt(i) + keyDisplacement;
+      if (encodedChar > 122) {
+        encodedChar -= 26;
+      }
+      result += String.fromCharCode(encodedChar);
+    }
+    return result;
   }
 
   decode(text: string) {
-    this.extendKey(text); // if needed
-    
-    return [...text].map((t,idx) => {
-      let keyIdxDisplaced = this._key.charCodeAt(idx) - 97; //'a' in ASCII
-      let decodedLetter = t.charCodeAt(0) - keyIdxDisplaced;
-      if(decodedLetter < 97) //'a' in ASCII
-        decodedLetter += alphabet.length;
-      return String.fromCharCode(decodedLetter);
-    }).join('');
+    let result = '';
+    for (let i = 0; i < text.length; i++) {
+      const keyDisplacement = this.getKeyChar(i);
+      let decodedChar = text.charCodeAt(i) - keyDisplacement;
+      if (decodedChar < 97) {
+        decodedChar += 26;
+      }
+      result += String.fromCharCode(decodedChar);
+    }
+    return result;
   }
 }

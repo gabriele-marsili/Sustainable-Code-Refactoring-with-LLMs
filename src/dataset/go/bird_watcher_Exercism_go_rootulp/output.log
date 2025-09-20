@@ -2,7 +2,7 @@
 === RUN   TestTotalBirdCount/calculates_the_correct_total_number_of_birds
 === RUN   TestTotalBirdCount/works_for_a_short_bird_count_list
 === RUN   TestTotalBirdCount/works_for_a_long_bird_count_list
---- PASS: TestTotalBirdCount (0.01s)
+--- PASS: TestTotalBirdCount (0.00s)
     --- PASS: TestTotalBirdCount/calculates_the_correct_total_number_of_birds (0.00s)
     --- PASS: TestTotalBirdCount/works_for_a_short_bird_count_list (0.00s)
     --- PASS: TestTotalBirdCount/works_for_a_long_bird_count_list (0.00s)
@@ -10,7 +10,7 @@
 === RUN   TestBirdsInWeek/calculates_the_number_of_birds_in_the_first_week
 === RUN   TestBirdsInWeek/calculates_the_number_of_birds_for_a_week_in_the_middle_of_the_log
 === RUN   TestBirdsInWeek/works_when_there_is_only_one_week
---- PASS: TestBirdsInWeek (0.01s)
+--- PASS: TestBirdsInWeek (0.00s)
     --- PASS: TestBirdsInWeek/calculates_the_number_of_birds_in_the_first_week (0.00s)
     --- PASS: TestBirdsInWeek/calculates_the_number_of_birds_for_a_week_in_the_middle_of_the_log (0.00s)
     --- PASS: TestBirdsInWeek/works_when_there_is_only_one_week (0.00s)
@@ -18,32 +18,32 @@
 === RUN   TestFixBirdCount/returns_a_bird_count_list_with_the_corrected_values
 === RUN   TestFixBirdCount/works_for_a_short_bird_count_list
 === RUN   TestFixBirdCount/works_for_a_long_bird_count_list
---- PASS: TestFixBirdCount (0.02s)
+--- PASS: TestFixBirdCount (0.00s)
     --- PASS: TestFixBirdCount/returns_a_bird_count_list_with_the_corrected_values (0.00s)
     --- PASS: TestFixBirdCount/works_for_a_short_bird_count_list (0.00s)
     --- PASS: TestFixBirdCount/works_for_a_long_bird_count_list (0.00s)
 === RUN   TestFixBirdCountDoesNotCreateNewSlice
 --- PASS: TestFixBirdCountDoesNotCreateNewSlice (0.00s)
 PASS
-ok  	esercizio	0.189s
+ok  	esercizio	0.004s
 	Command being timed: "go test -v"
-	User time (seconds): 21.93
-	System time (seconds): 46.15
-	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:21.08
+	User time (seconds): 5.23
+	System time (seconds): 0.60
+	Percent of CPU this job got: 63%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:09.18
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 200036
+	Maximum resident set size (kbytes): 223316
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 6
-	Minor (reclaiming a frame) page faults: 713630
-	Voluntary context switches: 32675
-	Involuntary context switches: 42134
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 729032
+	Voluntary context switches: 22136
+	Involuntary context switches: 23184
 	Swaps: 0
-	File system inputs: 0
-	File system outputs: 171792
+	File system inputs: 2400
+	File system outputs: 172160
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0

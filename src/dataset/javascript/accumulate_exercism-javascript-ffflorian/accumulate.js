@@ -6,10 +6,10 @@
  * @returns {string[]}
  */
 export const accumulate = (array, accumulator) => {
-  const result = [];
-  for (let index = 0; index < array.length; index++) {
-    const processedValue = accumulator(array[index]);
-    result.push(processedValue);
+  const length = array.length;
+  const result = new Array(length);
+  for (let index = 0; index < length; index++) {
+    result[index] = accumulator(array[index]);
   }
   return result;
 };

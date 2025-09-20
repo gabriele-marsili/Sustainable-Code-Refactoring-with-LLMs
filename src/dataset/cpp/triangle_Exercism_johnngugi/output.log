@@ -1,28 +1,28 @@
 Running 14 test cases...
-test/triangle_test.cpp(38): [4;31;49mfatal error: in "scalene_triangles_have_no_equal_sides": critical check triangle::scalene == triangle::kind(3, 4, 5) has failed [0 != 31961][0;39;49m
-test/triangle_test.cpp(43): [4;31;49mfatal error: in "scalene_triangles_have_no_equal_sides_at_a_larger_scale_too": critical check triangle::scalene == triangle::kind(10, 11, 12) has failed [0 != 31961][0;39;49m
-test/triangle_test.cpp(48): [4;31;49mfatal error: in "scalene_triangles_have_no_equal_sides_in_descending_order_either": critical check triangle::scalene == triangle::kind(5, 4, 2) has failed [0 != 31961][0;39;49m
-test/triangle_test.cpp(53): [4;31;49mfatal error: in "very_small_triangles_are_legal": critical check triangle::scalene == triangle::kind(0.4, 0.6, 0.3) has failed [0 != 31961][0;39;49m
+test/triangle_test.cpp(38): [4;31;49mfatal error: in "scalene_triangles_have_no_equal_sides": critical check triangle::scalene == triangle::kind(3, 4, 5) has failed [0 != 65535][0;39;49m
+test/triangle_test.cpp(43): [4;31;49mfatal error: in "scalene_triangles_have_no_equal_sides_at_a_larger_scale_too": critical check triangle::scalene == triangle::kind(10, 11, 12) has failed [0 != 65535][0;39;49m
+test/triangle_test.cpp(48): [4;31;49mfatal error: in "scalene_triangles_have_no_equal_sides_in_descending_order_either": critical check triangle::scalene == triangle::kind(5, 4, 2) has failed [0 != 65535][0;39;49m
+test/triangle_test.cpp(53): [4;31;49mfatal error: in "very_small_triangles_are_legal": critical check triangle::scalene == triangle::kind(0.4, 0.6, 0.3) has failed [0 != 65535][0;39;49m
 
 [1;31;49m*** 4 failures are detected in the test module "Master Test Suite"
 [0;39;49mCommand exited with non-zero status 201
 	Command being timed: "./test_exec"
 	User time (seconds): 0.00
-	System time (seconds): 0.01
-	Percent of CPU this job got: 15%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.15
+	System time (seconds): 0.00
+	Percent of CPU this job got: 33%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.00
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 4864
+	Maximum resident set size (kbytes): 4224
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 1
-	Minor (reclaiming a frame) page faults: 232
-	Voluntary context switches: 8
-	Involuntary context switches: 34
+	Major (requiring I/O) page faults: 13
+	Minor (reclaiming a frame) page faults: 222
+	Voluntary context switches: 60
+	Involuntary context switches: 33
 	Swaps: 0
-	File system inputs: 0
+	File system inputs: 3424
 	File system outputs: 0
 	Socket messages sent: 0
 	Socket messages received: 0

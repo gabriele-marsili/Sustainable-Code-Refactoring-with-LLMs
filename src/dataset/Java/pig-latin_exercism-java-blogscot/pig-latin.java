@@ -1,22 +1,32 @@
-import java.util.Arrays;
-import java.util.stream.Collectors;
+import java.util.StringJoiner;
 
 class PigLatinTranslator {
 
   String translate(String phrase) {
-    return Arrays
-        .stream(phrase.split(" "))
-        .map(this::translateWord)
-        .collect(Collectors.joining(" "));
+    String[] words = phrase.split(" ");
+    StringJoiner result = new StringJoiner(" ");
+    for (String word : words) {
+      result.add(translateWord(word));
+    }
+    return result.toString();
   }
 
   private String translateWord(String word) {
-
-    if (word.matches("(yt|xr|[aeiou]|[aeiou]qu).*")) return word + "ay";
-    else if (word.matches("(thr|sch|[^aeiou]qu).*")) return word.substring(3) + word.substring(0, 3) + "ay";
-    else if (word.matches("(ch|qu|th|rh).*")) return word.substring(2) + word.substring(0, 2) + "ay";
-
-    return word.substring(1) + word.charAt(0) + "ay";
+    char firstChar = word.charAt(0);
+    if (startsWith(word, "yt", "xr") || isVowel(firstChar)) return word + "ay";
+    if (startsWith(word, "thr", "sch") || word.startsWith("qu") && !isVowel(firstChar)) return word.substring(3) + word.substring(0, 3) + "ay";
+    if (startsWith(word, "ch", "qu", "th", "rh")) return word.substring(2) + word.substring(0, 2) + "ay";
+    return word.substring(1) + firstChar + "ay";
   }
 
+  private boolean startsWith(String word, String... prefixes) {
+    for (String prefix : prefixes) {
+      if (word.startsWith(prefix)) return true;
+    }
+    return false;
+  }
+
+  private boolean isVowel(char c) {
+    return "aeiou".indexOf(c) != -1;
+  }
 }

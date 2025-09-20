@@ -1,13 +1,13 @@
 === RUN   TestWelcome
 === RUN   TestWelcome/Greet_Chihiro_with_a_welcoming_message
 === RUN   TestWelcome/Greet_Xuân_Jing_with_a_welcoming_message
---- PASS: TestWelcome (0.01s)
+--- PASS: TestWelcome (0.00s)
     --- PASS: TestWelcome/Greet_Chihiro_with_a_welcoming_message (0.00s)
     --- PASS: TestWelcome/Greet_Xuân_Jing_with_a_welcoming_message (0.00s)
 === RUN   TestHappyBirthday
 === RUN   TestHappyBirthday/Wish_Chihiro_Happy_Birthday_with_name_and_age
 === RUN   TestHappyBirthday/Wish_Xuân_Jing_Happy_Birthday_with_name_and_age
---- PASS: TestHappyBirthday (0.01s)
+--- PASS: TestHappyBirthday (0.00s)
     --- PASS: TestHappyBirthday/Wish_Chihiro_Happy_Birthday_with_name_and_age (0.00s)
     --- PASS: TestHappyBirthday/Wish_Xuân_Jing_Happy_Birthday_with_name_and_age (0.00s)
 === RUN   TestAssignTable
@@ -37,31 +37,31 @@ You will be sitting next to Eike.
         Welcome to my party, Xuân Jing!
         You have been assigned to table 004. Your table is on the right, exactly 23.5 meters from here.
         You will be sitting next to Eike.
---- FAIL: TestAssignTable (0.02s)
+--- FAIL: TestAssignTable (0.00s)
     --- FAIL: TestAssignTable/Greet_Chihiro_and_give_them_directions_to_their_seat (0.00s)
-    --- FAIL: TestAssignTable/Greet_Xuân_Jing_and_give_them_directions_to_their_seat (0.01s)
+    --- FAIL: TestAssignTable/Greet_Xuân_Jing_and_give_them_directions_to_their_seat (0.00s)
 FAIL
 exit status 1
-FAIL	esercizio	0.084s
+FAIL	esercizio	0.003s
 Command exited with non-zero status 1
 	Command being timed: "go test -v"
-	User time (seconds): 25.50
-	System time (seconds): 50.93
-	Percent of CPU this job got: 47%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:40.18
+	User time (seconds): 5.20
+	System time (seconds): 0.56
+	Percent of CPU this job got: 64%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:08.88
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 199668
+	Maximum resident set size (kbytes): 215276
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 5
-	Minor (reclaiming a frame) page faults: 710717
-	Voluntary context switches: 34877
-	Involuntary context switches: 46201
+	Major (requiring I/O) page faults: 3
+	Minor (reclaiming a frame) page faults: 729276
+	Voluntary context switches: 22037
+	Involuntary context switches: 19346
 	Swaps: 0
-	File system inputs: 0
-	File system outputs: 171840
+	File system inputs: 13592
+	File system outputs: 172216
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0

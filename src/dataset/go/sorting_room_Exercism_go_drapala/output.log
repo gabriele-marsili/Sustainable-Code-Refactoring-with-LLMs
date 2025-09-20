@@ -3,7 +3,7 @@
 === RUN   TestDescribeNumber/Describe_-3.2
 === RUN   TestDescribeNumber/Pads_to_single_decimal_place
 === RUN   TestDescribeNumber/Truncates_to_single_decimal_place
---- PASS: TestDescribeNumber (0.01s)
+--- PASS: TestDescribeNumber (0.00s)
     --- PASS: TestDescribeNumber/Describe_4.1 (0.00s)
     --- PASS: TestDescribeNumber/Describe_-3.2 (0.00s)
     --- PASS: TestDescribeNumber/Pads_to_single_decimal_place (0.00s)
@@ -11,14 +11,14 @@
 === RUN   TestDescribeNumberBox
 === RUN   TestDescribeNumberBox/Describe_NumberBox_with_4
 === RUN   TestDescribeNumberBox/Describe_NumberBox_with_-3
---- PASS: TestDescribeNumberBox (0.01s)
+--- PASS: TestDescribeNumberBox (0.00s)
     --- PASS: TestDescribeNumberBox/Describe_NumberBox_with_4 (0.00s)
     --- PASS: TestDescribeNumberBox/Describe_NumberBox_with_-3 (0.00s)
 === RUN   TestExtractFancyNumber
 === RUN   TestExtractFancyNumber/Extract_fancy_number_11
 === RUN   TestExtractFancyNumber/Extract_fancy_number_0
 === RUN   TestExtractFancyNumber/Extract_a_different_fancy_number_returns_0
---- PASS: TestExtractFancyNumber (0.01s)
+--- PASS: TestExtractFancyNumber (0.00s)
     --- PASS: TestExtractFancyNumber/Extract_fancy_number_11 (0.00s)
     --- PASS: TestExtractFancyNumber/Extract_fancy_number_0 (0.00s)
     --- PASS: TestExtractFancyNumber/Extract_a_different_fancy_number_returns_0 (0.00s)
@@ -26,7 +26,7 @@
 === RUN   TestDescribeFancyNumberBox/Describe_fancy_number_11
 === RUN   TestDescribeFancyNumberBox/Describe_fancy_number_0
 === RUN   TestDescribeFancyNumberBox/Describe_a_different_fancy_number
---- PASS: TestDescribeFancyNumberBox (0.01s)
+--- PASS: TestDescribeFancyNumberBox (0.00s)
     --- PASS: TestDescribeFancyNumberBox/Describe_fancy_number_11 (0.00s)
     --- PASS: TestDescribeFancyNumberBox/Describe_fancy_number_0 (0.00s)
     --- PASS: TestDescribeFancyNumberBox/Describe_a_different_fancy_number (0.00s)
@@ -36,32 +36,32 @@
 === RUN   TestDescribeAnything/Describe_FancyNumber_with_16
 === RUN   TestDescribeAnything/Describe_a_different_FancyNumberBox
 === RUN   TestDescribeAnything/Something_unknown_is_labelled_return_to_sender
---- PASS: TestDescribeAnything (0.02s)
+--- PASS: TestDescribeAnything (0.00s)
     --- PASS: TestDescribeAnything/Describe_7.2 (0.00s)
     --- PASS: TestDescribeAnything/Describe_NumberBox_with_16 (0.00s)
     --- PASS: TestDescribeAnything/Describe_FancyNumber_with_16 (0.00s)
     --- PASS: TestDescribeAnything/Describe_a_different_FancyNumberBox (0.00s)
     --- PASS: TestDescribeAnything/Something_unknown_is_labelled_return_to_sender (0.00s)
 PASS
-ok  	esercizio	0.092s
+ok  	esercizio	0.006s
 	Command being timed: "go test -v"
-	User time (seconds): 25.12
-	System time (seconds): 50.73
-	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:35.87
+	User time (seconds): 5.21
+	System time (seconds): 0.60
+	Percent of CPU this job got: 63%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:09.24
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 202064
+	Maximum resident set size (kbytes): 222860
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 5
-	Minor (reclaiming a frame) page faults: 711883
-	Voluntary context switches: 34869
-	Involuntary context switches: 46074
+	Major (requiring I/O) page faults: 7
+	Minor (reclaiming a frame) page faults: 739028
+	Voluntary context switches: 23930
+	Involuntary context switches: 22902
 	Swaps: 0
-	File system inputs: 0
-	File system outputs: 172008
+	File system inputs: 15792
+	File system outputs: 172400
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0

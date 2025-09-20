@@ -1,0 +1,94 @@
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL ./acronym_testSuite.js
+  Acronyms are produced from
+    ✓ title cased phrases (4 ms)
+    ✓ other title cased phrases
+    ✓ phrases with punctuation
+    ✕ phrases with all uppercase words (2 ms)
+    ✓ phrases with punctuation without whitespace
+    ✓ long phrases
+    ✕ phrases with consecutive delimiters (1 ms)
+    ✓ phrases with apostrophes
+    ✕ phrases with underscore emphasis
+
+  ● Acronyms are produced from › phrases with all uppercase words
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "GIMP"
+    Received: "GNUIMP"
+
+      19 |   // all caps word
+      20 |   test('phrases with all uppercase words', () => {
+    > 21 |     expect(parse('GNU Image Manipulation Program')).toEqual('GIMP');
+         |                                                     ^
+      22 |   });
+      23 |
+      24 |   // punctuation without whitespace
+
+      at Object.<anonymous> (acronym_testSuite.js:21:53)
+
+  ● Acronyms are produced from › phrases with consecutive delimiters
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "SIMUFTA"
+    Received: "S- IMUFTA"
+
+      38 |   // consecutive delimiters
+      39 |   test('phrases with consecutive delimiters', () => {
+    > 40 |     expect(parse('Something - I made up from thin air')).toEqual('SIMUFTA');
+         |                                                          ^
+      41 |   });
+      42 |
+      43 |   // apostrophes
+
+      at Object.<anonymous> (acronym_testSuite.js:40:58)
+
+  ● Acronyms are produced from › phrases with underscore emphasis
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "TRNT"
+    Received: "TR_N T"
+
+      48 |   // underscore emphasis
+      49 |   test('phrases with underscore emphasis', () => {
+    > 50 |     expect(parse('The Road _Not_ Taken')).toEqual('TRNT');
+         |                                           ^
+      51 |   });
+      52 | });
+      53 |
+
+      at Object.<anonymous> (acronym_testSuite.js:50:43)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 6 passed, 9 total
+Snapshots:   0 total
+Time:        0.255 s
+Ran all test suites.
+Command exited with non-zero status 1
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 0.25
+	System time (seconds): 0.05
+	Percent of CPU this job got: 42%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.73
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 82180
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 13995
+	Voluntary context switches: 7411
+	Involuntary context switches: 3476
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

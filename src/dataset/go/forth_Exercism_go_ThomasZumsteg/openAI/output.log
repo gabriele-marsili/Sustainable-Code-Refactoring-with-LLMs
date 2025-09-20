@@ -1,0 +1,71 @@
+=== RUN   TestForth
+    forth_test.go:28: PASS: parsing and numbers | numbers just get pushed onto the stack
+    forth_test.go:28: PASS: addition | can add two numbers
+    forth_test.go:28: PASS: addition | errors if there is nothing on the stack
+    forth_test.go:28: PASS: addition | errors if there is only one value on the stack
+    forth_test.go:28: PASS: subtraction | can subtract two numbers
+    forth_test.go:28: PASS: subtraction | errors if there is nothing on the stack
+    forth_test.go:28: PASS: subtraction | errors if there is only one value on the stack
+    forth_test.go:28: PASS: multiplication | can multiply two numbers
+    forth_test.go:28: PASS: multiplication | errors if there is nothing on the stack
+    forth_test.go:28: PASS: multiplication | errors if there is only one value on the stack
+    forth_test.go:28: PASS: division | can divide two numbers
+    forth_test.go:28: PASS: division | performs integer division
+    forth_test.go:28: PASS: division | errors if dividing by zero
+    forth_test.go:28: PASS: division | errors if there is nothing on the stack
+    forth_test.go:28: PASS: division | errors if there is only one value on the stack
+    forth_test.go:28: PASS: combined arithmetic | addition and subtraction
+    forth_test.go:28: PASS: combined arithmetic | multiplication and division
+    forth_test.go:28: PASS: dup | copies a value on the stack
+    forth_test.go:28: PASS: dup | copies the top value on the stack
+    forth_test.go:28: PASS: dup | errors if there is nothing on the stack
+    forth_test.go:28: PASS: drop | removes the top value on the stack if it is the only one
+    forth_test.go:28: PASS: drop | removes the top value on the stack if it is not the only one
+    forth_test.go:28: PASS: drop | errors if there is nothing on the stack
+    forth_test.go:28: PASS: swap | swaps the top two values on the stack if they are the only ones
+    forth_test.go:28: PASS: swap | swaps the top two values on the stack if they are not the only ones
+    forth_test.go:28: PASS: swap | errors if there is nothing on the stack
+    forth_test.go:28: PASS: swap | errors if there is only one value on the stack
+    forth_test.go:28: PASS: over | copies the second element if there are only two
+    forth_test.go:28: PASS: over | copies the second element if there are more than two
+    forth_test.go:28: PASS: over | errors if there is nothing on the stack
+    forth_test.go:28: PASS: over | errors if there is only one value on the stack
+    forth_test.go:28: PASS: user-defined words | can consist of built-in words
+    forth_test.go:28: PASS: user-defined words | execute in the right order
+    forth_test.go:28: PASS: user-defined words | can override other user-defined words
+    forth_test.go:28: PASS: user-defined words | can override built-in words
+    forth_test.go:28: PASS: user-defined words | can override built-in operators
+    forth_test.go:28: PASS: user-defined words | cannot redefine numbers
+    forth_test.go:28: PASS: user-defined words | errors if executing a non-existent word
+    forth_test.go:28: PASS: case-insensitivity | DUP is case-insensitive
+    forth_test.go:28: PASS: case-insensitivity | DROP is case-insensitive
+    forth_test.go:28: PASS: case-insensitivity | SWAP is case-insensitive
+    forth_test.go:28: PASS: case-insensitivity | OVER is case-insensitive
+    forth_test.go:28: PASS: case-insensitivity | user-defined words are case-insensitive
+    forth_test.go:28: PASS: case-insensitivity | definitions are case-insensitive
+--- PASS: TestForth (0.00s)
+PASS
+ok  	esercizio	0.004s
+	Command being timed: "go test -v"
+	User time (seconds): 5.41
+	System time (seconds): 0.69
+	Percent of CPU this job got: 62%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:09.85
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 222576
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 4
+	Minor (reclaiming a frame) page faults: 728593
+	Voluntary context switches: 23725
+	Involuntary context switches: 44455
+	Swaps: 0
+	File system inputs: 18200
+	File system outputs: 172256
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

@@ -1,0 +1,61 @@
+=== RUN   TestCanQueenAttackValid
+=== RUN   TestCanQueenAttackValid/no_attack,_white_queen:_b3,_black_queen:_d7
+=== RUN   TestCanQueenAttackValid/no_attack,_white_queen:_a1,_black_queen:_f8
+=== RUN   TestCanQueenAttackValid/same_file,_white_queen:_b4,_black_queen:_b7
+=== RUN   TestCanQueenAttackValid/same_rank,_white_queen:_e4,_black_queen:_b4
+=== RUN   TestCanQueenAttackValid/common_diagonals,_white_queen:_a1,_black_queen:_f6
+=== RUN   TestCanQueenAttackValid/common_diagonals,_white_queen:_a6,_black_queen:_b7
+=== RUN   TestCanQueenAttackValid/common_diagonals,_white_queen:_d1,_black_queen:_f3
+=== RUN   TestCanQueenAttackValid/common_diagonals,_white_queen:_f1,_black_queen:_a6
+=== RUN   TestCanQueenAttackValid/common_diagonals,_white_queen:_a1,_black_queen:_h8
+=== RUN   TestCanQueenAttackValid/common_diagonals,_white_queen:_a8,_black_queen:_h1
+--- PASS: TestCanQueenAttackValid (0.00s)
+    --- PASS: TestCanQueenAttackValid/no_attack,_white_queen:_b3,_black_queen:_d7 (0.00s)
+    --- PASS: TestCanQueenAttackValid/no_attack,_white_queen:_a1,_black_queen:_f8 (0.00s)
+    --- PASS: TestCanQueenAttackValid/same_file,_white_queen:_b4,_black_queen:_b7 (0.00s)
+    --- PASS: TestCanQueenAttackValid/same_rank,_white_queen:_e4,_black_queen:_b4 (0.00s)
+    --- PASS: TestCanQueenAttackValid/common_diagonals,_white_queen:_a1,_black_queen:_f6 (0.00s)
+    --- PASS: TestCanQueenAttackValid/common_diagonals,_white_queen:_a6,_black_queen:_b7 (0.00s)
+    --- PASS: TestCanQueenAttackValid/common_diagonals,_white_queen:_d1,_black_queen:_f3 (0.00s)
+    --- PASS: TestCanQueenAttackValid/common_diagonals,_white_queen:_f1,_black_queen:_a6 (0.00s)
+    --- PASS: TestCanQueenAttackValid/common_diagonals,_white_queen:_a1,_black_queen:_h8 (0.00s)
+    --- PASS: TestCanQueenAttackValid/common_diagonals,_white_queen:_a8,_black_queen:_h1 (0.00s)
+=== RUN   TestCanQueenAttackInvalid
+=== RUN   TestCanQueenAttackInvalid/same_square,_white_queen:_b4,_black_queen:_b4
+=== RUN   TestCanQueenAttackInvalid/position_off_board,_white_queen:_a8,_black_queen:_b9
+=== RUN   TestCanQueenAttackInvalid/position_off_board,_white_queen:_a0,_black_queen:_b1
+=== RUN   TestCanQueenAttackInvalid/position_off_board,_white_queen:_g3,_black_queen:_i5
+=== RUN   TestCanQueenAttackInvalid/invalid_position,_white_queen:_here,_black_queen:_there
+=== RUN   TestCanQueenAttackInvalid/empty_position,_white_queen:_,_black_queen:_
+--- PASS: TestCanQueenAttackInvalid (0.00s)
+    --- PASS: TestCanQueenAttackInvalid/same_square,_white_queen:_b4,_black_queen:_b4 (0.00s)
+    --- PASS: TestCanQueenAttackInvalid/position_off_board,_white_queen:_a8,_black_queen:_b9 (0.00s)
+    --- PASS: TestCanQueenAttackInvalid/position_off_board,_white_queen:_a0,_black_queen:_b1 (0.00s)
+    --- PASS: TestCanQueenAttackInvalid/position_off_board,_white_queen:_g3,_black_queen:_i5 (0.00s)
+    --- PASS: TestCanQueenAttackInvalid/invalid_position,_white_queen:_here,_black_queen:_there (0.00s)
+    --- PASS: TestCanQueenAttackInvalid/empty_position,_white_queen:_,_black_queen:_ (0.00s)
+PASS
+ok  	esercizio	0.003s
+	Command being timed: "go test -v"
+	User time (seconds): 5.34
+	System time (seconds): 0.60
+	Percent of CPU this job got: 62%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:09.45
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 226548
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 23
+	Minor (reclaiming a frame) page faults: 735844
+	Voluntary context switches: 23812
+	Involuntary context switches: 21958
+	Swaps: 0
+	File system inputs: 30472
+	File system outputs: 172184
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

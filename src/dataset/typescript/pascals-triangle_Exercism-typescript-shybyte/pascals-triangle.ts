@@ -2,13 +2,26 @@ export default class Triangle {
     readonly rows: number[][]
 
     constructor(size: number) {
-        const rows = [[1]]
-        for (let l = 2; l <= size; l++) {
-            const lastRow = rows[rows.length - 1]
-            rows.push(Array.from({length: l},
-                (_, i) => (lastRow[i - 1] || 0) + (lastRow[i] || 0)
-            ))
+        if (size <= 0) {
+            this.rows = []
+            return
         }
+
+        const rows: number[][] = new Array(size)
+        rows[0] = [1]
+
+        for (let l = 1; l < size; l++) {
+            const prevRow = rows[l - 1]
+            const currentRow = new Array(l + 1)
+            currentRow[0] = 1
+            currentRow[l] = 1
+            
+            for (let i = 1; i < l; i++) {
+                currentRow[i] = prevRow[i - 1] + prevRow[i]
+            }
+            rows[l] = currentRow
+        }
+        
         this.rows = rows
     }
 

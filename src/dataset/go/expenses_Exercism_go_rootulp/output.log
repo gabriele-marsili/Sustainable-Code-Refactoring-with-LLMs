@@ -7,14 +7,14 @@
 === RUN   TestFilterByCategory
 === RUN   TestFilterByCategory/returns_expenses_in_groceries_category
 === RUN   TestFilterByCategory/returns_empty_list_for_unknown_category
---- PASS: TestFilterByCategory (0.01s)
+--- PASS: TestFilterByCategory (0.00s)
     --- PASS: TestFilterByCategory/returns_expenses_in_groceries_category (0.00s)
     --- PASS: TestFilterByCategory/returns_empty_list_for_unknown_category (0.00s)
 === RUN   TestTotalByPeriod
 === RUN   TestTotalByPeriod/total_expenses_is_0_when_no_records_found_in_the_provided_days_period
 === RUN   TestTotalByPeriod/total_expenses_for_days_period_from_25th_to_26th_day
 === RUN   TestTotalByPeriod/total_expenses_for_the_full_days_period
---- PASS: TestTotalByPeriod (0.01s)
+--- PASS: TestTotalByPeriod (0.00s)
     --- PASS: TestTotalByPeriod/total_expenses_is_0_when_no_records_found_in_the_provided_days_period (0.00s)
     --- PASS: TestTotalByPeriod/total_expenses_for_days_period_from_25th_to_26th_day (0.00s)
     --- PASS: TestTotalByPeriod/total_expenses_for_the_full_days_period (0.00s)
@@ -22,30 +22,30 @@
 === RUN   TestCategoryExpenses/returns_error_when_no_records_with_category_found_in_any_days_period
 === RUN   TestCategoryExpenses/returns_total_category_expenses_in_the_provided_days_period
 === RUN   TestCategoryExpenses/returns_0_when_no_category_expenses_found_in_the_provided_days_period
---- PASS: TestCategoryExpenses (0.01s)
+--- PASS: TestCategoryExpenses (0.00s)
     --- PASS: TestCategoryExpenses/returns_error_when_no_records_with_category_found_in_any_days_period (0.00s)
     --- PASS: TestCategoryExpenses/returns_total_category_expenses_in_the_provided_days_period (0.00s)
     --- PASS: TestCategoryExpenses/returns_0_when_no_category_expenses_found_in_the_provided_days_period (0.00s)
 PASS
-ok  	esercizio	0.057s
+ok  	esercizio	0.002s
 	Command being timed: "go test -v"
-	User time (seconds): 22.98
-	System time (seconds): 46.00
-	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:22.39
+	User time (seconds): 5.13
+	System time (seconds): 0.56
+	Percent of CPU this job got: 97%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:05.85
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 201412
+	Maximum resident set size (kbytes): 199528
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 5
-	Minor (reclaiming a frame) page faults: 713429
-	Voluntary context switches: 32982
-	Involuntary context switches: 42755
+	Minor (reclaiming a frame) page faults: 720069
+	Voluntary context switches: 19862
+	Involuntary context switches: 17407
 	Swaps: 0
-	File system inputs: 0
-	File system outputs: 172000
+	File system inputs: 2928
+	File system outputs: 172344
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0

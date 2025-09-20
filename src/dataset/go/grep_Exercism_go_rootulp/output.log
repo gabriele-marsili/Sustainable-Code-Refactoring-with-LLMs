@@ -49,27 +49,27 @@ result [iliad.txt paradise-lost.txt]
     grep_test.go:70: PASS: Multiple files, several matches, file flag takes precedence over line number flag
 result [iliad.txt:Achilles sing, O Goddess! Peleus' son; iliad.txt:His wrath pernicious, who ten thousand woes iliad.txt:Caused to Achaia's host, sent many a soul iliad.txt:And Heroes gave (so stood the will of Jove) iliad.txt:To dogs and to all ravening fowls a prey, iliad.txt:When fierce dispute had separated once iliad.txt:The noble Chief Achilles from the son iliad.txt:Of Atreus, Agamemnon, King of men. midsummer-night.txt:I do entreat your grace to pardon me. midsummer-night.txt:I know not by what power I am made bold, midsummer-night.txt:Nor how it may concern my modesty, midsummer-night.txt:In such a presence here to plead my thoughts; midsummer-night.txt:But I beseech your grace that I may know midsummer-night.txt:The worst that may befall me in this case, midsummer-night.txt:If I refuse to wed Demetrius. paradise-lost.txt:Of Mans First Disobedience, and the Fruit paradise-lost.txt:Of that Forbidden Tree, whose mortal tast paradise-lost.txt:Brought Death into the World, and all our woe, paradise-lost.txt:With loss of Eden, till one greater Man paradise-lost.txt:Restore us, and regain the blissful Seat, paradise-lost.txt:Sing Heav'nly Muse, that on the secret top paradise-lost.txt:Of Oreb, or of Sinai, didst inspire paradise-lost.txt:That Shepherd, who first taught the chosen Seed]
     grep_test.go:70: PASS: Multiple files, several matches, inverted and match entire lines flags
---- PASS: TestSearch (0.71s)
+--- PASS: TestSearch (0.01s)
 PASS
-ok  	esercizio	0.738s
+ok  	esercizio	0.016s
 	Command being timed: "go test -v"
-	User time (seconds): 22.47
-	System time (seconds): 47.14
-	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:24.41
+	User time (seconds): 5.30
+	System time (seconds): 0.63
+	Percent of CPU this job got: 65%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:09.05
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 205304
+	Maximum resident set size (kbytes): 231760
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 6
-	Minor (reclaiming a frame) page faults: 725394
-	Voluntary context switches: 33585
-	Involuntary context switches: 43520
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 749372
+	Voluntary context switches: 23501
+	Involuntary context switches: 21181
 	Swaps: 0
-	File system inputs: 0
-	File system outputs: 173312
+	File system inputs: 5016
+	File system outputs: 173664
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0

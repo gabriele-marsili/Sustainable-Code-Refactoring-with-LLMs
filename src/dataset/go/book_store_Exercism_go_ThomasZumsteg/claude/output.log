@@ -1,0 +1,41 @@
+=== RUN   TestCost
+    book_store_test.go:14: PASS: Only a single book
+    book_store_test.go:14: PASS: Two of the same book
+    book_store_test.go:14: PASS: Empty basket
+    book_store_test.go:14: PASS: Two different books
+    book_store_test.go:14: PASS: Three different books
+    book_store_test.go:14: PASS: Four different books
+    book_store_test.go:14: PASS: Five different books
+    book_store_test.go:14: PASS: Two groups of four is cheaper than group of five plus group of three
+    book_store_test.go:14: PASS: Group of four plus group of two is cheaper than two groups of three
+    book_store_test.go:14: PASS: Two each of first 4 books and 1 copy each of rest
+    book_store_test.go:14: PASS: Two copies of each book
+    book_store_test.go:14: PASS: Three copies of first book and 2 each of remaining
+    book_store_test.go:14: PASS: Three each of first 2 books and 2 each of remaining books
+    book_store_test.go:14: PASS: Four groups of four are cheaper than two groups each of five and three
+--- PASS: TestCost (0.00s)
+PASS
+ok  	esercizio	0.003s
+	Command being timed: "go test -v"
+	User time (seconds): 5.13
+	System time (seconds): 0.56
+	Percent of CPU this job got: 98%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:05.78
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 216504
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 730829
+	Voluntary context switches: 19056
+	Involuntary context switches: 16486
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 172056
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

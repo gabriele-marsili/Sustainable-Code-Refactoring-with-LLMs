@@ -1,0 +1,93 @@
+=== RUN   TestCanFastAttack
+=== RUN   TestCanFastAttack/Knight_is_awake
+=== RUN   TestCanFastAttack/Knight_is_sleeping
+--- PASS: TestCanFastAttack (0.00s)
+    --- PASS: TestCanFastAttack/Knight_is_awake (0.00s)
+    --- PASS: TestCanFastAttack/Knight_is_sleeping (0.00s)
+=== RUN   TestCanSpy
+=== RUN   TestCanSpy/All_characters_are_sleeping
+=== RUN   TestCanSpy/Knight_is_awake,_archer_and_prisoner_are_sleeping
+=== RUN   TestCanSpy/Knight_and_archer_are_awake,_prisoner_is_sleeping
+=== RUN   TestCanSpy/Knight_and_prisoner_are_awake,_archer_is_sleeping
+=== RUN   TestCanSpy/Archer_is_awake,_knight_and_prisoner_are_sleeping
+=== RUN   TestCanSpy/Archer_and_prisoner_are_awake,_knight_is_sleeping
+=== RUN   TestCanSpy/Prisoner_is_awake,_knight_and_archer_are_sleeping
+=== RUN   TestCanSpy/All_characters_are_awake
+--- PASS: TestCanSpy (0.00s)
+    --- PASS: TestCanSpy/All_characters_are_sleeping (0.00s)
+    --- PASS: TestCanSpy/Knight_is_awake,_archer_and_prisoner_are_sleeping (0.00s)
+    --- PASS: TestCanSpy/Knight_and_archer_are_awake,_prisoner_is_sleeping (0.00s)
+    --- PASS: TestCanSpy/Knight_and_prisoner_are_awake,_archer_is_sleeping (0.00s)
+    --- PASS: TestCanSpy/Archer_is_awake,_knight_and_prisoner_are_sleeping (0.00s)
+    --- PASS: TestCanSpy/Archer_and_prisoner_are_awake,_knight_is_sleeping (0.00s)
+    --- PASS: TestCanSpy/Prisoner_is_awake,_knight_and_archer_are_sleeping (0.00s)
+    --- PASS: TestCanSpy/All_characters_are_awake (0.00s)
+=== RUN   TestCanSignalPrisoner
+=== RUN   TestCanSignalPrisoner/All_characters_are_sleeping
+=== RUN   TestCanSignalPrisoner/Archer_is_sleeping,_prisoner_is_awake
+=== RUN   TestCanSignalPrisoner/Archer_is_awake,_prisoner_is_sleeping
+=== RUN   TestCanSignalPrisoner/All_characters_are_awake
+--- PASS: TestCanSignalPrisoner (0.00s)
+    --- PASS: TestCanSignalPrisoner/All_characters_are_sleeping (0.00s)
+    --- PASS: TestCanSignalPrisoner/Archer_is_sleeping,_prisoner_is_awake (0.00s)
+    --- PASS: TestCanSignalPrisoner/Archer_is_awake,_prisoner_is_sleeping (0.00s)
+    --- PASS: TestCanSignalPrisoner/All_characters_are_awake (0.00s)
+=== RUN   TestCanFreePrisoner
+=== RUN   TestCanFreePrisoner/All_characters_are_sleeping._Dog_is_not_present.
+=== RUN   TestCanFreePrisoner/All_characters_are_sleeping._Dog_is_present.
+=== RUN   TestCanFreePrisoner/Knight_and_archer_are_sleeping._Prisoner_is_awake._Dog_is_not_present.
+=== RUN   TestCanFreePrisoner/Knight_and_archer_are_sleeping._Prisoner_is_awake._Dog_is_present.
+=== RUN   TestCanFreePrisoner/Knight_is_sleeping._Archer_is_awake._Prisoner_is_sleeping._Dog_is_not_present.
+=== RUN   TestCanFreePrisoner/Knight_is_sleeping._Archer_is_awake._Prisoner_is_sleeping._Dog_is_present.
+=== RUN   TestCanFreePrisoner/Knight_is_sleeping._Archer_is_awake._Prisoner_is_awake._Dog_is_not_present.
+=== RUN   TestCanFreePrisoner/Knight_is_sleeping._Archer_is_awake._Prisoner_is_awake._Dog_is_present.
+=== RUN   TestCanFreePrisoner/Knight_is_awake._Archer_is_sleeping._Prisoner_is_sleeping._Dog_is_not_present.
+=== RUN   TestCanFreePrisoner/Knight_is_awake._Archer_is_sleeping._Prisoner_is_sleeping._Dog_is_present.
+=== RUN   TestCanFreePrisoner/Knight_is_awake._Archer_is_sleeping._Prisoner_is_awake._Dog_is_not_present
+=== RUN   TestCanFreePrisoner/Knight_is_awake._Archer_is_sleeping._Prisoner_is_awake._Dog_is_present
+=== RUN   TestCanFreePrisoner/Knight_and_archer_are_awake._Prisoner_is_sleeping._Dog_is_not_present
+=== RUN   TestCanFreePrisoner/Knight_and_archer_are_awake._Prisoner_is_sleeping._Dog_is_present
+=== RUN   TestCanFreePrisoner/Knight_and_archer_are_awake._Prisoner_is_awake._Dog_is_not_present
+=== RUN   TestCanFreePrisoner/Knight_and_archer_are_awake._Prisoner_is_awake._Dog_is_present
+--- PASS: TestCanFreePrisoner (0.00s)
+    --- PASS: TestCanFreePrisoner/All_characters_are_sleeping._Dog_is_not_present. (0.00s)
+    --- PASS: TestCanFreePrisoner/All_characters_are_sleeping._Dog_is_present. (0.00s)
+    --- PASS: TestCanFreePrisoner/Knight_and_archer_are_sleeping._Prisoner_is_awake._Dog_is_not_present. (0.00s)
+    --- PASS: TestCanFreePrisoner/Knight_and_archer_are_sleeping._Prisoner_is_awake._Dog_is_present. (0.00s)
+    --- PASS: TestCanFreePrisoner/Knight_is_sleeping._Archer_is_awake._Prisoner_is_sleeping._Dog_is_not_present. (0.00s)
+    --- PASS: TestCanFreePrisoner/Knight_is_sleeping._Archer_is_awake._Prisoner_is_sleeping._Dog_is_present. (0.00s)
+    --- PASS: TestCanFreePrisoner/Knight_is_sleeping._Archer_is_awake._Prisoner_is_awake._Dog_is_not_present. (0.00s)
+    --- PASS: TestCanFreePrisoner/Knight_is_sleeping._Archer_is_awake._Prisoner_is_awake._Dog_is_present. (0.00s)
+    --- PASS: TestCanFreePrisoner/Knight_is_awake._Archer_is_sleeping._Prisoner_is_sleeping._Dog_is_not_present. (0.00s)
+    --- PASS: TestCanFreePrisoner/Knight_is_awake._Archer_is_sleeping._Prisoner_is_sleeping._Dog_is_present. (0.00s)
+    --- PASS: TestCanFreePrisoner/Knight_is_awake._Archer_is_sleeping._Prisoner_is_awake._Dog_is_not_present (0.00s)
+    --- PASS: TestCanFreePrisoner/Knight_is_awake._Archer_is_sleeping._Prisoner_is_awake._Dog_is_present (0.00s)
+    --- PASS: TestCanFreePrisoner/Knight_and_archer_are_awake._Prisoner_is_sleeping._Dog_is_not_present (0.00s)
+    --- PASS: TestCanFreePrisoner/Knight_and_archer_are_awake._Prisoner_is_sleeping._Dog_is_present (0.00s)
+    --- PASS: TestCanFreePrisoner/Knight_and_archer_are_awake._Prisoner_is_awake._Dog_is_not_present (0.00s)
+    --- PASS: TestCanFreePrisoner/Knight_and_archer_are_awake._Prisoner_is_awake._Dog_is_present (0.00s)
+PASS
+ok  	esercizio	0.004s
+	Command being timed: "go test -v"
+	User time (seconds): 5.56
+	System time (seconds): 0.72
+	Percent of CPU this job got: 95%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:06.58
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 217728
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 167
+	Minor (reclaiming a frame) page faults: 736997
+	Voluntary context switches: 21674
+	Involuntary context switches: 21319
+	Swaps: 0
+	File system inputs: 38624
+	File system outputs: 172136
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

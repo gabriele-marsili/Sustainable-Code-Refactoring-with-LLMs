@@ -1,39 +1,39 @@
-(node:24) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-PASS ./transpose_testSuite.js (19.94 s)
+PASS ./transpose_testSuite.js
   Transpose
-    ✓ test empty string (214 ms)
-    ✓ test two characters in a row (41 ms)
-    ✓ test two characters in a column (9 ms)
-    ✓ test simple (42 ms)
-    ✓ test single line (27 ms)
-    ✓ test first line longer than second line (26 ms)
-    ✓ test second line longer than first line (21 ms)
-    ✓ test square (5 ms)
-    ✓ test rectangle (18 ms)
-    ✓ test triangle (70 ms)
-    ✓ test many lines (82 ms)
+    ✓ test empty string (5 ms)
+    ✓ test two characters in a row
+    ✓ test two characters in a column
+    ✓ test simple
+    ✓ test single line (1 ms)
+    ✓ test first line longer than second line
+    ✓ test second line longer than first line
+    ✓ test square
+    ✓ test rectangle
+    ✓ test triangle
+    ✓ test many lines
 
 Test Suites: 1 passed, 1 total
 Tests:       11 passed, 11 total
 Snapshots:   0 total
-Time:        24.626 s
+Time:        0.324 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 3.20
-	System time (seconds): 2.93
-	Percent of CPU this job got: 11%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:54.99
+	User time (seconds): 0.22
+	System time (seconds): 0.07
+	Percent of CPU this job got: 36%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.82
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 73636
+	Maximum resident set size (kbytes): 80896
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 16506
-	Voluntary context switches: 5934
-	Involuntary context switches: 9387
+	Minor (reclaiming a frame) page faults: 14042
+	Voluntary context switches: 7176
+	Involuntary context switches: 1429
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16
@@ -42,3 +42,4 @@ Ran all test suites.
 	Signals delivered: 0
 	Page size (bytes): 4096
 	Exit status: 0
+tus: 0

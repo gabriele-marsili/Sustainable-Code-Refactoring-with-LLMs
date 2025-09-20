@@ -1,0 +1,46 @@
+=== RUN   TestSolvePuzzle
+--- FAIL: TestSolvePuzzle (0.00s)
+panic: Please implement the SolvePuzzle function [recovered]
+	panic: Please implement the SolvePuzzle function
+
+goroutine 17 [running]:
+testing.tRunner.func1.2({0x11cfc0, 0x172688})
+	/usr/local/go/src/testing/testing.go:1545 +0x1c4
+testing.tRunner.func1()
+	/usr/local/go/src/testing/testing.go:1548 +0x360
+panic({0x11cfc0?, 0x172688?})
+	/usr/local/go/src/runtime/panic.go:914 +0x218
+esercizio.SolvePuzzle(...)
+	/app/zebra_puzzle.go:9
+esercizio.TestSolvePuzzle(0x0?)
+	/app/zebra_puzzle_test.go:7 +0x30
+testing.tRunner(0x4000003860, 0x14f378)
+	/usr/local/go/src/testing/testing.go:1595 +0xe8
+created by testing.(*T).Run in goroutine 1
+	/usr/local/go/src/testing/testing.go:1648 +0x33c
+exit status 2
+FAIL	esercizio	0.009s
+Command exited with non-zero status 1
+	Command being timed: "go test -v"
+	User time (seconds): 5.39
+	System time (seconds): 0.63
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:06.05
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 211856
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 3
+	Minor (reclaiming a frame) page faults: 727745
+	Voluntary context switches: 21067
+	Involuntary context switches: 17957
+	Swaps: 0
+	File system inputs: 17288
+	File system outputs: 171920
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

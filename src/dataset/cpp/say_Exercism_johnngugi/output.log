@@ -1,4 +1,4 @@
-/usr/local/include/c++/15.1.0/bits/stl_vector.h:1263: std::vector<_Tp, _Alloc>::reference std::vector<_Tp, _Alloc>::operator[](size_type) [with _Tp = std::__cxx11::basic_string<char>; _Alloc = std::allocator<std::__cxx11::basic_string<char> >; reference = std::__cxx11::basic_string<char>&; size_type = long unsigned int]: Assertion '__n < this->size()' failed.
+/usr/local/include/c++/15.2.0/bits/stl_vector.h:1263: std::vector<_Tp, _Alloc>::reference std::vector<_Tp, _Alloc>::operator[](size_type) [with _Tp = std::__cxx11::basic_string<char>; _Alloc = std::allocator<std::__cxx11::basic_string<char> >; reference = std::__cxx11::basic_string<char>&; size_type = long unsigned int]: Assertion '__n < this->size()' failed.
 Running 17 test cases...
 unknown location(0): [4;31;49mfatal error: in "a_really_big_number": signal: SIGABRT (application abort requested)[0;39;49m
 test/say_test.cpp(77): [1;36;49mlast checkpoint[0;39;49m
@@ -6,20 +6,20 @@ test/say_test.cpp(77): [1;36;49mlast checkpoint[0;39;49m
 [1;31;49m*** 1 failure is detected in the test module "Master Test Suite"
 [0;39;49mCommand exited with non-zero status 201
 	Command being timed: "./test_exec"
-	User time (seconds): 0.02
+	User time (seconds): 0.00
 	System time (seconds): 0.00
-	Percent of CPU this job got: 15%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.22
+	Percent of CPU this job got: 50%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.00
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 4864
+	Maximum resident set size (kbytes): 4352
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 1
-	Minor (reclaiming a frame) page faults: 232
-	Voluntary context switches: 20
-	Involuntary context switches: 15
+	Minor (reclaiming a frame) page faults: 226
+	Voluntary context switches: 47
+	Involuntary context switches: 1
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 0

@@ -1,0 +1,40 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SimpleCipher = void 0;
+const MIN_CHAR_CODE = 97; // char code of 'a'
+const MAX_CHAR_CODE = 122; // char code of 'z'
+const OFFSET = MAX_CHAR_CODE - MIN_CHAR_CODE + 1;
+const RANDOM_KEY_LENGTH = 100;
+var CipherTypeEnum;
+(function (CipherTypeEnum) {
+    CipherTypeEnum["encode"] = "encode";
+    CipherTypeEnum["decode"] = "decode";
+})(CipherTypeEnum || (CipherTypeEnum = {}));
+class SimpleCipher {
+    constructor(key = '') {
+        this.cipherKey = key || this.generateKey();
+    }
+    get key() {
+        return this.cipherKey;
+    }
+    generateKey() {
+        return Array.from({ length: RANDOM_KEY_LENGTH }, () => String.fromCharCode(MIN_CHAR_CODE + Math.floor(Math.random() * OFFSET))).join('');
+    }
+    modulo(x, y) {
+        return x >= 0 ? x % y : (x % y) + y;
+    }
+    transcode(text, type) {
+        const multiplier = type === CipherTypeEnum.encode ? 1 : -1;
+        const keyLength = this.cipherKey.length;
+        return Array.from(text.toLowerCase().replace(/\W/g, ''), (letter, index) => String.fromCharCode(this.modulo(letter.charCodeAt(0) -
+            MIN_CHAR_CODE +
+            (this.cipherKey.charCodeAt(index % keyLength) - MIN_CHAR_CODE) * multiplier, OFFSET) + MIN_CHAR_CODE)).join('');
+    }
+    encode(text) {
+        return this.transcode(text, CipherTypeEnum.encode);
+    }
+    decode(text) {
+        return this.transcode(text, CipherTypeEnum.decode);
+    }
+}
+exports.SimpleCipher = SimpleCipher;

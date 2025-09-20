@@ -1,46 +1,46 @@
 (node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-PASS ./coordinate-transformation_testSuite.js (12.17 s)
+PASS ./coordinate-transformation_testSuite.js
   translate2d
-    ✓ should return a function (67 ms)
-    ✓ should be predictable (15 ms)
-    ✓ should be reusable (2 ms)
-  scale2d
     ✓ should return a function (1 ms)
-    ✓ should be predictable (16 ms)
-    ✓ should be reusable (16 ms)
+    ✓ should be predictable
+    ✓ should be reusable
+  scale2d
+    ✓ should return a function
+    ✓ should be predictable
+    ✓ should be reusable
   composeTransform
-    ✓ should return a function (3 ms)
-    ✓ should compose two translate functions (5 ms)
-    ✓ should compose two scale functions (4 ms)
-    ✓ should compose in the correct order: g(f(x)) (3 ms)
-    ✓ should compose in the opposite order: g(f(x)) (9 ms)
+    ✓ should return a function
+    ✓ should compose two translate functions (1 ms)
+    ✓ should compose two scale functions
+    ✓ should compose in the correct order: g(f(x))
+    ✓ should compose in the opposite order: g(f(x))
   memoizeTransform
-    ✓ should return a function (2 ms)
-    ✓ should return the same result if given the same input (3 ms)
-    ✓ should return different results for different inputs (7 ms)
-    ✓ should not call the memoized function if the input is the same (5 ms)
+    ✓ should return a function
+    ✓ should return the same result if given the same input (1 ms)
+    ✓ should return different results for different inputs
+    ✓ should not call the memoized function if the input is the same
 
 Test Suites: 1 passed, 1 total
 Tests:       15 passed, 15 total
 Snapshots:   0 total
-Time:        15.145 s
+Time:        0.155 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 3.13
-	System time (seconds): 3.51
-	Percent of CPU this job got: 11%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:55.73
+	User time (seconds): 0.26
+	System time (seconds): 0.06
+	Percent of CPU this job got: 69%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.46
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 78048
+	Maximum resident set size (kbytes): 82640
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 16622
-	Voluntary context switches: 6683
-	Involuntary context switches: 5002
+	Minor (reclaiming a frame) page faults: 14319
+	Voluntary context switches: 7639
+	Involuntary context switches: 1316
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

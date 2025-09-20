@@ -1,14 +1,14 @@
-const GIGASECOND = 1_000_000_000
+const GIGASECOND_MS = 1_000_000_000_000;
 
 class Gigasecond {
-  input: Date
+  private readonly birthTimeMs: number;
 
-  constructor(input: Date) {
-    this.input = input
+  constructor(birthDate: Date) {
+    this.birthTimeMs = birthDate.getTime();
   }
 
   date(): Date {
-    return new Date(this.input.getTime() + GIGASECOND * 1000)
+    return new Date(this.birthTimeMs + GIGASECOND_MS);
   }
 }
 

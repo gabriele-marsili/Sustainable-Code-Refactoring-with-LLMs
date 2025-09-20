@@ -2,23 +2,31 @@ import java.util.HashMap;
 
 public class Scrabble {
     private final String word;
-    private static final HashMap<Integer, Integer> letterScore = new HashMap<>('Z' - 'A');
+    private static final int[] letterScore = new int[26];
 
     public Scrabble(String word) {
         this.word = word;
     }
 
     public int getScore() {
-        if(word==null) return 0;
+        if(word == null) return 0;
 
-        return word.toUpperCase()
-            .chars()
-            .map(c -> letterScore.getOrDefault(c, 0))
-            .reduce(0, (a, b) -> a + b);
+        int score = 0;
+        for (int i = 0; i < word.length(); i++) {
+            char c = word.charAt(i);
+            if (c >= 'a' && c <= 'z') {
+                score += letterScore[c - 'a'];
+            } else if (c >= 'A' && c <= 'Z') {
+                score += letterScore[c - 'A'];
+            }
+        }
+        return score;
     }
 
-    private static void mapToScore(String letters, Integer score) {
-        letters.chars().forEach(letter -> letterScore.put(letter, score));
+    private static void mapToScore(String letters, int score) {
+        for (int i = 0; i < letters.length(); i++) {
+            letterScore[letters.charAt(i) - 'A'] = score;
+        }
     }
 
     static {
@@ -30,4 +38,4 @@ public class Scrabble {
         mapToScore("JX", 8);
         mapToScore("QZ", 10);
     }
-} 
+}

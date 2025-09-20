@@ -1,0 +1,83 @@
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL ./binary-search_testSuite.js
+  BinarySearch
+    ✓ should require a sorted array (2 ms)
+    ✕ should find the correct index of an included value
+    ✕ should search the middle of the array
+    ✕ should return -1 for a value not in the array
+
+  ● BinarySearch › should find the correct index of an included value
+
+    ReferenceError: mid is not defined
+
+      19 |   indexOf: function(item) {
+      20 |     for (var min = -1, max = this.items.length; min < max;) {
+    > 21 |       mid = Math.floor(( min + max) / 2);
+         |           ^
+      22 |       if (this.items[mid] < item ) {
+      23 |         min = mid + 1;
+      24 |       } else if (item < this.items[mid]) {
+
+      at BinarySearch.indexOf (binary-search.js:21:11)
+      at Object.<anonymous> (binary-search_testSuite.js:18:53)
+
+  ● BinarySearch › should search the middle of the array
+
+    ReferenceError: mid is not defined
+
+      19 |   indexOf: function(item) {
+      20 |     for (var min = -1, max = this.items.length; min < max;) {
+    > 21 |       mid = Math.floor(( min + max) / 2);
+         |           ^
+      22 |       if (this.items[mid] < item ) {
+      23 |         min = mid + 1;
+      24 |       } else if (item < this.items[mid]) {
+
+      at BinarySearch.indexOf (binary-search.js:21:11)
+      at Object.<anonymous> (binary-search_testSuite.js:22:64)
+
+  ● BinarySearch › should return -1 for a value not in the array
+
+    ReferenceError: mid is not defined
+
+      19 |   indexOf: function(item) {
+      20 |     for (var min = -1, max = this.items.length; min < max;) {
+    > 21 |       mid = Math.floor(( min + max) / 2);
+         |           ^
+      22 |       if (this.items[mid] < item ) {
+      23 |         min = mid + 1;
+      24 |       } else if (item < this.items[mid]) {
+
+      at BinarySearch.indexOf (binary-search.js:21:11)
+      at Object.<anonymous> (binary-search_testSuite.js:26:54)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 1 passed, 4 total
+Snapshots:   0 total
+Time:        0.385 s
+Ran all test suites.
+Command exited with non-zero status 1
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 0.24
+	System time (seconds): 0.06
+	Percent of CPU this job got: 34%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.92
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 82440
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 14241
+	Voluntary context switches: 7613
+	Involuntary context switches: 1335
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

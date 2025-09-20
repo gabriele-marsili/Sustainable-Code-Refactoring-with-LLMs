@@ -1,41 +1,41 @@
-PASS ./isbn-verifier.test.ts (13.647 s)
+PASS ./isbn-verifier.test.ts
   ISBN Verifier
-    ✓ valid isbn number (27 ms)
-    ✓ invalid isbn check digit (1 ms)
-    ✓ valid isbn number with a check digit of 10 (1 ms)
+    ✓ valid isbn number (4 ms)
+    ✓ invalid isbn check digit
+    ✓ valid isbn number with a check digit of 10
     ✓ check digit is a character other than X
     ✓ invalid character in isbn (1 ms)
-    ✓ X is only valid as a check digit (1 ms)
-    ✓ valid isbn without separating dashes (4 ms)
-    ✓ isbn without separating dashes and X as check digit (1 ms)
+    ✓ X is only valid as a check digit
+    ✓ valid isbn without separating dashes
+    ✓ isbn without separating dashes and X as check digit
     ✓ isbn without check digit and dashes
-    ✓ too long isbn and no dashes (1 ms)
-    ✓ isbn without check digit (2 ms)
-    ✓ too long isbn (4 ms)
-    ✓ check digit of X should not be used for 0 (1 ms)
+    ✓ too long isbn and no dashes
+    ✓ isbn without check digit
+    ✓ too long isbn
+    ✓ check digit of X should not be used for 0
     ✓ empty isbn
 
 Test Suites: 1 passed, 1 total
 Tests:       14 passed, 14 total
 Snapshots:   0 total
-Time:        15.141 s
+Time:        2.722 s
 Ran all test suites.
 Test results written to: output.log
 	Command being timed: "npx jest --json --outputFile=output.log"
-	User time (seconds): 7.36
-	System time (seconds): 3.37
-	Percent of CPU this job got: 44%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:24.39
+	User time (seconds): 1.45
+	System time (seconds): 0.14
+	Percent of CPU this job got: 46%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.42
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 218160
+	Maximum resident set size (kbytes): 223200
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 63632
-	Voluntary context switches: 1857
-	Involuntary context switches: 6004
+	Minor (reclaiming a frame) page faults: 66092
+	Voluntary context switches: 1765
+	Involuntary context switches: 14319
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 72

@@ -1,0 +1,45 @@
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS ./difference-of-squares_testSuite.js
+  difference-of-squares
+    Square the sum of the numbers up to the given number
+      ✓ square of sum 1 (1 ms)
+      ✓ square of sum 5 (1 ms)
+      ✓ square of sum 100
+    Sum the squares of the numbers up to the given number
+      ✓ sum of squares 1
+      ✓ sum of squares 5
+      ✓ sum of squares 100 (1 ms)
+    Subtract sum of squares from square of sums
+      ✓ difference of squares 1
+      ✓ difference of squares 5
+      ✓ difference of squares 100
+
+Test Suites: 1 passed, 1 total
+Tests:       9 passed, 9 total
+Snapshots:   0 total
+Time:        0.172 s
+Ran all test suites.
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 0.23
+	System time (seconds): 0.11
+	Percent of CPU this job got: 71%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.48
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 81312
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 5
+	Minor (reclaiming a frame) page faults: 13803
+	Voluntary context switches: 7357
+	Involuntary context switches: 749
+	Swaps: 0
+	File system inputs: 248
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

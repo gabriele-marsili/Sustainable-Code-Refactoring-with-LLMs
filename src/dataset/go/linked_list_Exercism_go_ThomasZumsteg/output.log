@@ -3,7 +3,7 @@
 === RUN   TestNew/from_2_elements
 === RUN   TestNew/from_no_element
 === RUN   TestNew/from_1_element
---- PASS: TestNew (0.01s)
+--- PASS: TestNew (0.00s)
     --- PASS: TestNew/from_5_elements (0.00s)
     --- PASS: TestNew/from_2_elements (0.00s)
     --- PASS: TestNew/from_no_element (0.00s)
@@ -13,7 +13,7 @@
 === RUN   TestReverse/from_2_elements
 === RUN   TestReverse/from_no_element
 === RUN   TestReverse/from_1_element
---- PASS: TestReverse (0.01s)
+--- PASS: TestReverse (0.00s)
     --- PASS: TestReverse/from_5_elements (0.00s)
     --- PASS: TestReverse/from_2_elements (0.00s)
     --- PASS: TestReverse/from_no_element (0.00s)
@@ -26,7 +26,7 @@
 === RUN   TestPushPop/PopBack_only,_pop_some_elements
 === RUN   TestPushPop/PopBack_only,_pop_till_empty
 === RUN   TestPushPop/mixed_actions
---- PASS: TestPushPop (0.02s)
+--- PASS: TestPushPop (0.00s)
     --- PASS: TestPushPop/PushFront_only (0.00s)
     --- PASS: TestPushPop/PushBack_only (0.00s)
     --- PASS: TestPushPop/PopFront_only,_pop_some_elements (0.00s)
@@ -35,25 +35,25 @@
     --- PASS: TestPushPop/PopBack_only,_pop_till_empty (0.00s)
     --- PASS: TestPushPop/mixed_actions (0.00s)
 PASS
-ok  	esercizio	0.096s
+ok  	esercizio	0.004s
 	Command being timed: "go test -v"
-	User time (seconds): 24.14
-	System time (seconds): 49.49
-	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:32.10
+	User time (seconds): 5.46
+	System time (seconds): 0.62
+	Percent of CPU this job got: 55%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:11.04
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 206580
+	Maximum resident set size (kbytes): 222392
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 5
-	Minor (reclaiming a frame) page faults: 716912
-	Voluntary context switches: 32912
-	Involuntary context switches: 44617
+	Major (requiring I/O) page faults: 400
+	Minor (reclaiming a frame) page faults: 733300
+	Voluntary context switches: 27063
+	Involuntary context switches: 22206
 	Swaps: 0
-	File system inputs: 0
-	File system outputs: 172624
+	File system inputs: 153880
+	File system outputs: 172976
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0

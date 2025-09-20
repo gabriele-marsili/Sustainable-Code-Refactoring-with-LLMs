@@ -1,8 +1,3 @@
-//
-// This is only a SKELETON file for the 'RNA Transcription' exercise. It's been provided as a
-// convenience to get you started writing code faster.
-//
-
 const translationMap = {
 	G: 'C',
 	C: 'G',
@@ -11,7 +6,9 @@ const translationMap = {
 };
 
 export const toRna = (string) => {
-	return string.replace(/G|C|T|A/g, (match) => {
-		return translationMap[match];
-	});
+	let result = '';
+	for (let i = 0; i < string.length; i++) {
+		result += translationMap[string[i]];
+	}
+	return result;
 };

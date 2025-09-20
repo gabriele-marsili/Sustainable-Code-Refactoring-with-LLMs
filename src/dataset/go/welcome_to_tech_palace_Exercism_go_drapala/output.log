@@ -3,7 +3,7 @@
 === RUN   TestWelcomeMessage/Welcome_message_for_customer_with_only_lowercase_letters
 === RUN   TestWelcomeMessage/Welcome_message_for_customer_with_dash_in_name
 === RUN   TestWelcomeMessage/Welcome_message_for_customer_with_only_uppercase_letters
---- PASS: TestWelcomeMessage (0.02s)
+--- PASS: TestWelcomeMessage (0.00s)
     --- PASS: TestWelcomeMessage/Welcome_message_for_customer_with_first_letter_capitalized (0.00s)
     --- PASS: TestWelcomeMessage/Welcome_message_for_customer_with_only_lowercase_letters (0.00s)
     --- PASS: TestWelcomeMessage/Welcome_message_for_customer_with_dash_in_name (0.00s)
@@ -17,9 +17,9 @@ Welcome!
 **
 Hi
 **
---- PASS: TestAddBorder (0.01s)
+--- PASS: TestAddBorder (0.00s)
     --- PASS: TestAddBorder/Add_border_with_10_stars_per_line (0.00s)
-    --- PASS: TestAddBorder/Add_border_with_2_stars_per_line (0.01s)
+    --- PASS: TestAddBorder/Add_border_with_2_stars_per_line (0.00s)
 === RUN   TestCleanupMessage
 === RUN   TestCleanupMessage/Cleanup_message_with_many_stars_and_leading_and_trailing_whitespace
 Old message:
@@ -51,30 +51,30 @@ New message:
  SALE
 
 SALE
---- PASS: TestCleanupMessage (0.04s)
-    --- PASS: TestCleanupMessage/Cleanup_message_with_many_stars_and_leading_and_trailing_whitespace (0.01s)
-    --- PASS: TestCleanupMessage/Cleanup_message_without_leading_or_trailing_whitespace (0.01s)
-    --- PASS: TestCleanupMessage/Cleanup_message_without_leading_whitespace (0.01s)
+--- PASS: TestCleanupMessage (0.00s)
+    --- PASS: TestCleanupMessage/Cleanup_message_with_many_stars_and_leading_and_trailing_whitespace (0.00s)
+    --- PASS: TestCleanupMessage/Cleanup_message_without_leading_or_trailing_whitespace (0.00s)
+    --- PASS: TestCleanupMessage/Cleanup_message_without_leading_whitespace (0.00s)
 PASS
-ok  	esercizio	0.088s
+ok  	esercizio	0.002s
 	Command being timed: "go test -v"
-	User time (seconds): 24.43
-	System time (seconds): 48.93
-	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:32.56
+	User time (seconds): 5.55
+	System time (seconds): 0.63
+	Percent of CPU this job got: 64%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:09.56
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 198648
+	Maximum resident set size (kbytes): 238456
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 6
-	Minor (reclaiming a frame) page faults: 716904
-	Voluntary context switches: 33677
-	Involuntary context switches: 44787
+	Major (requiring I/O) page faults: 15
+	Minor (reclaiming a frame) page faults: 740307
+	Voluntary context switches: 22112
+	Involuntary context switches: 21319
 	Swaps: 0
-	File system inputs: 0
-	File system outputs: 171792
+	File system inputs: 10248
+	File system outputs: 172168
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0

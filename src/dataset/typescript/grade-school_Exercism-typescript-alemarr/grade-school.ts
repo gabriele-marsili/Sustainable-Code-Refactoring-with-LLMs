@@ -6,27 +6,35 @@ export class GradeSchool {
   roster(): RosterOutput {
     const roster: RosterOutput = {};
 
-    this.students.forEach((students: string[], grade: number) => {
-      roster[grade] = [...students.sort()]
-    });
+    for (const [grade, students] of this.students) {
+      roster[grade] = students.slice().sort();
+    }
 
     return roster;
   }
 
   add(student: string, grade: number): void {
-    [...this.students].find(([currentGrade, students]) => {
-      const remainingStudents = students.filter((s: string) => s !== student);
-      this.students.set(currentGrade, remainingStudents);
-    });
+    // Remove student from all grades
+    for (const [currentGrade, students] of this.students) {
+      const index = students.indexOf(student);
+      if (index !== -1) {
+        students.splice(index, 1);
+        if (students.length === 0) {
+          this.students.delete(currentGrade);
+        }
+        break;
+      }
+    }
 
-    const students = this.students.get(grade) || [];
-
-    students.push(student);
-    this.students.set(grade, students);
+    // Add student to the specified grade
+    if (!this.students.has(grade)) {
+      this.students.set(grade, []);
+    }
+    this.students.get(grade)!.push(student);
   }
 
   grade(grade: number): string[] {
-    const students = this.students.get(grade) || [];
-    return [...students.slice().sort()];
+    const students = this.students.get(grade);
+    return students ? students.slice().sort() : [];
   }
 }

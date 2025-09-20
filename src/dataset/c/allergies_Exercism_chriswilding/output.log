@@ -1,33 +1,19 @@
-test/test_allergies.c:133:test_no_allergies_means_not_allergic:PASS
-test/test_allergies.c:134:test_is_allergic_to_eggs:PASS
-test/test_allergies.c:135:test_is_allergic_to_eggs_in_addition_to_other_stuff:PASS
-test/test_allergies.c:136:test_no_allergies_at_all:PASS
-test/test_allergies.c:137:test_allergic_to_just_eggs:PASS
-test/test_allergies.c:138:test_allergic_to_just_peanuts:PASS
-test/test_allergies.c:139:test_allergic_to_just_strawberries:PASS
-test/test_allergies.c:140:test_allergic_to_eggs_and_peanuts:PASS
-test/test_allergies.c:141:test_allergic_to_more_than_eggs_but_not_peanuts:PASS
-test/test_allergies.c:142:test_allergic_to_lots_of_stuff:PASS
-test/test_allergies.c:143:test_allergic_to_everything:PASS
-test/test_allergies.c:144:test_ignore_non_allergen_score_parts:PASS
-
------------------------
-12 Tests 0 Failures 0 Ignored 
-OK
+qemu-x86_64: Could not open '/lib64/ld-linux-x86-64.so.2': No such file or directory
+Command exited with non-zero status 255
 	Command being timed: "./tests.out"
 	User time (seconds): 0.00
 	System time (seconds): 0.00
-	Percent of CPU this job got: 7%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.01
+	Percent of CPU this job got: 25%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.00
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 1152
+	Maximum resident set size (kbytes): 3456
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 1
-	Minor (reclaiming a frame) page faults: 73
-	Voluntary context switches: 6
+	Minor (reclaiming a frame) page faults: 784
+	Voluntary context switches: 19
 	Involuntary context switches: 5
 	Swaps: 0
 	File system inputs: 0
@@ -36,4 +22,4 @@ OK
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 0
+	Exit status: 255

@@ -1,56 +1,47 @@
-var weekDays = "Sunday Monday Tuesday Wednesday Thursday Friday Saturday".split(" ");
+const weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-var Meetup = function(year, month, day, nth) {
-	/* Finds a meetup date */
-  var intDay = weekDays.indexOf(day)
+const Meetup = function (year, month, day, nth) {
+  const intDay = weekDays.indexOf(day);
 
   switch (nth) {
     case "teenth":
-      return find_day(year, month, intDay, 13, 19);
+      return findDay(year, month, intDay, 13, 19);
     case "1st":
-      return find_day(year, month, intDay, 1, 7);
+      return findDay(year, month, intDay, 1, 7);
     case "2nd":
-      return find_day(year, month, intDay, 8, 14);
+      return findDay(year, month, intDay, 8, 14);
     case "3rd":
-      return find_day(year, month, intDay, 15, 21);
+      return findDay(year, month, intDay, 15, 21);
     case "4th":
-      return find_day(year, month, intDay, 22, 28);
+      return findDay(year, month, intDay, 22, 28);
     case "5th":
-      return find_day(year, month, intDay, 29, 31);
+      return findDay(year, month, intDay, 29, 31);
     case "last":
-      return last(year, month, intDay);
+      return findLast(year, month, intDay);
   }
+};
+
+function findDay(year, month, day, start, stop) {
+  const startDate = new Date(year, month, start);
+  const endDate = new Date(year, month, Math.min(stop, daysInMonth(year, month)));
+
+  for (let date = startDate; date <= endDate; date.setDate(date.getDate() + 1)) {
+    if (date.getDay() === day) return new Date(date);
+  }
+  throw new Error("Date does not exist");
 }
 
-function find_day(year, month, day, start, stop) {
-	/* Finds the first occurance of a day of the week between two dates */
-  for(var meetup = new Date(year, month, start); 
-    meetup.getDate() <= stop && meetup.getMonth() == month; 
-    meetup = meetup.addDays(1)) {
+function findLast(year, month, day) {
+  const lastDate = new Date(year, month + 1, 0);
 
-    if( meetup.getDay() == day )
-      return meetup;
+  for (let date = lastDate; date.getMonth() === month; date.setDate(date.getDate() - 1)) {
+    if (date.getDay() === day) return new Date(date);
   }
-  throw "Date does not exist";
-};
+  throw new Error("Date does not exist");
+}
 
-function last(year, month, day) {
-	/* Last occurance of a day in a month */
-  for(var meetup = new Date(year, month + 1, 0); 
-    meetup.getMonth() == month; 
-    meetup = meetup.addDays(-1)) {
+function daysInMonth(year, month) {
+  return new Date(year, month + 1, 0).getDate();
+}
 
-    if( meetup.getDay() == day )
-      return meetup;
-  }
-  throw "Date does not exist";
-};
-
-Date.prototype.addDays = function(days) {
-	/* Adds a number of days to a date object */
-	var dat = new Date(this.valueOf());
-    dat.setDate(dat.getDate() + days);
-    return dat;
-};
-
-export default Meetup;;
+export default Meetup;

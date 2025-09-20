@@ -9,21 +9,21 @@ export const valid = ccnumber => {
     return false;
   }
 
-  const result = [...ccnumber.replace(/ /g, '')].map(digit => parseInt(digit, 10));
+  let sum = 0;
+  let shouldDouble = false;
 
-  const digitsCount = result.length;
-  const parity = digitsCount % 2;
-  let sum = result[digitsCount - 1];
+  for (let i = ccnumber.length - 1; i >= 0; i--) {
+    const char = ccnumber[i];
+    if (char === ' ') continue;
 
-  for (let i = 0; i < digitsCount - 1; i++) {
-    let digit = result[i];
-    if (i % 2 === parity) {
+    let digit = char.charCodeAt(0) - 48; // Faster than parseInt
+    if (shouldDouble) {
       digit *= 2;
+      if (digit > 9) digit -= 9;
     }
-    if (digit > 9) {
-      digit = digit - 9;
-    }
+
     sum += digit;
+    shouldDouble = !shouldDouble;
   }
 
   return sum % 10 === 0;

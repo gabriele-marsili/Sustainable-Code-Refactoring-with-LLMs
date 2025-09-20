@@ -4,7 +4,7 @@
 === RUN   TestSuccessRate/calculate_success_rate_for_speed_four
 === RUN   TestSuccessRate/calculate_success_rate_for_speed_seven
 === RUN   TestSuccessRate/calculate_success_rate_for_speed_nine
---- PASS: TestSuccessRate (0.01s)
+--- PASS: TestSuccessRate (0.00s)
     --- PASS: TestSuccessRate/calculate_success_rate_for_speed_zero (0.00s)
     --- PASS: TestSuccessRate/calculate_success_rate_for_speed_one (0.00s)
     --- PASS: TestSuccessRate/calculate_success_rate_for_speed_four (0.00s)
@@ -16,7 +16,7 @@
 === RUN   TestCalculateProductionRatePerHour/calculate_production_rate_per_hour_for_speed_four
 === RUN   TestCalculateProductionRatePerHour/calculate_production_rate_per_hour_for_speed_seven
 === RUN   TestCalculateProductionRatePerHour/calculate_production_rate_per_hour_for_speed_nine
---- PASS: TestCalculateProductionRatePerHour (0.02s)
+--- PASS: TestCalculateProductionRatePerHour (0.00s)
     --- PASS: TestCalculateProductionRatePerHour/calculate_production_rate_per_hour_for_speed_zero (0.00s)
     --- PASS: TestCalculateProductionRatePerHour/calculate_production_rate_per_hour_for_speed_one (0.00s)
     --- PASS: TestCalculateProductionRatePerHour/calculate_production_rate_per_hour_for_speed_four (0.00s)
@@ -28,7 +28,7 @@
 === RUN   TestCalculateProductionRatePerMinute/calculate_production_rate_per_minute_for_speed_five
 === RUN   TestCalculateProductionRatePerMinute/calculate_production_rate_per_minute_for_speed_eight
 === RUN   TestCalculateProductionRatePerMinute/calculate_production_rate_per_minute_for_speed_ten
---- PASS: TestCalculateProductionRatePerMinute (0.01s)
+--- PASS: TestCalculateProductionRatePerMinute (0.00s)
     --- PASS: TestCalculateProductionRatePerMinute/calculate_production_rate_per_minute_for_speed_zero (0.00s)
     --- PASS: TestCalculateProductionRatePerMinute/calculate_production_rate_per_minute_for_speed_one (0.00s)
     --- PASS: TestCalculateProductionRatePerMinute/calculate_production_rate_per_minute_for_speed_five (0.00s)
@@ -39,31 +39,31 @@
 === RUN   TestCalculateLimitedProductionRatePerHour/calculate_limited_production_rate_per_hour_below_limit
 === RUN   TestCalculateLimitedProductionRatePerHour/calculate_limited_production_rate_per_hour_above_limit
 === RUN   TestCalculateLimitedProductionRatePerHour/calculate_limited_production_rate_per_hour_at_limit
---- PASS: TestCalculateLimitedProductionRatePerHour (0.01s)
+--- PASS: TestCalculateLimitedProductionRatePerHour (0.00s)
     --- PASS: TestCalculateLimitedProductionRatePerHour/calculate_limited_production_rate_per_hour_for_speed_zero (0.00s)
     --- PASS: TestCalculateLimitedProductionRatePerHour/calculate_limited_production_rate_per_hour_below_limit (0.00s)
     --- PASS: TestCalculateLimitedProductionRatePerHour/calculate_limited_production_rate_per_hour_above_limit (0.00s)
     --- PASS: TestCalculateLimitedProductionRatePerHour/calculate_limited_production_rate_per_hour_at_limit (0.00s)
 PASS
-ok  	esercizio	0.101s
+ok  	esercizio	0.003s
 	Command being timed: "go test -v"
-	User time (seconds): 23.90
-	System time (seconds): 48.42
-	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:29.59
+	User time (seconds): 4.92
+	System time (seconds): 0.56
+	Percent of CPU this job got: 172%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.17
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 201208
+	Maximum resident set size (kbytes): 208212
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 4
-	Minor (reclaiming a frame) page faults: 712580
-	Voluntary context switches: 33116
-	Involuntary context switches: 44173
+	Major (requiring I/O) page faults: 8
+	Minor (reclaiming a frame) page faults: 721392
+	Voluntary context switches: 19998
+	Involuntary context switches: 16115
 	Swaps: 0
-	File system inputs: 0
-	File system outputs: 171824
+	File system inputs: 37168
+	File system outputs: 172128
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0

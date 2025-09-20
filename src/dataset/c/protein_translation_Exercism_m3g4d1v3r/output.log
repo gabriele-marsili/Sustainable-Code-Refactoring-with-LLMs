@@ -1,52 +1,20 @@
-test/test_protein_translation.c:321:test_empty_rna_sequence_results_in_no_proteins:PASS
-test/test_protein_translation.c:322:test_methionine_rna_sequence:PASS
-test/test_protein_translation.c:323:test_phenylalanine_rna_sequence_1:PASS
-test/test_protein_translation.c:324:test_phenylalanine_rna_sequence_2:PASS
-test/test_protein_translation.c:325:test_leucine_rna_sequence_1:PASS
-test/test_protein_translation.c:326:test_leucine_rna_sequence_2:PASS
-test/test_protein_translation.c:327:test_serine_rna_sequence_1:PASS
-test/test_protein_translation.c:328:test_serine_rna_sequence_2:PASS
-test/test_protein_translation.c:329:test_serine_rna_sequence_3:PASS
-test/test_protein_translation.c:330:test_serine_rna_sequence_4:PASS
-test/test_protein_translation.c:331:test_tyrosine_rna_sequence_1:PASS
-test/test_protein_translation.c:332:test_tyrosine_rna_sequence_2:PASS
-test/test_protein_translation.c:333:test_cysteine_rna_sequence_1:PASS
-test/test_protein_translation.c:334:test_cysteine_rna_sequence_2:PASS
-test/test_protein_translation.c:335:test_tryptophan_rna_sequence:PASS
-test/test_protein_translation.c:336:test_stop_codon_rna_sequence_1:PASS
-test/test_protein_translation.c:337:test_stop_codon_rna_sequence_2:PASS
-test/test_protein_translation.c:338:test_stop_codon_rna_sequence_3:PASS
-test/test_protein_translation.c:339:test_sequence_of_two_protein_codons_translates_into_proteins:PASS
-test/test_protein_translation.c:340:test_sequence_of_two_different_protein_codons_translates_into_proteins:PASS
-test/test_protein_translation.c:341:test_translate_rna_strand_into_correct_protein_list:PASS
-test/test_protein_translation.c:342:test_translation_stops_if_stop_codon_at_beginning_of_sequence:PASS
-test/test_protein_translation.c:343:test_translation_stops_if_stop_codon_at_end_of_two_codon_sequence:PASS
-test/test_protein_translation.c:344:test_translation_stops_if_stop_codon_at_end_of_three_codon_sequence:PASS
-test/test_protein_translation.c:345:test_translation_stops_if_stop_codon_in_middle_of_three_codon_sequence:PASS
-test/test_protein_translation.c:346:test_translation_stops_if_stop_codon_in_middle_of_six_codon_sequence:PASS
-test/test_protein_translation.c:347:test_non_existing_codon_cant_translate:PASS
-test/test_protein_translation.c:348:test_unknown_amino_acids_not_part_of_a_codon_cant_translate:PASS
-test/test_protein_translation.c:349:test_invalid_codon_cant_translate:PASS
-test/test_protein_translation.c:350:test_incomplete_rna_sequence_can_translate_if_valid_until_a_stop_codon:PASS
-
------------------------
-30 Tests 0 Failures 0 Ignored 
-OK
+qemu-x86_64: Could not open '/lib64/ld-linux-x86-64.so.2': No such file or directory
+Command exited with non-zero status 255
 	Command being timed: "./tests.out"
 	User time (seconds): 0.00
 	System time (seconds): 0.00
-	Percent of CPU this job got: 8%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.02
+	Percent of CPU this job got: 33%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.00
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 1152
+	Maximum resident set size (kbytes): 3456
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 1
-	Minor (reclaiming a frame) page faults: 73
-	Voluntary context switches: 6
-	Involuntary context switches: 7
+	Minor (reclaiming a frame) page faults: 784
+	Voluntary context switches: 18
+	Involuntary context switches: 30
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 0
@@ -54,4 +22,4 @@ OK
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 0
+	Exit status: 255

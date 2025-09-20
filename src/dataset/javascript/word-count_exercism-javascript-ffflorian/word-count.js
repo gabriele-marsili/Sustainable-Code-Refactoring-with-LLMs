@@ -1,13 +1,15 @@
 export function countWords(words) {
-  return words
-    .trim()
-    .toLowerCase()
-    .replace(/[^\w' ,]/g, '')
-    .split(/[\t\n ,]+/)
-    .filter(word => Boolean(word.trim()))
-    .map(word => word.replace(/^'(.*)'$/, '$1'))
-    .reduce((result, word) => {
-      result[word] = result[word] + 1 || 1;
-      return result;
-    }, {});
+  const trimmedWords = words.trim().toLowerCase();
+  const cleanedWords = trimmedWords.replace(/[^\w' ,]/g, '');
+  const wordsArray = cleanedWords.split(/[\t\n ,]+/);
+
+  const result = {};
+  for (let i = 0; i < wordsArray.length; i++) {
+    let word = wordsArray[i].trim();
+    if (word) {
+      word = word.replace(/^'(.*)'$/, '$1');
+      result[word] = (result[word] || 0) + 1;
+    }
+  }
+  return result;
 }

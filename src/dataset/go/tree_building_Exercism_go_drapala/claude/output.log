@@ -1,0 +1,61 @@
+=== RUN   TestMakeTreeSuccess
+=== RUN   TestMakeTreeSuccess/empty_input
+=== RUN   TestMakeTreeSuccess/one_node
+=== RUN   TestMakeTreeSuccess/three_nodes_in_order
+=== RUN   TestMakeTreeSuccess/three_nodes_in_reverse_order
+=== RUN   TestMakeTreeSuccess/three_levels_of_nesting
+=== RUN   TestMakeTreeSuccess/more_than_two_children
+=== RUN   TestMakeTreeSuccess/binary_tree
+=== RUN   TestMakeTreeSuccess/unbalanced_tree
+--- PASS: TestMakeTreeSuccess (0.00s)
+    --- PASS: TestMakeTreeSuccess/empty_input (0.00s)
+    --- PASS: TestMakeTreeSuccess/one_node (0.00s)
+    --- PASS: TestMakeTreeSuccess/three_nodes_in_order (0.00s)
+    --- PASS: TestMakeTreeSuccess/three_nodes_in_reverse_order (0.00s)
+    --- PASS: TestMakeTreeSuccess/three_levels_of_nesting (0.00s)
+    --- PASS: TestMakeTreeSuccess/more_than_two_children (0.00s)
+    --- PASS: TestMakeTreeSuccess/binary_tree (0.00s)
+    --- PASS: TestMakeTreeSuccess/unbalanced_tree (0.00s)
+=== RUN   TestMakeTreeFailure
+=== RUN   TestMakeTreeFailure/root_node_has_parent
+=== RUN   TestMakeTreeFailure/no_root_node
+=== RUN   TestMakeTreeFailure/duplicate_node
+=== RUN   TestMakeTreeFailure/duplicate_root
+=== RUN   TestMakeTreeFailure/non-continuous
+=== RUN   TestMakeTreeFailure/cycle_directly
+=== RUN   TestMakeTreeFailure/cycle_indirectly
+=== RUN   TestMakeTreeFailure/higher_id_parent_of_lower_id
+--- PASS: TestMakeTreeFailure (0.00s)
+    --- PASS: TestMakeTreeFailure/root_node_has_parent (0.00s)
+    --- PASS: TestMakeTreeFailure/no_root_node (0.00s)
+    --- PASS: TestMakeTreeFailure/duplicate_node (0.00s)
+    --- PASS: TestMakeTreeFailure/duplicate_root (0.00s)
+    --- PASS: TestMakeTreeFailure/non-continuous (0.00s)
+    --- PASS: TestMakeTreeFailure/cycle_directly (0.00s)
+    --- PASS: TestMakeTreeFailure/cycle_indirectly (0.00s)
+    --- PASS: TestMakeTreeFailure/higher_id_parent_of_lower_id (0.00s)
+PASS
+ok  	esercizio	0.004s
+	Command being timed: "go test -v"
+	User time (seconds): 5.20
+	System time (seconds): 0.65
+	Percent of CPU this job got: 95%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:06.15
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 217548
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 7
+	Minor (reclaiming a frame) page faults: 729623
+	Voluntary context switches: 21742
+	Involuntary context switches: 19333
+	Swaps: 0
+	File system inputs: 29096
+	File system outputs: 172352
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

@@ -1,51 +1,51 @@
-PASS ./triangle.test.ts (19.598 s)
+PASS ./triangle.test.ts
   Triangle
     equilateral triangle
-      ✓ all sides are equal (44 ms)
-      ✓ any side is unequal (1 ms)
-      ✓ no sides are equal (4 ms)
-      ✓ all zero sides is not a triangle (4 ms)
-      ✓ sides may be floats (19 ms)
+      ✓ all sides are equal (2 ms)
+      ✓ any side is unequal
+      ✓ no sides are equal
+      ✓ all zero sides is not a triangle
+      ✓ sides may be floats
     isosceles triangle
-      ✓ last two sides are equal (3 ms)
-      ✓ first two sides are equal (2 ms)
-      ✓ first and last sides are equal (5 ms)
-      ✓ equilateral triangles are also isosceles (3 ms)
-      ✓ no sides are equal (2 ms)
-      ✓ first triangle inequality violation (2 ms)
-      ✓ second triangle inequality violation (3 ms)
-      ✓ third triangle inequality violation
-      ✓ sides may be floats (1 ms)
+      ✓ last two sides are equal (1 ms)
+      ✓ first two sides are equal
+      ✓ first and last sides are equal
+      ✓ equilateral triangles are also isosceles
+      ✓ no sides are equal
+      ✓ first triangle inequality violation
+      ✓ second triangle inequality violation
+      ✓ third triangle inequality violation (1 ms)
+      ✓ sides may be floats
     scalene triangle
-      ✓ no sides are equal (1 ms)
-      ✓ all sides are equal
-      ✓ first and second sides are equal (1 ms)
-      ✓ first and third sides are equal (2 ms)
-      ✓ second and third sides are equal (7 ms)
-      ✓ may not violate triangle inequality (1 ms)
-      ✓ sides may be floats (1 ms)
+      ✓ no sides are equal
+      ✓ all sides are equal (1 ms)
+      ✓ first and second sides are equal
+      ✓ first and third sides are equal
+      ✓ second and third sides are equal
+      ✓ may not violate triangle inequality
+      ✓ sides may be floats
 
 Test Suites: 1 passed, 1 total
 Tests:       21 passed, 21 total
 Snapshots:   0 total
-Time:        22.738 s
+Time:        2.557 s
 Ran all test suites.
 Test results written to: output.log
 	Command being timed: "npx jest --json --outputFile=output.log"
-	User time (seconds): 8.21
-	System time (seconds): 3.74
-	Percent of CPU this job got: 38%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:31.24
+	User time (seconds): 1.38
+	System time (seconds): 0.08
+	Percent of CPU this job got: 47%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.09
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 219312
+	Maximum resident set size (kbytes): 222940
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 64017
-	Voluntary context switches: 1881
-	Involuntary context switches: 6830
+	Minor (reclaiming a frame) page faults: 65506
+	Voluntary context switches: 1943
+	Involuntary context switches: 4916
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 104

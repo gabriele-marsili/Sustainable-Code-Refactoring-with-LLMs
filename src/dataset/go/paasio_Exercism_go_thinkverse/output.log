@@ -5,49 +5,49 @@
 === RUN   TestWriteReadWriter
 --- PASS: TestWriteReadWriter (0.00s)
 === RUN   TestReadReader
---- PASS: TestReadReader (0.30s)
+--- PASS: TestReadReader (0.06s)
 === RUN   TestReadReadWriter
---- PASS: TestReadReadWriter (0.20s)
+--- PASS: TestReadReadWriter (0.04s)
 === RUN   TestReadTotalReader
     paasio_test.go:117: Calling Read() for 8000*50=400000 bytes
---- PASS: TestReadTotalReader (2.06s)
+--- PASS: TestReadTotalReader (0.01s)
 === RUN   TestReadTotalReadWriter
     paasio_test.go:117: Calling Read() for 8000*50=400000 bytes
---- PASS: TestReadTotalReadWriter (2.35s)
+--- PASS: TestReadTotalReadWriter (0.01s)
 === RUN   TestWriteTotalWriter
     paasio_test.go:156: Calling Write() with 8000*50=400000 bytes
---- PASS: TestWriteTotalWriter (1.89s)
+--- PASS: TestWriteTotalWriter (0.01s)
 === RUN   TestWriteTotalReadWriter
     paasio_test.go:156: Calling Write() with 8000*50=400000 bytes
---- PASS: TestWriteTotalReadWriter (2.11s)
+--- PASS: TestWriteTotalReadWriter (0.05s)
 === RUN   TestReadCountConsistencyReader
---- PASS: TestReadCountConsistencyReader (1.39s)
+--- PASS: TestReadCountConsistencyReader (0.02s)
 === RUN   TestReadCountConsistencyReadWriter
---- PASS: TestReadCountConsistencyReadWriter (1.37s)
+--- PASS: TestReadCountConsistencyReadWriter (0.00s)
 === RUN   TestWriteCountConsistencyWriter
---- PASS: TestWriteCountConsistencyWriter (1.28s)
+--- PASS: TestWriteCountConsistencyWriter (0.04s)
 === RUN   TestWriteCountConsistencyReadWriter
---- PASS: TestWriteCountConsistencyReadWriter (1.30s)
+--- PASS: TestWriteCountConsistencyReadWriter (0.04s)
 PASS
-ok  	esercizio	14.346s
+ok  	esercizio	0.292s
 	Command being timed: "go test -v"
-	User time (seconds): 25.13
-	System time (seconds): 57.73
+	User time (seconds): 5.74
+	System time (seconds): 0.72
 	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:50.93
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:13.35
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 202232
+	Maximum resident set size (kbytes): 219220
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 5
-	Minor (reclaiming a frame) page faults: 778592
-	Voluntary context switches: 38744
-	Involuntary context switches: 51686
+	Major (requiring I/O) page faults: 67
+	Minor (reclaiming a frame) page faults: 793932
+	Voluntary context switches: 27783
+	Involuntary context switches: 23280
 	Swaps: 0
-	File system inputs: 0
-	File system outputs: 180840
+	File system inputs: 39000
+	File system outputs: 181176
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0

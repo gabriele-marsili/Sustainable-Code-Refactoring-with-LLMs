@@ -1,0 +1,43 @@
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS ./crypto-square_testSuite.js
+  Crypto
+    ✓ normalize strange characters (2 ms)
+    ✓ normalize numbers
+    ✓ size of small square
+    ✓ size of small square with additional non-nuber chars
+    ✓ size of slightly larger square (1 ms)
+    ✓ size of non-perfect square
+    ✓ plain text segments
+    ✓ plain text segments
+    ✓ cipher text
+    ✓ cipher text (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       10 passed, 10 total
+Snapshots:   0 total
+Time:        0.322 s
+Ran all test suites.
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 0.24
+	System time (seconds): 0.06
+	Percent of CPU this job got: 34%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.89
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 80632
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 8
+	Minor (reclaiming a frame) page faults: 14014
+	Voluntary context switches: 7518
+	Involuntary context switches: 2836
+	Swaps: 0
+	File system inputs: 872
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

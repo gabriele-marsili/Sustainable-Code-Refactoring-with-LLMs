@@ -1,16 +1,11 @@
 def max_area(height):
-    l = 0
-    r = len(height) - 1
+    l, r = 0, len(height) - 1
     max_height = 0
     while l < r:
-        left = height[l]
-        right = height[r]
-        current_height = min(left, right) * (r - l)
-        max_height = max(max_height, current_height)
-        if left < right:
-            while (l < r) and (left >= height[l]):
-                l += 1
+        if height[l] < height[r]:
+            max_height = max(max_height, height[l] * (r - l))
+            l += 1
         else:
-            while (l < r) and (right >= height[r]):
-                r -= 1
+            max_height = max(max_height, height[r] * (r - l))
+            r -= 1
     return max_height

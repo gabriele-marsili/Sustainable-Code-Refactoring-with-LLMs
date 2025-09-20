@@ -1,0 +1,56 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.BinarySearchTree = void 0;
+class BinarySearchTree {
+    constructor(data) {
+        this._data = data;
+    }
+    get data() {
+        return this._data;
+    }
+    get right() {
+        return this._right;
+    }
+    get left() {
+        return this._left;
+    }
+    insert(item) {
+        let current = this;
+        while (true) {
+            if (item <= current._data) {
+                if (current._left) {
+                    current = current._left;
+                }
+                else {
+                    current._left = new BinarySearchTree(item);
+                    break;
+                }
+            }
+            else {
+                if (current._right) {
+                    current = current._right;
+                }
+                else {
+                    current._right = new BinarySearchTree(item);
+                    break;
+                }
+            }
+        }
+    }
+    each(callback) {
+        const stack = [];
+        let current = this;
+        while (stack.length > 0 || current) {
+            while (current) {
+                stack.push(current);
+                current = current._left;
+            }
+            current = stack.pop();
+            if (current) {
+                callback(current._data);
+                current = current._right;
+            }
+        }
+    }
+}
+exports.BinarySearchTree = BinarySearchTree;

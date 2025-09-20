@@ -2,7 +2,7 @@
 === RUN   TestNewNotNil/singleton
 === RUN   TestNewNotNil/parent_and_one_sibling
 === RUN   TestNewNotNil/parent_and_kids
---- PASS: TestNewNotNil (0.01s)
+--- PASS: TestNewNotNil (0.00s)
     --- PASS: TestNewNotNil/singleton (0.00s)
     --- PASS: TestNewNotNil/parent_and_one_sibling (0.00s)
     --- PASS: TestNewNotNil/parent_and_kids (0.00s)
@@ -10,7 +10,7 @@
 === RUN   TestValue/singleton
 === RUN   TestValue/parent_and_one_sibling
 === RUN   TestValue/parent_and_kids
---- PASS: TestValue (0.01s)
+--- PASS: TestValue (0.00s)
     --- PASS: TestValue/singleton (0.00s)
     --- PASS: TestValue/parent_and_one_sibling (0.00s)
     --- PASS: TestValue/parent_and_kids (0.00s)
@@ -18,7 +18,7 @@
 === RUN   TestChildren/singleton
 === RUN   TestChildren/parent_and_one_sibling
 === RUN   TestChildren/parent_and_kids
---- PASS: TestChildren (0.01s)
+--- PASS: TestChildren (0.00s)
     --- PASS: TestChildren/singleton (0.00s)
     --- PASS: TestChildren/parent_and_one_sibling (0.00s)
     --- PASS: TestChildren/parent_and_kids (0.00s)
@@ -31,7 +31,7 @@
 === RUN   TestFromPov/Can_reroot_a_complex_tree_with_cousins
 === RUN   TestFromPov/Errors_if_target_does_not_exist_in_a_singleton_tree
 === RUN   TestFromPov/Errors_if_target_does_not_exist_in_a_large_tree
---- PASS: TestFromPov (0.02s)
+--- PASS: TestFromPov (0.00s)
     --- PASS: TestFromPov/Results_in_the_same_tree_if_the_input_tree_is_a_singleton (0.00s)
     --- PASS: TestFromPov/Can_reroot_a_tree_with_a_parent_and_one_sibling (0.00s)
     --- PASS: TestFromPov/Can_reroot_a_tree_with_a_parent_and_many_siblings (0.00s)
@@ -48,7 +48,7 @@
 === RUN   TestPathTo/Can_find_path_from_nodes_other_than_x
 === RUN   TestPathTo/Errors_if_destination_does_not_exist
 === RUN   TestPathTo/Errors_if_source_does_not_exist
---- PASS: TestPathTo (0.02s)
+--- PASS: TestPathTo (0.00s)
     --- PASS: TestPathTo/Can_find_path_to_parent (0.00s)
     --- PASS: TestPathTo/Can_find_path_to_sibling (0.00s)
     --- PASS: TestPathTo/Can_find_path_to_cousin (0.00s)
@@ -57,25 +57,25 @@
     --- PASS: TestPathTo/Errors_if_destination_does_not_exist (0.00s)
     --- PASS: TestPathTo/Errors_if_source_does_not_exist (0.00s)
 PASS
-ok  	esercizio	0.106s
+ok  	esercizio	0.004s
 	Command being timed: "go test -v"
-	User time (seconds): 23.43
-	System time (seconds): 47.54
-	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:26.44
+	User time (seconds): 5.22
+	System time (seconds): 0.54
+	Percent of CPU this job got: 65%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:08.73
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 201592
+	Maximum resident set size (kbytes): 229000
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 5
-	Minor (reclaiming a frame) page faults: 720005
-	Voluntary context switches: 33457
-	Involuntary context switches: 44681
+	Major (requiring I/O) page faults: 6
+	Minor (reclaiming a frame) page faults: 736802
+	Voluntary context switches: 23223
+	Involuntary context switches: 18369
 	Swaps: 0
-	File system inputs: 0
-	File system outputs: 172752
+	File system inputs: 14248
+	File system outputs: 173120
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0

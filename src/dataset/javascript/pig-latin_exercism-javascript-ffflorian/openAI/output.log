@@ -1,0 +1,61 @@
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS ./pig-latin_testSuite.js
+  Pig Latin
+    ay is added to words that start with vowels
+      ✓ word beginning with a (4 ms)
+      ✓ word beginning with e
+      ✓ word beginning with i
+      ✓ word beginning with o (5 ms)
+      ✓ word beginning with u
+      ✓ word beginning with a vowel and followed by a qu
+    first letter and ay are moved to the end of words that start with consonants
+      ✓ word beginning with p
+      ✓ word beginning with k
+      ✓ word beginning with x (2 ms)
+      ✓ word beginning with q without a following u (1 ms)
+    some letter clusters are treated like a single consonant
+      ✓ word beginning with ch (1 ms)
+      ✓ word beginning with qu
+      ✓ word beginning with qu and a preceding consonant
+      ✓ word beginning with th
+      ✓ word beginning with thr (1 ms)
+      ✓ word beginning with sch
+    some letter clusters are treated like a single vowel
+      ✓ word beginning with yt
+      ✓ word beginning with xr
+    position of y in a word determines if it is a consonant or a vowel
+      ✓ y is treated like a consonant at the beginning of a word (1 ms)
+      ✓ y is treated like a vowel at the end of a consonant cluster
+      ✓ y as second letter in two letter word
+    phrases are translated
+      ✓ a whole phrase
+
+Test Suites: 1 passed, 1 total
+Tests:       22 passed, 22 total
+Snapshots:   0 total
+Time:        0.486 s
+Ran all test suites.
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 0.23
+	System time (seconds): 0.07
+	Percent of CPU this job got: 24%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.27
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 81564
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 14334
+	Voluntary context switches: 8457
+	Involuntary context switches: 1704
+	Swaps: 0
+	File system inputs: 160
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

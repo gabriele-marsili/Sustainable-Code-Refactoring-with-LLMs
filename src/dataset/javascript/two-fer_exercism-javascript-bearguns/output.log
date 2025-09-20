@@ -1,0 +1,58 @@
+node:internal/modules/cjs/loader:1212
+  const err = new Error(message);
+              ^
+
+Error: Cannot find module './clearLine'
+Require stack:
+- /app/node_modules/jest-util/build/preRunMessage.js
+- /app/node_modules/jest-util/build/index.js
+- /app/node_modules/jest-cli/build/run.js
+- /app/node_modules/jest-cli/build/index.js
+- /app/node_modules/jest-cli/bin/jest.js
+- /app/node_modules/jest/bin/jest.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1212:15)
+    at Module._load (node:internal/modules/cjs/loader:1043:27)
+    at Module.require (node:internal/modules/cjs/loader:1298:19)
+    at require (node:internal/modules/helpers:182:18)
+    at Object.<anonymous> (/app/node_modules/jest-util/build/preRunMessage.js:15:41)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at Module.load (node:internal/modules/cjs/loader:1275:32)
+    at Module._load (node:internal/modules/cjs/loader:1096:12)
+    at Module.require (node:internal/modules/cjs/loader:1298:19) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/app/node_modules/jest-util/build/preRunMessage.js',
+    '/app/node_modules/jest-util/build/index.js',
+    '/app/node_modules/jest-cli/build/run.js',
+    '/app/node_modules/jest-cli/build/index.js',
+    '/app/node_modules/jest-cli/bin/jest.js',
+    '/app/node_modules/jest/bin/jest.js'
+  ]
+}
+
+Node.js v20.19.4
+Command exited with non-zero status 1
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 0.02
+	System time (seconds): 0.00
+	Percent of CPU this job got: 43%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.06
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 44856
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 2935
+	Voluntary context switches: 516
+	Involuntary context switches: 87
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

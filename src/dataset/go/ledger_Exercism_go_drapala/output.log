@@ -112,7 +112,7 @@ Date       | Description               | Change
 03/12/2015 | Buy present               |     ($123.45)
 
 
---- PASS: TestFormatLedgerSuccess (0.09s)
+--- PASS: TestFormatLedgerSuccess (0.01s)
 === RUN   TestFormatLedgerFailure
 
 ============================ IN ============================
@@ -158,7 +158,7 @@ currency:  USD | locale:  en-US | entries:  [{2015-131-11 Buy present 12345}]
 
 ============================ IN ============================
 currency:  USD | locale:  en-US | entries:  [{2015-12/11 Buy present 12345}]
---- PASS: TestFormatLedgerFailure (0.05s)
+--- PASS: TestFormatLedgerFailure (0.00s)
 === RUN   TestFormatLedgerNotChangeInput
 
 ============================ IN ============================
@@ -171,27 +171,27 @@ Date       | Description               | Change
 01/02/2015 | Freude schöner Götte... |       $10.00 
 
 
---- PASS: TestFormatLedgerNotChangeInput (0.01s)
+--- PASS: TestFormatLedgerNotChangeInput (0.00s)
 PASS
-ok  	esercizio	0.182s
+ok  	esercizio	0.020s
 	Command being timed: "go test -v"
-	User time (seconds): 25.20
-	System time (seconds): 50.74
-	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:37.31
+	User time (seconds): 5.30
+	System time (seconds): 0.67
+	Percent of CPU this job got: 59%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:10.12
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 207332
+	Maximum resident set size (kbytes): 235216
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 5
-	Minor (reclaiming a frame) page faults: 718140
-	Voluntary context switches: 34456
-	Involuntary context switches: 46128
+	Major (requiring I/O) page faults: 10
+	Minor (reclaiming a frame) page faults: 736514
+	Voluntary context switches: 24176
+	Involuntary context switches: 31603
 	Swaps: 0
-	File system inputs: 0
-	File system outputs: 172072
+	File system inputs: 18968
+	File system outputs: 172440
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
