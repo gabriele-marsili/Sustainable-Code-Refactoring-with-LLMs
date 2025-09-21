@@ -1,0 +1,72 @@
+{
+  "research_question": "Does code similarity between LLMs correlate with similar performance changes vs baseline?",
+  "formula": "delta_diff = |delta_model1 - delta_model2| where delta_modelN = metricN - baseline_metric",
+  "dataset_stats": {
+    "total_comparisons": 5334,
+    "languages": [
+      "c",
+      "cpp",
+      "go",
+      "java",
+      "javascript",
+      "python",
+      "typescript"
+    ],
+    "llm_pairs": [
+      "claude_vs_gemini",
+      "openAI_vs_claude",
+      "openAI_vs_gemini"
+    ],
+    "clusters": 375,
+    "entries": 1778,
+    "entries_with_baseline": 4404
+  },
+  "similarity_stats": {
+    "code_similarity_mean": 71.29633172446987,
+    "code_similarity_std": 15.043649665298195
+  },
+  "correlation_analysis": {
+    "success_rate": {
+      "correlation_coefficient": -0.018289915889646926,
+      "p_value": 0.22492952407946587,
+      "significant": "False",
+      "sample_size": 4404,
+      "interpretation": "no_strong_correlation"
+    },
+    "exec_time": {
+      "correlation_coefficient": -0.09669325707257156,
+      "p_value": 2.2382799069755715e-10,
+      "significant": "True",
+      "sample_size": 4287,
+      "interpretation": "no_strong_correlation"
+    },
+    "cpu": {
+      "correlation_coefficient": -0.031157776022381654,
+      "p_value": 0.04135415872751644,
+      "significant": "True",
+      "sample_size": 4287,
+      "interpretation": "no_strong_correlation"
+    },
+    "ram": {
+      "correlation_coefficient": -0.05263439148165571,
+      "p_value": 0.0005655252855451181,
+      "significant": "True",
+      "sample_size": 4287,
+      "interpretation": "no_strong_correlation"
+    }
+  },
+  "llm_pair_ranking": {
+    "claude_vs_gemini": 73.08633419703489,
+    "openAI_vs_claude": 71.17828509537118,
+    "openAI_vs_gemini": 69.62437588100354
+  },
+  "language_ranking": {
+    "java": 75.58814507606735,
+    "go": 73.97798589698775,
+    "c": 73.93944480804659,
+    "cpp": 72.7804891065737,
+    "javascript": 70.12778106112042,
+    "typescript": 67.74895617725998,
+    "python": 66.041168674431
+  }
+}

@@ -3622,6 +3622,8 @@ def print_analysis_results(results: ClusterAnalysisResults, runned_base, runned_
     )
     print("=" * 60)
 
+    """ 
+
     # Stampa gli array di clusters eseguiti per uso futuro
     print("\n📝 CLUSTERS ARRAYS FOR FUTURE REFERENCE:")
     print("-" * 50)
@@ -3655,7 +3657,7 @@ def print_analysis_results(results: ClusterAnalysisResults, runned_base, runned_
         print(f"clusters_already_processed = {sorted(all_fully_executed)}")
         print()
 
-    """
+    
     print(
         f"\n(base) Clusters executed in this run ({len(base_cluster_processed_in_this_exec)}):\n{base_cluster_processed_in_this_exec}"
     )
