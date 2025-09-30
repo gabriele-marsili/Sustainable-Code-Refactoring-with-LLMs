@@ -23,8 +23,7 @@ func valueFromBase(base int, digits []int) (int, error) {
 		if digit < 0 || base <= digit {
 			return 0, errors.New("all digits must satisfy 0 <= d < input base")
 		}
-		total *= base
-		total += digit
+		total = total*base + digit
 	}
 	return total, nil
 }
@@ -36,9 +35,17 @@ func digitsFromValue(base int, value int) ([]int, error) {
 	if value == 0 {
 		return []int{0}, nil
 	}
-	digits := []int{}
-	for value > 0 {
-		digits = append([]int{value % base}, digits...)
+	
+	digitCount := 0
+	temp := value
+	for temp > 0 {
+		temp /= base
+		digitCount++
+	}
+	
+	digits := make([]int, digitCount)
+	for i := digitCount - 1; i >= 0; i-- {
+		digits[i] = value % base
 		value /= base
 	}
 	return digits, nil

@@ -122,18 +122,18 @@ class LLMAnalyzer:
             return PerformanceMetrics(None, None, None, False, 0.0)
         
         # Filter valid results
-        passed_key = 'regrationTestPassed' if 'regrationTestPassed' in results[0] else 'regressionTestPassed'
+        passed_key = 'regressionTestPassed' if 'regressionTestPassed' in results[0] else 'regressionTestPassed'
         valid_results = [r for r in results if r.get(passed_key) is not None]
         
         if not valid_results:
             return PerformanceMetrics(None, None, None, False, 0.0)
         
         # Calculate success rate (percentage of runs that passed regression test)
-        success_count = sum(1 for r in valid_results if r.get('regrationTestPassed', False))
+        success_count = sum(1 for r in valid_results if r.get('regressionTestPassed', False))
         success_rate = (success_count / len(valid_results)) * 100
         
         # Calculate averages for successful runs only
-        successful_runs = [r for r in valid_results if r.get('regrationTestPassed', False)]
+        successful_runs = [r for r in valid_results if r.get('regressionTestPassed', False)]
         
         if successful_runs:
             exec_times = [r.get('execution_time_ms') for r in successful_runs if r.get('execution_time_ms') is not None]

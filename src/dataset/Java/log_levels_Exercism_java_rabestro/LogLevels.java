@@ -1,15 +1,23 @@
 public class LogLevels {
 
     public static String message(String logLine) {
-        return logLine.substring(logLine.indexOf(":") + 1).trim();
+        int colonIndex = logLine.indexOf(':');
+        return logLine.substring(colonIndex + 1).trim();
     }
 
     public static String logLevel(String logLine) {
-        return logLine.substring(1, logLine.indexOf("]")).toLowerCase();
+        int closeBracketIndex = logLine.indexOf(']');
+        return logLine.substring(1, closeBracketIndex).toLowerCase();
     }
 
     public static String reformat(String logLine) {
-        return message(logLine) + " (" + logLevel(logLine) + ")";
+        int colonIndex = logLine.indexOf(':');
+        int closeBracketIndex = logLine.indexOf(']');
+        
+        String message = logLine.substring(colonIndex + 1).trim();
+        String logLevel = logLine.substring(1, closeBracketIndex).toLowerCase();
+        
+        return message + " (" + logLevel + ")";
     }
 
 }

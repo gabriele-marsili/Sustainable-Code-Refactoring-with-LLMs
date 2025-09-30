@@ -2,17 +2,15 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const isUpperCase = (s) => s === s.toUpperCase();
 const isLetter = (char) => {
-    const charCode = char.charCodeAt(0);
-    return (charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122);
+    const upper = char.toUpperCase();
+    return upper !== char.toLowerCase();
 };
 const wordToAcronym = (word) => {
-    if (isUpperCase(word)) {
-        return word.charAt(0);
-    }
-    let acronym = word.charAt(0).toUpperCase();
+    let acronym = "";
+    acronym += word[0].toUpperCase();
     for (let i = 1; i < word.length; i++) {
-        if (isUpperCase(word.charAt(i))) {
-            acronym += word.charAt(i);
+        if (isUpperCase(word[i])) {
+            acronym += word[i];
         }
     }
     return acronym;
@@ -20,18 +18,15 @@ const wordToAcronym = (word) => {
 const replacePunctuationWithSpace = (s) => {
     let result = "";
     for (let i = 0; i < s.length; i++) {
-        const char = s.charAt(i);
+        const char = s[i];
         result += isLetter(char) ? char : ' ';
     }
     return result;
 };
 const parse = (s) => {
     const replaced = replacePunctuationWithSpace(s);
-    const words = replaced.trim().split(/\s+/);
-    let acronym = "";
-    for (let i = 0; i < words.length; i++) {
-        acronym += wordToAcronym(words[i]);
-    }
-    return acronym;
+    const trimmed = replaced.trim();
+    const words = trimmed.split(/\s+/);
+    return words.map(wordToAcronym).join('');
 };
 exports.default = { parse };

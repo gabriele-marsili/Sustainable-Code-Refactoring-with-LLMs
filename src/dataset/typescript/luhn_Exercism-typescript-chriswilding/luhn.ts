@@ -1,33 +1,30 @@
-const SPACE = 32
-const ZERO = 48
-const NINE = 57
-
-export default class Luhn {
-    public static valid(input: string): boolean {
-        const numbers = []
-
-        for (let i = 0; i < input.length; i++) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const SPACE = 32;
+const ZERO = 48;
+const NINE = 57;
+class Luhn {
+    static valid(input) {
+        let sum = 0;
+        let digitCount = 0;
+        let isEven = true;
+        for (let i = input.length - 1; i >= 0; i--) {
             const c = input.charCodeAt(i);
-            if (c < ZERO && c > NINE) return false
-            if (c === SPACE) continue
-            numbers.push(c - ZERO)
+            if (c === SPACE)
+                continue;
+            if (c < ZERO || c > NINE)
+                return false;
+            let digit = c - ZERO;
+            if (!isEven) {
+                digit <<= 1;
+                if (digit > 9)
+                    digit -= 9;
+            }
+            sum += digit;
+            digitCount++;
+            isEven = !isEven;
         }
-
-        if (numbers.length < 2) return false
-        numbers.reverse()
-
-        const sum = numbers
-            .reduce((sum, n, i) => {
-                if (i % 2 !== 0) {
-                    let doubled = n * 2
-                    if (doubled > 9) {
-                        doubled -= 9
-                    }
-                    return sum + doubled
-                }
-                return sum + n
-            }, 0)
-
-        return sum % 10 === 0
+        return digitCount >= 2 && sum % 10 === 0;
     }
 }
+exports.default = Luhn;

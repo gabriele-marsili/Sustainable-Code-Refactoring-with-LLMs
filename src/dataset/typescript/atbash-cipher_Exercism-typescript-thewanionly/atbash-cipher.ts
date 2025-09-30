@@ -1,43 +1,45 @@
-const MIN_CHAR_CODE = 97 //char code of 'a'
-const MAX_CHAR_CODE = 122 //char code of 'z'
-const OFFSET = MAX_CHAR_CODE - MIN_CHAR_CODE
-const MULTIPLIER = 2
-const GROUP_LENGTH = 5
-const GROUP_SEPARATOR = ' '
-
-const cipherLetter = (letter: string): string => {
-  return /^\d+$/.test(letter)
-    ? letter
-    : String.fromCharCode(
-        letter.charCodeAt(0) + (OFFSET - (letter.charCodeAt(0) - MIN_CHAR_CODE) * MULTIPLIER)
-      )
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.encode = encode;
+exports.decode = decode;
+const MIN_CHAR_CODE = 97;
+const MAX_CHAR_CODE = 122;
+const OFFSET = MAX_CHAR_CODE - MIN_CHAR_CODE;
+const MULTIPLIER = 2;
+const GROUP_LENGTH = 5;
+const GROUP_SEPARATOR = ' ';
+const cipherLetter = (letter) => {
+    const charCode = letter.charCodeAt(0);
+    return /^\d+$/.test(letter)
+        ? letter
+        : String.fromCharCode(charCode + (OFFSET - (charCode - MIN_CHAR_CODE) * MULTIPLIER));
+};
+const transcode = (text) => {
+    let result = '';
+    for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        if (/\w/.test(char)) {
+            const lowerChar = char.toLowerCase();
+            result += lowerChar;
+        }
+    }
+    let transformedResult = '';
+    for (let i = 0; i < result.length; i++) {
+        transformedResult += cipherLetter(result[i]);
+    }
+    return transformedResult;
+};
+function encode(plainText) {
+    const transcodedText = transcode(plainText);
+    let result = '';
+    for (let i = 0; i < transcodedText.length; i++) {
+        if (i > 0 && i % GROUP_LENGTH === 0) {
+            result += GROUP_SEPARATOR;
+        }
+        result += transcodedText[i];
+    }
+    return result;
 }
-
-const transcode = (text: string): string => {
-  return text
-    .replace(/\W/g, '') //remove non-word characters and white spaces, but keeyp the numbers
-    .toLowerCase() //turn all chars to lower case
-    .split('')
-    .map(cipherLetter)
-    .join('')
-}
-
-export function encode(plainText: string): string {
-  return transcode(plainText)
-    .split('')
-    .reduce((acc: string[], curr: string, index: number): string[] => {
-      // grouping
-      let updates: string[] = [curr]
-
-      if (index !== 0 && index % GROUP_LENGTH === 0) {
-        updates = [GROUP_SEPARATOR, ...updates]
-      }
-
-      return [...acc, ...updates]
-    }, [])
-    .join('')
-}
-
-export function decode(cipherText: string): string {
-  return transcode(cipherText)
+function decode(cipherText) {
+    return transcode(cipherText);
 }

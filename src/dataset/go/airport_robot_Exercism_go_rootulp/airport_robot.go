@@ -1,7 +1,5 @@
 package airportrobot
 
-import "fmt"
-
 type Greeter interface {
 	LanguageName() string
 	Greet(name string) string
@@ -18,7 +16,7 @@ func (i Italian) LanguageName() string {
 }
 
 func (i Italian) Greet(name string) string {
-	return fmt.Sprintf("I can speak %s: Ciao %s!", i.LanguageName(), name)
+	return "I can speak Italian: Ciao " + name + "!"
 }
 
 type Portuguese struct{}
@@ -28,5 +26,5 @@ func (p Portuguese) LanguageName() string {
 }
 
 func (p Portuguese) Greet(name string) string {
-	return fmt.Sprintf("I can speak %s: Olá %s!", p.LanguageName(), name)
+	return "I can speak Portuguese: Olá " + name + "!"
 }

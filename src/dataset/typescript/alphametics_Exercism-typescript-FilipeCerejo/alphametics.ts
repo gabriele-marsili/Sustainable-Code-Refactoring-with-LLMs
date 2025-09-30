@@ -28,22 +28,21 @@ class AlphameticsEquation {
         this.lettersWithCount = new Map();
         this.nonZeroLetters = new Set();
 
-        left.forEach((leftOperand: string) => this.processOperand(leftOperand, 1));
-        right.forEach((rightOperand: string) => this.processOperand(rightOperand, -1));
+        for (const leftOperand of left) {
+            this.processOperand(leftOperand, 1);
+        }
+        for (const rightOperand of right) {
+            this.processOperand(rightOperand, -1);
+        }
     }
 
-    //operand = each number (ABC, ex.) - not each letter
-    //multiplyCountBy = decimal place
     private processOperand(operand: string, multiplyCountBy: number): void {
         let letterCount = multiplyCountBy;
 
         for (let i = operand.length - 1; i >= 0; i--) {
-            //starts by C from example
             const letter = operand[i];
             const existingCount = this.lettersWithCount.get(letter) || 0;
-
-            this.lettersWithCount.set(letter, existingCount + letterCount); //1 or 10 or 100 depending on its decimal place - C = 1; B = 10; A = 100
-
+            this.lettersWithCount.set(letter, existingCount + letterCount);
             letterCount *= 10;
         }
 
@@ -52,15 +51,58 @@ class AlphameticsEquation {
 }
 
 class AlphameticsSolver {
+    private letters: string[];
+    private letterCounts: number[];
+    private nonZeroIndices: Set<number>;
+
     constructor(private equation: AlphameticsEquation) {
-        this.equation = equation;
+        this.letters = Array.from(equation.getLettersWithCount.keys());
+        this.letterCounts = Array.from(equation.getLettersWithCount.values());
+        this.nonZeroIndices = new Set();
+        
+        for (let i = 0; i < this.letters.length; i++) {
+            if (equation.getNonZeroLetters.has(this.letters[i])) {
+                this.nonZeroIndices.add(i);
+            }
+        }
     }
 
     solve(): { [letter: string]: number } | undefined {
-        const combinations = this.letterCountCombinations();
-        const index = combinations.findIndex((combination: number[]) => this.isSolution(combination));
+        const used = new Array(10).fill(false);
+        const assignment = new Array(this.letters.length);
+        
+        if (this.backtrack(0, used, assignment)) {
+            const solution: { [letter: string]: number } = {};
+            for (let i = 0; i < this.letters.length; i++) {
+                solution[this.letters[i]] = assignment[i];
+            }
+            return solution;
+        }
+        
+        return undefined;
+    }
 
-        return index === -1 ? undefined : this.toSolution(combinations[index]);
+    private backtrack(index: number, used: boolean[], assignment: number[]): boolean {
+        if (index === this.letters.length) {
+            return this.isSolution(assignment);
+        }
+
+        const startDigit = this.nonZeroIndices.has(index) ? 1 : 0;
+        
+        for (let digit = startDigit; digit <= 9; digit++) {
+            if (!used[digit]) {
+                used[digit] = true;
+                assignment[index] = digit;
+                
+                if (this.backtrack(index + 1, used, assignment)) {
+                    return true;
+                }
+                
+                used[digit] = false;
+            }
+        }
+        
+        return false;
     }
 
     letterCountCombinations(): number[][] {
@@ -68,55 +110,42 @@ class AlphameticsSolver {
     }
 
     isSolution(letterCountCombination: number[]): boolean {
-        const letterCounts: number[] = Array.from(this.equation.getLettersWithCount.values());
-        const sum = letterCounts.reduce((sum, count, index) => sum + count * letterCountCombination[index], 0);
-
-        //returns left hand side equals right hand side
-        if (sum !== 0) {
-            return false;
+        let sum = 0;
+        for (let i = 0; i < this.letterCounts.length; i++) {
+            sum += this.letterCounts[i] * letterCountCombination[i];
         }
-
-        //check if there are no 0 summed equations
-        const zeroIndex = letterCountCombination.indexOf(0);
-        if (zeroIndex === -1) {
-            return true;
-        }
-        const letterAtZeroIndex = Array.from(this.equation.getLettersWithCount.keys())[zeroIndex];
-        return !this.equation.getNonZeroLetters.has(letterAtZeroIndex);
+        return sum === 0;
     }
 
     toSolution(letterCountCombination: number[]): { [letter: string]: number } {
         const solution: { [letter: string]: number } = {};
-
-        const letters = Array.from(this.equation.getLettersWithCount.keys());
-
-        for (let i = 0; i < letters.length; i++) {
-            solution[letters[i]] = letterCountCombination[i];
+        for (let i = 0; i < this.letters.length; i++) {
+            solution[this.letters[i]] = letterCountCombination[i];
         }
-
         return solution;
     }
 
     permutations(array: number[], k: number) {
         const perms: number[][] = [];
-        const combinations: number[] = [];
-        const indices: boolean[] = [];
+        const combinations: number[] = new Array(k);
+        const indices: boolean[] = new Array(array.length).fill(false);
 
-        function run(level: number) {
-            for (var i = 0; i < array.length; i++) {
+        const run = (level: number) => {
+            if (level === k) {
+                perms.push([...combinations]);
+                return;
+            }
+            
+            for (let i = 0; i < array.length; i++) {
                 if (!indices[i]) {
                     indices[i] = true;
-
                     combinations[level] = array[i];
-                    if (level < k - 1) {
-                        run(level + 1);
-                    } else {
-                        perms.push(Array.from(combinations));
-                    }
+                    run(level + 1);
                     indices[i] = false;
                 }
             }
-        }
+        };
+        
         run(0);
         return perms;
     }

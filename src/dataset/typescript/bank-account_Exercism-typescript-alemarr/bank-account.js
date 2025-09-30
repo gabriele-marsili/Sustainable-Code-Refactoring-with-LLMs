@@ -30,13 +30,18 @@ class Money {
         this._amount = _amount;
     }
     add(amount) {
-        return new Money(this._amount + amount);
+        this._amount += amount;
+        return this;
     }
-    substract(amount) {
-        return new Money(this._amount - amount);
+    subtract(amount) {
+        this._amount -= amount;
+        return this;
     }
     get amount() {
         return this._amount;
+    }
+    set amount(amount) {
+        this._amount = amount;
     }
 }
 class Balance {
@@ -47,13 +52,13 @@ class Balance {
         if (amount < 0) {
             throw new ValueError();
         }
-        this._balance = this._balance.add(amount);
+        this._balance.add(amount);
     }
     withdraw(amount) {
         if (amount < 0 || amount > this._balance.amount) {
             throw new ValueError();
         }
-        this._balance = this._balance.substract(amount);
+        this._balance.subtract(amount);
     }
     get balance() {
         return this._balance.amount;

@@ -9,8 +9,8 @@ class Anagram {
     }
     matches(...potentials) {
         const output = [];
-        for (const potential of potentials) {
-            const lowerCasePotential = potential.toLowerCase();
+        for (const word of potentials) {
+            const lowerCasePotential = word.toLowerCase();
             if (lowerCasePotential === this.lowerCaseWord) {
                 continue;
             }
@@ -19,7 +19,7 @@ class Anagram {
             }
             const sortedPotential = lowerCasePotential.split('').sort().join('');
             if (sortedPotential === this.sortedWord) {
-                output.push(potential);
+                output.push(word);
             }
         }
         return output;

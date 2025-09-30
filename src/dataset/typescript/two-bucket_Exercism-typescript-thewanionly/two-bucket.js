@@ -14,114 +14,46 @@ class TwoBucket {
     }
     moves() {
         if (this.starterBucket === this.largeBucket) {
-            return this.largeBucketFirst();
+            return this.solve(this.largeBucket, this.smallBucket, this.bucketSizes[this.largeBucket], this.bucketSizes[this.smallBucket]);
         }
-        return this.smallBucketFirst();
+        else {
+            return this.solve(this.smallBucket, this.largeBucket, this.bucketSizes[this.smallBucket], this.bucketSizes[this.largeBucket]);
+        }
     }
-    smallBucketFirst() {
+    solve(firstBucketName, secondBucketName, firstBucketSize, secondBucketSize) {
         let moves = 0;
-        let bucketOne = 0;
-        let bucketTwo = 0;
-        const largeBucketSize = this.largeBucket === 'one' ? this.bucketOneSize : this.bucketTwoSize;
-        const smallBucketSize = this.smallBucket === 'one' ? this.bucketOneSize : this.bucketTwoSize;
-        let largeBucket = this.largeBucket === 'one' ? bucketOne : bucketTwo;
-        let smallBucket = this.smallBucket === 'one' ? bucketOne : bucketTwo;
-        while (largeBucket !== this.goal && smallBucket !== this.goal) {
-            while (largeBucket !== largeBucketSize) {
-                smallBucket = smallBucketSize;
+        let firstBucket = 0;
+        let secondBucket = 0;
+        while (firstBucket !== this.goal && secondBucket !== this.goal) {
+            if (firstBucket === 0) {
+                firstBucket = firstBucketSize;
                 moves++;
-                if (smallBucket === this.goal || largeBucket === this.goal)
-                    return moves;
-                const addedVolume = largeBucketSize - largeBucket;
-                const pourAmount = Math.min(smallBucket, addedVolume);
-                largeBucket += pourAmount;
-                smallBucket -= pourAmount;
-                moves++;
-                if (smallBucket === this.goal || largeBucket === this.goal)
-                    return moves;
             }
-            largeBucket = 0;
-            moves++;
-            if (smallBucket === this.goal || largeBucket === this.goal)
-                return moves;
-            const addedVolume = largeBucketSize - largeBucket;
-            const pourAmount = Math.min(smallBucket, addedVolume);
-            largeBucket += pourAmount;
-            smallBucket -= pourAmount;
-            moves++;
-            if (smallBucket === this.goal || largeBucket === this.goal)
-                return moves;
+            else if (secondBucket === secondBucketSize) {
+                secondBucket = 0;
+                moves++;
+            }
+            else {
+                const pourAmount = Math.min(firstBucket, secondBucketSize - secondBucket);
+                firstBucket -= pourAmount;
+                secondBucket += pourAmount;
+                moves++;
+            }
         }
-        this.bucketOne = bucketOne;
-        this.bucketTwo = bucketTwo;
+        this.bucketOne = firstBucketName === 'one' ? firstBucket : secondBucket;
+        this.bucketTwo = firstBucketName === 'two' ? firstBucket : secondBucket;
         return moves;
     }
-    largeBucketFirst() {
-        let moves = 0;
-        let bucketOne = 0;
-        let bucketTwo = 0;
-        const largeBucketSize = this.largeBucket === 'one' ? this.bucketOneSize : this.bucketTwoSize;
-        const smallBucketSize = this.smallBucket === 'one' ? this.bucketOneSize : this.bucketTwoSize;
-        let largeBucket = this.largeBucket === 'one' ? bucketOne : bucketTwo;
-        let smallBucket = this.smallBucket === 'one' ? bucketOne : bucketTwo;
-        while (largeBucket !== this.goal && smallBucket !== this.goal) {
-            largeBucket = largeBucketSize;
-            moves++;
-            if (smallBucket === this.goal || largeBucket === this.goal)
-                return moves;
-            while (largeBucket >= smallBucketSize) {
-                const pourAmount = smallBucketSize - smallBucket;
-                largeBucket -= pourAmount;
-                smallBucket += pourAmount;
-                moves++;
-                if (smallBucket === this.goal || largeBucket === this.goal)
-                    return moves;
-                smallBucket = 0;
-                moves++;
-                if (smallBucket === this.goal || largeBucket === this.goal)
-                    return moves;
-            }
-            const pourAmount = smallBucketSize - smallBucket;
-            largeBucket -= pourAmount;
-            smallBucket += pourAmount;
-            moves++;
-            if (smallBucket === this.goal || largeBucket === this.goal)
-                return moves;
-        }
-        this.bucketOne = bucketOne;
-        this.bucketTwo = bucketTwo;
-        return moves;
-    }
-    pourIntoBucket(sourceBucket, targetBucket) {
-        const source = sourceBucket === 'one' ? 'bucketOne' : 'bucketTwo';
-        const target = targetBucket === 'one' ? 'bucketOne' : 'bucketTwo';
-        const sourceSize = sourceBucket === 'one' ? this.bucketOneSize : this.bucketTwoSize;
-        const targetSize = targetBucket === 'one' ? this.bucketOneSize : this.bucketTwoSize;
-        if (this[source] === 0)
-            return;
-        let addedVolume = targetSize - this[target];
-        if (addedVolume > this[source]) {
-            addedVolume = this[source];
-        }
-        this[target] += addedVolume;
-        this[source] -= addedVolume;
-    }
-    fillBucket(bucket) {
-        this[bucket === 'one' ? 'bucketOne' : 'bucketTwo'] = bucket === 'one' ? this.bucketOneSize : this.bucketTwoSize;
-    }
-    emptyBucket(bucket) {
-        this[bucket === 'one' ? 'bucketOne' : 'bucketTwo'] = 0;
+    get bucketSizes() {
+        return { one: this.bucketOneSize, two: this.bucketTwoSize };
     }
     get goalBucket() {
-        if ((this.largeBucket === 'one' ? this.bucketOne : this.bucketTwo) === this.goal)
-            return this.largeBucket;
-        if ((this.smallBucket === 'one' ? this.bucketOne : this.bucketTwo) === this.goal)
-            return this.smallBucket;
-        return null;
+        if (this.bucketOne === this.goal)
+            return 'one';
+        return 'two';
     }
     get otherBucket() {
-        const goalBucket = this.goalBucket;
-        return goalBucket === 'one' ? this.bucketTwo : this.bucketOne;
+        return this.goalBucket === 'one' ? this.bucketTwo : this.bucketOne;
     }
 }
 exports.TwoBucket = TwoBucket;

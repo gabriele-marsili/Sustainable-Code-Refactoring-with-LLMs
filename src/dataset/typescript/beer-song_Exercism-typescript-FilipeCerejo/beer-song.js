@@ -13,22 +13,33 @@ const replacements = {
 };
 function verse(index) {
     if (index) {
-        let result = verseTemplate;
-        result = result.replace(replacements.begin, index.toString());
-        result = result.replace(replacements.end, index - 1 > 0 ? (index - 1).toString() : 'no more');
-        result = result.replace(replacements.plural, index === 1 ? '' : 's');
-        result = result.replace(replacements.endplural, index === 2 ? '' : 's');
-        result = result.replace(replacements.oneit, index === 1 ? 'it' : 'one');
-        return result;
+        let verse = verseTemplate;
+        verse = verse.replace(replacements.begin, index.toString());
+        const endIndex = index - 1;
+        const endString = endIndex > 0 ? endIndex.toString() : 'no more';
+        verse = verse.replace(replacements.end, endString);
+        const plural = index === 1 ? '' : 's';
+        verse = verse.replace(replacements.plural, plural);
+        const endPlural = index === 2 ? '' : 's';
+        verse = verse.replace(replacements.endplural, endPlural);
+        const oneIt = index === 1 ? 'it' : 'one';
+        verse = verse.replace(replacements.oneit, oneIt);
+        return verse;
     }
     return lastVerse;
 }
-function sing(initialBottlesCount = 99, takeDownCount = 0) {
-    const begin = initialBottlesCount;
-    const end = takeDownCount;
-    const result = [];
-    for (let i = begin; i >= end; i--) {
-        result.push(verse(i));
+function sing(initialBottlesCount, takeDownCount) {
+    const begin = initialBottlesCount === undefined ? 99 : initialBottlesCount;
+    const end = takeDownCount === undefined ? 0 : takeDownCount;
+    if (begin <= end) {
+        return "";
     }
-    return result.join('\n');
+    let result = '';
+    for (let i = begin; i >= end; i--) {
+        result += verse(i);
+        if (i !== end) {
+            result += '\n';
+        }
+    }
+    return result;
 }

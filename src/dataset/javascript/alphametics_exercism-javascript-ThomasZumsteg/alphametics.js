@@ -1,63 +1,111 @@
 function* combinations(len, items) {
-    var indexes = new Array(len).fill(0);
-    var i;
-    while(true) {
-        if(indexes.length == new Set(indexes).size) {
-            yield indexes;
-        }
-        indexes[0]++;
-        for(var i = 0; i < indexes.length; i++) {
-            if(items.length < indexes[i] + 1) {
-                if(i + 1 < indexes.length) {
-                    indexes[i] = 0;
-                    indexes[i+1]++;
-                } else {
-                    return;
-                }
+    const maxIndex = items.length;
+    const indexes = new Array(len).fill(0);
+    const used = new Set();
+    
+    while (true) {
+        used.clear();
+        let isValid = true;
+        for (let i = 0; i < len; i++) {
+            if (used.has(indexes[i])) {
+                isValid = false;
+                break;
             }
+            used.add(indexes[i]);
+        }
+        
+        if (isValid) {
+            yield indexes.slice();
+        }
+        
+        let pos = 0;
+        while (pos < len) {
+            indexes[pos]++;
+            if (indexes[pos] < maxIndex) {
+                break;
+            }
+            indexes[pos] = 0;
+            pos++;
+        }
+        
+        if (pos === len) {
+            return;
         }
     }
 }
 
 function make_map(digits, letters) {
-    var map = {};
-    for(var i = 0; i < digits.length; i++) {
+    const map = {};
+    const len = letters.length;
+    for (let i = 0; i < len; i++) {
         map[letters[i]] = digits[i];
     }
     return map;
 }
 
 function translate(word, map) {
-    /* Translate the word to a number using a mapping
-     * e.g. APE with map {A: 1, P: 2, E: 3} => 123 */
-    return word.split('').reduce((total, letter) => total * 10 + map[letter], 0);
+    let result = 0;
+    const len = word.length;
+    for (let i = 0; i < len; i++) {
+        result = result * 10 + map[word[i]];
+    }
+    return result;
 }
 
 function get_letters(...words) {
-    /* Ordered collection of letters in all words */
-    return Array.from(words.reduce(
-        (result, word) => new Set([...result, ...word.split('')]), new Set()));
+    const letterSet = new Set();
+    for (const word of words) {
+        for (let i = 0; i < word.length; i++) {
+            letterSet.add(word[i]);
+        }
+    }
+    return Array.from(letterSet);
 }
 
 function solve(puzzle) {
-    const sum = puzzle.split(' == ')[1];
-    const terms = puzzle.split(' == ')[0].split(' + ');
+    const [leftSide, sum] = puzzle.split(' == ');
+    const terms = leftSide.split(' + ');
     const letters = get_letters(sum, ...terms);
-    const digits = new Array(10).fill(0).map((_, i) => i);
-    const first = Array.from(
-        new Set([sum.split('')[0], ...terms.map(word => word.split('')[0])]));
-    var solution = [];
-    var map, equal, first_zero;
-    for(let combination of combinations(letters.length, digits)) {
-        map = make_map(combination, letters);
-        equal = terms.reduce(
-            (acc, word) => translate(word, map) + acc, 0) == translate(sum, map);
-        first_zero = first.reduce((acc, l) => acc || (map[l] == 0), false);
-        if(equal && !first_zero) {
-            solution.push(map);
+    const digits = Array.from({length: 10}, (_, i) => i);
+    
+    const firstLetters = new Set();
+    firstLetters.add(sum[0]);
+    for (const term of terms) {
+        firstLetters.add(term[0]);
+    }
+    const firstLettersArray = Array.from(firstLetters);
+    
+    let solutionCount = 0;
+    let lastSolution = null;
+    
+    for (const combination of combinations(letters.length, digits)) {
+        const map = make_map(combination, letters);
+        
+        let hasZeroFirst = false;
+        for (const letter of firstLettersArray) {
+            if (map[letter] === 0) {
+                hasZeroFirst = true;
+                break;
+            }
+        }
+        
+        if (hasZeroFirst) continue;
+        
+        let leftSum = 0;
+        for (const term of terms) {
+            leftSum += translate(term, map);
+        }
+        
+        if (leftSum === translate(sum, map)) {
+            solutionCount++;
+            lastSolution = map;
+            if (solutionCount > 1) {
+                return null;
+            }
         }
     }
-    return solution.length == 1 ? solution[0] : null;
+    
+    return solutionCount === 1 ? lastSolution : null;
 }
 
-export default solve;;
+export default solve;

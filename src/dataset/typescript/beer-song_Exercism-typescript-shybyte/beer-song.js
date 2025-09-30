@@ -22,8 +22,8 @@ function capitalize(s) {
     return s.charAt(0).toUpperCase() + s.slice(1);
 }
 function verse(beerNumber) {
-    const bottlesStr = bottles(beerNumber);
-    const situation = capitalize(`${bottlesStr} of beer on the wall, ${bottlesStr} of beer.\n`);
+    const bottlesCurrent = bottles(beerNumber);
+    const situation = capitalize(`${bottlesCurrent} of beer on the wall, ${bottlesCurrent} of beer.\n`);
     const nextNumber = beerNumber === 0 ? 99 : beerNumber - 1;
     return situation + action(beerNumber) + `, ${bottles(nextNumber)} of beer on the wall.\n`;
 }

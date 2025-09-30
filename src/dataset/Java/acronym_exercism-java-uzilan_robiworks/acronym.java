@@ -1,18 +1,27 @@
 class Acronym {
-    private String phrase;
+    private final String phrase;
 
     Acronym(String phrase) {
         this.phrase = phrase;
     }
 
     String get() {
-        String abbreviation = "";
-        phrase = phrase.replaceAll("[^a-zA-Z']", " ").toUpperCase(); // regex to replace every non-alphabetical character except an apostrophe with a space
-        String[] words = phrase.split("\\s+"); // splits string into array even if it contains multiple spaces
-        for (int i = 0; i < words.length; i++) {
-            abbreviation += words[i].substring(0, 1);
+        StringBuilder abbreviation = new StringBuilder();
+        boolean nextIsFirst = true;
+        
+        for (int i = 0; i < phrase.length(); i++) {
+            char c = phrase.charAt(i);
+            
+            if (Character.isLetter(c)) {
+                if (nextIsFirst) {
+                    abbreviation.append(Character.toUpperCase(c));
+                    nextIsFirst = false;
+                }
+            } else if (c != '\'') {
+                nextIsFirst = true;
+            }
         }
-        return abbreviation;
+        
+        return abbreviation.toString();
     }
-
 }

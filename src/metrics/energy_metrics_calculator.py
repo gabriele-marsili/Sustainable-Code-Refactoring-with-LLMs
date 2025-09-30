@@ -228,7 +228,7 @@ class EnergyMetricsCalculator:
                                 "execution_time_ms": 290,
                                 "CPU_usage": 40.0,
                                 "RAM_usage": 82908,
-                                "regrationTestPassed": False,
+                                "regressionTestPassed": False,
                                 "LLM_type": "openAI",
                                 "path": "-",
                                 "log": "-",
@@ -237,7 +237,7 @@ class EnergyMetricsCalculator:
                                 "execution_time_ms": 310,
                                 "CPU_usage": 51.0,
                                 "RAM_usage": 82532,
-                                "regrationTestPassed": False,
+                                "regressionTestPassed": False,
                                 "LLM_type": "claude",
                                 "path": "-",
                                 "log": "-",
@@ -246,7 +246,7 @@ class EnergyMetricsCalculator:
                                 "execution_time_ms": 320,
                                 "CPU_usage": 42.0,
                                 "RAM_usage": 83720,
-                                "regrationTestPassed": False,
+                                "regressionTestPassed": False,
                                 "LLM_type": "gemini",
                                 "path": "-",
                                 "log": "-",
@@ -256,7 +256,7 @@ class EnergyMetricsCalculator:
                     # print(f"entry:\n{entry}")
                     for llm_res in entry["LLM_results"]:
                         # skip entries that not passed regression test
-                        if not llm_res["regrationTestPassed"]:
+                        if not llm_res["regressionTestPassed"]:
                             continue
 
                         # total datas

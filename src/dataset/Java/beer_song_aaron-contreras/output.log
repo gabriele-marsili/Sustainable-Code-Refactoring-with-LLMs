@@ -1,64 +1,29 @@
 JUnit version 4.13.2
-..E..E....E
-Time: 0.023
-There were 3 failures:
-1) singEntireSong(BeerSongTest)
-org.junit.ComparisonFailure: expected:<... beer on the wall.
+........
+Time: 0.017
 
-[No more bottles of beer on the wall, no more bottles of beer.
-Go to the store and buy some more, 99 bottles of beer on the wall.
+OK (8 tests)
 
-]> but was:<... beer on the wall.
-
-[]>
-	at org.junit.Assert.assertEquals(Assert.java:117)
-	at org.junit.Assert.assertEquals(Assert.java:146)
-	at BeerSongTest.singEntireSong(BeerSongTest.java:80)
-2) singLastThreeVerses(BeerSongTest)
-org.junit.ComparisonFailure: expected:<... beer on the wall.
-
-[No more bottles of beer on the wall, no more bottles of beer.
-Go to the store and buy some more, 99 bottles of beer on the wall.
-
-]> but was:<... beer on the wall.
-
-[]>
-	at org.junit.Assert.assertEquals(Assert.java:117)
-	at org.junit.Assert.assertEquals(Assert.java:146)
-	at BeerSongTest.singLastThreeVerses(BeerSongTest.java:68)
-3) verseWithZeroBottles(BeerSongTest)
-org.junit.ComparisonFailure: expected:<[No more bottles of beer on the wall, no more bottles of beer.
-Go to the store and buy some more, 99 bottles of beer on the wall.
-
-]> but was:<[]>
-	at org.junit.Assert.assertEquals(Assert.java:117)
-	at org.junit.Assert.assertEquals(Assert.java:146)
-	at BeerSongTest.verseWithZeroBottles(BeerSongTest.java:50)
-
-FAILURES!!!
-Tests run: 8,  Failures: 3
-
-Command exited with non-zero status 1
 	Command being timed: "java -cp .:junit-platform-console-standalone-1.10.0.jar:junit-jupiter-api-5.10.0.jar:junit-jupiter-engine-5.10.0.jar:junit-jupiter-params-5.10.0.jar:junit-4.13.2.jar:hamcrest-core-1.3.jar:assertj-core-3.24.2.jar org.junit.runner.JUnitCore BeerSongTest"
-	User time (seconds): 0.15
-	System time (seconds): 0.02
-	Percent of CPU this job got: 41%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.43
+	User time (seconds): 0.09
+	System time (seconds): 0.01
+	Percent of CPU this job got: 45%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.25
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 46176
+	Maximum resident set size (kbytes): 46128
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 1
-	Minor (reclaiming a frame) page faults: 7049
-	Voluntary context switches: 868
-	Involuntary context switches: 732
+	Major (requiring I/O) page faults: 3
+	Minor (reclaiming a frame) page faults: 7031
+	Voluntary context switches: 1289
+	Involuntary context switches: 589
 	Swaps: 0
-	File system inputs: 1296
+	File system inputs: 1840
 	File system outputs: 64
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

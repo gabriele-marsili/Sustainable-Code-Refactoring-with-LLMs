@@ -3292,14 +3292,14 @@ def is_entry_correct(entry: Dict) -> bool:
         "CPU_usage",
         "RAM_usage",
         "execution_time_ms",
-        "regrationTestPassed",
+        "regressionTestPassed",
         "base_log",
     ]
     required_llm_fields = [
         "CPU_usage",
         "RAM_usage",
         "execution_time_ms",
-        "regrationTestPassed",
+        "regressionTestPassed",
     ]
 
     # Se ha LLM_results, controlla i campi LLM
@@ -3440,7 +3440,7 @@ def analyze_output_file(
                                 "CPU_usage",
                                 "RAM_usage",
                                 "execution_time_ms",
-                                "regrationTestPassed",
+                                "regressionTestPassed",
                                 "base_log",
                             ]
                             if field not in entry

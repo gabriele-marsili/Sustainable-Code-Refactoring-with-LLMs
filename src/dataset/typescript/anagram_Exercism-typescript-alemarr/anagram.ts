@@ -1,33 +1,33 @@
 export class Anagram {
-  private readonly lowerCaseWord: string;
+  private readonly normalizedWord: string;
   private readonly sortedWord: string;
 
   constructor(private word: string) {
-    this.lowerCaseWord = word.toLowerCase();
-    this.sortedWord = this.lowerCaseWord.split('').sort().join('');
+    this.normalizedWord = word.toLowerCase();
+    this.sortedWord = this.normalizedWord.split('').sort().join('');
   }
 
   matches(...potentials: string[]): string[] {
-    const output: string[] = [];
-
+    const result: string[] = [];
+    
     for (const potential of potentials) {
-      const lowerCasePotential = potential.toLowerCase();
-
-      if (lowerCasePotential === this.lowerCaseWord) {
+      const normalizedPotential = potential.toLowerCase();
+      
+      if (normalizedPotential === this.normalizedWord) {
         continue;
       }
-
-      if (lowerCasePotential.length !== this.word.length) {
-          continue;
+      
+      if (normalizedPotential.length !== this.normalizedWord.length) {
+        continue;
       }
-
-      const sortedPotential = lowerCasePotential.split('').sort().join('');
-
+      
+      const sortedPotential = normalizedPotential.split('').sort().join('');
+      
       if (sortedPotential === this.sortedWord) {
-        output.push(potential);
+        result.push(potential);
       }
     }
-
-    return output;
+    
+    return result;
   }
 }

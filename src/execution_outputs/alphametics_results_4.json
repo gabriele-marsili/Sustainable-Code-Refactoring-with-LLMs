@@ -1,66 +1,90 @@
 {
-    "execution_date": "2025-09-16 21:00:37",
-    "results": {
-        "javascript": [
-            {
-                "id": "javascript_alphametics_exercism-javascript-ThomasZumsteg",
-                "filename": "alphametics.js",
-                "language": "javascript",
-                "CPU_usage": 77.0,
-                "RAM_usage": 84164,
-                "execution_time_ms": 2549859,
-                "regrationTestPassed": true,
-                "base_log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/alphametics_exercism-javascript-ThomasZumsteg/output.log"
-            },
-            {
-                "id": "javascript_alphametics_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
-                "filename": "alphametics.js",
-                "language": "javascript",
-                "CPU_usage": 97.0,
-                "RAM_usage": 83964,
-                "execution_time_ms": 3517100,
-                "regrationTestPassed": true,
-                "base_log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/alphametics_exercism-javascript-ThomasZumsteg/output.log"
-            }
-        ],
-        "typescript": [
-            {
-                "id": "typescript_alphametics_Exercism-typescript-FilipeCerejo_FilipeCerejo",
-                "filename": "alphametics.ts",
-                "language": "typescript"
-            }
-        ],
-        "go": [
-            {
-                "id": "go_alphametics_Exercism (go_rootulp)",
-                "filename": "alphametics.go",
-                "language": "go",
-                "CPU_usage": 52.0,
-                "RAM_usage": 215956,
-                "execution_time_ms": 10170,
-                "regrationTestPassed": true,
-                "base_log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/alphametics_Exercism_go_rootulp/output.log"
-            },
-            {
-                "id": "go_alphametics_Exercism (go_ThomasZumsteg)",
-                "filename": "alphametics.go",
-                "language": "go",
-                "CPU_usage": 46.0,
-                "RAM_usage": 220100,
-                "execution_time_ms": 21990,
-                "regrationTestPassed": true,
-                "base_log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/alphametics_Exercism_go_ThomasZumsteg/output.log"
-            },
-            {
-                "id": "go_alphametics_Exercism (go_drapala)",
-                "filename": "alphametics.go",
-                "language": "go",
-                "CPU_usage": 43.0,
-                "RAM_usage": 221244,
-                "execution_time_ms": 8340,
-                "regrationTestPassed": true,
-                "base_log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/alphametics_Exercism_go_drapala/output.log"
-            }
-        ]
-    }
+  "execution_date": "2025-09-29 00:15:55",
+  "execution_metadata": {
+    "total_tests": 6,
+    "successful_tests": 3,
+    "execution_time": "00h 26m 14s",
+    "cluster": "cluster_alphametics",
+    "test_type": "base"
+  },
+  "results": {
+    "typescript": [
+      {
+        "id": "typescript_alphametics_Exercism-typescript-FilipeCerejo_FilipeCerejo",
+        "language": "typescript",
+        "timestamp": 1759096387.3210912,
+        "execution_time_ms": 20457,
+        "CPU_usage": 39.0,
+        "RAM_usage": 218900,
+        "regressionTestPassed": false,
+        "success": true,
+        "error_message": "Docker exit code: 1",
+        "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_alphametics_Exercism-typescript-FilipeCerejo_FilipeCerejo_1759096387.log"
+      }
+    ],
+    "javascript": [
+      {
+        "id": "javascript_alphametics_exercism-javascript-ThomasZumsteg",
+        "language": "javascript",
+        "timestamp": 1759096481.7267141,
+        "execution_time_ms": null,
+        "CPU_usage": null,
+        "RAM_usage": null,
+        "regressionTestPassed": false,
+        "success": false,
+        "error_message": "Test execution timeout",
+        "log_path": null
+      },
+      {
+        "id": "javascript_alphametics_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
+        "language": "javascript",
+        "timestamp": 1759096482.2391338,
+        "execution_time_ms": null,
+        "CPU_usage": null,
+        "RAM_usage": null,
+        "regressionTestPassed": false,
+        "success": false,
+        "error_message": "Test execution timeout",
+        "log_path": null
+      }
+    ],
+    "go": [
+      {
+        "id": "go_alphametics_Exercism (go_drapala)",
+        "language": "go",
+        "timestamp": 1759096593.6705332,
+        "execution_time_ms": 1430,
+        "CPU_usage": 11.0,
+        "RAM_usage": 123836,
+        "regressionTestPassed": true,
+        "success": true,
+        "error_message": null,
+        "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_alphametics_Exercism (go_drapala)_1759096593.log"
+      },
+      {
+        "id": "go_alphametics_Exercism (go_ThomasZumsteg)",
+        "language": "go",
+        "timestamp": 1759096645.710238,
+        "execution_time_ms": 6280,
+        "CPU_usage": 10.0,
+        "RAM_usage": 205632,
+        "regressionTestPassed": false,
+        "success": false,
+        "error_message": null,
+        "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_alphametics_Exercism (go_ThomasZumsteg)_1759096645.log"
+      },
+      {
+        "id": "go_alphametics_Exercism (go_rootulp)",
+        "language": "go",
+        "timestamp": 1759096681.854489,
+        "execution_time_ms": 2170,
+        "CPU_usage": 10.0,
+        "RAM_usage": 202388,
+        "regressionTestPassed": true,
+        "success": true,
+        "error_message": null,
+        "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_alphametics_Exercism (go_rootulp)_1759096681.log"
+      }
+    ]
+  }
 }

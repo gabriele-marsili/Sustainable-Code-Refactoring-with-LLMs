@@ -1,35 +1,42 @@
 package atbash
 
-import "unicode"
+import "strings"
 
 func CalculateCipher(char rune) rune {
-	return rune(int('a') + int(rune('z')-char))
+	return rune('z' - char + 'a')
 }
 
 func Atbash(s string) string {
-	var output string
-	var count int
-	var lower rune
-
-	for _, char := range s {
-		lower = unicode.ToLower(char)
-		// Only proceed for alphabets and numerics
-		if (lower >= 'a' && lower <= 'z') || (lower >= '0' && lower <= '9') {
-			// Group by 5
-			if count == 5 {
-				output += " "
-				count = 0
-			}
-			if lower >= 'a' && lower <= 'z' {
-				// Deal with alphabets
-				output += string(CalculateCipher(lower))
-			} else if lower >= '0' && lower <= '9' {
-				// Deal with numerics
-				output += string(char)
-			}
-			// Increment count
-			count++
-		}
+	if len(s) == 0 {
+		return ""
 	}
-	return output
+	
+	var builder strings.Builder
+	builder.Grow(len(s) + len(s)/5)
+	
+	count := 0
+	
+	for _, char := range s {
+		var processedChar rune
+		
+		if char >= 'A' && char <= 'Z' {
+			processedChar = CalculateCipher(char + 32)
+		} else if char >= 'a' && char <= 'z' {
+			processedChar = CalculateCipher(char)
+		} else if char >= '0' && char <= '9' {
+			processedChar = char
+		} else {
+			continue
+		}
+		
+		if count == 5 {
+			builder.WriteByte(' ')
+			count = 0
+		}
+		
+		builder.WriteRune(processedChar)
+		count++
+	}
+	
+	return builder.String()
 }

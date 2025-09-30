@@ -10,10 +10,8 @@ class Anagram {
     matches(...candidates) {
         return candidates.filter((candidate) => {
             const lowerCaseCandidate = candidate.toLowerCase();
-            if (this.lowerCaseWord === lowerCaseCandidate) {
-                return false;
-            }
-            return this.sortedWord === this.sortString(lowerCaseCandidate);
+            return (this.lowerCaseWord !== lowerCaseCandidate &&
+                this.sortedWord === this.sortString(lowerCaseCandidate));
         });
     }
     sortString(str) {

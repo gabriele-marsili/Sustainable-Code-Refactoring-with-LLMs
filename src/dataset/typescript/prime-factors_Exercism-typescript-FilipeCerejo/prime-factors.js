@@ -2,25 +2,23 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.calculatePrimeFactors = calculatePrimeFactors;
 function calculatePrimeFactors(nbr) {
-    if (nbr <= 1)
-        return [];
     const primeFactors = [];
-    let n = nbr;
-    // Handle factor 2 separately to allow odd-only iteration
-    while (n % 2 === 0) {
-        primeFactors.push(2);
-        n /= 2;
-    }
-    // Check odd factors from 3 onwards
-    for (let i = 3; i * i <= n; i += 2) {
-        while (n % i === 0) {
-            primeFactors.push(i);
-            n /= i;
+    let divisor = 2;
+    while (nbr > 1) {
+        if (nbr % divisor === 0) {
+            primeFactors.push(divisor);
+            nbr /= divisor;
         }
-    }
-    // If n is still greater than 1, it's a prime factor
-    if (n > 1) {
-        primeFactors.push(n);
+        else {
+            divisor = (divisor === 2) ? 3 : divisor + 2; // Skip even numbers after 2
+            if (divisor * divisor > nbr) {
+                // If no divisor found up to sqrt(nbr), then nbr is prime
+                if (nbr > 1) {
+                    primeFactors.push(nbr);
+                }
+                break;
+            }
+        }
     }
     return primeFactors;
 }

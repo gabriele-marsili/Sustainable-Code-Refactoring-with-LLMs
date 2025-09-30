@@ -1,64 +1,39 @@
 === RUN   TestSearchInts
-binarySearch([6], 6, 0, 1)
     binary_search_test.go:15: SUCCESS: finds a value in an array with one element
-binarySearch([1 3 4 6 8 9 11], 6, 0, 7)
     binary_search_test.go:15: SUCCESS: finds a value in the middle of an array
-binarySearch([1 3 4 6 8 9 11], 1, 0, 7)
-binarySearch([1 3 4 6 8 9 11], 1, 0, 3)
-binarySearch([1 3 4 6 8 9 11], 1, 0, 1)
     binary_search_test.go:15: SUCCESS: finds a value at the beginning of an array
-binarySearch([1 3 4 6 8 9 11], 11, 0, 7)
-binarySearch([1 3 4 6 8 9 11], 11, 4, 7)
-binarySearch([1 3 4 6 8 9 11], 11, 6, 7)
     binary_search_test.go:15: SUCCESS: finds a value at the end of an array
-binarySearch([1 3 5 8 13 21 34 55 89 144 233 377 634], 144, 0, 13)
-binarySearch([1 3 5 8 13 21 34 55 89 144 233 377 634], 144, 7, 13)
-binarySearch([1 3 5 8 13 21 34 55 89 144 233 377 634], 144, 7, 10)
-binarySearch([1 3 5 8 13 21 34 55 89 144 233 377 634], 144, 9, 10)
     binary_search_test.go:15: SUCCESS: finds a value in an array of odd length
-binarySearch([1 3 5 8 13 21 34 55 89 144 233 377], 21, 0, 12)
-binarySearch([1 3 5 8 13 21 34 55 89 144 233 377], 21, 0, 6)
-binarySearch([1 3 5 8 13 21 34 55 89 144 233 377], 21, 4, 6)
     binary_search_test.go:15: SUCCESS: finds a value in an array of even length
-binarySearch([1 3 4 6 8 9 11], 7, 0, 7)
-binarySearch([1 3 4 6 8 9 11], 7, 4, 7)
-binarySearch([1 3 4 6 8 9 11], 7, 4, 5)
     binary_search_test.go:15: SUCCESS: identifies that a value is not included in the array
-binarySearch([1 3 4 6 8 9 11], 0, 0, 7)
-binarySearch([1 3 4 6 8 9 11], 0, 0, 3)
-binarySearch([1 3 4 6 8 9 11], 0, 0, 1)
     binary_search_test.go:15: SUCCESS: a value smaller than the array's smallest value is not found
-binarySearch([1 3 4 6 8 9 11], 13, 0, 7)
-binarySearch([1 3 4 6 8 9 11], 13, 4, 7)
-binarySearch([1 3 4 6 8 9 11], 13, 6, 7)
     binary_search_test.go:15: SUCCESS: a value larger than the array's largest value is not found
     binary_search_test.go:15: SUCCESS: nothing is found in an empty array
-binarySearch([1 2], 0, 0, 2)
-binarySearch([1 2], 0, 0, 1)
     binary_search_test.go:15: SUCCESS: nothing is found when the left and right bounds cross
 --- PASS: TestSearchInts (0.00s)
 PASS
-ok  	esercizio	0.005s
+ok  	esercizio	0.004s
 	Command being timed: "go test -v"
-	User time (seconds): 5.34
-	System time (seconds): 0.65
-	Percent of CPU this job got: 56%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:10.59
+	User time (seconds): 5.50
+	System time (seconds): 0.67
+	Percent of CPU this job got: 34%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:18.07
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 224660
+	Maximum resident set size (kbytes): 218024
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 127
-	Minor (reclaiming a frame) page faults: 734473
-	Voluntary context switches: 25098
-	Involuntary context switches: 25075
+	Major (requiring I/O) page faults: 165
+	Minor (reclaiming a frame) page faults: 728774
+	Voluntary context switches: 26315
+	Involuntary context switches: 30056
 	Swaps: 0
-	File system inputs: 46280
-	File system outputs: 172112
+	File system inputs: 75672
+	File system outputs: 172336
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
 	Exit status: 0
+

@@ -1,20 +1,30 @@
 export class Anagram {
-  private readonly _input: string;
-  private readonly _sortedInput: string;
+  private _input: string;
+  private _sortedInput: string;
 
   constructor(input: string) {
     this._input = input.toLowerCase();
-    this._sortedInput = this.sortString(this._input);
+    this._sortedInput = [...this._input].sort().join('');
   }
 
   public matches(...potentials: string[]): string[] {
-    return potentials.filter((p) => {
-      const lowerP = p.toLowerCase();
-      return lowerP !== this._input && this.sortString(lowerP) === this._sortedInput;
-    });
-  }
-
-  private sortString(str: string): string {
-    return str.split('').sort().join('');
+    const anagrams: string[] = [];
+    const inputLength = this._input.length;
+    
+    for (const potential of potentials) {
+      const lowerPotential = potential.toLowerCase();
+      
+      if (lowerPotential === this._input || lowerPotential.length !== inputLength) {
+        continue;
+      }
+      
+      const sortedPotential = [...lowerPotential].sort().join('');
+      
+      if (sortedPotential === this._sortedInput) {
+        anagrams.push(potential);
+      }
+    }
+    
+    return anagrams;
   }
 }

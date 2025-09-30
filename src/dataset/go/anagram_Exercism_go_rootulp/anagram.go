@@ -1,25 +1,46 @@
 package anagram
 
 import (
-	"reflect"
 	"strings"
 )
 
 func Detect(subject string, candidates []string) (anagrams []string) {
-	occurences := getOccurences(strings.ToLower(subject))
+	subjectLower := strings.ToLower(subject)
+	subjectOccurrences := getOccurences(subjectLower)
+	
 	for _, c := range candidates {
-		candidate := getOccurences(strings.ToLower(c))
-		if reflect.DeepEqual(occurences, candidate) && !strings.EqualFold(subject, c) {
+		if len(c) != len(subject) {
+			continue
+		}
+		
+		candidateLower := strings.ToLower(c)
+		if subjectLower == candidateLower {
+			continue
+		}
+		
+		if mapsEqual(subjectOccurrences, getOccurences(candidateLower)) {
 			anagrams = append(anagrams, c)
 		}
 	}
 	return anagrams
 }
 
-func getOccurences(input string) (occurences map[rune]int) {
-	occurences = map[rune]int{}
+func getOccurences(input string) map[rune]int {
+	occurrences := make(map[rune]int, len(input))
 	for _, r := range input {
-		occurences[r] += 1
+		occurrences[r]++
 	}
-	return occurences
+	return occurrences
+}
+
+func mapsEqual(a, b map[rune]int) bool {
+	if len(a) != len(b) {
+		return false
+	}
+	for k, v := range a {
+		if b[k] != v {
+			return false
+		}
+	}
+	return true
 }

@@ -1,46 +1,47 @@
 PASS ./atbash-cipher.test.ts
   AtbashCipher
     encoding
-      ✓ encode yes (2 ms)
+      ✓ encode yes (1 ms)
       ✓ encode no
       ✓ encode OMG
-      ✓ encode spaces
-      ✓ encode mindblowingly (1 ms)
+      ✓ encode spaces (1 ms)
+      ✓ encode mindblowingly
       ✓ encode numbers
       ✓ encode deep thought
       ✓ encode all the letters
     decode
-      ✓ decode exercism (2 ms)
-      ✓ decode a sentence
+      ✓ decode exercism
+      ✓ decode a sentence (1 ms)
       ✓ decode numbers
       ✓ decode all the letters
 
 Test Suites: 1 passed, 1 total
 Tests:       12 passed, 12 total
 Snapshots:   0 total
-Time:        2.094 s
+Time:        1.601 s
 Ran all test suites.
 Test results written to: output.log
 	Command being timed: "npx jest --json --outputFile=output.log"
-	User time (seconds): 1.42
-	System time (seconds): 0.11
-	Percent of CPU this job got: 55%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:02.78
+	User time (seconds): 1.45
+	System time (seconds): 0.10
+	Percent of CPU this job got: 57%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:02.69
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 225516
+	Maximum resident set size (kbytes): 220684
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 1
-	Minor (reclaiming a frame) page faults: 66512
-	Voluntary context switches: 2453
-	Involuntary context switches: 6792
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 65186
+	Voluntary context switches: 1875
+	Involuntary context switches: 8128
 	Swaps: 0
-	File system inputs: 14232
-	File system outputs: 80
+	File system inputs: 0
+	File system outputs: 96
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
 	Exit status: 0
+status: 0

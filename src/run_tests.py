@@ -331,7 +331,7 @@ class TestRunner:
             "execution_time_ms": None,
             "CPU_usage": None,
             "RAM_usage": None,
-            "regrationTestPassed": True 
+            "regressionTestPassed": True 
         }
         
         with open(log_path) as f:
@@ -367,7 +367,7 @@ class TestRunner:
         failures_match = re.search(r"Failures: (\d+)", log_content)
         if failures_match:
             failures_count = int(failures_match.group(1))
-            metrics["regrationTestPassed"] = (failures_count == 0)
+            metrics["regressionTestPassed"] = (failures_count == 0)
         
         return metrics
 
@@ -661,7 +661,7 @@ class TestRunner:
             "success": None,
             "passed_tests": None,
             "failed_tests": None,
-            "regrationTestPassed":False
+            "regressionTestPassed":False
         }
 
         try:
@@ -675,7 +675,7 @@ class TestRunner:
             metrics["passed_tests"] = data.get("numPassedTests")
             metrics["failed_tests"] = data.get("numFailedTests")
             metrics["success"] = data.get("success")
-            metrics["regrationTestPassed"] = data.get("numFailedTests") == 0
+            metrics["regressionTestPassed"] = data.get("numFailedTests") == 0
 
             # Parse resource usage (if available)
             resource_path = log_path.parent / "resource_usage.log"
@@ -1010,7 +1010,7 @@ class TestRunner:
             else : 
                 base_metrics = self.parse_metrics_typescript(base_log)
             if container_err_flag : 
-                base_metrics['regrationTestPassed'] = False
+                base_metrics['regressionTestPassed'] = False
             results.update(base_metrics)
             
             #salva path log 
@@ -1084,7 +1084,7 @@ class TestRunner:
                
                 if lang != "typescript" : llm_metrics =  self.parse_metrics(llm_log)
                 else : llm_metrics = self.parse_metrics_typescript(llm_log)
-                if container_err_flag : llm_metrics['regrationTestPassed'] = False
+                if container_err_flag : llm_metrics['regressionTestPassed'] = False
 
                 if not silent_mode :
                     print(f"llm_metrics:\n{llm_metrics}")
@@ -1150,8 +1150,8 @@ class TestRunner:
                         result_entry["RAM_usage"] = entry_results["RAM_usage"]
                     if "execution_time_ms" in entry_results:
                         result_entry["execution_time_ms"] = entry_results["execution_time_ms"]
-                    if "regrationTestPassed" in entry_results:
-                        result_entry["regrationTestPassed"] = entry_results["regrationTestPassed"]
+                    if "regressionTestPassed" in entry_results:
+                        result_entry["regressionTestPassed"] = entry_results["regressionTestPassed"]
                     if "base_log" in entry_results:
                         result_entry["base_log"] = entry_results["base_log"]
                     

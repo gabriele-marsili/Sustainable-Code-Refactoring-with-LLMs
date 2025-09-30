@@ -17,36 +17,40 @@ class BinarySearchTree {
         return this._left;
     }
     insert(item) {
-        this.insertNode(this, item);
-    }
-    insertNode(current, item) {
-        if (item <= current._data) {
-            if (current._left) {
-                this.insertNode(current._left, item);
+        let current = this;
+        while (true) {
+            if (item <= current._data) {
+                if (current._left) {
+                    current = current._left;
+                }
+                else {
+                    current._left = new BinarySearchTree(item);
+                    break;
+                }
             }
             else {
-                current._left = new BinarySearchTree(item);
-            }
-        }
-        else {
-            if (current._right) {
-                this.insertNode(current._right, item);
-            }
-            else {
-                current._right = new BinarySearchTree(item);
+                if (current._right) {
+                    current = current._right;
+                }
+                else {
+                    current._right = new BinarySearchTree(item);
+                    break;
+                }
             }
         }
     }
     each(callback) {
         this.eachNode(callback, this);
     }
-    eachNode(callback, curret) {
-        if (curret._left) {
-            this.eachNode(callback, curret._left);
-        }
-        callback(curret._data);
-        if (curret._right) {
-            this.eachNode(callback, curret._right);
+    eachNode(callback, current) {
+        if (current) {
+            if (current._left) {
+                this.eachNode(callback, current._left);
+            }
+            callback(current._data);
+            if (current._right) {
+                this.eachNode(callback, current._right);
+            }
         }
     }
 }

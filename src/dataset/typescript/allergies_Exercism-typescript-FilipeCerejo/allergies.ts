@@ -1,37 +1,40 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Allergies = void 0;
 const ALLERGENS = [
-  'eggs',
-  'peanuts',
-  'shellfish',
-  'strawberries',
-  'tomatoes',
-  'chocolate',
-  'pollen',
-  'cats',
+    'eggs',
+    'peanuts',
+    'shellfish',
+    'strawberries',
+    'tomatoes',
+    'chocolate',
+    'pollen',
+    'cats',
 ];
-
-export class Allergies {
-  private _allergen: number;
-  private _list: string[];
-
-  constructor(allergenIndex: number) {
-    this._allergen = allergenIndex;
-    this._list = [];
-    this.calculate();
-  }
-
-  private calculate(): void {
-    let bit = this._allergen.toString(2);
-    this._list = [];
-    for (let b = bit.length - 1; b >= 0; b--) {
-      if (bit[b] === '1' && ALLERGENS[bit.length - 1 - b]) this._list.push(ALLERGENS[bit.length - 1 - b]);
+class Allergies {
+    constructor(allergenIndex) {
+        this._allergen = allergenIndex & 0xFF;
+        this._list = this.calculate();
     }
-  }
-
-  public list(): string[] {
-    return this._list;
-  }
-
-  public allergicTo(allergen: string): boolean {
-    return this._list.some((a) => a === allergen);
-  }
+    calculate() {
+        const result = [];
+        let allergenValue = this._allergen;
+        let index = 0;
+        while (allergenValue > 0 && index < ALLERGENS.length) {
+            if (allergenValue & 1) {
+                result.push(ALLERGENS[index]);
+            }
+            allergenValue >>>= 1;
+            index++;
+        }
+        return result;
+    }
+    list() {
+        return this._list;
+    }
+    allergicTo(allergen) {
+        const allergenIndex = ALLERGENS.indexOf(allergen);
+        return allergenIndex !== -1 && (this._allergen & (1 << allergenIndex)) !== 0;
+    }
 }
+exports.Allergies = Allergies;

@@ -1,148 +1,40 @@
-(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(node:22) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-FAIL ./beer-song_testSuite.js
+PASS ./beer-song_testSuite.js
   Beer Song
     verse
       single verse
-        ✓ first generic verse (1 ms)
-        ✓ last generic verse (1 ms)
+        ✓ first generic verse (3 ms)
+        ✓ last generic verse
         ✓ verse with 2 bottles
-        ✕ verse with 1 bottle (4 ms)
-        ✕ verse with 0 bottles
+        ✓ verse with 1 bottle
+        ✓ verse with 0 bottles (2 ms)
     lyrics
       multiple verses
-        ✓ first two verses
-        ✕ last three verses (1 ms)
-        ✕ all verses (8 ms)
+        ✓ first two verses (2 ms)
+        ✓ last three verses (1 ms)
+        ✓ all verses (3 ms)
 
-  ● Beer Song › verse › single verse › verse with 1 bottle
-
-    expect(received).toEqual(expected) // deep equality
-
-    - Expected  - 1
-    + Received  + 1
-
-      Array [
-        "1 bottle of beer on the wall, 1 bottle of beer.",
-    -   "Take it down and pass it around, no more bottles of beer on the wall.",
-    +   "Take it down and pass it around, nNo more bottles of beer on the wall.",
-      ]
-
-      26 |
-      27 |       test('verse with 1 bottle', () => {
-    > 28 |         expect(recite(1, 1)).toEqual([
-         |                              ^
-      29 |           '1 bottle of beer on the wall, 1 bottle of beer.',
-      30 |           'Take it down and pass it around, no more bottles of beer on the wall.',
-      31 |         ]);
-
-      at Object.<anonymous> (beer-song_testSuite.js:28:30)
-
-  ● Beer Song › verse › single verse › verse with 0 bottles
-
-    expect(received).toEqual(expected) // deep equality
-
-    - Expected  - 1
-    + Received  + 1
-
-      Array [
-    -   "No more bottles of beer on the wall, no more bottles of beer.",
-    +   "NNo more bottles of beer on the wall, nNo more bottles of beer.",
-        "Go to the store and buy some more, 99 bottles of beer on the wall.",
-      ]
-
-      33 |
-      34 |       test('verse with 0 bottles', () => {
-    > 35 |         expect(recite(0, 1)).toEqual([
-         |                              ^
-      36 |           'No more bottles of beer on the wall, no more bottles of beer.',
-      37 |           'Go to the store and buy some more, 99 bottles of beer on the wall.',
-      38 |         ]);
-
-      at Object.<anonymous> (beer-song_testSuite.js:35:30)
-
-  ● Beer Song › lyrics › multiple verses › last three verses
-
-    expect(received).toEqual(expected) // deep equality
-
-    - Expected  - 2
-    + Received  + 2
-
-      Array [
-        "2 bottles of beer on the wall, 2 bottles of beer.",
-        "Take one down and pass it around, 1 bottle of beer on the wall.",
-        "",
-        "1 bottle of beer on the wall, 1 bottle of beer.",
-    -   "Take it down and pass it around, no more bottles of beer on the wall.",
-    +   "Take it down and pass it around, nNo more bottles of beer on the wall.",
-        "",
-    -   "No more bottles of beer on the wall, no more bottles of beer.",
-    +   "NNo more bottles of beer on the wall, nNo more bottles of beer.",
-        "Go to the store and buy some more, 99 bottles of beer on the wall.",
-      ]
-
-      54 |
-      55 |       test('last three verses', () => {
-    > 56 |         expect(recite(2, 3)).toEqual([
-         |                              ^
-      57 |           '2 bottles of beer on the wall, 2 bottles of beer.',
-      58 |           'Take one down and pass it around, 1 bottle of beer on the wall.',
-      59 |           '',
-
-      at Object.<anonymous> (beer-song_testSuite.js:56:30)
-
-  ● Beer Song › lyrics › multiple verses › all verses
-
-    expect(received).toEqual(expected) // deep equality
-
-    - Expected  - 2
-    + Received  + 2
-
-    @@ -292,10 +292,10 @@
-        "",
-        "2 bottles of beer on the wall, 2 bottles of beer.",
-        "Take one down and pass it around, 1 bottle of beer on the wall.",
-        "",
-        "1 bottle of beer on the wall, 1 bottle of beer.",
-    -   "Take it down and pass it around, no more bottles of beer on the wall.",
-    +   "Take it down and pass it around, nNo more bottles of beer on the wall.",
-        "",
-    -   "No more bottles of beer on the wall, no more bottles of beer.",
-    +   "NNo more bottles of beer on the wall, nNo more bottles of beer.",
-        "Go to the store and buy some more, 99 bottles of beer on the wall.",
-      ]
-
-      67 |
-      68 |       test('all verses', () => {
-    > 69 |         expect(recite(99, 100)).toEqual([
-         |                                 ^
-      70 |           '99 bottles of beer on the wall, 99 bottles of beer.',
-      71 |           'Take one down and pass it around, 98 bottles of beer on the wall.',
-      72 |           '',
-
-      at Object.<anonymous> (beer-song_testSuite.js:69:33)
-
-Test Suites: 1 failed, 1 total
-Tests:       4 failed, 4 passed, 8 total
+Test Suites: 1 passed, 1 total
+Tests:       8 passed, 8 total
 Snapshots:   0 total
-Time:        0.374 s
+Time:        0.346 s
 Ran all test suites.
-Command exited with non-zero status 1
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 0.27
-	System time (seconds): 0.07
-	Percent of CPU this job got: 38%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.88
+	User time (seconds): 0.23
+	System time (seconds): 0.06
+	Percent of CPU this job got: 31%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.96
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 82196
+	Maximum resident set size (kbytes): 81932
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 14057
-	Voluntary context switches: 7606
-	Involuntary context switches: 4445
+	Minor (reclaiming a frame) page faults: 14074
+	Voluntary context switches: 7235
+	Involuntary context switches: 2119
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16
@@ -150,4 +42,4 @@ Command exited with non-zero status 1
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 1
+	Exit status: 0

@@ -1,12 +1,12 @@
-Randomness seeded to: 2342320541
+Randomness seeded to: 3795243821
 ===============================================================================
 All tests passed (14 assertions in 14 test cases)
 
 	Command being timed: "./test_exec"
 	User time (seconds): 0.00
 	System time (seconds): 0.00
-	Percent of CPU this job got: 9%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.01
+	Percent of CPU this job got: 25%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.00
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
@@ -15,8 +15,8 @@ All tests passed (14 assertions in 14 test cases)
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 18
 	Minor (reclaiming a frame) page faults: 177
-	Voluntary context switches: 29
-	Involuntary context switches: 30
+	Voluntary context switches: 31
+	Involuntary context switches: 5
 	Swaps: 0
 	File system inputs: 2312
 	File system outputs: 0
@@ -25,3 +25,8 @@ All tests passed (14 assertions in 14 test cases)
 	Signals delivered: 0
 	Page size (bytes): 4096
 	Exit status: 0
+g++: fatal error: Killed signal terminated program cc1plus
+compilation terminated.
+make: *** [Makefile:50: obj/catch_amalgamated.o] Error 1
+🧪 Linking test eseguibile con Catch2...
+g++ -std=c++17 -I src -I test -I /usr/local/include -I.  obj/anagram.o  obj/anagram_test.o obj/catch_main.o obj/catch_amalgamated.o  -o test_exec

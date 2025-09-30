@@ -1,24 +1,27 @@
-const toReversedDigits = (n: string) => [...n]
-    .filter((char) => char !== ' ')
-    .reverse()
-    .map((s) => parseInt(s, 10))
-
-const handleEverySecondDigit = (digit: number) => {
-    const doubled = digit * 2
-    return (doubled < 10) ? doubled : (doubled - 9)
-}
-
-export default class Luhn {
-    static valid(input: string) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class Luhn {
+    static valid(input) {
         if (!input.match(/^\d[\d ]+$/)) {
-            return false
+            return false;
         }
-
-        const reversedDigits = toReversedDigits(input)
-        const addends = reversedDigits.map(
-            (d, i) => i % 2 === 1 ? handleEverySecondDigit(d) : d
-        ).reverse()
-        const checksum = addends.reduce((sum, d) => sum + d, 0)
-        return checksum % 10 === 0
+        let sum = 0;
+        let isEvenPosition = false;
+        for (let i = input.length - 1; i >= 0; i--) {
+            const char = input[i];
+            if (char === ' ')
+                continue;
+            let digit = parseInt(char, 10);
+            if (isEvenPosition) {
+                digit *= 2;
+                if (digit > 9) {
+                    digit -= 9;
+                }
+            }
+            sum += digit;
+            isEvenPosition = !isEvenPosition;
+        }
+        return sum % 10 === 0;
     }
 }
+exports.default = Luhn;

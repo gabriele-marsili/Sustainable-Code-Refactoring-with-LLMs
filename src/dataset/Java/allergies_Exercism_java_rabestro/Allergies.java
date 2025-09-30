@@ -1,16 +1,16 @@
 import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.EnumSet;
 
 class Allergies {
-    private final List<Allergen> allergies;
+    private final EnumSet<Allergen> allergies;
 
     public Allergies(int allergyScore) {
-        allergies = Stream
-                .of(Allergen.values())
-                .filter(a -> (a.getScore() & allergyScore) > 0)
-                .collect(Collectors.toUnmodifiableList());
+        allergies = EnumSet.noneOf(Allergen.class);
+        for (Allergen allergen : Allergen.values()) {
+            if ((allergen.getScore() & allergyScore) != 0) {
+                allergies.add(allergen);
+            }
+        }
     }
 
     public boolean isAllergicTo(Allergen allergen) {

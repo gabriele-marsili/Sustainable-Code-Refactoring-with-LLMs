@@ -1,27 +1,10 @@
-Randomness seeded to: 607451848
-===============================================================================
-All tests passed (5 assertions in 5 test cases)
-
-	Command being timed: "./test_exec"
-	User time (seconds): 0.00
-	System time (seconds): 0.00
-	Percent of CPU this job got: 50%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.00
-	Average shared text size (kbytes): 0
-	Average unshared data size (kbytes): 0
-	Average stack size (kbytes): 0
-	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 4096
-	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 10
-	Minor (reclaiming a frame) page faults: 180
-	Voluntary context switches: 24
-	Involuntary context switches: 1
-	Swaps: 0
-	File system inputs: 0
-	File system outputs: 0
-	Socket messages sent: 0
-	Socket messages received: 0
-	Signals delivered: 0
-	Page size (bytes): 4096
-	Exit status: 0
+=== ERRORI DI COMPILAZIONE ===
+🔨 Compilando catch_amalgamated.cpp...
+g++ -std=c++17 -I src -I test -I /usr/local/include -I. -c catch_amalgamated.cpp -o obj/catch_amalgamated.o
+g++: fatal error: Killed signal terminated program cc1plus
+compilation terminated.
+make: *** [Makefile:50: obj/catch_amalgamated.o] Error 1
+🧪 Linking test eseguibile con Catch2...
+g++ -std=c++17 -I src -I test -I /usr/local/include -I.  obj/beer_song.o  obj/beer_song_test.o obj/catch_main.o obj/catch_amalgamated.o  -o test_exec
+🧪 Linking test eseguibile con Catch2...
+g++ -std=c++17 -I src -I test -I /usr/local/include -I.  obj/beer_song.o  obj/beer_song_test.o obj/catch_main.o obj/catch_amalgamated.o  -o test_exec

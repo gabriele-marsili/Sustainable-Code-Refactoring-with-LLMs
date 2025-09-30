@@ -1,16 +1,65 @@
 gemini/GeminiFlash_two-bucket_v3.ts(39,12): error TS7053: Element implicitly has an 'any' type because expression of type 'keyof Buckets' can't be used to index type 'TwoBucket'.
-  Property 'one' does not exist on type 'TwoBucket'.
+  Property 'two' does not exist on type 'TwoBucket'.
 gemini/GeminiFlash_two-bucket_v3.ts(39,52): error TS7053: Element implicitly has an 'any' type because expression of type 'keyof Buckets' can't be used to index type 'TwoBucket'.
-  Property 'one' does not exist on type 'TwoBucket'.
+  Property 'two' does not exist on type 'TwoBucket'.
 gemini/GeminiFlash_two-bucket_v3.ts(40,14): error TS7053: Element implicitly has an 'any' type because expression of type 'keyof Buckets' can't be used to index type 'TwoBucket'.
-  Property 'one' does not exist on type 'TwoBucket'.
+  Property 'two' does not exist on type 'TwoBucket'.
 gemini/GeminiFlash_two-bucket_v3.ts(67,12): error TS7053: Element implicitly has an 'any' type because expression of type 'keyof Buckets' can't be used to index type 'TwoBucket'.
-  Property 'one' does not exist on type 'TwoBucket'.
+  Property 'two' does not exist on type 'TwoBucket'.
 gemini/GeminiFlash_two-bucket_v3.ts(67,52): error TS7053: Element implicitly has an 'any' type because expression of type 'keyof Buckets' can't be used to index type 'TwoBucket'.
-  Property 'one' does not exist on type 'TwoBucket'.
+  Property 'two' does not exist on type 'TwoBucket'.
 gemini/GeminiFlash_two-bucket_v3.ts(72,14): error TS7053: Element implicitly has an 'any' type because expression of type 'keyof Buckets' can't be used to index type 'TwoBucket'.
-  Property 'one' does not exist on type 'TwoBucket'.
+  Property 'two' does not exist on type 'TwoBucket'.
 gemini/GeminiFlash_two-bucket_v3.ts(124,9): error TS7053: Element implicitly has an 'any' type because expression of type 'keyof Buckets' can't be used to index type 'TwoBucket'.
-  Property 'one' does not exist on type 'TwoBucket'.
+  Property 'two' does not exist on type 'TwoBucket'.
 gemini/GeminiFlash_two-bucket_v3.ts(125,9): error TS7053: Element implicitly has an 'any' type because expression of type 'keyof Buckets' can't be used to index type 'TwoBucket'.
-  Property 'one' does not exist on type 'TwoBucket'.
+  Property 'two' does not exist on type 'TwoBucket'.
+two-bucket.test.ts(1,27): error TS2306: File '/app/two-bucket.ts' is not a module.
+two-bucket.ts(2,23): error TS2304: Cannot find name 'exports'.
+two-bucket.ts(3,1): error TS2304: Cannot find name 'exports'.
+two-bucket.ts(5,17): error TS7006: Parameter 'bucketOne' implicitly has an 'any' type.
+two-bucket.ts(5,28): error TS7006: Parameter 'bucketTwo' implicitly has an 'any' type.
+two-bucket.ts(5,39): error TS7006: Parameter 'goal' implicitly has an 'any' type.
+two-bucket.ts(5,45): error TS7006: Parameter 'starterBucket' implicitly has an 'any' type.
+two-bucket.ts(6,14): error TS2551: Property 'bucketOneSize' does not exist on type 'TwoBucket'. Did you mean 'bucketSizes'?
+two-bucket.ts(7,14): error TS2551: Property 'bucketTwoSize' does not exist on type 'TwoBucket'. Did you mean 'bucketSizes'?
+two-bucket.ts(8,14): error TS2339: Property 'goal' does not exist on type 'TwoBucket'.
+two-bucket.ts(9,14): error TS2339: Property 'starterBucket' does not exist on type 'TwoBucket'.
+two-bucket.ts(10,14): error TS2339: Property 'largeBucket' does not exist on type 'TwoBucket'.
+two-bucket.ts(11,14): error TS2339: Property 'smallBucket' does not exist on type 'TwoBucket'.
+two-bucket.ts(12,14): error TS2339: Property 'bucketOne' does not exist on type 'TwoBucket'.
+two-bucket.ts(13,14): error TS2339: Property 'bucketTwo' does not exist on type 'TwoBucket'.
+two-bucket.ts(16,18): error TS2339: Property 'starterBucket' does not exist on type 'TwoBucket'.
+two-bucket.ts(16,41): error TS2339: Property 'largeBucket' does not exist on type 'TwoBucket'.
+two-bucket.ts(17,36): error TS2339: Property 'largeBucket' does not exist on type 'TwoBucket'.
+two-bucket.ts(17,54): error TS2339: Property 'smallBucket' does not exist on type 'TwoBucket'.
+two-bucket.ts(17,67): error TS7053: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type '{ one: any; two: any; }'.
+two-bucket.ts(17,89): error TS2339: Property 'largeBucket' does not exist on type 'TwoBucket'.
+two-bucket.ts(17,103): error TS7053: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type '{ one: any; two: any; }'.
+two-bucket.ts(17,125): error TS2339: Property 'smallBucket' does not exist on type 'TwoBucket'.
+two-bucket.ts(20,36): error TS2339: Property 'smallBucket' does not exist on type 'TwoBucket'.
+two-bucket.ts(20,54): error TS2339: Property 'largeBucket' does not exist on type 'TwoBucket'.
+two-bucket.ts(20,67): error TS7053: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type '{ one: any; two: any; }'.
+two-bucket.ts(20,89): error TS2339: Property 'smallBucket' does not exist on type 'TwoBucket'.
+two-bucket.ts(20,103): error TS7053: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type '{ one: any; two: any; }'.
+two-bucket.ts(20,125): error TS2339: Property 'largeBucket' does not exist on type 'TwoBucket'.
+two-bucket.ts(23,11): error TS7006: Parameter 'firstBucketName' implicitly has an 'any' type.
+two-bucket.ts(23,28): error TS7006: Parameter 'secondBucketName' implicitly has an 'any' type.
+two-bucket.ts(23,46): error TS7006: Parameter 'firstBucketSize' implicitly has an 'any' type.
+two-bucket.ts(23,63): error TS7006: Parameter 'secondBucketSize' implicitly has an 'any' type.
+two-bucket.ts(27,37): error TS2339: Property 'goal' does not exist on type 'TwoBucket'.
+two-bucket.ts(27,67): error TS2339: Property 'goal' does not exist on type 'TwoBucket'.
+two-bucket.ts(43,14): error TS2339: Property 'bucketOne' does not exist on type 'TwoBucket'.
+two-bucket.ts(44,14): error TS2339: Property 'bucketTwo' does not exist on type 'TwoBucket'.
+two-bucket.ts(48,28): error TS2551: Property 'bucketOneSize' does not exist on type 'TwoBucket'. Did you mean 'bucketSizes'?
+two-bucket.ts(48,53): error TS2551: Property 'bucketTwoSize' does not exist on type 'TwoBucket'. Did you mean 'bucketSizes'?
+two-bucket.ts(51,18): error TS2339: Property 'bucketOne' does not exist on type 'TwoBucket'.
+two-bucket.ts(51,37): error TS2339: Property 'goal' does not exist on type 'TwoBucket'.
+two-bucket.ts(56,49): error TS2339: Property 'bucketTwo' does not exist on type 'TwoBucket'.
+two-bucket.ts(56,66): error TS2339: Property 'bucketOne' does not exist on type 'TwoBucket'.
+two-bucket.ts(59,1): error TS2304: Cannot find name 'exports'.
+npm notice
+npm notice New major version of npm available! 10.8.2 -> 11.6.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.1
+npm notice To update run: npm install -g npm@11.6.1
+npm notice

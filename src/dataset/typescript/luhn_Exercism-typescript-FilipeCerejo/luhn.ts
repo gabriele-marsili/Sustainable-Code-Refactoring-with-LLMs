@@ -1,18 +1,11 @@
 export function valid(digitString: string): boolean {
-  let noSpaceDigit = digitString.replace(/\s/g, '');
-  if(noSpaceDigit.length < 2) return false;
+  const noSpaceDigit = digitString.replace(/\s/g, '');
+  if (noSpaceDigit.length < 2) return false;
 
   let sum = 0;
-  let change = false;
-  for(let d = noSpaceDigit.length - 1; d >= 0; d--) {
-    let digit = Number(noSpaceDigit[d]);
-    if(change) {
-      sum += digit * 2 > 9 ? digit * 2 - 9 : digit * 2;
-    } else {
-      sum += digit;
-    }
-
-    change = !change;
+  for (let i = noSpaceDigit.length - 1, change = false; i >= 0; i--, change = !change) {
+    const digit = noSpaceDigit.charCodeAt(i) - 48; // Faster than Number()
+    sum += change ? (digit > 4 ? digit * 2 - 9 : digit * 2) : digit;
   }
 
   return sum % 10 === 0;

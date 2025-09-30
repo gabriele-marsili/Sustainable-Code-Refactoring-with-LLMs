@@ -1,8 +1,8 @@
-(node:22) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
 PASS ./binary_testSuite.js
   binary
-    ✓ 0 is decimal 0 (1 ms)
+    ✓ 0 is decimal 0 (2 ms)
     ✓ 1 is decimal 1
     ✓ 10 is decimal 2
     ✓ 11 is decimal 3
@@ -16,23 +16,23 @@ PASS ./binary_testSuite.js
 Test Suites: 1 passed, 1 total
 Tests:       10 passed, 10 total
 Snapshots:   0 total
-Time:        0.186 s
+Time:        0.173 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
 	User time (seconds): 0.24
-	System time (seconds): 0.06
+	System time (seconds): 0.07
 	Percent of CPU this job got: 59%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.51
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.53
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 80796
+	Maximum resident set size (kbytes): 80308
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 13930
-	Voluntary context switches: 7518
-	Involuntary context switches: 2384
+	Minor (reclaiming a frame) page faults: 13894
+	Voluntary context switches: 7388
+	Involuntary context switches: 1191
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16
@@ -41,3 +41,4 @@ Ran all test suites.
 	Signals delivered: 0
 	Page size (bytes): 4096
 	Exit status: 0
+xit status: 0

@@ -4,20 +4,21 @@ class Binary {
   }
 
   toDecimal() {
-    const numberToArray = this.number.split('');
     let numberAsDecimal = 0;
+    const length = this.number.length;
     
-    for (let i = 0; i < numberToArray.length; i++) {
-      let currentDigit = Number(numberToArray[i]);
-      if (isNaN(currentDigit) || (currentDigit !== 0 && currentDigit !== 1))
-        return numberAsDecimal = 0;
-
-      let power = (numberToArray.length - 1) - i;
-      numberAsDecimal += currentDigit * Math.pow(2, power);
+    for (let i = 0; i < length; i++) {
+      const char = this.number[i];
+      if (char !== '0' && char !== '1') {
+        return 0;
+      }
+      if (char === '1') {
+        numberAsDecimal += 1 << (length - 1 - i);
+      }
     }
     
     return numberAsDecimal;
   }
 }
 
-export default Binary;;
+export default Binary;

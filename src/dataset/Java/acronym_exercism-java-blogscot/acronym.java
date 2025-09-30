@@ -1,3 +1,5 @@
+import java.util.regex.Pattern;
+
 import static java.util.Objects.requireNonNull;
 
 class Acronym {
@@ -6,27 +8,13 @@ class Acronym {
   Acronym(String phrase) {
     requireNonNull(phrase);
 
-    StringBuilder sb = new StringBuilder();
-    boolean nextIsFirst = true;
-    
-    for (int i = 0; i < phrase.length(); i++) {
-      char c = phrase.charAt(i);
-      
-      if (c == '\'') {
-        continue;
-      }
-      
-      if (Character.isLetter(c)) {
-        if (nextIsFirst) {
-          sb.append(Character.toUpperCase(c));
-          nextIsFirst = false;
-        }
-      } else {
-        nextIsFirst = true;
+    StringBuilder result = new StringBuilder();
+    for (String word : Pattern.compile("\\W+").split(phrase.replace("'", ""))) {
+      if (!word.isEmpty()) {
+        result.append(Character.toUpperCase(word.charAt(0)));
       }
     }
-    
-    acronym = sb.toString();
+    acronym = result.toString();
   }
 
   String getAcronym() {

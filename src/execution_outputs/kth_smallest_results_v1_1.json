@@ -1,41 +1,33 @@
 {
-    "execution_date": "2025-09-16 21:06:48",
-    "results": {
-        "python": [
-            {
-                "id": "kth_smallest_183",
-                "filename": "kth_smallest.py",
-                "language": "python",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 40,
-                        "CPU_usage": 84.0,
-                        "RAM_usage": 13952,
-                        "regrationTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/kth_smallest/openAI/ChatGPT4_kth_smallest_v1.py",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/kth_smallest/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 40,
-                        "CPU_usage": 84.0,
-                        "RAM_usage": 13952,
-                        "regrationTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/kth_smallest/claude/ClaudeSonnet4_kth_smallest_v1.py",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/kth_smallest/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regrationTestPassed": false,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/kth_smallest/gemini/GeminiFlash_kth_smallest_v1.py",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_python_persistant_kth_smallest_183_error_7343f0bd.log"
-                    }
-                ]
-            }
+  "execution_date": "2025-09-29 18:18:22",
+  "execution_metadata": {
+    "total_tests": 1,
+    "successful_tests": 1,
+    "execution_time": "00h 09m 26s",
+    "cluster": "cluster_kth_smallest",
+    "test_type": "llm_v1"
+  },
+  "results": {
+    "python": [
+      {
+        "id": "kth_smallest_183",
+        "language": "python",
+        "timestamp": 1759162686.7413802,
+        "LLM_results": [
+          {
+            "execution_time_ms": 30,
+            "CPU_usage": 10.0,
+            "RAM_usage": 13952,
+            "regressionTestPassed": false,
+            "success": true,
+            "error_message": "Docker exit code: 125",
+            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_python_persistent_kth_smallest_183_1759162686.log",
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/kth_smallest/claude/ClaudeSonnet4_kth_smallest_v1.py",
+            "filename": "ClaudeSonnet4_kth_smallest_v1.py"
+          }
         ]
-    }
+      }
+    ]
+  }
 }

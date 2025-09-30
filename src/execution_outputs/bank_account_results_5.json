@@ -1,103 +1,128 @@
 {
-    "execution_date": "2025-09-17 22:28:13",
-    "results": {
-        "python": [
-            {
-                "id": "bank-account_3",
-                "filename": "bank-account.py",
-                "language": "python",
-                "CPU_usage": 63.0,
-                "RAM_usage": 13824,
-                "execution_time_ms": 20,
-                "regrationTestPassed": true,
-                "base_log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/bank-account/output.log"
-            }
-        ],
-        "javascript": [
-            {
-                "id": "javascript_bank-account_exercism-javascript-ffflorian",
-                "filename": "bank-account.js",
-                "language": "javascript",
-                "CPU_usage": 32.0,
-                "RAM_usage": 83308,
-                "execution_time_ms": 320,
-                "regrationTestPassed": true,
-                "base_log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bank-account_exercism-javascript-ffflorian/output.log"
-            },
-            {
-                "id": "javascript_bank-account_exercism-javascript-irvingbennett_irvingbennett",
-                "filename": "bank-account.js",
-                "language": "javascript",
-                "CPU_usage": 41.0,
-                "RAM_usage": 84056,
-                "execution_time_ms": 330,
-                "regrationTestPassed": true,
-                "base_log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bank-account_exercism-javascript-irvingbennett/output.log"
-            },
-            {
-                "id": "javascript_bank-account_exercism-javascript-ffflorian_ffflorian",
-                "filename": "bank-account.js",
-                "language": "javascript",
-                "CPU_usage": 34.0,
-                "RAM_usage": 81772,
-                "execution_time_ms": 290,
-                "regrationTestPassed": true,
-                "base_log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bank-account_exercism-javascript-ffflorian/output.log"
-            }
-        ],
-        "typescript": [
-            {
-                "id": "typescript_bank-account_Exercism-typescript-alemarr",
-                "filename": "bank-account.ts",
-                "language": "typescript",
-                "CPU_usage": 96.0,
-                "RAM_usage": 226676,
-                "execution_time_ms": 1185,
-                "regrationTestPassed": true,
-                "base_log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bank-account_Exercism-typescript-alemarr/output.log"
-            },
-            {
-                "id": "typescript_bank-account_Exercism-typescript-alemarr_alemarr",
-                "filename": "bank-account.ts",
-                "language": "typescript",
-                "CPU_usage": 47.0,
-                "RAM_usage": 224732,
-                "execution_time_ms": 2335,
-                "regrationTestPassed": true,
-                "base_log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bank-account_Exercism-typescript-alemarr/output.log"
-            }
-        ],
-        "go": [
-            {
-                "id": "go_bank_account_Exercism (go_rootulp)",
-                "filename": "bank_account.go",
-                "language": "go",
-                "CPU_usage": 73.0,
-                "RAM_usage": 219620,
-                "execution_time_ms": 6020,
-                "regrationTestPassed": true,
-                "base_log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bank_account_Exercism_go_rootulp/output.log"
-            },
-            {
-                "id": "go_bank_account_Exercism (go_ThomasZumsteg)",
-                "filename": "bank_account.go",
-                "language": "go",
-                "CPU_usage": 75.0,
-                "RAM_usage": 217424,
-                "execution_time_ms": 5970,
-                "regrationTestPassed": true,
-                "base_log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bank_account_Exercism_go_ThomasZumsteg/output.log"
-            },
-            {
-                "id": "go_bank_account_Exercism (go_drapala)",
-                "filename": "bank_account.go",
-                "language": "go",
-                "CPU_usage": 181.0,
-                "RAM_usage": 201600,
-                "execution_time_ms": 5530,
-                "regrationTestPassed": true,
-                "base_log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bank_account_Exercism_go_drapala/output.log"
-            }
-        ]
-    }
+  "execution_date": "2025-09-29 09:01:55",
+  "execution_metadata": {
+    "total_tests": 9,
+    "successful_tests": 9,
+    "execution_time": "00h 01m 46s",
+    "cluster": "cluster_bank_account",
+    "test_type": "base"
+  },
+  "results": {
+    "python": [
+      {
+        "id": "bank-account_3",
+        "language": "python",
+        "timestamp": 1759129210.804558,
+        "execution_time_ms": 20,
+        "CPU_usage": 64.0,
+        "RAM_usage": 13824,
+        "regressionTestPassed": true,
+        "success": true,
+        "error_message": null,
+        "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_python_persistent_bank-account_3_1759129210.log"
+      }
+    ],
+    "javascript": [
+      {
+        "id": "javascript_bank-account_exercism-javascript-ffflorian",
+        "language": "javascript",
+        "timestamp": 1759129213.571504,
+        "execution_time_ms": 290,
+        "CPU_usage": 51.0,
+        "RAM_usage": 82696,
+        "regressionTestPassed": false,
+        "success": true,
+        "error_message": "Docker exit code: 1",
+        "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_bank-account_exercism-javascript-ffflorian_1759129213.log"
+      },
+      {
+        "id": "javascript_bank-account_exercism-javascript-ffflorian_ffflorian",
+        "language": "javascript",
+        "timestamp": 1759129214.098326,
+        "execution_time_ms": 290,
+        "CPU_usage": 51.0,
+        "RAM_usage": 82696,
+        "regressionTestPassed": true,
+        "success": true,
+        "error_message": null,
+        "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_bank-account_exercism-javascript-ffflorian_ffflorian_1759129214.log"
+      },
+      {
+        "id": "javascript_bank-account_exercism-javascript-irvingbennett_irvingbennett",
+        "language": "javascript",
+        "timestamp": 1759129214.5629592,
+        "execution_time_ms": 310,
+        "CPU_usage": 43.0,
+        "RAM_usage": 81680,
+        "regressionTestPassed": true,
+        "success": true,
+        "error_message": null,
+        "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_bank-account_exercism-javascript-irvingbennett_irvingbennett_1759129214.log"
+      }
+    ],
+    "typescript": [
+      {
+        "id": "typescript_bank-account_Exercism-typescript-alemarr",
+        "language": "typescript",
+        "timestamp": 1759129226.404456,
+        "execution_time_ms": 2527,
+        "CPU_usage": 50.0,
+        "RAM_usage": 224740,
+        "regressionTestPassed": true,
+        "success": true,
+        "error_message": null,
+        "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_bank-account_Exercism-typescript-alemarr_1759129226.log"
+      },
+      {
+        "id": "typescript_bank-account_Exercism-typescript-alemarr_alemarr",
+        "language": "typescript",
+        "timestamp": 1759129227.468757,
+        "execution_time_ms": 2527,
+        "CPU_usage": 50.0,
+        "RAM_usage": 224740,
+        "regressionTestPassed": true,
+        "success": true,
+        "error_message": null,
+        "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_bank-account_Exercism-typescript-alemarr_alemarr_1759129227.log"
+      }
+    ],
+    "go": [
+      {
+        "id": "go_bank_account_Exercism (go_ThomasZumsteg)",
+        "language": "go",
+        "timestamp": 1759129227.011908,
+        "execution_time_ms": 5950,
+        "CPU_usage": 81.0,
+        "RAM_usage": 208576,
+        "regressionTestPassed": true,
+        "success": true,
+        "error_message": null,
+        "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_bank_account_Exercism (go_ThomasZumsteg)_1759129227.log"
+      },
+      {
+        "id": "go_bank_account_Exercism (go_rootulp)",
+        "language": "go",
+        "timestamp": 1759129227.468686,
+        "execution_time_ms": 5939,
+        "CPU_usage": 75.0,
+        "RAM_usage": 213740,
+        "regressionTestPassed": true,
+        "success": true,
+        "error_message": null,
+        "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_bank_account_Exercism (go_rootulp)_1759129227.log"
+      },
+      {
+        "id": "go_bank_account_Exercism (go_drapala)",
+        "language": "go",
+        "timestamp": 1759129231.2862148,
+        "execution_time_ms": 5729,
+        "CPU_usage": 184.0,
+        "RAM_usage": 206908,
+        "regressionTestPassed": true,
+        "success": true,
+        "error_message": null,
+        "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_bank_account_Exercism (go_drapala)_1759129231.log"
+      }
+    ]
+  }
 }

@@ -6,7 +6,9 @@
  * @returns {string}
  */
 function count(num, lowercase) {
-  return num === 0 ? `${lowercase ? 'n' : 'N'}o more` : num === -1 ? '99' : num.toString();
+  if (num === 0) return `${lowercase ? 'n' : 'N'}o more`;
+  if (num === -1) return '99';
+  return String(num);
 }
 
 /**
@@ -15,7 +17,7 @@ function count(num, lowercase) {
  * @returns {string}
  */
 function bottle(num, extended) {
-  return `bottle${num !== 1 ? 's' : ''} of beer${extended ? ' on the wall' : ''}`;
+  return `bottle${num === 1 ? '' : 's'} of beer${extended ? ' on the wall' : ''}`;
 }
 
 /**
@@ -31,9 +33,13 @@ function take(num) {
  * @returns {string[]}
  */
 function verse(num) {
+  const currentCount = count(num);
+  const nextCount = count(num - 1, num === 1);
+  const currentBottle = bottle(num, true);
+  const nextBottle = bottle(num - 1, true);
   return [
-    `${count(num)} ${bottle(num, true)}, ${count(num, num === 0)} ${bottle(num)}.`,
-    `${take(num)}, ${count(num - 1, num === 1)} ${bottle(num - 1, true)}.`,
+    `${currentCount} ${currentBottle}, ${currentCount} ${bottle(num)}.`,
+    `${take(num)}, ${nextCount} ${nextBottle}.`,
     '',
   ];
 }
@@ -44,11 +50,12 @@ function verse(num) {
  * @returns {string[]}
  */
 export function recite(begin = 99, times = 0) {
-  /** @type {string[]} */
-  const verses = [];
-  for (let i = 0; i < times; i++) {
-    verses.push(...verse(begin - i));
+  const verses = Array(times * 3 - 1);
+  for (let i = 0, idx = 0; i < times; i++) {
+    const v = verse(begin - i);
+    verses[idx++] = v[0];
+    verses[idx++] = v[1];
+    if (idx < verses.length) verses[idx++] = v[2];
   }
-  verses.pop();
   return verses;
 }

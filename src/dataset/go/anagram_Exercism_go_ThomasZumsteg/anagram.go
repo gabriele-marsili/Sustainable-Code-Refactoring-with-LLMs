@@ -1,34 +1,42 @@
 package anagram
 
 import (
-	"reflect"
 	"sort"
 	"strings"
 )
 
-//letters creates an array of characters in a string for sorting
-// TODO go all in and create an equal interface
 type letters []rune
 
 func (s letters) Len() int           { return len(s) }
 func (s letters) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }
 func (s letters) Less(i, j int) bool { return s[i] < s[j] }
 
-/*Detect finds any anagrams in a list of candidates, case insensitive*/
 func Detect(subject string, candidates []string) []string {
+	if len(candidates) == 0 {
+		return nil
+	}
+	
 	word := strings.ToLower(subject)
-	wordLetters := letters(word)
-	sort.Sort(wordLetters)
-	var anagrams []string
+	wordRunes := []rune(word)
+	sort.Slice(wordRunes, func(i, j int) bool { return wordRunes[i] < wordRunes[j] })
+	wordSorted := string(wordRunes)
+	
+	anagrams := make([]string, 0, len(candidates))
+	
 	for _, candidate := range candidates {
 		lowerCandidate := strings.ToLower(candidate)
-		candidateLetters := letters(lowerCandidate)
-		sort.Sort(candidateLetters)
-		if reflect.DeepEqual(candidateLetters, wordLetters) &&
-			word != lowerCandidate {
-			anagrams = append(anagrams, lowerCandidate)
+		
+		if len(lowerCandidate) != len(word) || word == lowerCandidate {
+			continue
 		}
-
+		
+		candidateRunes := []rune(lowerCandidate)
+		sort.Slice(candidateRunes, func(i, j int) bool { return candidateRunes[i] < candidateRunes[j] })
+		
+		if string(candidateRunes) == wordSorted {
+			anagrams = append(anagrams, candidate)
+		}
 	}
+	
 	return anagrams
 }

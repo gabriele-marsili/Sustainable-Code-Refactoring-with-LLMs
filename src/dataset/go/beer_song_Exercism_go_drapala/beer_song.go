@@ -2,7 +2,7 @@ package beer
 
 import (
 	"errors"
-	"fmt"
+	"strings"
 )
 
 func Song() string {
@@ -15,57 +15,97 @@ func Verses(start, stop int) (string, error) {
 		return "", errors.New("start less than stop")
 	}
 
-	var result string
+	var builder strings.Builder
+	builder.Grow((start - stop + 1) * 150)
+	
 	for n := start; n >= stop; n-- {
 		verse, err := Verse(n)
 		if err != nil {
 			return "", err
 		}
-		result += verse + "\n"
+		builder.WriteString(verse)
+		builder.WriteByte('\n')
 	}
-	return result, nil
+	return builder.String(), nil
 }
 
 func nBottles(n int) string {
-	var bottle string
+	bottle := "bottles"
 	if n == 1 {
 		bottle = "bottle"
-	} else {
-		bottle = "bottles"
 	}
-	return fmt.Sprintf("%d %s of beer on the wall, %d %s of beer.\n", n, bottle, n, bottle)
+	
+	var builder strings.Builder
+	builder.Grow(50)
+	builder.WriteString(itoa(n))
+	builder.WriteByte(' ')
+	builder.WriteString(bottle)
+	builder.WriteString(" of beer on the wall, ")
+	builder.WriteString(itoa(n))
+	builder.WriteByte(' ')
+	builder.WriteString(bottle)
+	builder.WriteString(" of beer.\n")
+	return builder.String()
 }
 
 func nTakedown(n int) string {
-	var bottle string
+	bottle := "bottles"
 	if n == 2 {
 		bottle = "bottle"
-	} else {
-		bottle = "bottles"
 	}
-	var oneorit string
-	// Take ____ down and pass it around
+	
+	oneorit := "one"
 	if n == 1 {
 		oneorit = "it"
-	} else {
-		oneorit = "one"
 	}
 
 	var numleft string
-	// ...pass it around, ____ bottles of beer....
 	if n == 1 {
 		numleft = "no more"
 	} else {
-		numleft = fmt.Sprintf("%d", n-1)
+		numleft = itoa(n - 1)
 	}
-	return fmt.Sprintf("Take %s down and pass it around, %s %s of beer on the wall.\n", oneorit, numleft, bottle)
+	
+	var builder strings.Builder
+	builder.Grow(80)
+	builder.WriteString("Take ")
+	builder.WriteString(oneorit)
+	builder.WriteString(" down and pass it around, ")
+	builder.WriteString(numleft)
+	builder.WriteByte(' ')
+	builder.WriteString(bottle)
+	builder.WriteString(" of beer on the wall.\n")
+	return builder.String()
 }
 
 func Verse(n int) (string, error) {
 	if n == 0 {
 		return "No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n", nil
-	} else if n >= 1 && n <= 99 {
-		return (nBottles(n) + nTakedown(n)), nil
+	}
+	if n >= 1 && n <= 99 {
+		var builder strings.Builder
+		builder.Grow(120)
+		builder.WriteString(nBottles(n))
+		builder.WriteString(nTakedown(n))
+		return builder.String(), nil
 	}
 	return "", errors.New("n out of bounds")
+}
+
+func itoa(n int) string {
+	if n == 0 {
+		return "0"
+	}
+	
+	buf := make([]byte, 0, 3)
+	for n > 0 {
+		buf = append(buf, byte('0'+n%10))
+		n /= 10
+	}
+	
+	for i, j := 0, len(buf)-1; i < j; i, j = i+1, j-1 {
+		buf[i], buf[j] = buf[j], buf[i]
+	}
+	
+	return string(buf)
 }

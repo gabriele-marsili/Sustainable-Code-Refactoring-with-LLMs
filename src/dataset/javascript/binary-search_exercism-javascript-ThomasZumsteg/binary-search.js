@@ -1,34 +1,45 @@
 function BinarySearch(items) {
   this.items = items;
-};
+  this._sorted = null;
+}
 
 BinarySearch.prototype = {
   get array() {
-    if ( this.sorted !== undefined  ){
-      return this.sorted;
+    if (this._sorted !== null) {
+      return this._sorted;
     }
-    for ( var i = 1; i < this.items.length; i++ ) {
-      if ( this.items[i] < this.items[i-1] ) {
-        return undefined; 
+    
+    const len = this.items.length;
+    for (let i = 1; i < len; i++) {
+      if (this.items[i] < this.items[i - 1]) {
+        this._sorted = undefined;
+        return undefined;
       }
     }
-    this.sorted = true;
+    
+    this._sorted = this.items;
     return this.items;
   },
 
   indexOf: function(item) {
-    for (var min = -1, max = this.items.length; min < max;) {
-      mid = Math.floor(( min + max) / 2);
-      if (this.items[mid] < item ) {
+    let min = 0;
+    let max = this.items.length - 1;
+    
+    while (min <= max) {
+      const mid = (min + max) >>> 1;
+      const midVal = this.items[mid];
+      
+      if (midVal < item) {
         min = mid + 1;
-      } else if (item < this.items[mid]) {
+      } else if (midVal > item) {
         max = mid - 1;
       } else {
         return mid;
       }
     }
+    
     return -1;
-  },
+  }
 };
 
-export default BinarySearch;;
+export default BinarySearch;

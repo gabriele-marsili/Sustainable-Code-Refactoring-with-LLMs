@@ -1,57 +1,57 @@
-export class BinarySearchTree {
-    private _data: number;
-    private _left: BinarySearchTree | undefined = undefined;
-    private _right: BinarySearchTree | undefined = undefined;
-
-    constructor(data: number) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.BinarySearchTree = void 0;
+class BinarySearchTree {
+    constructor(data) {
+        this._left = undefined;
+        this._right = undefined;
         this._data = data;
     }
-
-    public get data(): number {
+    get data() {
         return this._data;
     }
-
-    public get right(): BinarySearchTree | undefined {
+    get right() {
         return this._right;
     }
-
-    public get left(): BinarySearchTree | undefined {
+    get left() {
         return this._left;
     }
-
-    public insert(item: number): void {
-        this.insertNode(this, item);
-    }
-
-    private insertNode(current: BinarySearchTree | undefined, item: number): void {
-        if (item <= current!._data) {
-            if (current!._left) {
-                this.insertNode(current!._left, item);
-            } else {
-                current!._left = new BinarySearchTree(item);
+    insert(item) {
+        let current = this;
+        while (true) {
+            if (item <= current._data) {
+                if (current._left) {
+                    current = current._left;
+                }
+                else {
+                    current._left = new BinarySearchTree(item);
+                    break;
+                }
             }
-        } else {
-            if (current!._right) {
-                this.insertNode(current!._right, item);
-            } else {
-                current!._right = new BinarySearchTree(item);
+            else {
+                if (current._right) {
+                    current = current._right;
+                }
+                else {
+                    current._right = new BinarySearchTree(item);
+                    break;
+                }
             }
         }
     }
-
-    public each(callback: (data: number) => void): void {
+    each(callback) {
         this.eachNode(callback, this);
     }
-
-    private eachNode(callback: (data: number) => void, curret: BinarySearchTree | undefined): void {
-        if (curret!._left) {
-            this.eachNode(callback, curret!._left);
-        }
-
-        callback(curret!._data);
-
-      if (curret!._right) {
-            this.eachNode(callback, curret!._right);
+    eachNode(callback, current) {
+        if (current) {
+            if (current._left) {
+                this.eachNode(callback, current._left);
+            }
+            callback(current._data);
+            if (current._right) {
+                this.eachNode(callback, current._right);
+            }
         }
     }
 }
+exports.BinarySearchTree = BinarySearchTree;

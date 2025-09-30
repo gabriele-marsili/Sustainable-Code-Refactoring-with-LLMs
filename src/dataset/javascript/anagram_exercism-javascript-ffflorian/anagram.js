@@ -14,10 +14,18 @@ function sort(word) {
  * @returns {string[]}
  */
 export function findAnagrams(word, matches) {
-  return matches.reduce((/** @type string[] */ result, matchTest) => {
-    if (word.toLowerCase() !== matchTest.toLowerCase() && sort(word) === sort(matchTest)) {
+  const wordLower = word.toLowerCase();
+  const wordSorted = sort(word);
+  const result = [];
+  
+  for (let i = 0; i < matches.length; i++) {
+    const matchTest = matches[i];
+    const matchLower = matchTest.toLowerCase();
+    
+    if (wordLower !== matchLower && wordSorted === sort(matchTest)) {
       result.push(matchTest);
     }
-    return result;
-  }, []);
+  }
+  
+  return result;
 }

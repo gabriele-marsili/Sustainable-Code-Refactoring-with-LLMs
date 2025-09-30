@@ -30,15 +30,9 @@ class TwoBucket {
                 otherBucket = 0;
             }
             else {
-                const spaceInOtherBucket = otherBucketSize - otherBucket;
-                if (spaceInOtherBucket < starterBucket) {
-                    otherBucket = otherBucketSize;
-                    starterBucket -= spaceInOtherBucket;
-                }
-                else {
-                    otherBucket += starterBucket;
-                    starterBucket = 0;
-                }
+                const pourAmount = Math.min(starterBucket, otherBucketSize - otherBucket);
+                otherBucket += pourAmount;
+                starterBucket -= pourAmount;
             }
         }
         return count;

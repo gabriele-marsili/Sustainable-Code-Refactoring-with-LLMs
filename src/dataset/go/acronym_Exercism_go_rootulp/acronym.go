@@ -7,9 +7,24 @@ import (
 
 // Abbreviate should return an abbreviated string based on s.
 func Abbreviate(s string) string {
-	parsed := parse(s)
-	acronym := generateAcronym(parsed)
-	return strings.ToUpper(acronym)
+	var result strings.Builder
+	result.Grow(len(s) / 4) // Pre-allocate reasonable capacity
+	
+	inWord := false
+	for _, r := range s {
+		if unicode.IsLetter(r) {
+			if !inWord {
+				result.WriteRune(unicode.ToUpper(r))
+				inWord = true
+			}
+		} else if r == '-' || r == ' ' {
+			inWord = false
+		} else {
+			inWord = false
+		}
+	}
+	
+	return result.String()
 }
 
 // Return a string that is generated from the first letter of each word in s.
@@ -24,11 +39,11 @@ func generateAcronym(s string) string {
 func parse(s string) string {
 	return strings.Map(func(r rune) rune {
 		if r == '-' || r == ' ' {
-			return ' ' // Convert hyphens to whitespace
+			return ' '
 		} else if unicode.IsLetter(r) {
 			return r
 		} else {
-			return -1 // Remove non whitespace or letter characters
+			return -1
 		}
 	}, s)
 }

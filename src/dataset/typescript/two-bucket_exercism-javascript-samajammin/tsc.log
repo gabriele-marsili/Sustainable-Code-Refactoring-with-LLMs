@@ -1,4 +1,35 @@
-two-bucket.test.ts(14,24): error TS2341: Property 'otherBucket' is private and only accessible within class 'TwoBucket'.
-two-bucket.test.ts(22,24): error TS2341: Property 'otherBucket' is private and only accessible within class 'TwoBucket'.
-two-bucket.test.ts(36,24): error TS2341: Property 'otherBucket' is private and only accessible within class 'TwoBucket'.
-two-bucket.test.ts(44,24): error TS2341: Property 'otherBucket' is private and only accessible within class 'TwoBucket'.
+two-bucket.test.ts(1,35): error TS2306: File '/app/two-bucket.ts' is not a module.
+two-bucket.ts(2,23): error TS2304: Cannot find name 'exports'.
+two-bucket.ts(3,1): error TS2304: Cannot find name 'exports'.
+two-bucket.ts(3,21): error TS2304: Cannot find name 'exports'.
+two-bucket.ts(4,5): error TS7034: Variable 'Bucket' implicitly has type 'any' in some locations where its type cannot be determined.
+two-bucket.ts(6,5): error TS7053: Element implicitly has an 'any' type because expression of type '"One"' can't be used to index type '{}'.
+  Property 'One' does not exist on type '{}'.
+two-bucket.ts(7,5): error TS7053: Element implicitly has an 'any' type because expression of type '"Two"' can't be used to index type '{}'.
+  Property 'Two' does not exist on type '{}'.
+two-bucket.ts(8,15): error TS2304: Cannot find name 'exports'.
+two-bucket.ts(10,17): error TS7006: Parameter 'bucketOneSize' implicitly has an 'any' type.
+two-bucket.ts(10,32): error TS7006: Parameter 'bucketTwoSize' implicitly has an 'any' type.
+two-bucket.ts(10,47): error TS7006: Parameter 'goal' implicitly has an 'any' type.
+two-bucket.ts(10,53): error TS7006: Parameter 'starterBucket' implicitly has an 'any' type.
+two-bucket.ts(11,14): error TS2339: Property 'bucketOneSize' does not exist on type 'TwoBucket'.
+two-bucket.ts(12,14): error TS2339: Property 'bucketTwoSize' does not exist on type 'TwoBucket'.
+two-bucket.ts(13,14): error TS2339: Property 'goal' does not exist on type 'TwoBucket'.
+two-bucket.ts(14,14): error TS2339: Property 'goalBucket' does not exist on type 'TwoBucket'.
+two-bucket.ts(15,14): error TS2339: Property 'starterBucket' does not exist on type 'TwoBucket'.
+two-bucket.ts(16,14): error TS2339: Property 'otherBucket' does not exist on type 'TwoBucket'.
+two-bucket.ts(20,38): error TS2339: Property 'goalBucket' does not exist on type 'TwoBucket'.
+two-bucket.ts(20,53): error TS7005: Variable 'Bucket' implicitly has an 'any' type.
+two-bucket.ts(20,71): error TS2339: Property 'bucketOneSize' does not exist on type 'TwoBucket'.
+two-bucket.ts(20,92): error TS2339: Property 'bucketTwoSize' does not exist on type 'TwoBucket'.
+two-bucket.ts(21,36): error TS2339: Property 'goalBucket' does not exist on type 'TwoBucket'.
+two-bucket.ts(21,51): error TS7005: Variable 'Bucket' implicitly has an 'any' type.
+two-bucket.ts(21,69): error TS2339: Property 'bucketTwoSize' does not exist on type 'TwoBucket'.
+two-bucket.ts(21,90): error TS2339: Property 'bucketOneSize' does not exist on type 'TwoBucket'.
+two-bucket.ts(24,39): error TS2339: Property 'goal' does not exist on type 'TwoBucket'.
+two-bucket.ts(41,1): error TS2304: Cannot find name 'exports'.
+npm notice
+npm notice New major version of npm available! 10.8.2 -> 11.6.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.1
+npm notice To update run: npm install -g npm@11.6.1
+npm notice

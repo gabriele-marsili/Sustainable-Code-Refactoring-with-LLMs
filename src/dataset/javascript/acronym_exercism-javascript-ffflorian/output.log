@@ -3,72 +3,21 @@
 FAIL ./acronym_testSuite.js
   Acronyms are produced from
     ✓ title cased phrases (1 ms)
-    ✕ other title cased phrases
-    ✓ phrases with punctuation
-    ✕ phrases with all uppercase words
-    ✕ phrases with punctuation without whitespace
+    ✓ other title cased phrases
+    ✓ phrases with punctuation (1 ms)
+    ✓ phrases with all uppercase words
+    ✓ phrases with punctuation without whitespace
     ✓ long phrases
     ✕ phrases with consecutive delimiters (1 ms)
-    ✓ phrases with apostrophes
-    ✓ phrases with underscore emphasis
-
-  ● Acronyms are produced from › other title cased phrases
-
-    expect(received).toEqual(expected) // deep equality
-
-    Expected: "ROR"
-    Received: "RR"
-
-       9 |   // lowercase words
-      10 |   test('other title cased phrases', () => {
-    > 11 |     expect(parse('Ruby on Rails')).toEqual('ROR');
-         |                                    ^
-      12 |   });
-      13 |
-      14 |   // punctuation
-
-      at Object.<anonymous> (acronym_testSuite.js:11:36)
-
-  ● Acronyms are produced from › phrases with all uppercase words
-
-    expect(received).toEqual(expected) // deep equality
-
-    Expected: "GIMP"
-    Received: "GNUIMP"
-
-      19 |   // all caps word
-      20 |   test('phrases with all uppercase words', () => {
-    > 21 |     expect(parse('GNU Image Manipulation Program')).toEqual('GIMP');
-         |                                                     ^
-      22 |   });
-      23 |
-      24 |   // punctuation without whitespace
-
-      at Object.<anonymous> (acronym_testSuite.js:21:53)
-
-  ● Acronyms are produced from › phrases with punctuation without whitespace
-
-    expect(received).toEqual(expected) // deep equality
-
-    Expected: "CMOS"
-    Received: "C"
-
-      24 |   // punctuation without whitespace
-      25 |   test('phrases with punctuation without whitespace', () => {
-    > 26 |     expect(parse('Complementary metal-oxide semiconductor')).toEqual('CMOS');
-         |                                                              ^
-      27 |   });
-      28 |
-      29 |   // very long abbreviation
-
-      at Object.<anonymous> (acronym_testSuite.js:26:62)
+    ✓ phrases with apostrophes (1 ms)
+    ✕ phrases with underscore emphasis
 
   ● Acronyms are produced from › phrases with consecutive delimiters
 
     expect(received).toEqual(expected) // deep equality
 
     Expected: "SIMUFTA"
-    Received: "SI"
+    Received: "S-IMUFTA"
 
       38 |   // consecutive delimiters
       39 |   test('phrases with consecutive delimiters', () => {
@@ -80,27 +29,44 @@ FAIL ./acronym_testSuite.js
 
       at Object.<anonymous> (acronym_testSuite.js:40:58)
 
+  ● Acronyms are produced from › phrases with underscore emphasis
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "TRNT"
+    Received: "TR_ "
+
+      48 |   // underscore emphasis
+      49 |   test('phrases with underscore emphasis', () => {
+    > 50 |     expect(parse('The Road _Not_ Taken')).toEqual('TRNT');
+         |                                           ^
+      51 |   });
+      52 | });
+      53 |
+
+      at Object.<anonymous> (acronym_testSuite.js:50:43)
+
 Test Suites: 1 failed, 1 total
-Tests:       4 failed, 5 passed, 9 total
+Tests:       2 failed, 7 passed, 9 total
 Snapshots:   0 total
-Time:        0.149 s
+Time:        0.176 s
 Ran all test suites.
 Command exited with non-zero status 1
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 0.21
-	System time (seconds): 0.10
-	Percent of CPU this job got: 80%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.39
+	User time (seconds): 0.24
+	System time (seconds): 0.06
+	Percent of CPU this job got: 67%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.46
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 83392
+	Maximum resident set size (kbytes): 82484
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 14566
-	Voluntary context switches: 6830
-	Involuntary context switches: 1249
+	Minor (reclaiming a frame) page faults: 14095
+	Voluntary context switches: 7334
+	Involuntary context switches: 297
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

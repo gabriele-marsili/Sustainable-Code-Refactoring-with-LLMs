@@ -214,7 +214,7 @@ class PipelineManager:
                     # Conta test riusciti
                     if 'LLM_results' in entry:
                         for result in entry['LLM_results']:
-                            if result.get('regrationTestPassed', False):
+                            if result.get('regressionTestPassed', False):
                                 successful_tests += 1
             
             report["statistics"].update({

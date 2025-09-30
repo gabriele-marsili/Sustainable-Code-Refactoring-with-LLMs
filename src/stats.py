@@ -7,6 +7,11 @@ import re
 import numpy as np
 from utility_dir import utility_paths
 
+OUTPUT_DIR = utility_paths.SRC_DIR / "stats_dataset"
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)  # crea la cartella se non esiste
+
+
+
 
 class StatsHandler:
     def __init__(self, output_directory: str, cluster_filter: str = None):
@@ -191,7 +196,7 @@ class StatsHandler:
                                         "execution_time_ms": 290,
                                         "CPU_usage": 40.0,
                                         "RAM_usage": 82908,
-                                        "regrationTestPassed": False,
+                                        "regressionTestPassed": False,
                                         "LLM_type": "openAI",
                                         "path": "-",
                                         "log": "-",
@@ -200,7 +205,7 @@ class StatsHandler:
                                         "execution_time_ms": 310,
                                         "CPU_usage": 51.0,
                                         "RAM_usage": 82532,
-                                        "regrationTestPassed": False,
+                                        "regressionTestPassed": False,
                                         "LLM_type": "claude",
                                         "path": "-",
                                         "log": "-",
@@ -209,7 +214,7 @@ class StatsHandler:
                                         "execution_time_ms": 320,
                                         "CPU_usage": 42.0,
                                         "RAM_usage": 83720,
-                                        "regrationTestPassed": False,
+                                        "regressionTestPassed": False,
                                         "LLM_type": "gemini",
                                         "path": "-",
                                         "log": "-",
@@ -225,7 +230,7 @@ class StatsHandler:
 
                             for llm_result in llm_results:
                                 test_passed = llm_result.get(
-                                    "regrationTestPassed", False
+                                    "regressionTestPassed", False
                                 )
 
                                 if test_passed:
@@ -450,6 +455,8 @@ class StatsHandler:
 
         plt.tight_layout()
         plt.show()
+        plt.tight_layout()
+        plt.savefig(OUTPUT_DIR / "single_metrics.png", dpi=300, bbox_inches="tight")
 
     def plot_all_metrics_separately(self):
         """Visualizza tutte le metriche in grafici separati"""
@@ -615,6 +622,8 @@ class StatsHandler:
         plt.tight_layout()
         plt.suptitle("🔄 Prompt Version Performance Comparison", y=1.02, fontsize=16)
         plt.show()
+        plt.tight_layout()
+        plt.savefig(OUTPUT_DIR / "version_comparison.png", dpi=300, bbox_inches="tight")
 
     def plot_cluster_version_heatmap(self):
         """Crea heatmap delle performance per cluster e versione"""
@@ -678,6 +687,8 @@ class StatsHandler:
             "🔥 Performance Heatmap by Cluster and Version", y=1.02, fontsize=16
         )
         plt.show()
+        plt.tight_layout()
+        plt.savefig(OUTPUT_DIR / "performance_heatmap.png", dpi=300, bbox_inches="tight")
 
     def plot_version_trend_analysis(self):
         """Analizza trend delle performance attraverso le versioni"""
@@ -768,6 +779,8 @@ class StatsHandler:
             "📈 Performance Trends Across Prompt Versions", y=1.02, fontsize=16
         )
         plt.show()
+        plt.tight_layout()
+        plt.savefig(OUTPUT_DIR / "performance_trend.png", dpi=300, bbox_inches="tight")        
 
     def export_version_analysis(self, output_file="version_analysis.json"):
         """Esporta l'analisi delle versioni in un file JSON"""
@@ -825,7 +838,7 @@ class StatsHandler:
                             for llm_result in entry.get("LLM_results", []):
                                 llm = llm_result.get("LLM_type", "unknown")
                                 test_passed = llm_result.get(
-                                    "regrationTestPassed", False
+                                    "regressionTestPassed", False
                                 )
 
                                 # Statistiche globali

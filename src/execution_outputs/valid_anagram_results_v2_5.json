@@ -1,44 +1,71 @@
 {
-  "execution_date": "2025-09-20 14:59:29",
+  "execution_date": "2025-09-29 19:23:55",
+  "execution_metadata": {
+    "total_tests": 3,
+    "successful_tests": 3,
+    "execution_time": "00h 01m 06s",
+    "cluster": "cluster_valid_anagram",
+    "test_type": "llm_v2"
+  },
   "results": {
     "python": [
       {
         "id": "valid_anagram_176",
-        "filename": "valid_anagram.py",
         "language": "python",
+        "timestamp": 1759166603.567477,
         "LLM_results": [
           {
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regrationTestPassed": true,
+            "execution_time_ms": 40,
+            "CPU_usage": 10.0,
+            "RAM_usage": 13824,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null,
+            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_python_persistent_valid_anagram_176_1759166603.log",
             "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/valid_anagram/openAI/ChatGPT4_valid_anagram_v2.py"
-          },
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/valid_anagram/openAI/ChatGPT4_valid_anagram_v2.py",
+            "filename": "ChatGPT4_valid_anagram_v2.py"
+          }
+        ]
+      },
+      {
+        "id": "valid_anagram_176",
+        "language": "python",
+        "timestamp": 1759166635.318369,
+        "LLM_results": [
           {
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regrationTestPassed": true,
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/valid_anagram/claude/ClaudeSonnet4_valid_anagram_v2.py"
-          },
-          {
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regrationTestPassed": true,
+            "execution_time_ms": 40,
+            "CPU_usage": 7.0,
+            "RAM_usage": 13952,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null,
+            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_python_persistent_valid_anagram_176_1759166635.log",
             "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/valid_anagram/gemini/GeminiFlash_valid_anagram_v2.py"
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/valid_anagram/gemini/GeminiFlash_valid_anagram_v2.py",
+            "filename": "GeminiFlash_valid_anagram_v2.py"
+          }
+        ]
+      },
+      {
+        "id": "valid_anagram_176",
+        "language": "python",
+        "timestamp": 1759166635.318491,
+        "LLM_results": [
+          {
+            "execution_time_ms": 40,
+            "CPU_usage": 7.0,
+            "RAM_usage": 13952,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null,
+            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_python_persistent_valid_anagram_176_1759166635.log",
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/valid_anagram/claude/ClaudeSonnet4_valid_anagram_v2.py",
+            "filename": "ClaudeSonnet4_valid_anagram_v2.py"
           }
         ]
       }
     ]
-  },
-  "execution_metadata": {
-    "total_tests": 3,
-    "completed_tests": 1,
-    "passed_tests": 1,
-    "success_rate": 1.0
   }
 }

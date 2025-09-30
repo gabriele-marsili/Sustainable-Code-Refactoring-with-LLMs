@@ -1,11 +1,10 @@
 package account
 
-import "sync"
+import "sync/atomic"
 
 type Account struct {
 	balance  int64
-	isClosed bool
-	sync.Mutex
+	isClosed int32
 }
 
 func Open(initialDeposit int64) *Account {
@@ -18,31 +17,37 @@ func Open(initialDeposit int64) *Account {
 }
 
 func (a *Account) Close() (payout int64, ok bool) {
-	a.Lock()
-	defer a.Unlock()
-	if a.isClosed {
+	if !atomic.CompareAndSwapInt32(&a.isClosed, 0, 1) {
 		return 0, false
 	}
-	a.isClosed = true
-	return a.balance, true
+	return atomic.LoadInt64(&a.balance), true
 }
 
 func (a *Account) Balance() (balance int64, ok bool) {
-	if a.isClosed {
+	if atomic.LoadInt32(&a.isClosed) != 0 {
 		return 0, false
 	}
-	return a.balance, true
+	return atomic.LoadInt64(&a.balance), true
 }
 
 func (a *Account) Deposit(amount int64) (newBalance int64, ok bool) {
-	a.Lock()
-	defer a.Unlock()
-	if a.isClosed {
-		return 0, false
+	for {
+		if atomic.LoadInt32(&a.isClosed) != 0 {
+			return 0, false
+		}
+		
+		currentBalance := atomic.LoadInt64(&a.balance)
+		newBalance := currentBalance + amount
+		
+		if newBalance < 0 {
+			return 0, false
+		}
+		
+		if atomic.CompareAndSwapInt64(&a.balance, currentBalance, newBalance) {
+			if atomic.LoadInt32(&a.isClosed) != 0 {
+				return 0, false
+			}
+			return newBalance, true
+		}
 	}
-	if a.balance+amount < 0 {
-		return 0, false
-	}
-	a.balance += amount
-	return a.balance, true
 }

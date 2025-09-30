@@ -1,44 +1,71 @@
 {
-  "execution_date": "2025-09-20 14:33:24",
+  "execution_date": "2025-09-29 18:59:31",
+  "execution_metadata": {
+    "total_tests": 3,
+    "successful_tests": 3,
+    "execution_time": "00h 03m 49s",
+    "cluster": "cluster_kth_smallest",
+    "test_type": "llm_v3"
+  },
   "results": {
     "python": [
       {
         "id": "kth_smallest_183",
-        "filename": "kth_smallest.py",
         "language": "python",
+        "timestamp": 1759164965.338827,
         "LLM_results": [
           {
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regrationTestPassed": true,
+            "execution_time_ms": 50,
+            "CPU_usage": 12.0,
+            "RAM_usage": 13824,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null,
+            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_python_persistent_kth_smallest_183_1759164965.log",
             "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/kth_smallest/openAI/ChatGPT4_kth_smallest_v3.py"
-          },
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/kth_smallest/openAI/ChatGPT4_kth_smallest_v3.py",
+            "filename": "ChatGPT4_kth_smallest_v3.py"
+          }
+        ]
+      },
+      {
+        "id": "kth_smallest_183",
+        "language": "python",
+        "timestamp": 1759164965.33894,
+        "LLM_results": [
           {
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regrationTestPassed": true,
+            "execution_time_ms": 50,
+            "CPU_usage": 12.0,
+            "RAM_usage": 13824,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null,
+            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_python_persistent_kth_smallest_183_1759164965.log",
             "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/kth_smallest/claude/ClaudeSonnet4_kth_smallest_v3.py"
-          },
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/kth_smallest/claude/ClaudeSonnet4_kth_smallest_v3.py",
+            "filename": "ClaudeSonnet4_kth_smallest_v3.py"
+          }
+        ]
+      },
+      {
+        "id": "kth_smallest_183",
+        "language": "python",
+        "timestamp": 1759165171.469525,
+        "LLM_results": [
           {
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regrationTestPassed": true,
+            "execution_time_ms": 50,
+            "CPU_usage": 12.0,
+            "RAM_usage": 13824,
+            "regressionTestPassed": false,
+            "success": true,
+            "error_message": "Docker exit code: 125",
+            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_python_persistent_kth_smallest_183_1759165171.log",
             "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/kth_smallest/gemini/GeminiFlash_kth_smallest_v3.py"
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/kth_smallest/gemini/GeminiFlash_kth_smallest_v3.py",
+            "filename": "GeminiFlash_kth_smallest_v3.py"
           }
         ]
       }
     ]
-  },
-  "execution_metadata": {
-    "total_tests": 3,
-    "completed_tests": 1,
-    "passed_tests": 1,
-    "success_rate": 1.0
   }
 }

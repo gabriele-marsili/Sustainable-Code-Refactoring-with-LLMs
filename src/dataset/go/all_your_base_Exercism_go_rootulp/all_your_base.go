@@ -1,9 +1,6 @@
 package allyourbase
 
-import (
-	"errors"
-	"math"
-)
+import "errors"
 
 func ConvertToBase(inputBase int, inputDigits []int, outputBase int) (outputDigits []int, e error) {
 	if inputBase < 2 {
@@ -19,17 +16,26 @@ func ConvertToBase(inputBase int, inputDigits []int, outputBase int) (outputDigi
 	if base10 == 0 {
 		return []int{0}, nil
 	}
+	
+	outputDigits = make([]int, 0, 32)
 	for base10 > 0 {
 		digit := base10 % outputBase
-		outputDigits = append([]int{digit}, outputDigits...)
+		outputDigits = append(outputDigits, digit)
 		base10 = base10 / outputBase
 	}
+	
+	for i, j := 0, len(outputDigits)-1; i < j; i, j = i+1, j-1 {
+		outputDigits[i], outputDigits[j] = outputDigits[j], outputDigits[i]
+	}
+	
 	return outputDigits, nil
 }
 
 func getBase10Input(inputBase int, inputDigits []int) (base10Input int) {
-	for i, digit := range reverse(inputDigits) {
-		base10Input += powInt(inputBase, i) * digit
+	power := 1
+	for i := len(inputDigits) - 1; i >= 0; i-- {
+		base10Input += power * inputDigits[i]
+		power *= inputBase
 	}
 	return base10Input
 }
@@ -41,15 +47,4 @@ func invalidDigit(inputBase int, input []int) bool {
 		}
 	}
 	return false
-}
-
-func reverse(input []int) (reversed []int) {
-	for i := len(input) - 1; i >= 0; i-- {
-		reversed = append(reversed, input[i])
-	}
-	return reversed
-}
-
-func powInt(x, y int) int {
-	return int(math.Pow(float64(x), float64(y)))
 }

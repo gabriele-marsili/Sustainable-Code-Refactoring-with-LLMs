@@ -1,83 +1,18 @@
-  console.log
-    Get balance Open
-
-      at BankAccount.get balance [as balance] (bank-account.js:62:15)
-
-  console.log
-    0
-
-      at BankAccount.get balance [as balance] (bank-account.js:63:15)
-
-  console.log
-    Get balance Open
-
-      at BankAccount.get balance [as balance] (bank-account.js:62:15)
-
-  console.log
-    100
-
-      at BankAccount.get balance [as balance] (bank-account.js:63:15)
-
-  console.log
-    Get balance Open
-
-      at BankAccount.get balance [as balance] (bank-account.js:62:15)
-
-  console.log
-    150
-
-      at BankAccount.get balance [as balance] (bank-account.js:63:15)
-
-  console.log
-    Get balance Open
-
-      at BankAccount.get balance [as balance] (bank-account.js:62:15)
-
-  console.log
-    50
-
-      at BankAccount.get balance [as balance] (bank-account.js:63:15)
-
-  console.log
-    Get balance Open
-
-      at BankAccount.get balance [as balance] (bank-account.js:62:15)
-
-  console.log
-    0
-
-      at BankAccount.get balance [as balance] (bank-account.js:63:15)
-
-  console.log
-    Get balance Closed
-
-      at BankAccount.get balance [as balance] (bank-account.js:58:15)
-
-  console.log
-    Get balance Open
-
-      at BankAccount.get balance [as balance] (bank-account.js:62:15)
-
-  console.log
-    0
-
-      at BankAccount.get balance [as balance] (bank-account.js:63:15)
-
 (node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
 PASS ./bank-account_testSuite.js
   Bank Account
-    ✓ newly opened account has zero balance (20 ms)
-    ✓ can deposit money (3 ms)
-    ✓ can deposit money sequentially (3 ms)
-    ✓ can withdraw money (1 ms)
+    ✓ newly opened account has zero balance (2 ms)
+    ✓ can deposit money
+    ✓ can deposit money sequentially
+    ✓ can withdraw money
     ✓ can withdraw money sequentially (1 ms)
-    ✓ checking balance of closed account throws error (8 ms)
+    ✓ checking balance of closed account throws error (4 ms)
     ✓ deposit into closed account throws error (1 ms)
-    ✓ withdraw from closed account throws error (3 ms)
+    ✓ withdraw from closed account throws error
     ✓ close already closed account throws error (3 ms)
     ✓ open already opened account throws error
-    ✓ reopened account does not retain balance (3 ms)
+    ✓ reopened account does not retain balance
     ✓ cannot withdraw more than deposited
     ✓ cannot withdraw negative amount
     ✓ cannot deposit negative amount
@@ -85,23 +20,23 @@ PASS ./bank-account_testSuite.js
 Test Suites: 1 passed, 1 total
 Tests:       14 passed, 14 total
 Snapshots:   0 total
-Time:        0.367 s
+Time:        0.293 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 0.26
-	System time (seconds): 0.07
-	Percent of CPU this job got: 41%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.82
+	User time (seconds): 0.23
+	System time (seconds): 0.09
+	Percent of CPU this job got: 29%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.10
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 84056
+	Maximum resident set size (kbytes): 81796
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 14729
-	Voluntary context switches: 7681
-	Involuntary context switches: 4390
+	Minor (reclaiming a frame) page faults: 14284
+	Voluntary context switches: 7450
+	Involuntary context switches: 1740
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16
@@ -110,3 +45,4 @@ Ran all test suites.
 	Signals delivered: 0
 	Page size (bytes): 4096
 	Exit status: 0
+Exit status: 0

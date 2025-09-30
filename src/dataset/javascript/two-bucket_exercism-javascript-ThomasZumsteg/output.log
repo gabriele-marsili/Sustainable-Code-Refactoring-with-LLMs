@@ -3,101 +3,101 @@
 FAIL ./two-bucket_testSuite.js
   TwoBucket
     works for input of 3,5,1
-      ✕ starting with bucket one (4 ms)
+      ✕ starting with bucket one (8 ms)
       ✕ starting with bucket two
     works for input of 7,11,2
-      ✕ starting with bucket one
+      ✕ starting with bucket one (1 ms)
       ✕ starting with bucket two
 
   ● TwoBucket › works for input of 3,5,1 › starting with bucket one
 
     expect(received).toEqual(expected) // deep equality
 
-    Expected: "one"
+    Expected: 5
     Received: undefined
 
-      11 |       var twoBucket = new TwoBucket(buckOne,buckTwo,goal,starterBuck);
       12 |       expect(twoBucket.moves()).toEqual(4); //includes the first fill
-    > 13 |       expect(twoBucket.goalBucket).toEqual('one'); //which bucket should end up with the desired # of liters
-         |                                    ^
-      14 |       expect(twoBucket.otherBucket).toEqual(5); //leftover value in the "other" bucket once the goal has been reached
+      13 |       expect(twoBucket.goalBucket).toEqual('one'); //which bucket should end up with the desired # of liters
+    > 14 |       expect(twoBucket.otherBucket).toEqual(5); //leftover value in the "other" bucket once the goal has been reached
+         |                                     ^
       15 |     });
       16 |
+      17 |     it('starting with bucket two', function(){
 
-      at Object.<anonymous> (two-bucket_testSuite.js:13:36)
+      at Object.<anonymous> (two-bucket_testSuite.js:14:37)
 
   ● TwoBucket › works for input of 3,5,1 › starting with bucket two
 
     expect(received).toEqual(expected) // deep equality
 
-    Expected: "two"
+    Expected: 3
     Received: undefined
 
-      19 |       var twoBucket = new TwoBucket(buckOne,buckTwo,goal,starterBuck);
       20 |       expect(twoBucket.moves()).toEqual(8);
-    > 21 |       expect(twoBucket.goalBucket).toEqual('two');
-         |                                    ^
-      22 |       expect(twoBucket.otherBucket).toEqual(3);
+      21 |       expect(twoBucket.goalBucket).toEqual('two');
+    > 22 |       expect(twoBucket.otherBucket).toEqual(3);
+         |                                     ^
       23 |     });
       24 |   });
+      25 |
 
-      at Object.<anonymous> (two-bucket_testSuite.js:21:36)
+      at Object.<anonymous> (two-bucket_testSuite.js:22:37)
 
   ● TwoBucket › works for input of 7,11,2 › starting with bucket one
 
     expect(received).toEqual(expected) // deep equality
 
-    Expected: "one"
+    Expected: 11
     Received: undefined
 
-      33 |       var twoBucket = new TwoBucket(buckOne,buckTwo,goal,starterBuck);
       34 |       expect(twoBucket.moves()).toEqual(14);
-    > 35 |       expect(twoBucket.goalBucket).toEqual('one');
-         |                                    ^
-      36 |       expect(twoBucket.otherBucket).toEqual(11);
+      35 |       expect(twoBucket.goalBucket).toEqual('one');
+    > 36 |       expect(twoBucket.otherBucket).toEqual(11);
+         |                                     ^
       37 |     });
       38 |
+      39 |     it('starting with bucket two', function(){
 
-      at Object.<anonymous> (two-bucket_testSuite.js:35:36)
+      at Object.<anonymous> (two-bucket_testSuite.js:36:37)
 
   ● TwoBucket › works for input of 7,11,2 › starting with bucket two
 
     expect(received).toEqual(expected) // deep equality
 
-    Expected: "two"
+    Expected: 7
     Received: undefined
 
-      41 |       var twoBucket = new TwoBucket(buckOne,buckTwo,goal,starterBuck);
       42 |       expect(twoBucket.moves()).toEqual(18);
-    > 43 |       expect(twoBucket.goalBucket).toEqual('two');
-         |                                    ^
-      44 |       expect(twoBucket.otherBucket).toEqual(7);
+      43 |       expect(twoBucket.goalBucket).toEqual('two');
+    > 44 |       expect(twoBucket.otherBucket).toEqual(7);
+         |                                     ^
       45 |     });
       46 |   });
+      47 | });
 
-      at Object.<anonymous> (two-bucket_testSuite.js:43:36)
+      at Object.<anonymous> (two-bucket_testSuite.js:44:37)
 
 Test Suites: 1 failed, 1 total
 Tests:       4 failed, 4 total
 Snapshots:   0 total
-Time:        0.331 s
+Time:        1.23 s
 Ran all test suites.
 Command exited with non-zero status 1
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 0.26
-	System time (seconds): 0.07
-	Percent of CPU this job got: 34%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.97
+	User time (seconds): 0.24
+	System time (seconds): 0.05
+	Percent of CPU this job got: 8%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.49
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 81392
+	Maximum resident set size (kbytes): 80900
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 14123
-	Voluntary context switches: 7335
-	Involuntary context switches: 1543
+	Minor (reclaiming a frame) page faults: 14086
+	Voluntary context switches: 7564
+	Involuntary context switches: 1567
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16
@@ -106,4 +106,4 @@ Command exited with non-zero status 1
 	Signals delivered: 0
 	Page size (bytes): 4096
 	Exit status: 1
-tus: 1
+

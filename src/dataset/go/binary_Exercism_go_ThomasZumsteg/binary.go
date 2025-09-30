@@ -3,7 +3,6 @@ package binary
 import (
 	"errors"
 	"fmt"
-	"strconv"
 )
 
 /*ParseBinary converts a string of binary digits to the decial equivalant
@@ -11,16 +10,13 @@ or returns an error.*/
 func ParseBinary(bin string) (int, error) {
 	dec := 0
 	for _, v := range bin {
-		n, ok := strconv.Atoi(string(v))
-		switch {
-		case ok != nil:
-			msg := fmt.Sprintf("\"%c\" is not a vaid digit", v)
-			return 0, errors.New(msg)
-		case n < 0 || 1 < n:
-			msg := fmt.Sprintf("\"%d\" is not a binary digit", n)
-			return 0, errors.New(msg)
+		switch v {
+		case '0':
+			dec <<= 1
+		case '1':
+			dec = (dec << 1) | 1
 		default:
-			dec = dec*2 + n
+			return 0, fmt.Errorf("\"%c\" is not a valid binary digit", v)
 		}
 	}
 	return dec, nil

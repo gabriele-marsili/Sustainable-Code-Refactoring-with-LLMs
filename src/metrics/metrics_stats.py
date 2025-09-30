@@ -181,7 +181,7 @@ def calculate_average_energy_metrics(
                 if is_llm:
                     # For LLM results, aggregate across all LLM types
                     for llm_result in entry.get("LLM_results", []):
-                        if llm_result.get("regrationTestPassed", False):
+                        if llm_result.get("regressionTestPassed", False):
                             if entry_id not in energy_data:
                                 energy_data[entry_id] = {
                                     "CPU_usage": [],
@@ -207,7 +207,7 @@ def calculate_average_energy_metrics(
                             )
                 else:
                     # For base results
-                    if entry.get("regrationTestPassed", False): #filter for only entries with regression test passed 
+                    if entry.get("regressionTestPassed", False): #filter for only entries with regression test passed 
                         if entry_id not in energy_data:
                             energy_data[entry_id] = {
                                 "CPU_usage": [],

@@ -1,66 +1,102 @@
 {
-    "execution_date": "2025-09-17 17:54:15",
-    "results": {
-        "javascript": [
-            {
-                "id": "javascript_two-bucket_exercism-javascript-ThomasZumsteg",
-                "filename": "two-bucket.js",
-                "language": "javascript"
-            },
-            {
-                "id": "javascript_two-bucket_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
-                "filename": "two-bucket.js",
-                "language": "javascript"
-            }
-        ],
-        "typescript": [
-            {
-                "id": "typescript_two-bucket_Exercism-typescript-thewanionly",
-                "filename": "two-bucket.ts",
-                "language": "typescript"
-            },
-            {
-                "id": "typescript_two-bucket_Exercism-typescript-thewanionly_thewanionly",
-                "filename": "two-bucket.ts",
-                "language": "typescript"
-            },
-            {
-                "id": "typescript_two-bucket_Exercism-typescript-shybyte_shybyte",
-                "filename": "two-bucket.ts",
-                "language": "typescript"
-            },
-            {
-                "id": "typescript_two-bucket_exercism-javascript-samajammin_samajammin",
-                "filename": "two-bucket.ts",
-                "language": "typescript",
-                "CPU_usage": 107.0,
-                "RAM_usage": 220372,
-                "execution_time_ms": 987,
-                "regrationTestPassed": true,
-                "base_log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-bucket_exercism-javascript-samajammin/output.log"
-            }
-        ],
-        "go": [
-            {
-                "id": "go_two_bucket_Exercism (go_rootulp)",
-                "filename": "two_bucket.go",
-                "language": "go",
-                "CPU_usage": 59.0,
-                "RAM_usage": 217748,
-                "execution_time_ms": 6069,
-                "regrationTestPassed": true,
-                "base_log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/two_bucket_Exercism_go_rootulp/output.log"
-            },
-            {
-                "id": "go_two_bucket_Exercism (go_drapala)",
-                "filename": "two_bucket.go",
-                "language": "go",
-                "CPU_usage": 59.0,
-                "RAM_usage": 216188,
-                "execution_time_ms": 6100,
-                "regrationTestPassed": true,
-                "base_log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/two_bucket_Exercism_go_drapala/output.log"
-            }
-        ]
-    }
+  "execution_date": "2025-09-29 22:31:07",
+  "execution_metadata": {
+    "total_tests": 7,
+    "successful_tests": 5,
+    "execution_time": "01h 01m 50s",
+    "cluster": "cluster_two_bucket",
+    "test_type": "base"
+  },
+  "results": {
+    "javascript": [
+      {
+        "id": "javascript_two-bucket_exercism-javascript-ThomasZumsteg",
+        "language": "javascript",
+        "timestamp": 1759174295.0626209,
+        "execution_time_ms": 290,
+        "CPU_usage": 12.0,
+        "RAM_usage": 82068,
+        "regressionTestPassed": false,
+        "success": false,
+        "error_message": "Docker exit code: 1",
+        "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_two-bucket_exercism-javascript-ThomasZumsteg_1759174295.log"
+      },
+      {
+        "id": "javascript_two-bucket_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
+        "language": "javascript",
+        "timestamp": 1759174372.812597,
+        "execution_time_ms": 290,
+        "CPU_usage": 12.0,
+        "RAM_usage": 82068,
+        "regressionTestPassed": false,
+        "success": false,
+        "error_message": "Docker exit code: 1",
+        "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_two-bucket_exercism-javascript-ThomasZumsteg_ThomasZumsteg_1759174372.log"
+      }
+    ],
+    "go": [
+      {
+        "id": "go_two_bucket_Exercism (go_rootulp)",
+        "language": "go",
+        "timestamp": 1759174688.467693,
+        "execution_time_ms": 6319,
+        "CPU_usage": 16.0,
+        "RAM_usage": 229984,
+        "regressionTestPassed": true,
+        "success": true,
+        "error_message": null,
+        "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_two_bucket_Exercism (go_rootulp)_1759174688.log"
+      },
+      {
+        "id": "go_two_bucket_Exercism (go_drapala)",
+        "language": "go",
+        "timestamp": 1759174855.682734,
+        "execution_time_ms": 6130,
+        "CPU_usage": 17.0,
+        "RAM_usage": 212112,
+        "regressionTestPassed": true,
+        "success": true,
+        "error_message": null,
+        "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_two_bucket_Exercism (go_drapala)_1759174855.log"
+      }
+    ],
+    "typescript": [
+      {
+        "id": "typescript_two-bucket_Exercism-typescript-shybyte_shybyte",
+        "language": "typescript",
+        "timestamp": 1759174779.26286,
+        "execution_time_ms": 20519,
+        "CPU_usage": 58.0,
+        "RAM_usage": 218128,
+        "regressionTestPassed": false,
+        "success": true,
+        "error_message": "Docker exit code: 1",
+        "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_two-bucket_Exercism-typescript-shybyte_shybyte_1759174779.log"
+      },
+      {
+        "id": "typescript_two-bucket_exercism-javascript-samajammin_samajammin",
+        "language": "typescript",
+        "timestamp": 1759174785.128629,
+        "execution_time_ms": 6507,
+        "CPU_usage": 17.0,
+        "RAM_usage": 222448,
+        "regressionTestPassed": true,
+        "success": true,
+        "error_message": null,
+        "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_two-bucket_exercism-javascript-samajammin_samajammin_1759174785.log"
+      },
+      {
+        "id": "typescript_two-bucket_Exercism-typescript-thewanionly_thewanionly",
+        "language": "typescript",
+        "timestamp": 1759174858.327188,
+        "execution_time_ms": 48757,
+        "CPU_usage": 35.0,
+        "RAM_usage": 219420,
+        "regressionTestPassed": false,
+        "success": true,
+        "error_message": "Docker exit code: 1",
+        "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_two-bucket_Exercism-typescript-thewanionly_thewanionly_1759174858.log"
+      }
+    ]
+  }
 }

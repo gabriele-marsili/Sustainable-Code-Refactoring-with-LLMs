@@ -2,11 +2,11 @@
 (Use `node --trace-warnings ...` to show where the warning was created)
 PASS ./luhn_testSuite.js
   Luhn
-    ✓ single digit strings can not be valid (1 ms)
+    ✓ single digit strings can not be valid (3 ms)
     ✓ a single zero is invalid
     ✓ a simple valid SIN that remains valid if reversed
-    ✓ a simple valid SIN that becomes invalid if reversed
-    ✓ a valid Canadian SIN (1 ms)
+    ✓ a simple valid SIN that becomes invalid if reversed (2 ms)
+    ✓ a valid Canadian SIN
     ✓ invalid Canadian SIN
     ✓ invalid credit card
     ✓ invalid long number with an even remainder
@@ -15,8 +15,8 @@ PASS ./luhn_testSuite.js
     ✓ valid strings with a non-digit added at the end invalid
     ✓ valid strings with punctuation included become invalid
     ✓ valid strings with symbols included become invalid
-    ✓ single zero with space is invalid
-    ✓ more than a single zero is valid (1 ms)
+    ✓ single zero with space is invalid (3 ms)
+    ✓ more than a single zero is valid
     ✓ input digit 9 is correctly converted to output digit 9
     ✓ using ascii value for non-doubled non-digit isn't allowed
     ✓ using ascii value for doubled non-digit isn't allowed
@@ -24,23 +24,23 @@ PASS ./luhn_testSuite.js
 Test Suites: 1 passed, 1 total
 Tests:       18 passed, 18 total
 Snapshots:   0 total
-Time:        0.435 s
+Time:        1.363 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 0.29
-	System time (seconds): 0.08
-	Percent of CPU this job got: 33%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.15
+	User time (seconds): 0.27
+	System time (seconds): 0.06
+	Percent of CPU this job got: 9%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.58
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 82340
+	Maximum resident set size (kbytes): 81296
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 14038
-	Voluntary context switches: 7398
-	Involuntary context switches: 2176
+	Minor (reclaiming a frame) page faults: 14279
+	Voluntary context switches: 7580
+	Involuntary context switches: 1383
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16
@@ -49,4 +49,3 @@ Ran all test suites.
 	Signals delivered: 0
 	Page size (bytes): 4096
 	Exit status: 0
-tus: 0

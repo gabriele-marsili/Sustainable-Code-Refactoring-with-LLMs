@@ -31,13 +31,14 @@ def count_triplets_1(arr, k):
     n = len(arr)
 
     for i in range(n - 2):
-        elements = set()
-        curr_sum = k - arr[i]
+        seen = set()
+        required_sum = k - arr[i]
 
         for j in range(i + 1, n):
-            if (curr_sum - arr[j]) in elements:
+            complement = required_sum - arr[j]
+            if complement in seen:
                 count += 1
-            elements.add(arr[j])
+            seen.add(arr[j])
 
     return count
 
@@ -55,11 +56,17 @@ def count_triplets_2(arr, k):
         right = n - 1
 
         while left < right:
-            curr_sum = arr[i] + arr[left] + arr[right]
-            if curr_sum == k:
+            current_sum = arr[i] + arr[left] + arr[right]
+
+            if current_sum == k:
                 count += 1
+                left += 1
                 right -= 1
-            elif curr_sum < k:
+                if left < right and arr[left] == arr[left - 1]:
+                    left += 1
+                if left < right and arr[right] == arr[right + 1]:
+                    right -= 1
+            elif current_sum < k:
                 left += 1
             else:
                 right -= 1

@@ -3,18 +3,18 @@ PASS ./anagram.test.ts
     ✓ no matches (1 ms)
     ✓ detects two anagrams
     ✓ does not detect anagram subsets
-    ✓ detects anagram
+    ✓ detects anagram (1 ms)
     ✓ detects three anagrams
     ✓ detects multiple anagrams with different case
     ✓ does not detect non-anagrams with identical checksum
-    ✓ detects anagrams case-insensitively
+    ✓ detects anagrams case-insensitively (1 ms)
     ✓ detects anagrams using case-insensitive subject
-    ✓ detects anagrams using case-insensitive possible matches (1 ms)
-    ✓ does not detect an anagram if the original word is repeated
+    ✓ detects anagrams using case-insensitive possible matches
+    ✓ does not detect an anagram if the original word is repeated (2 ms)
     ✓ anagrams must use all letters exactly once
-    ✓ words are not anagrams of themselves (1 ms)
-    ✓ words are not anagrams of themselves even if letter case is partially different
-    ✓ words are not anagrams of themselves even if letter case is completely different (1 ms)
+    ✓ words are not anagrams of themselves
+    ✓ words are not anagrams of themselves even if letter case is partially different (1 ms)
+    ✓ words are not anagrams of themselves even if letter case is completely different
     ✓ words other than themselves can be anagrams
     ✓ matches() accepts string arguments
     ✓ matches() accepts single string argument
@@ -22,27 +22,27 @@ PASS ./anagram.test.ts
 Test Suites: 1 passed, 1 total
 Tests:       18 passed, 18 total
 Snapshots:   0 total
-Time:        2.615 s
+Time:        2.864 s
 Ran all test suites.
 Test results written to: output.log
 	Command being timed: "npx jest --json --outputFile=output.log"
-	User time (seconds): 1.49
-	System time (seconds): 0.12
-	Percent of CPU this job got: 49%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.24
+	User time (seconds): 1.50
+	System time (seconds): 0.11
+	Percent of CPU this job got: 42%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.82
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 221692
+	Maximum resident set size (kbytes): 222820
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 65566
-	Voluntary context switches: 1780
-	Involuntary context switches: 7263
+	Minor (reclaiming a frame) page faults: 65821
+	Voluntary context switches: 1951
+	Involuntary context switches: 5195
 	Swaps: 0
-	File system inputs: 8
-	File system outputs: 104
+	File system inputs: 2808
+	File system outputs: 112
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0

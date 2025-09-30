@@ -48,7 +48,7 @@ def main():
                                     "execution_time_ms": 5760,
                                     "CPU_usage": 14.0,
                                     "RAM_usage": 76096,
-                                    "regrationTestPassed": False,
+                                    "regressionTestPassed": False,
                                     "LLM_type": "openAI",
                                     "path": f"/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/openAI/ChatGPT4_{f_name}_v4.{ext}",
                                     "log": f"/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/openAI/output.log"
@@ -57,7 +57,7 @@ def main():
                                     "execution_time_ms": 5350,
                                     "CPU_usage": 15.0,
                                     "RAM_usage": 80484,
-                                    "regrationTestPassed": False,
+                                    "regressionTestPassed": False,
                                     "LLM_type": "claude",
                                     f"path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/ClaudeSonnet4_{f_name}_v4.{ext}",
                                     f"log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/claude/output.log"
@@ -66,7 +66,7 @@ def main():
                                     "execution_time_ms": 5310,
                                     "CPU_usage": 14.0,
                                     "RAM_usage": 82736,
-                                    "regrationTestPassed": False,
+                                    "regressionTestPassed": False,
                                     "LLM_type": "gemini",
                                     f"path": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/GeminiFlash_{f_name}_v4.{ext}",
                                     f"log": "/Users/mars/Desktop/Everything/Pisa/tesi/src/dataset/{key}/{dir_name}/gemini/output.log"

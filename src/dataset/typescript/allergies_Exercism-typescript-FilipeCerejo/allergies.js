@@ -12,24 +12,24 @@ const ALLERGENS = [
     'cats',
 ];
 class Allergies {
-    constructor(allergenIndex) {
-        this._allergen = allergenIndex;
-        this._list = [];
-        this.calculate();
-    }
-    calculate() {
-        let bit = this._allergen.toString(2);
-        this._list = [];
-        for (let b = bit.length - 1; b >= 0; b--) {
-            if (bit[b] === '1' && ALLERGENS[bit.length - 1 - b])
-                this._list.push(ALLERGENS[bit.length - 1 - b]);
-        }
+    constructor(allergenScore) {
+        this._allergenScore = allergenScore;
     }
     list() {
-        return this._list;
+        const result = [];
+        for (let i = 0; i < ALLERGENS.length; i++) {
+            if ((this._allergenScore >> i) & 1) {
+                result.push(ALLERGENS[i]);
+            }
+        }
+        return result;
     }
     allergicTo(allergen) {
-        return this._list.some((a) => a === allergen);
+        const allergenIndex = ALLERGENS.indexOf(allergen);
+        if (allergenIndex === -1) {
+            return false;
+        }
+        return ((this._allergenScore >> allergenIndex) & 1) === 1;
     }
 }
 exports.Allergies = Allergies;

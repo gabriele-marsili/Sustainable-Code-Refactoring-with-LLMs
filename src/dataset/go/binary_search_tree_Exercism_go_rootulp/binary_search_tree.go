@@ -16,14 +16,18 @@ func NewBst(i int) SearchTreeData {
 // Insert inserts an int into the SearchTreeData.
 // Inserts happen based on the rules of a BinarySearchTree
 func (std *SearchTreeData) Insert(i int) {
-	if i <= std.data && std.left == nil {
-		std.left = &SearchTreeData{data: i}
-	} else if i > std.data && std.right == nil {
-		std.right = &SearchTreeData{data: i}
-	} else if i <= std.data && std.left != nil {
-		std.left.Insert(i)
-	} else if i > std.data && std.right != nil {
-		std.right.Insert(i)
+	if i <= std.data {
+		if std.left == nil {
+			std.left = &SearchTreeData{data: i}
+		} else {
+			std.left.Insert(i)
+		}
+	} else {
+		if std.right == nil {
+			std.right = &SearchTreeData{data: i}
+		} else {
+			std.right.Insert(i)
+		}
 	}
 }
 
@@ -31,10 +35,9 @@ func (std *SearchTreeData) Insert(i int) {
 // The values are in increasing order starting with the lowest int value.
 // SearchTreeData that has the numbers [1,3,7,5] added will return the
 // []string ["1", "3", "5", "7"].
-func (std *SearchTreeData) MapString(func(int) string) (result []string) {
-	for _, v := range visitInt(std) {
-		result = append(result, strconv.Itoa(v))
-	}
+func (std *SearchTreeData) MapString(func(int) string) []string {
+	var result []string
+	std.inorderString(&result)
 	return result
 }
 
@@ -42,16 +45,26 @@ func (std *SearchTreeData) MapString(func(int) string) (result []string) {
 // The values are in increasing order starting with the lowest int value.
 // SearchTreeData that has the numbers [1,3,7,5] added will return the
 // []int [1,3,5,7].
-func (std *SearchTreeData) MapInt(func(int) int) (result []int) {
-	return visitInt(std)
+func (std *SearchTreeData) MapInt(func(int) int) []int {
+	var result []int
+	std.inorderInt(&result)
+	return result
 }
 
-func visitInt(std *SearchTreeData) (result []int) {
+func (std *SearchTreeData) inorderInt(result *[]int) {
 	if std == nil {
-		return []int{}
+		return
 	}
-	result = append(result, visitInt(std.left)...)
-	result = append(result, std.data)
-	result = append(result, visitInt(std.right)...)
-	return result
+	std.left.inorderInt(result)
+	*result = append(*result, std.data)
+	std.right.inorderInt(result)
+}
+
+func (std *SearchTreeData) inorderString(result *[]string) {
+	if std == nil {
+		return
+	}
+	std.left.inorderString(result)
+	*result = append(*result, strconv.Itoa(std.data))
+	std.right.inorderString(result)
 }

@@ -1,37 +1,38 @@
-PASS ./binary-search.test.ts
-  BinarySearch
-    ✓ should require a sorted array (2 ms)
-    ✓ should find the correct index of an included value (1 ms)
-    ✓ should search the middle of the array
-    ✓ should return -1 for a value not in the array
+FAIL ./binary-search.test.ts
+  ● Test suite failed to run
 
-Test Suites: 1 passed, 1 total
-Tests:       4 passed, 4 total
+    [96mbinary-search.test.ts[0m:[93m1[0m:[93m26[0m - [91merror[0m[90m TS2306: [0mFile '/app/binary-search.ts' is not a module.
+
+    [7m1[0m import BinarySearch from "./binary-search"
+    [7m [0m [91m                         ~~~~~~~~~~~~~~~~~[0m
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
 Snapshots:   0 total
-Time:        1.691 s
+Time:        2.354 s
 Ran all test suites.
 Test results written to: output.log
+Command exited with non-zero status 1
 	Command being timed: "npx jest --json --outputFile=output.log"
-	User time (seconds): 1.37
+	User time (seconds): 1.40
 	System time (seconds): 0.11
-	Percent of CPU this job got: 63%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:02.32
+	Percent of CPU this job got: 44%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.44
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 222104
+	Maximum resident set size (kbytes): 220992
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 65572
-	Voluntary context switches: 1912
-	Involuntary context switches: 6060
+	Minor (reclaiming a frame) page faults: 65823
+	Voluntary context switches: 1860
+	Involuntary context switches: 4387
 	Swaps: 0
-	File system inputs: 248
-	File system outputs: 72
+	File system inputs: 8
+	File system outputs: 40
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 0
-0
+	Exit status: 1

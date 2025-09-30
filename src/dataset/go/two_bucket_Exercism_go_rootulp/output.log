@@ -4,34 +4,36 @@
     two_bucket_test.go:29: PASS: Measure using bucket one of size 7 and bucket two of size 11 - start with bucket one
     two_bucket_test.go:29: PASS: Measure using bucket one of size 7 and bucket two of size 11 - start with bucket two
     two_bucket_test.go:29: PASS: Measure one step using bucket one of size 1 and bucket two of size 3 - start with bucket two
-    two_bucket_test.go:29: PASS: Measure using bucket one of size 2 and bucket two of size 3 - start with bucket one and end with bucket two
-    two_bucket_test.go:29: PASS: Invalid first bucket size
-    two_bucket_test.go:29: PASS: Invalid second bucket size
-    two_bucket_test.go:29: PASS: Invalid goal amount
-    two_bucket_test.go:29: PASS: Invalid start bucket name
---- PASS: TestSolve (0.00s)
-PASS
-ok  	esercizio	0.004s
+    two_bucket_test.go:16: FAIL: Measure using bucket one of size 2 and bucket two of size 3 - start with bucket one and end with bucket two
+        Solve(2, 3, 3, "one")
+        Expected: "two", 2, 2
+        Actual: "two", 4, 1
+--- FAIL: TestSolve (0.00s)
+FAIL
+exit status 1
+FAIL	esercizio	0.003s
+Command exited with non-zero status 1
 	Command being timed: "go test -v"
-	User time (seconds): 5.44
-	System time (seconds): 0.69
-	Percent of CPU this job got: 95%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:06.46
+	User time (seconds): 5.75
+	System time (seconds): 0.63
+	Percent of CPU this job got: 14%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:44.60
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 207024
+	Maximum resident set size (kbytes): 231844
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 303
-	Minor (reclaiming a frame) page faults: 727161
-	Voluntary context switches: 24491
-	Involuntary context switches: 20163
+	Major (requiring I/O) page faults: 7
+	Minor (reclaiming a frame) page faults: 743802
+	Voluntary context switches: 30584
+	Involuntary context switches: 25451
 	Swaps: 0
-	File system inputs: 83840
-	File system outputs: 172168
+	File system inputs: 33680
+	File system outputs: 172120
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 0
+	Exit status: 1
+1

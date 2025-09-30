@@ -1,8 +1,12 @@
 export function isArmstrongNumber(number: number): boolean {
-    let strNumber = number.toString();
+    const strNumber = number.toString();
+    const numDigits = strNumber.length;
     let sum = 0;
-    strNumber.split('').forEach((digit) => {
-        sum += Number(digit) ** strNumber.length;
-    });
+
+    for (let i = 0; i < numDigits; i++) {
+        const digit = parseInt(strNumber[i], 10);
+        sum += Math.pow(digit, numDigits);
+    }
+
     return sum === number;
 }

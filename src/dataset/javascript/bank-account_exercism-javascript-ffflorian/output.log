@@ -2,42 +2,42 @@
 (Use `node --trace-warnings ...` to show where the warning was created)
 PASS ./bank-account_testSuite.js
   Bank Account
-    ✓ newly opened account has zero balance (3 ms)
+    ✓ newly opened account has zero balance (1 ms)
     ✓ can deposit money
     ✓ can deposit money sequentially
     ✓ can withdraw money
-    ✓ can withdraw money sequentially
+    ✓ can withdraw money sequentially (1 ms)
     ✓ checking balance of closed account throws error (2 ms)
     ✓ deposit into closed account throws error
-    ✓ withdraw from closed account throws error (1 ms)
-    ✓ close already closed account throws error (2 ms)
+    ✓ withdraw from closed account throws error
+    ✓ close already closed account throws error (1 ms)
     ✓ open already opened account throws error
-    ✓ reopened account does not retain balance (2 ms)
-    ✓ cannot withdraw more than deposited
+    ✓ reopened account does not retain balance
+    ✓ cannot withdraw more than deposited (1 ms)
     ✓ cannot withdraw negative amount
     ✓ cannot deposit negative amount
-    ✓ changing balance directly throws error (1 ms)
+    ✓ changing balance directly throws error
 
 Test Suites: 1 passed, 1 total
 Tests:       15 passed, 15 total
 Snapshots:   0 total
-Time:        0.301 s
+Time:        0.182 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 0.22
+	User time (seconds): 0.21
 	System time (seconds): 0.07
-	Percent of CPU this job got: 34%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.87
+	Percent of CPU this job got: 58%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.49
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 81772
+	Maximum resident set size (kbytes): 83148
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 14311
-	Voluntary context switches: 7608
-	Involuntary context switches: 631
+	Minor (reclaiming a frame) page faults: 14296
+	Voluntary context switches: 7028
+	Involuntary context switches: 1061
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

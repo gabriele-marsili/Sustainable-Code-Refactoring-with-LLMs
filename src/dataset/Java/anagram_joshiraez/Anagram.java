@@ -1,37 +1,35 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
-import static java.util.stream.Collectors.toList;
 
 public class Anagram {
 
     private final String original;
-    private final String orderedLetters;
+    private final char[] orderedLetters;
+    private final int originalLength;
 
     public Anagram(final String ofWord) {
-
         this.original = ofWord;
+        this.originalLength = ofWord.length();
         this.orderedLetters = transformToOrderedLetters(ofWord);
     }
 
     public List<String> match(final List<String> toPossibleWords) {
-        return toPossibleWords
-                .stream()
-                .filter(this::wordAndOriginalAreSameSize)
-                .filter(this::wordIsNotTheSameIgnoringCase)
-                .filter(this::orderingTheLettersOfTheWordsGivesTheSameStringThanTheOriginalWordOrdered)
-                .collect(toList());
+        List<String> result = new ArrayList<>();
+        for (String word : toPossibleWords) {
+            if (wordAndOriginalAreSameSize(word) &&
+                wordIsNotTheSameIgnoringCase(word) &&
+                orderingTheLettersOfTheWordsGivesTheSameStringThanTheOriginalWordOrdered(word)) {
+                result.add(word);
+            }
+        }
+        return result;
     }
 
-    private String transformToOrderedLetters(final String ofWord) {
-        return ofWord
-                .toLowerCase()
-                .chars()
-                .sorted()
-                .collect(
-                        StringBuilder::new,
-                        (sb, letter) -> sb.append((char) letter),
-                        StringBuilder::append
-                ).toString();
+    private char[] transformToOrderedLetters(final String ofWord) {
+        char[] chars = ofWord.toLowerCase().toCharArray();
+        Arrays.sort(chars);
+        return chars;
     }
 
     private boolean wordIsNotTheSameIgnoringCase(String word) {
@@ -39,10 +37,15 @@ public class Anagram {
     }
 
     private boolean wordAndOriginalAreSameSize(String word) {
-        return word.length() == orderedLetters.length();
+        return word.length() == originalLength;
     }
 
     private boolean orderingTheLettersOfTheWordsGivesTheSameStringThanTheOriginalWordOrdered(String word) {
-        return transformToOrderedLetters(word).equals(orderedLetters);
+        if (word.length() != originalLength) {
+            return false;
+        }
+        char[] wordChars = word.toLowerCase().toCharArray();
+        Arrays.sort(wordChars);
+        return Arrays.equals(wordChars, orderedLetters);
     }
 }

@@ -31,44 +31,33 @@ https://en.wikipedia.org/wiki/Quickselect
 
 def find_kth_smallest_recursive(arr, k):
     n = len(arr)
-    if k > n:
-        return None
-    if k < 1:
+    if k > n or k < 1:
         return None
     return kth_smallest(arr, k - 1, 0, n - 1)
 
 def kth_smallest(arr, k, left, right):
     pivot = pivoting(arr, left, right)
-
-    if pivot > k:
+    
+    if pivot == k:
+        return arr[pivot]
+    elif pivot > k:
         return kth_smallest(arr, k, left, pivot - 1)
-    if pivot < k:
+    else:
         return kth_smallest(arr, k, pivot + 1, right)
 
-    return arr[pivot]
-
 def pivoting(arr, left, right):
-    # Linear time complexity pivoting
-    # takes the last element as pivot
-    pivot = right
+    pivot_val = arr[right]
     new_pivot = left
-
-    # iterate the whole array (without the last element)
-    # and put all elements smaller than the pivot (last element) in the first K spots
-    # with the new_pivot we're "counting" how many smaller elements are there
+    
     for j in range(left, right):
-        if arr[j] < arr[pivot]:
-            swap(arr, new_pivot, j)
+        if arr[j] < pivot_val:
+            arr[new_pivot], arr[j] = arr[j], arr[new_pivot]
             new_pivot += 1
-
-    # swap the last (pivot) element with the new_pivot position
-    swap(arr, new_pivot, pivot)
-
-    # return the new pivot
+    
+    arr[new_pivot], arr[right] = arr[right], arr[new_pivot]
     return new_pivot
 
 def swap(arr, i, j):
-    # swaps two elements in an array
     arr[i], arr[j] = arr[j], arr[i]
 
 
@@ -78,24 +67,21 @@ def swap(arr, i, j):
 
 def find_kth_smallest(arr, k):
     n = len(arr)
-    if k > n:
-        return None
-    if k < 1:
+    if k > n or k < 1:
         return None
 
     k -= 1
     left = 0
     right = n - 1
 
-    while True:
-        pivot = pivoting(arr, left, right) # the same method from the previous solution
-
-        if pivot > k:
-            right = pivot - 1
-        elif pivot < k:
-            left = pivot + 1
-        else:
+    while left <= right:
+        pivot = pivoting(arr, left, right)
+        
+        if pivot == k:
             return arr[pivot]
-
-    # not possible
+        elif pivot > k:
+            right = pivot - 1
+        else:
+            left = pivot + 1
+    
     return None

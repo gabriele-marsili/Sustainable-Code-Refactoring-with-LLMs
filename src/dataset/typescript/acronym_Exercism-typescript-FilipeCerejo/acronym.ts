@@ -1,25 +1,22 @@
-// function parse(phrase: string): string {
-//   let acronym = '';
-//   let matches = phrase
-//     .substring(
-//       0,
-//       phrase.indexOf(':') >= 0 ? phrase.indexOf(':') : phrase.length
-//     )
-//     .match(/\w{1,}/g);
-//   if (matches) {
-//     acronym = matches
-//       .map((m) => {
-//         let capitals = m.replace(/[a-z]/g, '');
-//         if (!capitals) capitals = m[0].toUpperCase();
-//         return capitals;
-//       })
-//       .join('');
-//   }
-//   return acronym;
-// }
-
-export function parse(phrase: string): string {
-  return (phrase.match(/[A-Z]+[a-z]*|[a-z]+/g) || [])
-    .map((w) => w[0].toUpperCase())
-    .join('');
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.parse = parse;
+function parse(phrase) {
+    let acronym = '';
+    let i = 0;
+    const len = phrase.length;
+    while (i < len) {
+        const char = phrase[i];
+        if ((char >= 'A' && char <= 'Z') || (char >= 'a' && char <= 'z')) {
+            acronym += char.toUpperCase();
+            i++;
+            while (i < len && phrase[i] >= 'a' && phrase[i] <= 'z') {
+                i++;
+            }
+        }
+        else {
+            i++;
+        }
+    }
+    return acronym;
 }

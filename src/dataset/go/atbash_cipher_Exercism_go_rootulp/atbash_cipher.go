@@ -1,70 +1,74 @@
 package atbash
 
 import (
-	"math"
 	"strings"
 	"unicode"
 )
 
-// Plain:  abcdefghijklmnopqrstuvwxyz
-// Cipher: zyxwvutsrqponmlkjihgfedcba
-var atbash = map[rune]rune{
-	'a': 'z',
-	'b': 'y',
-	'c': 'x',
-	'd': 'w',
-	'e': 'v',
-	'f': 'u',
-	'g': 't',
-	'h': 's',
-	'i': 'r',
-	'j': 'q',
-	'k': 'p',
-	'l': 'o',
-	'm': 'n',
-	'n': 'm',
-	'o': 'l',
-	'p': 'k',
-	'q': 'j',
-	'r': 'i',
-	's': 'h',
-	't': 'g',
-	'u': 'f',
-	'v': 'e',
-	'w': 'd',
-	'x': 'c',
-	'y': 'b',
-	'z': 'a',
-}
-
 func Atbash(message string) (ciphertext string) {
-	for _, r := range removeNonAlphanumeric(strings.ToLower(message)) {
-		ciphertext += string(encode(r))
+	var builder strings.Builder
+	builder.Grow(len(message))
+	
+	for _, r := range message {
+		if unicode.IsDigit(r) {
+			builder.WriteRune(r)
+		} else if unicode.IsLetter(r) {
+			lower := unicode.ToLower(r)
+			encoded := 'z' - (lower - 'a')
+			builder.WriteRune(encoded)
+		}
 	}
-	return strings.Join(splitEveryN(ciphertext, 5), " ")
+	
+	text := builder.String()
+	if len(text) == 0 {
+		return ""
+	}
+	
+	resultBuilder := strings.Builder{}
+	resultBuilder.Grow(len(text) + len(text)/5)
+	
+	for i, r := range text {
+		if i > 0 && i%5 == 0 {
+			resultBuilder.WriteByte(' ')
+		}
+		resultBuilder.WriteRune(r)
+	}
+	
+	return resultBuilder.String()
 }
 
 func removeNonAlphanumeric(s string) (result string) {
+	var builder strings.Builder
+	builder.Grow(len(s))
 	for _, r := range s {
 		if unicode.IsDigit(r) || unicode.IsLetter(r) {
-			result += string(r)
+			builder.WriteRune(r)
 		}
 	}
-	return result
+	return builder.String()
 }
 
 func splitEveryN(message string, n int) (groups []string) {
+	if len(message) == 0 {
+		return nil
+	}
+	
+	numGroups := (len(message) + n - 1) / n
+	groups = make([]string, 0, numGroups)
+	
 	for i := 0; i < len(message); i += n {
-		upperBound := math.Min(float64(len(message)), float64(i+n))
-		group := message[i:int(upperBound)]
-		groups = append(groups, group)
+		end := i + n
+		if end > len(message) {
+			end = len(message)
+		}
+		groups = append(groups, message[i:end])
 	}
 	return groups
 }
 
 func encode(r rune) rune {
 	if unicode.IsLetter(r) {
-		return atbash[r]
+		return 'z' - (r - 'a')
 	}
 	return r
 }

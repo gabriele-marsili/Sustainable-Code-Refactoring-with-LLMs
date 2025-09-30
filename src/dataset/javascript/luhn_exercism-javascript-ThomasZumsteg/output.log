@@ -2,41 +2,33 @@
 (Use `node --trace-warnings ...` to show where the warning was created)
 FAIL ./luhn_testSuite.js
   Luhn
-    ✓ check digit (5 ms)
+    ✓ check digit (16 ms)
     ✓ check digit again
-    ✕ addends (3 ms)
-    ✕ too large added (1 ms)
+    ✓ addends
+    ✕ too large added (24 ms)
     ✓ checksum
     ✓ checksum again
-    ✓ invalid number
     ✓ invalid number (1 ms)
+    ✓ invalid number
     ✓ create valid number
     ✓ create other valid number
     ✓ create yet another valid number (1 ms)
-
-  ● Luhn › addends
-
-    expect(received).toEqual(expected) // deep equality
-
-    Expected: [1, 4, 1, 4, 1]
-    Received: undefined
-
-      15 |   it('addends',function() {
-      16 |     var luhn = new Luhn(12121);
-    > 17 |     expect(luhn.addends).toEqual([1, 4, 1, 4, 1]);
-         |                          ^
-      18 |   });
-      19 |
-      20 |   it('too large added',function() {
-
-      at Object.<anonymous> (luhn_testSuite.js:17:26)
 
   ● Luhn › too large added
 
     expect(received).toEqual(expected) // deep equality
 
-    Expected: [7, 6, 6, 1]
-    Received: undefined
+    - Expected  - 2
+    + Received  + 2
+
+      Array [
+    -   7,
+    +   1,
+        6,
+        6,
+    -   1,
+    +   7,
+      ]
 
       20 |   it('too large added',function() {
       21 |     var luhn = new Luhn(8631);
@@ -49,26 +41,26 @@ FAIL ./luhn_testSuite.js
       at Object.<anonymous> (luhn_testSuite.js:22:26)
 
 Test Suites: 1 failed, 1 total
-Tests:       2 failed, 9 passed, 11 total
+Tests:       1 failed, 10 passed, 11 total
 Snapshots:   0 total
-Time:        0.418 s
+Time:        1.426 s
 Ran all test suites.
 Command exited with non-zero status 1
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 0.30
-	System time (seconds): 0.10
-	Percent of CPU this job got: 36%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.12
+	User time (seconds): 0.26
+	System time (seconds): 0.05
+	Percent of CPU this job got: 8%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.65
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 82436
+	Maximum resident set size (kbytes): 80904
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 14303
-	Voluntary context switches: 7640
-	Involuntary context switches: 634
+	Minor (reclaiming a frame) page faults: 14237
+	Voluntary context switches: 7433
+	Involuntary context switches: 1764
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

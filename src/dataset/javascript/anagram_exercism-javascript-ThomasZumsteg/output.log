@@ -2,9 +2,9 @@
 (Use `node --trace-warnings ...` to show where the warning was created)
 PASS ./anagram_testSuite.js
   Anagram
-    ✓ no matches (1 ms)
-    ✓ detects simple anagram
-    ✓ does not detect false positives
+    ✓ no matches (2 ms)
+    ✓ detects simple anagram (1 ms)
+    ✓ does not detect false positives (1 ms)
     ✓ detects multiple anagrams
     ✓ does not detect anagram subsets
     ✓ detects anagram
@@ -17,23 +17,23 @@ PASS ./anagram_testSuite.js
 Test Suites: 1 passed, 1 total
 Tests:       11 passed, 11 total
 Snapshots:   0 total
-Time:        0.202 s
+Time:        0.171 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 0.23
-	System time (seconds): 0.08
-	Percent of CPU this job got: 38%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.81
+	User time (seconds): 0.21
+	System time (seconds): 0.06
+	Percent of CPU this job got: 60%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.47
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 81396
+	Maximum resident set size (kbytes): 81568
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 13886
-	Voluntary context switches: 7270
-	Involuntary context switches: 2790
+	Minor (reclaiming a frame) page faults: 14084
+	Voluntary context switches: 7228
+	Involuntary context switches: 339
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16
@@ -42,3 +42,4 @@ Ran all test suites.
 	Signals delivered: 0
 	Page size (bytes): 4096
 	Exit status: 0
+

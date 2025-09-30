@@ -1,23 +1,21 @@
-export class Anagram {
-  word: string
-
-  constructor(word: string) {
-    this.word = word
-  }
-
-  public matches(...candidates: string[]): string[] {
-    return candidates.filter(
-      (candidate) =>
-        this.word.toLowerCase() !== candidate.toLowerCase() &&
-        this.rearrange(this.word) === this.rearrange(candidate)
-    )
-  }
-
-  private rearrange(word: string): string {
-    return word
-      .split('')
-      .sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()))
-      .join('')
-      .toLowerCase()
-  }
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Anagram = void 0;
+class Anagram {
+    constructor(word) {
+        this.word = word;
+        this.lowerCaseWord = word.toLowerCase();
+        this.sortedWord = this.sortString(this.lowerCaseWord);
+    }
+    matches(...candidates) {
+        return candidates.filter((candidate) => {
+            const lowerCaseCandidate = candidate.toLowerCase();
+            return (this.lowerCaseWord !== lowerCaseCandidate &&
+                this.sortedWord === this.sortString(lowerCaseCandidate));
+        });
+    }
+    sortString(str) {
+        return str.split('').sort().join('');
+    }
 }
+exports.Anagram = Anagram;

@@ -297,14 +297,14 @@ class OptimizedTestRunner:
                     
                     # Per file base, verifica metriche base
                     if 'base_log' in str(file_path):
-                        base_fields = ['CPU_usage', 'RAM_usage', 'execution_time_ms', 'regrationTestPassed']
+                        base_fields = ['CPU_usage', 'RAM_usage', 'execution_time_ms', 'regressionTestPassed']
                         if not all(field in entry for field in base_fields):
                             return False
                     
                     # Per file LLM, verifica risultati LLM
                     elif 'LLM_results' in entry:
                         for llm_result in entry['LLM_results']:
-                            llm_fields = ['CPU_usage', 'RAM_usage', 'execution_time_ms', 'regrationTestPassed']
+                            llm_fields = ['CPU_usage', 'RAM_usage', 'execution_time_ms', 'regressionTestPassed']
                             if not all(field in llm_result for field in llm_fields):
                                 return False
             
@@ -446,7 +446,7 @@ class OptimizedTestRunner:
         
         # Aggiorna metriche base
         if test_type in ['base', 'full']:
-            for field in ['CPU_usage', 'RAM_usage', 'execution_time_ms', 'regrationTestPassed', 'base_log']:
+            for field in ['CPU_usage', 'RAM_usage', 'execution_time_ms', 'regressionTestPassed', 'base_log']:
                 if field in results:
                     entry[field] = results[field]
         
@@ -582,14 +582,14 @@ class OptimizedTestRunner:
                 
                 base_metrics = self.parse_metrics(base_log) if lang != "typescript" else self.parse_metrics_typescript(base_log)
                 if container_err_flag:
-                    base_metrics['regrationTestPassed'] = False
+                    base_metrics['regressionTestPassed'] = False
                     
                 results.update(base_metrics)
                 results["base_log"] = str(base_log)
                 
             except Exception as e:
                 self.logger.error(f"Errore test base per {entry['id']}: {e}")
-                results["regrationTestPassed"] = False
+                results["regressionTestPassed"] = False
         
         # Test LLM codes
         llm_results = []
@@ -621,7 +621,7 @@ class OptimizedTestRunner:
             "execution_time_ms": 1000,  # Mock per ora
             "CPU_usage": 50.0,
             "RAM_usage": 80000,
-            "regrationTestPassed": True
+            "regressionTestPassed": True
         }
     
     # Metodi helper mantenuti dall'originale ma ottimizzati
@@ -636,7 +636,7 @@ class OptimizedTestRunner:
             "execution_time_ms": None,
             "CPU_usage": None,
             "RAM_usage": None,
-            "regrationTestPassed": True 
+            "regressionTestPassed": True 
         }
         
         try:
@@ -672,7 +672,7 @@ class OptimizedTestRunner:
             failures_match = re.search(r"Failures: (\d+)", log_content)
             if failures_match:
                 failures_count = int(failures_match.group(1))
-                metrics["regrationTestPassed"] = (failures_count == 0)
+                metrics["regressionTestPassed"] = (failures_count == 0)
             
             self.results_cache[cache_key] = metrics
             
@@ -695,7 +695,7 @@ class OptimizedTestRunner:
             "success": None,
             "passed_tests": None,
             "failed_tests": None,
-            "regrationTestPassed": False
+            "regressionTestPassed": False
         }
 
         try:
@@ -709,7 +709,7 @@ class OptimizedTestRunner:
             metrics["passed_tests"] = data.get("numPassedTests")
             metrics["failed_tests"] = data.get("numFailedTests")
             metrics["success"] = data.get("success")
-            metrics["regrationTestPassed"] = data.get("numFailedTests") == 0
+            metrics["regressionTestPassed"] = data.get("numFailedTests") == 0
 
             # Resource usage
             resource_path = log_path.parent / "resource_usage.log"
@@ -1131,7 +1131,7 @@ class OptimizedTestRunner:
                 if entry_results:
                     # Aggiungi metriche disponibili
                     for field in ["CPU_usage", "RAM_usage", "execution_time_ms", 
-                                "regrationTestPassed", "base_log", "LLM_results"]:
+                                "regressionTestPassed", "base_log", "LLM_results"]:
                         if field in entry_results:
                             result_entry[field] = entry_results[field]
                 else:

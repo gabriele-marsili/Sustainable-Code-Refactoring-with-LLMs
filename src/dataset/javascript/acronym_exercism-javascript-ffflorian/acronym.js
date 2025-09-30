@@ -6,21 +6,28 @@
  */
 export function parse(text) {
   let result = '';
-  let prevChar = '';
-  for (let i = 0; i < text.length; i++) {
+  let i = 0;
+  const len = text.length;
+  
+  while (i < len) {
     const char = text[i];
-    if (
-      (i > 0 && /[a-z]/.test(prevChar) && /[A-Z]/.test(char)) ||
-      char === '-' ||
-      char === '_' ||
-      char === ' '
-    ) {
-      continue;
+    
+    if (i === 0 || 
+        char === '-' || 
+        char === '_' || 
+        char === ' ' ||
+        (char >= 'A' && char <= 'Z' && i > 0 && text[i-1] >= 'a' && text[i-1] <= 'z')) {
+      
+      if (char !== '-' && char !== '_' && char !== ' ') {
+        result += char >= 'a' && char <= 'z' ? String.fromCharCode(char.charCodeAt(0) - 32) : char;
+      } else if (i + 1 < len) {
+        const nextChar = text[i + 1];
+        result += nextChar >= 'a' && nextChar <= 'z' ? String.fromCharCode(nextChar.charCodeAt(0) - 32) : nextChar;
+        i++;
+      }
     }
-    if (i === 0 || prevChar === '-' || prevChar === '_' || prevChar === ' ' || /[a-z](?=[A-Z])/.test(prevChar + char)) {
-      result += char.toUpperCase();
-    }
-    prevChar = char;
+    i++;
   }
+  
   return result;
 }

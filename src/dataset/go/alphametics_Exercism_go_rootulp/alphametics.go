@@ -3,8 +3,6 @@ package alphametics
 
 import (
 	"errors"
-	"math"
-	"sort"
 	"strings"
 )
 
@@ -16,6 +14,7 @@ type equation struct {
 	usedLetters   []rune
 	leftHandSide  []addend
 	rightHandSide addend
+	letterToIndex map[rune]int
 }
 
 // Solve solves the given input puzzle.
@@ -31,9 +30,9 @@ func Solve(puzzle string) (map[string]int, error) {
 }
 
 func parse(puzzle string) equation {
-	leftHandSide := make([]addend, 0)
+	leftHandSide := make([]addend, 0, 8)
 	var rightHandSide addend
-	usedLetters := make([]rune, 0, 10)
+	letterSet := make(map[rune]bool, 10)
 	isRightHandSide := false
 
 	for _, item := range strings.Fields(puzzle) {
@@ -42,61 +41,111 @@ func parse(puzzle string) equation {
 			continue
 		} else if item == "+" {
 			continue
-		} else if isRightHandSide {
-			rightHandSide = addend{letters: []rune(item)}
-		} else {
-			leftHandSide = append(leftHandSide, addend{letters: []rune(item)})
 		}
 
-		for _, letter := range item {
-			if !isLetterUsed(usedLetters, letter) {
-				usedLetters = append(usedLetters, letter)
-			}
+		letters := []rune(item)
+		if isRightHandSide {
+			rightHandSide = addend{letters: letters}
+		} else {
+			leftHandSide = append(leftHandSide, addend{letters: letters})
+		}
+
+		for _, letter := range letters {
+			letterSet[letter] = true
 		}
 	}
 
-	sort.Slice(usedLetters, func(i, j int) bool { return usedLetters[i] < usedLetters[j] })
-	return equation{usedLetters: usedLetters, leftHandSide: leftHandSide, rightHandSide: rightHandSide}
+	usedLetters := make([]rune, 0, len(letterSet))
+	for letter := range letterSet {
+		usedLetters = append(usedLetters, letter)
+	}
+
+	letterToIndex := make(map[rune]int, len(usedLetters))
+	for i, letter := range usedLetters {
+		letterToIndex[letter] = i
+	}
+
+	return equation{
+		usedLetters:   usedLetters,
+		leftHandSide:  leftHandSide,
+		rightHandSide: rightHandSide,
+		letterToIndex: letterToIndex,
+	}
 }
 
 func solvePuzzle(eq equation) map[string]int {
-	result := map[string]int{}
-	usedNumbers := make([]int, 0, 10)
-	isSolved := false
-
-outer:
-	for !isSolved {
-		isSolved, usedNumbers = solveEquation(eq, usedNumbers)
-
-		if !isSolved {
-			for usedNumbers[len(usedNumbers)-1] == getMaxNumberCanBeUsed(usedNumbers) {
-				if len(usedNumbers) == 1 {
-					break outer // no more possible solution
-				}
-
-				usedNumbers = usedNumbers[:len(usedNumbers)-1]
-			}
-
-			for i := usedNumbers[len(usedNumbers)-1] + 1; i < 10; i++ {
-				if isNumberUsed(usedNumbers, i) {
-					continue
-				} else {
-					usedNumbers[len(usedNumbers)-1] = i
-					break
-				}
-			}
+	numLetters := len(eq.usedLetters)
+	assignment := make([]int, numLetters)
+	used := make([]bool, 10)
+	
+	if backtrack(eq, assignment, used, 0) {
+		result := make(map[string]int, numLetters)
+		for i, letter := range eq.usedLetters {
+			result[string(letter)] = assignment[i]
 		}
-	}
-
-	if isSolved {
-		for i := 0; i < len(usedNumbers); i++ {
-			result[string(eq.usedLetters[i])] = usedNumbers[i]
-		}
-
 		return result
 	}
-
+	
 	return nil
+}
+
+func backtrack(eq equation, assignment []int, used []bool, pos int) bool {
+	if pos == len(eq.usedLetters) {
+		return isEquationTrue(eq, assignment)
+	}
+	
+	for digit := 0; digit < 10; digit++ {
+		if used[digit] {
+			continue
+		}
+		
+		assignment[pos] = digit
+		used[digit] = true
+		
+		if backtrack(eq, assignment, used, pos+1) {
+			return true
+		}
+		
+		used[digit] = false
+	}
+	
+	return false
+}
+
+func isEquationTrue(eq equation, assignment []int) bool {
+	lhsSum := 0
+	
+	for _, addend := range eq.leftHandSide {
+		value := getValue(addend, eq.letterToIndex, assignment)
+		if value == -1 {
+			return false
+		}
+		lhsSum += value
+	}
+	
+	rhs := getValue(eq.rightHandSide, eq.letterToIndex, assignment)
+	if rhs == -1 {
+		return false
+	}
+	
+	return lhsSum == rhs
+}
+
+func getValue(ad addend, letterToIndex map[rune]int, assignment []int) int {
+	if len(ad.letters) > 1 && assignment[letterToIndex[ad.letters[0]]] == 0 {
+		return -1
+	}
+	
+	value := 0
+	multiplier := 1
+	
+	for i := len(ad.letters) - 1; i >= 0; i-- {
+		digit := assignment[letterToIndex[ad.letters[i]]]
+		value += digit * multiplier
+		multiplier *= 10
+	}
+	
+	return value
 }
 
 func solveEquation(eq equation, usedNumbers []int) (bool, []int) {
@@ -117,25 +166,6 @@ func solveEquation(eq equation, usedNumbers []int) (bool, []int) {
 	}
 
 	return false, usedNumbers
-}
-
-func isEquationTrue(eq equation, usedNumbers []int) bool {
-	var result bool
-	var lhs, lhsSum, rhs int
-
-	for i := 0; i < len(eq.leftHandSide); i++ {
-		if result, lhs = getSum(eq.leftHandSide[i], eq.usedLetters, usedNumbers); !result {
-			return result
-		}
-
-		lhsSum += lhs
-	}
-
-	if result, rhs = getSum(eq.rightHandSide, eq.usedLetters, usedNumbers); !result {
-		return result
-	}
-
-	return lhsSum == rhs
 }
 
 func isNumberUsed(usedNumbers []int, number int) bool {
@@ -176,10 +206,14 @@ func getSum(ad addend, usedLetters []rune, usedNumbers []int) (bool, int) {
 		num := getNumberFromUsedNumbers(ad.letters[i], usedLetters, usedNumbers)
 
 		if num == 0 && i == 0 && numOfDigits > 1 {
-			return false, -1 // leading zero in multi-digit number
+			return false, -1
 		}
 
-		sum += num * int(math.Pow(10, float64(numOfDigits-1-i)))
+		multiplier := 1
+		for j := 0; j < numOfDigits-1-i; j++ {
+			multiplier *= 10
+		}
+		sum += num * multiplier
 	}
 
 	return true, sum

@@ -3,18 +3,18 @@
 PASS ./atbash-cipher_testSuite.js
   Atbash Cipher
     encode
-      ✓ encode yes (2 ms)
-      ✓ encode no
-      ✓ encode OMG (1 ms)
-      ✓ encode spaces (1 ms)
+      ✓ encode yes (9 ms)
+      ✓ encode no (1 ms)
+      ✓ encode OMG
+      ✓ encode spaces
       ✓ encode mindblowingly
       ✓ encode numbers
       ✓ encode deep thought
       ✓ encode all the letters
     decode
-      ✓ decode exercism (1 ms)
-      ✓ decode a sentence (1 ms)
-      ✓ decode numbers
+      ✓ decode exercism
+      ✓ decode a sentence (3 ms)
+      ✓ decode numbers (1 ms)
       ✓ decode all the letters
       ✓ decode with too many spaces
       ✓ decode with no spaces
@@ -22,23 +22,23 @@ PASS ./atbash-cipher_testSuite.js
 Test Suites: 1 passed, 1 total
 Tests:       14 passed, 14 total
 Snapshots:   0 total
-Time:        0.306 s
+Time:        0.51 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 0.23
+	User time (seconds): 0.24
 	System time (seconds): 0.07
-	Percent of CPU this job got: 31%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.98
+	Percent of CPU this job got: 21%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.48
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 81464
+	Maximum resident set size (kbytes): 81904
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 13972
-	Voluntary context switches: 7544
-	Involuntary context switches: 1898
+	Minor (reclaiming a frame) page faults: 14090
+	Voluntary context switches: 7410
+	Involuntary context switches: 2422
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16
@@ -47,3 +47,4 @@ Ran all test suites.
 	Signals delivered: 0
 	Page size (bytes): 4096
 	Exit status: 0
+

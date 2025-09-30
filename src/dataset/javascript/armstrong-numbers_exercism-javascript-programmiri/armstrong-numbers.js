@@ -1,17 +1,25 @@
 function getDigitList(num) {
-  return num
-    .toString()
-    .split('')
-    .map(item => parseInt(item, 10));
+  const digits = [];
+  let n = num;
+  
+  if (n === 0) return [0];
+  
+  while (n > 0) {
+    digits.unshift(n % 10);
+    n = Math.floor(n / 10);
+  }
+  
+  return digits;
 }
 
 export function validate(num) {
-  const digests = getDigitList(num);
-
-  const sum = digests.reduce((acc, curr) => {
-    const raised = curr ** digests.length;
-    return acc + raised;
-  }, 0);
-
+  const digits = getDigitList(num);
+  const length = digits.length;
+  
+  let sum = 0;
+  for (let i = 0; i < length; i++) {
+    sum += digits[i] ** length;
+  }
+  
   return sum === num;
 }

@@ -1,29 +1,42 @@
+const ALLERGIE_LIST = [
+  'eggs',
+  'peanuts',
+  'shellfish',
+  'strawberries',
+  'tomatoes',
+  'chocolate',
+  'pollen',
+  'cats'
+];
+
+const ALLERGIE_MAP = new Map(ALLERGIE_LIST.map((item, index) => [item, index]));
+
 var Allergies = function(code) {
-	/* Uses a binary code to determine what someone is allergic to */
-	this.code = code;
-	this.allergieList = [
-		'eggs',
-		'peanuts',
-		'shellfish',
-		'strawberries',
-		'tomatoes' ,
-		'chocolate' ,
-		'pollen' ,
-		'cats',
-	];
-}
+  this.code = code & 255;
+};
 
 Allergies.prototype.list = function() {
-	/* A list of thing the person is allergic to */
-	return this.allergieList.filter( this.allergicTo, this);
+  const result = [];
+  let tempCode = this.code;
+  let index = 0;
+  
+  while (tempCode > 0 && index < ALLERGIE_LIST.length) {
+    if (tempCode & 1) {
+      result.push(ALLERGIE_LIST[index]);
+    }
+    tempCode >>>= 1;
+    index++;
+  }
+  
+  return result;
 };
 
 Allergies.prototype.allergicTo = function(item, index) {
-	/* If the person is allergic to an item */
-	// Filter alread knows the index other look it up
-	if(typeof index === 'undefined')
-		index = this.allergieList.indexOf(item);
-	return Boolean(this.code & (1 << index));
+  if (typeof index === 'undefined') {
+    index = ALLERGIE_MAP.get(item);
+    if (index === undefined) return false;
+  }
+  return (this.code & (1 << index)) !== 0;
 };
 
-export default Allergies;;
+export default Allergies;

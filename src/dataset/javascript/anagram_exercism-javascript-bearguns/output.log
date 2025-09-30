@@ -1,39 +1,39 @@
-(node:22) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
 PASS ./anagram_testSuite.js
   Anagram
-    ✓ no matches (1 ms)
-    ✓ detects simple anagram
+    ✓ no matches (2 ms)
+    ✓ detects simple anagram (1 ms)
     ✓ does not detect false positives
     ✓ detects multiple anagrams
     ✓ does not detect anagram subsets
     ✓ detects anagram
-    ✓ detects multiple anagrams
+    ✓ detects multiple anagrams (1 ms)
     ✓ detects anagrams case-insensitively
     ✓ does not detect a word as its own anagram
-    ✓ matches() accepts string arguments (1 ms)
+    ✓ matches() accepts string arguments
     ✓ matches() accepts single string argument
 
 Test Suites: 1 passed, 1 total
 Tests:       11 passed, 11 total
 Snapshots:   0 total
-Time:        0.253 s
+Time:        0.4 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 0.24
-	System time (seconds): 0.06
-	Percent of CPU this job got: 34%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.89
+	User time (seconds): 0.32
+	System time (seconds): 0.08
+	Percent of CPU this job got: 38%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.04
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 80568
+	Maximum resident set size (kbytes): 80360
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 13923
-	Voluntary context switches: 7469
-	Involuntary context switches: 2234
+	Minor (reclaiming a frame) page faults: 14001
+	Voluntary context switches: 7501
+	Involuntary context switches: 1941
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16
@@ -42,3 +42,4 @@ Ran all test suites.
 	Signals delivered: 0
 	Page size (bytes): 4096
 	Exit status: 0
+ 0

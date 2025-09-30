@@ -9,13 +9,14 @@ class Anagram {
         if (this.anagram === word) {
             return false;
         }
-        if (this.anagram.length !== word.length) {
-            return false;
-        }
-        return this.sortedAnagram === [...word].sort().join('');
+        const sortedWord = [...word].sort().join('');
+        return this.sortedAnagram === sortedWord;
     }
     matches(...words) {
-        return words.filter((word) => this.isAnagram(word.toLowerCase()));
+        return words.filter((word) => {
+            const lowerCaseWord = word.toLowerCase();
+            return this.isAnagram(lowerCaseWord);
+        });
     }
 }
 exports.default = Anagram;

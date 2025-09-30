@@ -1,29 +1,30 @@
-import java.util.Arrays;
 import java.util.List;
-
-import static java.util.stream.Collectors.toUnmodifiableList;
+import java.util.stream.Collectors;
 
 class Anagram {
-    private final int[] sortedChars;
+    private final String normalizedSortedWord;
     private final String sourceWord;
 
     Anagram(final String word) {
         sourceWord = word;
-        sortedChars = toSortedChars(sourceWord);
+        normalizedSortedWord = normalizeAndSort(word);
     }
 
     List<String> match(final List<String> possibleAnagrams) {
         return possibleAnagrams.stream()
                 .filter(this::isAnagram)
-                .collect(toUnmodifiableList());
+                .collect(Collectors.toList());
     }
 
     private boolean isAnagram(final String otherWord) {
         return !sourceWord.equalsIgnoreCase(otherWord)
-                && Arrays.equals(sortedChars, toSortedChars(otherWord));
+                && normalizedSortedWord.equals(normalizeAndSort(otherWord));
     }
 
-    private int[] toSortedChars(final String word) {
-        return word.chars().map(Character::toLowerCase).sorted().toArray();
+    private String normalizeAndSort(final String word) {
+        return word.toLowerCase().chars()
+                .sorted()
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
     }
 }

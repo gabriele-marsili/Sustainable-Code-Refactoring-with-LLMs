@@ -1,47 +1,26 @@
-=== RUN   TestSolve
-=== RUN   TestSolve/puzzle_with_three_letters
-=== RUN   TestSolve/solution_must_have_unique_value_for_each_letter
-=== RUN   TestSolve/leading_zero_solution_is_invalid
-=== RUN   TestSolve/puzzle_with_two_digits_final_carry
-=== RUN   TestSolve/puzzle_with_four_letters
-=== RUN   TestSolve/puzzle_with_six_letters
-=== RUN   TestSolve/puzzle_with_seven_letters
-=== RUN   TestSolve/puzzle_with_eight_letters
-=== RUN   TestSolve/puzzle_with_ten_letters
-=== RUN   TestSolve/puzzle_with_ten_letters_and_199_addends
---- PASS: TestSolve (1.00s)
-    --- PASS: TestSolve/puzzle_with_three_letters (0.00s)
-    --- PASS: TestSolve/solution_must_have_unique_value_for_each_letter (0.00s)
-    --- PASS: TestSolve/leading_zero_solution_is_invalid (0.00s)
-    --- PASS: TestSolve/puzzle_with_two_digits_final_carry (0.00s)
-    --- PASS: TestSolve/puzzle_with_four_letters (0.00s)
-    --- PASS: TestSolve/puzzle_with_six_letters (0.00s)
-    --- PASS: TestSolve/puzzle_with_seven_letters (0.03s)
-    --- PASS: TestSolve/puzzle_with_eight_letters (0.16s)
-    --- PASS: TestSolve/puzzle_with_ten_letters (0.57s)
-    --- PASS: TestSolve/puzzle_with_ten_letters_and_199_addends (0.23s)
-PASS
-ok  	esercizio	1.001s
+runtime: /usr/local/go/pkg/tool/linux_arm64/compile: signal: killed
+FAIL	esercizio [build failed]
+Command exited with non-zero status 1
 	Command being timed: "go test -v"
-	User time (seconds): 6.19
-	System time (seconds): 0.88
-	Percent of CPU this job got: 96%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:07.35
+	User time (seconds): 1.27
+	System time (seconds): 0.24
+	Percent of CPU this job got: 9%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:15.73
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 211004
+	Maximum resident set size (kbytes): 161960
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 326
-	Minor (reclaiming a frame) page faults: 724675
-	Voluntary context switches: 26135
-	Involuntary context switches: 32595
+	Major (requiring I/O) page faults: 1712
+	Minor (reclaiming a frame) page faults: 181260
+	Voluntary context switches: 12130
+	Involuntary context switches: 8734
 	Swaps: 0
-	File system inputs: 109032
-	File system outputs: 172280
+	File system inputs: 351472
+	File system outputs: 16560
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 0
+	Exit status: 1

@@ -1,10 +1,7 @@
 package airportrobot
 
-import "fmt"
+import "strings"
 
-// Write your code here.
-// This exercise does not have tests for each individual task.
-// Try to solve all the tasks first before running the tests.
 type Greeter interface {
 	LanguageName() string
 	Greet(name string) string
@@ -13,22 +10,48 @@ type Greeter interface {
 type Italian struct{}
 type Portuguese struct{}
 
+var (
+	italianLang = "Italian"
+	portugueseLang = "Portuguese"
+	ciaoPrefix = "Ciao "
+	olaPrefix = "Olá "
+	exclamation = "!"
+	speakPrefix = "I can speak "
+	separator = ": "
+)
+
 func SayHello(name string, greeter Greeter) string {
-	return fmt.Sprintf("I can speak %s: %s", greeter.LanguageName(), greeter.Greet(name))
+	var builder strings.Builder
+	builder.Grow(len(speakPrefix) + len(greeter.LanguageName()) + len(separator) + len(greeter.Greet(name)))
+	builder.WriteString(speakPrefix)
+	builder.WriteString(greeter.LanguageName())
+	builder.WriteString(separator)
+	builder.WriteString(greeter.Greet(name))
+	return builder.String()
 }
 
 func (i Italian) Greet(name string) string {
-	return fmt.Sprintf("Ciao %s!", name)
+	var builder strings.Builder
+	builder.Grow(len(ciaoPrefix) + len(name) + len(exclamation))
+	builder.WriteString(ciaoPrefix)
+	builder.WriteString(name)
+	builder.WriteString(exclamation)
+	return builder.String()
 }
 
 func (i Italian) LanguageName() string {
-	return "Italian"
+	return italianLang
 }
 
 func (p Portuguese) Greet(name string) string {
-	return fmt.Sprintf("Olá %s!", name)
+	var builder strings.Builder
+	builder.Grow(len(olaPrefix) + len(name) + len(exclamation))
+	builder.WriteString(olaPrefix)
+	builder.WriteString(name)
+	builder.WriteString(exclamation)
+	return builder.String()
 }
 
 func (p Portuguese) LanguageName() string {
-	return "Portuguese"
+	return portugueseLang
 }

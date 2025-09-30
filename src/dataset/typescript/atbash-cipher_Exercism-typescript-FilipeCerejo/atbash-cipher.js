@@ -18,14 +18,14 @@ function encode(plainText) {
     const normalizedText = plainText.replace(/\s+/g, '').toLowerCase();
     let encodedText = '';
     for (let i = 0; i < normalizedText.length; i++) {
-        encodedText += encodeMap[normalizedText[i]];
+        encodedText += encodeMap[normalizedText[i]] || normalizedText[i];
     }
     let result = '';
-    for (let i = 0; i < encodedText.length; i += 5) {
-        result += encodedText.substring(i, Math.min(i + 5, encodedText.length));
-        if (i + 5 < encodedText.length) {
+    for (let i = 0; i < encodedText.length; i++) {
+        if (i > 0 && i % 5 === 0) {
             result += ' ';
         }
+        result += encodedText[i];
     }
     return result;
 }
@@ -33,7 +33,7 @@ function decode(cipherText) {
     const normalizedText = cipherText.replace(/\s+/g, '').toLowerCase();
     let decodedText = '';
     for (let i = 0; i < normalizedText.length; i++) {
-        decodedText += decodeMap[normalizedText[i]];
+        decodedText += decodeMap[normalizedText[i]] || normalizedText[i];
     }
     return decodedText;
 }

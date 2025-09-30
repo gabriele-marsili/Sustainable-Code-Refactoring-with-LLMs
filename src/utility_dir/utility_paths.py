@@ -28,6 +28,11 @@ SIMILARITY_METRICS_DIR_FILEPATH = METRICS_DIR_FILEPATH / "similarity"
 ENERGY_METRICS_REPORTS_DIR_FILEPATH = METRICS_DIR_FILEPATH / 'energy_metrics_reports'
 
 PATTERN_REPORTS_DIR = METRICS_DIR_FILEPATH / "patterns"
+CLUSTERS_IMPROVEMENTS_DATA_FILEPATH = METRICS_DIR_FILEPATH / "energy_improvements" / "clusters_improvements_data"
+
+SANITY_CHECKS_DIR = SRC_DIR / "execution_sanity_checks"
+CLUSTERS_SANITY_CHECKS_DIR = SANITY_CHECKS_DIR / "clusters"
+SANITY_CHECKS_METADATA_JSON_FILE_PATH = SANITY_CHECKS_DIR / "metadata.json"
 
 if __name__ == "__main__":
     print(f"Current file directory: {CURRENT_FILE_DIR}")

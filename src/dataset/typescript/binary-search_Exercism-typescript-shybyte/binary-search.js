@@ -1,25 +1,39 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const isSorted = (array) => array.every((el, i) => (i + 1 === array.length) || (el <= array[i + 1]));
-const indexOf = (array, value, begin = 0, end = array.length) => {
-    switch (true) {
-        case begin >= end:
-            return -1;
-        case begin === end - 1:
-            return array[begin] === value ? begin : -1;
-        default:
-            const middleIndex = begin + Math.floor((end - begin) / 2);
-            if (value < array[middleIndex]) {
-                return indexOf(array, value, begin, middleIndex);
-            }
-            else {
-                return indexOf(array, value, middleIndex, end);
-            }
+const isSorted = (array) => {
+    for (let i = 0; i < array.length - 1; i++) {
+        if (array[i] > array[i + 1]) {
+            return false;
+        }
     }
+    return true;
+};
+const indexOf = (array, value, begin = 0, end = array.length) => {
+    let low = begin;
+    let high = end - 1;
+    while (low <= high) {
+        const mid = low + Math.floor((high - low) / 2);
+        const midValue = array[mid];
+        if (midValue === value) {
+            return mid;
+        }
+        else if (midValue < value) {
+            low = mid + 1;
+        }
+        else {
+            high = mid - 1;
+        }
+    }
+    return -1;
 };
 class BinarySearch {
     constructor(array) {
-        this.indexOf = (value) => indexOf(this.array, value);
+        this.indexOf = (value) => {
+            if (!this.array) {
+                return -1;
+            }
+            return indexOf(this.array, value);
+        };
         this.array = isSorted(array) ? array : undefined;
     }
 }

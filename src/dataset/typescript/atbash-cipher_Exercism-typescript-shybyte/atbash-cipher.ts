@@ -1,27 +1,49 @@
-const aCode = 'a'.charCodeAt(0)
-const zCODE = 'z'.charCodeAt(0)
-
-const isNumber = (char: string) => /\d/.test(char)
-
-const translate = (char: string) =>
-    String.fromCharCode(zCODE - (char.charCodeAt(0) - aCode))
-
-export default class AtbashCipher {
-    encode = (s: string) =>
-        s.toLowerCase()
-            .replace(/[^\da-z]/g, '') // keep only number and lowercase letters
-            .replace(/./g, (char) => isNumber(char) ? char : translate(char))
-            .replace(/(.{5})/g, '$1 ') // split into chunks of length 5
-            .trim()
-
-    decode = (text: string): string =>
-        [...text].map((c) => {
-                if (/[a-z]/.test(c)) {
-                    return String.fromCharCode(zCODE - c.charCodeAt(0) + aCode)
-                } else if (isNumber(c)) {
-                    return c
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const aCode = 'a'.charCodeAt(0);
+const zCode = 'z'.charCodeAt(0);
+const zeroCode = '0'.charCodeAt(0);
+const nineCode = '9'.charCodeAt(0);
+const translate = (charCode) => String.fromCharCode(zCode - (charCode - aCode));
+class AtbashCipher {
+    constructor() {
+        this.encode = (s) => {
+            const cleaned = s.toLowerCase().replace(AtbashCipher.ENCODE_REPLACE_REGEX, '');
+            let encoded = '';
+            let count = 0;
+            for (let i = 0; i < cleaned.length; i++) {
+                const charCode = cleaned.charCodeAt(i);
+                let translatedChar;
+                if (charCode >= zeroCode && charCode <= nineCode) {
+                    translatedChar = cleaned[i];
                 }
-                return ''
+                else {
+                    translatedChar = translate(charCode);
+                }
+                encoded += translatedChar;
+                count++;
+                if (count === 5 && i < cleaned.length - 1) {
+                    encoded += ' ';
+                    count = 0;
+                }
             }
-        ).join('')
+            return encoded;
+        };
+        this.decode = (text) => {
+            let decoded = '';
+            for (let i = 0; i < text.length; i++) {
+                const charCode = text.charCodeAt(i);
+                if (charCode >= aCode && charCode <= zCode) {
+                    decoded += String.fromCharCode(zCode - (charCode - aCode));
+                }
+                else if (charCode >= zeroCode && charCode <= nineCode) {
+                    decoded += text[i];
+                }
+            }
+            return decoded;
+        };
+    }
 }
+AtbashCipher.ENCODE_REPLACE_REGEX = /[^0-9a-z]/g;
+AtbashCipher.ENCODE_CHUNK_REGEX = /.{1,5}/g;
+exports.default = AtbashCipher;

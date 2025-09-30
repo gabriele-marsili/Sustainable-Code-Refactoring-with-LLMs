@@ -1,42 +1,42 @@
-(node:22) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
 PASS ./anagram_testSuite.js
   Anagram
-    ✓ no matches (2 ms)
-    ✓ detects two anagrams
-    ✓ does not detect anagram subsets
+    ✓ no matches (1 ms)
+    ✓ detects two anagrams (2 ms)
+    ✓ does not detect anagram subsets (1 ms)
     ✓ detects anagram
-    ✓ detects three anagrams (1 ms)
+    ✓ detects three anagrams
     ✓ detects multiple anagrams with different case
     ✓ does not detect non-anagrams with identical checksum
-    ✓ detects anagrams case-insensitively
-    ✓ detects anagrams using case-insensitive subject
-    ✓ detects anagrams using case-insensitive possible matches (1 ms)
-    ✓ does not detect an anagram if the original word is repeated (1 ms)
-    ✓ anagrams must use all letters exactly once (1 ms)
-    ✓ words are not anagrams of themselves (case-insensitive)
-    ✓ words other than themselves can be anagrams
+    ✓ detects anagrams case-insensitively (3 ms)
+    ✓ detects anagrams using case-insensitive subject (1 ms)
+    ✓ detects anagrams using case-insensitive possible matches
+    ✓ does not detect an anagram if the original word is repeated
+    ✓ anagrams must use all letters exactly once
+    ✓ words are not anagrams of themselves (case-insensitive) (1 ms)
+    ✓ words other than themselves can be anagrams (1 ms)
 
 Test Suites: 1 passed, 1 total
 Tests:       14 passed, 14 total
 Snapshots:   0 total
-Time:        0.254 s
+Time:        0.459 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
 	User time (seconds): 0.23
-	System time (seconds): 0.06
-	Percent of CPU this job got: 42%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.72
+	System time (seconds): 0.08
+	Percent of CPU this job got: 27%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.16
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 81632
+	Maximum resident set size (kbytes): 81920
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 13968
-	Voluntary context switches: 7505
-	Involuntary context switches: 2203
+	Minor (reclaiming a frame) page faults: 14027
+	Voluntary context switches: 7403
+	Involuntary context switches: 3578
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

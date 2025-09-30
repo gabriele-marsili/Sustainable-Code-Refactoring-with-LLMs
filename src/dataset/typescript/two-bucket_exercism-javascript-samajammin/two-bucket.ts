@@ -18,38 +18,40 @@ export class TwoBucket {
     starterBucket: Bucket
   ) {
     this.goalBucket = starterBucket
-    if (this.goalBucket === Bucket.One) {
+    this.goal = goal
+    
+    if (starterBucket === Bucket.One) {
       this.starterBucketSize = bucketOneSize
       this.otherBucketSize = bucketTwoSize
     } else {
       this.starterBucketSize = bucketTwoSize
       this.otherBucketSize = bucketOneSize
     }
-    this.goal = goal
+    
     this.starterBucket = 0
     this.otherBucket = 0
   }
 
   public moves(): number {
+    if (this.goal === 0) return 0
+    if (this.goal === this.starterBucketSize) return 1
+    
     let count = 0
+    let starter = 0
+    let other = 0
+    const starterSize = this.starterBucketSize
+    const otherSize = this.otherBucketSize
+    const goal = this.goal
 
-    while (this.goal !== this.starterBucket) {
-      // if starterBucket is empty, fill it
-      if (this.starterBucket === 0) {
-        this.starterBucket += this.starterBucketSize
-      } else if (this.otherBucket === this.otherBucketSize) {
-        // if otherBucket is full, dump it
-        this.otherBucket = 0
+    while (starter !== goal) {
+      if (starter === 0) {
+        starter = starterSize
+      } else if (other === otherSize) {
+        other = 0
       } else {
-        // fill otherBucket with starterBucket
-        const otherBucketCapacity = this.otherBucketSize - this.otherBucket
-        if (otherBucketCapacity < this.starterBucket) {
-          this.otherBucket = this.otherBucketSize
-          this.starterBucket -= otherBucketCapacity
-        } else {
-          this.otherBucket += this.starterBucket
-          this.starterBucket = 0
-        }
+        const transfer = Math.min(starter, otherSize - other)
+        starter -= transfer
+        other += transfer
       }
       count++
     }

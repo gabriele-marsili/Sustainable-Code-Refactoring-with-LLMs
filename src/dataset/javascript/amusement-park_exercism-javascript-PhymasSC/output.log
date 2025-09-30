@@ -1,47 +1,47 @@
-(node:22) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
 PASS ./amusement-park_testSuite.js
   createVisitor
-    ✓ correctly assembles the visitor object (1 ms)
+    ✓ correctly assembles the visitor object (6 ms)
   revokeTicket
     ✓ sets the ticketId to null
     ✓ returns the same object that was passed in
-    ✓ does nothing if the ticket was already revoked
+    ✓ does nothing if the ticket was already revoked (16 ms)
   ticketStatus
-    ✓ correctly identifies that a ticket is not in the tracking object
+    ✓ correctly identifies that a ticket is not in the tracking object (1 ms)
     ✓ correctly identifies that a ticket is not sold
     ✓ returns the correct string for a ticket that was sold
   simpleTicketStatus
-    ✓ identifies ticket that are not in the tracking object as invalid (1 ms)
-    ✓ identifies tickets that are not sold as invalid
-    ✓ returns the visitor name for tickets that were sold (1 ms)
+    ✓ identifies ticket that are not in the tracking object as invalid
+    ✓ identifies tickets that are not sold as invalid (1 ms)
+    ✓ returns the visitor name for tickets that were sold (19 ms)
     ✓ tickets with "strange" name values are valid nevertheless
   gtcVersion
-    ✓ determines the GTC version if it is present
+    ✓ determines the GTC version if it is present (1 ms)
     ✓ returns nothing if there is no gtc object
     ✓ returns nothing if there is a gtc object but no gtc version
-    ✓ does not modify the visitor object (2 ms)
+    ✓ does not modify the visitor object (19 ms)
 
 Test Suites: 1 passed, 1 total
 Tests:       15 passed, 15 total
 Snapshots:   0 total
-Time:        0.271 s
+Time:        1.155 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 0.26
-	System time (seconds): 0.05
-	Percent of CPU this job got: 56%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.57
+	User time (seconds): 0.25
+	System time (seconds): 0.06
+	Percent of CPU this job got: 9%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.54
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 82204
+	Maximum resident set size (kbytes): 82576
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 14291
-	Voluntary context switches: 7424
-	Involuntary context switches: 973
+	Minor (reclaiming a frame) page faults: 14544
+	Voluntary context switches: 7545
+	Involuntary context switches: 2744
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16
@@ -50,4 +50,3 @@ Ran all test suites.
 	Signals delivered: 0
 	Page size (bytes): 4096
 	Exit status: 0
-atus: 0

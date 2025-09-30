@@ -1,117 +1,107 @@
-export class ValueError extends Error {
-  constructor() {
-    super('Bank account error')
-  }
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.BankAccount = exports.ValueError = void 0;
+class ValueError extends Error {
+    constructor() {
+        super('Bank account error');
+    }
 }
-
-abstract class BankAccountStatus {
-  constructor(private _canOperate: boolean) {}
-
-  public allowsOperations(): boolean {
-    return this._canOperate;
-  }
+exports.ValueError = ValueError;
+class BankAccountStatus {
+    constructor(_canOperate) {
+        this._canOperate = _canOperate;
+    }
+    allowsOperations() {
+        return this._canOperate;
+    }
 }
-
 class Open extends BankAccountStatus {
-  constructor() {
-    super(true);
-  }
+    constructor() {
+        super(true);
+    }
 }
-
 class Closed extends BankAccountStatus {
-  constructor() {
-    super(false);
-  }
+    constructor() {
+        super(false);
+    }
 }
-
 class Money {
-  constructor(private _amount: number) {}
-
-  public add(amount: number): Money {
-    return new Money(this._amount + amount);
-  }
-
-  public substract(amount: number): Money {
-    return new Money(this._amount - amount);
-  }
-
-  get amount() {
-    return this._amount;
-  }
+    constructor(_amount) {
+        this._amount = _amount;
+    }
+    add(amount) {
+        this._amount += amount;
+        return this;
+    }
+    subtract(amount) {
+        this._amount -= amount;
+        return this;
+    }
+    get amount() {
+        return this._amount;
+    }
+    set amount(amount) {
+        this._amount = amount;
+    }
 }
-
 class Balance {
-  private _balance: Money;
-
-  constructor(amount: number) {
-    this._balance = new Money(amount);
-  }
-
-  public add(amount: number) {
-    if (amount < 0) {
-      throw new ValueError();
+    constructor(amount) {
+        this._balance = new Money(amount);
     }
-    this._balance = this._balance.add(amount);
-  }
-
-  public withdraw(amount: number) {
-    if (amount < 0 || amount > this._balance.amount) {
-      throw new ValueError();
+    add(amount) {
+        if (amount < 0) {
+            throw new ValueError();
+        }
+        this._balance.add(amount);
     }
-    this._balance = this._balance.substract(amount);
-  }
-
-  get balance(): number {
-    return this._balance.amount;
-  }
+    withdraw(amount) {
+        if (amount < 0 || amount > this._balance.amount) {
+            throw new ValueError();
+        }
+        this._balance.subtract(amount);
+    }
+    get balance() {
+        return this._balance.amount;
+    }
 }
-
-export class BankAccount {
-  private _balance: Balance;
-  private _status: BankAccountStatus;
-
-  constructor() {
-    this._balance = new Balance(0);
-    this._status = new Closed();
-  }
-
-  open(): void {
-    if (this._status.allowsOperations()) {
-      throw new ValueError();
+class BankAccount {
+    constructor() {
+        this._balance = new Balance(0);
+        this._status = new Closed();
     }
-    this._status = new Open();
-  }
-
-  close(): void {
-    if (!this._status.allowsOperations()) {
-      throw new ValueError();
+    open() {
+        if (this._status.allowsOperations()) {
+            throw new ValueError();
+        }
+        this._status = new Open();
     }
-    this.withdraw(this._balance.balance);
-    this._status = new Closed();
-  }
-
-  deposit(amount: number): void {
-    if (!this._status.allowsOperations()) {
-      throw new ValueError();
+    close() {
+        if (!this._status.allowsOperations()) {
+            throw new ValueError();
+        }
+        this.withdraw(this._balance.balance);
+        this._status = new Closed();
     }
-    this._balance.add(amount);
-  }
-
-  withdraw(amount: number): void {
-    if (!this._status.allowsOperations()) {
-      throw new ValueError();
+    deposit(amount) {
+        if (!this._status.allowsOperations()) {
+            throw new ValueError();
+        }
+        this._balance.add(amount);
     }
-    this._balance.withdraw(amount);
-  }
-
-  get balance(): number {
-    if (!this._status.allowsOperations()) {
-      throw new ValueError();
+    withdraw(amount) {
+        if (!this._status.allowsOperations()) {
+            throw new ValueError();
+        }
+        this._balance.withdraw(amount);
     }
-    return this._balance.balance;
-  }
-
-  set balance(balance: any) {
-    throw new ValueError();
-  }
+    get balance() {
+        if (!this._status.allowsOperations()) {
+            throw new ValueError();
+        }
+        return this._balance.balance;
+    }
+    set balance(balance) {
+        throw new ValueError();
+    }
 }
+exports.BankAccount = BankAccount;

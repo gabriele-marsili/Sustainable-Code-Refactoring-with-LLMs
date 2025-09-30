@@ -3,22 +3,22 @@ Object.defineProperty(exports, "__esModule", { value: true });
 class Luhn {
     static valid(input) {
         const stripped = input.replace(/\s/g, '');
-        const len = stripped.length;
-        if (len <= 1 || !/^\d+$/.test(stripped)) {
+        if (stripped.length <= 1 || /\D/.test(stripped)) {
             return false;
         }
-        let sum = 0;
-        for (let i = len - 1, j = 0; i >= 0; i--, j++) {
-            let digit = parseInt(stripped[i], 10);
-            if (j % 2 !== 0) {
-                digit *= 2;
-                if (digit > 9) {
-                    digit -= 9;
-                }
+        const reduced = stripped
+            .split('')
+            .reverse()
+            .map((char, idx) => {
+            let int = Number(char);
+            if (idx % 2 !== 0) {
+                int *= 2;
+                return int > 9 ? int - 9 : int;
             }
-            sum += digit;
-        }
-        return sum % 10 === 0;
+            return int;
+        })
+            .reduce((res, cur) => (res += cur));
+        return reduced % 10 === 0;
     }
 }
 exports.default = Luhn;
