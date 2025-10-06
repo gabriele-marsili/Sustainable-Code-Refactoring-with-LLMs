@@ -5,9 +5,7 @@
  * @returns {boolean}
  */
 export const valid = ccnumber => {
-  if (!/^\d[\d ]+$/.test(ccnumber)) {
-    return false;
-  }
+  if (!/^\d[\d ]+$/.test(ccnumber)) return false;
 
   let sum = 0;
   let shouldDouble = false;
@@ -16,12 +14,10 @@ export const valid = ccnumber => {
     const char = ccnumber[i];
     if (char === ' ') continue;
 
-    let digit = char.charCodeAt(0) - 48; // Faster than parseInt
+    let digit = char.charCodeAt(0) - 48;
     if (shouldDouble) {
-      digit *= 2;
-      if (digit > 9) digit -= 9;
+      digit = digit * 2 - (digit > 9 ? 9 : 0);
     }
-
     sum += digit;
     shouldDouble = !shouldDouble;
   }

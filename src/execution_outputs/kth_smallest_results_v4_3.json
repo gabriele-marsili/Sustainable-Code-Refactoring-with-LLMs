@@ -1,9 +1,9 @@
 {
-  "execution_date": "2025-09-29 18:59:56",
+  "execution_date": "2025-10-03 17:23:52",
   "execution_metadata": {
     "total_tests": 3,
-    "successful_tests": 2,
-    "execution_time": "00h 00m 25s",
+    "successful_tests": 3,
+    "execution_time": "00h 00m 06s",
     "cluster": "cluster_kth_smallest",
     "test_type": "llm_v4"
   },
@@ -11,58 +11,55 @@
     "python": [
       {
         "id": "kth_smallest_183",
+        "filename": "kth_smallest.py",
         "language": "python",
-        "timestamp": 1759165189.960296,
         "LLM_results": [
           {
-            "execution_time_ms": 40,
-            "CPU_usage": 7.0,
-            "RAM_usage": 13568,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_python_persistent_kth_smallest_183_1759165189.log",
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/kth_smallest/openAI/ChatGPT4_kth_smallest_v4.py",
-            "filename": "ChatGPT4_kth_smallest_v4.py"
-          }
-        ]
-      },
-      {
-        "id": "kth_smallest_183",
-        "language": "python",
-        "timestamp": 1759165194.5021288,
-        "LLM_results": [
-          {
-            "execution_time_ms": null,
-            "CPU_usage": null,
-            "RAM_usage": null,
-            "regressionTestPassed": true,
-            "success": false,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_python_persistent_kth_smallest_183_1759165194.log",
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/kth_smallest/claude/ClaudeSonnet4_kth_smallest_v4.py",
-            "filename": "ClaudeSonnet4_kth_smallest_v4.py"
-          }
-        ]
-      },
-      {
-        "id": "kth_smallest_183",
-        "language": "python",
-        "timestamp": 1759165196.826228,
-        "LLM_results": [
-          {
-            "execution_time_ms": 30,
-            "CPU_usage": 10.0,
+            "log": "",
+            "execution_time_ms": 50,
+            "CPU_usage": 6.0,
             "RAM_usage": 13824,
             "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_python_persistent_kth_smallest_183_1759165196.log",
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "kth_smallest_183",
+        "filename": "kth_smallest.py",
+        "language": "python",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/kth_smallest/claude/ClaudeSonnet4_kth_smallest_v4.py",
+            "log": "",
+            "execution_time_ms": 50,
+            "CPU_usage": 6.0,
+            "RAM_usage": 13824,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "kth_smallest_183",
+        "filename": "kth_smallest.py",
+        "language": "python",
+        "LLM_results": [
+          {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/kth_smallest/gemini/GeminiFlash_kth_smallest_v4.py",
-            "filename": "GeminiFlash_kth_smallest_v4.py"
+            "log": "",
+            "execution_time_ms": 50,
+            "CPU_usage": 6.0,
+            "RAM_usage": 13824,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
           }
         ]
       }

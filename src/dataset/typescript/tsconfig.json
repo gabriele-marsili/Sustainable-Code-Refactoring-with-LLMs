@@ -6,7 +6,18 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["jest"]
+    "noImplicitAny": false, 
+    "types": ["jest", "node"],
+    "allowUmdGlobalAccess": true,
+    "allowSyntheticDefaultImports": true, 
+    "resolveJsonModule": true,
+    "allowJs": true
   },
-  "include": ["**/*.ts"]
+  "include": [
+    "**/*.ts",
+    "**/*.js" 
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

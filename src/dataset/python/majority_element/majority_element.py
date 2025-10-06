@@ -33,7 +33,7 @@ When the counter is 0, the next element becomes the new potential majority eleme
 
 def majority_element_1(nums):
     nums.sort()
-    return nums[len(nums) // 2]
+    return nums[len(nums) >> 1]
 
 
 ##############
@@ -42,15 +42,10 @@ def majority_element_1(nums):
 
 def majority_element_2(nums):
     counter = {}
+    half = len(nums) >> 1
 
     for num in nums:
-        if num in counter:
-            counter[num] += 1
-        else:
-            counter[num] = 1
-
-    half = len(nums) // 2
-    for num in counter:
+        counter[num] = counter.get(num, 0) + 1
         if counter[num] > half:
             return num
 
@@ -60,14 +55,14 @@ def majority_element_2(nums):
 ##############
 
 def majority_element_3(nums):
-    majority = 0
-    count = 0
+    majority = nums[0]
+    count = 1
 
-    for num in nums:
+    for i in range(1, len(nums)):
         if count == 0:
-            majority = num
-
-        if num == majority:
+            majority = nums[i]
+            count = 1
+        elif nums[i] == majority:
             count += 1
         else:
             count -= 1

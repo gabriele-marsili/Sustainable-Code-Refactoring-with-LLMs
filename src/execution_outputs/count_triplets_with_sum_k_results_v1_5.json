@@ -1,41 +1,50 @@
 {
-    "execution_date": "2025-09-16 21:10:37",
-    "results": {
-        "python": [
-            {
-                "id": "count_triplets_with_sum_k_179",
-                "filename": "count_triplets_with_sum_k.py",
-                "language": "python",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 50,
-                        "CPU_usage": 87.0,
-                        "RAM_usage": 13952,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/count_triplets_with_sum_k/openAI/ChatGPT4_count_triplets_with_sum_k_v1.py",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/count_triplets_with_sum_k/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 40,
-                        "CPU_usage": 90.0,
-                        "RAM_usage": 13952,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/count_triplets_with_sum_k/claude/ClaudeSonnet4_count_triplets_with_sum_k_v1.py",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/count_triplets_with_sum_k/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/count_triplets_with_sum_k/gemini/GeminiFlash_count_triplets_with_sum_k_v1.py",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_python_persistant_count_triplets_with_sum_k_179_error_7df3510d.log"
-                    }
-                ]
-            }
+  "execution_date": "2025-10-03 17:24:27",
+  "execution_metadata": {
+    "total_tests": 2,
+    "successful_tests": 2,
+    "execution_time": "00h 00m 40s",
+    "cluster": "cluster_count_triplets_with_sum_k",
+    "test_type": "llm_v1"
+  },
+  "results": {
+    "python": [
+      {
+        "id": "count_triplets_with_sum_k_179",
+        "filename": "count_triplets_with_sum_k.py",
+        "language": "python",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/count_triplets_with_sum_k/openAI/ChatGPT4_count_triplets_with_sum_k_v1.py",
+            "log": "",
+            "execution_time_ms": 50,
+            "CPU_usage": 4.0,
+            "RAM_usage": 13952,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
         ]
-    }
+      },
+      {
+        "id": "count_triplets_with_sum_k_179",
+        "filename": "count_triplets_with_sum_k.py",
+        "language": "python",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/count_triplets_with_sum_k/gemini/GeminiFlash_count_triplets_with_sum_k_v1.py",
+            "log": "",
+            "execution_time_ms": 90,
+            "CPU_usage": 6.0,
+            "RAM_usage": 14080,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      }
+    ]
+  }
 }

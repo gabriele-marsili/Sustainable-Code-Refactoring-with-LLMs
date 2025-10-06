@@ -1,929 +1,643 @@
 {
-  "execution_date": "2025-09-29 06:22:33",
+  "execution_date": "2025-10-05 12:19:06",
   "execution_metadata": {
-    "total_tests": 57,
-    "successful_tests": 49,
-    "execution_time": "00h 02m 40s",
+    "total_tests": 62,
+    "successful_tests": 54,
+    "execution_time": "00h 05m 55s",
     "cluster": "cluster_armstrong_numbers",
     "test_type": "llm_v2"
   },
   "results": {
-    "python": [
-      {
-        "id": "armstrong-numbers_2",
-        "language": "python",
-        "timestamp": 1759119595.607363,
-        "LLM_results": [
-          {
-            "execution_time_ms": 20,
-            "CPU_usage": 76.0,
-            "RAM_usage": 13824,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_python_persistent_armstrong-numbers_2_1759119595.log",
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/armstrong-numbers/openAI/ChatGPT4_armstrong-numbers_v2.py",
-            "filename": "ChatGPT4_armstrong-numbers_v2.py"
-          }
-        ]
-      },
-      {
-        "id": "armstrong-numbers_2",
-        "language": "python",
-        "timestamp": 1759119596.271866,
-        "LLM_results": [
-          {
-            "execution_time_ms": 20,
-            "CPU_usage": 88.0,
-            "RAM_usage": 13952,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_python_persistent_armstrong-numbers_2_1759119596.log",
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/armstrong-numbers/claude/ClaudeSonnet4_armstrong-numbers_v2.py",
-            "filename": "ClaudeSonnet4_armstrong-numbers_v2.py"
-          }
-        ]
-      },
-      {
-        "id": "armstrong-numbers_2",
-        "language": "python",
-        "timestamp": 1759119597.807701,
-        "LLM_results": [
-          {
-            "execution_time_ms": 30,
-            "CPU_usage": 84.0,
-            "RAM_usage": 13824,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_python_persistent_armstrong-numbers_2_1759119597.log",
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/armstrong-numbers/gemini/GeminiFlash_armstrong-numbers_v2.py",
-            "filename": "GeminiFlash_armstrong-numbers_v2.py"
-          }
-        ]
-      }
-    ],
-    "javascript": [
-      {
-        "id": "javascript_armstrong-numbers_exercism-javascript-ThomasZumsteg",
-        "language": "javascript",
-        "timestamp": 1759119602.5243268,
-        "LLM_results": [
-          {
-            "execution_time_ms": 330,
-            "CPU_usage": 21.0,
-            "RAM_usage": 81552,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_armstrong-numbers_exercism-javascript-ThomasZumsteg_1759119602.log",
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/armstrong-numbers_exercism-javascript-ThomasZumsteg/openAI/ChatGPT4_armstrong-numbers_v2.js",
-            "filename": "ChatGPT4_armstrong-numbers_v2.js"
-          }
-        ]
-      },
-      {
-        "id": "javascript_armstrong-numbers_exercism-javascript-ThomasZumsteg",
-        "language": "javascript",
-        "timestamp": 1759119603.15823,
-        "LLM_results": [
-          {
-            "execution_time_ms": 330,
-            "CPU_usage": 21.0,
-            "RAM_usage": 81552,
-            "regressionTestPassed": false,
-            "success": true,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_armstrong-numbers_exercism-javascript-ThomasZumsteg_1759119603.log",
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/armstrong-numbers_exercism-javascript-ThomasZumsteg/claude/ClaudeSonnet4_armstrong-numbers_v2.js",
-            "filename": "ClaudeSonnet4_armstrong-numbers_v2.js"
-          }
-        ]
-      },
-      {
-        "id": "javascript_armstrong-numbers_exercism-javascript-ThomasZumsteg",
-        "language": "javascript",
-        "timestamp": 1759119603.587254,
-        "LLM_results": [
-          {
-            "execution_time_ms": 330,
-            "CPU_usage": 21.0,
-            "RAM_usage": 81552,
-            "regressionTestPassed": false,
-            "success": true,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_armstrong-numbers_exercism-javascript-ThomasZumsteg_1759119603.log",
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/armstrong-numbers_exercism-javascript-ThomasZumsteg/gemini/GeminiFlash_armstrong-numbers_v2.js",
-            "filename": "GeminiFlash_armstrong-numbers_v2.js"
-          }
-        ]
-      },
-      {
-        "id": "javascript_armstrong-numbers_exercism-javascript-ffflorian",
-        "language": "javascript",
-        "timestamp": 1759119604.033407,
-        "LLM_results": [
-          {
-            "execution_time_ms": 300,
-            "CPU_usage": 29.0,
-            "RAM_usage": 82224,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_armstrong-numbers_exercism-javascript-ffflorian_1759119604.log",
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/armstrong-numbers_exercism-javascript-ffflorian/openAI/ChatGPT4_armstrong-numbers_v2.js",
-            "filename": "ChatGPT4_armstrong-numbers_v2.js"
-          }
-        ]
-      },
-      {
-        "id": "javascript_armstrong-numbers_exercism-javascript-ffflorian",
-        "language": "javascript",
-        "timestamp": 1759119604.4353,
-        "LLM_results": [
-          {
-            "execution_time_ms": 300,
-            "CPU_usage": 29.0,
-            "RAM_usage": 82224,
-            "regressionTestPassed": false,
-            "success": true,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_armstrong-numbers_exercism-javascript-ffflorian_1759119604.log",
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/armstrong-numbers_exercism-javascript-ffflorian/claude/ClaudeSonnet4_armstrong-numbers_v2.js",
-            "filename": "ClaudeSonnet4_armstrong-numbers_v2.js"
-          }
-        ]
-      },
-      {
-        "id": "javascript_armstrong-numbers_exercism-javascript-ffflorian",
-        "language": "javascript",
-        "timestamp": 1759119604.840548,
-        "LLM_results": [
-          {
-            "execution_time_ms": 300,
-            "CPU_usage": 29.0,
-            "RAM_usage": 82224,
-            "regressionTestPassed": false,
-            "success": true,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_armstrong-numbers_exercism-javascript-ffflorian_1759119604.log",
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/armstrong-numbers_exercism-javascript-ffflorian/gemini/GeminiFlash_armstrong-numbers_v2.js",
-            "filename": "GeminiFlash_armstrong-numbers_v2.js"
-          }
-        ]
-      },
-      {
-        "id": "javascript_armstrong-numbers_exercism-javascript-programmiri_programmiri",
-        "language": "javascript",
-        "timestamp": 1759119608.5637162,
-        "LLM_results": [
-          {
-            "execution_time_ms": 330,
-            "CPU_usage": 29.0,
-            "RAM_usage": 81172,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_armstrong-numbers_exercism-javascript-programmiri_programmiri_1759119608.log",
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/armstrong-numbers_exercism-javascript-programmiri/openAI/ChatGPT4_armstrong-numbers_v2.js",
-            "filename": "ChatGPT4_armstrong-numbers_v2.js"
-          }
-        ]
-      },
-      {
-        "id": "javascript_armstrong-numbers_exercism-javascript-programmiri_programmiri",
-        "language": "javascript",
-        "timestamp": 1759119609.351933,
-        "LLM_results": [
-          {
-            "execution_time_ms": 330,
-            "CPU_usage": 22.0,
-            "RAM_usage": 80528,
-            "regressionTestPassed": false,
-            "success": true,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_armstrong-numbers_exercism-javascript-programmiri_programmiri_1759119609.log",
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/armstrong-numbers_exercism-javascript-programmiri/claude/ClaudeSonnet4_armstrong-numbers_v2.js",
-            "filename": "ClaudeSonnet4_armstrong-numbers_v2.js"
-          }
-        ]
-      },
-      {
-        "id": "javascript_armstrong-numbers_exercism-javascript-programmiri_programmiri",
-        "language": "javascript",
-        "timestamp": 1759119609.9456582,
-        "LLM_results": [
-          {
-            "execution_time_ms": 330,
-            "CPU_usage": 22.0,
-            "RAM_usage": 80528,
-            "regressionTestPassed": false,
-            "success": true,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_armstrong-numbers_exercism-javascript-programmiri_programmiri_1759119609.log",
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/armstrong-numbers_exercism-javascript-programmiri/gemini/GeminiFlash_armstrong-numbers_v2.js",
-            "filename": "GeminiFlash_armstrong-numbers_v2.js"
-          }
-        ]
-      },
-      {
-        "id": "javascript_armstrong-numbers_exercism-javascript-ffflorian_ffflorian",
-        "language": "javascript",
-        "timestamp": 1759119610.3841128,
-        "LLM_results": [
-          {
-            "execution_time_ms": 290,
-            "CPU_usage": 50.0,
-            "RAM_usage": 81224,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_armstrong-numbers_exercism-javascript-ffflorian_ffflorian_1759119610.log",
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/armstrong-numbers_exercism-javascript-ffflorian/openAI/ChatGPT4_armstrong-numbers_v2.js",
-            "filename": "ChatGPT4_armstrong-numbers_v2.js"
-          }
-        ]
-      },
-      {
-        "id": "javascript_armstrong-numbers_exercism-javascript-ffflorian_ffflorian",
-        "language": "javascript",
-        "timestamp": 1759119610.7937632,
-        "LLM_results": [
-          {
-            "execution_time_ms": 290,
-            "CPU_usage": 50.0,
-            "RAM_usage": 81224,
-            "regressionTestPassed": false,
-            "success": true,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_armstrong-numbers_exercism-javascript-ffflorian_ffflorian_1759119610.log",
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/armstrong-numbers_exercism-javascript-ffflorian/claude/ClaudeSonnet4_armstrong-numbers_v2.js",
-            "filename": "ClaudeSonnet4_armstrong-numbers_v2.js"
-          }
-        ]
-      },
-      {
-        "id": "javascript_armstrong-numbers_exercism-javascript-ffflorian_ffflorian",
-        "language": "javascript",
-        "timestamp": 1759119611.2077382,
-        "LLM_results": [
-          {
-            "execution_time_ms": 290,
-            "CPU_usage": 50.0,
-            "RAM_usage": 81224,
-            "regressionTestPassed": false,
-            "success": true,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_armstrong-numbers_exercism-javascript-ffflorian_ffflorian_1759119611.log",
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/armstrong-numbers_exercism-javascript-ffflorian/gemini/GeminiFlash_armstrong-numbers_v2.js",
-            "filename": "GeminiFlash_armstrong-numbers_v2.js"
-          }
-        ]
-      },
-      {
-        "id": "javascript_armstrong-numbers_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
-        "language": "javascript",
-        "timestamp": 1759119614.04782,
-        "LLM_results": [
-          {
-            "execution_time_ms": 280,
-            "CPU_usage": 58.0,
-            "RAM_usage": 81184,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_armstrong-numbers_exercism-javascript-ThomasZumsteg_ThomasZumsteg_1759119614.log",
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/armstrong-numbers_exercism-javascript-ThomasZumsteg/openAI/ChatGPT4_armstrong-numbers_v2.js",
-            "filename": "ChatGPT4_armstrong-numbers_v2.js"
-          }
-        ]
-      },
-      {
-        "id": "javascript_armstrong-numbers_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
-        "language": "javascript",
-        "timestamp": 1759119614.494574,
-        "LLM_results": [
-          {
-            "execution_time_ms": 280,
-            "CPU_usage": 58.0,
-            "RAM_usage": 81184,
-            "regressionTestPassed": false,
-            "success": true,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_armstrong-numbers_exercism-javascript-ThomasZumsteg_ThomasZumsteg_1759119614.log",
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/armstrong-numbers_exercism-javascript-ThomasZumsteg/claude/ClaudeSonnet4_armstrong-numbers_v2.js",
-            "filename": "ClaudeSonnet4_armstrong-numbers_v2.js"
-          }
-        ]
-      },
-      {
-        "id": "javascript_armstrong-numbers_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
-        "language": "javascript",
-        "timestamp": 1759119614.908024,
-        "LLM_results": [
-          {
-            "execution_time_ms": 280,
-            "CPU_usage": 58.0,
-            "RAM_usage": 81184,
-            "regressionTestPassed": false,
-            "success": true,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_armstrong-numbers_exercism-javascript-ThomasZumsteg_ThomasZumsteg_1759119614.log",
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/armstrong-numbers_exercism-javascript-ThomasZumsteg/gemini/GeminiFlash_armstrong-numbers_v2.js",
-            "filename": "GeminiFlash_armstrong-numbers_v2.js"
-          }
-        ]
-      }
-    ],
     "typescript": [
       {
         "id": "typescript_armstrong-numbers_Exercism-typescript-shybyte_shybyte",
+        "filename": "Filename not found",
         "language": "typescript",
-        "timestamp": 1759119617.073455,
         "LLM_results": [
           {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_Exercism-typescript-shybyte/openAI/ChatGPT4_armstrong-numbers_v2.js",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_armstrong-numbers_Exercism-typescript-shybyte_shybyte_1759119617.log",
             "execution_time_ms": 2045,
             "CPU_usage": null,
             "RAM_usage": null,
             "regressionTestPassed": false,
             "success": false,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_armstrong-numbers_Exercism-typescript-shybyte_shybyte_1759119617.log",
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_Exercism-typescript-shybyte/openAI/ChatGPT4_armstrong-numbers_v2.js",
-            "filename": "ChatGPT4_armstrong-numbers_v2.js"
-          }
-        ]
-      },
-      {
-        "id": "typescript_armstrong-numbers_Exercism-typescript-shybyte_shybyte",
-        "language": "typescript",
-        "timestamp": 1759119624.7973409,
-        "LLM_results": [
-          {
-            "execution_time_ms": 1219,
-            "CPU_usage": 79.0,
-            "RAM_usage": 221708,
-            "regressionTestPassed": false,
-            "success": true,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_armstrong-numbers_Exercism-typescript-shybyte_shybyte_1759119624.log",
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_Exercism-typescript-shybyte/claude/ClaudeSonnet4_armstrong-numbers_v2.js",
-            "filename": "ClaudeSonnet4_armstrong-numbers_v2.js"
-          }
-        ]
-      },
-      {
-        "id": "typescript_armstrong-numbers_Exercism-typescript-shybyte_shybyte",
-        "language": "typescript",
-        "timestamp": 1759119625.214022,
-        "LLM_results": [
-          {
-            "execution_time_ms": 1219,
-            "CPU_usage": 79.0,
-            "RAM_usage": 221708,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_armstrong-numbers_Exercism-typescript-shybyte_shybyte_1759119625.log",
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_Exercism-typescript-shybyte/claude/ClaudeSonnet4_armstrong-numbers_v2.ts",
-            "filename": "ClaudeSonnet4_armstrong-numbers_v2.ts"
-          }
-        ]
-      },
-      {
-        "id": "typescript_armstrong-numbers_Exercism-typescript-shybyte_shybyte",
-        "language": "typescript",
-        "timestamp": 1759119625.616988,
-        "LLM_results": [
-          {
-            "execution_time_ms": 1219,
-            "CPU_usage": 79.0,
-            "RAM_usage": 221708,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_armstrong-numbers_Exercism-typescript-shybyte_shybyte_1759119625.log",
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_Exercism-typescript-shybyte/gemini/GeminiFlash_armstrong-numbers_v2.ts",
-            "filename": "GeminiFlash_armstrong-numbers_v2.ts"
-          }
-        ]
-      },
-      {
-        "id": "typescript_armstrong-numbers_Exercism-typescript-shybyte_shybyte",
-        "language": "typescript",
-        "timestamp": 1759119625.618634,
-        "LLM_results": [
-          {
-            "execution_time_ms": 1219,
-            "CPU_usage": 79.0,
-            "RAM_usage": 221708,
-            "regressionTestPassed": false,
-            "success": true,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_armstrong-numbers_Exercism-typescript-shybyte_shybyte_1759119625.log",
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_Exercism-typescript-shybyte/openAI/ChatGPT4_armstrong-numbers_v2.ts",
-            "filename": "ChatGPT4_armstrong-numbers_v2.ts"
-          }
-        ]
-      },
-      {
-        "id": "typescript_armstrong-numbers_Exercism-typescript-shybyte_shybyte",
-        "language": "typescript",
-        "timestamp": 1759119625.618847,
-        "LLM_results": [
-          {
-            "execution_time_ms": 1219,
-            "CPU_usage": 79.0,
-            "RAM_usage": 221708,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_armstrong-numbers_Exercism-typescript-shybyte_shybyte_1759119625.log",
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_Exercism-typescript-shybyte/gemini/GeminiFlash_armstrong-numbers_v2.js",
-            "filename": "GeminiFlash_armstrong-numbers_v2.js"
+            "error_message": "Docker exit code: 1"
           }
         ]
       },
       {
         "id": "typescript_armstrong-numbers_Exercism-typescript-FilipeCerejo_FilipeCerejo",
+        "filename": "Filename not found",
         "language": "typescript",
-        "timestamp": 1759119627.70577,
         "LLM_results": [
           {
-            "execution_time_ms": 2108,
-            "CPU_usage": 53.0,
-            "RAM_usage": 217840,
-            "regressionTestPassed": false,
-            "success": true,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_armstrong-numbers_Exercism-typescript-FilipeCerejo_FilipeCerejo_1759119627.log",
             "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_Exercism-typescript-FilipeCerejo/openAI/ChatGPT4_armstrong-numbers_v2.js",
-            "filename": "ChatGPT4_armstrong-numbers_v2.js"
-          }
-        ]
-      },
-      {
-        "id": "typescript_armstrong-numbers_Exercism-typescript-FilipeCerejo_FilipeCerejo",
-        "language": "typescript",
-        "timestamp": 1759119628.210544,
-        "LLM_results": [
-          {
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_Exercism-typescript-FilipeCerejo/openAI/ChatGPT4_armstrong-numbers_v2.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_armstrong-numbers_Exercism-typescript-FilipeCerejo_FilipeCerejo_1759119628.log",
             "execution_time_ms": 2108,
             "CPU_usage": null,
             "RAM_usage": null,
             "regressionTestPassed": false,
             "success": false,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_armstrong-numbers_Exercism-typescript-FilipeCerejo_FilipeCerejo_1759119628.log",
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_Exercism-typescript-FilipeCerejo/openAI/ChatGPT4_armstrong-numbers_v2.ts",
-            "filename": "ChatGPT4_armstrong-numbers_v2.ts"
-          }
-        ]
-      },
-      {
-        "id": "typescript_armstrong-numbers_Exercism-typescript-FilipeCerejo_FilipeCerejo",
-        "language": "typescript",
-        "timestamp": 1759119633.522558,
-        "LLM_results": [
-          {
-            "execution_time_ms": 1236,
-            "CPU_usage": 89.0,
-            "RAM_usage": 221056,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_armstrong-numbers_Exercism-typescript-FilipeCerejo_FilipeCerejo_1759119633.log",
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_Exercism-typescript-FilipeCerejo/claude/ClaudeSonnet4_armstrong-numbers_v2.ts",
-            "filename": "ClaudeSonnet4_armstrong-numbers_v2.ts"
-          }
-        ]
-      },
-      {
-        "id": "typescript_armstrong-numbers_Exercism-typescript-FilipeCerejo_FilipeCerejo",
-        "language": "typescript",
-        "timestamp": 1759119633.9258292,
-        "LLM_results": [
-          {
-            "execution_time_ms": 1236,
-            "CPU_usage": 89.0,
-            "RAM_usage": 221056,
-            "regressionTestPassed": false,
-            "success": true,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_armstrong-numbers_Exercism-typescript-FilipeCerejo_FilipeCerejo_1759119633.log",
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_Exercism-typescript-FilipeCerejo/claude/ClaudeSonnet4_armstrong-numbers_v2.js",
-            "filename": "ClaudeSonnet4_armstrong-numbers_v2.js"
-          }
-        ]
-      },
-      {
-        "id": "typescript_armstrong-numbers_Exercism-typescript-FilipeCerejo_FilipeCerejo",
-        "language": "typescript",
-        "timestamp": 1759119634.3347352,
-        "LLM_results": [
-          {
-            "execution_time_ms": 1236,
-            "CPU_usage": 89.0,
-            "RAM_usage": 221056,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_armstrong-numbers_Exercism-typescript-FilipeCerejo_FilipeCerejo_1759119634.log",
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_Exercism-typescript-FilipeCerejo/gemini/GeminiFlash_armstrong-numbers_v2.ts",
-            "filename": "GeminiFlash_armstrong-numbers_v2.ts"
-          }
-        ]
-      },
-      {
-        "id": "typescript_armstrong-numbers_Exercism-typescript-FilipeCerejo_FilipeCerejo",
-        "language": "typescript",
-        "timestamp": 1759119634.334757,
-        "LLM_results": [
-          {
-            "execution_time_ms": 1236,
-            "CPU_usage": 89.0,
-            "RAM_usage": 221056,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_armstrong-numbers_Exercism-typescript-FilipeCerejo_FilipeCerejo_1759119634.log",
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_Exercism-typescript-FilipeCerejo/gemini/GeminiFlash_armstrong-numbers_v2.js",
-            "filename": "GeminiFlash_armstrong-numbers_v2.js"
+            "error_message": "Docker exit code: 1"
           }
         ]
       },
       {
         "id": "typescript_armstrong-numbers_exercism-javascript-samajammin_samajammin",
+        "filename": "Filename not found",
         "language": "typescript",
-        "timestamp": 1759119636.804847,
         "LLM_results": [
           {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_exercism-javascript-samajammin/openAI/ChatGPT4_armstrong-numbers_v2.js",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_armstrong-numbers_exercism-javascript-samajammin_samajammin_1759119636.log",
             "execution_time_ms": 1308,
             "CPU_usage": null,
             "RAM_usage": null,
             "regressionTestPassed": false,
             "success": false,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_armstrong-numbers_exercism-javascript-samajammin_samajammin_1759119636.log",
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "typescript_armstrong-numbers_Exercism-typescript-shybyte_shybyte",
+        "filename": "armstrong-numbers.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_Exercism-typescript-shybyte/openAI/ChatGPT4_armstrong-numbers_v2.js",
+            "log": "",
+            "execution_time_ms": 10256,
+            "CPU_usage": 11.0,
+            "RAM_usage": 220792,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_armstrong-numbers_Exercism-typescript-shybyte_shybyte",
+        "filename": "armstrong-numbers.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_Exercism-typescript-shybyte/openAI/ChatGPT4_armstrong-numbers_v2.ts",
+            "log": "",
+            "execution_time_ms": 10256,
+            "CPU_usage": 11.0,
+            "RAM_usage": 220792,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_armstrong-numbers_Exercism-typescript-shybyte_shybyte",
+        "filename": "armstrong-numbers.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_Exercism-typescript-shybyte/claude/ClaudeSonnet4_armstrong-numbers_v2.ts",
+            "log": "",
+            "execution_time_ms": 10256,
+            "CPU_usage": 11.0,
+            "RAM_usage": 220792,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_armstrong-numbers_Exercism-typescript-shybyte_shybyte",
+        "filename": "armstrong-numbers.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_Exercism-typescript-shybyte/claude/ClaudeSonnet4_armstrong-numbers_v2.js",
+            "log": "",
+            "execution_time_ms": 10256,
+            "CPU_usage": 11.0,
+            "RAM_usage": 220792,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_armstrong-numbers_Exercism-typescript-shybyte_shybyte",
+        "filename": "armstrong-numbers.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_Exercism-typescript-shybyte/gemini/GeminiFlash_armstrong-numbers_v2.js",
+            "log": "",
+            "execution_time_ms": 10256,
+            "CPU_usage": 11.0,
+            "RAM_usage": 220792,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_armstrong-numbers_Exercism-typescript-FilipeCerejo_FilipeCerejo",
+        "filename": "armstrong-numbers.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_Exercism-typescript-FilipeCerejo/openAI/ChatGPT4_armstrong-numbers_v2.js",
+            "log": "",
+            "execution_time_ms": 10179,
+            "CPU_usage": 11.0,
+            "RAM_usage": 223516,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_armstrong-numbers_Exercism-typescript-shybyte_shybyte",
+        "filename": "armstrong-numbers.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_Exercism-typescript-shybyte/gemini/GeminiFlash_armstrong-numbers_v2.ts",
+            "log": "",
+            "execution_time_ms": 10496,
+            "CPU_usage": 12.0,
+            "RAM_usage": 222768,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_armstrong-numbers_Exercism-typescript-FilipeCerejo_FilipeCerejo",
+        "filename": "armstrong-numbers.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_Exercism-typescript-FilipeCerejo/openAI/ChatGPT4_armstrong-numbers_v2.ts",
+            "log": "",
+            "execution_time_ms": 10179,
+            "CPU_usage": 11.0,
+            "RAM_usage": 223516,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_armstrong-numbers_Exercism-typescript-FilipeCerejo_FilipeCerejo",
+        "filename": "armstrong-numbers.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_Exercism-typescript-FilipeCerejo/gemini/GeminiFlash_armstrong-numbers_v2.js",
+            "log": "",
+            "execution_time_ms": 10179,
+            "CPU_usage": 11.0,
+            "RAM_usage": 223516,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_armstrong-numbers_Exercism-typescript-FilipeCerejo_FilipeCerejo",
+        "filename": "armstrong-numbers.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_Exercism-typescript-FilipeCerejo/claude/ClaudeSonnet4_armstrong-numbers_v2.ts",
+            "log": "",
+            "execution_time_ms": 10179,
+            "CPU_usage": 11.0,
+            "RAM_usage": 223516,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_armstrong-numbers_Exercism-typescript-FilipeCerejo_FilipeCerejo",
+        "filename": "armstrong-numbers.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_Exercism-typescript-FilipeCerejo/claude/ClaudeSonnet4_armstrong-numbers_v2.js",
+            "log": "",
+            "execution_time_ms": 10179,
+            "CPU_usage": 11.0,
+            "RAM_usage": 223516,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_armstrong-numbers_exercism-javascript-samajammin_samajammin",
+        "filename": "armstrong-numbers.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_exercism-javascript-samajammin/openAI/ChatGPT4_armstrong-numbers_v2.js",
-            "filename": "ChatGPT4_armstrong-numbers_v2.js"
-          }
-        ]
-      },
-      {
-        "id": "typescript_armstrong-numbers_exercism-javascript-samajammin_samajammin",
-        "language": "typescript",
-        "timestamp": 1759119647.0821838,
-        "LLM_results": [
-          {
-            "execution_time_ms": 1213,
-            "CPU_usage": 89.0,
-            "RAM_usage": 220112,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_armstrong-numbers_exercism-javascript-samajammin_samajammin_1759119647.log",
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_exercism-javascript-samajammin/gemini/GeminiFlash_armstrong-numbers_v2.ts",
-            "filename": "GeminiFlash_armstrong-numbers_v2.ts"
-          }
-        ]
-      },
-      {
-        "id": "typescript_armstrong-numbers_exercism-javascript-samajammin_samajammin",
-        "language": "typescript",
-        "timestamp": 1759119647.887736,
-        "LLM_results": [
-          {
-            "execution_time_ms": 1213,
-            "CPU_usage": 89.0,
-            "RAM_usage": 220112,
+            "log": "",
+            "execution_time_ms": 8533,
+            "CPU_usage": 12.0,
+            "RAM_usage": 218032,
             "regressionTestPassed": false,
-            "success": true,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_armstrong-numbers_exercism-javascript-samajammin_samajammin_1759119647.log",
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_exercism-javascript-samajammin/openAI/ChatGPT4_armstrong-numbers_v2.ts",
-            "filename": "ChatGPT4_armstrong-numbers_v2.ts"
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_armstrong-numbers_Exercism-typescript-FilipeCerejo_FilipeCerejo",
+        "filename": "armstrong-numbers.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_Exercism-typescript-FilipeCerejo/gemini/GeminiFlash_armstrong-numbers_v2.ts",
+            "log": "",
+            "execution_time_ms": 6749,
+            "CPU_usage": 16.0,
+            "RAM_usage": 221776,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
           }
         ]
       },
       {
         "id": "typescript_armstrong-numbers_exercism-javascript-samajammin_samajammin",
+        "filename": "armstrong-numbers.ts",
         "language": "typescript",
-        "timestamp": 1759119647.8878238,
         "LLM_results": [
           {
-            "execution_time_ms": 1213,
-            "CPU_usage": 89.0,
-            "RAM_usage": 220112,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_armstrong-numbers_exercism-javascript-samajammin_samajammin_1759119647.log",
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_exercism-javascript-samajammin/gemini/GeminiFlash_armstrong-numbers_v2.js",
-            "filename": "GeminiFlash_armstrong-numbers_v2.js"
+            "log": "",
+            "execution_time_ms": 8533,
+            "CPU_usage": 12.0,
+            "RAM_usage": 218032,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
           }
         ]
       },
       {
         "id": "typescript_armstrong-numbers_exercism-javascript-samajammin_samajammin",
+        "filename": "armstrong-numbers.ts",
         "language": "typescript",
-        "timestamp": 1759119647.887809,
         "LLM_results": [
           {
-            "execution_time_ms": 1213,
-            "CPU_usage": 89.0,
-            "RAM_usage": 220112,
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_exercism-javascript-samajammin/openAI/ChatGPT4_armstrong-numbers_v2.ts",
+            "log": "",
+            "execution_time_ms": 8533,
+            "CPU_usage": 12.0,
+            "RAM_usage": 218032,
             "regressionTestPassed": false,
-            "success": true,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_armstrong-numbers_exercism-javascript-samajammin_samajammin_1759119647.log",
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_armstrong-numbers_exercism-javascript-samajammin_samajammin",
+        "filename": "armstrong-numbers.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_exercism-javascript-samajammin/claude/ClaudeSonnet4_armstrong-numbers_v2.js",
-            "filename": "ClaudeSonnet4_armstrong-numbers_v2.js"
+            "log": "",
+            "execution_time_ms": 8533,
+            "CPU_usage": 12.0,
+            "RAM_usage": 218032,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
           }
         ]
       },
       {
         "id": "typescript_armstrong-numbers_exercism-javascript-samajammin_samajammin",
+        "filename": "armstrong-numbers.ts",
         "language": "typescript",
-        "timestamp": 1759119647.8878741,
         "LLM_results": [
           {
-            "execution_time_ms": 1213,
-            "CPU_usage": 89.0,
-            "RAM_usage": 220112,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_armstrong-numbers_exercism-javascript-samajammin_samajammin_1759119647.log",
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_exercism-javascript-samajammin/claude/ClaudeSonnet4_armstrong-numbers_v2.ts",
-            "filename": "ClaudeSonnet4_armstrong-numbers_v2.ts"
+            "log": "",
+            "execution_time_ms": 8533,
+            "CPU_usage": 12.0,
+            "RAM_usage": 218032,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_armstrong-numbers_exercism-javascript-samajammin_samajammin",
+        "filename": "armstrong-numbers.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/armstrong-numbers_exercism-javascript-samajammin/gemini/GeminiFlash_armstrong-numbers_v2.ts",
+            "log": "",
+            "execution_time_ms": 7940,
+            "CPU_usage": 14.0,
+            "RAM_usage": 219808,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
           }
         ]
       }
     ],
     "java": [
       {
-        "id": "Java_armstrong-numbers_exercism-java-uzilan_robiworks",
-        "language": "java",
-        "timestamp": 1759119652.0805361,
-        "LLM_results": [
-          {
-            "execution_time_ms": 100,
-            "CPU_usage": 53.0,
-            "RAM_usage": 45900,
-            "regressionTestPassed": false,
-            "success": true,
-            "error_message": "Docker exit code: 2",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_java_persistent_Java_armstrong-numbers_exercism-java-uzilan_robiworks_1759119652.log",
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/armstrong-numbers_exercism-java-uzilan_robiworks/openAI/ChatGPT4_armstrong-numbers_v2.java",
-            "filename": "ChatGPT4_armstrong-numbers_v2.java"
-          }
-        ]
-      },
-      {
-        "id": "Java_armstrong-numbers_exercism-java-blogscot_blogscot",
-        "language": "java",
-        "timestamp": 1759119661.2421582,
-        "LLM_results": [
-          {
-            "execution_time_ms": 99,
-            "CPU_usage": 44.0,
-            "RAM_usage": 45632,
-            "regressionTestPassed": false,
-            "success": true,
-            "error_message": "Docker exit code: 2",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_java_persistent_Java_armstrong-numbers_exercism-java-blogscot_blogscot_1759119661.log",
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/armstrong-numbers_exercism-java-blogscot/openAI/ChatGPT4_armstrong-numbers_v2.java",
-            "filename": "ChatGPT4_armstrong-numbers_v2.java"
-          }
-        ]
-      },
-      {
         "id": "Java_armstrong_numbers_Exercism (java_rabestro)",
+        "filename": "Filename not found",
         "language": "java",
-        "timestamp": 1759119662.589039,
         "LLM_results": [
           {
-            "execution_time_ms": 530,
-            "CPU_usage": 78.0,
-            "RAM_usage": 79708,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_java_persistent_Java_armstrong_numbers_Exercism (java_rabestro)_1759119662.log",
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/armstrong_numbers_Exercism_java_rabestro/openAI/ChatGPT4_ArmstrongNumbers_v2.java",
-            "filename": "ChatGPT4_ArmstrongNumbers_v2.java"
-          }
-        ]
-      },
-      {
-        "id": "Java_armstrong-numbers_exercism-java-blogscot_blogscot",
-        "language": "java",
-        "timestamp": 1759119663.1997068,
-        "LLM_results": [
-          {
-            "execution_time_ms": 99,
-            "CPU_usage": 44.0,
-            "RAM_usage": 45632,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_java_persistent_Java_armstrong-numbers_exercism-java-blogscot_blogscot_1759119663.log",
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/armstrong-numbers_exercism-java-blogscot/gemini/GeminiFlash_armstrong-numbers_v2.java",
-            "filename": "GeminiFlash_armstrong-numbers_v2.java"
-          }
-        ]
-      },
-      {
-        "id": "Java_armstrong_numbers_Exercism (java_rabestro)",
-        "language": "java",
-        "timestamp": 1759119666.407223,
-        "LLM_results": [
-          {
-            "execution_time_ms": null,
-            "CPU_usage": null,
-            "RAM_usage": null,
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": "Docker exit code: 2",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_java_persistent_Java_armstrong_numbers_Exercism (java_rabestro)_1759119666.log",
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/armstrong_numbers_Exercism_java_rabestro/claude/ClaudeSonnet4_ArmstrongNumbers_v2.java",
-            "filename": "ClaudeSonnet4_ArmstrongNumbers_v2.java"
-          }
-        ]
-      },
-      {
-        "id": "Java_armstrong_numbers_Exercism (java_rabestro)",
-        "language": "java",
-        "timestamp": 1759119669.438312,
-        "LLM_results": [
-          {
-            "execution_time_ms": 570,
-            "CPU_usage": 56.0,
-            "RAM_usage": 80080,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_java_persistent_Java_armstrong_numbers_Exercism (java_rabestro)_1759119669.log",
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/armstrong_numbers_Exercism_java_rabestro/gemini/GeminiFlash_ArmstrongNumbers_v2.java",
-            "filename": "GeminiFlash_ArmstrongNumbers_v2.java"
-          }
-        ]
-      },
-      {
-        "id": "Java_armstrong_numbers_Exercism (java_ValMati)",
-        "language": "java",
-        "timestamp": 1759119670.879819,
-        "LLM_results": [
-          {
-            "execution_time_ms": 560,
-            "CPU_usage": 82.0,
-            "RAM_usage": 80284,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_java_persistent_Java_armstrong_numbers_Exercism (java_ValMati)_1759119670.log",
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/armstrong_numbers_Exercism_java_ValMati/openAI/ChatGPT4_ArmstrongNumbers_v2.java",
-            "filename": "ChatGPT4_ArmstrongNumbers_v2.java"
-          }
-        ]
-      },
-      {
-        "id": "Java_armstrong-numbers_exercism-java-uzilan_robiworks",
-        "language": "java",
-        "timestamp": 1759119671.5860171,
-        "LLM_results": [
-          {
-            "execution_time_ms": 99,
-            "CPU_usage": 78.0,
-            "RAM_usage": 45844,
-            "regressionTestPassed": false,
-            "success": true,
-            "error_message": "Docker exit code: 2",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_java_persistent_Java_armstrong-numbers_exercism-java-uzilan_robiworks_1759119671.log",
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/armstrong-numbers_exercism-java-uzilan_robiworks/claude/ClaudeSonnet4_armstrong-numbers_v2.java",
-            "filename": "ClaudeSonnet4_armstrong-numbers_v2.java"
-          }
-        ]
-      },
-      {
-        "id": "Java_armstrong-numbers_exercism-java-uzilan_robiworks",
-        "language": "java",
-        "timestamp": 1759119671.9976802,
-        "LLM_results": [
-          {
-            "execution_time_ms": 99,
-            "CPU_usage": 78.0,
-            "RAM_usage": 45844,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_java_persistent_Java_armstrong-numbers_exercism-java-uzilan_robiworks_1759119671.log",
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/armstrong-numbers_exercism-java-uzilan_robiworks/gemini/GeminiFlash_armstrong-numbers_v2.java",
-            "filename": "GeminiFlash_armstrong-numbers_v2.java"
-          }
-        ]
-      },
-      {
-        "id": "Java_armstrong-numbers_exercism-java-blogscot_blogscot",
-        "language": "java",
-        "timestamp": 1759119672.407698,
-        "LLM_results": [
-          {
-            "execution_time_ms": 110,
-            "CPU_usage": 86.0,
-            "RAM_usage": 45888,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_java_persistent_Java_armstrong-numbers_exercism-java-blogscot_blogscot_1759119672.log",
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/armstrong-numbers_exercism-java-blogscot/claude/ClaudeSonnet4_armstrong-numbers_v2.java",
-            "filename": "ClaudeSonnet4_armstrong-numbers_v2.java"
-          }
-        ]
-      },
-      {
-        "id": "Java_armstrong_numbers_Exercism (java_ValMati)",
-        "language": "java",
-        "timestamp": 1759119675.020076,
-        "LLM_results": [
-          {
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_java_persistent_Java_armstrong_numbers_Exercism (java_rabestro)_1759119666.log",
             "execution_time_ms": null,
             "CPU_usage": null,
             "RAM_usage": null,
             "regressionTestPassed": false,
             "success": false,
-            "error_message": "Docker exit code: 2",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_java_persistent_Java_armstrong_numbers_Exercism (java_ValMati)_1759119675.log",
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/armstrong_numbers_Exercism_java_ValMati/claude/ClaudeSonnet4_ArmstrongNumbers_v2.java",
-            "filename": "ClaudeSonnet4_ArmstrongNumbers_v2.java"
+            "error_message": "Docker exit code: 2"
           }
         ]
       },
       {
         "id": "Java_armstrong_numbers_Exercism (java_ValMati)",
+        "filename": "Filename not found",
         "language": "java",
-        "timestamp": 1759119676.6193988,
         "LLM_results": [
           {
-            "execution_time_ms": 520,
-            "CPU_usage": 107.0,
-            "RAM_usage": 79368,
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/armstrong_numbers_Exercism_java_ValMati/claude/ClaudeSonnet4_ArmstrongNumbers_v2.java",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_java_persistent_Java_armstrong_numbers_Exercism (java_ValMati)_1759119675.log",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 2"
+          }
+        ]
+      },
+      {
+        "id": "Java_armstrong-numbers_exercism-java-uzilan_robiworks",
+        "filename": "armstrong-numbers.java",
+        "language": "java",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/armstrong-numbers_exercism-java-uzilan_robiworks/claude/ClaudeSonnet4_armstrong-numbers_v2.java",
+            "log": "",
+            "execution_time_ms": 110,
+            "CPU_usage": 9.0,
+            "RAM_usage": 45900,
             "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_java_persistent_Java_armstrong_numbers_Exercism (java_ValMati)_1759119676.log",
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "Java_armstrong-numbers_exercism-java-uzilan_robiworks",
+        "filename": "armstrong-numbers.java",
+        "language": "java",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/armstrong-numbers_exercism-java-uzilan_robiworks/openAI/ChatGPT4_armstrong-numbers_v2.java",
+            "log": "",
+            "execution_time_ms": 110,
+            "CPU_usage": 9.0,
+            "RAM_usage": 45900,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "Java_armstrong-numbers_exercism-java-blogscot_blogscot",
+        "filename": "armstrong-numbers.java",
+        "language": "java",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/armstrong-numbers_exercism-java-blogscot/openAI/ChatGPT4_armstrong-numbers_v2.java",
+            "log": "",
+            "execution_time_ms": 100,
+            "CPU_usage": 11.0,
+            "RAM_usage": 46020,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "Java_armstrong_numbers_Exercism (java_rabestro)",
+        "filename": "ArmstrongNumbers.java",
+        "language": "java",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/armstrong_numbers_Exercism_java_rabestro/openAI/ChatGPT4_ArmstrongNumbers_v2.java",
+            "log": "",
+            "execution_time_ms": 570,
+            "CPU_usage": 15.0,
+            "RAM_usage": 79568,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "Java_armstrong-numbers_exercism-java-blogscot_blogscot",
+        "filename": "armstrong-numbers.java",
+        "language": "java",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/armstrong-numbers_exercism-java-blogscot/claude/ClaudeSonnet4_armstrong-numbers_v2.java",
+            "log": "",
+            "execution_time_ms": 99,
+            "CPU_usage": 12.0,
+            "RAM_usage": 45644,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "Java_armstrong-numbers_exercism-java-blogscot_blogscot",
+        "filename": "armstrong-numbers.java",
+        "language": "java",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/armstrong-numbers_exercism-java-blogscot/gemini/GeminiFlash_armstrong-numbers_v2.java",
+            "log": "",
+            "execution_time_ms": 99,
+            "CPU_usage": 12.0,
+            "RAM_usage": 45644,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "Java_armstrong-numbers_exercism-java-uzilan_robiworks",
+        "filename": "armstrong-numbers.java",
+        "language": "java",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/armstrong-numbers_exercism-java-uzilan_robiworks/gemini/GeminiFlash_armstrong-numbers_v2.java",
+            "log": "",
+            "execution_time_ms": 99,
+            "CPU_usage": 15.0,
+            "RAM_usage": 45888,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "Java_armstrong_numbers_Exercism (java_rabestro)",
+        "filename": "ArmstrongNumbers.java",
+        "language": "java",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/armstrong_numbers_Exercism_java_rabestro/claude/ClaudeSonnet4_ArmstrongNumbers_v2.java",
+            "log": "",
+            "execution_time_ms": 570,
+            "CPU_usage": 15.0,
+            "RAM_usage": 79568,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "Java_armstrong_numbers_Exercism (java_ValMati)",
+        "filename": "ArmstrongNumbers.java",
+        "language": "java",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/armstrong_numbers_Exercism_java_ValMati/openAI/ChatGPT4_ArmstrongNumbers_v2.java",
+            "log": "",
+            "execution_time_ms": 520,
+            "CPU_usage": 18.0,
+            "RAM_usage": 77172,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "Java_armstrong_numbers_Exercism (java_ValMati)",
+        "filename": "ArmstrongNumbers.java",
+        "language": "java",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/armstrong_numbers_Exercism_java_ValMati/claude/ClaudeSonnet4_ArmstrongNumbers_v2.java",
+            "log": "",
+            "execution_time_ms": 520,
+            "CPU_usage": 18.0,
+            "RAM_usage": 77172,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "Java_armstrong_numbers_Exercism (java_rabestro)",
+        "filename": "ArmstrongNumbers.java",
+        "language": "java",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/armstrong_numbers_Exercism_java_rabestro/gemini/GeminiFlash_ArmstrongNumbers_v2.java",
+            "log": "",
+            "execution_time_ms": 590,
+            "CPU_usage": 10.0,
+            "RAM_usage": 78656,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "Java_armstrong_numbers_Exercism (java_ValMati)",
+        "filename": "ArmstrongNumbers.java",
+        "language": "java",
+        "LLM_results": [
+          {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/armstrong_numbers_Exercism_java_ValMati/gemini/GeminiFlash_ArmstrongNumbers_v2.java",
-            "filename": "GeminiFlash_ArmstrongNumbers_v2.java"
+            "log": "",
+            "execution_time_ms": 590,
+            "CPU_usage": 9.0,
+            "RAM_usage": 79316,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
           }
         ]
       }
@@ -931,174 +645,493 @@
     "cpp": [
       {
         "id": "cpp_armstrong_numbers_Exercism (thefullarcticfox)",
+        "filename": "Filename not found",
         "language": "cpp",
-        "timestamp": 1759119727.786966,
         "LLM_results": [
           {
-            "execution_time_ms": null,
-            "CPU_usage": null,
-            "RAM_usage": null,
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_cpp_persistent_cpp_armstrong_numbers_Exercism (thefullarcticfox)_1759119727.log",
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/armstrong_numbers_Exercism_thefullarcticfox/claude/ClaudeSonnet4_armstrong_numbers_v2.cpp",
-            "filename": "ClaudeSonnet4_armstrong_numbers_v2.cpp"
-          }
-        ]
-      },
-      {
-        "id": "cpp_armstrong_numbers_Exercism (thefullarcticfox)",
-        "language": "cpp",
-        "timestamp": 1759119728.284721,
-        "LLM_results": [
-          {
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_cpp_persistent_cpp_armstrong_numbers_Exercism (thefullarcticfox)_1759119727.log",
             "execution_time_ms": null,
             "CPU_usage": null,
             "RAM_usage": null,
             "regressionTestPassed": false,
             "success": false,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_cpp_persistent_cpp_armstrong_numbers_Exercism (thefullarcticfox)_1759119728.log",
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "cpp_armstrong_numbers_Exercism (thefullarcticfox)",
+        "filename": "Filename not found",
+        "language": "cpp",
+        "LLM_results": [
+          {
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/armstrong_numbers_Exercism_thefullarcticfox/openAI/ChatGPT4_armstrong_numbers_v2.cpp",
-            "filename": "ChatGPT4_armstrong_numbers_v2.cpp"
-          }
-        ]
-      },
-      {
-        "id": "cpp_armstrong_numbers_Exercism (thefullarcticfox)",
-        "language": "cpp",
-        "timestamp": 1759119728.284805,
-        "LLM_results": [
-          {
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_cpp_persistent_cpp_armstrong_numbers_Exercism (thefullarcticfox)_1759119728.log",
             "execution_time_ms": null,
             "CPU_usage": null,
             "RAM_usage": null,
             "regressionTestPassed": false,
             "success": false,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_cpp_persistent_cpp_armstrong_numbers_Exercism (thefullarcticfox)_1759119728.log",
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "cpp_armstrong_numbers_Exercism (thefullarcticfox)",
+        "filename": "Filename not found",
+        "language": "cpp",
+        "LLM_results": [
+          {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/armstrong_numbers_Exercism_thefullarcticfox/gemini/GeminiFlash_armstrong_numbers_v2.cpp",
-            "filename": "GeminiFlash_armstrong_numbers_v2.cpp"
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_cpp_persistent_cpp_armstrong_numbers_Exercism (thefullarcticfox)_1759119728.log",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      }
+    ],
+    "python": [
+      {
+        "id": "armstrong-numbers_2",
+        "filename": "armstrong-numbers.py",
+        "language": "python",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/armstrong-numbers/openAI/ChatGPT4_armstrong-numbers_v2.py",
+            "log": "",
+            "execution_time_ms": 30,
+            "CPU_usage": 10.0,
+            "RAM_usage": 13952,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "armstrong-numbers_2",
+        "filename": "armstrong-numbers.py",
+        "language": "python",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/armstrong-numbers/claude/ClaudeSonnet4_armstrong-numbers_v2.py",
+            "log": "",
+            "execution_time_ms": 30,
+            "CPU_usage": 10.0,
+            "RAM_usage": 13952,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "armstrong-numbers_2",
+        "filename": "armstrong-numbers.py",
+        "language": "python",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/armstrong-numbers/gemini/GeminiFlash_armstrong-numbers_v2.py",
+            "log": "",
+            "execution_time_ms": 30,
+            "CPU_usage": 15.0,
+            "RAM_usage": 13696,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      }
+    ],
+    "javascript": [
+      {
+        "id": "javascript_armstrong-numbers_exercism-javascript-ThomasZumsteg",
+        "filename": "armstrong-numbers.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/armstrong-numbers_exercism-javascript-ThomasZumsteg/gemini/GeminiFlash_armstrong-numbers_v2.js",
+            "log": "",
+            "execution_time_ms": 290,
+            "CPU_usage": 9.0,
+            "RAM_usage": 81696,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_armstrong-numbers_exercism-javascript-ThomasZumsteg",
+        "filename": "armstrong-numbers.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/armstrong-numbers_exercism-javascript-ThomasZumsteg/openAI/ChatGPT4_armstrong-numbers_v2.js",
+            "log": "",
+            "execution_time_ms": 290,
+            "CPU_usage": 9.0,
+            "RAM_usage": 81696,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_armstrong-numbers_exercism-javascript-ThomasZumsteg",
+        "filename": "armstrong-numbers.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/armstrong-numbers_exercism-javascript-ThomasZumsteg/claude/ClaudeSonnet4_armstrong-numbers_v2.js",
+            "log": "",
+            "execution_time_ms": 290,
+            "CPU_usage": 9.0,
+            "RAM_usage": 81696,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_armstrong-numbers_exercism-javascript-ffflorian",
+        "filename": "armstrong-numbers.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/armstrong-numbers_exercism-javascript-ffflorian/openAI/ChatGPT4_armstrong-numbers_v2.js",
+            "log": "",
+            "execution_time_ms": 320,
+            "CPU_usage": 9.0,
+            "RAM_usage": 80360,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_armstrong-numbers_exercism-javascript-ffflorian",
+        "filename": "armstrong-numbers.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/armstrong-numbers_exercism-javascript-ffflorian/claude/ClaudeSonnet4_armstrong-numbers_v2.js",
+            "log": "",
+            "execution_time_ms": 320,
+            "CPU_usage": 9.0,
+            "RAM_usage": 80360,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_armstrong-numbers_exercism-javascript-ffflorian",
+        "filename": "armstrong-numbers.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/armstrong-numbers_exercism-javascript-ffflorian/gemini/GeminiFlash_armstrong-numbers_v2.js",
+            "log": "",
+            "execution_time_ms": 360,
+            "CPU_usage": 8.0,
+            "RAM_usage": 80612,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_armstrong-numbers_exercism-javascript-programmiri_programmiri",
+        "filename": "armstrong-numbers.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/armstrong-numbers_exercism-javascript-programmiri/openAI/ChatGPT4_armstrong-numbers_v2.js",
+            "log": "",
+            "execution_time_ms": 290,
+            "CPU_usage": 11.0,
+            "RAM_usage": 81920,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_armstrong-numbers_exercism-javascript-ffflorian_ffflorian",
+        "filename": "armstrong-numbers.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/armstrong-numbers_exercism-javascript-ffflorian/openAI/ChatGPT4_armstrong-numbers_v2.js",
+            "log": "",
+            "execution_time_ms": 10,
+            "CPU_usage": 5.0,
+            "RAM_usage": 37760,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_armstrong-numbers_exercism-javascript-ffflorian_ffflorian",
+        "filename": "armstrong-numbers.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/armstrong-numbers_exercism-javascript-ffflorian/claude/ClaudeSonnet4_armstrong-numbers_v2.js",
+            "log": "",
+            "execution_time_ms": 10,
+            "CPU_usage": 5.0,
+            "RAM_usage": 37760,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_armstrong-numbers_exercism-javascript-programmiri_programmiri",
+        "filename": "armstrong-numbers.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/armstrong-numbers_exercism-javascript-programmiri/claude/ClaudeSonnet4_armstrong-numbers_v2.js",
+            "log": "",
+            "execution_time_ms": 370,
+            "CPU_usage": 8.0,
+            "RAM_usage": 81312,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_armstrong-numbers_exercism-javascript-programmiri_programmiri",
+        "filename": "armstrong-numbers.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/armstrong-numbers_exercism-javascript-programmiri/gemini/GeminiFlash_armstrong-numbers_v2.js",
+            "log": "",
+            "execution_time_ms": 370,
+            "CPU_usage": 8.0,
+            "RAM_usage": 81312,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_armstrong-numbers_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
+        "filename": "armstrong-numbers.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/armstrong-numbers_exercism-javascript-ThomasZumsteg/openAI/ChatGPT4_armstrong-numbers_v2.js",
+            "log": "",
+            "execution_time_ms": 550,
+            "CPU_usage": 8.0,
+            "RAM_usage": 81388,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_armstrong-numbers_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
+        "filename": "armstrong-numbers.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/armstrong-numbers_exercism-javascript-ThomasZumsteg/gemini/GeminiFlash_armstrong-numbers_v2.js",
+            "log": "",
+            "execution_time_ms": 550,
+            "CPU_usage": 8.0,
+            "RAM_usage": 81388,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_armstrong-numbers_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
+        "filename": "armstrong-numbers.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/armstrong-numbers_exercism-javascript-ThomasZumsteg/claude/ClaudeSonnet4_armstrong-numbers_v2.js",
+            "log": "",
+            "execution_time_ms": 550,
+            "CPU_usage": 8.0,
+            "RAM_usage": 81388,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_armstrong-numbers_exercism-javascript-ffflorian_ffflorian",
+        "filename": "armstrong-numbers.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/armstrong-numbers_exercism-javascript-ffflorian/gemini/GeminiFlash_armstrong-numbers_v2.js",
+            "log": "",
+            "execution_time_ms": 430,
+            "CPU_usage": 16.0,
+            "RAM_usage": 81384,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
           }
         ]
       }
     ],
     "go": [
       {
-        "id": "go_armstrong_numbers_Exercism (go_drapala)",
-        "language": "go",
-        "timestamp": 1759119753.53952,
-        "LLM_results": [
-          {
-            "execution_time_ms": 6070,
-            "CPU_usage": 30.0,
-            "RAM_usage": 212004,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_armstrong_numbers_Exercism (go_drapala)_1759119753.log",
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/armstrong_numbers_Exercism_go_drapala/gemini/GeminiFlash_armstrong_numbers_v2.go",
-            "filename": "GeminiFlash_armstrong_numbers_v2.go"
-          }
-        ]
-      },
-      {
         "id": "go_armstrong_numbers_Exercism (go_rootulp)",
+        "filename": "armstrong_numbers.go",
         "language": "go",
-        "timestamp": 1759119753.939738,
         "LLM_results": [
           {
-            "execution_time_ms": 6069,
-            "CPU_usage": 29.0,
-            "RAM_usage": 218392,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_armstrong_numbers_Exercism (go_rootulp)_1759119753.log",
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/armstrong_numbers_Exercism_go_rootulp/openAI/ChatGPT4_armstrong_numbers_v2.go",
-            "filename": "ChatGPT4_armstrong_numbers_v2.go"
-          }
-        ]
-      },
-      {
-        "id": "go_armstrong_numbers_Exercism (go_drapala)",
-        "language": "go",
-        "timestamp": 1759119753.939543,
-        "LLM_results": [
-          {
-            "execution_time_ms": 6070,
-            "CPU_usage": 30.0,
-            "RAM_usage": 212004,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_armstrong_numbers_Exercism (go_drapala)_1759119753.log",
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/armstrong_numbers_Exercism_go_drapala/claude/ClaudeSonnet4_armstrong_numbers_v2.go",
-            "filename": "ClaudeSonnet4_armstrong_numbers_v2.go"
-          }
-        ]
-      },
-      {
-        "id": "go_armstrong_numbers_Exercism (go_drapala)",
-        "language": "go",
-        "timestamp": 1759119753.939691,
-        "LLM_results": [
-          {
-            "execution_time_ms": 6070,
-            "CPU_usage": 30.0,
-            "RAM_usage": 212004,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_armstrong_numbers_Exercism (go_drapala)_1759119753.log",
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/armstrong_numbers_Exercism_go_drapala/openAI/ChatGPT4_armstrong_numbers_v2.go",
-            "filename": "ChatGPT4_armstrong_numbers_v2.go"
-          }
-        ]
-      },
-      {
-        "id": "go_armstrong_numbers_Exercism (go_rootulp)",
-        "language": "go",
-        "timestamp": 1759119753.9400609,
-        "LLM_results": [
-          {
-            "execution_time_ms": 6069,
-            "CPU_usage": 29.0,
-            "RAM_usage": 218392,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_armstrong_numbers_Exercism (go_rootulp)_1759119753.log",
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/armstrong_numbers_Exercism_go_rootulp/gemini/GeminiFlash_armstrong_numbers_v2.go",
-            "filename": "GeminiFlash_armstrong_numbers_v2.go"
+            "log": "",
+            "execution_time_ms": 5949,
+            "CPU_usage": 15.0,
+            "RAM_usage": 229968,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
           }
         ]
       },
       {
         "id": "go_armstrong_numbers_Exercism (go_rootulp)",
+        "filename": "armstrong_numbers.go",
         "language": "go",
-        "timestamp": 1759119753.940172,
         "LLM_results": [
           {
-            "execution_time_ms": 6069,
-            "CPU_usage": 29.0,
-            "RAM_usage": 218392,
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/armstrong_numbers_Exercism_go_rootulp/openAI/ChatGPT4_armstrong_numbers_v2.go",
+            "log": "",
+            "execution_time_ms": 5949,
+            "CPU_usage": 15.0,
+            "RAM_usage": 229968,
             "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_armstrong_numbers_Exercism (go_rootulp)_1759119753.log",
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_armstrong_numbers_Exercism (go_rootulp)",
+        "filename": "armstrong_numbers.go",
+        "language": "go",
+        "LLM_results": [
+          {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/armstrong_numbers_Exercism_go_rootulp/claude/ClaudeSonnet4_armstrong_numbers_v2.go",
-            "filename": "ClaudeSonnet4_armstrong_numbers_v2.go"
+            "log": "",
+            "execution_time_ms": 5949,
+            "CPU_usage": 15.0,
+            "RAM_usage": 229968,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_armstrong_numbers_Exercism (go_drapala)",
+        "filename": "armstrong_numbers.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/armstrong_numbers_Exercism_go_drapala/openAI/ChatGPT4_armstrong_numbers_v2.go",
+            "log": "",
+            "execution_time_ms": 5930,
+            "CPU_usage": 16.0,
+            "RAM_usage": 228968,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_armstrong_numbers_Exercism (go_drapala)",
+        "filename": "armstrong_numbers.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/armstrong_numbers_Exercism_go_drapala/claude/ClaudeSonnet4_armstrong_numbers_v2.go",
+            "log": "",
+            "execution_time_ms": 5890,
+            "CPU_usage": 16.0,
+            "RAM_usage": 228268,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_armstrong_numbers_Exercism (go_drapala)",
+        "filename": "armstrong_numbers.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/armstrong_numbers_Exercism_go_drapala/gemini/GeminiFlash_armstrong_numbers_v2.go",
+            "log": "",
+            "execution_time_ms": 5890,
+            "CPU_usage": 16.0,
+            "RAM_usage": 228268,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
           }
         ]
       }

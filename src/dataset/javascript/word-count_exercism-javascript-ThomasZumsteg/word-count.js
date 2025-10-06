@@ -1,15 +1,11 @@
-var Words = function() {}
-
-Words.prototype.count = function( wordString ) {
-	const wordCount = {};
-	const words = wordString.trim().split(/\s+/);
-
-	for (let i = 0; i < words.length; i++) {
-		const word = words[i];
-		wordCount[word] = (wordCount[word] || 0) + 1;
-	}
-
-	return wordCount;
-};
+class Words {
+  count(wordString) {
+    const wordCount = {};
+    wordString.trim().split(/\s+/).forEach(word => {
+      wordCount[word] = (wordCount[word] || 0) + 1;
+    });
+    return wordCount;
+  }
+}
 
 export default Words;

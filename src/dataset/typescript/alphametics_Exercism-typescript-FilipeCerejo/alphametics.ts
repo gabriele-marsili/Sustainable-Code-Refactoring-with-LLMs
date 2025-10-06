@@ -16,17 +16,9 @@ class AlphameticsEquation {
     private lettersWithCount: Map<string, number>;
     private nonZeroLetters: Set<string>;
 
-    public get getLettersWithCount(): Map<string, number> {
-        return this.lettersWithCount;
-    }
-
-    public get getNonZeroLetters(): Set<string> {
-        return this.nonZeroLetters;
-    }
-
     constructor(left: string[], right: string[]) {
-        this.lettersWithCount = new Map();
-        this.nonZeroLetters = new Set();
+        this.lettersWithCount = new Map<string, number>();
+        this.nonZeroLetters = new Set<string>();
 
         for (const leftOperand of left) {
             this.processOperand(leftOperand, 1);
@@ -48,105 +40,69 @@ class AlphameticsEquation {
 
         this.nonZeroLetters.add(operand[0]);
     }
+
+    public getLettersWithCount(): Map<string, number> {
+        return this.lettersWithCount;
+    }
+
+    public getNonZeroLetters(): Set<string> {
+        return this.nonZeroLetters;
+    }
 }
 
 class AlphameticsSolver {
     private letters: string[];
     private letterCounts: number[];
-    private nonZeroIndices: Set<number>;
+    private nonZeroLetters: Set<string>;
+    private letterCountCombination: number[] = [];
+    private solution: { [letter: string]: number } = {};
+    private foundSolution: { [letter: string]: number } | undefined = undefined;
 
     constructor(private equation: AlphameticsEquation) {
-        this.letters = Array.from(equation.getLettersWithCount.keys());
-        this.letterCounts = Array.from(equation.getLettersWithCount.values());
-        this.nonZeroIndices = new Set();
-        
-        for (let i = 0; i < this.letters.length; i++) {
-            if (equation.getNonZeroLetters.has(this.letters[i])) {
-                this.nonZeroIndices.add(i);
-            }
-        }
+        this.letters = Array.from(equation.getLettersWithCount().keys());
+        this.letterCounts = Array.from(equation.getLettersWithCount().values());
+        this.nonZeroLetters = equation.getNonZeroLetters();
     }
 
     solve(): { [letter: string]: number } | undefined {
-        const used = new Array(10).fill(false);
-        const assignment = new Array(this.letters.length);
-        
-        if (this.backtrack(0, used, assignment)) {
-            const solution: { [letter: string]: number } = {};
-            for (let i = 0; i < this.letters.length; i++) {
-                solution[this.letters[i]] = assignment[i];
-            }
-            return solution;
-        }
-        
-        return undefined;
+        const digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+        const usedDigits: boolean[] = new Array(10).fill(false);
+        this.foundSolution = undefined;
+        this.permute(0, digits, usedDigits);
+        return this.foundSolution;
     }
 
-    private backtrack(index: number, used: boolean[], assignment: number[]): boolean {
+    private permute(index: number, digits: number[], usedDigits: boolean[]): void {
+        if (this.foundSolution) return;
+
         if (index === this.letters.length) {
-            return this.isSolution(assignment);
+            if (this.isSolution()) {
+                this.foundSolution = { ...this.solution };
+            }
+            return;
         }
 
-        const startDigit = this.nonZeroIndices.has(index) ? 1 : 0;
-        
-        for (let digit = startDigit; digit <= 9; digit++) {
-            if (!used[digit]) {
-                used[digit] = true;
-                assignment[index] = digit;
-                
-                if (this.backtrack(index + 1, used, assignment)) {
-                    return true;
-                }
-                
-                used[digit] = false;
+        for (let i = 0; i < digits.length; i++) {
+            if (!usedDigits[i]) {
+                const digit = digits[i];
+                if (digit === 0 && this.nonZeroLetters.has(this.letters[index])) continue;
+
+                this.letterCountCombination[index] = digit;
+                this.solution[this.letters[index]] = digit;
+                usedDigits[i] = true;
+
+                this.permute(index + 1, digits, usedDigits);
+
+                usedDigits[i] = false;
             }
         }
-        
-        return false;
     }
 
-    letterCountCombinations(): number[][] {
-        return this.permutations([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], this.equation.getLettersWithCount.size);
-    }
-
-    isSolution(letterCountCombination: number[]): boolean {
+    private isSolution(): boolean {
         let sum = 0;
-        for (let i = 0; i < this.letterCounts.length; i++) {
-            sum += this.letterCounts[i] * letterCountCombination[i];
+        for (let i = 0; i < this.letters.length; i++) {
+            sum += this.letterCounts[i] * this.letterCountCombination[i];
         }
         return sum === 0;
-    }
-
-    toSolution(letterCountCombination: number[]): { [letter: string]: number } {
-        const solution: { [letter: string]: number } = {};
-        for (let i = 0; i < this.letters.length; i++) {
-            solution[this.letters[i]] = letterCountCombination[i];
-        }
-        return solution;
-    }
-
-    permutations(array: number[], k: number) {
-        const perms: number[][] = [];
-        const combinations: number[] = new Array(k);
-        const indices: boolean[] = new Array(array.length).fill(false);
-
-        const run = (level: number) => {
-            if (level === k) {
-                perms.push([...combinations]);
-                return;
-            }
-            
-            for (let i = 0; i < array.length; i++) {
-                if (!indices[i]) {
-                    indices[i] = true;
-                    combinations[level] = array[i];
-                    run(level + 1);
-                    indices[i] = false;
-                }
-            }
-        };
-        
-        run(0);
-        return perms;
     }
 }

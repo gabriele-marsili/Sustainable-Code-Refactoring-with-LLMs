@@ -1,543 +1,820 @@
 {
-    "execution_date": "2025-09-17 00:01:37",
-    "results": {
-        "python": [
-            {
-                "id": "clock_7",
-                "filename": "clock.py",
-                "language": "python",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 40,
-                        "CPU_usage": 54.0,
-                        "RAM_usage": 14080,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/clock/openAI/ChatGPT4_clock_v1.py",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/clock/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 40,
-                        "CPU_usage": 71.0,
-                        "RAM_usage": 14080,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/clock/claude/ClaudeSonnet4_clock_v1.py",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/clock/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 69,
-                        "CPU_usage": 51.0,
-                        "RAM_usage": 14080,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/clock/gemini/GeminiFlash_clock_v1.py",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/clock/gemini/output.log"
-                    }
-                ]
-            }
-        ],
-        "javascript": [
-            {
-                "id": "javascript_clock_exercism-javascript-programmiri",
-                "filename": "clock.js",
-                "language": "javascript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/clock_exercism-javascript-programmiri/openAI/ChatGPT4_clock_v1.js",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_javascript_persistant_javascript_clock_exercism-javascript-programmiri_error_1ca84c25.log"
-                    },
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/clock_exercism-javascript-programmiri/claude/ClaudeSonnet4_clock_v1.js",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_javascript_persistant_javascript_clock_exercism-javascript-programmiri_error_3c47bba2.log"
-                    },
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/clock_exercism-javascript-programmiri/gemini/GeminiFlash_clock_v1.js",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_javascript_persistant_javascript_clock_exercism-javascript-programmiri_error_4527babb.log"
-                    }
-                ]
-            },
-            {
-                "id": "javascript_clock_exercism-javascript-programmiri_programmiri",
-                "filename": "clock.js",
-                "language": "javascript"
-            },
-            {
-                "id": "javascript_clock_exercism-javascript-ffflorian_ffflorian",
-                "filename": "clock.js",
-                "language": "javascript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 370,
-                        "CPU_usage": 63.0,
-                        "RAM_usage": 83208,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/clock_exercism-javascript-ffflorian/openAI/ChatGPT4_clock_v1.js",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/clock_exercism-javascript-ffflorian/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 400,
-                        "CPU_usage": 68.0,
-                        "RAM_usage": 83060,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/clock_exercism-javascript-ffflorian/claude/ClaudeSonnet4_clock_v1.js",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/clock_exercism-javascript-ffflorian/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 500,
-                        "CPU_usage": 51.0,
-                        "RAM_usage": 83904,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/clock_exercism-javascript-ffflorian/gemini/GeminiFlash_clock_v1.js",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/clock_exercism-javascript-ffflorian/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "javascript_clock_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
-                "filename": "clock.js",
-                "language": "javascript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/clock_exercism-javascript-ThomasZumsteg/openAI/ChatGPT4_clock_v1.js",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_javascript_persistant_javascript_clock_exercism-javascript-ThomasZumsteg_ThomasZumsteg_error_1f735ad1.log"
-                    },
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/clock_exercism-javascript-ThomasZumsteg/claude/ClaudeSonnet4_clock_v1.js",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_javascript_persistant_javascript_clock_exercism-javascript-ThomasZumsteg_ThomasZumsteg_error_40cdcac6.log"
-                    },
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/clock_exercism-javascript-ThomasZumsteg/gemini/GeminiFlash_clock_v1.js",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_javascript_persistant_javascript_clock_exercism-javascript-ThomasZumsteg_ThomasZumsteg_error_feafe72b.log"
-                    }
-                ]
-            }
-        ],
-        "typescript": [
-            {
-                "id": "typescript_clock_exercism-javascript-samajammin_samajammin",
-                "filename": "clock.ts",
-                "language": "typescript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "success": null,
-                        "passed_tests": null,
-                        "failed_tests": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/clock_exercism-javascript-samajammin/openAI/ChatGPT4_clock_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_typescript_persistant_typescript_clock_exercism-javascript-samajammin_samajammin_error_5c03ac5c.log"
-                    },
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "success": null,
-                        "passed_tests": null,
-                        "failed_tests": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/clock_exercism-javascript-samajammin/claude/ClaudeSonnet4_clock_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_typescript_persistant_typescript_clock_exercism-javascript-samajammin_samajammin_error_87638002.log"
-                    },
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "success": null,
-                        "passed_tests": null,
-                        "failed_tests": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/clock_exercism-javascript-samajammin/gemini/GeminiFlash_clock_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_typescript_persistant_typescript_clock_exercism-javascript-samajammin_samajammin_error_e0d57b0b.log"
-                    }
-                ]
-            }
-        ],
-        "java": [
-            {
-                "id": "java_clock_rdavid1099",
-                "filename": "Clock.java",
-                "language": "java",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 160,
-                        "CPU_usage": 98.0,
-                        "RAM_usage": 45896,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/clock_rdavid1099/openAI/ChatGPT4_Clock_v1.java",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/clock_rdavid1099/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 190,
-                        "CPU_usage": 92.0,
-                        "RAM_usage": 46684,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/clock_rdavid1099/claude/ClaudeSonnet4_Clock_v1.java",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/clock_rdavid1099/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 190,
-                        "CPU_usage": 82.0,
-                        "RAM_usage": 46280,
-                        "regressionTestPassed": false,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/clock_rdavid1099/gemini/GeminiFlash_Clock_v1.java",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/clock_rdavid1099/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "Java_clock_Exercism (java_rabestro)",
-                "filename": "Clock.java",
-                "language": "Java",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 680,
-                        "CPU_usage": 94.0,
-                        "RAM_usage": 80784,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/clock_Exercism_java_rabestro/openAI/ChatGPT4_Clock_v1.java",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/clock_Exercism_java_rabestro/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 769,
-                        "CPU_usage": 133.0,
-                        "RAM_usage": 81232,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/clock_Exercism_java_rabestro/claude/ClaudeSonnet4_Clock_v1.java",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/clock_Exercism_java_rabestro/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 650,
-                        "CPU_usage": 145.0,
-                        "RAM_usage": 81228,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/clock_Exercism_java_rabestro/gemini/GeminiFlash_Clock_v1.java",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/clock_Exercism_java_rabestro/gemini/output.log"
-                    }
-                ]
-            }
-        ],
-        "c": [
-            {
-                "id": "c_clock_Exercism (ThomasZumsteg)",
-                "filename": "clock.c",
-                "language": "c",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/clock_Exercism_ThomasZumsteg/openAI/ChatGPT4_clock_v1.c",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_c_persistant_c_clock_Exercism (ThomasZumsteg)_error_98f8a560.log"
-                    },
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/clock_Exercism_ThomasZumsteg/claude/ClaudeSonnet4_clock_v1.c",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_c_persistant_c_clock_Exercism (ThomasZumsteg)_error_a2b9ea5e.log"
-                    },
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/clock_Exercism_ThomasZumsteg/gemini/GeminiFlash_clock_v1.c",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_c_persistant_c_clock_Exercism (ThomasZumsteg)_error_4e0de853.log"
-                    }
-                ]
-            },
-            {
-                "id": "c_clock_Exercism (vlzware)",
-                "filename": "clock.c",
-                "language": "c",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/clock_Exercism_vlzware/openAI/ChatGPT4_clock_v1.c",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_c_persistant_c_clock_Exercism (vlzware)_error_2da27867.log"
-                    },
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/clock_Exercism_vlzware/claude/ClaudeSonnet4_clock_v1.c",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_c_persistant_c_clock_Exercism (vlzware)_error_a0d086d9.log"
-                    },
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/clock_Exercism_vlzware/gemini/GeminiFlash_clock_v1.c",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_c_persistant_c_clock_Exercism (vlzware)_error_e9f53abf.log"
-                    }
-                ]
-            }
-        ],
-        "cpp": [
-            {
-                "id": "cpp_clock_Exercism (cmccandless)",
-                "filename": "clock.cpp",
-                "language": "cpp",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 33.0,
-                        "RAM_usage": 4096,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/clock_Exercism_cmccandless/openAI/ChatGPT4_clock_v1.cpp",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/clock_Exercism_cmccandless/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 9.0,
-                        "RAM_usage": 4096,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/clock_Exercism_cmccandless/claude/ClaudeSonnet4_clock_v1.cpp",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/clock_Exercism_cmccandless/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 14.0,
-                        "RAM_usage": 4096,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/clock_Exercism_cmccandless/gemini/GeminiFlash_clock_v1.cpp",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/clock_Exercism_cmccandless/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "cpp_clock_Exercism (MaxyMoos)",
-                "filename": "clock.cpp",
-                "language": "cpp",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 33.0,
-                        "RAM_usage": 4096,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/clock_Exercism_MaxyMoos/openAI/ChatGPT4_clock_v1.cpp",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/clock_Exercism_MaxyMoos/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 50.0,
-                        "RAM_usage": 4224,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/clock_Exercism_MaxyMoos/claude/ClaudeSonnet4_clock_v1.cpp",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/clock_Exercism_MaxyMoos/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 22.0,
-                        "RAM_usage": 4096,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/clock_Exercism_MaxyMoos/gemini/GeminiFlash_clock_v1.cpp",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/clock_Exercism_MaxyMoos/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "cpp_clock_Exercism (thefullarcticfox)",
-                "filename": "clock.cpp",
-                "language": "cpp",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 25.0,
-                        "RAM_usage": 3968,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/clock_Exercism_thefullarcticfox/openAI/ChatGPT4_clock_v1.cpp",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/clock_Exercism_thefullarcticfox/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 66.0,
-                        "RAM_usage": 3968,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/clock_Exercism_thefullarcticfox/claude/ClaudeSonnet4_clock_v1.cpp",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/clock_Exercism_thefullarcticfox/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 9.0,
-                        "RAM_usage": 4096,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/clock_Exercism_thefullarcticfox/gemini/GeminiFlash_clock_v1.cpp",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/clock_Exercism_thefullarcticfox/gemini/output.log"
-                    }
-                ]
-            }
-        ],
-        "go": [
-            {
-                "id": "go_clock_Exercism (go_ThomasZumsteg)",
-                "filename": "clock.go",
-                "language": "go",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 8440,
-                        "CPU_usage": 91.0,
-                        "RAM_usage": 211364,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/clock_Exercism_go_ThomasZumsteg/openAI/ChatGPT4_clock_v1.go",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/clock_Exercism_go_ThomasZumsteg/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 8780,
-                        "CPU_usage": 87.0,
-                        "RAM_usage": 207008,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/clock_Exercism_go_ThomasZumsteg/claude/ClaudeSonnet4_clock_v1.go",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/clock_Exercism_go_ThomasZumsteg/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 8620,
-                        "CPU_usage": 46.0,
-                        "RAM_usage": 218932,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/clock_Exercism_go_ThomasZumsteg/gemini/GeminiFlash_clock_v1.go",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/clock_Exercism_go_ThomasZumsteg/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "go_clock_Exercism (go_thinkverse)",
-                "filename": "clock.go",
-                "language": "go",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 8720,
-                        "CPU_usage": 46.0,
-                        "RAM_usage": 221196,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/clock_Exercism_go_thinkverse/openAI/ChatGPT4_clock_v1.go",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/clock_Exercism_go_thinkverse/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 7820,
-                        "CPU_usage": 99.0,
-                        "RAM_usage": 212040,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/clock_Exercism_go_thinkverse/claude/ClaudeSonnet4_clock_v1.go",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/clock_Exercism_go_thinkverse/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 7620,
-                        "CPU_usage": 97.0,
-                        "RAM_usage": 216780,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/clock_Exercism_go_thinkverse/gemini/GeminiFlash_clock_v1.go",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/clock_Exercism_go_thinkverse/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "go_clock_Exercism (go_drapala)",
-                "filename": "clock.go",
-                "language": "go",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 7810,
-                        "CPU_usage": 97.0,
-                        "RAM_usage": 216872,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/clock_Exercism_go_drapala/openAI/ChatGPT4_clock_v1.go",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/clock_Exercism_go_drapala/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 7720,
-                        "CPU_usage": 98.0,
-                        "RAM_usage": 221472,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/clock_Exercism_go_drapala/claude/ClaudeSonnet4_clock_v1.go",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/clock_Exercism_go_drapala/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 7200,
-                        "CPU_usage": 184.0,
-                        "RAM_usage": 212684,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/clock_Exercism_go_drapala/gemini/GeminiFlash_clock_v1.go",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/clock_Exercism_go_drapala/gemini/output.log"
-                    }
-                ]
-            }
+  "execution_date": "2025-10-05 16:01:26",
+  "execution_metadata": {
+    "total_tests": 38,
+    "successful_tests": 29,
+    "execution_time": "00h 07m 24s",
+    "cluster": "cluster_clock",
+    "test_type": "llm_v1"
+  },
+  "results": {
+    "javascript": [
+      {
+        "id": "javascript_clock_exercism-javascript-programmiri",
+        "filename": "clock.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/clock_exercism-javascript-programmiri/openAI/ChatGPT4_clock_v1.js",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_javascript_persistant_javascript_clock_exercism-javascript-programmiri_error_1ca84c25.log",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/clock_exercism-javascript-programmiri/claude/ClaudeSonnet4_clock_v1.js",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_javascript_persistant_javascript_clock_exercism-javascript-programmiri_error_3c47bba2.log",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/clock_exercism-javascript-programmiri/gemini/GeminiFlash_clock_v1.js",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_javascript_persistant_javascript_clock_exercism-javascript-programmiri_error_4527babb.log",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
         ]
-    }
+      },
+      {
+        "id": "javascript_clock_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
+        "filename": "clock.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/clock_exercism-javascript-ThomasZumsteg/openAI/ChatGPT4_clock_v1.js",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_javascript_persistant_javascript_clock_exercism-javascript-ThomasZumsteg_ThomasZumsteg_error_1f735ad1.log",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/clock_exercism-javascript-ThomasZumsteg/claude/ClaudeSonnet4_clock_v1.js",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_javascript_persistant_javascript_clock_exercism-javascript-ThomasZumsteg_ThomasZumsteg_error_40cdcac6.log",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/clock_exercism-javascript-ThomasZumsteg/gemini/GeminiFlash_clock_v1.js",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_javascript_persistant_javascript_clock_exercism-javascript-ThomasZumsteg_ThomasZumsteg_error_feafe72b.log",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_clock_exercism-javascript-programmiri_programmiri",
+        "filename": "clock.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/clock_exercism-javascript-programmiri/claude/ClaudeSonnet4_clock_v1.js",
+            "log": "",
+            "execution_time_ms": 70,
+            "CPU_usage": 6.0,
+            "RAM_usage": 45860,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_clock_exercism-javascript-programmiri_programmiri",
+        "filename": "clock.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/clock_exercism-javascript-programmiri/openAI/ChatGPT4_clock_v1.js",
+            "log": "",
+            "execution_time_ms": 70,
+            "CPU_usage": 6.0,
+            "RAM_usage": 45860,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_clock_exercism-javascript-programmiri_programmiri",
+        "filename": "clock.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/clock_exercism-javascript-programmiri/gemini/GeminiFlash_clock_v1.js",
+            "log": "",
+            "execution_time_ms": 70,
+            "CPU_usage": 6.0,
+            "RAM_usage": 45860,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_clock_exercism-javascript-ffflorian_ffflorian",
+        "filename": "clock.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/clock_exercism-javascript-ffflorian/openAI/ChatGPT4_clock_v1.js",
+            "log": "",
+            "execution_time_ms": 500,
+            "CPU_usage": 10.0,
+            "RAM_usage": null,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_clock_exercism-javascript-ffflorian_ffflorian",
+        "filename": "clock.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/clock_exercism-javascript-ffflorian/claude/ClaudeSonnet4_clock_v1.js",
+            "log": "",
+            "execution_time_ms": 500,
+            "CPU_usage": 10.0,
+            "RAM_usage": 83384,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_clock_exercism-javascript-ffflorian_ffflorian",
+        "filename": "clock.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/clock_exercism-javascript-ffflorian/gemini/GeminiFlash_clock_v1.js",
+            "log": "",
+            "execution_time_ms": 550,
+            "CPU_usage": 8.0,
+            "RAM_usage": 83548,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      }
+    ],
+    "typescript": [
+      {
+        "id": "typescript_clock_exercism-javascript-samajammin_samajammin",
+        "filename": "clock.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/clock_exercism-javascript-samajammin/openAI/ChatGPT4_clock_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_typescript_persistant_typescript_clock_exercism-javascript-samajammin_samajammin_error_5c03ac5c.log",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/clock_exercism-javascript-samajammin/claude/ClaudeSonnet4_clock_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_typescript_persistant_typescript_clock_exercism-javascript-samajammin_samajammin_error_87638002.log",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/clock_exercism-javascript-samajammin/gemini/GeminiFlash_clock_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_typescript_persistant_typescript_clock_exercism-javascript-samajammin_samajammin_error_e0d57b0b.log",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      }
+    ],
+    "c": [
+      {
+        "id": "c_clock_Exercism (ThomasZumsteg)",
+        "filename": "clock.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/clock_Exercism_ThomasZumsteg/openAI/ChatGPT4_clock_v1.c",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_c_persistant_c_clock_Exercism (ThomasZumsteg)_error_98f8a560.log",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/clock_Exercism_ThomasZumsteg/claude/ClaudeSonnet4_clock_v1.c",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_c_persistant_c_clock_Exercism (ThomasZumsteg)_error_a2b9ea5e.log",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/clock_Exercism_ThomasZumsteg/gemini/GeminiFlash_clock_v1.c",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_c_persistant_c_clock_Exercism (ThomasZumsteg)_error_4e0de853.log",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "c_clock_Exercism (vlzware)",
+        "filename": "clock.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/clock_Exercism_vlzware/openAI/ChatGPT4_clock_v1.c",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_c_persistant_c_clock_Exercism (vlzware)_error_2da27867.log",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/clock_Exercism_vlzware/claude/ClaudeSonnet4_clock_v1.c",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_c_persistant_c_clock_Exercism (vlzware)_error_a0d086d9.log",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/clock_Exercism_vlzware/gemini/GeminiFlash_clock_v1.c",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_c_persistant_c_clock_Exercism (vlzware)_error_e9f53abf.log",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      }
+    ],
+    "python": [
+      {
+        "id": "clock_7",
+        "filename": "clock.py",
+        "language": "python",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/clock/openAI/ChatGPT4_clock_v1.py",
+            "log": "",
+            "execution_time_ms": 30,
+            "CPU_usage": 8.0,
+            "RAM_usage": 13948,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "clock_7",
+        "filename": "clock.py",
+        "language": "python",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/clock/claude/ClaudeSonnet4_clock_v1.py",
+            "log": "",
+            "execution_time_ms": 30,
+            "CPU_usage": 8.0,
+            "RAM_usage": 13948,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "clock_7",
+        "filename": "clock.py",
+        "language": "python",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/clock/gemini/GeminiFlash_clock_v1.py",
+            "log": "",
+            "execution_time_ms": 40,
+            "CPU_usage": 11.0,
+            "RAM_usage": 14080,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      }
+    ],
+    "java": [
+      {
+        "id": "java_clock_rdavid1099",
+        "filename": "Clock.java",
+        "language": "java",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/clock_rdavid1099/openAI/ChatGPT4_Clock_v1.java",
+            "log": "",
+            "execution_time_ms": 120,
+            "CPU_usage": 8.0,
+            "RAM_usage": 45900,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "java_clock_rdavid1099",
+        "filename": "Clock.java",
+        "language": "java",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/clock_rdavid1099/claude/ClaudeSonnet4_Clock_v1.java",
+            "log": "",
+            "execution_time_ms": 120,
+            "CPU_usage": 8.0,
+            "RAM_usage": 45900,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "Java_clock_Exercism (java_rabestro)",
+        "filename": "Clock.java",
+        "language": "java",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/clock_Exercism_java_rabestro/openAI/ChatGPT4_Clock_v1.java",
+            "log": "",
+            "execution_time_ms": 580,
+            "CPU_usage": 9.0,
+            "RAM_usage": 79156,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "java_clock_rdavid1099",
+        "filename": "Clock.java",
+        "language": "java",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/clock_rdavid1099/gemini/GeminiFlash_Clock_v1.java",
+            "log": "",
+            "execution_time_ms": 169,
+            "CPU_usage": 11.0,
+            "RAM_usage": 46288,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "Java_clock_Exercism (java_rabestro)",
+        "filename": "Clock.java",
+        "language": "java",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/clock_Exercism_java_rabestro/claude/ClaudeSonnet4_Clock_v1.java",
+            "log": "",
+            "execution_time_ms": 800,
+            "CPU_usage": 10.0,
+            "RAM_usage": 79748,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "Java_clock_Exercism (java_rabestro)",
+        "filename": "Clock.java",
+        "language": "java",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/clock_Exercism_java_rabestro/gemini/GeminiFlash_Clock_v1.java",
+            "log": "",
+            "execution_time_ms": 800,
+            "CPU_usage": 10.0,
+            "RAM_usage": 79748,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      }
+    ],
+    "cpp": [
+      {
+        "id": "cpp_clock_Exercism (cmccandless)",
+        "filename": "clock.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/clock_Exercism_cmccandless/openAI/ChatGPT4_clock_v1.cpp",
+            "log": "",
+            "execution_time_ms": 0,
+            "CPU_usage": 6.0,
+            "RAM_usage": 4096,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_clock_Exercism (cmccandless)",
+        "filename": "clock.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/clock_Exercism_cmccandless/gemini/GeminiFlash_clock_v1.cpp",
+            "log": "",
+            "execution_time_ms": 0,
+            "CPU_usage": 6.0,
+            "RAM_usage": 4096,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_clock_Exercism (cmccandless)",
+        "filename": "clock.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/clock_Exercism_cmccandless/claude/ClaudeSonnet4_clock_v1.cpp",
+            "log": "",
+            "execution_time_ms": 0,
+            "CPU_usage": 6.0,
+            "RAM_usage": 4096,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_clock_Exercism (MaxyMoos)",
+        "filename": "clock.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/clock_Exercism_MaxyMoos/openAI/ChatGPT4_clock_v1.cpp",
+            "log": "",
+            "execution_time_ms": 0,
+            "CPU_usage": 25.0,
+            "RAM_usage": 4096,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_clock_Exercism (thefullarcticfox)",
+        "filename": "clock.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/clock_Exercism_thefullarcticfox/openAI/ChatGPT4_clock_v1.cpp",
+            "log": "",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_clock_Exercism (MaxyMoos)",
+        "filename": "clock.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/clock_Exercism_MaxyMoos/gemini/GeminiFlash_clock_v1.cpp",
+            "log": "",
+            "execution_time_ms": 0,
+            "CPU_usage": 25.0,
+            "RAM_usage": 4096,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_clock_Exercism (MaxyMoos)",
+        "filename": "clock.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/clock_Exercism_MaxyMoos/claude/ClaudeSonnet4_clock_v1.cpp",
+            "log": "",
+            "execution_time_ms": 0,
+            "CPU_usage": 25.0,
+            "RAM_usage": 4096,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_clock_Exercism (thefullarcticfox)",
+        "filename": "clock.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/clock_Exercism_thefullarcticfox/gemini/GeminiFlash_clock_v1.cpp",
+            "log": "",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_clock_Exercism (thefullarcticfox)",
+        "filename": "clock.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/clock_Exercism_thefullarcticfox/claude/ClaudeSonnet4_clock_v1.cpp",
+            "log": "",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      }
+    ],
+    "go": [
+      {
+        "id": "go_clock_Exercism (go_ThomasZumsteg)",
+        "filename": "clock.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/clock_Exercism_go_ThomasZumsteg/claude/ClaudeSonnet4_clock_v1.go",
+            "log": "",
+            "execution_time_ms": 6310,
+            "CPU_usage": 14.0,
+            "RAM_usage": 226552,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_clock_Exercism (go_thinkverse)",
+        "filename": "clock.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/clock_Exercism_go_thinkverse/gemini/GeminiFlash_clock_v1.go",
+            "log": "",
+            "execution_time_ms": 6330,
+            "CPU_usage": 13.0,
+            "RAM_usage": 224300,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_clock_Exercism (go_thinkverse)",
+        "filename": "clock.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/clock_Exercism_go_thinkverse/claude/ClaudeSonnet4_clock_v1.go",
+            "log": "",
+            "execution_time_ms": 6330,
+            "CPU_usage": 13.0,
+            "RAM_usage": 224300,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_clock_Exercism (go_ThomasZumsteg)",
+        "filename": "clock.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/clock_Exercism_go_ThomasZumsteg/openAI/ChatGPT4_clock_v1.go",
+            "log": "",
+            "execution_time_ms": 6310,
+            "CPU_usage": 14.0,
+            "RAM_usage": 226552,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_clock_Exercism (go_thinkverse)",
+        "filename": "clock.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/clock_Exercism_go_thinkverse/openAI/ChatGPT4_clock_v1.go",
+            "log": "",
+            "execution_time_ms": 6330,
+            "CPU_usage": 13.0,
+            "RAM_usage": 224300,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_clock_Exercism (go_ThomasZumsteg)",
+        "filename": "clock.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/clock_Exercism_go_ThomasZumsteg/gemini/GeminiFlash_clock_v1.go",
+            "log": "",
+            "execution_time_ms": 6310,
+            "CPU_usage": 14.0,
+            "RAM_usage": 226552,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_clock_Exercism (go_drapala)",
+        "filename": "clock.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/clock_Exercism_go_drapala/gemini/GeminiFlash_clock_v1.go",
+            "log": "",
+            "execution_time_ms": 6350,
+            "CPU_usage": 14.0,
+            "RAM_usage": 207996,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_clock_Exercism (go_drapala)",
+        "filename": "clock.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/clock_Exercism_go_drapala/openAI/ChatGPT4_clock_v1.go",
+            "log": "",
+            "execution_time_ms": 6350,
+            "CPU_usage": 14.0,
+            "RAM_usage": 207996,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_clock_Exercism (go_drapala)",
+        "filename": "clock.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/clock_Exercism_go_drapala/claude/ClaudeSonnet4_clock_v1.go",
+            "log": "",
+            "execution_time_ms": 6350,
+            "CPU_usage": 14.0,
+            "RAM_usage": 207996,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      }
+    ]
+  }
 }

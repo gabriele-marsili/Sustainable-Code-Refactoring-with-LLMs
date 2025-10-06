@@ -8,13 +8,35 @@ import (
 type Frequency map[string]int
 
 func WordCount(phrase string) (result Frequency) {
-	result = Frequency{}
-	words := splitStringOnWhitespaceAndPunctuation(phrase)
-	for _, word := range words {
-		if doesContainsLetterOrNumber(word) {
-			result[strings.Trim(strings.ToLower(word), "'")] += 1
+	result = make(Frequency)
+	
+	var word strings.Builder
+	word.Grow(32) // Pre-allocate reasonable capacity
+	
+	hasLetterOrNumber := false
+	
+	for _, r := range phrase {
+		if unicode.IsSpace(r) || (unicode.IsPunct(r) && r != '\'') {
+			if hasLetterOrNumber && word.Len() > 0 {
+				w := strings.ToLower(strings.Trim(word.String(), "'"))
+				result[w]++
+			}
+			word.Reset()
+			hasLetterOrNumber = false
+		} else {
+			word.WriteRune(r)
+			if !hasLetterOrNumber && (unicode.IsLetter(r) || unicode.IsNumber(r)) {
+				hasLetterOrNumber = true
+			}
 		}
 	}
+	
+	// Handle last word
+	if hasLetterOrNumber && word.Len() > 0 {
+		w := strings.ToLower(strings.Trim(word.String(), "'"))
+		result[w]++
+	}
+	
 	return result
 }
 
@@ -26,8 +48,10 @@ func splitStringOnWhitespaceAndPunctuation(phrase string) []string {
 }
 
 func doesContainsLetterOrNumber(word string) bool {
-	containsLetterOrNumber := func(c rune) bool {
-		return unicode.IsLetter(c) || unicode.IsNumber(c)
+	for _, r := range word {
+		if unicode.IsLetter(r) || unicode.IsNumber(r) {
+			return true
+		}
 	}
-	return strings.IndexFunc(word, containsLetterOrNumber) != -1
+	return false
 }

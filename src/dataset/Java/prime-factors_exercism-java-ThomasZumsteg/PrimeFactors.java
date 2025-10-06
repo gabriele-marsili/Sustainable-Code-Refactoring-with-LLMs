@@ -15,9 +15,7 @@ public class PrimeFactors {
                 number /= i;
             }
         }
-        if (number > 1) {
-            primes.add(number);
-        }
+        if (number > 1) primes.add(number);
         return primes;
     }
 }

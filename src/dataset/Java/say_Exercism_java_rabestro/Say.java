@@ -1,12 +1,18 @@
 public final class Say {
     public static final long MAXIMUM_PRONOUNCEABLE_NUMBER = 999_999_999_999L;
-    public static final long HUNDRED = 100;
-    public static final long THOUSAND = 1_000;
-    public static final long MILLION = 1_000_000;
-    public static final long BILLION = 1_000_000_000;
+    private static final String[] LESS_THAN_20 = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
+            "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
+    private static final String[] TENS = {"", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
+    private static final String HUNDRED = "hundred";
+    private static final String THOUSAND = "thousand";
+    private static final String MILLION = "million";
+    private static final String BILLION = "billion";
 
     public String say(long number) {
         validateNumber(number);
+        if (number == 0) {
+            return LESS_THAN_20[0];
+        }
         return sayNumber(number);
     }
 
@@ -16,49 +22,31 @@ public final class Say {
         }
     }
 
-    public String sayNumber(long number) {
-        return switch ((int) number) {
-            case 0 -> "zero";
-            case 1 -> "one";
-            case 2 -> "two";
-            case 3 -> "three";
-            case 4 -> "four";
-            case 5 -> "five";
-            case 6 -> "six";
-            case 7 -> "seven";
-            case 8 -> "eight";
-            case 9 -> "nine";
-            case 10 -> "ten";
-            case 11 -> "eleven";
-            case 12 -> "twelve";
-            case 13 -> "thirteen";
-            case 14 -> "fourteen";
-            case 15 -> "fifteen";
-            case 16 -> "sixteen";
-            case 17 -> "seventeen";
-            case 18 -> "eighteen";
-            case 19 -> "nineteen";
-            case 20 -> "twenty";
-            case 30 -> "thirty";
-            case 40 -> "forty";
-            case 50 -> "fifty";
-            case 60 -> "sixty";
-            case 70 -> "seventy";
-            case 80 -> "eighty";
-            case 90 -> "ninety";
-            default -> {
-                if (number < HUNDRED) yield sayNumber(number / 10 * 10) + "-" + sayNumber(number % 10);
-                if (number < THOUSAND) yield sayMagnitude(number, HUNDRED, "hundred");
-                if (number < MILLION) yield sayMagnitude(number, THOUSAND, "thousand");
-                if (number < BILLION) yield sayMagnitude(number, MILLION, "million");
-                yield sayMagnitude(number, BILLION, "billion");
-            }
-        };
+    private String sayNumber(long number) {
+        if (number < 20) {
+            return LESS_THAN_20[(int) number];
+        } else if (number < 100) {
+            long ten = number / 10;
+            long one = number % 10;
+            return TENS[(int) ten] + (one > 0 ? "-" + LESS_THAN_20[(int) one] : "");
+        } else if (number < 1000) {
+            return sayMagnitude(number, 100, HUNDRED);
+        } else if (number < 1000000) {
+            return sayMagnitude(number, 1000, THOUSAND);
+        } else if (number < 1000000000) {
+            return sayMagnitude(number, 1000000, MILLION);
+        } else {
+            return sayMagnitude(number, 1000000000, BILLION);
+        }
     }
 
     private String sayMagnitude(long number, long divisor, String name) {
-        var quotientPart = sayNumber(number / divisor) + " " + name;
-        var remainder = number % divisor;
-        return remainder == 0 ? quotientPart : quotientPart + " " + sayNumber(remainder);
+        long quotient = number / divisor;
+        long remainder = number % divisor;
+        String result = sayNumber(quotient) + " " + name;
+        if (remainder != 0) {
+            result += " " + sayNumber(remainder);
+        }
+        return result;
     }
 }

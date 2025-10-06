@@ -2,7 +2,7 @@ import static java.lang.Math.floorMod;
 
 public final class Clock {
     public static final int MINUTES_PER_HOUR = 60;
-    public static final int MINUTES_PER_DAY = 24 * MINUTES_PER_HOUR;
+    public static final int MINUTES_PER_DAY = 1440; // Pre-calculated 24 * 60
     private int totalMinutes;
 
     public Clock(int hours, int minutes) {
@@ -15,9 +15,9 @@ public final class Clock {
 
     @Override
     public String toString() {
-        var hours = totalMinutes / MINUTES_PER_HOUR;
-        var minutes = totalMinutes % MINUTES_PER_HOUR;
-        return "%02d:%02d".formatted(hours, minutes);
+        int hours = totalMinutes / MINUTES_PER_HOUR;
+        int minutes = totalMinutes % MINUTES_PER_HOUR;
+        return String.format("%02d:%02d", hours, minutes);
     }
 
     @Override

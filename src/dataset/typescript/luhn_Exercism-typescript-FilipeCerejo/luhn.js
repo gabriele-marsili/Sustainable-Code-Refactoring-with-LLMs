@@ -2,25 +2,24 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.valid = valid;
 function valid(digitString) {
-    let length = 0;
+    const noSpaceDigit = digitString.replace(/\s/g, '');
+    const len = noSpaceDigit.length;
+    if (len < 2) {
+        return false;
+    }
     let sum = 0;
-    let change = false;
-    for (let i = digitString.length - 1; i >= 0; i--) {
-        const char = digitString[i];
-        if (char === ' ')
-            continue;
-        const digit = char.charCodeAt(0) - 48;
-        if (digit < 0 || digit > 9)
+    for (let i = len - 1; i >= 0; i--) {
+        const digit = parseInt(noSpaceDigit[i], 10);
+        if (isNaN(digit)) {
             return false;
-        if (change) {
-            const doubled = digit << 1;
-            sum += doubled > 9 ? doubled - 9 : doubled;
+        }
+        if ((len - 1 - i) % 2 !== 0) {
+            const doubledDigit = digit * 2;
+            sum += doubledDigit > 9 ? doubledDigit - 9 : doubledDigit;
         }
         else {
             sum += digit;
         }
-        change = !change;
-        length++;
     }
-    return length >= 2 && sum % 10 === 0;
+    return sum % 10 === 0;
 }

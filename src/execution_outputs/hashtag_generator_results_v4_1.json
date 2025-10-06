@@ -1,44 +1,45 @@
 {
-    "execution_date": "2025-09-20 14:31:12",
-    "results": {
-        "javascript": [
-            {
-                "id": "hashtagGenerator_119",
-                "filename": "hashtagGenerator.js",
-                "language": "javascript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 1000,
-                        "CPU_usage": 50.0,
-                        "RAM_usage": 80000,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/hashtagGenerator/openAI/ChatGPT4_hashtagGenerator_v4.js"
-                    },
-                    {
-                        "execution_time_ms": 1000,
-                        "CPU_usage": 50.0,
-                        "RAM_usage": 80000,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/hashtagGenerator/claude/ClaudeSonnet4_hashtagGenerator_v4.js"
-                    },
-                    {
-                        "execution_time_ms": 1000,
-                        "CPU_usage": 50.0,
-                        "RAM_usage": 80000,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/hashtagGenerator/gemini/GeminiFlash_hashtagGenerator_v4.js"
-                    }
-                ]
-            }
+  "execution_date": "2025-10-03 11:33:28",
+  "execution_metadata": {
+    "total_tests": 1,
+    "successful_tests": 1,
+    "execution_time": "00h 00m 00s",
+    "cluster": "cluster_hashtag_generator",
+    "test_type": "llm_v4"
+  },
+  "results": {
+    "javascript": [
+      {
+        "id": "hashtagGenerator_119",
+        "filename": "",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/hashtagGenerator/openAI/ChatGPT4_hashtagGenerator_v4.js",
+            "execution_time_ms": 330,
+            "CPU_usage": 4.0,
+            "RAM_usage": 82436,
+            "regressionTestPassed": false
+          },
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/hashtagGenerator/claude/ClaudeSonnet4_hashtagGenerator_v4.js",
+            "execution_time_ms": 330,
+            "CPU_usage": 4.0,
+            "RAM_usage": 82136,
+            "regressionTestPassed": false
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/hashtagGenerator/gemini/GeminiFlash_hashtagGenerator_v4.js",
+            "execution_time_ms": 330,
+            "CPU_usage": 4.0,
+            "RAM_usage": 82136,
+            "regressionTestPassed": false
+          }
         ]
-    },
-    "execution_metadata": {
-        "total_tests": 3,
-        "completed_tests": 1,
-        "passed_tests": 1,
-        "success_rate": 1.0
-    }
+      }
+    ]
+  }
 }

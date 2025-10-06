@@ -14,16 +14,13 @@ func Valid(code string) bool {
 
 /*AddCheck creates a valid luhn code.*/
 func AddCheck(code string) string {
-	finalDigit := "0"
 	t, _ := checkSum(code + "0")
-	if t%10 != 0 {
-		finalDigit = strconv.Itoa(10 - (t % 10))
+	finalDigit := (10 - (t % 10)) % 10
+	
+	if hasFullWidthDigits(code) {
+		return code + string(rune(finalDigit+'０'))
 	}
-	if all(digitsAreFullWidth, code) {
-		// Added digit should be full width if all the others are
-		finalDigit = string(int(finalDigit[0]) + int('０') - '0')
-	}
-	return code + finalDigit
+	return code + string(rune(finalDigit+'0'))
 }
 
 /*all checks that a condition is true of all elements.*/
@@ -38,29 +35,49 @@ func all(condition func(rune) bool, items string) bool {
 
 /*digitsAreFullWidth checks if a rune is not a digit or full width.*/
 func digitsAreFullWidth(char rune) bool {
-	digit := int(char) - int('０')
-	return !unicode.IsDigit(char) || 0 <= digit && digit < 10
+	if !unicode.IsDigit(char) {
+		return true
+	}
+	return char >= '０' && char <= '９'
+}
+
+func hasFullWidthDigits(code string) bool {
+	for _, char := range code {
+		if unicode.IsDigit(char) {
+			return char >= '０' && char <= '９'
+		}
+	}
+	return false
 }
 
 /*checkSum computes the check sum of a luhn code*/
 func checkSum(code string) (int, error) {
 	numDigits := 0
 	total := 0
-	for i := len(code) - 1; 0 <= i; i-- {
-		n, err := strconv.Atoi(string(code[i]))
-		switch {
-		case err != nil:
+	
+	for i := len(code) - 1; i >= 0; i-- {
+		char := code[i]
+		var n int
+		
+		if char >= '0' && char <= '9' {
+			n = int(char - '0')
+		} else if char >= '０' && char <= '９' {
+			n = int(char - '０')
+		} else {
 			continue
-		case numDigits%2 == 0:
-			total += n
-		case n <= 4:
-			total += 2 * n
-		case n <= 9:
-			total += 2*n - 9
 		}
+		
+		if numDigits%2 == 1 {
+			n *= 2
+			if n > 9 {
+				n -= 9
+			}
+		}
+		total += n
 		numDigits++
 	}
-	if numDigits <= 0 {
+	
+	if numDigits == 0 {
 		return 0, errors.New("There are no digits in \"" + code + "\"")
 	}
 	return total, nil

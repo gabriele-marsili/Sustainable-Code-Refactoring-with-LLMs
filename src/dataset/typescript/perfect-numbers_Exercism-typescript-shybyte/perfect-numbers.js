@@ -1,10 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function calculateAliquotSum(x) {
-    let sum = 0;
-    for (let d = 1; d < x; d++) {
+    if (x <= 1)
+        return 0;
+    let sum = 1;
+    const limit = Math.sqrt(x);
+    for (let d = 2; d <= limit; d++) {
         if (x % d === 0) {
             sum += d;
+            if (d * d !== x) {
+                sum += x / d;
+            }
         }
     }
     return sum;

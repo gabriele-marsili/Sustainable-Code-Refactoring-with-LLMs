@@ -6,22 +6,20 @@ class BracketPush {
     }
     isPaired() {
         const stack = [];
-        const bracketPairs = new Map([
-            ['}', '{'],
-            [']', '['],
-            [')', '('],
-        ]);
-        const openBrackets = new Set(['{', '[', '(']);
+        const bracketPairs = {
+            '}': '{',
+            ']': '[',
+            ')': '('
+        };
         for (let i = 0; i < this.input.length; i++) {
             const char = this.input[i];
-            if (openBrackets.has(char)) {
+            if (char === '{' || char === '[' || char === '(') {
                 stack.push(char);
             }
-            else if (bracketPairs.has(char)) {
-                if (stack.length === 0 || stack[stack.length - 1] !== bracketPairs.get(char)) {
+            else if (char === '}' || char === ']' || char === ')') {
+                if (stack.length === 0 || bracketPairs[char] !== stack.pop()) {
                     return false;
                 }
-                stack.pop();
             }
         }
         return stack.length === 0;

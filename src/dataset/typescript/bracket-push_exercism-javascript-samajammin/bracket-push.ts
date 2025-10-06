@@ -12,14 +12,14 @@ export default class BracketPush {
       ']': '[',
       ')': '('
     };
-    for (const char of this.input) {
-      if (/[{[(]/.test(char)) {
+    for (let i = 0; i < this.input.length; i++) {
+      const char = this.input[i];
+      if (char === '{' || char === '[' || char === '(') {
         stack.push(char);
-      }
-      if (bracketPairs[char] === stack[stack.length - 1]) {
-        stack.pop();
-      } else if (bracketPairs[char]) {
-        return false;
+      } else if (char === '}' || char === ']' || char === ')') {
+        if (stack.length === 0 || bracketPairs[char] !== stack.pop()) {
+          return false;
+        }
       }
     }
 

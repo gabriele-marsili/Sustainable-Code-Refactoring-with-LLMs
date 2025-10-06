@@ -20,25 +20,28 @@ func Classify(n int64) (Classification, error) {
 		return ClassificationDeficient, nil
 	} else if sum == n {
 		return ClassificationPerfect, nil
-	} else if sum > n {
+	} else {
 		return ClassificationAbundant, nil
 	}
-	return "", errors.New("unreachable")
 }
 
-func aliquotSum(n int64) (sum int64) {
-	factors := getFactors(n)
-	for _, factor := range factors {
-		sum += factor
+func aliquotSum(n int64) int64 {
+	if n == 1 {
+		return 0
 	}
-	return sum
-}
-
-func getFactors(n int64) (factors []int64) {
-	for candidate := int64(1); candidate < n; candidate++ {
-		if n%candidate == 0 {
-			factors = append(factors, candidate)
+	
+	sum := int64(1) // 1 is always a proper divisor for n > 1
+	
+	// Only check up to sqrt(n)
+	for i := int64(2); i*i <= n; i++ {
+		if n%i == 0 {
+			sum += i
+			// Add the corresponding divisor if it's different
+			if i*i != n {
+				sum += n / i
+			}
 		}
 	}
-	return factors
+	
+	return sum
 }

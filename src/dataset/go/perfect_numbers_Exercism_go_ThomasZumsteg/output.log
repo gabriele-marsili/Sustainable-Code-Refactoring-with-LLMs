@@ -2,44 +2,65 @@
     perfect_numbers_test.go:11: PASS GivesPositiveRequiredError
 --- PASS: TestGivesPositiveRequiredError (0.00s)
 === RUN   TestClassifiesCorrectly
-    perfect_numbers_test.go:27: PASS Smallest perfect number is classified correctly
-    perfect_numbers_test.go:27: PASS Medium perfect number is classified correctly
-    perfect_numbers_test.go:27: PASS Large perfect number is classified correctly
-    perfect_numbers_test.go:27: PASS Smallest abundant number is classified correctly
-    perfect_numbers_test.go:27: PASS Medium abundant number is classified correctly
-    perfect_numbers_test.go:27: PASS Large abundant number is classified correctly
-    perfect_numbers_test.go:27: PASS Smallest prime deficient number is classified correctly
-    perfect_numbers_test.go:27: PASS Smallest non-prime deficient number is classified correctly
-    perfect_numbers_test.go:27: PASS Medium deficient number is classified correctly
-    perfect_numbers_test.go:27: PASS Large deficient number is classified correctly
-    perfect_numbers_test.go:27: PASS Edge case (no factors other than itself) is classified correctly
-    perfect_numbers_test.go:27: PASS Zero is rejected (not a natural number)
-    perfect_numbers_test.go:27: PASS Negative integer is rejected (not a natural number)
---- PASS: TestClassifiesCorrectly (0.00s)
+    perfect_numbers_test.go:25: FAIL Smallest perfect number is classified correctly
+        Classify(6)
+        Expected "perfect", got "abundant"
+--- FAIL: TestClassifiesCorrectly (0.00s)
 === RUN   TestClassificationsNotEqual
 --- PASS: TestClassificationsNotEqual (0.00s)
-PASS
-ok  	esercizio	0.004s
+FAIL
+exit status 1
+FAIL	esercizio	0.052s
+Command exited with non-zero status 1
 	Command being timed: "go test -v"
-	User time (seconds): 5.37
-	System time (seconds): 0.66
-	Percent of CPU this job got: 86%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:06.97
+	User time (seconds): 6.55
+	System time (seconds): 3.08
+	Percent of CPU this job got: 6%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:19.09
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 207612
+	Maximum resident set size (kbytes): 183444
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 3
-	Minor (reclaiming a frame) page faults: 719973
-	Voluntary context switches: 21760
-	Involuntary context switches: 25370
+	Major (requiring I/O) page faults: 80113
+	Minor (reclaiming a frame) page faults: 1430530
+	Voluntary context switches: 132674
+	Involuntary context switches: 59706
 	Swaps: 0
-	File system inputs: 10416
-	File system outputs: 172040
+	File system inputs: 17328280
+	File system outputs: 172712
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 0
+	Exit status: 1
+l
+--- PASS: TestClassificationsNotEqual (0.00s)
+FAIL
+exit status 1
+FAIL	esercizio	0.046s
+Command exited with non-zero status 1
+	Command being timed: "go test -v"
+	User time (seconds): 6.64
+	System time (seconds): 4.68
+	Percent of CPU this job got: 6%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:56.94
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 232412
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 117797
+	Minor (reclaiming a frame) page faults: 1332639
+	Voluntary context switches: 181985
+	Involuntary context switches: 76033
+	Swaps: 0
+	File system inputs: 27021480
+	File system outputs: 172792
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

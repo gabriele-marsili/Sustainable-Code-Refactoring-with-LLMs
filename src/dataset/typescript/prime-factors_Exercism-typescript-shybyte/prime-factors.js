@@ -11,13 +11,18 @@ function calculatePrimeFactors(nArg) {
         result.push(2);
         n /= 2;
     }
-    for (let i = 3; i <= Math.sqrt(n); i += 2) {
-        while (n % i === 0) {
+    let i = 3;
+    const sqrtN = Math.sqrt(n);
+    while (i <= sqrtN && n > 1) {
+        if (n % i === 0) {
             result.push(i);
             n /= i;
         }
+        else {
+            i += 2;
+        }
     }
-    if (n > 2) {
+    if (n > 1) {
         result.push(n);
     }
     return result;

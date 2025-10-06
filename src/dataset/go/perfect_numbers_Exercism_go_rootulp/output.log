@@ -12,34 +12,37 @@
     perfect_numbers_test.go:27: PASS Smallest non-prime deficient number is classified correctly
     perfect_numbers_test.go:27: PASS Medium deficient number is classified correctly
     perfect_numbers_test.go:27: PASS Large deficient number is classified correctly
-    perfect_numbers_test.go:27: PASS Edge case (no factors other than itself) is classified correctly
-    perfect_numbers_test.go:27: PASS Zero is rejected (not a natural number)
-    perfect_numbers_test.go:27: PASS Negative integer is rejected (not a natural number)
---- PASS: TestClassifiesCorrectly (0.12s)
+    perfect_numbers_test.go:25: FAIL Edge case (no factors other than itself) is classified correctly
+        Classify(1)
+        Expected "ClassificationDeficient", got "ClassificationPerfect"
+--- FAIL: TestClassifiesCorrectly (0.01s)
 === RUN   TestClassificationsNotEqual
 --- PASS: TestClassificationsNotEqual (0.00s)
-PASS
-ok  	esercizio	0.126s
+FAIL
+exit status 1
+FAIL	esercizio	0.013s
+Command exited with non-zero status 1
 	Command being timed: "go test -v"
-	User time (seconds): 5.48
-	System time (seconds): 0.75
-	Percent of CPU this job got: 106%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:05.83
+	User time (seconds): 6.05
+	System time (seconds): 2.83
+	Percent of CPU this job got: 8%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:47.46
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 215432
+	Maximum resident set size (kbytes): 228692
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 9
-	Minor (reclaiming a frame) page faults: 721772
-	Voluntary context switches: 24954
-	Involuntary context switches: 22992
+	Major (requiring I/O) page faults: 55128
+	Minor (reclaiming a frame) page faults: 861662
+	Voluntary context switches: 99407
+	Involuntary context switches: 56312
 	Swaps: 0
-	File system inputs: 41128
-	File system outputs: 172112
+	File system inputs: 13207768
+	File system outputs: 172344
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 0
+	Exit status: 1
+

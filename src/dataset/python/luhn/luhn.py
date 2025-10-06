@@ -6,13 +6,10 @@ class Luhn:
         if len(self.card_num) <= 1 or not self.card_num.isnumeric():
             return False
         
-        digsum = 0
-        for i, digit in enumerate(reversed(self.card_num)):
-            n = int(digit)
-            if i % 2 == 1:
-                n = n * 2
-                if n > 9:
-                    n -= 9
-            digsum += n
-        
+        def resdigit(dig):
+            doubled = dig * 2
+            return doubled - 9 if doubled > 9 else doubled
+
+        digsum = sum(int(self.card_num[i]) if i % 2 == len(self.card_num) % 2 else resdigit(int(self.card_num[i]))
+                     for i in range(len(self.card_num)))
         return digsum % 10 == 0

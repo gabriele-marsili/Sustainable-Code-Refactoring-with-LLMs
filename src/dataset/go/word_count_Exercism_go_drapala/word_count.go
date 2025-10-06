@@ -2,66 +2,73 @@ package wordcount
 
 import (
 	"strings"
+	"unicode"
 )
 
 type Frequency map[string]int
 
-func strip(s string) string {
-    var result strings.Builder
-    for i := 0; i < len(s); i++ {
-        b := s[i]
-        if ('a' <= b && b <= 'z') ||
-            ('A' <= b && b <= 'Z') ||
-            ('0' <= b && b <= '9') ||
-            b == ' ' ||
-			b == '\''{
-            result.WriteByte(b)
-        }
-    }
-    return result.String()
+func isValidChar(r rune) bool {
+	return unicode.IsLetter(r) || unicode.IsDigit(r) || r == '\'' || r == ' '
 }
 
 func CleanWord(in string) string {
-	var out string
-
-	// Skip empty strings
 	if in == "" {
 		return ""
 	}
-	// Skip punctuation
-	out = strip(in)
 
-	// Deal with quotations in beginning and end
-	if out[0] == '\'' && out[len(out)-1] == '\'' {
-		out = out[1:len(out)-1]
+	// Build cleaned string in single pass
+	runes := []rune(in)
+	cleaned := make([]rune, 0, len(runes))
+	
+	for _, r := range runes {
+		if isValidChar(r) {
+			cleaned = append(cleaned, r)
+		}
 	}
-
-	return out
+	
+	if len(cleaned) == 0 {
+		return ""
+	}
+	
+	// Remove surrounding quotes
+	if len(cleaned) >= 2 && cleaned[0] == '\'' && cleaned[len(cleaned)-1] == '\'' {
+		cleaned = cleaned[1 : len(cleaned)-1]
+	}
+	
+	return string(cleaned)
 }
 
 func WordCount(phrase string) Frequency {
+	if phrase == "" {
+		return make(Frequency)
+	}
+	
 	result := make(Frequency)
-
-	// Split by whitespace first
-	// https://pkg.go.dev/strings#Fields
-	whitesplit := strings.Fields(phrase)
-
-	// Split per entry by specific delimiters
-	delimited := make([]string, 0)
-	// https://pkg.go.dev/strings#Split
-	for _, entry := range whitesplit {
-		for _, word := range strings.Split(entry, ",") {
-			// Append to delimited
-			// Filter stuff that didn't get caught:
-			if CleanWord(word) != "" {
-				delimited = append(delimited, CleanWord(word))
+	
+	// Process phrase character by character to extract words
+	runes := []rune(strings.ToLower(phrase))
+	word := make([]rune, 0, 32) // Pre-allocate with reasonable capacity
+	
+	for i, r := range runes {
+		if unicode.IsLetter(r) || unicode.IsDigit(r) || r == '\'' {
+			word = append(word, r)
+		} else if len(word) > 0 {
+			// End of word, process it
+			cleanedWord := CleanWord(string(word))
+			if cleanedWord != "" {
+				result[cleanedWord]++
+			}
+			word = word[:0] // Reset slice but keep capacity
+		}
+		
+		// Handle last word if phrase doesn't end with delimiter
+		if i == len(runes)-1 && len(word) > 0 {
+			cleanedWord := CleanWord(string(word))
+			if cleanedWord != "" {
+				result[cleanedWord]++
 			}
 		}
 	}
-
-	for _, word := range(delimited) {
-		result[strings.ToLower(word)]++
-	}
-
+	
 	return result
 }

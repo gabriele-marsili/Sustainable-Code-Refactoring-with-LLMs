@@ -1,23 +1,25 @@
-const BRACKET_PAIRS: Record<string, string> = {
-    '{': '}',
-    '[': ']',
-    '(': ')',
-};
+const OPENING = "{[(";
+const CLOSING = "}])";
 
 export default class BracketPush {
-    private brackets: string;
+    private readonly brackets: string;
 
     constructor(input: string) {
-        this.brackets = input.replace(/[^{}\[\]()]/g, '');
+        this.brackets = input.replace(/[^\{\[\(\}\]\)]/g, '');
     }
 
     isPaired(): boolean {
         const stack: string[] = [];
-        for (const bracket of this.brackets) {
-            if (BRACKET_PAIRS[bracket]) {
-                stack.push(BRACKET_PAIRS[bracket]);
-            } else if (stack.pop() !== bracket) {
-                return false;
+        for (let i = 0; i < this.brackets.length; i++) {
+            const bracket = this.brackets[i];
+            const openingIndex = OPENING.indexOf(bracket);
+
+            if (openingIndex !== -1) {
+                stack.push(CLOSING[openingIndex]);
+            } else {
+                if (stack.length === 0 || stack.pop() !== bracket) {
+                    return false;
+                }
             }
         }
         return stack.length === 0;

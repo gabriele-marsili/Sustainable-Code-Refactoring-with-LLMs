@@ -14,8 +14,6 @@ from typing import List, Dict, Optional, Tuple
 
 from dataclasses import dataclass, field
 import argparse
-from threading import Lock, Thread
-from queue import Queue, Empty
 from collections import defaultdict
 
 
@@ -23,6 +21,10 @@ from utility_dir import utility_paths, general_utils
 from discordInteraction import create_webhook_reporter
 from dotenv import load_dotenv
 from execution_sanity_checks import sanity_checker
+import sys
+from threading import Lock
+from concurrent.futures import ProcessPoolExecutor, as_completed
+import multiprocessing as mp
 
 
 @dataclass
@@ -142,41 +144,44 @@ class ClusterExecutor:
     def __init__(self):
         self.logger = logging.getLogger(__name__ + ".ClusterExecutor")
 
-    def execute_cluster(
+    def  execute_cluster(
         self, cluster_name: str, prompt_version: int = -1, max_workers: int = 4
     ) -> ClusterExecutionReport:
         """Execute a single cluster and return detailed report"""
 
         start_time = time.time()
 
-        # Build command
+        # Build command        
         cmd = [
-            "python3",
-            str(utility_paths.SRC_DIR / "run_tests_on_cluster.py"),
+            sys.executable, "run_tests_on_cluster.py",
             "--full",
-            "--cluster-name",
-            cluster_name,
+            "--cluster-name", 
+            cluster_name,  
             "--prompt-version",
             str(prompt_version),
-            "--max-workers",
-            str(max_workers),
-            "--run-quantity",
+            "--run-quantity", 
             "5",
             "--not-check-pending",
             "--webhook",
-            "--silent"
         ]
 
         self.logger.info(f"Starting cluster execution: {cluster_name}")
 
         try:
-            result = subprocess.run(
+            process = subprocess.Popen(
                 cmd,
-                capture_output=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,                
                 text=True,
-                timeout=7200,  # 2 hours timeout
+                bufsize=1,
+                universal_newlines=True                
             )
 
+            for line in process.stdout:
+                logging.info(f"[{cluster_name}] {line.strip()}")
+
+            _, stderr = process.communicate()
+            
             end_time = time.time()
 
             # Parse execution results
@@ -185,15 +190,17 @@ class ClusterExecutor:
                 prompt_version,
                 start_time,
                 end_time,
-                result.returncode == 0,
+                process.returncode == 0,
             )
 
-            if result.returncode != 0:
+            if process.returncode != 0:
                 self.logger.error(
-                    f"Cluster {cluster_name} failed with exit code {result.returncode}"
+                    f"Cluster {cluster_name} failed with exit code {process.returncode}"
                 )
-                self.logger.error(f"STDERR: {result.stderr[-2000:]}")
+                if stderr:
+                    self.logger.error(f"STDERR: {stderr[-2000:]}")
 
+            self.logger.info(f"[{cluster_name}] Successfully completed")
             return report
 
         except subprocess.TimeoutExpired:
@@ -358,7 +365,7 @@ class LoadBalancer:
 
     def __init__(self, num_workers: int):
         self.num_workers = num_workers
-        self.work_queues: List[Queue] = [Queue() for _ in range(num_workers)]
+        #self.work_queues: List[Queue] = [Queue() for _ in range(num_workers)]
         self.cluster_times: Dict[str, float] = {}  # Historical execution times
         self.lock = Lock()
         self.logger = logging.getLogger(__name__ + ".LoadBalancer")
@@ -425,17 +432,20 @@ class ParallelRunner:
         else:
             self.webhook_reporter = None
 
+        
+        
+
     def _setup_logging(self) -> logging.Logger:
         """Setup logging"""
-        log_dir = utility_paths.SRC_DIR / "logs"
-        log_dir.mkdir(parents=True, exist_ok=True)
+        #log_dir = utility_paths.SRC_DIR / "logs"
+        #log_dir.mkdir(parents=True, exist_ok=True)
 
-        log_file = log_dir / f"parallel_runner_{int(time.time())}.log"
+        #log_file = log_dir / f"parallel_runner_{int(time.time())}.log"
 
         logging.basicConfig(
             level=logging.INFO,
             format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-            handlers=[logging.FileHandler(log_file), logging.StreamHandler()],
+            handlers=[logging.StreamHandler(),logging.StreamHandler(sys.stdout)],
         )
 
         return logging.getLogger(__name__)
@@ -471,54 +481,6 @@ class ParallelRunner:
                 cluster_names.append(name)
         return sorted(cluster_names)
 
-    def worker_thread(self, worker_id: int, cluster_queue: Queue):
-        """Worker thread that processes clusters from queue"""
-
-        self.logger.info(f"Worker {worker_id} started")
-
-        while True:
-            try:
-                # Get next cluster (with timeout for periodic checking)
-                cluster_name = cluster_queue.get(timeout=1.0)
-
-                if cluster_name is None:  # Poison pill
-                    break
-
-                # Update state
-                with self.state.lock:
-                    self.state.worker_states[worker_id].current_cluster = cluster_name
-
-                self.logger.info(
-                    f"Worker {worker_id} executing cluster: {cluster_name}"
-                )
-
-                # Execute cluster
-                report = self.executor.execute_cluster(
-                    cluster_name,
-                    prompt_version=-1,  # All prompt versions
-                    max_workers=self.max_workers_per_cluster,
-                )
-
-                # Update global state
-                self.state.update_from_report(report, worker_id)
-                self.load_balancer.record_execution_time(
-                    cluster_name, report.execution_time
-                )
-
-                # Progress update
-                self._print_progress()
-
-                # Mark task as done
-                cluster_queue.task_done()
-
-            except Empty:
-                continue
-            except Exception as e:
-                self.logger.error(f"Worker {worker_id} error: {e}", exc_info=True)
-                cluster_queue.task_done()
-
-        self.logger.info(f"Worker {worker_id} finished")
-
     def run_all_pending(self, prompt_version: int = -1):
         """Execute all pending clusters with dynamic load balancing"""
 
@@ -535,112 +497,61 @@ class ParallelRunner:
         for i in range(self.num_workers):
             self.state.worker_states[i] = WorkerState(worker_id=i)
 
-        # Distribute initial load
-        worker_assignments = self.load_balancer.distribute_initial_load(
-            pending_clusters
-        )
-
-        # Create queues for each worker
-        queues: List[Queue] = [Queue() for _ in range(self.num_workers)]
-        for worker_id, clusters in enumerate(worker_assignments):
-            for cluster in clusters:
-                queues[worker_id].put(cluster)
-
         self.logger.info(
             f"Starting execution of {self.state.total_clusters} clusters with {self.num_workers} workers"
         )
+            
+        with ProcessPoolExecutor(
+            max_workers=self.num_workers,
+            mp_context=mp.get_context('spawn')  # Importante per compatibilità cross-platform
+        ) as executor:
+            
+            # Sottometti tutti i cluster come futures
+            future_to_cluster = {
+                executor.submit(
+                    execute_cluster_standalone,
+                    cluster_name,
+                    prompt_version,
+                    self.max_workers_per_cluster,
+                    self.num_workers  
+                ): cluster_name
+                for cluster_name in pending_clusters
+            }
 
-        # Start worker threads
-        threads = []
-        for worker_id in range(self.num_workers):
-            thread = Thread(
-                target=self.worker_thread, args=(worker_id, queues[worker_id])
-            )
-            thread.daemon = True
-            thread.start()
-            threads.append(thread)
-
-        # Monitor progress and rebalance if needed
-        self._monitor_and_rebalance(queues)
-
-        # Signal workers to stop
-        for queue in queues:
-            queue.put(None)
-
-        # Wait for all threads
-        for thread in threads:
-            thread.join()
+            # Processa i risultati man mano che completano
+            completed = 0
+            for future in as_completed(future_to_cluster):
+                cluster_name = future_to_cluster[future]
+                
+                try:
+                    report, worker_id = future.result()
+                    
+                    # Update global state
+                    self.state.update_from_report(report, worker_id)
+                    self.load_balancer.record_execution_time(
+                        cluster_name, report.execution_time
+                    )
+                    
+                    completed += 1
+                    self.logger.info(
+                        f"Completed {completed}/{self.state.total_clusters}: {cluster_name}"
+                    )
+                    
+                    # Progress update
+                    self._print_progress()
+                    
+                except Exception as e:
+                    self.logger.error(
+                        f"Cluster {cluster_name} failed with error: {e}", 
+                        exc_info=True
+                    )
 
         # Final report
         self._generate_final_report()
 
         if self.webhook_reporter:
             self._send_final_webhook()
-
-    def _monitor_and_rebalance(self, queues: List[Queue]):
-        """Monitor worker progress and rebalance if needed"""
-
-        check_interval = 30  # Check every 30 seconds
-        last_check = time.time()
-
-        while any(not q.empty() for q in queues) or any(
-            state.current_cluster for state in self.state.worker_states.values()
-        ):
-            time.sleep(5)
-
-            current_time = time.time()
-            if current_time - last_check >= check_interval:
-                # Check for load imbalance
-                self._check_and_rebalance(queues)
-                last_check = current_time
-
-            # Check if all work is done
-            all_idle = all(
-                state.current_cluster is None
-                for state in self.state.worker_states.values()
-            )
-            all_queues_empty = all(q.empty() for q in queues)
-
-            if all_idle and all_queues_empty:
-                break
-
-    def _check_and_rebalance(self, queues: List[Queue]):
-        """Check load distribution and rebalance if needed"""
-
-        with self.state.lock:
-            load_distribution = self.state.get_worker_load_distribution()
-
-            if not load_distribution:
-                return
-
-            max_load = max(load_distribution.values())
-            min_load = min(load_distribution.values())
-
-            # Rebalance if difference is > 50%
-            if max_load > 0 and (max_load - min_load) / max_load > 0.5:
-                self.logger.info(
-                    f"Load imbalance detected: max={max_load:.1f}s, min={min_load:.1f}s"
-                )
-
-                # Find worker with most remaining work
-                max_worker = max(
-                    range(self.num_workers), key=lambda i: queues[i].qsize()
-                )
-                min_worker = min(
-                    range(self.num_workers), key=lambda i: queues[i].qsize()
-                )
-
-                # Transfer work if possible
-                if queues[max_worker].qsize() > queues[min_worker].qsize() + 1:
-                    try:
-                        cluster = queues[max_worker].get_nowait()
-                        queues[min_worker].put(cluster)
-                        self.logger.info(
-                            f"Rebalanced: moved cluster from worker {max_worker} to {min_worker}"
-                        )
-                    except Empty:
-                        pass
-
+            
     def _print_progress(self):
         """Print current progress"""
         with self.state.lock:
@@ -775,6 +686,38 @@ class ParallelRunner:
             self.logger.error(f"Failed to send final webhook: {e}")
 
 
+def execute_cluster_standalone(
+    cluster_name: str,
+    prompt_version: int,
+    max_workers: int,
+    num_workers: int
+) -> Tuple[ClusterExecutionReport, int]:
+    """
+    Funzione standalone per esecuzione cluster (picklable)
+    Deve essere a livello modulo per essere serializzabile
+    """
+    import os
+    
+    # Setup logging per questo processo
+    logger = logging.getLogger(f"Worker-{os.getpid()}")
+    
+    # Calcola worker_id basato su PID
+    worker_id = os.getpid() % num_workers
+    
+    logger.info(f"Worker {worker_id} (PID: {os.getpid()}) executing cluster: {cluster_name}")
+    
+    # Crea un nuovo executor per questo processo
+    executor = ClusterExecutor()
+    
+    # Esegui il cluster
+    report = executor.execute_cluster(
+        cluster_name,
+        prompt_version=prompt_version,
+        max_workers=max_workers,
+    )
+    
+    return report, worker_id
+
 def main():
     """Main entry point"""
     parser = argparse.ArgumentParser(description=" Parallel Test Runner")
@@ -814,14 +757,14 @@ def main():
     load_dotenv()
 
     # Get webhook URL
-    webhook_url = None if args.no_webhook else os.getenv("DISCORD_WEBHOOK")
+    webhook_url = None if args.no_webhook else os.getenv("DISCORD_WEBHOOK_RUN_ALL")
 
     # Create runner
     runner = ParallelRunner(
         num_workers=args.num_workers,
         max_workers_per_cluster=args.max_workers_per_cluster,
         webhook_url=webhook_url,
-        webhook_interval=args.webhook_interval,
+        webhook_interval=webhook_url,
     )
 
     sanity_c = sanity_checker.SanityChecker()

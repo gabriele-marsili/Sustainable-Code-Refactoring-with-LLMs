@@ -1,15 +1,24 @@
 public class Octal {
-    private String octal;
+    private final String octal;
 
     public Octal(String octal) {
         this.octal = octal;
     }
 
     public long getDecimal() {
-        Long decimal = 0L;
-        for(Character c: octal.toCharArray()) {
-            if( c < '0' || '7' < c) return 0L;
-            decimal = decimal * 8 + (long)(c - '0');
+        if (octal == null || octal.isEmpty()) {
+            return 0L;
+        }
+        
+        long decimal = 0L;
+        int length = octal.length();
+        
+        for (int i = 0; i < length; i++) {
+            char c = octal.charAt(i);
+            if (c < '0' || c > '7') {
+                return 0L;
+            }
+            decimal = (decimal << 3) + (c - '0');
         }
         return decimal;
     }

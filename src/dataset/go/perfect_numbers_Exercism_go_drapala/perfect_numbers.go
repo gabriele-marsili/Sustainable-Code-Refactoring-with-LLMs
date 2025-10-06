@@ -5,29 +5,26 @@ import "errors"
 // Define the Classification type here.
 type Classification string
 
-const ClassificationAbundant Classification = "ClassificationAbundant"
-const ClassificationDeficient Classification = "ClassificationDeficient"
-const ClassificationPerfect Classification = "ClassificationPerfect"
+const (
+	ClassificationAbundant  Classification = "ClassificationAbundant"
+	ClassificationDeficient Classification = "ClassificationDeficient"
+	ClassificationPerfect   Classification = "ClassificationPerfect"
+)
 
 // Errors
 var ErrOnlyPositive error = errors.New("only positive numbers are allowed")
 
-// Find all positive divisors for a number n
-func getDivisors(n int) []int {
-	result := make([]int, 0)
-	for x := 1; x < n; x++ { // Find divisors
-		if n % x == 0 { // Divides cleanly
-			result = append(result, x)
-		}
+// Calculate the sum of proper divisors of n directly
+func getDivisorSum(n int) int {
+	if n == 1 {
+		return 0
 	}
-	return result
-}
-
-// Sums up the array
-func getDivisorSum(array []int) int {
-	var sum int
-	for _, divisor := range(array) {
-		sum += divisor
+	sum := 1 // 1 is a divisor for all n > 1
+	limit := n / 2
+	for x := 2; x <= limit; x++ {
+		if n%x == 0 {
+			sum += x
+		}
 	}
 	return sum
 }
@@ -38,14 +35,14 @@ func Classify(n int64) (Classification, error) {
 		return "", ErrOnlyPositive
 	}
 
-	divisors := getDivisors(int(n))
-	sum := getDivisorSum(divisors)
+	sum := getDivisorSum(int(n))
 
-	if sum == int(n) {
+	switch {
+	case sum == int(n):
 		return ClassificationPerfect, nil
-	} else if sum > int(n) {
+	case sum > int(n):
 		return ClassificationAbundant, nil
-	} else {
+	default:
 		return ClassificationDeficient, nil
 	}
 }

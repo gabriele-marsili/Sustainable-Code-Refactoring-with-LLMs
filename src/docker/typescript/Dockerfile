@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y time
 
 WORKDIR /base
 COPY package.json .
-RUN npm install --include=dev
+RUN npm install --include=dev && npm install -D @types/node 
 
 WORKDIR /app
 COPY run.sh jest.config.js ./

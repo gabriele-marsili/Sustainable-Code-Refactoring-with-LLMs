@@ -1,13 +1,14 @@
 class Clock {
-    private int rawHour, rawMin, addHours = 0;
-    private String hour, minute;
+    private int rawHour, rawMin;
+    private String cachedString;
+    private boolean stringCacheValid = false;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Clock)) return false;
         Clock compare = (Clock) o;
-        return toString().equals(compare.toString());
+        return rawHour == compare.rawHour && rawMin == compare.rawMin;
     }
 
     Clock(int hour, int min) {
@@ -15,31 +16,30 @@ class Clock {
     }
 
     public String toString() {
-        convertRawTime();
-        return hour + ":" + minute;
+        if (!stringCacheValid) {
+            cachedString = formatNum(rawHour) + ":" + formatNum(rawMin);
+            stringCacheValid = true;
+        }
+        return cachedString;
     }
 
     void add(int minutes) {
         calculateTimeOnClock(rawHour, rawMin + minutes);
+        stringCacheValid = false;
     }
 
     private void calculateTimeOnClock(int hour, int min) {
-        addHours = (min >= 0) ? min / 60 : (-60 + min) / 60;
-        rawMin = calcRolloverTime(min, 60) % 60;
-        rawHour = calcRolloverTime(hour + addHours, 24) % 24;
-    }
-
-    private void convertRawTime() {
-        hour   = formatNum(rawHour);
-        minute = formatNum(rawMin);
+        int totalMinutes = hour * 60 + min;
+        totalMinutes = ((totalMinutes % 1440) + 1440) % 1440;
+        rawHour = totalMinutes / 60;
+        rawMin = totalMinutes % 60;
     }
 
     private String formatNum(int rawNum) {
-        String displayNum = Integer.toString(rawNum);
-        return (rawNum < 10) ? "0" + displayNum : displayNum;
+        return rawNum < 10 ? "0" + rawNum : Integer.toString(rawNum);
     }
 
     private int calcRolloverTime(int initTime, int amount) {
-        return (initTime >= 0) ? initTime % amount : amount + (initTime % amount);
+        return ((initTime % amount) + amount) % amount;
     }
 }

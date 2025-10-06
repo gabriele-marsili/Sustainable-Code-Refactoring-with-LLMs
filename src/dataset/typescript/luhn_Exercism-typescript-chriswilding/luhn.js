@@ -7,27 +7,28 @@ class Luhn {
     static valid(input) {
         let sum = 0;
         let alt = false;
-        let nValidChars = 0;
+        let nLength = 0;
         for (let i = input.length - 1; i >= 0; i--) {
-            const charCode = input.charCodeAt(i);
-            if (charCode === SPACE) {
+            const c = input.charCodeAt(i);
+            if (c === SPACE)
                 continue;
-            }
-            if (charCode < ZERO || charCode > NINE) {
+            if (c < ZERO || c > NINE)
                 return false;
-            }
-            nValidChars++;
-            let n = charCode - ZERO;
+            const n = c - ZERO;
+            nLength++;
             if (alt) {
-                n *= 2;
-                if (n > 9) {
-                    n -= 9;
+                let doubled = n * 2;
+                if (doubled > 9) {
+                    doubled -= 9;
                 }
+                sum += doubled;
             }
-            sum += n;
+            else {
+                sum += n;
+            }
             alt = !alt;
         }
-        return nValidChars > 1 && sum % 10 === 0;
+        return nLength > 1 && sum % 10 === 0;
     }
 }
 exports.default = Luhn;

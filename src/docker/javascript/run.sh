@@ -34,14 +34,14 @@ npm install
 if [ "$mode" = "esm" ]; then
   echo "▶️  Avvio Jest in modalità ESM"
   /usr/bin/time -v node --experimental-vm-modules ./node_modules/.bin/jest \
-    --config=jest.config.js \
-    --testMatch="**/*testSuite.js" \
+    --config=jest.config.js \    
+    --testMatch='**/*.test.{ts,js}','**/*testSuite.{ts,js}' \
     --silent=false > output.log 2>&1
 else
   echo "▶️  Avvio Jest in modalità CommonJS"
   /usr/bin/time -v ./node_modules/.bin/jest \
     --config=jest.config.js \
-    --testMatch="**/*testSuite.js" \
+    --testMatch='**/*.test.{ts,js}','**/*testSuite.{ts,js}' \    
     --silent=false > output.log 2>&1
 fi
 

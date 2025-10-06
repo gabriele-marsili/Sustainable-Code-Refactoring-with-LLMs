@@ -1,9 +1,9 @@
 {
-  "execution_date": "2025-09-29 09:06:39",
+  "execution_date": "2025-10-05 13:52:29",
   "execution_metadata": {
-    "total_tests": 3,
-    "successful_tests": 2,
-    "execution_time": "00h 00m 05s",
+    "total_tests": 4,
+    "successful_tests": 3,
+    "execution_time": "00h 00m 55s",
     "cluster": "cluster_bank_account_action_invalid_exception",
     "test_type": "llm_v2"
   },
@@ -11,58 +11,73 @@
     "java": [
       {
         "id": "Java_bank_account_Exercism (java_rabestro)",
+        "filename": "Filename not found",
         "language": "java",
-        "timestamp": 1759129597.8259342,
         "LLM_results": [
           {
-            "execution_time_ms": 960,
-            "CPU_usage": 75.0,
-            "RAM_usage": 90876,
-            "regressionTestPassed": false,
-            "success": true,
-            "error_message": "Docker exit code: 2",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_java_persistent_Java_bank_account_Exercism (java_rabestro)_1759129597.log",
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/bank_account_Exercism_java_rabestro/openAI/ChatGPT4_BankAccountActionInvalidException_v2.java",
-            "filename": "ChatGPT4_BankAccountActionInvalidException_v2.java"
-          }
-        ]
-      },
-      {
-        "id": "Java_bank_account_Exercism (java_rabestro)",
-        "language": "java",
-        "timestamp": 1759129598.5618932,
-        "LLM_results": [
-          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/bank_account_Exercism_java_rabestro/claude/ClaudeSonnet4_BankAccountActionInvalidException_v2.java",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_java_persistent_Java_bank_account_Exercism (java_rabestro)_1759129598.log",
             "execution_time_ms": null,
             "CPU_usage": null,
             "RAM_usage": null,
             "regressionTestPassed": false,
             "success": false,
-            "error_message": "Docker exit code: 2",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_java_persistent_Java_bank_account_Exercism (java_rabestro)_1759129598.log",
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/bank_account_Exercism_java_rabestro/claude/ClaudeSonnet4_BankAccountActionInvalidException_v2.java",
-            "filename": "ClaudeSonnet4_BankAccountActionInvalidException_v2.java"
+            "error_message": "Docker exit code: 2"
           }
         ]
       },
       {
         "id": "Java_bank_account_Exercism (java_rabestro)",
+        "filename": "BankAccountActionInvalidException.java",
         "language": "java",
-        "timestamp": 1759129599.8679821,
         "LLM_results": [
           {
-            "execution_time_ms": 1120,
-            "CPU_usage": 102.0,
-            "RAM_usage": 89164,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_java_persistent_Java_bank_account_Exercism (java_rabestro)_1759129599.log",
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/bank_account_Exercism_java_rabestro/openAI/ChatGPT4_BankAccountActionInvalidException_v2.java",
+            "log": "",
+            "execution_time_ms": 810,
+            "CPU_usage": 16.0,
+            "RAM_usage": 85444,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "Java_bank_account_Exercism (java_rabestro)",
+        "filename": "BankAccountActionInvalidException.java",
+        "language": "java",
+        "LLM_results": [
+          {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/bank_account_Exercism_java_rabestro/gemini/GeminiFlash_BankAccountActionInvalidException_v2.java",
-            "filename": "GeminiFlash_BankAccountActionInvalidException_v2.java"
+            "log": "",
+            "execution_time_ms": 909,
+            "CPU_usage": 10.0,
+            "RAM_usage": 84312,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "Java_bank_account_Exercism (java_rabestro)",
+        "filename": "BankAccountActionInvalidException.java",
+        "language": "java",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/bank_account_Exercism_java_rabestro/claude/ClaudeSonnet4_BankAccountActionInvalidException_v2.java",
+            "log": "",
+            "execution_time_ms": 909,
+            "CPU_usage": 10.0,
+            "RAM_usage": 84312,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
           }
         ]
       }

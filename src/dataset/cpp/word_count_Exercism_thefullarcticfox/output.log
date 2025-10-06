@@ -1,27 +1,130 @@
-Randomness seeded to: 3294996632
-===============================================================================
-All tests passed (13 assertions in 13 test cases)
-
-	Command being timed: "./test_exec"
-	User time (seconds): 0.00
-	System time (seconds): 0.00
-	Percent of CPU this job got: 22%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.00
-	Average shared text size (kbytes): 0
-	Average unshared data size (kbytes): 0
-	Average stack size (kbytes): 0
-	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 3968
-	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 19
-	Minor (reclaiming a frame) page faults: 178
-	Voluntary context switches: 34
-	Involuntary context switches: 11
-	Swaps: 0
-	File system inputs: 2312
-	File system outputs: 0
-	Socket messages sent: 0
-	Socket messages received: 0
-	Signals delivered: 0
-	Page size (bytes): 4096
-	Exit status: 0
+=== ERRORI DI COMPILAZIONE ===
+🔨 Compilando catch_amalgamated.cpp...
+g++ -std=c++17 -I src -I test -I /usr/local/include -I. -c catch_amalgamated.cpp -o obj/catch_amalgamated.o
+g++: fatal error: Killed signal terminated program cc1plus
+compilation terminated.
+make: *** [Makefile:50: obj/catch_amalgamated.o] Error 1
+🧪 Linking test eseguibile con Catch2...
+g++ -std=c++17 -I src -I test -I /usr/local/include -I.  obj/word_count.o  obj/word_count_test.o obj/catch_main.o obj/catch_amalgamated.o  -o test_exec
+/usr/bin/ld: /lib/aarch64-linux-gnu/crt1.o: in function `__wrap_main':
+(.text+0x38): undefined reference to `main'
+/usr/bin/ld: obj/word_count_test.o: in function `CATCH2_INTERNAL_TEST_0()':
+word_count_test.cpp:(.text+0x168): undefined reference to `Catch::AssertionHandler::AssertionHandler(Catch::StringRef, Catch::SourceLineInfo const&, Catch::StringRef, Catch::ResultDisposition::Flags)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x198): undefined reference to `Catch::AssertionHandler::handleExpr(Catch::ITransientExpression const&)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x1a0): undefined reference to `Catch::AssertionHandler::complete()'
+/usr/bin/ld: word_count_test.cpp:(.text+0x26c): undefined reference to `Catch::AssertionHandler::handleUnexpectedInflightException()'
+/usr/bin/ld: obj/word_count_test.o: in function `CATCH2_INTERNAL_TEST_2()':
+word_count_test.cpp:(.text+0x480): undefined reference to `Catch::AssertionHandler::AssertionHandler(Catch::StringRef, Catch::SourceLineInfo const&, Catch::StringRef, Catch::ResultDisposition::Flags)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x4b0): undefined reference to `Catch::AssertionHandler::handleExpr(Catch::ITransientExpression const&)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x4b8): undefined reference to `Catch::AssertionHandler::complete()'
+/usr/bin/ld: word_count_test.cpp:(.text+0x588): undefined reference to `Catch::AssertionHandler::handleUnexpectedInflightException()'
+/usr/bin/ld: obj/word_count_test.o: in function `CATCH2_INTERNAL_TEST_4()':
+word_count_test.cpp:(.text+0x7f0): undefined reference to `Catch::AssertionHandler::AssertionHandler(Catch::StringRef, Catch::SourceLineInfo const&, Catch::StringRef, Catch::ResultDisposition::Flags)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x820): undefined reference to `Catch::AssertionHandler::handleExpr(Catch::ITransientExpression const&)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x828): undefined reference to `Catch::AssertionHandler::complete()'
+/usr/bin/ld: word_count_test.cpp:(.text+0x900): undefined reference to `Catch::AssertionHandler::handleUnexpectedInflightException()'
+/usr/bin/ld: obj/word_count_test.o: in function `CATCH2_INTERNAL_TEST_6()':
+word_count_test.cpp:(.text+0xb18): undefined reference to `Catch::AssertionHandler::AssertionHandler(Catch::StringRef, Catch::SourceLineInfo const&, Catch::StringRef, Catch::ResultDisposition::Flags)'
+/usr/bin/ld: word_count_test.cpp:(.text+0xb48): undefined reference to `Catch::AssertionHandler::handleExpr(Catch::ITransientExpression const&)'
+/usr/bin/ld: word_count_test.cpp:(.text+0xb50): undefined reference to `Catch::AssertionHandler::complete()'
+/usr/bin/ld: word_count_test.cpp:(.text+0xc20): undefined reference to `Catch::AssertionHandler::handleUnexpectedInflightException()'
+/usr/bin/ld: obj/word_count_test.o: in function `CATCH2_INTERNAL_TEST_8()':
+word_count_test.cpp:(.text+0xe38): undefined reference to `Catch::AssertionHandler::AssertionHandler(Catch::StringRef, Catch::SourceLineInfo const&, Catch::StringRef, Catch::ResultDisposition::Flags)'
+/usr/bin/ld: word_count_test.cpp:(.text+0xe68): undefined reference to `Catch::AssertionHandler::handleExpr(Catch::ITransientExpression const&)'
+/usr/bin/ld: word_count_test.cpp:(.text+0xe70): undefined reference to `Catch::AssertionHandler::complete()'
+/usr/bin/ld: word_count_test.cpp:(.text+0xf40): undefined reference to `Catch::AssertionHandler::handleUnexpectedInflightException()'
+/usr/bin/ld: obj/word_count_test.o: in function `CATCH2_INTERNAL_TEST_10()':
+word_count_test.cpp:(.text+0x11a8): undefined reference to `Catch::AssertionHandler::AssertionHandler(Catch::StringRef, Catch::SourceLineInfo const&, Catch::StringRef, Catch::ResultDisposition::Flags)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x11d8): undefined reference to `Catch::AssertionHandler::handleExpr(Catch::ITransientExpression const&)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x11e0): undefined reference to `Catch::AssertionHandler::complete()'
+/usr/bin/ld: word_count_test.cpp:(.text+0x12b8): undefined reference to `Catch::AssertionHandler::handleUnexpectedInflightException()'
+/usr/bin/ld: obj/word_count_test.o: in function `CATCH2_INTERNAL_TEST_12()':
+word_count_test.cpp:(.text+0x14d0): undefined reference to `Catch::AssertionHandler::AssertionHandler(Catch::StringRef, Catch::SourceLineInfo const&, Catch::StringRef, Catch::ResultDisposition::Flags)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x1500): undefined reference to `Catch::AssertionHandler::handleExpr(Catch::ITransientExpression const&)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x1508): undefined reference to `Catch::AssertionHandler::complete()'
+/usr/bin/ld: word_count_test.cpp:(.text+0x15d8): undefined reference to `Catch::AssertionHandler::handleUnexpectedInflightException()'
+/usr/bin/ld: obj/word_count_test.o: in function `CATCH2_INTERNAL_TEST_14()':
+word_count_test.cpp:(.text+0x17c4): undefined reference to `Catch::AssertionHandler::AssertionHandler(Catch::StringRef, Catch::SourceLineInfo const&, Catch::StringRef, Catch::ResultDisposition::Flags)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x17f4): undefined reference to `Catch::AssertionHandler::handleExpr(Catch::ITransientExpression const&)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x17fc): undefined reference to `Catch::AssertionHandler::complete()'
+/usr/bin/ld: word_count_test.cpp:(.text+0x18cc): undefined reference to `Catch::AssertionHandler::handleUnexpectedInflightException()'
+/usr/bin/ld: obj/word_count_test.o: in function `CATCH2_INTERNAL_TEST_16()':
+word_count_test.cpp:(.text+0x1b30): undefined reference to `Catch::AssertionHandler::AssertionHandler(Catch::StringRef, Catch::SourceLineInfo const&, Catch::StringRef, Catch::ResultDisposition::Flags)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x1b60): undefined reference to `Catch::AssertionHandler::handleExpr(Catch::ITransientExpression const&)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x1b68): undefined reference to `Catch::AssertionHandler::complete()'
+/usr/bin/ld: word_count_test.cpp:(.text+0x1c40): undefined reference to `Catch::AssertionHandler::handleUnexpectedInflightException()'
+/usr/bin/ld: obj/word_count_test.o: in function `CATCH2_INTERNAL_TEST_18()':
+word_count_test.cpp:(.text+0x1ed0): undefined reference to `Catch::AssertionHandler::AssertionHandler(Catch::StringRef, Catch::SourceLineInfo const&, Catch::StringRef, Catch::ResultDisposition::Flags)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x1f00): undefined reference to `Catch::AssertionHandler::handleExpr(Catch::ITransientExpression const&)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x1f08): undefined reference to `Catch::AssertionHandler::complete()'
+/usr/bin/ld: word_count_test.cpp:(.text+0x1fe0): undefined reference to `Catch::AssertionHandler::handleUnexpectedInflightException()'
+/usr/bin/ld: obj/word_count_test.o: in function `CATCH2_INTERNAL_TEST_20()':
+word_count_test.cpp:(.text+0x22c0): undefined reference to `Catch::AssertionHandler::AssertionHandler(Catch::StringRef, Catch::SourceLineInfo const&, Catch::StringRef, Catch::ResultDisposition::Flags)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x22f0): undefined reference to `Catch::AssertionHandler::handleExpr(Catch::ITransientExpression const&)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x22f8): undefined reference to `Catch::AssertionHandler::complete()'
+/usr/bin/ld: word_count_test.cpp:(.text+0x23d0): undefined reference to `Catch::AssertionHandler::handleUnexpectedInflightException()'
+/usr/bin/ld: obj/word_count_test.o: in function `CATCH2_INTERNAL_TEST_22()':
+word_count_test.cpp:(.text+0x25bc): undefined reference to `Catch::AssertionHandler::AssertionHandler(Catch::StringRef, Catch::SourceLineInfo const&, Catch::StringRef, Catch::ResultDisposition::Flags)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x25ec): undefined reference to `Catch::AssertionHandler::handleExpr(Catch::ITransientExpression const&)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x25f4): undefined reference to `Catch::AssertionHandler::complete()'
+/usr/bin/ld: word_count_test.cpp:(.text+0x26c4): undefined reference to `Catch::AssertionHandler::handleUnexpectedInflightException()'
+/usr/bin/ld: obj/word_count_test.o: in function `CATCH2_INTERNAL_TEST_24()':
+word_count_test.cpp:(.text+0x28d8): undefined reference to `Catch::AssertionHandler::AssertionHandler(Catch::StringRef, Catch::SourceLineInfo const&, Catch::StringRef, Catch::ResultDisposition::Flags)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x2908): undefined reference to `Catch::AssertionHandler::handleExpr(Catch::ITransientExpression const&)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x2910): undefined reference to `Catch::AssertionHandler::complete()'
+/usr/bin/ld: word_count_test.cpp:(.text+0x29e0): undefined reference to `Catch::AssertionHandler::handleUnexpectedInflightException()'
+/usr/bin/ld: obj/word_count_test.o: in function `__static_initialization_and_destruction_0()':
+word_count_test.cpp:(.text+0x2a58): undefined reference to `Catch::makeTestInvoker(void (*)())'
+/usr/bin/ld: word_count_test.cpp:(.text+0x2a94): undefined reference to `Catch::StringRef::StringRef(char const*)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x2adc): undefined reference to `Catch::AutoReg::AutoReg(Catch::Detail::unique_ptr<Catch::ITestInvoker>, Catch::SourceLineInfo const&, Catch::StringRef, Catch::NameAndTags const&)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x2af8): undefined reference to `Catch::makeTestInvoker(void (*)())'
+/usr/bin/ld: word_count_test.cpp:(.text+0x2b34): undefined reference to `Catch::StringRef::StringRef(char const*)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x2b7c): undefined reference to `Catch::AutoReg::AutoReg(Catch::Detail::unique_ptr<Catch::ITestInvoker>, Catch::SourceLineInfo const&, Catch::StringRef, Catch::NameAndTags const&)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x2b98): undefined reference to `Catch::makeTestInvoker(void (*)())'
+/usr/bin/ld: word_count_test.cpp:(.text+0x2bd4): undefined reference to `Catch::StringRef::StringRef(char const*)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x2c1c): undefined reference to `Catch::AutoReg::AutoReg(Catch::Detail::unique_ptr<Catch::ITestInvoker>, Catch::SourceLineInfo const&, Catch::StringRef, Catch::NameAndTags const&)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x2c38): undefined reference to `Catch::makeTestInvoker(void (*)())'
+/usr/bin/ld: word_count_test.cpp:(.text+0x2c74): undefined reference to `Catch::StringRef::StringRef(char const*)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x2cc8): undefined reference to `Catch::AutoReg::AutoReg(Catch::Detail::unique_ptr<Catch::ITestInvoker>, Catch::SourceLineInfo const&, Catch::StringRef, Catch::NameAndTags const&)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x2ce4): undefined reference to `Catch::makeTestInvoker(void (*)())'
+/usr/bin/ld: word_count_test.cpp:(.text+0x2d20): undefined reference to `Catch::StringRef::StringRef(char const*)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x2d70): undefined reference to `Catch::AutoReg::AutoReg(Catch::Detail::unique_ptr<Catch::ITestInvoker>, Catch::SourceLineInfo const&, Catch::StringRef, Catch::NameAndTags const&)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x2d8c): undefined reference to `Catch::makeTestInvoker(void (*)())'
+/usr/bin/ld: word_count_test.cpp:(.text+0x2dc8): undefined reference to `Catch::StringRef::StringRef(char const*)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x2e1c): undefined reference to `Catch::AutoReg::AutoReg(Catch::Detail::unique_ptr<Catch::ITestInvoker>, Catch::SourceLineInfo const&, Catch::StringRef, Catch::NameAndTags const&)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x2e38): undefined reference to `Catch::makeTestInvoker(void (*)())'
+/usr/bin/ld: word_count_test.cpp:(.text+0x2e74): undefined reference to `Catch::StringRef::StringRef(char const*)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x2ec8): undefined reference to `Catch::AutoReg::AutoReg(Catch::Detail::unique_ptr<Catch::ITestInvoker>, Catch::SourceLineInfo const&, Catch::StringRef, Catch::NameAndTags const&)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x2ee4): undefined reference to `Catch::makeTestInvoker(void (*)())'
+/usr/bin/ld: word_count_test.cpp:(.text+0x2f20): undefined reference to `Catch::StringRef::StringRef(char const*)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x2f74): undefined reference to `Catch::AutoReg::AutoReg(Catch::Detail::unique_ptr<Catch::ITestInvoker>, Catch::SourceLineInfo const&, Catch::StringRef, Catch::NameAndTags const&)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x2f90): undefined reference to `Catch::makeTestInvoker(void (*)())'
+/usr/bin/ld: word_count_test.cpp:(.text+0x2fcc): undefined reference to `Catch::StringRef::StringRef(char const*)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x3020): undefined reference to `Catch::AutoReg::AutoReg(Catch::Detail::unique_ptr<Catch::ITestInvoker>, Catch::SourceLineInfo const&, Catch::StringRef, Catch::NameAndTags const&)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x303c): undefined reference to `Catch::makeTestInvoker(void (*)())'
+/usr/bin/ld: word_count_test.cpp:(.text+0x3078): undefined reference to `Catch::StringRef::StringRef(char const*)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x30cc): undefined reference to `Catch::AutoReg::AutoReg(Catch::Detail::unique_ptr<Catch::ITestInvoker>, Catch::SourceLineInfo const&, Catch::StringRef, Catch::NameAndTags const&)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x30e8): undefined reference to `Catch::makeTestInvoker(void (*)())'
+/usr/bin/ld: word_count_test.cpp:(.text+0x3124): undefined reference to `Catch::StringRef::StringRef(char const*)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x3178): undefined reference to `Catch::AutoReg::AutoReg(Catch::Detail::unique_ptr<Catch::ITestInvoker>, Catch::SourceLineInfo const&, Catch::StringRef, Catch::NameAndTags const&)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x3194): undefined reference to `Catch::makeTestInvoker(void (*)())'
+/usr/bin/ld: word_count_test.cpp:(.text+0x31d0): undefined reference to `Catch::StringRef::StringRef(char const*)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x3224): undefined reference to `Catch::AutoReg::AutoReg(Catch::Detail::unique_ptr<Catch::ITestInvoker>, Catch::SourceLineInfo const&, Catch::StringRef, Catch::NameAndTags const&)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x3240): undefined reference to `Catch::makeTestInvoker(void (*)())'
+/usr/bin/ld: word_count_test.cpp:(.text+0x327c): undefined reference to `Catch::StringRef::StringRef(char const*)'
+/usr/bin/ld: word_count_test.cpp:(.text+0x32d0): undefined reference to `Catch::AutoReg::AutoReg(Catch::Detail::unique_ptr<Catch::ITestInvoker>, Catch::SourceLineInfo const&, Catch::StringRef, Catch::NameAndTags const&)'
+/usr/bin/ld: obj/word_count_test.o: in function `Catch::ITransientExpression::ITransientExpression(bool, bool)':
+word_count_test.cpp:(.text._ZN5Catch20ITransientExpressionC2Ebb[_ZN5Catch20ITransientExpressionC5Ebb]+0x10): undefined reference to `vtable for Catch::ITransientExpression'
+/usr/bin/ld: word_count_test.cpp:(.text._ZN5Catch20ITransientExpressionC2Ebb[_ZN5Catch20ITransientExpressionC5Ebb]+0x14): undefined reference to `vtable for Catch::ITransientExpression'
+/usr/bin/ld: obj/word_count_test.o:(.rodata._ZTIN5Catch10BinaryExprIRKSt3mapINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEiSt4lessIS7_ESaISt4pairIKS7_iEEESG_EE[_ZTIN5Catch10BinaryExprIRKSt3mapINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEiSt4lessIS7_ESaISt4pairIKS7_iEEESG_EE]+0x10): undefined reference to `typeinfo for Catch::ITransientExpression'
+/usr/bin/ld: obj/word_count_test.o: in function `Catch::BinaryExpr<std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> > > const&, std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> > > const&>::streamReconstructedExpression(std::ostream&) const':
+word_count_test.cpp:(.text._ZNK5Catch10BinaryExprIRKSt3mapINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEiSt4lessIS7_ESaISt4pairIKS7_iEEESG_E29streamReconstructedExpressionERSo[_ZNK5Catch10BinaryExprIRKSt3mapINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEiSt4lessIS7_ESaISt4pairIKS7_iEEESG_E29streamReconstructedExpressionERSo]+0x54): undefined reference to `Catch::formatReconstructedExpression(std::ostream&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, Catch::StringRef, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)'
+/usr/bin/ld: obj/word_count_test.o: in function `std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > Catch::Detail::rangeToString<std::_Rb_tree_const_iterator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::_Rb_tree_const_iterator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> > >(std::_Rb_tree_const_iterator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >, std::_Rb_tree_const_iterator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, int> >)':
+word_count_test.cpp:(.text._ZN5Catch6Detail13rangeToStringISt23_Rb_tree_const_iteratorISt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEiEESC_EES9_T_T0_[_ZN5Catch6Detail13rangeToStringISt23_Rb_tree_const_iteratorISt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEiEESC_EES9_T_T0_]+0x1c): undefined reference to `Catch::ReusableStringStream::ReusableStringStream()'
+/usr/bin/ld: word_count_test.cpp:(.text._ZN5Catch6Detail13rangeToStringISt23_Rb_tree_const_iteratorISt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEiEESC_EES9_T_T0_[_ZN5Catch6Detail13rangeToStringISt23_Rb_tree_const_iteratorISt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEiEESC_EES9_T_T0_]+0x118): undefined reference to `Catch::ReusableStringStream::str[abi:cxx11]() const'
+/usr/bin/ld: word_count_test.cpp:(.text._ZN5Catch6Detail13rangeToStringISt23_Rb_tree_const_iteratorISt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEiEESC_EES9_T_T0_[_ZN5Catch6Detail13rangeToStringISt23_Rb_tree_const_iteratorISt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEiEESC_EES9_T_T0_]+0x124): undefined reference to `Catch::ReusableStringStream::~ReusableStringStream()'
+/usr/bin/ld: word_count_test.cpp:(.text._ZN5Catch6Detail13rangeToStringISt23_Rb_tree_const_iteratorISt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEiEESC_EES9_T_T0_[_ZN5Catch6Detail13rangeToStringISt23_Rb_tree_const_iteratorISt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEiEESC_EES9_T_T0_]+0x154): undefined reference to `Catch::ReusableStringStream::~ReusableStringStream()'
+collect2: error: ld returned 1 exit status
+make: *** [Makefile:30: test_exec] Error 1
+🧪 Linking test eseguibile con Catch2...
+g++ -std=c++17 -I src -I test -I /usr/local/include -I.  obj/word_count.o  obj/word_count_test.o obj/catch_main.o obj/catch_amalgamated.o  -o test_exec

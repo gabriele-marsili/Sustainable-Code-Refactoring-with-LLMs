@@ -2,26 +2,29 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Luhn {
     static valid(input) {
-        if (!input.match(/^\d[\d ]+$/)) {
-            return false;
-        }
         let sum = 0;
-        let isEvenPosition = false;
-        for (let i = input.length - 1; i >= 0; i--) {
-            const char = input[i];
-            if (char === ' ')
+        let alt = false;
+        let n = input.length;
+        while (n--) {
+            const char = input.charAt(n);
+            if (char === ' ') {
                 continue;
-            let digit = parseInt(char, 10);
-            if (isEvenPosition) {
-                digit *= 2;
-                if (digit > 9) {
-                    digit -= 9;
-                }
             }
-            sum += digit;
-            isEvenPosition = !isEvenPosition;
+            const digit = parseInt(char, 10);
+            if (isNaN(digit)) {
+                return false;
+            }
+            if (alt) {
+                let doubled = digit * 2;
+                doubled = (doubled > 9) ? (doubled - 9) : doubled;
+                sum += doubled;
+            }
+            else {
+                sum += digit;
+            }
+            alt = !alt;
         }
-        return sum % 10 === 0;
+        return input.length > 1 && sum % 10 === 0;
     }
 }
 exports.default = Luhn;

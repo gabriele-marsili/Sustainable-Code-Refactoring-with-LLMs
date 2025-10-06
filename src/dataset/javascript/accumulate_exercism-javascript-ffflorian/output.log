@@ -14,24 +14,24 @@ FAIL ./accumulate_testSuite.js
 Test Suites: 1 failed, 1 total
 Tests:       0 total
 Snapshots:   0 total
-Time:        0.222 s
+Time:        0.191 s
 Ran all test suites.
 Command exited with non-zero status 1
-	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 0.43
-	System time (seconds): 0.15
-	Percent of CPU this job got: 53%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.10
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --testMatch=**/*.test.{ts,js} --silent=false"
+	User time (seconds): 0.23
+	System time (seconds): 0.08
+	Percent of CPU this job got: 43%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.73
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 81512
+	Maximum resident set size (kbytes): 80580
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 13817
-	Voluntary context switches: 7241
-	Involuntary context switches: 2107
+	Minor (reclaiming a frame) page faults: 14102
+	Voluntary context switches: 7464
+	Involuntary context switches: 1324
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16
@@ -40,3 +40,4 @@ Command exited with non-zero status 1
 	Signals delivered: 0
 	Page size (bytes): 4096
 	Exit status: 1
+

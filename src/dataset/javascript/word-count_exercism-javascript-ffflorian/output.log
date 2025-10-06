@@ -2,40 +2,40 @@
 (Use `node --trace-warnings ...` to show where the warning was created)
 PASS ./word-count_testSuite.js
   countWords
-    ✓ count one word (2 ms)
-    ✓ count one of each word (1 ms)
+    ✓ count one word (5 ms)
+    ✓ count one of each word
     ✓ multiple occurrences of a word
     ✓ handles cramped lists
-    ✓ handles expanded lists
-    ✓ ignore punctuation
+    ✓ handles expanded lists (1 ms)
+    ✓ ignore punctuation (1 ms)
     ✓ include numbers (1 ms)
-    ✓ normalize case
+    ✓ normalize case (1 ms)
     ✓ with apostrophes
-    ✓ with quotations (1 ms)
-    ✓ substrings from the beginning
-    ✓ multiple spaces not detected as a word (1 ms)
+    ✓ with quotations (6 ms)
+    ✓ substrings from the beginning (5 ms)
+    ✓ multiple spaces not detected as a word
     ✓ alternating word separators not detected as a word
 
 Test Suites: 1 passed, 1 total
 Tests:       13 passed, 13 total
 Snapshots:   0 total
-Time:        0.323 s
+Time:        0.843 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 0.25
-	System time (seconds): 0.06
-	Percent of CPU this job got: 29%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.07
+	User time (seconds): 0.30
+	System time (seconds): 0.09
+	Percent of CPU this job got: 14%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:02.81
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 82156
+	Maximum resident set size (kbytes): 82000
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 13818
-	Voluntary context switches: 7567
-	Involuntary context switches: 3083
+	Minor (reclaiming a frame) page faults: 14175
+	Voluntary context switches: 7217
+	Involuntary context switches: 2818
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

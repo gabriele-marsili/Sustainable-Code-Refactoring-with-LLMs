@@ -1,69 +1,66 @@
 (node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-FAIL ./word-count_testSuite.js
+PASS ./word-count_testSuite.js
   words()
-    ✓ counts one word (1 ms)
+    ✓ counts one word (19 ms)
     ✓ counts one of each
     ✓ counts multiple occurrences
     ✓ includes punctuation
-    ✓ includes numbers (1 ms)
+    ✓ includes numbers (16 ms)
     ✓ normalizes to lower case
     ✓ counts properly international characters
-    ✓ counts multiline
+    ✓ counts multiline (16 ms)
     ✓ counts tabs
-    ✓ counts multiple spaces as one (1 ms)
-    ✓ does not count leading or trailing whitespace
-    ✕ handles properties that exist on Object’s prototype (1 ms)
+    ✓ counts multiple spaces as one (2 ms)
+    ✓ does not count leading or trailing whitespace (19 ms)
+    ✓ handles properties that exist on Object’s prototype
 
-  ● words() › handles properties that exist on Object’s prototype
-
-    expect(received).toEqual(expected) // deep equality
-
-    - Expected  - 1
-    + Received  + 1
-
-    @@ -1,8 +1,8 @@
-      Object {
-        "and": 1,
-    -   "constructor": 1,
-    +   "constructor": "function Object() { [native code] }1",
-        "like": 1,
-        "ok?": 1,
-        "reserved": 1,
-        "tostring": 1,
-        "words": 1,
-
-      69 |       reserved: 1, words: 1, like: 1, constructor: 1, and: 1, tostring: 1, 'ok?': 1,
-      70 |     };
-    > 71 |     expect(words.count('reserved words like constructor and toString ok?')).toEqual(expectedCounts);
-         |                                                                             ^
-      72 |   });
-      73 | });
-      74 |
-
-      at Object.<anonymous> (word-count_testSuite.js:71:77)
-
-Test Suites: 1 failed, 1 total
-Tests:       1 failed, 11 passed, 12 total
+Test Suites: 1 passed, 1 total
+Tests:       12 passed, 12 total
 Snapshots:   0 total
-Time:        0.172 s
+Time:        2.247 s
 Ran all test suites.
-Command exited with non-zero status 1
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 0.21
-	System time (seconds): 0.06
-	Percent of CPU this job got: 58%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.47
+	User time (seconds): 0.43
+	System time (seconds): 0.11
+	Percent of CPU this job got: 10%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:05.34
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 82740
+	Maximum resident set size (kbytes): 79560
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 14268
-	Voluntary context switches: 7283
-	Involuntary context switches: 285
+	Minor (reclaiming a frame) page faults: 14015
+	Voluntary context switches: 7629
+	Involuntary context switches: 3645
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+ytes): 4096
+	Exit status: 0
+with non-zero status 1
+	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
+	User time (seconds): 0.41
+	System time (seconds): 0.12
+	Percent of CPU this job got: 11%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.85
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 81808
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 14199
+	Voluntary context switches: 8332
+	Involuntary context switches: 3050
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16

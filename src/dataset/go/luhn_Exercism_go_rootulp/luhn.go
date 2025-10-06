@@ -1,59 +1,87 @@
 package luhn
 
-import (
-	"errors"
-	"strconv"
-	"strings"
-)
-
 // Valid returns whether the provided string represents a number that satisfies the Luhn algorithm.
 func Valid(s string) bool {
-	s = strings.ReplaceAll(s, " ", "")
 	if len(s) <= 1 {
 		return false
 	}
-	checkDigit, err := checkSum(s)
-
-	if err != nil {
-		return false
+	
+	sum := 0
+	digitCount := 0
+	isEven := true
+	
+	for i := len(s) - 1; i >= 0; i-- {
+		char := s[i]
+		
+		if char == ' ' {
+			continue
+		}
+		
+		if char < '0' || char > '9' {
+			return false
+		}
+		
+		digit := int(char - '0')
+		
+		if isEven {
+			sum += digit
+		} else {
+			doubled := digit * 2
+			if doubled > 9 {
+				doubled -= 9
+			}
+			sum += doubled
+		}
+		
+		isEven = !isEven
+		digitCount++
 	}
-
-	return checkDigit%10 == 0
+	
+	return digitCount > 1 && sum%10 == 0
 }
 
 // checkSum returns the Luhn check sum of the provided string.
 func checkSum(s string) (int, error) {
 	sum := 0
-	for i, v := range reverse(s) {
-		digit, err := strconv.Atoi(string(v))
-
-		if err != nil {
-			// stop if we failed to convert this digit
+	digitCount := 0
+	isEven := true
+	
+	for i := len(s) - 1; i >= 0; i-- {
+		char := s[i]
+		
+		if char < '0' || char > '9' {
 			return 0, errors.New("Invalid digit")
 		}
-
-		if (i % 2) == 0 {
-			// if this is an even indexed digit, add it to the sum directly
+		
+		digit := int(char - '0')
+		
+		if isEven {
 			sum += digit
 		} else {
-			// double the digit and subtract 9 if it surpasses 9
-			product := digit * 2
-			if product > 9 {
-				product -= 9
+			doubled := digit * 2
+			if doubled > 9 {
+				doubled -= 9
 			}
-			sum += product
+			sum += doubled
 		}
+		
+		isEven = !isEven
+		digitCount++
 	}
+	
 	return sum, nil
 }
 
 // reverse returns a string with characters in reversed order.
 func reverse(s string) string {
-	chars := strings.Split(s, "")
-	result := make([]string, len(s))
-
-	for i := len(chars) - 1; i >= 0; i-- {
-		result = append(result, chars[i])
+	if len(s) <= 1 {
+		return s
 	}
-	return strings.Join(result, "")
+	
+	runes := []rune(s)
+	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
+		runes[i], runes[j] = runes[j], runes[i]
+	}
+	
+	return string(runes)
 }

@@ -1,41 +1,42 @@
-(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(node:22) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
 PASS ./bracket-push_testSuite.js
   bracket push
-    ✓ checks for appropriate bracketing in a set of brackets (1 ms)
-    ✓ returns false for unclosed brackets (1 ms)
+    ✓ checks for appropriate bracketing in a set of brackets (3 ms)
+    ✓ returns false for unclosed brackets
     ✓ returns false if brackets are out of order
     ✓ checks bracketing in more than one pair of brackets
     ✓ checks bracketing in nested brackets
-    ✓ rejects brackets that are properly balanced but improperly nested
+    ✓ rejects brackets that are properly balanced but improperly nested (13 ms)
     ✓ checks bracket closure with deeper nesting
-    ✓ checks bracket closure in a long string of brackets (1 ms)
+    ✓ checks bracket closure in a long string of brackets
 
 Test Suites: 1 passed, 1 total
 Tests:       8 passed, 8 total
 Snapshots:   0 total
-Time:        0.182 s
+Time:        1.578 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 0.23
+	User time (seconds): 0.27
 	System time (seconds): 0.06
-	Percent of CPU this job got: 48%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.63
+	Percent of CPU this job got: 8%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.09
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 81344
+	Maximum resident set size (kbytes): 82312
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 14022
-	Voluntary context switches: 6838
-	Involuntary context switches: 3066
+	Minor (reclaiming a frame) page faults: 14041
+	Voluntary context switches: 7247
+	Involuntary context switches: 3374
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16
 	Socket messages sent: 0
-	Socket messages received: 0
+	Socket messages rages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
 	Exit status: 0
+0

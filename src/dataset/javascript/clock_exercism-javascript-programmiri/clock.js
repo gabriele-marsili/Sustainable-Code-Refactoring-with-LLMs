@@ -1,28 +1,30 @@
-function dateToString(date) {
-  return date.toTimeString().slice(0, 5);
+function dateToString(totalMinutes) {
+  const hours = Math.floor(totalMinutes / 60) % 24;
+  const minutes = totalMinutes % 60;
+  return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
 }
 
 export function at(hour = 0, minutes = 0) {
-  const baseDate = new Date();
-  baseDate.setHours(hour, minutes);
+  let totalMinutes = (hour * 60 + minutes) % 1440;
+  if (totalMinutes < 0) totalMinutes += 1440;
 
   return {
-    toString: function() {
-      return dateToString(baseDate);
+    toString() {
+      return dateToString(totalMinutes);
     },
 
-    plus: function(minToAdd) {
-      baseDate.setMinutes(minToAdd + minutes);
-      return dateToString(baseDate);
+    plus(minToAdd) {
+      const newTotal = (totalMinutes + minToAdd) % 1440;
+      return dateToString(newTotal < 0 ? newTotal + 1440 : newTotal);
     },
 
-    minus: function(minToSub) {
-      baseDate.setMinutes(minutes - minToSub);
-      return dateToString(baseDate);
+    minus(minToSub) {
+      const newTotal = (totalMinutes - minToSub) % 1440;
+      return dateToString(newTotal < 0 ? newTotal + 1440 : newTotal);
     },
 
-    equals: function(clock) {
-      return dateToString(baseDate) == clock.toString();
+    equals(clock) {
+      return dateToString(totalMinutes) === clock.toString();
     },
   };
 }

@@ -1,10 +1,6 @@
-export default function accumulate<T, U>(
-  collection: T[],
-  accumulator: (i: T) => U
-): U[] {
-  const result: U[] = new Array(collection.length);
-  for (let i = 0; i < collection.length; i++) {
-    result[i] = accumulator(collection[i]);
-  }
-  return result;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = accumulate;
+function accumulate(collection, accumulator) {
+    return collection.map(accumulator);
 }

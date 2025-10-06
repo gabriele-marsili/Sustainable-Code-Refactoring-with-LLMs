@@ -218,21 +218,30 @@ class SanityChecker:
             errors = []
             for _lang, entries in content["results"].items():
                 for entry in entries:
-                    if not entry["success"] or (
-                        entry["error_message"] != ""
-                        and entry["error_message"] is not None
-                    ):
-                        errors.append(
-                            {
-                                "id": entry["id"],
-                                "filename": entry.get("filename", ""),
-                                "error_message": entry["error_message"],
-                                "log_path": entry["log_path"],
-                                "path": utility_paths.DATASET_DIR
-                                / f"{entry['language']}"
-                                / f"cluter_{cluster_name}.json",
-                            }
-                        )
+                    try:
+                        if (
+                            "success" in entry
+                            and not entry["success"]
+                            or (
+                                "error_message" in entry
+                                and entry["error_message"] != ""
+                                and entry["error_message"] is not None
+                            )
+                        ):
+                            errors.append(
+                                {
+                                    "id": entry["id"],
+                                    "filename": entry.get("filename", ""),
+                                    "error_message": entry["error_message"],
+                                    "log_path": entry["log_path"],
+                                    "path": utility_paths.DATASET_DIR
+                                    / f"{entry['language']}"
+                                    / f"cluter_{cluster_name}.json",
+                                }
+                            )
+                    except Exception as e:
+                        print(f"name: {name}\ncontent : {content}\n\nerror : {e}")
+                        raise e
 
             value["errors"] = errors
 
@@ -267,6 +276,11 @@ class SanityChecker:
                 errors = []
                 for _lang, entries in content["results"].items():
                     for entry in entries:
+                        if "LLM_results" not in entry:
+                            raise Exception(
+                                f"No LLM_results in entry :\ncontent:\n{content}\n\n{entry}"
+                            )
+
                         for llm_res in entry["LLM_results"]:
                             if "success" in llm_res and "error_message" in llm_res:
                                 if not llm_res["success"] or (
@@ -278,7 +292,7 @@ class SanityChecker:
                                             "id": entry["id"],
                                             "filename": entry.get("filename", ""),
                                             "error_message": llm_res["error_message"],
-                                            "log_path": llm_res["log_path"],
+                                            "log_path": llm_res.get("log_path",""),
                                             "path": llm_res["path"],
                                         }
                                     )
@@ -296,9 +310,9 @@ class SanityChecker:
                                         {
                                             "id": entry["id"],
                                             "filename": entry["filename"],
-                                            "error_message": llm_res["error_message"],
-                                            "log_path": llm_res["log_path"],
-                                            "path": llm_res["path"],
+                                            "error_message": llm_res["error_message"] if "error_message" in llm_res else "",
+                                            "log_path": llm_res["log_path"] if "log_path" in llm_res else "",
+                                            "path": llm_res["path"] if "path" in llm_res else "",
                                         }
                                     )
 

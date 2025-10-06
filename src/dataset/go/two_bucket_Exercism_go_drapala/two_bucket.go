@@ -18,67 +18,66 @@ func Solve(sizeBucketOne, sizeBucketTwo, goalAmount int, startBucket string) (st
 
 	// Use BFS for optimal solution
 	type state struct {
-		amt1, amt2, moves int
-		path              []bucketKey
+		bucket1, bucket2, moves int
 	}
 
 	queue := make([]state, 0, 100)
 	visited := make(map[bucketKey]bool)
 
-	// Initial state
+	// Initial state based on start bucket
 	var initialState state
 	if startBucket == "one" {
-		initialState = state{sizeBucketOne, 0, 1, []bucketKey{{0, 0}, {sizeBucketOne, 0}}}
+		initialState = state{sizeBucketOne, 0, 1}
 	} else {
-		initialState = state{0, sizeBucketTwo, 1, []bucketKey{{0, 0}, {0, sizeBucketTwo}}}
+		initialState = state{0, sizeBucketTwo, 1}
 	}
 
 	queue = append(queue, initialState)
-	visited[bucketKey{initialState.amt1, initialState.amt2}] = true
+	visited[bucketKey{initialState.bucket1, initialState.bucket2}] = true
 
 	for len(queue) > 0 {
 		current := queue[0]
 		queue = queue[1:]
 
 		// Check if goal is reached
-		if current.amt1 == goalAmount {
-			return "one", current.moves, current.amt2, nil
+		if current.bucket1 == goalAmount {
+			return "one", current.moves, current.bucket2, nil
 		}
-		if current.amt2 == goalAmount {
-			return "two", current.moves, current.amt1, nil
+		if current.bucket2 == goalAmount {
+			return "two", current.moves, current.bucket1, nil
 		}
 
 		// Generate next states
 		nextStates := []state{
 			// Pour bucket1 to bucket2
-			{current.amt1 - min(current.amt1, sizeBucketTwo-current.amt2), 
-			 current.amt2 + min(current.amt1, sizeBucketTwo-current.amt2), 
-			 current.moves + 1, nil},
+			{current.bucket1 - min(current.bucket1, sizeBucketTwo-current.bucket2),
+				current.bucket2 + min(current.bucket1, sizeBucketTwo-current.bucket2),
+				current.moves + 1},
 			// Pour bucket2 to bucket1
-			{current.amt1 + min(current.amt2, sizeBucketOne-current.amt1), 
-			 current.amt2 - min(current.amt2, sizeBucketOne-current.amt1), 
-			 current.moves + 1, nil},
+			{current.bucket1 + min(current.bucket2, sizeBucketOne-current.bucket1),
+				current.bucket2 - min(current.bucket2, sizeBucketOne-current.bucket1),
+				current.moves + 1},
 			// Empty bucket1
-			{0, current.amt2, current.moves + 1, nil},
+			{0, current.bucket2, current.moves + 1},
 			// Empty bucket2
-			{current.amt1, 0, current.moves + 1, nil},
+			{current.bucket1, 0, current.moves + 1},
 			// Fill bucket1
-			{sizeBucketOne, current.amt2, current.moves + 1, nil},
+			{sizeBucketOne, current.bucket2, current.moves + 1},
 			// Fill bucket2
-			{current.amt1, sizeBucketTwo, current.moves + 1, nil},
+			{current.bucket1, sizeBucketTwo, current.moves + 1},
 		}
 
 		for _, next := range nextStates {
-			key := bucketKey{next.amt1, next.amt2}
+			key := bucketKey{next.bucket1, next.bucket2}
 			
 			// Skip invalid states
-			if startBucket == "one" && next.amt1 == 0 && next.amt2 == sizeBucketTwo {
+			if startBucket == "one" && next.bucket1 == 0 && next.bucket2 == sizeBucketTwo {
 				continue
 			}
-			if startBucket == "two" && next.amt2 == 0 && next.amt1 == sizeBucketOne {
+			if startBucket == "two" && next.bucket2 == 0 && next.bucket1 == sizeBucketOne {
 				continue
 			}
-			
+
 			if !visited[key] {
 				visited[key] = true
 				queue = append(queue, next)

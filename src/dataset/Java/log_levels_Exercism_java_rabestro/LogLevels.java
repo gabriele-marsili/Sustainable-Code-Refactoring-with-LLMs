@@ -15,9 +15,9 @@ public class LogLevels {
         int closeBracketIndex = logLine.indexOf(']');
         
         String message = logLine.substring(colonIndex + 1).trim();
-        String logLevel = logLine.substring(1, closeBracketIndex).toLowerCase();
+        String level = logLine.substring(1, closeBracketIndex).toLowerCase();
         
-        return message + " (" + logLevel + ")";
+        return message + " (" + level + ")";
     }
 
 }

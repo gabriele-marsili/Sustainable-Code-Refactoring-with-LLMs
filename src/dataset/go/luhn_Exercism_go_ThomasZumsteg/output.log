@@ -1,25 +1,30 @@
-# esercizio
-./luhn.go:24:16: conversion from int to string yields a string of one rune, not a string of digits (did you mean fmt.Sprint(x)?)
-FAIL	esercizio [build failed]
+=== RUN   TestValid
+--- PASS: TestValid (0.00s)
+=== RUN   TestAddCheck
+    luhn_test.go:39: AddCheck(１２３) = １２３８, want １２３０.
+--- FAIL: TestAddCheck (0.00s)
+FAIL
+exit status 1
+FAIL	esercizio	0.028s
 Command exited with non-zero status 1
 	Command being timed: "go test -v"
-	User time (seconds): 5.64
+	User time (seconds): 5.48
 	System time (seconds): 0.58
-	Percent of CPU this job got: 16%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:36.69
+	Percent of CPU this job got: 13%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:46.14
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 220652
+	Maximum resident set size (kbytes): 208788
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 238
-	Minor (reclaiming a frame) page faults: 726729
-	Voluntary context switches: 30595
-	Involuntary context switches: 24060
+	Major (requiring I/O) page faults: 44
+	Minor (reclaiming a frame) page faults: 730864
+	Voluntary context switches: 26931
+	Involuntary context switches: 20292
 	Swaps: 0
-	File system inputs: 92088
-	File system outputs: 172048
+	File system inputs: 12552
+	File system outputs: 172088
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0

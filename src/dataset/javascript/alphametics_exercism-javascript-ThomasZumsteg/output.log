@@ -1,44 +1,42 @@
-(node:22) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(node:23) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
-PASS ./alphametics_testSuite.js (10038.865 s)
+PASS ./alphametics_testSuite.js (5695.993 s)
   Solve the alphametics puzzle
-    ✓ puzzle with three letters (20 ms)
-    ✓ solution must have unique value for each letter
-    ✓ leading zero solution is invalid (75 ms)
-    ✓ puzzle with four letters (128 ms)
-    ✓ puzzle with six letters (1771 ms)
-    ✓ puzzle with seven letters (27083 ms)
-    ✓ puzzle with eight letters (243399 ms)
-    ✓ puzzle with ten letters (9764709 ms)
+    ✓ puzzle with three letters (23 ms)
+    ✓ solution must have unique value for each letter (1 ms)
+    ✓ leading zero solution is invalid (59 ms)
+    ✓ puzzle with four letters (13 ms)
+    ✓ puzzle with six letters (656 ms)
+    ✓ puzzle with seven letters (5491 ms)
+    ✓ puzzle with eight letters (52437 ms)
+    ✓ puzzle with ten letters (5636734 ms)
 
 Test Suites: 1 passed, 1 total
 Tests:       8 passed, 8 total
 Snapshots:   0 total
-Time:        10038.98 s
+Time:        5696.103 s
 Ran all test suites.
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 2465.31
-	System time (seconds): 16.82
-	Percent of CPU this job got: 24%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:47:21
+	User time (seconds): 841.54
+	System time (seconds): 2.84
+	Percent of CPU this job got: 14%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:34:57
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 84704
+	Maximum resident set size (kbytes): 83828
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 233586
-	Minor (reclaiming a frame) page faults: 509160
-	Voluntary context switches: 241811
-	Involuntary context switches: 4389970
+	Major (requiring I/O) page faults: 38966
+	Minor (reclaiming a frame) page faults: 113779
+	Voluntary context switches: 48815
+	Involuntary context switches: 1534048
 	Swaps: 0
-	File system inputs: 55482760
+	File system inputs: 9170032
 	File system outputs: 16
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
 	Exit status: 0
-s: 0
-0
 

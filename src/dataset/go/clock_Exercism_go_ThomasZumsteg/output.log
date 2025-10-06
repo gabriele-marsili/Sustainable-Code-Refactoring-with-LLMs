@@ -1,34 +1,26 @@
-=== RUN   TestCreateClock
-    clock_test.go:40: 14 test cases
---- PASS: TestCreateClock (0.00s)
-=== RUN   TestAddMinutes
-    clock_test.go:50: 13 test cases
---- PASS: TestAddMinutes (0.00s)
-=== RUN   TestCompareClocks
-    clock_test.go:68: 4 test cases
---- PASS: TestCompareClocks (0.00s)
-PASS
-ok  	esercizio	0.005s
+runtime: /usr/local/go/pkg/tool/linux_arm64/compile: signal: killed
+FAIL	esercizio [build failed]
+Command exited with non-zero status 1
 	Command being timed: "go test -v"
-	User time (seconds): 5.35
-	System time (seconds): 0.68
-	Percent of CPU this job got: 50%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:11.98
+	User time (seconds): 1.96
+	System time (seconds): 0.56
+	Percent of CPU this job got: 10%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:23.03
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 219216
+	Maximum resident set size (kbytes): 207052
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 83
-	Minor (reclaiming a frame) page faults: 730925
-	Voluntary context switches: 26603
-	Involuntary context switches: 28277
+	Major (requiring I/O) page faults: 17248
+	Minor (reclaiming a frame) page faults: 241264
+	Voluntary context switches: 32915
+	Involuntary context switches: 13341
 	Swaps: 0
-	File system inputs: 53232
-	File system outputs: 172152
+	File system inputs: 3897872
+	File system outputs: 16448
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 0
+	Exit status: 1

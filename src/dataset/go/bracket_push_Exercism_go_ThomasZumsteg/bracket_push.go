@@ -1,9 +1,7 @@
 package brackets
 
-//bracketType sorts characters into either opening, closing, or not a bracket
 type bracketType int
 
-//TestVersion is the version of unit tests that this will pass
 const TestVersion = 2
 
 const (
@@ -12,36 +10,38 @@ const (
 	notABracket
 )
 
-//bracketPairs are the matching pairs of brackets
 var pairs = map[rune]rune{'{': '}', '[': ']', '(': ')'}
 
-/*Bracket determines if a strings has balanced brackets*/
-func Bracket(phrase string) (bool, error) {
-	var queue []rune
-	for _, v := range phrase {
-		switch getBracketType(v) {
-		case openBracket:
-			queue = append(queue, pairs[v])
-		case closeBracket:
-			if 0 < len(queue) && queue[len(queue)-1] == v {
-				queue = queue[:len(queue)-1]
-			} else {
-				return false, nil
-			}
-		}
-	}
-	return len(queue) == 0, nil
+var bracketTypes = map[rune]bracketType{
+	'{': openBracket,
+	'[': openBracket,
+	'(': openBracket,
+	'}': closeBracket,
+	']': closeBracket,
+	')': closeBracket,
 }
 
-/*getBracketType determines the type of bracket*/
-func getBracketType(char rune) bracketType {
-	for k, v := range pairs {
-		switch char {
-		case k:
-			return openBracket
-		case v:
-			return closeBracket
+func Bracket(phrase string) (bool, error) {
+	stack := make([]rune, 0, len(phrase)/2)
+	
+	for _, char := range phrase {
+		switch bracketTypes[char] {
+		case openBracket:
+			stack = append(stack, pairs[char])
+		case closeBracket:
+			if len(stack) == 0 || stack[len(stack)-1] != char {
+				return false, nil
+			}
+			stack = stack[:len(stack)-1]
 		}
+	}
+	
+	return len(stack) == 0, nil
+}
+
+func getBracketType(char rune) bracketType {
+	if bType, exists := bracketTypes[char]; exists {
+		return bType
 	}
 	return notABracket
 }

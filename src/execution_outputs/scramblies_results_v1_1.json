@@ -1,41 +1,45 @@
 {
-    "execution_date": "2025-09-16 22:32:03",
-    "results": {
-        "javascript": [
-            {
-                "id": "scramblies_122",
-                "filename": "scramblies.js",
-                "language": "javascript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/scramblies/openAI/ChatGPT4_scramblies_v1.js",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_javascript_persistant_scramblies_122_error_19d8573a.log"
-                    },
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/scramblies/claude/ClaudeSonnet4_scramblies_v1.js",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_javascript_persistant_scramblies_122_error_dddf2de0.log"
-                    },
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/scramblies/gemini/GeminiFlash_scramblies_v1.js",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_javascript_persistant_scramblies_122_error_575ad482.log"
-                    }
-                ]
-            }
+  "execution_date": "2025-10-03 11:49:18",
+  "execution_metadata": {
+    "total_tests": 1,
+    "successful_tests": 1,
+    "execution_time": "00h 02m 01s",
+    "cluster": "cluster_scramblies",
+    "test_type": "llm_v1"
+  },
+  "results": {
+    "javascript": [
+      {
+        "id": "scramblies_122",
+        "filename": "scramblies.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/scramblies/claude/ClaudeSonnet4_scramblies_v1.js",
+            "execution_time_ms": 490,
+            "CPU_usage": 4.0,
+            "RAM_usage": 81016,
+            "regressionTestPassed": false
+          },
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/scramblies/openAI/ChatGPT4_scramblies_v1.js",
+            "execution_time_ms": 449,
+            "CPU_usage": 3.0,
+            "RAM_usage": 80996,
+            "regressionTestPassed": false
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/scramblies/gemini/GeminiFlash_scramblies_v1.js",
+            "execution_time_ms": 530,
+            "CPU_usage": 4.0,
+            "RAM_usage": 81992,
+            "regressionTestPassed": false
+          }
         ]
-    }
+      }
+    ]
+  }
 }

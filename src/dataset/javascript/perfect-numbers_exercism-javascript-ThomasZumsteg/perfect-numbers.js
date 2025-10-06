@@ -1,10 +1,15 @@
 function factors(number) {
-    var result = number == 1 ? [] : [1];
-    for(var f = 2; f*f <= number; f++) {
-        if(number % f == 0) {
+    if (number === 1) return [];
+    
+    const result = [1];
+    const sqrt = Math.sqrt(number);
+    
+    for (let f = 2; f <= sqrt; f++) {
+        if (number % f === 0) {
             result.push(f);
-            if(f * f != number) {
-                result.push(number / f);
+            const complement = number / f;
+            if (f !== complement) {
+                result.push(complement);
             }
         }
     }
@@ -13,14 +18,26 @@ function factors(number) {
 
 class PerfectNumbers {
     classify(number) {
-        if(number <= 0) {
+        if (number <= 0) {
             return "Classification is only possible for natural numbers.";
         }
 
-        var factorSum = factors(number).reduce((a, b) => a + b, 0);
-        if(number < factorSum) {
+        let factorSum = 1;
+        const sqrt = Math.sqrt(number);
+        
+        for (let f = 2; f <= sqrt; f++) {
+            if (number % f === 0) {
+                factorSum += f;
+                const complement = number / f;
+                if (f !== complement) {
+                    factorSum += complement;
+                }
+            }
+        }
+
+        if (number < factorSum) {
             return "abundant";
-        } else if(number > factorSum) {
+        } else if (number > factorSum) {
             return "deficient";
         } else {
             return "perfect";
@@ -28,4 +45,4 @@ class PerfectNumbers {
     }
 }
 
-export default PerfectNumbers;;
+export default PerfectNumbers;

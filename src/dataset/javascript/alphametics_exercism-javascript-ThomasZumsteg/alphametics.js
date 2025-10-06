@@ -1,34 +1,34 @@
 function* combinations(len, items) {
-    const maxIndex = items.length;
+    const itemsLength = items.length;
     const indexes = new Array(len).fill(0);
     const used = new Set();
     
-    while (true) {
+    while(true) {
         used.clear();
         let isValid = true;
-        for (let i = 0; i < len; i++) {
-            if (used.has(indexes[i])) {
+        for(let i = 0; i < len; i++) {
+            if(used.has(indexes[i])) {
                 isValid = false;
                 break;
             }
             used.add(indexes[i]);
         }
         
-        if (isValid) {
+        if(isValid) {
             yield indexes.slice();
         }
         
         let pos = 0;
-        while (pos < len) {
+        while(pos < len) {
             indexes[pos]++;
-            if (indexes[pos] < maxIndex) {
+            if(indexes[pos] < itemsLength) {
                 break;
             }
             indexes[pos] = 0;
             pos++;
         }
         
-        if (pos === len) {
+        if(pos === len) {
             return;
         }
     }
@@ -37,7 +37,7 @@ function* combinations(len, items) {
 function make_map(digits, letters) {
     const map = {};
     const len = letters.length;
-    for (let i = 0; i < len; i++) {
+    for(let i = 0; i < len; i++) {
         map[letters[i]] = digits[i];
     }
     return map;
@@ -46,7 +46,7 @@ function make_map(digits, letters) {
 function translate(word, map) {
     let result = 0;
     const len = word.length;
-    for (let i = 0; i < len; i++) {
+    for(let i = 0; i < len; i++) {
         result = result * 10 + map[word[i]];
     }
     return result;
@@ -54,8 +54,8 @@ function translate(word, map) {
 
 function get_letters(...words) {
     const letterSet = new Set();
-    for (const word of words) {
-        for (let i = 0; i < word.length; i++) {
+    for(const word of words) {
+        for(let i = 0; i < word.length; i++) {
             letterSet.add(word[i]);
         }
     }
@@ -70,42 +70,43 @@ function solve(puzzle) {
     
     const firstLetters = new Set();
     firstLetters.add(sum[0]);
-    for (const term of terms) {
+    for(const term of terms) {
         firstLetters.add(term[0]);
     }
     const firstLettersArray = Array.from(firstLetters);
     
     let solutionCount = 0;
-    let lastSolution = null;
+    let solution = null;
     
-    for (const combination of combinations(letters.length, digits)) {
+    for(const combination of combinations(letters.length, digits)) {
         const map = make_map(combination, letters);
         
         let hasZeroFirst = false;
-        for (const letter of firstLettersArray) {
-            if (map[letter] === 0) {
+        for(const letter of firstLettersArray) {
+            if(map[letter] === 0) {
                 hasZeroFirst = true;
                 break;
             }
         }
         
-        if (hasZeroFirst) continue;
+        if(hasZeroFirst) continue;
         
         let leftSum = 0;
-        for (const term of terms) {
+        for(const term of terms) {
             leftSum += translate(term, map);
         }
         
-        if (leftSum === translate(sum, map)) {
+        if(leftSum === translate(sum, map)) {
             solutionCount++;
-            lastSolution = map;
-            if (solutionCount > 1) {
+            if(solutionCount === 1) {
+                solution = map;
+            } else {
                 return null;
             }
         }
     }
     
-    return solutionCount === 1 ? lastSolution : null;
+    return solutionCount === 1 ? solution : null;
 }
 
 export default solve;

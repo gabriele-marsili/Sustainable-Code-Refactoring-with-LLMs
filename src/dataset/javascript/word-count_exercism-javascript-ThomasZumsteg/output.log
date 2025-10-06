@@ -2,18 +2,18 @@
 (Use `node --trace-warnings ...` to show where the warning was created)
 FAIL ./word-count_testSuite.js
   count()
-    ✓ counts one word (1 ms)
+    ✓ counts one word (5 ms)
     ✓ counts one of each (1 ms)
-    ✓ counts multiple occurrences (2 ms)
-    ✓ includes punctuation
-    ✓ includes numbers
+    ✓ counts multiple occurrences
+    ✓ includes punctuation (4 ms)
+    ✓ includes numbers (1 ms)
     ✓ respects case
-    ✓ counts properly international characters (1 ms)
-    ✓ counts multiline
+    ✓ counts properly international characters (4 ms)
+    ✓ counts multiline (1 ms)
     ✓ counts tabs
-    ✓ counts multiple spaces as one
-    ✓ does not count leading or trailing whitespace
-    ✕ handles properties that exist on Object’s prototype (2 ms)
+    ✓ counts multiple spaces as one (11 ms)
+    ✓ does not count leading or trailing whitespace (1 ms)
+    ✕ handles properties that exist on Object’s prototype (66 ms)
 
   ● count() › handles properties that exist on Object’s prototype
 
@@ -46,24 +46,24 @@ FAIL ./word-count_testSuite.js
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 11 passed, 12 total
 Snapshots:   0 total
-Time:        0.169 s
+Time:        2.951 s
 Ran all test suites.
 Command exited with non-zero status 1
 	Command being timed: "node --experimental-vm-modules ./node_modules/.bin/jest --config=jest.config.js --testMatch=**/*testSuite.js --silent=false"
-	User time (seconds): 0.23
-	System time (seconds): 0.06
-	Percent of CPU this job got: 61%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.48
+	User time (seconds): 0.47
+	System time (seconds): 0.14
+	Percent of CPU this job got: 6%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:09.55
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 82672
+	Maximum resident set size (kbytes): 80312
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 14159
-	Voluntary context switches: 7084
-	Involuntary context switches: 554
+	Minor (reclaiming a frame) page faults: 14198
+	Voluntary context switches: 7795
+	Involuntary context switches: 3491
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 16
@@ -71,4 +71,6 @@ Command exited with non-zero status 1
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
+	Exit status: 1
+
 	Exit status: 1

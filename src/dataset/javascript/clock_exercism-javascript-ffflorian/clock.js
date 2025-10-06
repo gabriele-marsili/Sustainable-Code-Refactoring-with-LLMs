@@ -2,12 +2,12 @@
 
 export class Clock {
   constructor(hours = 0, minutes = 0) {
-    hours = (hours + Math.floor(minutes / 60)) % 24;
-    minutes = minutes % 60;
+    const totalMinutes = hours * 60 + minutes;
+    const normalizedMinutes = ((totalMinutes % 1440) + 1440) % 1440;
     /** @type {number} */
-    this.hours = hours < 0 ? 24 + hours : hours;
+    this.hours = Math.floor(normalizedMinutes / 60);
     /** @type {number} */
-    this.minutes = minutes < 0 ? 60 + minutes : minutes;
+    this.minutes = normalizedMinutes % 60;
   }
 
   /**
@@ -27,7 +27,7 @@ export class Clock {
     if (!(clock instanceof Clock)) {
       throw new TypeError('Not a valid clock');
     }
-    return this.toString() == clock.toString();
+    return this.hours === clock.hours && this.minutes === clock.minutes;
   }
 
   /**
@@ -47,6 +47,6 @@ export class Clock {
   }
 
   toString() {
-    return `${this.hours.toString().padStart(2, '0')}:${this.minutes.toString().padStart(2, '0')}`;
+    return `${this.hours < 10 ? '0' : ''}${this.hours}:${this.minutes < 10 ? '0' : ''}${this.minutes}`;
   }
 }

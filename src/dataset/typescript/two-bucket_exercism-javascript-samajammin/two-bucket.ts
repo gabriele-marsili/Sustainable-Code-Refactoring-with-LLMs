@@ -4,12 +4,12 @@ export enum Bucket {
 }
 
 export class TwoBucket {
-  public goalBucket: Bucket
-  public goal: number
-  public starterBucketSize: number
-  public otherBucketSize: number
-  public starterBucket: number
-  public otherBucket: number
+  private readonly bucketOneSize: number;
+  private readonly bucketTwoSize: number;
+  public readonly goal: number;
+  public readonly goalBucket: Bucket;
+  private starterBucket: number;
+  private otherBucket: number;
 
   constructor(
     bucketOneSize: number,
@@ -17,45 +17,35 @@ export class TwoBucket {
     goal: number,
     starterBucket: Bucket
   ) {
-    this.goalBucket = starterBucket
-    this.goal = goal
-    
-    if (starterBucket === Bucket.One) {
-      this.starterBucketSize = bucketOneSize
-      this.otherBucketSize = bucketTwoSize
-    } else {
-      this.starterBucketSize = bucketTwoSize
-      this.otherBucketSize = bucketOneSize
-    }
-    
-    this.starterBucket = 0
-    this.otherBucket = 0
+    this.bucketOneSize = bucketOneSize;
+    this.bucketTwoSize = bucketTwoSize;
+    this.goal = goal;
+    this.goalBucket = starterBucket;
+    this.starterBucket = 0;
+    this.otherBucket = 0;
   }
 
   public moves(): number {
-    if (this.goal === 0) return 0
-    if (this.goal === this.starterBucketSize) return 1
-    
-    let count = 0
-    let starter = 0
-    let other = 0
-    const starterSize = this.starterBucketSize
-    const otherSize = this.otherBucketSize
-    const goal = this.goal
+    let count = 0;
+    let starterBucketSize = this.goalBucket === Bucket.One ? this.bucketOneSize : this.bucketTwoSize;
+    let otherBucketSize = this.goalBucket === Bucket.One ? this.bucketTwoSize : this.bucketOneSize;
+    let starterBucket = 0;
+    let otherBucket = 0;
 
-    while (starter !== goal) {
-      if (starter === 0) {
-        starter = starterSize
-      } else if (other === otherSize) {
-        other = 0
+    while (starterBucket !== this.goal) {
+      count++;
+
+      if (starterBucket === 0) {
+        starterBucket = starterBucketSize;
+      } else if (otherBucket === otherBucketSize) {
+        otherBucket = 0;
       } else {
-        const transfer = Math.min(starter, otherSize - other)
-        starter -= transfer
-        other += transfer
+        const pourAmount = Math.min(starterBucket, otherBucketSize - otherBucket);
+        otherBucket += pourAmount;
+        starterBucket -= pourAmount;
       }
-      count++
     }
 
-    return count
+    return count;
   }
 }

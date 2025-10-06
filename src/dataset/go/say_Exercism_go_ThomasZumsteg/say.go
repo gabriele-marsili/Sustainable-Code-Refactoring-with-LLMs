@@ -1,70 +1,65 @@
 package say
 
 import (
-	"fmt"
 	"strings"
 )
 
-//ones converts a digit to the english phrase
-var ones = []string{
-	"", "one", "two", "three", "four",
-	"five", "six", "seven", "eight", "nine",
-}
+var (
+	ones = []string{"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
+	teens = []string{"ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"}
+	tens = []string{"", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"}
+	powers = []string{"", "thousand", "million", "billion", "trillion", "quadrillion", "quintillion"}
+)
 
-//teens converts a ones digit in a teen number to the english phrase
-var teens = []string{
-	"ten", "eleven", "twelve", "thirteen", "fourteen",
-	"fifteen", "sixteen", "seventeen", "eighteen", "nineteen",
-}
-
-//tens converts a tens digits and the english phrase
-var tens = []string{
-	"", "ten", "twenty", "thirty", "forty",
-	"fifty", "sixty", "seventy", "eighty", "ninty",
-}
-
-//powers coverts the position of a groups of digits to the english phrase
-var powers = []string{
-	"", "thousand", "million", "billion", "trillion", "quadrillion", "quintillion",
-}
-
-/*Say converts a number to the english phrase for the number*/
 func Say(num uint64) string {
 	if num == 0 {
 		return "zero"
 	}
 
-	var powerGroups []uint64
-	for 0 < num {
-		powerGroups = append(powerGroups, num%1000)
+	var powerGroups [7]uint64
+	groupCount := 0
+	for num > 0 {
+		powerGroups[groupCount] = num % 1000
 		num /= 1000
+		groupCount++
 	}
 
-	strNum := ""
-	for i := len(powerGroups) - 1; 0 <= i; i-- {
+	var sb strings.Builder
+	for i := groupCount - 1; i >= 0; i-- {
 		if powerGroups[i] != 0 {
-			strNum += sayPower(powerGroups[i]) + powers[i] + " "
+			sb.WriteString(sayPower(powerGroups[i]))
+			if powers[i] != "" {
+				sb.WriteString(powers[i])
+				sb.WriteByte(' ')
+			}
 		}
 	}
-	return strings.TrimSpace(strNum)
+	return strings.TrimSpace(sb.String())
 }
 
-/*sayPower coverts a number to the english phrase, but only for numbers 1-999*/
 func sayPower(num uint64) string {
-	words := ""
+	var sb strings.Builder
 	hundred, ten, one := (num%1000)/100, (num%100)/10, num%10
-	if 0 < hundred {
-		words += ones[hundred] + " hundred "
+	if hundred > 0 {
+		sb.WriteString(ones[hundred])
+		sb.WriteString(" hundred ")
 	}
-	switch {
-	case ten == 1:
-		words += teens[one] + " "
-	case one == 0:
-		words += tens[ten] + " "
-	case ten == 0:
-		words += ones[one] + " "
-	default:
-		words += fmt.Sprintf("%s-%s ", tens[ten], ones[one])
+	if ten == 1 {
+		sb.WriteString(teens[one])
+		sb.WriteByte(' ')
+	} else {
+		if ten > 0 {
+			sb.WriteString(tens[ten])
+			if one > 0 {
+				sb.WriteByte('-')
+			} else {
+				sb.WriteByte(' ')
+			}
+		}
+		if one > 0 {
+			sb.WriteString(ones[one])
+			sb.WriteByte(' ')
+		}
 	}
-	return words
+	return sb.String()
 }

@@ -1,44 +1,61 @@
-PASS ./luhn.test.ts (7.993 s)
+FAIL ./luhn.test.ts (10.709 s)
   Luhn
-    ✓ single digit strings can not be valid (1 ms)
-    ✓ a single zero is invalid (6 ms)
+    ✓ single digit strings can not be valid (5 ms)
+    ✓ a single zero is invalid (19 ms)
     ✓ a valid Canadian SIN
     ✓ invalid Canadian SIN
     ✓ invalid credit card
     ✓ valid strings with a non-digit included become invalid
-    ✓ valid strings with punctuation included become invalid (1 ms)
-    ✓ valid strings with symbols included become invalid
-    ✓ single zero with space is invalid
-    ✓ input digit 9 is correctly converted to output digit 9
+    ✓ valid strings with punctuation included become invalid
+    ✓ valid strings with symbols included become invalid (1 ms)
+    ✕ single zero with space is invalid
+    ✓ input digit 9 is correctly converted to output digit 9 (32 ms)
     ○ skipped a simple valid SIN that remains valid if reversed
 
-Test Suites: 1 passed, 1 total
-Tests:       1 skipped, 10 passed, 11 total
+  ● Luhn › single zero with space is invalid
+
+    expect(received).toBeFalsy()
+
+    Received: true
+
+      39 |
+      40 |     it('single zero with space is invalid', () => {
+    > 41 |         expect(Luhn.valid(' 0')).toBeFalsy()
+         |                                  ^
+      42 |     })
+      43 |
+      44 |     it('input digit 9 is correctly converted to output digit 9', () => {
+
+      at Object.<anonymous> (luhn.test.ts:41:34)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 skipped, 9 passed, 11 total
 Snapshots:   0 total
-Time:        8.635 s
+Time:        11.627 s
 Ran all test suites.
 Test results written to: output.log
+Command exited with non-zero status 1
 	Command being timed: "npx jest --json --outputFile=output.log"
-	User time (seconds): 1.52
+	User time (seconds): 1.47
 	System time (seconds): 0.08
-	Percent of CPU this job got: 13%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:11.53
+	Percent of CPU this job got: 10%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:14.84
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 220556
+	Maximum resident set size (kbytes): 224260
 	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 65442
-	Voluntary context switches: 1799
-	Involuntary context switches: 3533
+	Major (requiring I/O) page faults: 27
+	Minor (reclaiming a frame) page faults: 66076
+	Voluntary context switches: 2544
+	Involuntary context switches: 3393
 	Swaps: 0
-	File system inputs: 504
+	File system inputs: 14192
 	File system outputs: 72
 	Socket messages sent: 0
 	Socket messages received: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
-	Exit status: 0
-0
+	Exit status: 1
+s: 1

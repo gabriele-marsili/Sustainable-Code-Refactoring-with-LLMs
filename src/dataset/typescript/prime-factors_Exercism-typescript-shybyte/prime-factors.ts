@@ -7,19 +7,21 @@ function calculatePrimeFactors(nArg) {
     }
     const result = [];
     let n = nArg;
-    // Handle factor 2 separately to avoid even number checks
     while (n % 2 === 0) {
         result.push(2);
-        n >>>= 1; // Bit shift division by 2
+        n /= 2;
     }
-    // Only check odd numbers starting from 3
-    for (let i = 3; i * i <= n; i += 2) {
-        while (n % i === 0) {
+    let i = 3;
+    const sqrtN = Math.sqrt(n);
+    while (i <= sqrtN && n > 1) {
+        if (n % i === 0) {
             result.push(i);
             n /= i;
         }
+        else {
+            i += 2;
+        }
     }
-    // If n is still greater than 1, it's a prime factor
     if (n > 1) {
         result.push(n);
     }
