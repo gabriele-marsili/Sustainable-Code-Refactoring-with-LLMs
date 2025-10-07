@@ -1,8 +1,8 @@
 {
-  "execution_date": "2025-10-06 09:09:27",
+  "execution_date": "2025-10-07 13:15:55",
   "execution_metadata": {
-    "total_tests": 2,
-    "successful_tests": 0,
+    "total_tests": 3,
+    "successful_tests": 3,
     "execution_time": "00h 00m 00s",
     "cluster": "cluster_two_sum",
     "test_type": "llm_v3"
@@ -15,14 +15,14 @@
         "language": "python",
         "LLM_results": [
           {
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/two_sum/openAI/ChatGPT4_two_sum_v3.py",
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/two_sum/gemini/GeminiFlash_two_sum_v3.py",
             "log": "",
-            "execution_time_ms": null,
-            "CPU_usage": null,
-            "RAM_usage": null,
-            "regressionTestPassed": true,
-            "success": null,
+            "execution_time_ms": 30,
+            "CPU_usage": 7.0,
+            "RAM_usage": 14208,
+            "regressionTestPassed": false,
+            "success": false,
             "error_message": null
           }
         ]
@@ -36,11 +36,29 @@
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/two_sum/openAI/ChatGPT4_two_sum_v3.py",
             "log": "",
-            "execution_time_ms": null,
-            "CPU_usage": null,
-            "RAM_usage": null,
-            "regressionTestPassed": true,
-            "success": null,
+            "execution_time_ms": 30,
+            "CPU_usage": 6.0,
+            "RAM_usage": 14080,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "two_sum_175",
+        "filename": "two_sum.py",
+        "language": "python",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/two_sum/claude/ClaudeSonnet4_two_sum_v3.py",
+            "log": "",
+            "execution_time_ms": 30,
+            "CPU_usage": 7.0,
+            "RAM_usage": 14336,
+            "regressionTestPassed": false,
+            "success": false,
             "error_message": null
           }
         ]

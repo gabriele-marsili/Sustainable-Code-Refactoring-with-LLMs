@@ -1,41 +1,68 @@
 {
-    "execution_date": "2025-09-18 17:52:13",
-    "results": {
-        "javascript": [
-            {
-                "id": "javascript_freelancer-rates_exercism-javascript-PhymasSC_PhymasSC",
-                "filename": "freelancer-rates.js",
-                "language": "javascript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 300,
-                        "CPU_usage": 53.0,
-                        "RAM_usage": 82808,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/freelancer-rates_exercism-javascript-PhymasSC/openAI/ChatGPT4_freelancer-rates_v1.js",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/freelancer-rates_exercism-javascript-PhymasSC/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/freelancer-rates_exercism-javascript-PhymasSC/claude/ClaudeSonnet4_freelancer-rates_v1.js",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_javascript_shared_1758210719_javascript_freelancer-rates_exercism-javascript-PhymasSC_PhymasSC_error_370c233c.log"
-                    },
-                    {
-                        "execution_time_ms": 280,
-                        "CPU_usage": 75.0,
-                        "RAM_usage": 81348,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/freelancer-rates_exercism-javascript-PhymasSC/gemini/GeminiFlash_freelancer-rates_v1.js",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/freelancer-rates_exercism-javascript-PhymasSC/gemini/output.log"
-                    }
-                ]
-            }
+  "execution_date": "2025-10-07 00:43:42",
+  "execution_metadata": {
+    "total_tests": 3,
+    "successful_tests": 3,
+    "execution_time": "00h 00m 19s",
+    "cluster": "cluster_freelancer_rates",
+    "test_type": "llm_v1"
+  },
+  "results": {
+    "javascript": [
+      {
+        "id": "javascript_freelancer-rates_exercism-javascript-PhymasSC_PhymasSC",
+        "filename": "freelancer-rates.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/freelancer-rates_exercism-javascript-PhymasSC/claude/ClaudeSonnet4_freelancer-rates_v1.js",
+            "log": "",
+            "execution_time_ms": 170,
+            "CPU_usage": 9.0,
+            "RAM_usage": 66092,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
         ]
-    }
+      },
+      {
+        "id": "javascript_freelancer-rates_exercism-javascript-PhymasSC_PhymasSC",
+        "filename": "freelancer-rates.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/freelancer-rates_exercism-javascript-PhymasSC/openAI/ChatGPT4_freelancer-rates_v1.js",
+            "log": "",
+            "execution_time_ms": 190,
+            "CPU_usage": 10.0,
+            "RAM_usage": 67612,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "javascript_freelancer-rates_exercism-javascript-PhymasSC_PhymasSC",
+        "filename": "freelancer-rates.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/freelancer-rates_exercism-javascript-PhymasSC/gemini/GeminiFlash_freelancer-rates_v1.js",
+            "log": "",
+            "execution_time_ms": 200,
+            "CPU_usage": 7.0,
+            "RAM_usage": 66260,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      }
+    ]
+  }
 }

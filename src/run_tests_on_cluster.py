@@ -414,7 +414,7 @@ class MetricsParser:
         logger = logging.getLogger(__name__ + ".MetricsParser")
 
         try:
-            logger.info(f"Parsing TypeScript JSON: {log_path}")
+            logger.debug(f"Parsing TypeScript JSON: {log_path}")
 
             # Verifica esistenza file
             if not log_path.exists():
@@ -502,7 +502,7 @@ class MetricsParser:
 
             metrics.success = metrics.is_valid()
 
-            logger.info(
+            logger.debug(
                 f"TypeScript parsing complete - Valid: {metrics.is_valid()}, "
                 f"Time: {metrics.execution_time_ms}ms, "
                 f"CPU: {metrics.cpu_usage}%, "
@@ -605,7 +605,7 @@ class ContainerManager:
             build_cmd.insert(2, "--no-cache")  # Inserisci DOPO "build"
 
         # DEBUG: logga il comando completo
-        self.logger.info(f"Building with command: {' '.join(build_cmd)}")
+        self.logger.debug(f"Building with command: {' '.join(build_cmd)}")
 
         try:
             result = subprocess.run(
@@ -1124,7 +1124,7 @@ class TestExecutor:
         test_files = list(dict.fromkeys(testFiles))
 
         if test_files:
-            self.logger.info(f"Test files found: {[f.name for f in test_files]}")
+            self.logger.debug(f"Test files found: {[f.name for f in test_files]}")
             
             # DEBUG: Verifica contenuto e path assoluti
             for tf in test_files:
@@ -1164,7 +1164,7 @@ class TestExecutor:
             # Ricerca ricorsiva del file di codice
             matching_files = list(test_path.rglob(code_filename))
             if matching_files:
-                self.logger.info(f"Code file found at: {matching_files[0]}")
+                self.logger.debug(f"Code file found at: {matching_files[0]}")
                 return True
 
             self.logger.error(f"Neither code nor test files found in {test_path}")
@@ -1255,7 +1255,7 @@ class TestExecutor:
                 + list(test_file_path.glob("*_test.*"))
                 + list(test_file_path.glob("*_"))
             )
-            self.logger.info(
+            self.logger.debug(
                 f"Test files found in {test_file_path}: {[f.name for f in test_files]}"
             )
 
@@ -1344,27 +1344,27 @@ class TestExecutor:
         if language == "typescript":
             stripped = log_content.strip()
             if stripped.startswith("{"):
-                self.logger.info("Parsing as TypeScript JSON")
+                self.logger.debug("Parsing as TypeScript JSON")
                 metrics = (
                     MetricsParser.parse_typescript_json(log_file)
                     if log_file.exists()
                     else metrics
                 )
             else:
-                self.logger.info("Parsing TypeScript output as text")
+                self.logger.debug("Parsing TypeScript output as text")
                 metrics = MetricsParser.parse_time_output(log_content)
 
         elif language == "javascript":
             stripped = log_content.strip()
             if stripped.startswith("{"):
-                self.logger.info("Parsing JavaScript as JSON")
+                self.logger.debug("Parsing JavaScript as JSON")
                 metrics = (
                     MetricsParser.parse_typescript_json(log_file)
                     if log_file.exists()
                     else metrics
                 )
             else:
-                self.logger.info("Parsing JavaScript as text")
+                self.logger.debug("Parsing JavaScript as text")
                 metrics = MetricsParser.parse_time_output(log_content)
         else:
             # Altri linguaggi

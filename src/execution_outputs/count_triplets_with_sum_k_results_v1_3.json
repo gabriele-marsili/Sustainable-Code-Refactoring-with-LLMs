@@ -1,8 +1,8 @@
 {
-  "execution_date": "2025-10-06 09:03:53",
+  "execution_date": "2025-10-06 23:12:32",
   "execution_metadata": {
-    "total_tests": 1,
-    "successful_tests": 0,
+    "total_tests": 3,
+    "successful_tests": 3,
     "execution_time": "00h 00m 00s",
     "cluster": "cluster_count_triplets_with_sum_k",
     "test_type": "llm_v1"
@@ -11,51 +11,54 @@
     "python": [
       {
         "id": "count_triplets_with_sum_k_179",
-        "filename": "",
+        "filename": "count_triplets_with_sum_k.py",
+        "language": "python",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/count_triplets_with_sum_k/openAI/ChatGPT4_count_triplets_with_sum_k_v1.py",
+            "log": "",
+            "execution_time_ms": 70,
+            "CPU_usage": 57.0,
+            "RAM_usage": 13952,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "count_triplets_with_sum_k_179",
+        "filename": "count_triplets_with_sum_k.py",
         "language": "python",
         "LLM_results": [
           {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/count_triplets_with_sum_k/gemini/GeminiFlash_count_triplets_with_sum_k_v1.py",
             "log": "",
-            "execution_time_ms": 30,
-            "CPU_usage": 3.0,
-            "RAM_usage": 13824,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          },
-          {
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/count_triplets_with_sum_k/openAI/ChatGPT4_count_triplets_with_sum_k_v1.py",
-            "log": "",
-            "execution_time_ms": 990,
-            "CPU_usage": null,
-            "RAM_usage": 13952,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          },
+            "execution_time_ms": 60,
+            "CPU_usage": 39.0,
+            "RAM_usage": 14208,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "count_triplets_with_sum_k_179",
+        "filename": "count_triplets_with_sum_k.py",
+        "language": "python",
+        "LLM_results": [
           {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/count_triplets_with_sum_k/claude/ClaudeSonnet4_count_triplets_with_sum_k_v1.py",
             "log": "",
-            "execution_time_ms": 50,
-            "CPU_usage": 18.0,
-            "RAM_usage": 14208,
+            "execution_time_ms": 60,
+            "CPU_usage": 41.0,
+            "RAM_usage": 13952,
             "regressionTestPassed": false,
-            "success": null,
-            "error_message": null
-          },
-          {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/count_triplets_with_sum_k/gemini/GeminiFlash_count_triplets_with_sum_k_v1.py",
-            "log": "",
-            "execution_time_ms": 50,
-            "CPU_usage": 18.0,
-            "RAM_usage": 14208,
-            "regressionTestPassed": false,
-            "success": null,
+            "success": false,
             "error_message": null
           }
         ]

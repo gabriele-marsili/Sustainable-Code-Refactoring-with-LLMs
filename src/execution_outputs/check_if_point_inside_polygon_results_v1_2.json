@@ -1,8 +1,8 @@
 {
-  "execution_date": "2025-10-05 15:26:48",
+  "execution_date": "2025-10-06 23:00:48",
   "execution_metadata": {
-    "total_tests": 1,
-    "successful_tests": 0,
+    "total_tests": 3,
+    "successful_tests": 3,
     "execution_time": "00h 00m 00s",
     "cluster": "cluster_check_if_point_inside_polygon",
     "test_type": "llm_v1"
@@ -15,37 +15,51 @@
         "language": "python",
         "LLM_results": [
           {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/check_if_point_inside_polygon/gemini/GeminiFlash_check_if_point_inside_polygon_v1.py",
+            "log": "",
+            "execution_time_ms": 60,
+            "CPU_usage": 54.0,
+            "RAM_usage": 13952,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "check_if_point_inside_polygon_236",
+        "filename": "check_if_point_inside_polygon.py",
+        "language": "python",
+        "LLM_results": [
+          {
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/check_if_point_inside_polygon/openAI/ChatGPT4_check_if_point_inside_polygon_v1.py",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/check_if_point_inside_polygon/openAI/output.log",
-            "execution_time_ms": 20,
-            "CPU_usage": 82.0,
-            "RAM_usage": 13952,
-            "regressionTestPassed": true,
-            "success": null,
+            "log": "",
+            "execution_time_ms": 60,
+            "CPU_usage": 50.0,
+            "RAM_usage": 13696,
+            "regressionTestPassed": false,
+            "success": false,
             "error_message": null
-          },
+          }
+        ]
+      },
+      {
+        "id": "check_if_point_inside_polygon_236",
+        "filename": "check_if_point_inside_polygon.py",
+        "language": "python",
+        "LLM_results": [
           {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/check_if_point_inside_polygon/claude/ClaudeSonnet4_check_if_point_inside_polygon_v1.py",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_python_persistant_check_if_point_inside_polygon_236_error_8e2c77c4.log",
-            "execution_time_ms": null,
-            "CPU_usage": null,
-            "RAM_usage": null,
+            "log": "",
+            "execution_time_ms": 50,
+            "CPU_usage": 43.0,
+            "RAM_usage": 14080,
             "regressionTestPassed": false,
-            "success": null,
-            "error_message": null
-          },
-          {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/check_if_point_inside_polygon/gemini/GeminiFlash_check_if_point_inside_polygon_v1.py",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_python_persistant_check_if_point_inside_polygon_236_error_0f44d65a.log",
-            "execution_time_ms": null,
-            "CPU_usage": null,
-            "RAM_usage": null,
-            "regressionTestPassed": false,
-            "success": null,
-            "error_message": null
+            "success": false,
+            "error_message": "Docker exit code: 1"
           }
         ]
       }

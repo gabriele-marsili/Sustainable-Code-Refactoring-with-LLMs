@@ -1,8 +1,8 @@
 {
-  "execution_date": "2025-10-06 09:03:52",
+  "execution_date": "2025-10-07 01:46:36",
   "execution_metadata": {
-    "total_tests": 1,
-    "successful_tests": 0,
+    "total_tests": 3,
+    "successful_tests": 3,
     "execution_time": "00h 00m 00s",
     "cluster": "cluster_kth_smallest",
     "test_type": "llm_v4"
@@ -11,62 +11,54 @@
     "python": [
       {
         "id": "kth_smallest_183",
-        "filename": "",
+        "filename": "kth_smallest.py",
         "language": "python",
         "LLM_results": [
           {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/kth_smallest/claude/ClaudeSonnet4_kth_smallest_v4.py",
             "log": "",
-            "execution_time_ms": 40,
-            "CPU_usage": 4.0,
-            "RAM_usage": 14080,
+            "execution_time_ms": 30,
+            "CPU_usage": 18.0,
+            "RAM_usage": 13952,
             "regressionTestPassed": false,
-            "success": null,
+            "success": false,
             "error_message": null
-          },
+          }
+        ]
+      },
+      {
+        "id": "kth_smallest_183",
+        "filename": "kth_smallest.py",
+        "language": "python",
+        "LLM_results": [
           {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/kth_smallest/gemini/GeminiFlash_kth_smallest_v4.py",
             "log": "",
-            "execution_time_ms": 40,
-            "CPU_usage": 6.0,
+            "execution_time_ms": 30,
+            "CPU_usage": 8.0,
             "RAM_usage": 14208,
             "regressionTestPassed": false,
-            "success": null,
-            "error_message": null
-          },
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "kth_smallest_183",
+        "filename": "kth_smallest.py",
+        "language": "python",
+        "LLM_results": [
           {
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/kth_smallest/openAI/ChatGPT4_kth_smallest_v4.py",
             "log": "",
-            "execution_time_ms": null,
-            "CPU_usage": null,
-            "RAM_usage": null,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          },
-          {
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/kth_smallest/claude/ClaudeSonnet4_kth_smallest_v4.py",
-            "log": "",
-            "execution_time_ms": 50,
-            "CPU_usage": 13.0,
-            "RAM_usage": 14208,
+            "execution_time_ms": 30,
+            "CPU_usage": 15.0,
+            "RAM_usage": 13952,
             "regressionTestPassed": false,
-            "success": null,
-            "error_message": null
-          },
-          {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/kth_smallest/gemini/GeminiFlash_kth_smallest_v4.py",
-            "log": "",
-            "execution_time_ms": 50,
-            "CPU_usage": 13.0,
-            "RAM_usage": 14208,
-            "regressionTestPassed": false,
-            "success": null,
+            "success": false,
             "error_message": null
           }
         ]

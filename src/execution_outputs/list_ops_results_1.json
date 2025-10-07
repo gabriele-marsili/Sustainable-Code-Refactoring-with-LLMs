@@ -1,63 +1,111 @@
 {
-    "execution_date": "2025-09-17 18:54:27",
-    "results": {
-        "javascript": [
-            {
-                "id": "javascript_list-ops_exercism-javascript-ffflorian_ffflorian",
-                "filename": "list-ops.js",
-                "language": "javascript",
-                "CPU_usage": 35.0,
-                "RAM_usage": 81172,
-                "execution_time_ms": 330,
-                "regressionTestPassed": true,
-                "base_log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/list-ops_exercism-javascript-ffflorian/output.log"
-            },
-            {
-                "id": "javascript_list-ops_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
-                "filename": "list-ops.js",
-                "language": "javascript"
-            }
-        ],
-        "typescript": [
-            {
-                "id": "typescript_list-ops_Exercism-typescript-thewanionly",
-                "filename": "list-ops.ts",
-                "language": "typescript"
-            },
-            {
-                "id": "typescript_list-ops_Exercism-typescript-thewanionly_thewanionly",
-                "filename": "list-ops.ts",
-                "language": "typescript"
-            }
-        ],
-        "c": [
-            {
-                "id": "c_list_ops_Exercism (m3g4d1v3r)",
-                "filename": "list_ops.c",
-                "language": "c"
-            }
-        ],
-        "go": [
-            {
-                "id": "go_list_ops_Exercism (go_rootulp)",
-                "filename": "list_ops.go",
-                "language": "go",
-                "CPU_usage": 75.0,
-                "RAM_usage": 221260,
-                "execution_time_ms": 6140,
-                "regressionTestPassed": true,
-                "base_log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/list_ops_Exercism_go_rootulp/output.log"
-            },
-            {
-                "id": "go_list_ops_Exercism (go_drapala)",
-                "filename": "list_ops.go",
-                "language": "go",
-                "CPU_usage": 76.0,
-                "RAM_usage": 218820,
-                "execution_time_ms": 6210,
-                "regressionTestPassed": true,
-                "base_log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/list_ops_Exercism_go_drapala/output.log"
-            }
-        ]
-    }
+  "execution_date": "2025-10-07 01:48:35",
+  "execution_metadata": {
+    "total_tests": 7,
+    "successful_tests": 7,
+    "execution_time": "00h 01m 55s",
+    "cluster": "cluster_list_ops",
+    "test_type": "base"
+  },
+  "results": {
+    "javascript": [
+      {
+        "id": "javascript_list-ops_exercism-javascript-ffflorian_ffflorian",
+        "filename": "list-ops.js",
+        "language": "javascript",
+        "base_log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/list-ops_exercism-javascript-ffflorian/output.log",
+        "execution_time_ms": 330,
+        "CPU_usage": 35.0,
+        "RAM_usage": 81172,
+        "regressionTestPassed": true,
+        "success": null,
+        "error_message": null,
+        "log_path": null
+      },
+      {
+        "id": "javascript_list-ops_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
+        "filename": "list-ops.js",
+        "language": "javascript",
+        "base_log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_list-ops_exercism-javascript-ThomasZumsteg_ThomasZumsteg_1759794425.log",
+        "execution_time_ms": 180,
+        "CPU_usage": 4.0,
+        "RAM_usage": 66396,
+        "regressionTestPassed": false,
+        "success": false,
+        "error_message": "Docker exit code: 1",
+        "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_list-ops_exercism-javascript-ThomasZumsteg_ThomasZumsteg_1759794425.log"
+      }
+    ],
+    "go": [
+      {
+        "id": "go_list_ops_Exercism (go_rootulp)",
+        "filename": "list_ops.go",
+        "language": "go",
+        "base_log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/list_ops_Exercism_go_rootulp/output.log",
+        "execution_time_ms": 6140,
+        "CPU_usage": 75.0,
+        "RAM_usage": 221260,
+        "regressionTestPassed": true,
+        "success": null,
+        "error_message": null,
+        "log_path": null
+      },
+      {
+        "id": "go_list_ops_Exercism (go_drapala)",
+        "filename": "list_ops.go",
+        "language": "go",
+        "base_log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/list_ops_Exercism_go_drapala/output.log",
+        "execution_time_ms": 6210,
+        "CPU_usage": 76.0,
+        "RAM_usage": 218820,
+        "regressionTestPassed": true,
+        "success": null,
+        "error_message": null,
+        "log_path": null
+      }
+    ],
+    "c": [
+      {
+        "id": "c_list_ops_Exercism (m3g4d1v3r)",
+        "filename": "list_ops.c",
+        "language": "c",
+        "base_log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_c_persistent_c_list_ops_Exercism (m3g4d1v3r)_1759794401.log",
+        "execution_time_ms": 20,
+        "CPU_usage": 4.0,
+        "RAM_usage": 3456,
+        "regressionTestPassed": false,
+        "success": false,
+        "error_message": "Docker exit code: 255",
+        "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_c_persistent_c_list_ops_Exercism (m3g4d1v3r)_1759794401.log"
+      }
+    ],
+    "typescript": [
+      {
+        "id": "typescript_list-ops_Exercism-typescript-thewanionly_thewanionly",
+        "filename": "list-ops.ts",
+        "language": "typescript",
+        "base_log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_list-ops_Exercism-typescript-thewanionly_thewanionly_1759794408.log",
+        "execution_time_ms": 2850,
+        "CPU_usage": 10.0,
+        "RAM_usage": 129560,
+        "regressionTestPassed": false,
+        "success": true,
+        "error_message": "Docker exit code: 1",
+        "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_list-ops_Exercism-typescript-thewanionly_thewanionly_1759794408.log"
+      },
+      {
+        "id": "typescript_list-ops_Exercism-typescript-thewanionly",
+        "filename": "list-ops.ts",
+        "language": "typescript",
+        "base_log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_list-ops_Exercism-typescript-thewanionly_1759794409.log",
+        "execution_time_ms": 3048,
+        "CPU_usage": 9.0,
+        "RAM_usage": 129268,
+        "regressionTestPassed": false,
+        "success": true,
+        "error_message": "Docker exit code: 1",
+        "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_list-ops_Exercism-typescript-thewanionly_1759794409.log"
+      }
+    ]
+  }
 }

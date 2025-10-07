@@ -1,935 +1,1068 @@
 {
-    "execution_date": "2025-09-18 15:07:26",
-    "results": {
-        "python": [
-            {
-                "id": "two-fer_38",
-                "filename": "two-fer.py",
-                "language": "python",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 20,
-                        "CPU_usage": 54.0,
-                        "RAM_usage": 13952,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/two-fer/openAI/ChatGPT4_two-fer_v1.py",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/two-fer/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 20,
-                        "CPU_usage": 68.0,
-                        "RAM_usage": 13952,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/two-fer/claude/ClaudeSonnet4_two-fer_v1.py",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/two-fer/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 30,
-                        "CPU_usage": 72.0,
-                        "RAM_usage": 13952,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/two-fer/gemini/GeminiFlash_two-fer_v1.py",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/two-fer/gemini/output.log"
-                    }
-                ]
-            }
-        ],
-        "javascript": [
-            {
-                "id": "javascript_two-fer_exercism-javascript-oguzsh",
-                "filename": "two-fer.js",
-                "language": "javascript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 300,
-                        "CPU_usage": 35.0,
-                        "RAM_usage": 80636,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-oguzsh/openAI/ChatGPT4_two-fer_v1.js",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-oguzsh/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 310,
-                        "CPU_usage": 41.0,
-                        "RAM_usage": 81864,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-oguzsh/claude/ClaudeSonnet4_two-fer_v1.js",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-oguzsh/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 290,
-                        "CPU_usage": 40.0,
-                        "RAM_usage": 81504,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-oguzsh/gemini/GeminiFlash_two-fer_v1.js",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-oguzsh/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "javascript_two-fer_exercism-javascript-programmiri",
-                "filename": "two-fer.js",
-                "language": "javascript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-programmiri/openAI/ChatGPT4_two-fer_v1.js",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_javascript_persistant_javascript_two-fer_exercism-javascript-programmiri_error_8ee8392a.log"
-                    },
-                    {
-                        "execution_time_ms": 290,
-                        "CPU_usage": 39.0,
-                        "RAM_usage": 80560,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-programmiri/claude/ClaudeSonnet4_two-fer_v1.js",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-programmiri/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-programmiri/gemini/GeminiFlash_two-fer_v1.js",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_javascript_persistant_javascript_two-fer_exercism-javascript-programmiri_error_2c5e9ea0.log"
-                    }
-                ]
-            },
-            {
-                "id": "javascript_two-fer_exercism-javascript-bearguns",
-                "filename": "two-fer.js",
-                "language": "javascript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-bearguns/openAI/ChatGPT4_two-fer_v1.js",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_javascript_persistant_javascript_two-fer_exercism-javascript-bearguns_error_ba1d5068.log"
-                    },
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-bearguns/claude/ClaudeSonnet4_two-fer_v1.js",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_javascript_persistant_javascript_two-fer_exercism-javascript-bearguns_error_8e512c4d.log"
-                    },
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-bearguns/gemini/GeminiFlash_two-fer_v1.js",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_javascript_persistant_javascript_two-fer_exercism-javascript-bearguns_error_cd7a553e.log"
-                    }
-                ]
-            },
-            {
-                "id": "javascript_two-fer_exercism-javascript-bearguns_bearguns",
-                "filename": "two-fer.js",
-                "language": "javascript"
-            },
-            {
-                "id": "javascript_two-fer_exercism-javascript-programmiri_programmiri",
-                "filename": "two-fer.js",
-                "language": "javascript"
-            },
-            {
-                "id": "javascript_two-fer_exercism-javascript-oguzsh_oguzsh",
-                "filename": "two-fer.js",
-                "language": "javascript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 310,
-                        "CPU_usage": 40.0,
-                        "RAM_usage": 81400,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-oguzsh/openAI/ChatGPT4_two-fer_v1.js",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-oguzsh/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 280,
-                        "CPU_usage": 40.0,
-                        "RAM_usage": 81616,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-oguzsh/claude/ClaudeSonnet4_two-fer_v1.js",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-oguzsh/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 320,
-                        "CPU_usage": 25.0,
-                        "RAM_usage": 81516,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-oguzsh/gemini/GeminiFlash_two-fer_v1.js",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-oguzsh/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "javascript_two-fer_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
-                "filename": "two-fer.js",
-                "language": "javascript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 310,
-                        "CPU_usage": 35.0,
-                        "RAM_usage": 80288,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-ThomasZumsteg/openAI/ChatGPT4_two-fer_v1.js",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-ThomasZumsteg/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 330,
-                        "CPU_usage": 23.0,
-                        "RAM_usage": 82040,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-ThomasZumsteg/claude/ClaudeSonnet4_two-fer_v1.js",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-ThomasZumsteg/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 280,
-                        "CPU_usage": 32.0,
-                        "RAM_usage": 81716,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-ThomasZumsteg/gemini/GeminiFlash_two-fer_v1.js",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-ThomasZumsteg/gemini/output.log"
-                    }
-                ]
-            }
-        ],
-        "typescript": [
-            {
-                "id": "typescript_two-fer_exercism-javascript-samajammin",
-                "filename": "two-fer.ts",
-                "language": "typescript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 1191,
-                        "CPU_usage": 96.0,
-                        "RAM_usage": 223364,
-                        "success": true,
-                        "passed_tests": 3,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_exercism-javascript-samajammin/openAI/ChatGPT4_two-fer_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_exercism-javascript-samajammin/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 1636,
-                        "CPU_usage": 65.0,
-                        "RAM_usage": 219736,
-                        "success": true,
-                        "passed_tests": 3,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_exercism-javascript-samajammin/claude/ClaudeSonnet4_two-fer_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_exercism-javascript-samajammin/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 1836,
-                        "CPU_usage": 64.0,
-                        "RAM_usage": 220392,
-                        "success": true,
-                        "passed_tests": 3,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_exercism-javascript-samajammin/gemini/GeminiFlash_two-fer_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_exercism-javascript-samajammin/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "typescript_two-fer_Exercism-typescript-shybyte",
-                "filename": "two-fer.ts",
-                "language": "typescript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 1871,
-                        "CPU_usage": 61.0,
-                        "RAM_usage": 219040,
-                        "success": true,
-                        "passed_tests": 3,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-shybyte/openAI/ChatGPT4_two-fer_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-shybyte/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 1942,
-                        "CPU_usage": 57.0,
-                        "RAM_usage": 218612,
-                        "success": true,
-                        "passed_tests": 3,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-shybyte/claude/ClaudeSonnet4_two-fer_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-shybyte/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 2354,
-                        "CPU_usage": 48.0,
-                        "RAM_usage": 222032,
-                        "success": true,
-                        "passed_tests": 3,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-shybyte/gemini/GeminiFlash_two-fer_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-shybyte/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "typescript_two-fer_Exercism-typescript-chriswilding",
-                "filename": "two-fer.ts",
-                "language": "typescript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 2015,
-                        "CPU_usage": 54.0,
-                        "RAM_usage": 219912,
-                        "success": true,
-                        "passed_tests": 3,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-chriswilding/openAI/ChatGPT4_two-fer_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-chriswilding/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 2357,
-                        "CPU_usage": 47.0,
-                        "RAM_usage": 222436,
-                        "success": true,
-                        "passed_tests": 3,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-chriswilding/claude/ClaudeSonnet4_two-fer_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-chriswilding/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 2231,
-                        "CPU_usage": 50.0,
-                        "RAM_usage": 223460,
-                        "success": true,
-                        "passed_tests": 3,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-chriswilding/gemini/GeminiFlash_two-fer_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-chriswilding/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "typescript_two-fer_Exercism-typescript-alemarr",
-                "filename": "two-fer.ts",
-                "language": "typescript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 2176,
-                        "CPU_usage": 47.0,
-                        "RAM_usage": 224000,
-                        "success": true,
-                        "passed_tests": 3,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-alemarr/openAI/ChatGPT4_two-fer_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-alemarr/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 2509,
-                        "CPU_usage": 45.0,
-                        "RAM_usage": 218784,
-                        "success": true,
-                        "passed_tests": 3,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-alemarr/claude/ClaudeSonnet4_two-fer_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-alemarr/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 2416,
-                        "CPU_usage": 45.0,
-                        "RAM_usage": 197164,
-                        "success": true,
-                        "passed_tests": 3,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-alemarr/gemini/GeminiFlash_two-fer_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-alemarr/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "typescript_two-fer_Exercism-typescript-uzilan_uzilan",
-                "filename": "two-fer.ts",
-                "language": "typescript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 2315,
-                        "CPU_usage": 47.0,
-                        "RAM_usage": 219580,
-                        "success": true,
-                        "passed_tests": 3,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-uzilan/openAI/ChatGPT4_two-fer_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-uzilan/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 2241,
-                        "CPU_usage": 49.0,
-                        "RAM_usage": 220008,
-                        "success": true,
-                        "passed_tests": 3,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-uzilan/claude/ClaudeSonnet4_two-fer_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-uzilan/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 2450,
-                        "CPU_usage": 47.0,
-                        "RAM_usage": 199432,
-                        "success": true,
-                        "passed_tests": 3,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-uzilan/gemini/GeminiFlash_two-fer_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-uzilan/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "typescript_two-fer_Exercism-typescript-thewanionly_thewanionly",
-                "filename": "two-fer.ts",
-                "language": "typescript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 2329,
-                        "CPU_usage": 49.0,
-                        "RAM_usage": 223304,
-                        "success": true,
-                        "passed_tests": 3,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-thewanionly/openAI/ChatGPT4_two-fer_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-thewanionly/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 2373,
-                        "CPU_usage": 48.0,
-                        "RAM_usage": 199184,
-                        "success": true,
-                        "passed_tests": 3,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-thewanionly/claude/ClaudeSonnet4_two-fer_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-thewanionly/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 2121,
-                        "CPU_usage": 50.0,
-                        "RAM_usage": 213376,
-                        "success": true,
-                        "passed_tests": 3,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-thewanionly/gemini/GeminiFlash_two-fer_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-thewanionly/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "typescript_two-fer_Exercism-typescript-shybyte_shybyte",
-                "filename": "two-fer.ts",
-                "language": "typescript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 2364,
-                        "CPU_usage": 49.0,
-                        "RAM_usage": 197860,
-                        "success": true,
-                        "passed_tests": 3,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-shybyte/openAI/ChatGPT4_two-fer_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-shybyte/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 2482,
-                        "CPU_usage": 49.0,
-                        "RAM_usage": 207948,
-                        "success": true,
-                        "passed_tests": 3,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-shybyte/claude/ClaudeSonnet4_two-fer_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-shybyte/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 2303,
-                        "CPU_usage": 49.0,
-                        "RAM_usage": 218972,
-                        "success": true,
-                        "passed_tests": 3,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-shybyte/gemini/GeminiFlash_two-fer_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-shybyte/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "typescript_two-fer_Exercism-typescript-chriswilding_chriswilding",
-                "filename": "two-fer.ts",
-                "language": "typescript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 2349,
-                        "CPU_usage": 48.0,
-                        "RAM_usage": 212324,
-                        "success": true,
-                        "passed_tests": 3,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-chriswilding/openAI/ChatGPT4_two-fer_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-chriswilding/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 2291,
-                        "CPU_usage": 48.0,
-                        "RAM_usage": 220128,
-                        "success": true,
-                        "passed_tests": 3,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-chriswilding/claude/ClaudeSonnet4_two-fer_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-chriswilding/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 3371,
-                        "CPU_usage": 35.0,
-                        "RAM_usage": 219816,
-                        "success": true,
-                        "passed_tests": 3,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-chriswilding/gemini/GeminiFlash_two-fer_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-chriswilding/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "typescript_two-fer_Exercism-typescript-alemarr_alemarr",
-                "filename": "two-fer.ts",
-                "language": "typescript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 2563,
-                        "CPU_usage": 46.0,
-                        "RAM_usage": 213480,
-                        "success": true,
-                        "passed_tests": 3,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-alemarr/openAI/ChatGPT4_two-fer_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-alemarr/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 2205,
-                        "CPU_usage": 50.0,
-                        "RAM_usage": 220380,
-                        "success": true,
-                        "passed_tests": 3,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-alemarr/claude/ClaudeSonnet4_two-fer_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-alemarr/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 3377,
-                        "CPU_usage": 35.0,
-                        "RAM_usage": 221476,
-                        "success": true,
-                        "passed_tests": 3,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-alemarr/gemini/GeminiFlash_two-fer_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-alemarr/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "typescript_two-fer_exercism-javascript-samajammin_samajammin",
-                "filename": "two-fer.ts",
-                "language": "typescript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 2330,
-                        "CPU_usage": 46.0,
-                        "RAM_usage": 220484,
-                        "success": true,
-                        "passed_tests": 3,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_exercism-javascript-samajammin/openAI/ChatGPT4_two-fer_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_exercism-javascript-samajammin/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 3635,
-                        "CPU_usage": 34.0,
-                        "RAM_usage": 216712,
-                        "success": true,
-                        "passed_tests": 3,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_exercism-javascript-samajammin/claude/ClaudeSonnet4_two-fer_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_exercism-javascript-samajammin/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 1109,
-                        "CPU_usage": 101.0,
-                        "RAM_usage": 218628,
-                        "success": true,
-                        "passed_tests": 3,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_exercism-javascript-samajammin/gemini/GeminiFlash_two-fer_v1.ts",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_exercism-javascript-samajammin/gemini/output.log"
-                    }
-                ]
-            }
-        ],
-        "java": [
-            {
-                "id": "Java_two-fer_exercism-java-uzilan_robiworks",
-                "filename": "two-fer.java",
-                "language": "Java",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 110,
-                        "CPU_usage": 26.0,
-                        "RAM_usage": 46276,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/two-fer_exercism-java-uzilan_robiworks/openAI/ChatGPT4_two-fer_v1.java",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/two-fer_exercism-java-uzilan_robiworks/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 110,
-                        "CPU_usage": 77.0,
-                        "RAM_usage": 45664,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/two-fer_exercism-java-uzilan_robiworks/claude/ClaudeSonnet4_two-fer_v1.java",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/two-fer_exercism-java-uzilan_robiworks/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 150,
-                        "CPU_usage": 36.0,
-                        "RAM_usage": 46720,
-                        "regressionTestPassed": false,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/two-fer_exercism-java-uzilan_robiworks/gemini/GeminiFlash_two-fer_v1.java",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/two-fer_exercism-java-uzilan_robiworks/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "Java_two-fer_exercism-java-blogscot_blogscot",
-                "filename": "two-fer.java",
-                "language": "Java",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 99,
-                        "CPU_usage": 82.0,
-                        "RAM_usage": 46224,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/two-fer_exercism-java-blogscot/openAI/ChatGPT4_two-fer_v1.java",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/two-fer_exercism-java-blogscot/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 120,
-                        "CPU_usage": 32.0,
-                        "RAM_usage": 45568,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/two-fer_exercism-java-blogscot/claude/ClaudeSonnet4_two-fer_v1.java",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/two-fer_exercism-java-blogscot/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 110,
-                        "CPU_usage": 35.0,
-                        "RAM_usage": 46028,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/two-fer_exercism-java-blogscot/gemini/GeminiFlash_two-fer_v1.java",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/two-fer_exercism-java-blogscot/gemini/output.log"
-                    }
-                ]
-            }
-        ],
-        "c": [
-            {
-                "id": "c_two_fer_Exercism (ThomasZumsteg)",
-                "filename": "two_fer.c",
-                "language": "c",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/two_fer_Exercism_ThomasZumsteg/openAI/ChatGPT4_two_fer_v1.c",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_c_persistant_c_two_fer_Exercism (ThomasZumsteg)_error_3c16fbc2.log"
-                    },
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/two_fer_Exercism_ThomasZumsteg/claude/ClaudeSonnet4_two_fer_v1.c",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_c_persistant_c_two_fer_Exercism (ThomasZumsteg)_error_fe4ced6f.log"
-                    },
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/two_fer_Exercism_ThomasZumsteg/gemini/GeminiFlash_two_fer_v1.c",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_c_persistant_c_two_fer_Exercism (ThomasZumsteg)_error_05077865.log"
-                    }
-                ]
-            },
-            {
-                "id": "c_two_fer_Exercism (chriswilding)",
-                "filename": "two_fer.c",
-                "language": "c",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/two_fer_Exercism_chriswilding/openAI/ChatGPT4_two_fer_v1.c",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_c_persistant_c_two_fer_Exercism (chriswilding)_error_59837b17.log"
-                    },
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/two_fer_Exercism_chriswilding/claude/ClaudeSonnet4_two_fer_v1.c",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_c_persistant_c_two_fer_Exercism (chriswilding)_error_597f012e.log"
-                    },
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/two_fer_Exercism_chriswilding/gemini/GeminiFlash_two_fer_v1.c",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_c_persistant_c_two_fer_Exercism (chriswilding)_error_c04bf2ff.log"
-                    }
-                ]
-            },
-            {
-                "id": "c_two_fer_Exercism (leleah)",
-                "filename": "two_fer.c",
-                "language": "c",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/two_fer_Exercism_leleah/openAI/ChatGPT4_two_fer_v1.c",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_c_persistant_c_two_fer_Exercism (leleah)_error_41f42711.log"
-                    },
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/two_fer_Exercism_leleah/claude/ClaudeSonnet4_two_fer_v1.c",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_c_persistant_c_two_fer_Exercism (leleah)_error_0f1d6e18.log"
-                    },
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/two_fer_Exercism_leleah/gemini/GeminiFlash_two_fer_v1.c",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_c_persistant_c_two_fer_Exercism (leleah)_error_a1fdd823.log"
-                    }
-                ]
-            }
-        ],
-        "cpp": [
-            {
-                "id": "cpp_two_fer_Exercism (thefullarcticfox)",
-                "filename": "two_fer.cpp",
-                "language": "cpp",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 25.0,
-                        "RAM_usage": 3968,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/two_fer_Exercism_thefullarcticfox/openAI/ChatGPT4_two_fer_v1.cpp",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/two_fer_Exercism_thefullarcticfox/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 100.0,
-                        "RAM_usage": 3968,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/two_fer_Exercism_thefullarcticfox/claude/ClaudeSonnet4_two_fer_v1.cpp",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/two_fer_Exercism_thefullarcticfox/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 20.0,
-                        "RAM_usage": 3968,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/two_fer_Exercism_thefullarcticfox/gemini/GeminiFlash_two_fer_v1.cpp",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/two_fer_Exercism_thefullarcticfox/gemini/output.log"
-                    }
-                ]
-            }
-        ],
-        "go": [
-            {
-                "id": "go_two_fer_Exercism (go_thinkverse)",
-                "filename": "two_fer.go",
-                "language": "go",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 6250,
-                        "CPU_usage": 101.0,
-                        "RAM_usage": 212544,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/two_fer_Exercism_go_thinkverse/openAI/ChatGPT4_two_fer_v1.go",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/two_fer_Exercism_go_thinkverse/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 6320,
-                        "CPU_usage": 64.0,
-                        "RAM_usage": 221372,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/two_fer_Exercism_go_thinkverse/claude/ClaudeSonnet4_two_fer_v1.go",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/two_fer_Exercism_go_thinkverse/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 6270,
-                        "CPU_usage": 69.0,
-                        "RAM_usage": 223868,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/two_fer_Exercism_go_thinkverse/gemini/GeminiFlash_two_fer_v1.go",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/two_fer_Exercism_go_thinkverse/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "go_two_fer_Exercism (go_drapala)",
-                "filename": "two_fer.go",
-                "language": "go",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 6290,
-                        "CPU_usage": 64.0,
-                        "RAM_usage": 214672,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/two_fer_Exercism_go_drapala/openAI/ChatGPT4_two_fer_v1.go",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/two_fer_Exercism_go_drapala/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 6310,
-                        "CPU_usage": 69.0,
-                        "RAM_usage": 210880,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/two_fer_Exercism_go_drapala/claude/ClaudeSonnet4_two_fer_v1.go",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/two_fer_Exercism_go_drapala/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 5630,
-                        "CPU_usage": 182.0,
-                        "RAM_usage": 207112,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/two_fer_Exercism_go_drapala/gemini/GeminiFlash_two_fer_v1.go",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/two_fer_Exercism_go_drapala/gemini/output.log"
-                    }
-                ]
-            }
+  "execution_date": "2025-10-07 13:05:55",
+  "execution_metadata": {
+    "total_tests": 36,
+    "successful_tests": 35,
+    "execution_time": "00h 01m 49s",
+    "cluster": "cluster_two_fer",
+    "test_type": "llm_v1"
+  },
+  "results": {
+    "python": [
+      {
+        "id": "two-fer_38",
+        "filename": "two-fer.py",
+        "language": "python",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/two-fer/openAI/ChatGPT4_two-fer_v1.py",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/two-fer/openAI/output.log",
+            "execution_time_ms": 20,
+            "CPU_usage": 54.0,
+            "RAM_usage": 13952,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/two-fer/claude/ClaudeSonnet4_two-fer_v1.py",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/two-fer/claude/output.log",
+            "execution_time_ms": 20,
+            "CPU_usage": 68.0,
+            "RAM_usage": 13952,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/two-fer/gemini/GeminiFlash_two-fer_v1.py",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/two-fer/gemini/output.log",
+            "execution_time_ms": 30,
+            "CPU_usage": 72.0,
+            "RAM_usage": 13952,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
         ]
-    }
+      }
+    ],
+    "javascript": [
+      {
+        "id": "javascript_two-fer_exercism-javascript-oguzsh",
+        "filename": "two-fer.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-oguzsh/openAI/ChatGPT4_two-fer_v1.js",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-oguzsh/openAI/output.log",
+            "execution_time_ms": 300,
+            "CPU_usage": 35.0,
+            "RAM_usage": 80636,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-oguzsh/claude/ClaudeSonnet4_two-fer_v1.js",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-oguzsh/claude/output.log",
+            "execution_time_ms": 310,
+            "CPU_usage": 41.0,
+            "RAM_usage": 81864,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-oguzsh/gemini/GeminiFlash_two-fer_v1.js",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-oguzsh/gemini/output.log",
+            "execution_time_ms": 290,
+            "CPU_usage": 40.0,
+            "RAM_usage": 81504,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_two-fer_exercism-javascript-bearguns_bearguns",
+        "filename": "two-fer.js",
+        "language": "javascript",
+        "LLM_results": []
+      },
+      {
+        "id": "javascript_two-fer_exercism-javascript-programmiri_programmiri",
+        "filename": "two-fer.js",
+        "language": "javascript",
+        "LLM_results": []
+      },
+      {
+        "id": "javascript_two-fer_exercism-javascript-oguzsh_oguzsh",
+        "filename": "two-fer.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-oguzsh/openAI/ChatGPT4_two-fer_v1.js",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-oguzsh/openAI/output.log",
+            "execution_time_ms": 310,
+            "CPU_usage": 40.0,
+            "RAM_usage": 81400,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-oguzsh/claude/ClaudeSonnet4_two-fer_v1.js",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-oguzsh/claude/output.log",
+            "execution_time_ms": 280,
+            "CPU_usage": 40.0,
+            "RAM_usage": 81616,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-oguzsh/gemini/GeminiFlash_two-fer_v1.js",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-oguzsh/gemini/output.log",
+            "execution_time_ms": 320,
+            "CPU_usage": 25.0,
+            "RAM_usage": 81516,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_two-fer_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
+        "filename": "two-fer.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-ThomasZumsteg/openAI/ChatGPT4_two-fer_v1.js",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-ThomasZumsteg/openAI/output.log",
+            "execution_time_ms": 310,
+            "CPU_usage": 35.0,
+            "RAM_usage": 80288,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-ThomasZumsteg/claude/ClaudeSonnet4_two-fer_v1.js",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-ThomasZumsteg/claude/output.log",
+            "execution_time_ms": 330,
+            "CPU_usage": 23.0,
+            "RAM_usage": 82040,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-ThomasZumsteg/gemini/GeminiFlash_two-fer_v1.js",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-ThomasZumsteg/gemini/output.log",
+            "execution_time_ms": 280,
+            "CPU_usage": 32.0,
+            "RAM_usage": 81716,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_two-fer_exercism-javascript-bearguns",
+        "filename": "two-fer.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-bearguns/gemini/GeminiFlash_two-fer_v1.js",
+            "log": "",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 137"
+          }
+        ]
+      },
+      {
+        "id": "javascript_two-fer_exercism-javascript-bearguns",
+        "filename": "two-fer.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-bearguns/openAI/ChatGPT4_two-fer_v1.js",
+            "log": "",
+            "execution_time_ms": 210,
+            "CPU_usage": 5.0,
+            "RAM_usage": 66576,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "javascript_two-fer_exercism-javascript-programmiri",
+        "filename": "two-fer.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-programmiri/gemini/GeminiFlash_two-fer_v1.js",
+            "log": "",
+            "execution_time_ms": 190,
+            "CPU_usage": 5.0,
+            "RAM_usage": 66752,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "javascript_two-fer_exercism-javascript-programmiri",
+        "filename": "two-fer.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-programmiri/openAI/ChatGPT4_two-fer_v1.js",
+            "log": "",
+            "execution_time_ms": 200,
+            "CPU_usage": 4.0,
+            "RAM_usage": 66408,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "javascript_two-fer_exercism-javascript-programmiri",
+        "filename": "two-fer.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-programmiri/claude/ClaudeSonnet4_two-fer_v1.js",
+            "log": "",
+            "execution_time_ms": 190,
+            "CPU_usage": 5.0,
+            "RAM_usage": 67692,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "javascript_two-fer_exercism-javascript-bearguns",
+        "filename": "two-fer.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/two-fer_exercism-javascript-bearguns/claude/ClaudeSonnet4_two-fer_v1.js",
+            "log": "",
+            "execution_time_ms": 200,
+            "CPU_usage": 5.0,
+            "RAM_usage": 65312,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      }
+    ],
+    "typescript": [
+      {
+        "id": "typescript_two-fer_exercism-javascript-samajammin",
+        "filename": "two-fer.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_exercism-javascript-samajammin/openAI/ChatGPT4_two-fer_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_exercism-javascript-samajammin/openAI/output.log",
+            "execution_time_ms": 1191,
+            "CPU_usage": 96.0,
+            "RAM_usage": 223364,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_exercism-javascript-samajammin/claude/ClaudeSonnet4_two-fer_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_exercism-javascript-samajammin/claude/output.log",
+            "execution_time_ms": 1636,
+            "CPU_usage": 65.0,
+            "RAM_usage": 219736,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_exercism-javascript-samajammin/gemini/GeminiFlash_two-fer_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_exercism-javascript-samajammin/gemini/output.log",
+            "execution_time_ms": 1836,
+            "CPU_usage": 64.0,
+            "RAM_usage": 220392,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_two-fer_Exercism-typescript-shybyte",
+        "filename": "two-fer.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-shybyte/openAI/ChatGPT4_two-fer_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-shybyte/openAI/output.log",
+            "execution_time_ms": 1871,
+            "CPU_usage": 61.0,
+            "RAM_usage": 219040,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-shybyte/claude/ClaudeSonnet4_two-fer_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-shybyte/claude/output.log",
+            "execution_time_ms": 1942,
+            "CPU_usage": 57.0,
+            "RAM_usage": 218612,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-shybyte/gemini/GeminiFlash_two-fer_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-shybyte/gemini/output.log",
+            "execution_time_ms": 2354,
+            "CPU_usage": 48.0,
+            "RAM_usage": 222032,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_two-fer_Exercism-typescript-chriswilding",
+        "filename": "two-fer.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-chriswilding/openAI/ChatGPT4_two-fer_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-chriswilding/openAI/output.log",
+            "execution_time_ms": 2015,
+            "CPU_usage": 54.0,
+            "RAM_usage": 219912,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-chriswilding/claude/ClaudeSonnet4_two-fer_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-chriswilding/claude/output.log",
+            "execution_time_ms": 2357,
+            "CPU_usage": 47.0,
+            "RAM_usage": 222436,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-chriswilding/gemini/GeminiFlash_two-fer_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-chriswilding/gemini/output.log",
+            "execution_time_ms": 2231,
+            "CPU_usage": 50.0,
+            "RAM_usage": 223460,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_two-fer_Exercism-typescript-alemarr",
+        "filename": "two-fer.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-alemarr/openAI/ChatGPT4_two-fer_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-alemarr/openAI/output.log",
+            "execution_time_ms": 2176,
+            "CPU_usage": 47.0,
+            "RAM_usage": 224000,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-alemarr/claude/ClaudeSonnet4_two-fer_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-alemarr/claude/output.log",
+            "execution_time_ms": 2509,
+            "CPU_usage": 45.0,
+            "RAM_usage": 218784,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-alemarr/gemini/GeminiFlash_two-fer_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-alemarr/gemini/output.log",
+            "execution_time_ms": 2416,
+            "CPU_usage": 45.0,
+            "RAM_usage": 197164,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_two-fer_Exercism-typescript-uzilan_uzilan",
+        "filename": "two-fer.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-uzilan/openAI/ChatGPT4_two-fer_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-uzilan/openAI/output.log",
+            "execution_time_ms": 2315,
+            "CPU_usage": 47.0,
+            "RAM_usage": 219580,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-uzilan/claude/ClaudeSonnet4_two-fer_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-uzilan/claude/output.log",
+            "execution_time_ms": 2241,
+            "CPU_usage": 49.0,
+            "RAM_usage": 220008,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-uzilan/gemini/GeminiFlash_two-fer_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-uzilan/gemini/output.log",
+            "execution_time_ms": 2450,
+            "CPU_usage": 47.0,
+            "RAM_usage": 199432,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_two-fer_Exercism-typescript-thewanionly_thewanionly",
+        "filename": "two-fer.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-thewanionly/openAI/ChatGPT4_two-fer_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-thewanionly/openAI/output.log",
+            "execution_time_ms": 2329,
+            "CPU_usage": 49.0,
+            "RAM_usage": 223304,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-thewanionly/claude/ClaudeSonnet4_two-fer_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-thewanionly/claude/output.log",
+            "execution_time_ms": 2373,
+            "CPU_usage": 48.0,
+            "RAM_usage": 199184,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-thewanionly/gemini/GeminiFlash_two-fer_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-thewanionly/gemini/output.log",
+            "execution_time_ms": 2121,
+            "CPU_usage": 50.0,
+            "RAM_usage": 213376,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_two-fer_Exercism-typescript-shybyte_shybyte",
+        "filename": "two-fer.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-shybyte/openAI/ChatGPT4_two-fer_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-shybyte/openAI/output.log",
+            "execution_time_ms": 2364,
+            "CPU_usage": 49.0,
+            "RAM_usage": 197860,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-shybyte/claude/ClaudeSonnet4_two-fer_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-shybyte/claude/output.log",
+            "execution_time_ms": 2482,
+            "CPU_usage": 49.0,
+            "RAM_usage": 207948,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-shybyte/gemini/GeminiFlash_two-fer_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-shybyte/gemini/output.log",
+            "execution_time_ms": 2303,
+            "CPU_usage": 49.0,
+            "RAM_usage": 218972,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_two-fer_Exercism-typescript-chriswilding_chriswilding",
+        "filename": "two-fer.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-chriswilding/openAI/ChatGPT4_two-fer_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-chriswilding/openAI/output.log",
+            "execution_time_ms": 2349,
+            "CPU_usage": 48.0,
+            "RAM_usage": 212324,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-chriswilding/claude/ClaudeSonnet4_two-fer_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-chriswilding/claude/output.log",
+            "execution_time_ms": 2291,
+            "CPU_usage": 48.0,
+            "RAM_usage": 220128,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-chriswilding/gemini/GeminiFlash_two-fer_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-chriswilding/gemini/output.log",
+            "execution_time_ms": 3371,
+            "CPU_usage": 35.0,
+            "RAM_usage": 219816,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_two-fer_Exercism-typescript-alemarr_alemarr",
+        "filename": "two-fer.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-alemarr/openAI/ChatGPT4_two-fer_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-alemarr/openAI/output.log",
+            "execution_time_ms": 2563,
+            "CPU_usage": 46.0,
+            "RAM_usage": 213480,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-alemarr/claude/ClaudeSonnet4_two-fer_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-alemarr/claude/output.log",
+            "execution_time_ms": 2205,
+            "CPU_usage": 50.0,
+            "RAM_usage": 220380,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-alemarr/gemini/GeminiFlash_two-fer_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_Exercism-typescript-alemarr/gemini/output.log",
+            "execution_time_ms": 3377,
+            "CPU_usage": 35.0,
+            "RAM_usage": 221476,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_two-fer_exercism-javascript-samajammin_samajammin",
+        "filename": "two-fer.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_exercism-javascript-samajammin/openAI/ChatGPT4_two-fer_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_exercism-javascript-samajammin/openAI/output.log",
+            "execution_time_ms": 2330,
+            "CPU_usage": 46.0,
+            "RAM_usage": 220484,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_exercism-javascript-samajammin/claude/ClaudeSonnet4_two-fer_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_exercism-javascript-samajammin/claude/output.log",
+            "execution_time_ms": 3635,
+            "CPU_usage": 34.0,
+            "RAM_usage": 216712,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_exercism-javascript-samajammin/gemini/GeminiFlash_two-fer_v1.ts",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/two-fer_exercism-javascript-samajammin/gemini/output.log",
+            "execution_time_ms": 1109,
+            "CPU_usage": 101.0,
+            "RAM_usage": 218628,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      }
+    ],
+    "Java": [
+      {
+        "id": "Java_two-fer_exercism-java-uzilan_robiworks",
+        "filename": "two-fer.java",
+        "language": "Java",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/two-fer_exercism-java-uzilan_robiworks/openAI/ChatGPT4_two-fer_v1.java",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/two-fer_exercism-java-uzilan_robiworks/openAI/output.log",
+            "execution_time_ms": 110,
+            "CPU_usage": 26.0,
+            "RAM_usage": 46276,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/two-fer_exercism-java-uzilan_robiworks/claude/ClaudeSonnet4_two-fer_v1.java",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/two-fer_exercism-java-uzilan_robiworks/claude/output.log",
+            "execution_time_ms": 110,
+            "CPU_usage": 77.0,
+            "RAM_usage": 45664,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/two-fer_exercism-java-uzilan_robiworks/gemini/GeminiFlash_two-fer_v1.java",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/two-fer_exercism-java-uzilan_robiworks/gemini/output.log",
+            "execution_time_ms": 150,
+            "CPU_usage": 36.0,
+            "RAM_usage": 46720,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "Java_two-fer_exercism-java-blogscot_blogscot",
+        "filename": "two-fer.java",
+        "language": "Java",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/two-fer_exercism-java-blogscot/openAI/ChatGPT4_two-fer_v1.java",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/two-fer_exercism-java-blogscot/openAI/output.log",
+            "execution_time_ms": 99,
+            "CPU_usage": 82.0,
+            "RAM_usage": 46224,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/two-fer_exercism-java-blogscot/claude/ClaudeSonnet4_two-fer_v1.java",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/two-fer_exercism-java-blogscot/claude/output.log",
+            "execution_time_ms": 120,
+            "CPU_usage": 32.0,
+            "RAM_usage": 45568,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/two-fer_exercism-java-blogscot/gemini/GeminiFlash_two-fer_v1.java",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/two-fer_exercism-java-blogscot/gemini/output.log",
+            "execution_time_ms": 110,
+            "CPU_usage": 35.0,
+            "RAM_usage": 46028,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      }
+    ],
+    "cpp": [
+      {
+        "id": "cpp_two_fer_Exercism (thefullarcticfox)",
+        "filename": "two_fer.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/two_fer_Exercism_thefullarcticfox/openAI/ChatGPT4_two_fer_v1.cpp",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/two_fer_Exercism_thefullarcticfox/openAI/output.log",
+            "execution_time_ms": 0,
+            "CPU_usage": 25.0,
+            "RAM_usage": 3968,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/two_fer_Exercism_thefullarcticfox/claude/ClaudeSonnet4_two_fer_v1.cpp",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/two_fer_Exercism_thefullarcticfox/claude/output.log",
+            "execution_time_ms": 0,
+            "CPU_usage": 100.0,
+            "RAM_usage": 3968,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/two_fer_Exercism_thefullarcticfox/gemini/GeminiFlash_two_fer_v1.cpp",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/two_fer_Exercism_thefullarcticfox/gemini/output.log",
+            "execution_time_ms": 0,
+            "CPU_usage": 20.0,
+            "RAM_usage": 3968,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      }
+    ],
+    "go": [
+      {
+        "id": "go_two_fer_Exercism (go_thinkverse)",
+        "filename": "two_fer.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/two_fer_Exercism_go_thinkverse/openAI/ChatGPT4_two_fer_v1.go",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/two_fer_Exercism_go_thinkverse/openAI/output.log",
+            "execution_time_ms": 6250,
+            "CPU_usage": 101.0,
+            "RAM_usage": 212544,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/two_fer_Exercism_go_thinkverse/claude/ClaudeSonnet4_two_fer_v1.go",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/two_fer_Exercism_go_thinkverse/claude/output.log",
+            "execution_time_ms": 6320,
+            "CPU_usage": 64.0,
+            "RAM_usage": 221372,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/two_fer_Exercism_go_thinkverse/gemini/GeminiFlash_two_fer_v1.go",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/two_fer_Exercism_go_thinkverse/gemini/output.log",
+            "execution_time_ms": 6270,
+            "CPU_usage": 69.0,
+            "RAM_usage": 223868,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_two_fer_Exercism (go_drapala)",
+        "filename": "two_fer.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/two_fer_Exercism_go_drapala/openAI/ChatGPT4_two_fer_v1.go",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/two_fer_Exercism_go_drapala/openAI/output.log",
+            "execution_time_ms": 6290,
+            "CPU_usage": 64.0,
+            "RAM_usage": 214672,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/two_fer_Exercism_go_drapala/claude/ClaudeSonnet4_two_fer_v1.go",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/two_fer_Exercism_go_drapala/claude/output.log",
+            "execution_time_ms": 6310,
+            "CPU_usage": 69.0,
+            "RAM_usage": 210880,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/two_fer_Exercism_go_drapala/gemini/GeminiFlash_two_fer_v1.go",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/two_fer_Exercism_go_drapala/gemini/output.log",
+            "execution_time_ms": 5630,
+            "CPU_usage": 182.0,
+            "RAM_usage": 207112,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      }
+    ],
+    "c": [
+      {
+        "id": "c_two_fer_Exercism (ThomasZumsteg)",
+        "filename": "two_fer.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/two_fer_Exercism_ThomasZumsteg/openAI/ChatGPT4_two_fer_v1.c",
+            "log": "",
+            "execution_time_ms": 60,
+            "CPU_usage": 4.0,
+            "RAM_usage": 3328,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 255"
+          }
+        ]
+      },
+      {
+        "id": "c_two_fer_Exercism (ThomasZumsteg)",
+        "filename": "two_fer.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/two_fer_Exercism_ThomasZumsteg/claude/ClaudeSonnet4_two_fer_v1.c",
+            "log": "",
+            "execution_time_ms": 40,
+            "CPU_usage": 2.0,
+            "RAM_usage": 3456,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 255"
+          }
+        ]
+      },
+      {
+        "id": "c_two_fer_Exercism (ThomasZumsteg)",
+        "filename": "two_fer.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/two_fer_Exercism_ThomasZumsteg/gemini/GeminiFlash_two_fer_v1.c",
+            "log": "",
+            "execution_time_ms": 10,
+            "CPU_usage": 10.0,
+            "RAM_usage": 3456,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 255"
+          }
+        ]
+      },
+      {
+        "id": "c_two_fer_Exercism (chriswilding)",
+        "filename": "two_fer.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/two_fer_Exercism_chriswilding/gemini/GeminiFlash_two_fer_v1.c",
+            "log": "",
+            "execution_time_ms": 50,
+            "CPU_usage": 1.0,
+            "RAM_usage": 3456,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 255"
+          }
+        ]
+      },
+      {
+        "id": "c_two_fer_Exercism (chriswilding)",
+        "filename": "two_fer.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/two_fer_Exercism_chriswilding/openAI/ChatGPT4_two_fer_v1.c",
+            "log": "",
+            "execution_time_ms": 10,
+            "CPU_usage": 5.0,
+            "RAM_usage": 3456,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 255"
+          }
+        ]
+      },
+      {
+        "id": "c_two_fer_Exercism (leleah)",
+        "filename": "two_fer.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/two_fer_Exercism_leleah/openAI/ChatGPT4_two_fer_v1.c",
+            "log": "",
+            "execution_time_ms": 10,
+            "CPU_usage": 9.0,
+            "RAM_usage": 3456,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 255"
+          }
+        ]
+      },
+      {
+        "id": "c_two_fer_Exercism (leleah)",
+        "filename": "two_fer.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/two_fer_Exercism_leleah/claude/ClaudeSonnet4_two_fer_v1.c",
+            "log": "",
+            "execution_time_ms": 70,
+            "CPU_usage": 1.0,
+            "RAM_usage": 3456,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 255"
+          }
+        ]
+      },
+      {
+        "id": "c_two_fer_Exercism (chriswilding)",
+        "filename": "two_fer.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/two_fer_Exercism_chriswilding/claude/ClaudeSonnet4_two_fer_v1.c",
+            "log": "",
+            "execution_time_ms": 10,
+            "CPU_usage": 5.0,
+            "RAM_usage": 3456,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 255"
+          }
+        ]
+      },
+      {
+        "id": "c_two_fer_Exercism (leleah)",
+        "filename": "two_fer.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/two_fer_Exercism_leleah/gemini/GeminiFlash_two_fer_v1.c",
+            "log": "",
+            "execution_time_ms": 10,
+            "CPU_usage": 10.0,
+            "RAM_usage": 3456,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 255"
+          }
+        ]
+      }
+    ]
+  }
 }

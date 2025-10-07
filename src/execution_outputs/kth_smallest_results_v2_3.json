@@ -1,8 +1,8 @@
 {
-  "execution_date": "2025-10-06 09:03:53",
+  "execution_date": "2025-10-07 01:46:36",
   "execution_metadata": {
-    "total_tests": 1,
-    "successful_tests": 0,
+    "total_tests": 3,
+    "successful_tests": 3,
     "execution_time": "00h 00m 00s",
     "cluster": "cluster_kth_smallest",
     "test_type": "llm_v2"
@@ -15,14 +15,50 @@
         "language": "python",
         "LLM_results": [
           {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/kth_smallest/openAI/ChatGPT4_kth_smallest_v2.py",
+            "log": "",
+            "execution_time_ms": 30,
+            "CPU_usage": 9.0,
+            "RAM_usage": 13696,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "kth_smallest_183",
+        "filename": "kth_smallest.py",
+        "language": "python",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/kth_smallest/gemini/GeminiFlash_kth_smallest_v2.py",
+            "log": "",
+            "execution_time_ms": 30,
+            "CPU_usage": 7.0,
+            "RAM_usage": 14336,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "kth_smallest_183",
+        "filename": "kth_smallest.py",
+        "language": "python",
+        "LLM_results": [
+          {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/kth_smallest/claude/ClaudeSonnet4_kth_smallest_v2.py",
             "log": "",
-            "execution_time_ms": null,
-            "CPU_usage": null,
-            "RAM_usage": null,
-            "regressionTestPassed": true,
-            "success": null,
+            "execution_time_ms": 30,
+            "CPU_usage": 8.0,
+            "RAM_usage": 13952,
+            "regressionTestPassed": false,
+            "success": false,
             "error_message": null
           }
         ]

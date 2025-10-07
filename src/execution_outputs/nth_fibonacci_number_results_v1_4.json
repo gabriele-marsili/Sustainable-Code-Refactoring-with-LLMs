@@ -1,41 +1,68 @@
 {
-    "execution_date": "2025-09-18 17:55:18",
-    "results": {
-        "python": [
-            {
-                "id": "nth_fibonacci_number_252",
-                "filename": "nth_fibonacci_number.py",
-                "language": "python",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 30,
-                        "CPU_usage": 87.0,
-                        "RAM_usage": 14080,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/nth_fibonacci_number/openAI/ChatGPT4_nth_fibonacci_number_v1.py",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/nth_fibonacci_number/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 20,
-                        "CPU_usage": 87.0,
-                        "RAM_usage": 14080,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/nth_fibonacci_number/claude/ClaudeSonnet4_nth_fibonacci_number_v1.py",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/nth_fibonacci_number/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": null,
-                        "CPU_usage": null,
-                        "RAM_usage": null,
-                        "regressionTestPassed": false,
-                        "LLM_type": "gemini",
-                        "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/nth_fibonacci_number/gemini/GeminiFlash_nth_fibonacci_number_v1.py",
-                        "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_python_shared_1758210912_nth_fibonacci_number_252_error_a69a7928.log"
-                    }
-                ]
-            }
+  "execution_date": "2025-10-07 10:28:19",
+  "execution_metadata": {
+    "total_tests": 3,
+    "successful_tests": 3,
+    "execution_time": "00h 00m 02s",
+    "cluster": "cluster_nth_fibonacci_number",
+    "test_type": "llm_v1"
+  },
+  "results": {
+    "python": [
+      {
+        "id": "nth_fibonacci_number_252",
+        "filename": "nth_fibonacci_number.py",
+        "language": "python",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/nth_fibonacci_number/claude/ClaudeSonnet4_nth_fibonacci_number_v1.py",
+            "log": "",
+            "execution_time_ms": 30,
+            "CPU_usage": 29.0,
+            "RAM_usage": 14080,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
         ]
-    }
+      },
+      {
+        "id": "nth_fibonacci_number_252",
+        "filename": "nth_fibonacci_number.py",
+        "language": "python",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/nth_fibonacci_number/openAI/ChatGPT4_nth_fibonacci_number_v1.py",
+            "log": "",
+            "execution_time_ms": 30,
+            "CPU_usage": 17.0,
+            "RAM_usage": 13952,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "nth_fibonacci_number_252",
+        "filename": "nth_fibonacci_number.py",
+        "language": "python",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/nth_fibonacci_number/gemini/GeminiFlash_nth_fibonacci_number_v1.py",
+            "log": "",
+            "execution_time_ms": 30,
+            "CPU_usage": 22.0,
+            "RAM_usage": 14208,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      }
+    ]
+  }
 }

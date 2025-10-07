@@ -1,55 +1,13 @@
 {
-  "execution_date": "2025-10-03 13:22:59",
+  "execution_date": "2025-10-07 13:47:35",
   "execution_metadata": {
-    "total_tests": 4,
+    "total_tests": 6,
     "successful_tests": 3,
-    "execution_time": "00h 01m 08s",
+    "execution_time": "00h 00m 18s",
     "cluster": "cluster_octal",
     "test_type": "llm_v1"
   },
   "results": {
-    "Java": [
-      {
-        "id": "Java_octal_exercism-java-ThomasZumsteg",
-        "filename": "octal.java",
-        "language": "Java",
-        "LLM_results": [
-          {
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/octal_exercism-java-ThomasZumsteg/openAI/ChatGPT4_octal_v1.java",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_java_shared_Java_octal_exercism-java-ThomasZumsteg_error_dbf8a4eb.log",
-            "execution_time_ms": null,
-            "CPU_usage": null,
-            "RAM_usage": null,
-            "regressionTestPassed": false,
-            "success": null,
-            "error_message": null
-          },
-          {
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/octal_exercism-java-ThomasZumsteg/claude/ClaudeSonnet4_octal_v1.java",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_java_shared_Java_octal_exercism-java-ThomasZumsteg_error_71cdb379.log",
-            "execution_time_ms": null,
-            "CPU_usage": null,
-            "RAM_usage": null,
-            "regressionTestPassed": false,
-            "success": null,
-            "error_message": null
-          },
-          {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/octal_exercism-java-ThomasZumsteg/gemini/GeminiFlash_octal_v1.java",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_java_shared_Java_octal_exercism-java-ThomasZumsteg_error_8fb6a7e4.log",
-            "execution_time_ms": null,
-            "CPU_usage": null,
-            "RAM_usage": null,
-            "regressionTestPassed": false,
-            "success": null,
-            "error_message": null
-          }
-        ]
-      }
-    ],
     "java": [
       {
         "id": "Java_octal_exercism-java-ThomasZumsteg_ThomasZumsteg",
@@ -88,6 +46,60 @@
             "regressionTestPassed": false,
             "success": null,
             "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "Java_octal_exercism-java-ThomasZumsteg",
+        "filename": "octal.java",
+        "language": "java",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/octal_exercism-java-ThomasZumsteg/claude/ClaudeSonnet4_octal_v1.java",
+            "log": "",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "Java_octal_exercism-java-ThomasZumsteg",
+        "filename": "octal.java",
+        "language": "java",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/octal_exercism-java-ThomasZumsteg/openAI/ChatGPT4_octal_v1.java",
+            "log": "",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "Java_octal_exercism-java-ThomasZumsteg",
+        "filename": "octal.java",
+        "language": "java",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/octal_exercism-java-ThomasZumsteg/gemini/GeminiFlash_octal_v1.java",
+            "log": "",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
           }
         ]
       }
