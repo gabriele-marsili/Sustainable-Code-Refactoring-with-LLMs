@@ -1,9 +1,9 @@
 {
-  "execution_date": "2025-09-28 19:34:54",
+  "execution_date": "2025-10-07 21:40:08",
   "execution_metadata": {
-    "total_tests": 45,
-    "successful_tests": 35,
-    "execution_time": "00h 01m 19s",
+    "total_tests": 47,
+    "successful_tests": 41,
+    "execution_time": "00h 03m 29s",
     "cluster": "cluster_allergies",
     "test_type": "llm_v2"
   },
@@ -11,58 +11,91 @@
     "javascript": [
       {
         "id": "javascript_allergies_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
+        "filename": "Filename not found",
         "language": "javascript",
-        "timestamp": 1759080817.708631,
         "LLM_results": [
           {
-            "execution_time_ms": null,
-            "CPU_usage": null,
-            "RAM_usage": null,
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_allergies_exercism-javascript-ThomasZumsteg_ThomasZumsteg_1759080817.log",
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/allergies_exercism-javascript-ThomasZumsteg/openAI/ChatGPT4_allergies_v2.js",
-            "filename": "ChatGPT4_allergies_v2.js"
-          }
-        ]
-      },
-      {
-        "id": "javascript_allergies_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
-        "language": "javascript",
-        "timestamp": 1759080818.270348,
-        "LLM_results": [
-          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/allergies_exercism-javascript-ThomasZumsteg/claude/ClaudeSonnet4_allergies_v2.js",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_allergies_exercism-javascript-ThomasZumsteg_ThomasZumsteg_1759080818.log",
             "execution_time_ms": 280,
             "CPU_usage": 53.0,
             "RAM_usage": 80312,
             "regressionTestPassed": false,
             "success": true,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_allergies_exercism-javascript-ThomasZumsteg_ThomasZumsteg_1759080818.log",
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/allergies_exercism-javascript-ThomasZumsteg/claude/ClaudeSonnet4_allergies_v2.js",
-            "filename": "ClaudeSonnet4_allergies_v2.js"
+            "error_message": "Docker exit code: 1"
           }
         ]
       },
       {
         "id": "javascript_allergies_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
+        "filename": "Filename not found",
         "language": "javascript",
-        "timestamp": 1759080818.701865,
         "LLM_results": [
           {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/allergies_exercism-javascript-ThomasZumsteg/gemini/GeminiFlash_allergies_v2.js",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_allergies_exercism-javascript-ThomasZumsteg_ThomasZumsteg_1759080818.log",
             "execution_time_ms": 280,
             "CPU_usage": 53.0,
             "RAM_usage": 80312,
             "regressionTestPassed": true,
             "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_allergies_exercism-javascript-ThomasZumsteg_ThomasZumsteg_1759080818.log",
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_allergies_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
+        "filename": "allergies.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/allergies_exercism-javascript-ThomasZumsteg/openAI/ChatGPT4_allergies_v2.js",
+            "log": "",
+            "execution_time_ms": 200,
+            "CPU_usage": 5.0,
+            "RAM_usage": 63752,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "javascript_allergies_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
+        "filename": "allergies.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/allergies_exercism-javascript-ThomasZumsteg/gemini/GeminiFlash_allergies_v2.js",
-            "filename": "GeminiFlash_allergies_v2.js"
+            "log": "",
+            "execution_time_ms": 200,
+            "CPU_usage": 5.0,
+            "RAM_usage": 65544,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "javascript_allergies_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
+        "filename": "allergies.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/allergies_exercism-javascript-ThomasZumsteg/claude/ClaudeSonnet4_allergies_v2.js",
+            "log": "",
+            "execution_time_ms": 210,
+            "CPU_usage": 5.0,
+            "RAM_usage": 65268,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
           }
         ]
       }
@@ -70,288 +103,217 @@
     "typescript": [
       {
         "id": "typescript_allergies_Exercism-typescript-FilipeCerejo",
+        "filename": "Filename not found",
         "language": "typescript",
-        "timestamp": 1759080820.28686,
         "LLM_results": [
           {
-            "execution_time_ms": 20366,
-            "CPU_usage": 37.0,
-            "RAM_usage": 218940,
-            "regressionTestPassed": false,
-            "success": true,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_allergies_Exercism-typescript-FilipeCerejo_1759080820.log",
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/allergies_Exercism-typescript-FilipeCerejo/openAI/ChatGPT4_allergies_v2.js",
-            "filename": "ChatGPT4_allergies_v2.js"
-          }
-        ]
-      },
-      {
-        "id": "typescript_allergies_Exercism-typescript-FilipeCerejo",
-        "language": "typescript",
-        "timestamp": 1759080821.3689852,
-        "LLM_results": [
-          {
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_allergies_Exercism-typescript-FilipeCerejo_1759080820.log",
             "execution_time_ms": 20366,
             "CPU_usage": 37.0,
             "RAM_usage": 218940,
             "regressionTestPassed": false,
             "success": true,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_allergies_Exercism-typescript-FilipeCerejo_1759080821.log",
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "typescript_allergies_Exercism-typescript-FilipeCerejo",
+        "filename": "Filename not found",
+        "language": "typescript",
+        "LLM_results": [
+          {
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/allergies_Exercism-typescript-FilipeCerejo/openAI/ChatGPT4_allergies_v2.ts",
-            "filename": "ChatGPT4_allergies_v2.ts"
-          }
-        ]
-      },
-      {
-        "id": "typescript_allergies_Exercism-typescript-FilipeCerejo",
-        "language": "typescript",
-        "timestamp": 1759080822.0774488,
-        "LLM_results": [
-          {
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_allergies_Exercism-typescript-FilipeCerejo_1759080821.log",
             "execution_time_ms": 20366,
             "CPU_usage": 37.0,
             "RAM_usage": 218940,
             "regressionTestPassed": false,
             "success": true,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_allergies_Exercism-typescript-FilipeCerejo_1759080822.log",
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "typescript_allergies_Exercism-typescript-FilipeCerejo",
+        "filename": "Filename not found",
+        "language": "typescript",
+        "LLM_results": [
+          {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/allergies_Exercism-typescript-FilipeCerejo/claude/ClaudeSonnet4_allergies_v2.ts",
-            "filename": "ClaudeSonnet4_allergies_v2.ts"
-          }
-        ]
-      },
-      {
-        "id": "typescript_allergies_Exercism-typescript-FilipeCerejo",
-        "language": "typescript",
-        "timestamp": 1759080824.142112,
-        "LLM_results": [
-          {
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_allergies_Exercism-typescript-FilipeCerejo_1759080822.log",
             "execution_time_ms": 20366,
             "CPU_usage": 37.0,
             "RAM_usage": 218940,
             "regressionTestPassed": false,
             "success": true,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_allergies_Exercism-typescript-FilipeCerejo_1759080824.log",
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "typescript_allergies_Exercism-typescript-FilipeCerejo",
+        "filename": "Filename not found",
+        "language": "typescript",
+        "LLM_results": [
+          {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/allergies_Exercism-typescript-FilipeCerejo/claude/ClaudeSonnet4_allergies_v2.js",
-            "filename": "ClaudeSonnet4_allergies_v2.js"
-          }
-        ]
-      },
-      {
-        "id": "typescript_allergies_Exercism-typescript-FilipeCerejo",
-        "language": "typescript",
-        "timestamp": 1759080824.5607529,
-        "LLM_results": [
-          {
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_allergies_Exercism-typescript-FilipeCerejo_1759080824.log",
             "execution_time_ms": 20366,
             "CPU_usage": 37.0,
             "RAM_usage": 218940,
             "regressionTestPassed": false,
             "success": true,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_allergies_Exercism-typescript-FilipeCerejo_1759080824.log",
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "typescript_allergies_Exercism-typescript-FilipeCerejo",
+        "filename": "Filename not found",
+        "language": "typescript",
+        "LLM_results": [
+          {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/allergies_Exercism-typescript-FilipeCerejo/gemini/GeminiFlash_allergies_v2.ts",
-            "filename": "GeminiFlash_allergies_v2.ts"
-          }
-        ]
-      },
-      {
-        "id": "typescript_allergies_Exercism-typescript-FilipeCerejo",
-        "language": "typescript",
-        "timestamp": 1759080824.933473,
-        "LLM_results": [
-          {
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_allergies_Exercism-typescript-FilipeCerejo_1759080824.log",
             "execution_time_ms": 20366,
             "CPU_usage": 37.0,
             "RAM_usage": 218940,
             "regressionTestPassed": false,
             "success": true,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_allergies_Exercism-typescript-FilipeCerejo_1759080824.log",
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "typescript_allergies_Exercism-typescript-FilipeCerejo",
+        "filename": "Filename not found",
+        "language": "typescript",
+        "LLM_results": [
+          {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/allergies_Exercism-typescript-FilipeCerejo/gemini/GeminiFlash_allergies_v2.js",
-            "filename": "GeminiFlash_allergies_v2.js"
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_allergies_Exercism-typescript-FilipeCerejo_1759080824.log",
+            "execution_time_ms": 20366,
+            "CPU_usage": 37.0,
+            "RAM_usage": 218940,
+            "regressionTestPassed": false,
+            "success": true,
+            "error_message": "Docker exit code: 1"
           }
         ]
       },
       {
         "id": "typescript_allergies_Exercism-typescript-FilipeCerejo_FilipeCerejo",
+        "filename": "Filename not found",
         "language": "typescript",
-        "timestamp": 1759080827.001577,
         "LLM_results": [
           {
-            "execution_time_ms": 20366,
-            "CPU_usage": 37.0,
-            "RAM_usage": 218940,
-            "regressionTestPassed": false,
-            "success": true,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_allergies_Exercism-typescript-FilipeCerejo_FilipeCerejo_1759080827.log",
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/allergies_Exercism-typescript-FilipeCerejo/openAI/ChatGPT4_allergies_v2.js",
-            "filename": "ChatGPT4_allergies_v2.js"
-          }
-        ]
-      },
-      {
-        "id": "typescript_allergies_Exercism-typescript-FilipeCerejo_FilipeCerejo",
-        "language": "typescript",
-        "timestamp": 1759080827.735573,
-        "LLM_results": [
-          {
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_allergies_Exercism-typescript-FilipeCerejo_FilipeCerejo_1759080827.log",
             "execution_time_ms": 20366,
             "CPU_usage": 37.0,
             "RAM_usage": 218940,
             "regressionTestPassed": false,
             "success": true,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_allergies_Exercism-typescript-FilipeCerejo_FilipeCerejo_1759080827.log",
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "typescript_allergies_Exercism-typescript-FilipeCerejo_FilipeCerejo",
+        "filename": "Filename not found",
+        "language": "typescript",
+        "LLM_results": [
+          {
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/allergies_Exercism-typescript-FilipeCerejo/openAI/ChatGPT4_allergies_v2.ts",
-            "filename": "ChatGPT4_allergies_v2.ts"
-          }
-        ]
-      },
-      {
-        "id": "typescript_allergies_Exercism-typescript-FilipeCerejo_FilipeCerejo",
-        "language": "typescript",
-        "timestamp": 1759080828.172402,
-        "LLM_results": [
-          {
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_allergies_Exercism-typescript-FilipeCerejo_FilipeCerejo_1759080827.log",
             "execution_time_ms": 20366,
             "CPU_usage": 37.0,
             "RAM_usage": 218940,
             "regressionTestPassed": false,
             "success": true,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_allergies_Exercism-typescript-FilipeCerejo_FilipeCerejo_1759080828.log",
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "typescript_allergies_Exercism-typescript-FilipeCerejo_FilipeCerejo",
+        "filename": "Filename not found",
+        "language": "typescript",
+        "LLM_results": [
+          {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/allergies_Exercism-typescript-FilipeCerejo/claude/ClaudeSonnet4_allergies_v2.ts",
-            "filename": "ClaudeSonnet4_allergies_v2.ts"
-          }
-        ]
-      },
-      {
-        "id": "typescript_allergies_Exercism-typescript-FilipeCerejo_FilipeCerejo",
-        "language": "typescript",
-        "timestamp": 1759080828.5776849,
-        "LLM_results": [
-          {
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_allergies_Exercism-typescript-FilipeCerejo_FilipeCerejo_1759080828.log",
             "execution_time_ms": 20366,
             "CPU_usage": 37.0,
             "RAM_usage": 218940,
             "regressionTestPassed": false,
             "success": true,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_allergies_Exercism-typescript-FilipeCerejo_FilipeCerejo_1759080828.log",
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "typescript_allergies_Exercism-typescript-FilipeCerejo_FilipeCerejo",
+        "filename": "Filename not found",
+        "language": "typescript",
+        "LLM_results": [
+          {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/allergies_Exercism-typescript-FilipeCerejo/claude/ClaudeSonnet4_allergies_v2.js",
-            "filename": "ClaudeSonnet4_allergies_v2.js"
-          }
-        ]
-      },
-      {
-        "id": "typescript_allergies_Exercism-typescript-FilipeCerejo_FilipeCerejo",
-        "language": "typescript",
-        "timestamp": 1759080830.404563,
-        "LLM_results": [
-          {
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_allergies_Exercism-typescript-FilipeCerejo_FilipeCerejo_1759080828.log",
             "execution_time_ms": 20366,
             "CPU_usage": 37.0,
             "RAM_usage": 218940,
             "regressionTestPassed": false,
             "success": true,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_allergies_Exercism-typescript-FilipeCerejo_FilipeCerejo_1759080830.log",
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "typescript_allergies_Exercism-typescript-FilipeCerejo_FilipeCerejo",
+        "filename": "Filename not found",
+        "language": "typescript",
+        "LLM_results": [
+          {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/allergies_Exercism-typescript-FilipeCerejo/gemini/GeminiFlash_allergies_v2.ts",
-            "filename": "GeminiFlash_allergies_v2.ts"
-          }
-        ]
-      },
-      {
-        "id": "typescript_allergies_Exercism-typescript-FilipeCerejo_FilipeCerejo",
-        "language": "typescript",
-        "timestamp": 1759080830.773995,
-        "LLM_results": [
-          {
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_allergies_Exercism-typescript-FilipeCerejo_FilipeCerejo_1759080830.log",
             "execution_time_ms": 20366,
             "CPU_usage": 37.0,
             "RAM_usage": 218940,
             "regressionTestPassed": false,
             "success": true,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_allergies_Exercism-typescript-FilipeCerejo_FilipeCerejo_1759080830.log",
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "typescript_allergies_Exercism-typescript-FilipeCerejo_FilipeCerejo",
+        "filename": "Filename not found",
+        "language": "typescript",
+        "LLM_results": [
+          {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/allergies_Exercism-typescript-FilipeCerejo/gemini/GeminiFlash_allergies_v2.js",
-            "filename": "GeminiFlash_allergies_v2.js"
-          }
-        ]
-      }
-    ],
-    "java": [
-      {
-        "id": "Java_allergies_Exercism (java_rabestro)",
-        "language": "java",
-        "timestamp": 1759080832.903321,
-        "LLM_results": [
-          {
-            "execution_time_ms": null,
-            "CPU_usage": null,
-            "RAM_usage": null,
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_allergies_Exercism-typescript-FilipeCerejo_FilipeCerejo_1759080830.log",
+            "execution_time_ms": 20366,
+            "CPU_usage": 37.0,
+            "RAM_usage": 218940,
             "regressionTestPassed": false,
-            "success": false,
-            "error_message": "Docker exit code: 2",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_java_persistent_Java_allergies_Exercism (java_rabestro)_1759080832.log",
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/allergies_Exercism_java_rabestro/openAI/ChatGPT4_Allergies_v2.java",
-            "filename": "ChatGPT4_Allergies_v2.java"
-          }
-        ]
-      },
-      {
-        "id": "Java_allergies_Exercism (java_rabestro)",
-        "language": "java",
-        "timestamp": 1759080834.009633,
-        "LLM_results": [
-          {
-            "execution_time_ms": null,
-            "CPU_usage": null,
-            "RAM_usage": null,
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": "Docker exit code: 2",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_java_persistent_Java_allergies_Exercism (java_rabestro)_1759080834.log",
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/allergies_Exercism_java_rabestro/claude/ClaudeSonnet4_Allergies_v2.java",
-            "filename": "ClaudeSonnet4_Allergies_v2.java"
-          }
-        ]
-      },
-      {
-        "id": "Java_allergies_Exercism (java_rabestro)",
-        "language": "java",
-        "timestamp": 1759080834.320436,
-        "LLM_results": [
-          {
-            "execution_time_ms": null,
-            "CPU_usage": null,
-            "RAM_usage": null,
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_java_persistent_Java_allergies_Exercism (java_rabestro)_1759080834.log",
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/allergies_Exercism_java_rabestro/gemini/GeminiFlash_Allergies_v2.java",
-            "filename": "GeminiFlash_Allergies_v2.java"
+            "success": true,
+            "error_message": "Docker exit code: 1"
           }
         ]
       }
@@ -359,229 +321,217 @@
     "c": [
       {
         "id": "c_allergies_Exercism (ThomasZumsteg)",
+        "filename": "Filename not found",
         "language": "c",
-        "timestamp": 1759080834.320659,
         "LLM_results": [
           {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/allergies_Exercism_ThomasZumsteg/openAI/ChatGPT4_allergies_v2.c",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_c_persistent_c_allergies_Exercism (ThomasZumsteg)_1759080834.log",
             "execution_time_ms": 0,
             "CPU_usage": 0.0,
             "RAM_usage": 3456,
             "regressionTestPassed": false,
             "success": true,
-            "error_message": "Docker exit code: 255",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_c_persistent_c_allergies_Exercism (ThomasZumsteg)_1759080834.log",
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/allergies_Exercism_ThomasZumsteg/openAI/ChatGPT4_allergies_v2.c",
-            "filename": "ChatGPT4_allergies_v2.c"
+            "error_message": "Docker exit code: 255"
           }
         ]
       },
       {
         "id": "c_allergies_Exercism (ThomasZumsteg)",
+        "filename": "Filename not found",
         "language": "c",
-        "timestamp": 1759080834.9372,
         "LLM_results": [
           {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/allergies_Exercism_ThomasZumsteg/claude/ClaudeSonnet4_allergies_v2.c",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_c_persistent_c_allergies_Exercism (ThomasZumsteg)_1759080834.log",
             "execution_time_ms": 0,
             "CPU_usage": 100.0,
             "RAM_usage": 3456,
             "regressionTestPassed": false,
             "success": true,
-            "error_message": "Docker exit code: 255",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_c_persistent_c_allergies_Exercism (ThomasZumsteg)_1759080834.log",
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/allergies_Exercism_ThomasZumsteg/claude/ClaudeSonnet4_allergies_v2.c",
-            "filename": "ClaudeSonnet4_allergies_v2.c"
+            "error_message": "Docker exit code: 255"
           }
         ]
       },
       {
         "id": "c_allergies_Exercism (ThomasZumsteg)",
+        "filename": "Filename not found",
         "language": "c",
-        "timestamp": 1759080835.8041458,
         "LLM_results": [
           {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/allergies_Exercism_ThomasZumsteg/gemini/GeminiFlash_allergies_v2.c",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_c_persistent_c_allergies_Exercism (ThomasZumsteg)_1759080835.log",
             "execution_time_ms": 0,
             "CPU_usage": 66.0,
             "RAM_usage": 3456,
             "regressionTestPassed": false,
             "success": true,
-            "error_message": "Docker exit code: 255",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_c_persistent_c_allergies_Exercism (ThomasZumsteg)_1759080835.log",
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/allergies_Exercism_ThomasZumsteg/gemini/GeminiFlash_allergies_v2.c",
-            "filename": "GeminiFlash_allergies_v2.c"
+            "error_message": "Docker exit code: 255"
           }
         ]
       },
       {
         "id": "c_allergies_Exercism (chriswilding)",
+        "filename": "Filename not found",
         "language": "c",
-        "timestamp": 1759080836.644345,
         "LLM_results": [
           {
-            "execution_time_ms": 0,
-            "CPU_usage": 33.0,
-            "RAM_usage": 3456,
-            "regressionTestPassed": false,
-            "success": true,
-            "error_message": "Docker exit code: 255",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_c_persistent_c_allergies_Exercism (chriswilding)_1759080836.log",
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/allergies_Exercism_chriswilding/openAI/ChatGPT4_allergies_v2.c",
-            "filename": "ChatGPT4_allergies_v2.c"
-          }
-        ]
-      },
-      {
-        "id": "c_allergies_Exercism (chriswilding)",
-        "language": "c",
-        "timestamp": 1759080837.508577,
-        "LLM_results": [
-          {
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_c_persistent_c_allergies_Exercism (chriswilding)_1759080836.log",
             "execution_time_ms": 0,
             "CPU_usage": 33.0,
             "RAM_usage": 3456,
             "regressionTestPassed": false,
             "success": true,
-            "error_message": "Docker exit code: 255",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_c_persistent_c_allergies_Exercism (chriswilding)_1759080837.log",
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/allergies_Exercism_chriswilding/claude/ClaudeSonnet4_allergies_v2.c",
-            "filename": "ClaudeSonnet4_allergies_v2.c"
+            "error_message": "Docker exit code: 255"
           }
         ]
       },
       {
         "id": "c_allergies_Exercism (chriswilding)",
+        "filename": "Filename not found",
         "language": "c",
-        "timestamp": 1759080838.327651,
         "LLM_results": [
           {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/allergies_Exercism_chriswilding/claude/ClaudeSonnet4_allergies_v2.c",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_c_persistent_c_allergies_Exercism (chriswilding)_1759080837.log",
             "execution_time_ms": 0,
-            "CPU_usage": 0.0,
+            "CPU_usage": 33.0,
             "RAM_usage": 3456,
             "regressionTestPassed": false,
             "success": true,
-            "error_message": "Docker exit code: 255",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_c_persistent_c_allergies_Exercism (chriswilding)_1759080838.log",
+            "error_message": "Docker exit code: 255"
+          }
+        ]
+      },
+      {
+        "id": "c_allergies_Exercism (chriswilding)",
+        "filename": "Filename not found",
+        "language": "c",
+        "LLM_results": [
+          {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/allergies_Exercism_chriswilding/gemini/GeminiFlash_allergies_v2.c",
-            "filename": "GeminiFlash_allergies_v2.c"
-          }
-        ]
-      },
-      {
-        "id": "c_allergies_Exercism (m3g4d1v3r)",
-        "language": "c",
-        "timestamp": 1759080839.156791,
-        "LLM_results": [
-          {
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_c_persistent_c_allergies_Exercism (chriswilding)_1759080838.log",
             "execution_time_ms": 0,
             "CPU_usage": 0.0,
             "RAM_usage": 3456,
             "regressionTestPassed": false,
             "success": true,
-            "error_message": "Docker exit code: 255",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_c_persistent_c_allergies_Exercism (m3g4d1v3r)_1759080839.log",
+            "error_message": "Docker exit code: 255"
+          }
+        ]
+      },
+      {
+        "id": "c_allergies_Exercism (m3g4d1v3r)",
+        "filename": "Filename not found",
+        "language": "c",
+        "LLM_results": [
+          {
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/allergies_Exercism_m3g4d1v3r/openAI/ChatGPT4_allergies_v2.c",
-            "filename": "ChatGPT4_allergies_v2.c"
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_c_persistent_c_allergies_Exercism (m3g4d1v3r)_1759080839.log",
+            "execution_time_ms": 0,
+            "CPU_usage": 0.0,
+            "RAM_usage": 3456,
+            "regressionTestPassed": false,
+            "success": true,
+            "error_message": "Docker exit code: 255"
           }
         ]
       },
       {
         "id": "c_allergies_Exercism (m3g4d1v3r)",
+        "filename": "Filename not found",
         "language": "c",
-        "timestamp": 1759080839.990923,
         "LLM_results": [
           {
-            "execution_time_ms": 0,
-            "CPU_usage": 50.0,
-            "RAM_usage": 3456,
-            "regressionTestPassed": false,
-            "success": true,
-            "error_message": "Docker exit code: 255",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_c_persistent_c_allergies_Exercism (m3g4d1v3r)_1759080839.log",
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/allergies_Exercism_m3g4d1v3r/claude/ClaudeSonnet4_allergies_v2.c",
-            "filename": "ClaudeSonnet4_allergies_v2.c"
-          }
-        ]
-      },
-      {
-        "id": "c_allergies_Exercism (m3g4d1v3r)",
-        "language": "c",
-        "timestamp": 1759080840.8610618,
-        "LLM_results": [
-          {
-            "execution_time_ms": 0,
-            "CPU_usage": 100.0,
-            "RAM_usage": 3456,
-            "regressionTestPassed": false,
-            "success": true,
-            "error_message": "Docker exit code: 255",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_c_persistent_c_allergies_Exercism (m3g4d1v3r)_1759080840.log",
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/allergies_Exercism_m3g4d1v3r/gemini/GeminiFlash_allergies_v2.c",
-            "filename": "GeminiFlash_allergies_v2.c"
-          }
-        ]
-      },
-      {
-        "id": "c_allergies_Exercism (vlzware)",
-        "language": "c",
-        "timestamp": 1759080841.683669,
-        "LLM_results": [
-          {
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_c_persistent_c_allergies_Exercism (m3g4d1v3r)_1759080839.log",
             "execution_time_ms": 0,
             "CPU_usage": 50.0,
             "RAM_usage": 3456,
             "regressionTestPassed": false,
             "success": true,
-            "error_message": "Docker exit code: 255",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_c_persistent_c_allergies_Exercism (vlzware)_1759080841.log",
+            "error_message": "Docker exit code: 255"
+          }
+        ]
+      },
+      {
+        "id": "c_allergies_Exercism (m3g4d1v3r)",
+        "filename": "Filename not found",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/allergies_Exercism_m3g4d1v3r/gemini/GeminiFlash_allergies_v2.c",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_c_persistent_c_allergies_Exercism (m3g4d1v3r)_1759080840.log",
+            "execution_time_ms": 0,
+            "CPU_usage": 100.0,
+            "RAM_usage": 3456,
+            "regressionTestPassed": false,
+            "success": true,
+            "error_message": "Docker exit code: 255"
+          }
+        ]
+      },
+      {
+        "id": "c_allergies_Exercism (vlzware)",
+        "filename": "Filename not found",
+        "language": "c",
+        "LLM_results": [
+          {
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/allergies_Exercism_vlzware/openAI/ChatGPT4_allergies_v2.c",
-            "filename": "ChatGPT4_allergies_v2.c"
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_c_persistent_c_allergies_Exercism (vlzware)_1759080841.log",
+            "execution_time_ms": 0,
+            "CPU_usage": 50.0,
+            "RAM_usage": 3456,
+            "regressionTestPassed": false,
+            "success": true,
+            "error_message": "Docker exit code: 255"
           }
         ]
       },
       {
         "id": "c_allergies_Exercism (vlzware)",
+        "filename": "Filename not found",
         "language": "c",
-        "timestamp": 1759080842.514861,
         "LLM_results": [
           {
-            "execution_time_ms": 0,
-            "CPU_usage": 100.0,
-            "RAM_usage": 3456,
-            "regressionTestPassed": false,
-            "success": true,
-            "error_message": "Docker exit code: 255",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_c_persistent_c_allergies_Exercism (vlzware)_1759080842.log",
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/allergies_Exercism_vlzware/claude/ClaudeSonnet4_allergies_v2.c",
-            "filename": "ClaudeSonnet4_allergies_v2.c"
-          }
-        ]
-      },
-      {
-        "id": "c_allergies_Exercism (vlzware)",
-        "language": "c",
-        "timestamp": 1759080843.6120598,
-        "LLM_results": [
-          {
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_c_persistent_c_allergies_Exercism (vlzware)_1759080842.log",
             "execution_time_ms": 0,
             "CPU_usage": 100.0,
             "RAM_usage": 3456,
             "regressionTestPassed": false,
             "success": true,
-            "error_message": "Docker exit code: 255",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_c_persistent_c_allergies_Exercism (vlzware)_1759080843.log",
+            "error_message": "Docker exit code: 255"
+          }
+        ]
+      },
+      {
+        "id": "c_allergies_Exercism (vlzware)",
+        "filename": "Filename not found",
+        "language": "c",
+        "LLM_results": [
+          {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/allergies_Exercism_vlzware/gemini/GeminiFlash_allergies_v2.c",
-            "filename": "GeminiFlash_allergies_v2.c"
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_c_persistent_c_allergies_Exercism (vlzware)_1759080843.log",
+            "execution_time_ms": 0,
+            "CPU_usage": 100.0,
+            "RAM_usage": 3456,
+            "regressionTestPassed": false,
+            "success": true,
+            "error_message": "Docker exit code: 255"
           }
         ]
       }
@@ -589,115 +539,109 @@
     "cpp": [
       {
         "id": "cpp_allergies_Exercism (johnngugi)",
+        "filename": "Filename not found",
         "language": "cpp",
-        "timestamp": 1759080846.4766889,
         "LLM_results": [
           {
-            "execution_time_ms": 0,
-            "CPU_usage": 33.0,
-            "RAM_usage": 4096,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_cpp_persistent_cpp_allergies_Exercism (johnngugi)_1759080846.log",
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/allergies_Exercism_johnngugi/gemini/GeminiFlash_allergies_v2.cpp",
-            "filename": "GeminiFlash_allergies_v2.cpp"
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_cpp_persistent_cpp_allergies_Exercism (johnngugi)_1759080846.log",
+            "execution_time_ms": 0,
+            "CPU_usage": 33.0,
+            "RAM_usage": 4096,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
           }
         ]
       },
       {
         "id": "cpp_allergies_Exercism (johnngugi)",
+        "filename": "Filename not found",
         "language": "cpp",
-        "timestamp": 1759080846.880963,
         "LLM_results": [
           {
-            "execution_time_ms": 0,
-            "CPU_usage": 33.0,
-            "RAM_usage": 4096,
-            "regressionTestPassed": false,
-            "success": true,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_cpp_persistent_cpp_allergies_Exercism (johnngugi)_1759080846.log",
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/allergies_Exercism_johnngugi/openAI/ChatGPT4_allergies_v2.cpp",
-            "filename": "ChatGPT4_allergies_v2.cpp"
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_cpp_persistent_cpp_allergies_Exercism (johnngugi)_1759080846.log",
+            "execution_time_ms": 0,
+            "CPU_usage": 33.0,
+            "RAM_usage": 4096,
+            "regressionTestPassed": false,
+            "success": true,
+            "error_message": "Docker exit code: 1"
           }
         ]
       },
       {
         "id": "cpp_allergies_Exercism (johnngugi)",
+        "filename": "Filename not found",
         "language": "cpp",
-        "timestamp": 1759080847.2925189,
         "LLM_results": [
           {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/allergies_Exercism_johnngugi/claude/ClaudeSonnet4_allergies_v2.cpp",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_cpp_persistent_cpp_allergies_Exercism (johnngugi)_1759080847.log",
             "execution_time_ms": 0,
             "CPU_usage": 33.0,
             "RAM_usage": 4096,
             "regressionTestPassed": true,
             "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_cpp_persistent_cpp_allergies_Exercism (johnngugi)_1759080847.log",
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/allergies_Exercism_johnngugi/claude/ClaudeSonnet4_allergies_v2.cpp",
-            "filename": "ClaudeSonnet4_allergies_v2.cpp"
+            "error_message": null
           }
         ]
       },
       {
         "id": "cpp_allergies_Exercism (thefullarcticfox)",
+        "filename": "allergies.cpp",
         "language": "cpp",
-        "timestamp": 1759080856.970975,
         "LLM_results": [
           {
-            "execution_time_ms": 0,
-            "CPU_usage": 16.0,
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/allergies_Exercism_thefullarcticfox/openAI/ChatGPT4_allergies_v2.cpp",
+            "log": "",
+            "execution_time_ms": null,
+            "CPU_usage": null,
             "RAM_usage": null,
             "regressionTestPassed": false,
             "success": false,
-            "error_message": "Docker exit code: 1",
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_cpp_persistent_cpp_allergies_Exercism (thefullarcticfox)_1759080856.log",
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/allergies_Exercism_thefullarcticfox/claude/ClaudeSonnet4_allergies_v2.cpp",
-            "filename": "ClaudeSonnet4_allergies_v2.cpp"
+            "error_message": "Docker exit code: 1"
           }
         ]
       },
       {
         "id": "cpp_allergies_Exercism (thefullarcticfox)",
+        "filename": "allergies.cpp",
         "language": "cpp",
-        "timestamp": 1759080857.285429,
         "LLM_results": [
           {
-            "execution_time_ms": 0,
-            "CPU_usage": 16.0,
-            "RAM_usage": null,
-            "regressionTestPassed": true,
-            "success": false,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_cpp_persistent_cpp_allergies_Exercism (thefullarcticfox)_1759080857.log",
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/allergies_Exercism_thefullarcticfox/gemini/GeminiFlash_allergies_v2.cpp",
-            "filename": "GeminiFlash_allergies_v2.cpp"
+            "log": "",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
           }
         ]
       },
       {
         "id": "cpp_allergies_Exercism (thefullarcticfox)",
+        "filename": "allergies.cpp",
         "language": "cpp",
-        "timestamp": 1759080857.2854872,
         "LLM_results": [
           {
-            "execution_time_ms": 0,
-            "CPU_usage": 16.0,
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/allergies_Exercism_thefullarcticfox/claude/ClaudeSonnet4_allergies_v2.cpp",
+            "log": "",
+            "execution_time_ms": null,
+            "CPU_usage": null,
             "RAM_usage": null,
-            "regressionTestPassed": true,
+            "regressionTestPassed": false,
             "success": false,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_cpp_persistent_cpp_allergies_Exercism (thefullarcticfox)_1759080857.log",
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/allergies_Exercism_thefullarcticfox/openAI/ChatGPT4_allergies_v2.cpp",
-            "filename": "ChatGPT4_allergies_v2.cpp"
+            "error_message": "Docker exit code: 1"
           }
         ]
       }
@@ -705,172 +649,219 @@
     "go": [
       {
         "id": "go_allergies_Exercism (go_rootulp)",
+        "filename": "Filename not found",
         "language": "go",
-        "timestamp": 1759080883.874586,
         "LLM_results": [
           {
-            "execution_time_ms": 6200,
-            "CPU_usage": 26.0,
-            "RAM_usage": 217664,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_allergies_Exercism (go_rootulp)_1759080883.log",
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/allergies_Exercism_go_rootulp/claude/ClaudeSonnet4_allergies_v2.go",
-            "filename": "ClaudeSonnet4_allergies_v2.go"
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_allergies_Exercism (go_rootulp)_1759080883.log",
+            "execution_time_ms": 6200,
+            "CPU_usage": 26.0,
+            "RAM_usage": 217664,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
           }
         ]
       },
       {
         "id": "go_allergies_Exercism (go_ThomasZumsteg)",
+        "filename": "Filename not found",
         "language": "go",
-        "timestamp": 1759080884.212951,
         "LLM_results": [
           {
-            "execution_time_ms": 6220,
-            "CPU_usage": 27.0,
-            "RAM_usage": 239700,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_allergies_Exercism (go_ThomasZumsteg)_1759080884.log",
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/allergies_Exercism_go_ThomasZumsteg/gemini/GeminiFlash_allergies_v2.go",
-            "filename": "GeminiFlash_allergies_v2.go"
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_allergies_Exercism (go_ThomasZumsteg)_1759080884.log",
+            "execution_time_ms": 6220,
+            "CPU_usage": 27.0,
+            "RAM_usage": 239700,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
           }
         ]
       },
       {
         "id": "go_allergies_Exercism (go_rootulp)",
+        "filename": "Filename not found",
         "language": "go",
-        "timestamp": 1759080884.212718,
         "LLM_results": [
           {
-            "execution_time_ms": 6200,
-            "CPU_usage": 26.0,
-            "RAM_usage": 217664,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_allergies_Exercism (go_rootulp)_1759080884.log",
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/allergies_Exercism_go_rootulp/openAI/ChatGPT4_allergies_v2.go",
-            "filename": "ChatGPT4_allergies_v2.go"
-          }
-        ]
-      },
-      {
-        "id": "go_allergies_Exercism (go_rootulp)",
-        "language": "go",
-        "timestamp": 1759080884.2129102,
-        "LLM_results": [
-          {
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_allergies_Exercism (go_rootulp)_1759080884.log",
             "execution_time_ms": 6200,
             "CPU_usage": 26.0,
             "RAM_usage": 217664,
             "regressionTestPassed": true,
             "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_allergies_Exercism (go_rootulp)_1759080884.log",
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_allergies_Exercism (go_rootulp)",
+        "filename": "Filename not found",
+        "language": "go",
+        "LLM_results": [
+          {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/allergies_Exercism_go_rootulp/gemini/GeminiFlash_allergies_v2.go",
-            "filename": "GeminiFlash_allergies_v2.go"
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_allergies_Exercism (go_rootulp)_1759080884.log",
+            "execution_time_ms": 6200,
+            "CPU_usage": 26.0,
+            "RAM_usage": 217664,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
           }
         ]
       },
       {
         "id": "go_allergies_Exercism (go_ThomasZumsteg)",
+        "filename": "Filename not found",
         "language": "go",
-        "timestamp": 1759080884.2131462,
         "LLM_results": [
           {
-            "execution_time_ms": 6220,
-            "CPU_usage": 27.0,
-            "RAM_usage": 239700,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_allergies_Exercism (go_ThomasZumsteg)_1759080884.log",
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/allergies_Exercism_go_ThomasZumsteg/claude/ClaudeSonnet4_allergies_v2.go",
-            "filename": "ClaudeSonnet4_allergies_v2.go"
-          }
-        ]
-      },
-      {
-        "id": "go_allergies_Exercism (go_ThomasZumsteg)",
-        "language": "go",
-        "timestamp": 1759080884.213475,
-        "LLM_results": [
-          {
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_allergies_Exercism (go_ThomasZumsteg)_1759080884.log",
             "execution_time_ms": 6220,
             "CPU_usage": 27.0,
             "RAM_usage": 239700,
             "regressionTestPassed": true,
             "success": true,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_allergies_Exercism (go_ThomasZumsteg)_1759080884.log",
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_allergies_Exercism (go_ThomasZumsteg)",
+        "filename": "Filename not found",
+        "language": "go",
+        "LLM_results": [
+          {
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/allergies_Exercism_go_ThomasZumsteg/openAI/ChatGPT4_allergies_v2.go",
-            "filename": "ChatGPT4_allergies_v2.go"
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_allergies_Exercism (go_ThomasZumsteg)_1759080884.log",
+            "execution_time_ms": 6220,
+            "CPU_usage": 27.0,
+            "RAM_usage": 239700,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
           }
         ]
       },
       {
         "id": "go_allergies_Exercism (go_drapala)",
+        "filename": "Filename not found",
         "language": "go",
-        "timestamp": 1759080893.947787,
         "LLM_results": [
           {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/allergies_Exercism_go_drapala/openAI/ChatGPT4_allergies_v2.go",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_allergies_Exercism (go_drapala)_1759080893.log",
             "execution_time_ms": 5830,
             "CPU_usage": 67.0,
             "RAM_usage": 223736,
             "regressionTestPassed": false,
             "success": false,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_allergies_Exercism (go_drapala)_1759080893.log",
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/allergies_Exercism_go_drapala/openAI/ChatGPT4_allergies_v2.go",
-            "filename": "ChatGPT4_allergies_v2.go"
+            "error_message": null
           }
         ]
       },
       {
         "id": "go_allergies_Exercism (go_drapala)",
+        "filename": "Filename not found",
         "language": "go",
-        "timestamp": 1759080894.299944,
         "LLM_results": [
           {
-            "execution_time_ms": 5729,
-            "CPU_usage": 67.0,
-            "RAM_usage": 225252,
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_allergies_Exercism (go_drapala)_1759080894.log",
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/allergies_Exercism_go_drapala/claude/ClaudeSonnet4_allergies_v2.go",
-            "filename": "ClaudeSonnet4_allergies_v2.go"
-          }
-        ]
-      },
-      {
-        "id": "go_allergies_Exercism (go_drapala)",
-        "language": "go",
-        "timestamp": 1759080894.664119,
-        "LLM_results": [
-          {
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_allergies_Exercism (go_drapala)_1759080894.log",
             "execution_time_ms": 5729,
             "CPU_usage": 67.0,
             "RAM_usage": 225252,
             "regressionTestPassed": false,
             "success": false,
-            "error_message": null,
-            "log_path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_allergies_Exercism (go_drapala)_1759080894.log",
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_allergies_Exercism (go_drapala)",
+        "filename": "Filename not found",
+        "language": "go",
+        "LLM_results": [
+          {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/allergies_Exercism_go_drapala/gemini/GeminiFlash_allergies_v2.go",
-            "filename": "GeminiFlash_allergies_v2.go"
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_allergies_Exercism (go_drapala)_1759080894.log",
+            "execution_time_ms": 5729,
+            "CPU_usage": 67.0,
+            "RAM_usage": 225252,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      }
+    ],
+    "java": [
+      {
+        "id": "Java_allergies_Exercism (java_rabestro)",
+        "filename": "Allergies.java",
+        "language": "java",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/allergies_Exercism_java_rabestro/gemini/GeminiFlash_Allergies_v2.java",
+            "log": "",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "Java_allergies_Exercism (java_rabestro)",
+        "filename": "Allergies.java",
+        "language": "java",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/allergies_Exercism_java_rabestro/openAI/ChatGPT4_Allergies_v2.java",
+            "log": "",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "Java_allergies_Exercism (java_rabestro)",
+        "filename": "Allergies.java",
+        "language": "java",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/allergies_Exercism_java_rabestro/claude/ClaudeSonnet4_Allergies_v2.java",
+            "log": "",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
           }
         ]
       }

@@ -1,0 +1,2559 @@
+#!/usr/bin/env python3
+"""
+Test Runner System for Code Snippet Testing
+Provides accurate metrics collection, efficient container management, and reliable execution tracking.
+"""
+
+import os
+import json
+import subprocess
+import shutil
+import time
+import threading
+import logging
+import re
+import atexit
+from pathlib import Path
+from dataclasses import dataclass, field
+from typing import Dict, List, Set, Optional, Tuple, Any
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from collections import defaultdict
+import argparse
+import tempfile
+import sys
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+from utility_dir import utility_paths, general_utils
+from discordInteraction import create_webhook_reporter
+from dotenv import load_dotenv
+
+
+# Global configuration
+BASE_DIR = utility_paths.SRC_DIR
+DATASET_DIR = utility_paths.DATASET_DIR
+OUTPUT_DIR = utility_paths.OUTPUT_DIR_FILEPATH
+CLUSTERS_DIR = utility_paths.CLUSTERS_DIR_FILEPATH
+DOCKER_DIR = BASE_DIR / "docker"
+LOGS_DIR = BASE_DIR / "logs"
+
+
+@dataclass
+class LLMresult:
+    """Model a single LLM res"""
+
+    LLM_type: str
+    path: str
+    log: str
+
+    # metrics :
+    execution_time_ms: Optional[int] = None
+    CPU_usage: Optional[float] = None
+    RAM_usage: Optional[int] = None
+    regressionTestPassed: bool = False
+
+    # metadata on the single exec :
+    success: Optional[bool] = False
+    error_message: Optional[str] = None
+
+    def is_valid(self) -> bool:
+        """Check if metrics are meaningful"""
+        return (
+            self.execution_time_ms is not None
+            and self.CPU_usage is not None
+            and self.RAM_usage is not None
+            and self.regressionTestPassed is not None
+        )
+
+    def to_json(self) -> Dict[str, Any]:
+        return self.__dict__
+
+    @staticmethod
+    def from_json(data: Dict[str, Any]) -> "LLMresult":
+        data.pop("passed_tests", None)
+        data.pop("failed_tests", None)
+        data.pop("timestamp", None)
+        data.pop("filename", None)
+
+        if "log_path" in data:
+            data["log"] = data["log_path"]
+
+        if "error_message" not in data:
+            data["error_message"] = None
+
+        if "success" not in data:
+            data["success"] = None
+
+        if "log_path" in data:
+            data["log"] = data["log_path"]
+            data.pop("log_path", None)
+
+        if "log" not in data:  # log fallback
+            data["log"] = ""
+
+        return LLMresult(**data)
+
+
+@dataclass
+class LLMentryResult:
+    """Model a LLM entry result"""
+
+    id: str
+    filename: str
+    language: str
+    LLM_results: List[LLMresult]
+
+    def is_valid(self) -> bool:
+        for res in self.LLM_results:
+            if not res.is_valid():
+                return False
+
+        return True
+
+    def to_json(self) -> Dict[str, Any]:
+        data = self.__dict__.copy()
+        # Converte la lista di oggetti LLMExecutionResult nei loro dizionari
+        data["LLM_results"] = [res.to_json() for res in self.LLM_results]
+        return data
+
+    @staticmethod
+    def from_json(data: Dict[str, Any]) -> "LLMentryResult":
+        llm_results = [LLMresult.from_json(res) for res in data.get("LLM_results", [])]
+
+        return LLMentryResult(
+            data["id"],
+            data.get("filename", "Filename not found"),
+            data.get("language", "Language not found"),
+            llm_results,
+        )
+
+
+@dataclass
+class BaseEntryResult:
+    id: str
+    filename: str
+    language: str
+    base_log: str
+
+    # metrics
+    execution_time_ms: Optional[int] = None
+    CPU_usage: Optional[float] = None
+    RAM_usage: Optional[int] = None
+    regressionTestPassed: bool = False
+
+    # exec metadata
+    success: Optional[bool] = None
+    error_message: Optional[str] = None
+    log_path: Optional[str] = None
+
+    def is_valid(self) -> bool:
+        """Check if metrics are meaningful"""
+        return (
+            self.execution_time_ms is not None
+            and self.CPU_usage is not None
+            and self.RAM_usage is not None
+            and self.regressionTestPassed is not None
+        )
+
+    def to_json(self) -> Dict[str, Any]:
+        """Converte l'istanza in un dizionario per la serializzazione JSON."""
+        # Non serve importare asdict di dataclasses per questa classe semplice
+        return self.__dict__
+
+    def from_json(data: Dict[str, any]) -> "BaseEntryResult":
+        if "timestamp" in data:
+            data.pop("timestamp")
+
+        if "success" not in data:
+            data["success"] = None
+        if "error_message" not in data:
+            data["error_message"] = None
+        if "log_path" not in data:
+            data["log_path"] = None
+
+        if "CPU_usage" not in data:
+            data["CPU_usage"] = None
+        if "RAM_usage" not in data:
+            data["RAM_usage"] = None
+        if "execution_time_ms" not in data:
+            data["execution_time_ms"] = None
+        if "regressionTestPassed" not in data:
+            data["regressionTestPassed"] = None
+
+        if "base_log" not in data:
+            data["base_log"] = None
+
+        if "filename" not in data:
+            data["filename"] = ""
+
+        return BaseEntryResult(**data)
+
+
+@dataclass
+class ExecutionState:
+    """Global execution state tracking"""
+
+    start_time: float = field(default_factory=time.time)
+    completed_tests: int = 0
+    successful_tests: int = 0
+    failed_tests: int = 0
+    current_cluster: str = ""
+    total_clusters: int = 0
+    processed_clusters: Set[str] = field(default_factory=set)
+
+    @property
+    def elapsed_time(self) -> str:
+        elapsed = time.time() - self.start_time
+        hours = int(elapsed // 3600)
+        minutes = int((elapsed % 3600) // 60)
+        seconds = int(elapsed % 60)
+        return f"{hours:02d}h {minutes:02d}m {seconds:02d}s"
+
+    @property
+    def success_rate(self) -> float:
+        return (
+            (self.successful_tests / self.completed_tests * 100)
+            if self.completed_tests > 0
+            else 0.0
+        )
+
+
+@dataclass
+class ExecutionMetrics:
+    """Accurate metrics container with validation"""
+
+    execution_time_ms: Optional[int] = None
+    cpu_usage: Optional[float] = None
+    ram_usage: Optional[int] = None
+    regression_test_passed: bool = False
+    success: bool = False
+    error_message: Optional[str] = None
+    log_path: Optional[str] = None
+
+    def is_valid(self) -> bool:
+        """Check if metrics are meaningful"""
+        return (
+            self.execution_time_ms is not None
+            and self.cpu_usage is not None
+            and self.ram_usage is not None
+            and self.regression_test_passed is not None
+        )
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for JSON serialization"""
+        return {
+            "execution_time_ms": self.execution_time_ms,
+            "CPU_usage": self.cpu_usage,
+            "RAM_usage": self.ram_usage,
+            "regressionTestPassed": self.regression_test_passed,
+            "success": self.success,
+            "error_message": self.error_message,
+            "log_path": self.log_path,
+        }
+
+
+class MetricsParser:
+    """Parse and obtains metrics by the log of the executed files"""
+
+    @staticmethod
+    def parse_time_output(log_content: str) -> ExecutionMetrics:
+        """Parse time command output with multiple fallback strategies"""
+        metrics = ExecutionMetrics()
+        logger = logging.getLogger(__name__ + ".MetricsParser")
+
+        try:
+            # Log del contenuto per debug
+            logger.debug(
+                f"\n📝Parsing log content (first 500 chars): {log_content[:500]}"
+            )
+
+            # Strategy 1: User + System time (most accurate)
+            user_match = re.search(r"User time \(seconds\): ([\d.]+)", log_content)
+            system_match = re.search(r"System time \(seconds\): ([\d.]+)", log_content)
+
+            if user_match and system_match:
+                user_time = float(user_match.group(1))
+                system_time = float(system_match.group(1))
+                metrics.execution_time_ms = int((user_time + system_time) * 1000)
+                logger.debug(
+                    f"Strategy 1 - User+System time: {metrics.execution_time_ms}ms"
+                )
+
+            # Strategy 2: Wall clock time
+            if not metrics.execution_time_ms:
+                wall_match = re.search(
+                    r"Elapsed \(wall clock\) time \(h:mm:ss or m:ss\): (\d+):(\d+\.?\d*)",
+                    log_content,
+                )
+                if wall_match:
+                    minutes = int(wall_match.group(1))
+                    seconds = float(wall_match.group(2))
+                    metrics.execution_time_ms = int((minutes * 60 + seconds) * 1000)
+                    logger.debug(
+                        f"Strategy 2 - Wall clock: {metrics.execution_time_ms}ms"
+                    )
+
+            # Strategy 3: Real time from bash time
+            if not metrics.execution_time_ms:
+                real_match = re.search(r"real\s+(\d+)m([\d.]+)s", log_content)
+                if real_match:
+                    minutes = int(real_match.group(1))
+                    seconds = float(real_match.group(2))
+                    metrics.execution_time_ms = int((minutes * 60 + seconds) * 1000)
+                    logger.debug(
+                        f"Strategy 3 - Real time: {metrics.execution_time_ms}ms"
+                    )
+
+            # Strategy 4: Jest execution time for JS/TS
+            if not metrics.execution_time_ms:
+                jest_match = re.search(r"Time:\s+([\d.]+)\s*s", log_content)
+                if jest_match:
+                    seconds = float(jest_match.group(1))
+                    metrics.execution_time_ms = int(seconds * 1000)
+                    logger.debug(
+                        f"Strategy 4 - Jest time: {metrics.execution_time_ms}ms"
+                    )
+
+            if not metrics.execution_time_ms:
+                logger.warning("⚠️No execution time found in log")
+
+            # RAM Usage
+            ram_match = re.search(
+                r"Maximum resident set size \(kbytes\): (\d+)", log_content
+            )
+            if ram_match:
+                metrics.ram_usage = int(ram_match.group(1))
+                logger.debug(f"RAM usage: {metrics.ram_usage} KB")
+            else:
+                logger.warning("⚠️No RAM usage found in log")
+
+            # CPU Usage
+            cpu_match = re.search(
+                r"Percent of CPU this job got: (\d+\.?\d*)%", log_content
+            )
+            if cpu_match:
+                metrics.cpu_usage = float(cpu_match.group(1))
+                logger.debug(f"CPU usage: {metrics.cpu_usage}%")
+            else:
+                logger.warning("⚠️No CPU usage found in log")
+
+            # Test Results - CORREZIONE: gestione più accurata dei risultati Jest
+            test_failed = False
+            test_passed = False
+
+            # Pattern per fallimenti
+            failure_patterns = [
+                (r"Tests:\s+\d+\s+failed", "jest_summary_fail"),
+                (r"FAIL\s+", "jest_fail_marker"),
+                (r"● .* ›", "jest_test_fail"),  # Correzione carattere
+                (r"(\d+) failed", "count_failed"),
+                (r"Test Suites:.*failed", "jest_suite_fail"),
+            ]
+
+            for pattern, pattern_name in failure_patterns:
+                if re.search(pattern, log_content, re.IGNORECASE):
+                    logger.debug(f"Test failure detected: {pattern_name}")
+                    test_failed = True
+                    break
+
+            # Pattern per successi - SOLO se non ci sono fallimenti
+            if not test_failed:
+                success_patterns = [
+                    (r"Tests:\s+(\d+)\s+passed,\s+\d+\s+total", "jest_passed"),
+                    (r"Test Suites:.*(\d+)\s+passed", "jest_suites_passed"),
+                    (r"PASS\s+", "pass_marker"),
+                ]
+
+                for pattern, pattern_name in success_patterns:
+                    match = re.search(pattern, log_content, re.IGNORECASE)
+                    if match:
+                        # Verifica che ci siano test passati
+                        if pattern_name == "jest_passed":
+                            passed_count = int(match.group(1))
+                            if passed_count > 0:
+                                test_passed = True
+                                logger.debug(f"Success: {passed_count} tests passed")
+                                break
+                        else:
+                            test_passed = True
+                            logger.debug(f"Success pattern: {pattern_name}")
+                            break
+
+            # Se non abbiamo trovato né successi né fallimenti, controlla exit code
+            if not test_failed and not test_passed:
+                # Cerca indicatori di errore generale
+                error_indicators = [
+                    "Error:",
+                    "Exception:",
+                    "SyntaxError:",
+                    "TypeError:",
+                ]
+                for indicator in error_indicators:
+                    if indicator in log_content:
+                        test_failed = True
+                        logger.debug(f"Error indicator found: {indicator}")
+                        break
+
+            metrics.regression_test_passed = test_passed and not test_failed
+            metrics.success = metrics.is_valid() and metrics.regression_test_passed
+
+            logger.info(
+                f"👀 Parsing complete - Metrics are valid: {metrics.is_valid()}, "
+                f"Tests passed: {metrics.regression_test_passed}, "
+                f"Time: {metrics.execution_time_ms}ms, "
+                f"CPU: {metrics.cpu_usage}%, "
+                f"RAM: {metrics.ram_usage}KB"
+            )
+
+        except Exception as e:
+            metrics.error_message = f"Parsing error: {str(e)}"
+            logger.error(f"Metrics parsing failed: {e}", exc_info=True)
+
+        return metrics
+
+    @staticmethod
+    def parse_typescript_json(log_path: Path) -> ExecutionMetrics:
+        """Parse TypeScript/Jest JSON output with robust fallbacks"""
+        metrics = ExecutionMetrics()
+        logger = logging.getLogger(__name__ + ".MetricsParser")
+
+        try:
+            logger.debug(f"Parsing TypeScript JSON: {log_path}")
+
+            # Verifica esistenza file
+            if not log_path.exists():
+                logger.error(f"Log file not found: {log_path}")
+                metrics.error_message = "Log file not found"
+                return metrics
+
+            with open(log_path, "r") as f:
+                content = f.read()
+                logger.debug(f"Log content (first 300 chars): {content[:300]}")
+
+            # Try JSON parsing first
+            try:
+                data = json.loads(content)
+                logger.debug("Successfully parsed as JSON")
+
+                # Extract timing
+                if (
+                    "startTime" in data
+                    and "testResults" in data
+                    and data["testResults"]
+                ):
+                    start_time = data.get("startTime", 0)
+                    test_results = data.get("testResults", [])
+                    if test_results:
+                        end_time = test_results[0].get("endTime", start_time)
+                        metrics.execution_time_ms = max(0, end_time - start_time)
+                        logger.debug(
+                            f"Execution time from JSON: {metrics.execution_time_ms}ms"
+                        )
+
+                # Extract test results
+                num_failed = data.get("numFailedTests", 1)
+                num_passed = data.get("numPassedTests", 0)
+                metrics.regression_test_passed = num_failed == 0
+
+                logger.info(f"Tests - Passed: {num_passed}, Failed: {num_failed}")
+
+            except json.JSONDecodeError:
+                logger.warning("Not valid JSON, trying text parsing")
+                # Fallback to text parsing
+                text_metrics = MetricsParser.parse_time_output(content)
+                metrics.execution_time_ms = text_metrics.execution_time_ms
+                metrics.regression_test_passed = text_metrics.regression_test_passed
+                logger.debug("Used text parsing fallback")
+
+            # Look for resource usage in separate file
+            resource_log = log_path.parent / "resource_usage.log"
+            if resource_log.exists():
+                logger.debug(f"Found resource log: {resource_log}")
+                with open(resource_log, "r") as f:
+                    resource_content = f.read()
+
+                ram_match = re.search(
+                    r"Maximum resident set size \(kbytes\): (\d+)", resource_content
+                )
+                if ram_match:
+                    metrics.ram_usage = int(ram_match.group(1))
+                    logger.debug(f"RAM from resource log: {metrics.ram_usage} KB")
+
+                cpu_match = re.search(
+                    r"Percent of CPU this job got: (\d+\.?\d*)%", resource_content
+                )
+                if cpu_match:
+                    metrics.cpu_usage = float(cpu_match.group(1))
+                    logger.debug(f"CPU from resource log: {metrics.cpu_usage}%")
+            else:
+                logger.warning(f"Resource log not found: {resource_log}")
+                # Try to get from main log
+                if not metrics.ram_usage:
+                    ram_match = re.search(
+                        r"Maximum resident set size \(kbytes\): (\d+)", content
+                    )
+                    if ram_match:
+                        metrics.ram_usage = int(ram_match.group(1))
+                        logger.debug(f"RAM from main log: {metrics.ram_usage} KB")
+
+                if not metrics.cpu_usage:
+                    cpu_match = re.search(
+                        r"Percent of CPU this job got: (\d+\.?\d*)%", content
+                    )
+                    if cpu_match:
+                        metrics.cpu_usage = float(cpu_match.group(1))
+                        logger.debug(f"CPU from main log: {metrics.cpu_usage}%")
+
+            metrics.success = metrics.is_valid()
+
+            logger.debug(
+                f"TypeScript parsing complete - Valid: {metrics.is_valid()}, "
+                f"Time: {metrics.execution_time_ms}ms, "
+                f"CPU: {metrics.cpu_usage}%, "
+                f"RAM: {metrics.ram_usage}KB, "
+                f"Tests passed: {metrics.regression_test_passed}"
+            )
+
+        except Exception as e:
+            metrics.error_message = f"TypeScript parsing error: {str(e)}"
+            logger.error(f"TypeScript metrics parsing failed: {e}", exc_info=True)
+
+        return metrics
+
+
+class ContainerManager:
+    """Manage Docker containers"""
+
+    def __init__(self):
+        self.active_containers: Dict[str, str] = {}
+        self.container_health: Dict[str, bool] = {}
+        self.container_usage: Dict[str, int] = {}
+        self.max_usage_before_refresh = 50
+        self.lock = threading.RLock()
+        self.logger = logging.getLogger(__name__ + ".ContainerManager")
+
+    def get_container_name(self, language: str) -> str:
+        """Generate consistent container name for language"""
+        return f"test_runner_{language.lower()}_persistent"
+
+    def is_container_healthy(self, container_name: str) -> bool:
+        """Check if container is running and healthy"""
+        try:
+            # Verifica che l'immagine esista
+            image_check = subprocess.run(
+                ["docker", "images", "-q", container_name],
+                capture_output=True,
+                text=True,
+                timeout=5,
+            )
+
+            if image_check.returncode != 0 or not image_check.stdout.strip():
+                self.logger.debug(f"Container image {container_name} not found")
+                return False
+
+            # L'immagine esiste, quindi è "healthy" per i nostri scopi
+            # (non stiamo controllando container in esecuzione, ma l'immagine Docker)
+            return True
+
+        except subprocess.TimeoutExpired:
+            self.logger.warning(f"Timeout checking container health: {container_name}")
+        except Exception as e:
+            self.logger.error(f"Error checking container health: {e}")
+
+        return False
+
+    def cleanup_container(self, container_name: str):
+        """Safely cleanup a container"""
+        commands = [
+            ["docker", "stop", container_name],
+            ["docker", "rm", container_name],
+            ["docker", "rmi", container_name],  # Remove image for fresh build
+        ]
+
+        for cmd in commands:
+            try:
+                subprocess.run(cmd, capture_output=True, timeout=30)
+            except subprocess.TimeoutExpired:
+                self.logger.warning(f"Timeout running: {' '.join(cmd)}")
+            except Exception:
+                pass  # Continue cleanup even if some commands fail
+
+    def build_container(self, language: str, use_cache: bool = True) -> str:
+        """Build container for specific language"""
+        container_name = self.get_container_name(language)
+        dockerfile_path = DOCKER_DIR / language.lower()
+
+        if not dockerfile_path.exists():
+            raise FileNotFoundError(f"Docker configuration not found for {language}")
+
+        # VERIFICA ESPLICITA del Dockerfile
+        dockerfile = dockerfile_path / "Dockerfile"
+        if not dockerfile.exists():
+            raise FileNotFoundError(f"Dockerfile not found in {dockerfile_path}")
+
+        # Cleanup existing container/image
+        self.cleanup_container(container_name)
+
+        # Build new container - USA PATH ASSOLUTO e specifica esplicitamente il Dockerfile
+        build_cmd = [
+            "docker",
+            "build",
+            "-f",
+            str(dockerfile.absolute()),  # Specifica esplicitamente il Dockerfile
+            "-t",
+            container_name,
+            str(dockerfile_path.absolute()),  # Path assoluto del context
+        ]
+
+        if not use_cache:
+            build_cmd.insert(2, "--no-cache")  # Inserisci DOPO "build"
+
+        # DEBUG: logga il comando completo
+        self.logger.debug(f"Building with command: {' '.join(build_cmd)}")
+
+        try:
+            result = subprocess.run(
+                build_cmd,
+                capture_output=True,
+                text=True,
+                timeout=60 * 20,
+            )
+
+            if result.returncode != 0:
+                # Logga output completo per debugging
+                self.logger.error(f"Build stdout: {result.stdout}")
+                self.logger.error(f"Build stderr: {result.stderr}")
+                raise subprocess.CalledProcessError(
+                    result.returncode, build_cmd, result.stdout, result.stderr
+                )
+
+            self.logger.info(f"Successfully built container: {container_name}")
+            return container_name
+
+        except subprocess.TimeoutExpired:
+            raise TimeoutError(f"Container build timeout for {language}")
+        except subprocess.CalledProcessError as e:
+            raise RuntimeError(f"Container build failed for {language}: {e.stderr}")
+
+    def get_or_create_container(self, language: str, use_cache: bool = True) -> str:
+        """Get existing healthy container or create new one"""
+        with self.lock:
+            # container_name = self.get_container_name(language)
+
+            # Check if we have a healthy container
+            if language in self.active_containers:
+                existing_name = self.active_containers[language]
+                usage_count = self.container_usage.get(language, 0)
+
+                # Verifica più approfondita dello stato
+                if usage_count < self.max_usage_before_refresh:
+                    if self.is_container_healthy(existing_name):
+                        self.container_usage[language] = usage_count + 1
+                        self.logger.debug(
+                            f"Reusing container {existing_name} (usage: {usage_count + 1})"
+                        )
+                        return existing_name
+                    else:
+                        self.logger.warning(
+                            f"Container {existing_name} unhealthy, will rebuild"
+                        )
+                else:
+                    self.logger.info(
+                        f"Container {existing_name} reached usage limit, will rebuild"
+                    )
+
+                # Container unhealthy or overused, remove from tracking
+                self.cleanup_container(existing_name)
+                if language in self.active_containers:
+                    del self.active_containers[language]
+                if language in self.container_usage:
+                    del self.container_usage[language]
+
+            # Build new container
+            try:
+                self.logger.info(f"Building new container for {language}")
+                new_container = self.build_container(language, use_cache)
+                self.active_containers[language] = new_container
+                self.container_usage[language] = 1
+                self.container_health[language] = True
+
+                # IMPORTANTE: Piccolo delay per dare tempo a Docker di finalizzare
+                time.sleep(0.5)
+
+                return new_container
+
+            except Exception as e:
+                self.logger.error(f"Failed to create container for {language}: {e}")
+                raise
+
+    def cleanup_all(self):
+        """Cleanup all managed containers"""
+        with self.lock:
+            for container_name in self.active_containers.values():
+                self.cleanup_container(container_name)
+
+            self.active_containers.clear()
+            self.container_usage.clear()
+            self.container_health.clear()
+
+
+class TestExecutor:
+    """Executor of the tests for each entry
+    setupts the env for each language + execute tests"""
+
+    def __init__(self, container_manager: ContainerManager):
+        self.container_manager = container_manager
+        self.logger = logging.getLogger(__name__ + ".TestExecutor")
+        # Lock per linguaggio per evitare rebuild concorrenti
+        self.language_locks = {}
+        self.general_lock = threading.RLock()
+
+    def _get_language_lock(self, language: str) -> threading.RLock:
+        """Get or create lock for specific language"""
+        with self.general_lock:
+            if language not in self.language_locks:
+                self.language_locks[language] = threading.RLock()
+            return self.language_locks[language]
+
+    def setup_test_environment(
+        self, language: str, mount_path: Path, llm_dir: str = ""
+    ):
+        """Setup test environment with proper file copying and configuration"""
+        dockerfile_path = DOCKER_DIR / language.lower()
+
+        # Copy run.sh con permessi esecutivi
+        run_sh_src = dockerfile_path / "run.sh"
+        run_sh_dest = mount_path / "run.sh"
+
+        if run_sh_src.exists():
+            shutil.copy2(run_sh_src, run_sh_dest)
+            # CRITICO: Setta i permessi DOPO la copia
+            run_sh_dest.chmod(0o755)
+            self.logger.debug(f"Copied and made executable: {run_sh_dest}")
+
+            # Verifica che sia effettivamente eseguibile
+            if not os.access(run_sh_dest, os.X_OK):
+                self.logger.warning(f"run.sh is not executable: {run_sh_dest}")
+                try:
+                    os.chmod(run_sh_dest, 0o755)
+                except Exception as e:
+                    self.logger.error(f"Failed to make run.sh executable: {e}")
+
+            """ #debug
+            try:
+                with open(run_sh_dest, 'r') as f:
+                    run_sh_content = f.read()
+                self.logger.debug(f"run.sh content (first 200 chars): {run_sh_content[:200]}")
+            except Exception as e:
+                self.logger.warning(f"Could not read run.sh: {e}")
+            """
+
+        else:
+            self.logger.error(f"run.sh source not found: {run_sh_src}")
+
+        # Language-specific setup
+        if language == "javascript":
+            self._setup_javascript(dockerfile_path, mount_path)
+        elif language == "typescript":
+            self._setup_typescript(dockerfile_path, mount_path)
+        elif language == "python":
+            self._setup_python(dockerfile_path, mount_path)
+        elif language in ["cpp", "c"]:
+            self._setup_cpp_or_c(dockerfile_path, mount_path)
+        elif language == "java":
+            self._setup_java(dockerfile_path, mount_path)
+        elif language == "go":
+            self._setup_go(dockerfile_path, mount_path)
+
+    def _setup_javascript(self, dockerfile_path: Path, mount_path: Path):
+        """Setup JavaScript environment"""
+        files_to_copy = ["package.json", "jest.config.js"]
+        for filename in files_to_copy:
+            src_file = dockerfile_path / filename
+            dest_file = mount_path / filename
+            if src_file.exists():
+                shutil.copy2(src_file, dest_file)
+
+    def _setup_java(self, dockerfile_path: Path, mount_path: Path):
+        """Setup Java environment"""
+        files_to_copy = ["pom.xml", "build.gradle"]
+        for filename in files_to_copy:
+            src_file = dockerfile_path / filename
+            if src_file.exists():
+                shutil.copy2(src_file, mount_path / filename)
+                self.logger.debug(f"Copied {filename}")
+
+    def _setup_go(self, dockerfile_path: Path, mount_path: Path):
+        """Setup Go environment"""
+        files_to_copy = ["go.mod", "go.sum"]
+        for filename in files_to_copy:
+            src_file = dockerfile_path / filename
+            if src_file.exists():
+                shutil.copy2(src_file, mount_path / filename)
+                self.logger.debug(f"Copied {filename}")
+
+    def _setup_typescript(self, dockerfile_path: Path, mount_path: Path):
+        """Setup TypeScript environment"""
+        # Copy TypeScript config
+        tsconfig_candidates = [
+            DATASET_DIR / "typescript" / "tsconfig.json",
+            dockerfile_path / "tsconfig.json",
+        ]
+
+        for tsconfig_src in tsconfig_candidates:
+            if tsconfig_src.exists():
+                tsconfig_dest = mount_path / "tsconfig.json"
+                shutil.copy2(tsconfig_src, tsconfig_dest)
+                self.logger.debug(f"Copied tsconfig.json from {tsconfig_src}")
+                break
+
+        # Copy package.json and jest config
+        files_to_copy = ["package.json", "jest.config.js"]
+        for filename in files_to_copy:
+            src_file = dockerfile_path / filename
+            dest_file = mount_path / filename
+            if src_file.exists():
+                shutil.copy2(src_file, dest_file)
+                self.logger.debug(f"Copied {filename}")
+
+        # Rimuovi node_modules in modo sicuro
+        node_modules = mount_path / "node_modules"
+        try:
+            if node_modules.exists() or node_modules.is_symlink():
+                if node_modules.is_symlink():
+                    node_modules.unlink()
+                elif node_modules.is_dir():
+                    shutil.rmtree(node_modules, ignore_errors=True)
+                self.logger.debug(f"Removed node_modules from {mount_path}")
+        except Exception as e:
+            self.logger.debug(f"Could not remove node_modules: {e}")
+
+    def _setup_python(self, dockerfile_path: Path, mount_path: Path):
+        """Setup Python environment"""
+        utils_src = dockerfile_path / "utils"
+        utils_dest = mount_path / "utils"
+        if utils_src.exists() and not utils_dest.exists():
+            shutil.copytree(utils_src, utils_dest)
+
+    def _setup_cpp_or_c(self, dockerfile_path: Path, mount_path: Path):
+        """Setup C/C++ environment"""
+        # Copy Makefile
+        makefile_src = dockerfile_path / "Makefile"
+        if makefile_src.exists():
+            shutil.copy2(makefile_src, mount_path / "Makefile")
+
+    """
+    def execute_test(
+        self,
+        entry: Dict,
+        language: str,
+        test_type: str = "base",
+        llm_info: Optional[Dict] = None,
+        use_cache: bool = True,
+    ) -> BaseEntryResult | LLMentryResult:
+
+        # Get test path (dir path of dir in with there is the test file)
+        test_path = DATASET_DIR / Path(entry["testUnitFilePath"]).parent
+        container_name = self.container_manager.get_or_create_container(
+            language, use_cache
+        )
+
+        # Handle LLM code substitution if needed
+        original_file_backup = None
+        llm_dir = ""
+        if llm_info and test_type == "llm":
+            llm_dir = Path(llm_info["path"]).parent.name
+            original_file_backup = self._substitute_llm_code(entry, llm_info, test_path)
+
+        try:
+            # Setup environment AFTER potential LLM substitution
+            self.setup_test_environment(language, test_path, llm_dir)
+
+            # Execute the test
+            metrics = self._run_container_test(
+                language,
+                test_path,
+                container_name,
+                entry["id"],
+                entry["filename"],
+                llm_dir,
+            )
+
+            # Create result
+            if llm_info:
+                result = LLMentryResult(
+                    entry["id"],
+                    entry["filename"],
+                    language,
+                    LLM_results=[
+                        LLMresult(
+                            llm_info["type"],
+                            llm_info["path"],
+                            llm_info.get("log", ""),
+                            metrics.execution_time_ms,
+                            metrics.cpu_usage,
+                            metrics.ram_usage,
+                            metrics.regression_test_passed,
+                            llm_info.get("success", None),
+                            llm_info.get("error_message", None),
+                        )
+                    ],
+                )
+            else:
+                result = BaseEntryResult(
+                    entry["id"],
+                    entry["filename"],
+                    language,
+                    metrics.log_path,
+                    metrics.execution_time_ms,
+                    metrics.cpu_usage,
+                    metrics.ram_usage,
+                    metrics.regression_test_passed,
+                    metrics.is_valid(),
+                    metrics.error_message,
+                    metrics.log_path,
+                )
+            return result
+
+        finally:
+            # Restore original file if LLM substitution was made
+            if original_file_backup:
+                self._restore_original_code(original_file_backup)
+    """
+
+    def _substitute_llm_code_in_temp(
+        self, entry: Dict, llm_info: Dict, temp_path: Path
+    ):
+        """Substitute LLM code in temporary directory (no backup needed)"""
+        try:
+            language = entry["language"]
+            llm_code_path = DATASET_DIR / llm_info["path"]
+
+            if language in ["c", "cpp"] or llm_code_path.is_dir():
+                if llm_info["filename"] not in str(llm_code_path):
+                    llm_code_path = llm_code_path / llm_info["filename"]
+
+            if not llm_code_path.exists():
+                self.logger.warning(f"LLM code file not found: {llm_code_path}")
+                return
+
+            # Determinare il file target nella directory temporanea
+            target_file = temp_path / entry["filename"]
+
+            if not target_file.exists():
+                self.logger.warning(f"Target file not found in temp: {target_file}")
+                return
+
+            # Semplice copia - non serve backup nella directory temporanea
+            shutil.copy2(llm_code_path, target_file)
+            self.logger.debug(f"Substituted LLM code: {llm_code_path} -> {target_file}")
+
+        except Exception as e:
+            self.logger.error(
+                f"Failed to substitute LLM code in temp: {e}", exc_info=True
+            )
+
+    def execute_test(
+        self,
+        entry: Dict,
+        language: str,
+        test_type: str = "base",
+        llm_info: Optional[Dict] = None,
+        use_cache: bool = True,
+    ) -> BaseEntryResult | LLMentryResult:
+        """Execute single test with comprehensive error handling"""
+
+        # ✅ Fix per Colima: usare directory temporanee montabili da Docker
+        base_temp = Path.home() / "docker_tmp"
+        base_temp.mkdir(parents=True, exist_ok=True)
+
+        with tempfile.TemporaryDirectory(
+            prefix=f"test_{entry['id']}_", dir=base_temp
+        ) as temp_dir:
+            temp_path = Path(temp_dir)
+            self.logger.debug(f"Using temp dir (docker-visible): {temp_path}")
+            test_path = DATASET_DIR / Path(entry["testUnitFilePath"]).parent
+
+            # Funzione per ignorare file non necessari
+            def ignore_items(directory, items):
+                ignored = set()
+                for item in items:
+                    full_path = Path(directory) / item
+                    # Ignora node_modules, __pycache__, .git, e symlinks
+                    if item in [
+                        "node_modules",
+                        "__pycache__",
+                        ".git",
+                        ".pytest_cache",
+                        "venv",
+                        ".venv",
+                        "build",
+                        "dist",
+                        "*.egg-info",
+                    ]:
+                        ignored.add(item)
+                    # Ignora symlinks per evitare problemi
+                    elif full_path.is_symlink():
+                        ignored.add(item)
+                return ignored
+
+            # Copia con gestione errori robusta
+            try:
+                shutil.copytree(
+                    test_path,
+                    temp_path,
+                    dirs_exist_ok=True,
+                    ignore=ignore_items,
+                    symlinks=False,
+                )
+                self.logger.debug(f"Copied test directory to {temp_path}")
+
+            except Exception as e:
+                self.logger.warning(f"copytree failed: {e}, trying manual copy")
+                # Fallback: copia manuale file per file
+                try:
+                    for item in test_path.iterdir():
+                        if (
+                            item.name in ["node_modules", "__pycache__", ".git"]
+                            or item.is_symlink()
+                        ):
+                            continue
+
+                        dest = temp_path / item.name
+                        try:
+                            if item.is_file():
+                                shutil.copy2(item, dest)
+                            elif item.is_dir():
+                                shutil.copytree(
+                                    item, dest, ignore=ignore_items, symlinks=False
+                                )
+                        except Exception as copy_err:
+                            self.logger.debug(f"Skipped {item.name}: {copy_err}")
+
+                except Exception as fallback_err:
+                    self.logger.error(f"Manual copy failed: {fallback_err}")
+                    metrics = ExecutionMetrics()
+                    metrics.error_message = f"Failed to copy test files: {fallback_err}"
+                    return self._create_result(entry, language, llm_info, metrics)
+
+            # Verifica che i file siano stati copiati
+            copied_files = list(temp_path.rglob("*"))
+            self.logger.debug(
+                f"Files in temp dir: {[f.name for f in copied_files if f.is_file()]} files"
+            )
+
+            # Container management con lock
+            lang_lock = self._get_language_lock(language)
+            with lang_lock:
+                container_name = self.container_manager.get_or_create_container(
+                    language, use_cache
+                )
+
+            # LLM code substitution
+            if llm_info and test_type == "llm":
+                self._substitute_llm_code_in_temp(entry, llm_info, temp_path)
+
+            try:
+                # Setup environment
+                self.setup_test_environment(language, temp_path)
+
+                # Verifica finale esistenza file
+                if not self._verify_test_files(language, temp_path, entry["filename"]):
+                    self.logger.error(
+                        f"Test files verification failed for {entry['id']}"
+                    )
+                    metrics = ExecutionMetrics()
+                    metrics.error_message = "Test files not found after setup"
+                    return self._create_result(entry, language, llm_info, metrics)
+
+                # Execute test
+                metrics = self._run_container_test(
+                    language,
+                    temp_path,
+                    container_name,
+                    entry["id"],
+                    entry["filename"],
+                )
+
+                return self._create_result(entry, language, llm_info, metrics)
+
+            except Exception as e:
+                self.logger.error(f"Test execution failed: {e}", exc_info=True)
+                metrics = ExecutionMetrics()
+                metrics.error_message = str(e)
+                return self._create_result(entry, language, llm_info, metrics)
+
+            finally:
+                # cleanup esplicito, anche se Docker o Colima non rilascia i file subito
+                try:
+                    shutil.rmtree(temp_path, ignore_errors=True)
+                    self.logger.debug(f"Cleaned up temp dir: {temp_path}")
+                except Exception as e:
+                    self.logger.warning(f"Could not delete temp dir {temp_path}: {e}")
+
+    def _verify_test_files(
+        self, language: str, test_path: Path, code_filename: str
+    ) -> bool:
+        """Verify that test files exist before running tests"""
+        test_patterns = {
+            "javascript": [
+                "*.test.js",
+                "*_testSuite.js",
+                "*_test.js",
+                "*.spec.js",
+                "*Test.js",
+            ],
+            "typescript": [
+                "*.test.ts",
+                "*.test.js",
+                "*_test.ts",
+                "*.spec.ts",
+                "*Test.ts",
+            ],
+            "python": ["test_*.py", "*_test.py"],
+            "java": ["*Test.java", "*Tests.java"],
+            "go": ["*_test.go"],
+            "cpp": ["*_test.cpp", "*test.cpp", "*Test.cpp"],
+            "c": ["*_test.c", "*test.c", "*Test.c"],
+        }
+
+        patterns = test_patterns.get(language.lower(), ["*test*"])
+
+        testFiles: list[Path] = []
+        for pattern in patterns:
+            # Ricerca ricorsiva per trovare test anche in subdirectory
+            testFiles.extend(list(test_path.rglob(pattern)))
+
+        # Rimuovi duplicati mantenendo l'ordine
+        test_files = list(dict.fromkeys(testFiles))
+
+        if test_files:
+            self.logger.debug(f"Test files found: {[f.name for f in test_files]}")
+            
+            # DEBUG: Verifica contenuto e path assoluti
+            for tf in test_files:
+                self.logger.debug(f"Test file absolute path: {tf.absolute()}")
+                self.logger.debug(f"Test file relative to test_path: {tf.relative_to(test_path)}")
+            
+            # --- DEBUG BLOCK: Print content of the test file before execution ---
+            """
+            for target_file_path in testFiles:
+                
+                try:
+                    if target_file_path.exists():
+                        self.logger.info(
+                            f"Content of test file {target_file_path.name} (in temp dir) before execution:"
+                        )
+
+                        # Read and print the content
+                        with open(target_file_path, "r", encoding="utf-8") as f:
+                            file_content = f.read()
+                            print("\n" + "=" * 50)
+                            print(file_content)
+                            print("=" * 50 + "\n")
+                    else:
+                        self.logger.warning(
+                            f"File {target_file_path.name} not found at {target_file_path}"
+                        )
+                except Exception as debug_err:
+                    self.logger.error(f"Error printing test file content: {debug_err}")
+            """
+            # ----------------- END DEBUG BLOCK --------------------------------
+
+            return True
+
+        # Se non trova test, verifica almeno l'esistenza del file di codice
+        code_file = test_path / code_filename
+        if not code_file.exists():
+            # Ricerca ricorsiva del file di codice
+            matching_files = list(test_path.rglob(code_filename))
+            if matching_files:
+                self.logger.debug(f"Code file found at: {matching_files[0]}")
+                return True
+
+            self.logger.error(f"Neither code nor test files found in {test_path}")
+            # Lista contenuto directory per debug
+            if test_path.exists():
+                all_files = list(test_path.rglob("*"))
+                self.logger.error(f"Directory contents: {[str(f.relative_to(test_path)) for f in all_files if f.is_file()]}")
+            return False
+
+        self.logger.warning(f"Code file exists but no test files found in {test_path}")
+        return True  # Procedi comunque se il file di codice esiste
+
+    def _create_result(
+        self,
+        entry: Dict,
+        language: str,
+        llm_info: Optional[Dict],
+        metrics: ExecutionMetrics,
+    ) -> BaseEntryResult | LLMentryResult:
+        """Create appropriate result object"""
+        if llm_info:
+            return LLMentryResult(
+                entry["id"],
+                entry["filename"],
+                language,
+                LLM_results=[
+                    LLMresult(
+                        llm_info["type"],
+                        llm_info["path"],
+                        llm_info.get("log", ""),
+                        metrics.execution_time_ms,
+                        metrics.cpu_usage,
+                        metrics.ram_usage,
+                        metrics.regression_test_passed,
+                        metrics.success,
+                        metrics.error_message,
+                    )
+                ],
+            )
+        else:
+            return BaseEntryResult(
+                entry["id"],
+                entry["filename"],
+                language,
+                metrics.log_path or "",
+                metrics.execution_time_ms,
+                metrics.cpu_usage,
+                metrics.ram_usage,
+                metrics.regression_test_passed,
+                metrics.success,
+                metrics.error_message,
+                metrics.log_path,
+            )
+
+    def _substitute_llm_code(
+        self, entry: Dict, llm_info: Dict, test_path: Path
+    ) -> Optional[Tuple[Path, Path]]:
+        """Substitute LLM code with backup of original"""
+        try:
+            language = entry["language"]
+            llm_code_path: Path = DATASET_DIR / llm_info["path"]
+            original_code_path: Path = DATASET_DIR / entry["codeSnippetFilePath"]
+
+            if language == "c" or language == "cpp" or llm_code_path.is_dir():
+                llm_code_path = DATASET_DIR / llm_info["path"]
+                if llm_info["filename"] not in str(llm_code_path):
+                    llm_code_path = llm_code_path / llm_info["filename"]
+
+            if original_code_path.is_dir() or language == "c" or language == "cpp":
+                original_code_path = DATASET_DIR / entry["codeSnippetFilePath"]
+                if entry["filename"] not in str(original_code_path):
+                    original_code_path = original_code_path / entry["filename"]
+
+            if not llm_code_path.exists():
+                self.logger.warning(f"LLM code file not found: {llm_code_path}")
+                return None
+
+            if not original_code_path.exists():
+                self.logger.warning(
+                    f"Original code file not found: {original_code_path}"
+                )
+                return None
+
+            # Verify test file exists and log its location
+            test_file_path = original_code_path.parent
+            test_files = (
+                list(test_file_path.glob("*.test.*"))
+                + list(test_file_path.glob("*_test.*"))
+                + list(test_file_path.glob("*_"))
+            )
+            self.logger.debug(
+                f"Test files found in {test_file_path}: {[f.name for f in test_files]}"
+            )
+
+            if not test_files:
+                self.logger.warning(f"No test files found in {test_file_path}")
+
+            # Create backup with unique suffix to avoid conflicts
+            import time
+
+            backup_path = (
+                original_code_path.parent
+                / f"{original_code_path.stem}_{int(time.time())}.backup"
+            )
+
+            # Ensure we're not overwriting an existing backup
+            counter = 0
+            while backup_path.exists():
+                backup_path = (
+                    original_code_path.parent
+                    / f"{original_code_path.stem}_{int(time.time())}_{counter}.backup"
+                )
+                counter += 1
+
+            shutil.copy2(original_code_path, backup_path)
+            self.logger.debug(f"Created backup: {backup_path}")
+
+            # Substitute LLM code
+            shutil.copy2(llm_code_path, original_code_path)
+            self.logger.debug(
+                f"Substituted code from {llm_code_path} to {original_code_path}"
+            )
+
+            return (original_code_path, backup_path)
+
+        except Exception as e:
+            self.logger.error(f"Failed to substitute LLM code: {e}", exc_info=True)
+            return None
+
+    def _restore_original_code(self, backup_info: Tuple[Path, Path]):
+        """Restore original code from backup"""
+        try:
+            original_path, backup_path = backup_info
+
+            if not backup_path.exists():
+                self.logger.error(f"Backup file not found: {backup_path}")
+                return
+
+            shutil.copy2(backup_path, original_path)
+            self.logger.debug(f"Restored original code from {backup_path}")
+
+            # Clean up backup file
+            backup_path.unlink()
+            self.logger.debug(f"Removed backup file: {backup_path}")
+
+        except Exception as e:
+            self.logger.error(f"Failed to restore original code: {e}", exc_info=True)
+
+    def _parse_metrics_from_log(
+        self, log_file: Path, language: str, result: subprocess.CompletedProcess
+    ) -> ExecutionMetrics:
+        """Parse metrics from log file with fallback to stdout"""
+        metrics = ExecutionMetrics()
+
+        log_content = ""
+
+        # Try to read log file
+        if log_file.exists():
+            try:
+                with open(log_file, "r") as f:
+                    log_content = f.read()
+                self.logger.debug(f"Read {len(log_content)} chars from log file")
+            except Exception as e:
+                self.logger.error(f"Failed to read log file: {e}")
+
+        # Fallback to stdout if no log content
+        if not log_content and result.stdout:
+            log_content = result.stdout
+            self.logger.debug("Using stdout as log content")
+
+        if not log_content:
+            self.logger.error("No log content available for parsing")
+            metrics.error_message = "No log content generated"
+            return metrics
+
+        # Parse based on language
+        if language == "typescript":
+            stripped = log_content.strip()
+            if stripped.startswith("{"):
+                self.logger.debug("Parsing as TypeScript JSON")
+                metrics = (
+                    MetricsParser.parse_typescript_json(log_file)
+                    if log_file.exists()
+                    else metrics
+                )
+            else:
+                self.logger.debug("Parsing TypeScript output as text")
+                metrics = MetricsParser.parse_time_output(log_content)
+
+        elif language == "javascript":
+            stripped = log_content.strip()
+            if stripped.startswith("{"):
+                self.logger.debug("Parsing JavaScript as JSON")
+                metrics = (
+                    MetricsParser.parse_typescript_json(log_file)
+                    if log_file.exists()
+                    else metrics
+                )
+            else:
+                self.logger.debug("Parsing JavaScript as text")
+                metrics = MetricsParser.parse_time_output(log_content)
+        else:
+            # Altri linguaggi
+            metrics = MetricsParser.parse_time_output(log_content)
+
+        return metrics
+
+    def _run_container_test(
+        self,
+        language: str,
+        mount_path: Path,
+        container_name: str,
+        entry_id: str,
+        filename: str,
+        llm_dir: str = "",
+    ) -> ExecutionMetrics:
+        """Run container test with comprehensive metrics collection"""
+
+        # Prepare log file path
+        log_file = mount_path / "output.log"
+        if log_file.exists():
+            try:
+                with open(log_file, "w") as f:
+                    f.truncate(0)
+                self.logger.debug(f"Cleared content of stale log file: {log_file.name}")
+            except Exception as e:
+                self.logger.warning(
+                    f"Failed to clear content of stale log file {log_file.name}: {e}"
+                )
+
+        # Log pre-execution info
+        self.logger.info(f"Running test for {entry_id} ({language})")
+        self.logger.debug(f"Mount path: {mount_path}")
+        self.logger.debug(f"Container: {container_name}")
+
+        if language in ["typescript", "javascript"]:
+                self.logger.debug("Directory structure before test execution:")
+                for item in mount_path.rglob("*"):
+                    if item.is_file():
+                        self.logger.debug(f"  {item.relative_to(mount_path)}")
+
+        # Verifica che run.sh esista e sia eseguibile
+        run_sh = mount_path / "run.sh"
+        if not run_sh.exists():
+            self.logger.error(f"run.sh not found in {mount_path}")
+            metrics = ExecutionMetrics()
+            metrics.error_message = "run.sh not found"
+            return metrics
+
+        # Ensure run.sh is executable
+        try:
+            run_sh.chmod(0o755)
+        except Exception as e:
+            self.logger.warning(f"Could not chmod run.sh: {e}")
+
+        # For JS/TS, log configuration files
+        if language in ["javascript", "typescript"]:
+            pkg_json = mount_path / "package.json"
+            jest_config = mount_path / "jest.config.js"
+
+            self.logger.debug(f"package.json exists: {pkg_json.exists()}")
+            self.logger.debug(f"jest.config.js exists: {jest_config.exists()}")
+
+            if language == "typescript":
+                tsconfig = mount_path / "tsconfig.json"
+                self.logger.debug(f"tsconfig.json exists: {tsconfig.exists()}")
+
+        # Prepare docker run command with resource monitoring
+        docker_cmd = [
+            "docker",
+            "run",
+            "--rm",
+            "--memory=4g",
+            "--cpus=2.0",
+            "-v",
+            f"{mount_path}:/app",
+            "-w",
+            "/app",
+            container_name,
+            "/bin/sh",
+            "-c",
+            "chmod +x ./run.sh && ./run.sh",
+        ]
+
+        # Per Java, passa il filename come argomento
+        if language.lower() == "java":
+            docker_cmd[-1] = f"chmod +x ./run.sh && ./run.sh {filename}"
+
+        self.logger.debug(f"Docker command: {' '.join(docker_cmd)}")
+
+        try:
+            # Execute with timeout
+            result = subprocess.run(
+                docker_cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                text=True,
+                timeout=300,  # 5 minute timeout
+            )
+
+            self.logger.debug(f"Docker exit code: {result.returncode}")
+
+            # Log first part of output for debugging
+            if result.stdout:
+                self.logger.debug(
+                    f"Docker output (first 500 chars): {result.stdout[:500]}"
+                )
+
+            # Parse metrics from log
+            metrics = self._parse_metrics_from_log(log_file, language, result)
+
+            if metrics.regression_test_passed and metrics.is_valid():
+                self.logger.info(
+                    f"Tests PASSED for {entry_id} despite exit code {result.returncode}"
+                )
+                metrics.success = True
+            elif result.returncode != 0:
+                self.logger.warning(f"Tests failed with exit code {result.returncode}")
+                # Non sovrascrivere il flag se è già stato settato dal parsing
+                if not metrics.regression_test_passed:
+                    if not metrics.error_message:
+                        metrics.error_message = f"Docker exit code: {result.returncode}"
+
+            # Archive log
+            if log_file.exists():
+                log_archive = (
+                    LOGS_DIR / f"{container_name}_{entry_id}_{int(time.time())}.log"
+                )
+                log_archive.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(log_file, log_archive)
+                metrics.log_path = str(log_archive)
+                self.logger.debug(f"Log archived to: {log_archive}")
+            else:
+                self.logger.warning(f"No output.log found at {log_file}")
+                # Salva stdout come log
+                if result.stdout:
+                    log_archive = (
+                        LOGS_DIR
+                        / f"{container_name}_{entry_id}_{int(time.time())}_stdout.log"
+                    )
+                    log_archive.parent.mkdir(parents=True, exist_ok=True)
+                    with open(log_archive, "w") as f:
+                        f.write(result.stdout)
+                    self.logger.debug(f"Docker stdout saved to: {log_archive}")
+
+            return metrics
+
+        except subprocess.TimeoutExpired:
+            self.logger.error(f"Test timeout for {entry_id}")
+            metrics = ExecutionMetrics()
+            metrics.error_message = "Test execution timeout"
+            return metrics
+
+        except Exception as e:
+            self.logger.error(
+                f"Test execution failed for {entry_id}: {e}", exc_info=True
+            )
+            metrics = ExecutionMetrics()
+            metrics.error_message = str(e)
+            return metrics
+
+
+class ClusterRunner:
+    """Main orchestrator for cluster testing"""
+
+    def __init__(self, max_workers: int = 4, is_debug: bool = False):
+        self.max_workers = max_workers
+        self.container_manager = ContainerManager()
+        self.test_executor = TestExecutor(self.container_manager)
+        self.execution_state = ExecutionState()
+        self.results_cache: Dict[str, BaseEntryResult | LLMentryResult] = {}
+        self.lock = threading.RLock()
+
+        # Setup logging
+        self._setup_logging(is_debug)
+
+        # Register cleanup
+        atexit.register(self.cleanup)
+
+    def _setup_logging(self, is_debug):
+        """Setup comprehensive logging"""
+        LOGS_DIR.mkdir(parents=True, exist_ok=True)
+
+        log_file = LOGS_DIR / f"test_runner_{int(time.time())}.log"
+
+        log_lvl = logging.DEBUG if is_debug else logging.INFO
+
+        logging.basicConfig(
+            level=log_lvl,
+            format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+            handlers=[logging.FileHandler(log_file), logging.StreamHandler()],
+        )
+
+        self.logger = logging.getLogger(__name__ + ".ClusterRunner")
+
+    def load_cluster_data(self, cluster_path: Path) -> Dict[str, List[Dict]]:
+        """Load and validate cluster data"""
+        try:
+            with open(cluster_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+
+            if not isinstance(data, dict):
+                raise ValueError("Cluster data must be a dictionary")
+
+            # Validate structure
+            for language, entries in data.items():
+                if not isinstance(entries, list):
+                    raise ValueError(f"Language {language} must have list of entries")
+
+                for entry in entries:
+                    required_fields = [
+                        "id",
+                        "filename",
+                        "language",
+                        "codeSnippetFilePath",
+                        "testUnitFilePath",
+                    ]
+                    missing = [field for field in required_fields if field not in entry]
+                    if missing:
+                        raise ValueError(
+                            f"Entry {entry.get('id', 'unknown')} missing fields: {missing}"
+                        )
+
+            self.logger.info(
+                f"Loaded cluster data with {sum(len(entries) for entries in data.values())} entries"
+            )
+            return data
+
+        except Exception as e:
+            self.logger.error(f"Failed to load cluster data from {cluster_path}: {e}")
+            raise
+
+    def run_cluster_tests(
+        self,
+        cluster_path: Path,
+        base_only: bool = False,
+        llm_only: bool = False,
+        prompt_version: int = 1,
+        use_cache: bool = True,
+        full: bool = False,
+        run_number: int = 1,
+        cluster_name="",
+    ) -> Tuple[List[BaseEntryResult], List[LLMentryResult]]:
+        """Run all tests for a cluster with comprehensive error handling
+
+        Returns:
+            Tuple[base_results, llm_results] - Separate results for base and LLM tests
+        """
+
+        cluster_data = self.load_cluster_data(cluster_path)
+
+        self.execution_state.current_cluster = cluster_path.stem
+
+        # set of entry ids of entries not valid / not executed
+        cluster_base_not_completed_entries_ids = set()
+        cluster_LLM_not_completed_entries_ids = set()
+
+        # Prepare test tasks
+        base_tasks = []
+        llm_tasks = []
+
+        base_results: list[BaseEntryResult] = []
+        llm_results: list[LLMentryResult] = []
+
+        if base_only or full:
+            out_base_cluster_results_path = (
+                utility_paths.SRC_DIR
+                / "execution_outputs"
+                / f"{cluster_name}_results_{run_number}.json"
+            )
+
+            out_base_cluster_content = general_utils.read_json(
+                out_base_cluster_results_path
+            )
+
+            try:
+                if "results" not in out_base_cluster_content:
+                    raise Exception("results not in out_base_cluster_content")
+                for _lang, entries in out_base_cluster_content["results"].items():
+                    for json_entry in entries:
+                        entry: BaseEntryResult = BaseEntryResult.from_json(json_entry)
+                        if not entry.is_valid():
+                            cluster_base_not_completed_entries_ids.add(entry.id)
+                        else:
+                            base_results.append(entry)
+
+                            # adjust execution state :
+                            with self.lock:
+                                self.execution_state.completed_tests += 1
+                                if entry.regressionTestPassed:
+                                    self.execution_state.successful_tests += 1
+                                else:
+                                    self.execution_state.failed_tests += 1
+
+            except Exception as e:
+                print(f"exception :\n{e}")
+                raise e
+
+        if llm_only or full:
+            out_LLM_cluster_results_path = (
+                utility_paths.SRC_DIR
+                / "execution_outputs"
+                / f"{cluster_name}_results_v{prompt_version}_{run_number}.json"
+            )
+
+            out_LLM_cluster_content = general_utils.read_json(
+                out_LLM_cluster_results_path
+            )
+
+            try:
+                if "results" not in out_LLM_cluster_content:
+                    raise Exception("results not in out_LLM_cluster_content")
+
+                for _lang, entries in out_LLM_cluster_content["results"].items():
+                    for json_entry in entries:
+                        entry: LLMentryResult = LLMentryResult.from_json(json_entry)
+                        if not entry.is_valid():
+                            cluster_LLM_not_completed_entries_ids.add(entry.id)
+
+                        else:
+                            llm_results.append(entry)
+
+                            for res in entry.LLM_results:
+                                # adjust execution state :
+                                with self.lock:
+                                    self.execution_state.completed_tests += 1
+                                    if res.regressionTestPassed:
+                                        self.execution_state.successful_tests += 1
+                                    else:
+                                        self.execution_state.failed_tests += 1
+
+            except Exception as e:
+                print(f"exception :\n{e}")
+                raise e
+
+        # Validate execution mode
+        mode_count = sum([base_only, llm_only, full])
+        if mode_count != 1:
+            raise ValueError(
+                "Must specify exactly one of: --base-only, --llm-only, or --full"
+            )
+
+        self.logger.info(
+            f"\nCluster {cluster_path.stem} version : {prompt_version} run# : {run_number}\nCluster path: {cluster_path}\n{len(base_results)} base entries already executed | {len(cluster_base_not_completed_entries_ids)} to execute\n{len(llm_results)} LLM entries already executed | {len(cluster_LLM_not_completed_entries_ids)} to execute\n\n"
+        )
+
+        # add base and llm task (entries to run)
+        for language, entries in cluster_data.items():
+            for entry in entries:
+                # Base test tasks
+                if (base_only or full) and entry[
+                    "id"
+                ] in cluster_base_not_completed_entries_ids:
+                    base_tasks.append(
+                        {
+                            "entry": entry,
+                            "language": language,
+                            "test_type": "base",
+                            "llm_info": None,
+                            "use_cache": use_cache,
+                        }
+                    )
+
+                # LLM test tasks
+                if (
+                    (llm_only or full)
+                    and "LLMs" in entry
+                    and entry["id"] in cluster_LLM_not_completed_entries_ids
+                ):
+                    for llm in entry["LLMs"]:
+                        if f"_v{prompt_version}" in llm.get("filename", ""):
+                            llm_tasks.append(
+                                {
+                                    "entry": entry,
+                                    "language": language,
+                                    "test_type": "llm",
+                                    "llm_info": llm,
+                                    "use_cache": use_cache,
+                                }
+                            )
+
+        total_tasks = len(base_tasks) + len(llm_tasks)
+        self.logger.info(
+            f"Starting {total_tasks} tests for cluster {cluster_path.stem} "
+            f"(Base: {len(base_tasks)}, LLM: {len(llm_tasks)})"
+        )
+
+        if (
+            len(base_tasks) == 0
+            and len(llm_tasks) == 0
+            and len(base_results) == 0
+            and len(llm_results) == 0
+        ):
+            raise Exception("0 base task 0 llm task 0 base results and 0 llm results")
+
+        # Execute base tests first if needed
+        if base_tasks:
+            self.logger.info(f"Executing {len(base_tasks)} base tests...")
+            base_results_2 = self._execute_task_batch(base_tasks, "Base")
+            base_results.extend(base_results_2)
+
+        # Execute LLM tests if needed
+        if llm_tasks:
+            self.logger.info(f"Executing {len(llm_tasks)} LLM tests...")
+            llm_results_2 = self._execute_task_batch(llm_tasks, "LLM")
+            llm_results.extend(llm_results_2)
+
+        """
+        parsed_llm_results: List[LLMentryResult] = []
+        dict_llm_res: Dict[str, LLMentryResult] = {}
+        for res in llm_results:
+            if res.id in dict_llm_res:
+                results = res.LLM_results
+                dict_llm_res[res.id].LLM_results.extend(results)
+            else:
+                dict_llm_res[res.id] = res
+
+        for _key, res in dict_llm_res.items():
+            parsed_llm_results.append(res)
+        """
+
+        self._report_final_results(base_results + llm_results)
+        return base_results, llm_results  # parsed_llm_results
+
+    def _execute_task_batch(
+        self, tasks: List[Dict], batch_name: str
+    ) -> List[BaseEntryResult | LLMentryResult]:
+        """Execute a batch of tasks in parallel"""
+        results = []
+
+        with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
+            # Submit all tasks
+            future_to_task = {
+                executor.submit(self._execute_single_test, task): task for task in tasks
+            }
+
+            # Collect results
+            for future in as_completed(future_to_task):
+                try:
+                    result = future.result(timeout=600)  # 10 minute timeout per test
+                    results.append(result)
+
+                    with self.lock:
+                        self.execution_state.completed_tests += 1
+                        if result.is_valid():
+                            self.execution_state.successful_tests += 1
+                        else:
+                            self.execution_state.failed_tests += 1
+
+                    # Progress reporting
+                    if self.execution_state.completed_tests % 10 == 0:
+                        self._report_progress(batch_name)
+
+                except Exception as e:
+                    self.logger.error(f"{batch_name} test execution failed: {e}")
+                    with self.lock:
+                        self.execution_state.completed_tests += 1
+                        self.execution_state.failed_tests += 1
+
+        return results
+
+    def _execute_single_test(self, task: Dict) -> BaseEntryResult | LLMentryResult:
+        """Execute single test task"""
+        return self.test_executor.execute_test(
+            entry=task["entry"],
+            language=task["language"],
+            test_type=task["test_type"],
+            llm_info=task["llm_info"],
+            use_cache=task["use_cache"],
+        )
+
+    def _report_progress(self, batch_name: str = ""):
+        """Report current progress"""
+        state = self.execution_state
+        batch_prefix = f"{batch_name} " if batch_name else ""
+        print(
+            f"{batch_prefix}Progress: {state.completed_tests} completed | "
+            f"Success: {state.successful_tests} ({state.success_rate:.1f}%) | "
+            f"Failed: {state.failed_tests} | "
+            f"Elapsed: {state.elapsed_time}"
+        )
+
+    def _report_final_results(self, results: List[BaseEntryResult | LLMentryResult]):
+        """Report final test results"""
+        total = len(results)
+        failed_report = "Failed reports :\n"
+        successful = 0
+
+        for r in results:
+            if r.is_valid():
+                successful += 1
+            else:
+                failed_report += f"\nf name : {r.filename}"
+
+        print("\n" + "=" * 60)
+        print("CLUSTER TEST RESULTS")
+        print("=" * 60)
+        print(f"Total tests executed: {total}")
+        if total > 0:
+            print(f"Successful tests: {successful} ({successful / total * 100:.1f}%)")
+        print(f"Failed tests: {total - successful}")
+        print(f"{failed_report}")
+        print(f"Total execution time: {self.execution_state.elapsed_time}")
+        print("=" * 60)
+
+    def save_results(
+        self,
+        results: List[BaseEntryResult | LLMentryResult],
+        output_path: Path,
+        test_type_suffix: str = "",
+        is_llm=False,
+    ):
+        """Save results to JSON file with comprehensive metadata"""
+        output_data = {
+            "execution_date": time.strftime("%Y-%m-%d %H:%M:%S"),
+            "execution_metadata": {
+                "total_tests": len(results),
+                "successful_tests": sum(1 for r in results if r.is_valid()),
+                "execution_time": self.execution_state.elapsed_time,
+                "cluster": self.execution_state.current_cluster,
+                "test_type": test_type_suffix,
+            },
+            "results": defaultdict(list),
+        }
+
+        for result in results:
+            # Add base metrics
+            if not is_llm:
+                entry_data: BaseEntryResult = result
+
+            else:  # Add LLM results
+                entry_data: LLMentryResult = result
+
+            output_data["results"][result.language].append(entry_data.to_json())
+
+        # Convert defaultdict to regular dict for JSON serialization
+        output_data["results"] = dict(output_data["results"])
+
+        # Ensure output directory exists
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+
+        # Save with pretty formatting
+        with open(output_path, "w", encoding="utf-8") as f:
+            json.dump(output_data, f, indent=2, ensure_ascii=False)
+
+        self.logger.info(f"Results saved to {output_path}")
+
+    def cleanup(self):
+        """Cleanup all resources"""
+        self.logger.info("Cleaning up resources...")
+        self.container_manager.cleanup_all()
+
+
+class ClusterManager:
+    """Manages cluster discovery and execution tracking"""
+
+    def __init__(self, clusters_dir: Path, output_dir: Path):
+        self.clusters_dir = clusters_dir
+        self.output_dir = output_dir
+        self.logger = logging.getLogger(__name__ + ".ClusterManager")
+
+    def discover_clusters(self) -> List[Path]:
+        """Discover all available cluster files"""
+        if not self.clusters_dir.exists():
+            self.logger.error(f"Clusters directory not found: {self.clusters_dir}")
+            return []
+
+        cluster_files = []
+        for file_path in self.clusters_dir.glob("cluster_*.json"):
+            if not any(
+                skip in file_path.name
+                for skip in ["debug", "test", "bad_entries", "focused_", "with_metrics"]
+            ):
+                cluster_files.append(file_path)
+
+        self.logger.info(f"Discovered {len(cluster_files)} cluster files")
+        return sorted(cluster_files)
+
+    def is_cluster_completed(
+        self, cluster_name: str, test_type: str, prompt_version: int = 1
+    ) -> bool:
+        """Check if cluster tests are already completed"""
+        if test_type == "base":
+            pattern = f"{cluster_name}_results_*.json"
+        elif test_type == "llm":
+            pattern = f"{cluster_name}_results_v{prompt_version}_*.json"
+        else:  # full execution - check both patterns
+            base_pattern = f"{cluster_name}_results_*.json"
+            llm_pattern = f"{cluster_name}_results_v{prompt_version}_*.json"
+
+            base_completed = self._validate_by_pattern(base_pattern)
+            llm_completed = self._validate_by_pattern(llm_pattern)
+
+            return base_completed and llm_completed
+
+        return self._validate_by_pattern(pattern)
+
+    def _validate_by_pattern(self, pattern: str):
+        """Validate a cluster exec by pattern"""
+        matching_files = list(self.output_dir.glob(pattern))
+
+        # Consider completed if we have 5 successful runs
+        valid_files = 0
+        for file_path in matching_files:
+            if self._validate_output_file(file_path):
+                valid_files += 1
+                if valid_files == 5:
+                    return True
+
+        return False
+
+    def _validate_output_file(self, file_path: Path) -> bool:
+        """Validate that output file contains meaningful results"""
+        try:
+            data = general_utils.read_json(file_path)
+
+            results = data.get("results", {})
+            if not results:
+                return False
+
+            successfull_entries = 0
+            total_entries = 0
+
+            # Check if we have entries with meaningful metrics
+            for _language, entries in results.items():
+                for json_entry in entries:
+                    if "LLM_results" in json_entry:  # LLM
+                        entry = LLMentryResult.from_json(json_entry)
+                    else:  # base
+                        entry = BaseEntryResult.from_json(json_entry)
+
+                    total_entries += 1
+                    if entry.is_valid():
+                        successfull_entries += 1
+
+            if total_entries <= 0:
+                return False
+
+            return successfull_entries / total_entries > 0.8  # successfull if >= 80%
+
+        except Exception as e:
+            self.logger.warning(f"Error validating output file {file_path}: {e}")
+            return False
+
+    def get_pending_clusters(
+        self, test_type: str, prompt_version: int = 1
+    ) -> List[Path]:
+        """Get clusters that need to be processed"""
+        all_clusters = self.discover_clusters()
+        pending = []
+
+        for cluster_path in all_clusters:
+            cluster_name = cluster_path.stem.replace("cluster_", "")
+            if prompt_version == -1:  # all prompt v
+                for p_v in range(1, 5):
+                    if not self.is_cluster_completed(cluster_name, test_type, p_v):
+                        pending.append(cluster_path)
+            elif not self.is_cluster_completed(cluster_name, test_type, prompt_version):
+                pending.append(cluster_path)
+
+        if prompt_version == -1:
+            v = "all prompt v"
+        else:
+            v = f"v {prompt_version}"
+        self.logger.info(f"Found {len(pending)} pending clusters for {test_type} {v}")
+        return pending
+
+
+def send_webhook_notification(webhook_url: str, results_summary: Dict):
+    """Send Discord webhook notification"""
+    try:
+        if not webhook_url:
+            return
+
+        reporter = create_webhook_reporter(webhook_url, "Test Runner")
+
+        success = reporter.send_test_results(
+            test_name=f"Cluster Tests: {results_summary['cluster']}",
+            duration=results_summary["duration"],
+            files_executed=results_summary["completed"],
+            total_files=results_summary["total"],
+            tests_passed=results_summary["successful"],
+            total_tests=results_summary["total"],
+            errors=results_summary["failed"],
+            additional_info={
+                "Run Number : ": results_summary["run #"],
+                "Prompt Version : ": results_summary["prompt version"],
+                "Success Rate": f"{results_summary['success_rate']:.1f}%",
+                "Test Type": results_summary["test_type"],
+            },
+            custom_message="Test execution completed!",
+        )
+
+        if success:
+            print("Webhook notification sent successfully!")
+
+    except Exception as e:
+        logging.error(f"Failed to send webhook: {e}")
+
+
+def main():
+    """Main entry point with comprehensive argument handling"""
+    parser = argparse.ArgumentParser(description=" Test Runner for Code Snippets")
+
+    # Test execution options
+    parser.add_argument(
+        "--base-only", action="store_true", help="Run only base code tests"
+    )
+    parser.add_argument(
+        "--llm-only", action="store_true", help="Run only LLM generated code tests"
+    )
+    parser.add_argument(
+        "--full",
+        action="store_true",
+        help="Run both base and LLM tests (saves separate output files)",
+    )
+    parser.add_argument(
+        "--prompt-version",
+        type=int,
+        default=1,
+        choices=[-1, 1, 2, 3, 4],  # -1 => all prompt v
+        help="LLM prompt version to test",
+    )
+
+    # Execution control
+    parser.add_argument(
+        "--max-workers", type=int, default=4, help="Maximum number of parallel workers"
+    )
+    parser.add_argument(
+        "--no-cache", action="store_true", help="Disable Docker build cache"
+    )
+    parser.add_argument(
+        "--run-quantity",
+        type=int,
+        default=5,
+        help="Number of times to run each cluster",
+    )
+    parser.add_argument(
+        "--not-check-pending",
+        action="store_true",
+        help="Use all clusters for execution, not checking for already run ones",
+    )
+
+    # Input/Output
+    parser.add_argument(
+        "--cluster-name",
+        type=str,
+        help="Specific cluster to run (without cluster_ prefix)",
+    )
+    parser.add_argument(
+        "--clusters-dir",
+        type=Path,
+        default=CLUSTERS_DIR,
+        help="Directory containing cluster files",
+    )
+    parser.add_argument(
+        "--output-dir", type=Path, default=OUTPUT_DIR, help="Directory to save results"
+    )
+    parser.add_argument("--output-file", type=str, help="Specific output filename")
+
+    # Notification
+    parser.add_argument(
+        "--webhook",
+        action="store_true",
+        help="Send Discord webhook notifications",
+    )
+    parser.add_argument("--silent", action="store_true", help="Reduce output verbosity")
+
+    args = parser.parse_args()
+
+    # Setup logging level
+    if args.silent:
+        logging.getLogger().setLevel(logging.WARNING)
+
+    # Load environment variables
+    try:
+        load_dotenv()
+    except Exception as e:
+        print(f"Error in loading dotenv:\n{e}")
+        pass
+
+    # Initialize managers
+    cluster_manager = ClusterManager(args.clusters_dir, args.output_dir)
+    test_runner = ClusterRunner(max_workers=args.max_workers)
+
+    try:
+        # Determine clusters to process
+        if args.cluster_name:
+            cluster_path = args.clusters_dir / f"cluster_{args.cluster_name}.json"
+            if not cluster_path.exists():
+                print(f"Error: Cluster file not found: {cluster_path}")
+                return 1
+            clusters_to_process = [cluster_path]
+        else:
+            # Determine test type for pending cluster detection
+            if args.full:
+                test_type = "full"
+            elif args.base_only:
+                test_type = "base"
+            elif args.llm_only:
+                test_type = "llm"
+            else:
+                print("Error: Must specify one of --base-only, --llm-only, or --full")
+                return 1
+
+            if args.not_check_pending:
+                clusters_to_process = cluster_manager.discover_clusters()
+            else:
+                clusters_to_process = cluster_manager.get_pending_clusters(
+                    test_type, args.prompt_version
+                )
+
+        if args.prompt_version != -1:
+            v = "all prompt v"
+        else:
+            v = f"v{args.prompt_version}"
+
+        if not clusters_to_process:
+            test_type_desc = (
+                "base" if args.base_only else f"LLM {v}" if args.llm_only else "full"
+            )
+            print(f"No {test_type_desc} clusters need processing.")
+            return 0
+
+        test_type_desc = (
+            "base" if args.base_only else f"LLM {v}" if args.llm_only else "full"
+        )
+        
+        #re-run
+        to_rerun_cluster_list = [
+            'accumulate',
+            'acronym',
+            'allergies',
+            'alphametics',
+            'anagram',
+            'annalyns_infiltration',
+            'atbash_cipher',
+            'bank_account',
+            'beer_song',
+            'binary',
+            'binary_search',
+            'binary_search_tree',
+            'bird_watcher',
+            'bob',
+            'bracket_push',
+            'circular_buffer',
+            'clock',
+            'coordinate_transformation',
+            'darts',
+            'diamond',
+            'difference_of_squares'
+        ]
+        
+        #print(f"Processing {len(clusters_to_process)} {test_type_desc} clusters...")
+        
+        #re-run
+        print(f"Processing {len(to_rerun_cluster_list)} {test_type_desc} clusters...")
+
+        # Process each cluster
+        #for cluster_path in clusters_to_process:
+        #    cluster_name = cluster_path.stem.replace("cluster_", "")
+        for cluster_name in to_rerun_cluster_list:
+            cluster_path = utility_paths.CLUSTERS_DIR_FILEPATH / f"cluster_{cluster_name}.json"
+
+            print(f"\nProcessing cluster: {cluster_name}")
+
+            for run_num in range(1, args.run_quantity + 1):
+                print(f"Run {run_num}/{args.run_quantity}")
+
+                if args.prompt_version == -1 and not args.base_only:
+                    for p_v in range(1, 5):  # all prompt v
+                        # Execute tests
+                        base_only = args.base_only
+                        llm_only = args.llm_only
+                        full = args.full
+                        if p_v > 1:
+                            base_only = False
+                            llm_only = True
+                            full = False
+
+                        start_time: float = time.time()
+
+                        base_results, llm_results = test_runner.run_cluster_tests(
+                            cluster_path=cluster_path,
+                            base_only=base_only,
+                            llm_only=llm_only,
+                            prompt_version=p_v,
+                            use_cache=not args.no_cache,
+                            full=full,
+                            run_number=run_num,
+                            cluster_name=cluster_name,
+                        )
+
+                        elapsed = time.time() - start_time
+                        hours = int(elapsed // 3600)
+                        minutes = int((elapsed % 3600) // 60)
+                        seconds = int(elapsed % 60)
+                        elapsed_str = f"{hours:02d}h {minutes:02d}m {seconds:02d}s"
+
+                        # Save results based on execution mode
+                        if args.full:
+                            # Save base results
+                            if base_results:
+                                if args.output_file:
+                                    base_filename = (
+                                        f"{args.output_file}_base_{run_num}.json"
+                                    )
+                                else:
+                                    base_filename = (
+                                        f"{cluster_name}_results_{run_num}.json"
+                                    )
+
+                                base_output_path = args.output_dir / base_filename
+                                test_runner.save_results(
+                                    base_results, base_output_path, "base"
+                                )
+
+                            # Save LLM results
+                            if llm_results:
+                                if args.output_file:
+                                    llm_filename = (
+                                        f"{args.output_file}_llm_v{p_v}_{run_num}.json"
+                                    )
+                                else:
+                                    llm_filename = (
+                                        f"{cluster_name}_results_v{p_v}_{run_num}.json"
+                                    )
+
+                                llm_output_path = args.output_dir / llm_filename
+                                test_runner.save_results(
+                                    llm_results, llm_output_path, f"llm_v{p_v}", True
+                                )
+
+                        elif args.base_only:
+                            if args.output_file:
+                                output_filename = f"{args.output_file}_{run_num}.json"
+                            else:
+                                output_filename = (
+                                    f"{cluster_name}_results_{run_num}.json"
+                                )
+
+                            output_path = args.output_dir / output_filename
+                            test_runner.save_results(base_results, output_path, "base")
+
+                        elif args.llm_only:
+                            if args.output_file:
+                                output_filename = f"{args.output_file}_{run_num}.json"
+                            else:
+                                output_filename = (
+                                    f"{cluster_name}_results_v{p_v}_{run_num}.json"
+                                )
+
+                            output_path = args.output_dir / output_filename
+                            test_runner.save_results(
+                                llm_results, output_path, f"llm_v{p_v}", True
+                            )
+
+                        # Send webhook notification
+                        if args.webhook:
+                            webhook_url = os.getenv("DISCORD_WEBHOOK")
+                            # all_results = base_results + llm_results
+
+                            cluster_content = general_utils.read_json(cluster_path)
+                            base_total = 0
+                            total = 0
+                            for _lang, entries in cluster_content.items():
+                                base_total += len(entries)
+
+                            total = (
+                                base_total
+                                if args.base_only
+                                else base_total * 3
+                                if args.llm_only
+                                else base_total * 3 + base_total
+                            )
+                            successful_tests = 0
+                            failed_tests = 0
+                            total_executed = len(base_results) + len(llm_results)
+
+                            for res in base_results:
+                                if res.is_valid():
+                                    successful_tests += 1
+                                else:
+                                    failed_tests += 1
+
+                            for res in llm_results:
+                                if res.is_valid():
+                                    successful_tests += 1
+                                else:
+                                    failed_tests += 1
+
+                            results_summary = {
+                                "cluster": cluster_name,
+                                "duration": elapsed_str,
+                                "completed": total_executed,
+                                "total": total,
+                                "successful": successful_tests,
+                                "failed": failed_tests,
+                                "success_rate": successful_tests / total_executed * 100
+                                if total_executed > 0
+                                else 0
+                                if total_executed > 0
+                                else 0,
+                                "test_type": "full"
+                                if args.full
+                                else ("base" if args.base_only else "llm"),
+                                "run #": run_num,
+                                "prompt version": p_v,
+                            }
+                            send_webhook_notification(webhook_url, results_summary)
+
+                        # Reset state for next run
+                        test_runner.execution_state = ExecutionState()
+
+                else:
+                    # Execute tests
+                    start_time: float = time.time()
+
+                    base_results, llm_results = test_runner.run_cluster_tests(
+                        cluster_path=cluster_path,
+                        base_only=args.base_only,
+                        llm_only=args.llm_only,
+                        prompt_version=args.prompt_version,
+                        use_cache=not args.no_cache,
+                        full=args.full,
+                        run_number=run_num,
+                        cluster_name=cluster_name,
+                    )
+
+                    elapsed = time.time() - start_time
+                    hours = int(elapsed // 3600)
+                    minutes = int((elapsed % 3600) // 60)
+                    seconds = int(elapsed % 60)
+                    elapsed_str = f"{hours:02d}h {minutes:02d}m {seconds:02d}s"
+
+                    # Save results based on execution mode
+                    if args.full:
+                        # Save base results
+                        if base_results:
+                            if args.output_file:
+                                base_filename = (
+                                    f"{args.output_file}_base_{run_num}.json"
+                                )
+                            else:
+                                base_filename = f"{cluster_name}_results_{run_num}.json"
+
+                            base_output_path = args.output_dir / base_filename
+                            test_runner.save_results(
+                                base_results, base_output_path, "base"
+                            )
+
+                        # Save LLM results
+                        if llm_results:
+                            if args.output_file:
+                                llm_filename = f"{args.output_file}_llm_v{args.prompt_version}_{run_num}.json"
+                            else:
+                                llm_filename = f"{cluster_name}_results_v{args.prompt_version}_{run_num}.json"
+
+                            llm_output_path = args.output_dir / llm_filename
+                            test_runner.save_results(
+                                llm_results,
+                                llm_output_path,
+                                f"llm_v{args.prompt_version}",
+                                True,
+                            )
+
+                    elif args.base_only:
+                        if args.output_file:
+                            output_filename = f"{args.output_file}_{run_num}.json"
+                        else:
+                            output_filename = f"{cluster_name}_results_{run_num}.json"
+
+                        output_path = args.output_dir / output_filename
+                        test_runner.save_results(base_results, output_path, "base")
+
+                    elif args.llm_only:
+                        if args.output_file:
+                            output_filename = f"{args.output_file}_{run_num}.json"
+                        else:
+                            output_filename = f"{cluster_name}_results_v{args.prompt_version}_{run_num}.json"
+
+                        output_path = args.output_dir / output_filename
+                        test_runner.save_results(
+                            llm_results,
+                            output_path,
+                            f"llm_v{args.prompt_version}",
+                            True,
+                        )
+
+                    # Send webhook notification
+                    if args.webhook:
+                        webhook_url = os.getenv("DISCORD_WEBHOOK")
+
+                        cluster_content = general_utils.read_json(cluster_path)
+                        base_total = 0
+                        total = 0
+                        for _lang, entries in cluster_content.items():
+                            base_total += len(entries)
+
+                        total = (
+                            base_total
+                            if args.base_only
+                            else base_total * 3
+                            if args.llm_only
+                            else base_total * 3 + base_total
+                        )
+                        successful_tests = 0
+                        failed_tests = 0
+                        total_executed = len(base_results) + len(llm_results)
+
+                        for res in base_results:
+                            if res.is_valid():
+                                successful_tests += 1
+                            else:
+                                failed_tests += 1
+
+                        for res in llm_results:
+                            if res.is_valid():
+                                successful_tests += 1
+                            else:
+                                failed_tests += 1
+
+                        # all_results = base_results + llm_results
+                        results_summary = {
+                            "cluster": cluster_name,
+                            "duration": elapsed_str,
+                            "completed": total_executed,
+                            "total": total,
+                            "successful": successful_tests,
+                            "failed": failed_tests,
+                            "success_rate": successful_tests / total_executed * 100
+                            if total_executed > 0
+                            else 0
+                            if total_executed > 0
+                            else 0,
+                            "test_type": "full"
+                            if args.full
+                            else ("base" if args.base_only else "llm"),
+                            "run #": run_num,
+                            "prompt version": args.prompt_version,
+                        }
+                        send_webhook_notification(webhook_url, results_summary)
+
+                    # Reset state for next run
+                    test_runner.execution_state = ExecutionState()
+
+        print("\nAll clusters processed successfully!")
+        return 0
+
+    except KeyboardInterrupt:
+        print("\nExecution interrupted by user.")
+        return 130
+
+    except Exception as e:
+        print(f"Error: {e}")
+        logging.error(f"Execution failed: {e}", exc_info=True)
+        return 1
+
+    finally:
+        test_runner.cleanup()
+
+
+if __name__ == "__main__":
+    exit(main())
+
+    """
+    test_runner = ClusterRunner(max_workers=2, is_debug=True)
+
+    base_results, llm_results = test_runner.run_cluster_tests(
+        cluster_path=utility_paths.CLUSTERS_DIR_FILEPATH / "cluster_reverse_string.json",
+        base_only=False,
+        llm_only=False,
+        prompt_version=1,
+        use_cache=False,
+        full=True,
+        run_number=1,
+        cluster_name="reverse_string",
+    )
+    """
+
+
+# Example usage commands:
+# python3 run_tests_on_cluster.py --base-only --webhook --max-workers 6 --not-check-pending
+# python3 run_tests_on_cluster.py --llm-only --prompt-version 1 --webhook --max-workers 6 --not-check-pending
+
+# run all base + LLM (5 times each) (every prompt v of LLMs) :
+# python3 run_tests_on_cluster.py --full --webhook --max-workers 6 --not-check-pending --prompt-version -1
+
+
+# python3 run_tests_on_cluster.py --full --webhook --max-workers 6 --prompt-version -1
