@@ -100,10 +100,19 @@ class ExecMetricCalculator:
 
                 # Metriche: solo per entries che passano
                 if passed :
+                    # Convert to numeric, handling potential string values
+                    def to_numeric(val):
+                        if val is None:
+                            return None
+                        try:
+                            return float(val)
+                        except (ValueError, TypeError):
+                            return None
+
                     metrics = {
-                        "CPU_usage": entry.get("CPU_usage"),
-                        "RAM_usage": entry.get("RAM_usage"),
-                        "execution_time_ms": entry.get("execution_time_ms"),
+                        "CPU_usage": to_numeric(entry.get("CPU_usage")),
+                        "RAM_usage": to_numeric(entry.get("RAM_usage")),
+                        "execution_time_ms": to_numeric(entry.get("execution_time_ms")),
                     }
                 else:
                     # Entry non passa: niente metriche
@@ -151,10 +160,19 @@ class ExecMetricCalculator:
 
                     # Metriche: solo per entries che passano
                     if passed:
+                        # Convert to numeric, handling potential string values
+                        def to_numeric(val):
+                            if val is None:
+                                return None
+                            try:
+                                return float(val)
+                            except (ValueError, TypeError):
+                                return None
+
                         metrics = {
-                            "CPU_usage": llm_result.get("CPU_usage"),
-                            "RAM_usage": llm_result.get("RAM_usage"),
-                            "execution_time_ms": llm_result.get("execution_time_ms"),
+                            "CPU_usage": to_numeric(llm_result.get("CPU_usage")),
+                            "RAM_usage": to_numeric(llm_result.get("RAM_usage")),
+                            "execution_time_ms": to_numeric(llm_result.get("execution_time_ms")),
                         }
                     else:
                         # Entry non passa: niente metriche
@@ -406,7 +424,26 @@ class ExecMetricCalculator:
                 self.logger.error(f"Error processing cluster {cluster_name}: {e}", exc_info=True)
 
         # Convert defaultdicts to regular dicts for JSON serialization
-        # IMPORTANTE: Calcola improvements dalle medie aggregate, non entry-per-entry
+        # CORRETTO: Calcola improvements sulle MEDIE AGGREGATE (non media degli improvements entry-per-entry)
+        # Questo evita che outliers con base_val molto bassi distorcano la media
+
+        # Calculate mean improvements correctly: improvement of the aggregate means
+        mean_improvements_corrected = {}
+        base_means_agg = {k: np.mean(v) for k, v in aggregated_data["model_version_data"]["base"].items() if v}
+
+        for combo, metrics in aggregated_data["model_version_data"]["combinations"].items():
+            mean_improvements_corrected[combo] = {}
+
+            for metric in self.all_metrics:
+                if metric in metrics and metrics[metric] and metric in base_means_agg:
+                    llm_mean = np.mean(metrics[metric])
+                    base_mean = base_means_agg[metric]
+
+                    if base_mean != 0:
+                        # Improvement calcolato sulle medie aggregate
+                        improvement = ((llm_mean - base_mean) / base_mean) * 100
+                        mean_improvements_corrected[combo][metric] = float(improvement)
+
         result = {
             "objective_1": {
                 "base": {k: list(v) for k, v in aggregated_data["prompt_version_data"]["base"].items()},
@@ -432,15 +469,8 @@ class ExecMetricCalculator:
                     combo: {k: list(v) for k, v in metrics.items()}
                     for combo, metrics in aggregated_data["model_version_data"]["combinations"].items()
                 },
-                # CORRETTO: Usa la MEDIA DEGLI IMPROVEMENTS entry-per-entry (non improvement delle medie)
-                "mean_improvements": {
-                    combo: {
-                        metric: float(np.mean(improvements_list))
-                        for metric, improvements_list in metrics.items()
-                        if improvements_list
-                    }
-                    for combo, metrics in aggregated_data["model_version_data"]["improvements"].items()
-                }
+                # CORRETTO: Improvement calcolato sulle medie aggregate, non media degli improvements
+                "mean_improvements": mean_improvements_corrected
             },
             "objective_4": {
                 "language_model_stats": {

@@ -1,11 +1,19 @@
 {
-  "execution_date": "2025-10-06 20:38:53",
+  "execution_date": "2025-10-15 12:46:29",
   "execution_metadata": {
     "total_tests": 15,
     "successful_tests": 15,
     "execution_time": "00h 00m 00s",
     "cluster": "cluster_all_your_base",
-    "test_type": "llm_v2"
+    "test_type": "llm_v2",
+    "last_updated": "2025-10-15 12:46:29",
+    "selective_execution": {
+      "languages": [
+        "cpp",
+        "c"
+      ],
+      "timestamp": "2025-10-15 12:46:29"
+    }
   },
   "results": {
     "c": [
@@ -15,14 +23,14 @@
         "language": "c",
         "LLM_results": [
           {
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/all_your_base_Exercism_ThomasZumsteg/openAI/ChatGPT4_all_your_base_v2.c",
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/all_your_base_Exercism_ThomasZumsteg/gemini/GeminiFlash_all_your_base_v2.c",
             "log": "",
-            "execution_time_ms": 0,
-            "CPU_usage": 33.0,
-            "RAM_usage": 3456,
+            "execution_time_ms": 1.520277,
+            "CPU_usage": "32",
+            "RAM_usage": "8576",
             "regressionTestPassed": false,
-            "success": null,
+            "success": false,
             "error_message": null
           }
         ]
@@ -36,11 +44,11 @@
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/all_your_base_Exercism_ThomasZumsteg/claude/ClaudeSonnet4_all_your_base_v2.c",
             "log": "",
-            "execution_time_ms": 0,
-            "CPU_usage": 7.0,
-            "RAM_usage": 3456,
+            "execution_time_ms": 0.852474,
+            "CPU_usage": "29",
+            "RAM_usage": "8576",
             "regressionTestPassed": false,
-            "success": null,
+            "success": false,
             "error_message": null
           }
         ]
@@ -51,14 +59,14 @@
         "language": "c",
         "LLM_results": [
           {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/all_your_base_Exercism_ThomasZumsteg/gemini/GeminiFlash_all_your_base_v2.c",
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/all_your_base_Exercism_ThomasZumsteg/openAI/ChatGPT4_all_your_base_v2.c",
             "log": "",
-            "execution_time_ms": 0,
-            "CPU_usage": 3.0,
-            "RAM_usage": 3456,
+            "execution_time_ms": 2.618421,
+            "CPU_usage": "12",
+            "RAM_usage": "8576",
             "regressionTestPassed": false,
-            "success": null,
+            "success": false,
             "error_message": null
           }
         ]
@@ -235,15 +243,33 @@
         "language": "cpp",
         "LLM_results": [
           {
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/all_your_base_Exercism_thefullarcticfox/openAI/ChatGPT4_all_your_base_v2.cpp",
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/all_your_base_Exercism_thefullarcticfox/gemini/GeminiFlash_all_your_base_v2.cpp",
             "log": "",
             "execution_time_ms": 0,
-            "CPU_usage": 0.0,
-            "RAM_usage": 4224,
+            "CPU_usage": 50.0,
+            "RAM_usage": 4096,
             "regressionTestPassed": false,
             "success": false,
             "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_all_your_base_Exercism (thefullarcticfox)",
+        "filename": "all_your_base.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/all_your_base_Exercism_thefullarcticfox/openAI/ChatGPT4_all_your_base_v2.cpp",
+            "log": "",
+            "execution_time_ms": 3.126347,
+            "CPU_usage": "49",
+            "RAM_usage": "10496",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 42"
           }
         ]
       },
@@ -256,30 +282,12 @@
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/all_your_base_Exercism_thefullarcticfox/claude/ClaudeSonnet4_all_your_base_v2.cpp",
             "log": "",
-            "execution_time_ms": 0,
-            "CPU_usage": 25.0,
-            "RAM_usage": 4352,
+            "execution_time_ms": 2.536378,
+            "CPU_usage": "59",
+            "RAM_usage": "10496",
             "regressionTestPassed": false,
             "success": false,
-            "error_message": null
-          }
-        ]
-      },
-      {
-        "id": "cpp_all_your_base_Exercism (thefullarcticfox)",
-        "filename": "all_your_base.cpp",
-        "language": "cpp",
-        "LLM_results": [
-          {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/all_your_base_Exercism_thefullarcticfox/gemini/GeminiFlash_all_your_base_v2.cpp",
-            "log": "",
-            "execution_time_ms": 0,
-            "CPU_usage": 50.0,
-            "RAM_usage": 4096,
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": null
+            "error_message": "Docker exit code: 42"
           }
         ]
       }

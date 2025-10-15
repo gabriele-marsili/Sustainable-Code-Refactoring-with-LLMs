@@ -519,13 +519,16 @@ class ExecMetricStatsVisualizator:
             for i, (label, improvement) in enumerate(zip(labels, improvements), 1):
                 if improvement is not None:
                     # Determine if improvement is good or bad
+                    # For CPU/RAM/time: negative is good (reduction)
+                    # For pass_rate: positive is good (increase)
                     if metric == "pass_rate":
                         is_good = improvement >= 0
                     else:
-                        is_good = improvement < 0
+                        is_good = improvement <= 0  # Changed: negative values are improvements
 
                     text_color = 'green' if is_good else 'red'
-                    sign = '+' if improvement > 0 else ''
+                    # Always show the sign for clarity
+                    sign = '+' if improvement >= 0 else ''
 
                     # Position text above box
                     y_max = np.percentile(plot_data[i-1], 75) if plot_data[i-1] else 0
@@ -646,32 +649,44 @@ class ExecMetricStatsVisualizator:
             ax.set_xticklabels(labels, rotation=45, ha='right', fontsize=10)
             ax.grid(True, alpha=0.3, axis='y')
 
+            # Calculate dynamic spacing for text annotations
+            y_range = max(values) - min(values) if values else 1
+            max_val = max(values) if values else 1
+
+            # Use adaptive offsets based on scale
+            value_offset = max_val * 0.01  # 1% of max value for value text
+            improvement_offset = max_val * 0.06  # 6% of max value for improvement text
+
+            # Adjust plot limits to accommodate text
+            current_ylim = ax.get_ylim()
+            ax.set_ylim(current_ylim[0], max_val * 1.15)  # Add 15% headroom
+
             # Add value labels and improvement percentages
             for i, (bar, val, improvement) in enumerate(zip(bars, values, improvements_text)):
                 height = bar.get_height()
 
-                # Value label
-                ax.text(bar.get_x() + bar.get_width()/2., height,
+                # Value label - positioned just above the bar
+                ax.text(bar.get_x() + bar.get_width()/2., height + value_offset,
                        f'{val:.1f}',
                        ha='center', va='bottom',
-                       fontsize=9, fontweight='bold')
+                       fontsize=7, fontweight='bold')
 
                 # Improvement percentage (only for LLM combinations)
                 if improvement is not None:
                     if metric == "pass_rate":
                         is_good = improvement >= 0
                     else:
-                        is_good = improvement < 0
+                        is_good = improvement <= 0  # Negative is good for CPU/RAM/time
 
                     color = 'green' if is_good else 'red'
                     sign = '+' if improvement >= 0 else ''
 
-                    # Place improvement text above the value
-                    ax.text(bar.get_x() + bar.get_width()/2., height + (max(values) - min(values)) * 0.05,
+                    # Place improvement text above the value label with more spacing
+                    ax.text(bar.get_x() + bar.get_width()/2., height + improvement_offset,
                            f'{sign}{improvement:.1f}%',
                            ha='center', va='bottom',
-                           fontsize=8, fontweight='bold', color=color,
-                           bbox=dict(boxstyle='round,pad=0.3', facecolor='white', edgecolor=color, alpha=0.7))
+                           fontsize=6.5, fontweight='bold', color=color,
+                           bbox=dict(boxstyle='round,pad=0.15', facecolor='white', edgecolor=color, alpha=0.9, linewidth=1.2))
 
             ax.legend(loc='upper left', fontsize=11)
             plt.tight_layout()

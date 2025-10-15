@@ -1,11 +1,19 @@
 {
-  "execution_date": "2025-10-13 21:03:09",
+  "execution_date": "2025-10-15 12:43:03",
   "execution_metadata": {
     "total_tests": 96,
     "successful_tests": 87,
     "execution_time": "00h 00m 04s",
     "cluster": "cluster_anagram",
-    "test_type": "llm_v1"
+    "test_type": "llm_v1",
+    "last_updated": "2025-10-15 12:43:03",
+    "selective_execution": {
+      "languages": [
+        "c",
+        "cpp"
+      ],
+      "timestamp": "2025-10-15 12:43:03"
+    }
   },
   "results": {
     "python": [
@@ -1429,8 +1437,8 @@
         "language": "c",
         "LLM_results": [
           {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/anagram_Exercism_ThomasZumsteg/gemini/GeminiFlash_anagram_v1.c",
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/anagram_Exercism_ThomasZumsteg/claude/ClaudeSonnet4_anagram_v1.c",
             "log": "",
             "execution_time_ms": null,
             "CPU_usage": null,
@@ -1447,8 +1455,8 @@
         "language": "c",
         "LLM_results": [
           {
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/anagram_Exercism_ThomasZumsteg/openAI/ChatGPT4_anagram_v1.c",
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/anagram_Exercism_ThomasZumsteg/claude/ClaudeSonnet4_anagram_v1.c",
             "log": "",
             "execution_time_ms": null,
             "CPU_usage": null,
@@ -1593,42 +1601,6 @@
         "language": "cpp",
         "LLM_results": [
           {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/anagram_Exercism_cmccandless/gemini/GeminiFlash_anagram_v1.cpp",
-            "log": "",
-            "execution_time_ms": null,
-            "CPU_usage": null,
-            "RAM_usage": null,
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": "Docker exit code: 1"
-          }
-        ]
-      },
-      {
-        "id": "cpp_anagram_Exercism (MaxyMoos)",
-        "filename": "anagram.cpp",
-        "language": "cpp",
-        "LLM_results": [
-          {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/anagram_Exercism_MaxyMoos/gemini/GeminiFlash_anagram_v1.cpp",
-            "log": "",
-            "execution_time_ms": null,
-            "CPU_usage": null,
-            "RAM_usage": null,
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": "Docker exit code: 1"
-          }
-        ]
-      },
-      {
-        "id": "cpp_anagram_Exercism (cmccandless)",
-        "filename": "anagram.cpp",
-        "language": "cpp",
-        "LLM_results": [
-          {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/anagram_Exercism_cmccandless/claude/ClaudeSonnet4_anagram_v1.cpp",
             "log": "",
@@ -1638,78 +1610,6 @@
             "regressionTestPassed": false,
             "success": false,
             "error_message": null
-          }
-        ]
-      },
-      {
-        "id": "cpp_anagram_Exercism (thefullarcticfox)",
-        "filename": "anagram.cpp",
-        "language": "cpp",
-        "LLM_results": [
-          {
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/anagram_Exercism_thefullarcticfox/openAI/ChatGPT4_anagram_v1.cpp",
-            "log": "",
-            "execution_time_ms": null,
-            "CPU_usage": null,
-            "RAM_usage": null,
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": "Docker exit code: 1"
-          }
-        ]
-      },
-      {
-        "id": "cpp_anagram_Exercism (thefullarcticfox)",
-        "filename": "anagram.cpp",
-        "language": "cpp",
-        "LLM_results": [
-          {
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/anagram_Exercism_thefullarcticfox/claude/ClaudeSonnet4_anagram_v1.cpp",
-            "log": "",
-            "execution_time_ms": null,
-            "CPU_usage": null,
-            "RAM_usage": null,
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": "Docker exit code: 1"
-          }
-        ]
-      },
-      {
-        "id": "cpp_anagram_Exercism (cmccandless)",
-        "filename": "anagram.cpp",
-        "language": "cpp",
-        "LLM_results": [
-          {
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/anagram_Exercism_cmccandless/openAI/ChatGPT4_anagram_v1.cpp",
-            "log": "",
-            "execution_time_ms": null,
-            "CPU_usage": null,
-            "RAM_usage": null,
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": "Docker exit code: 1"
-          }
-        ]
-      },
-      {
-        "id": "cpp_anagram_Exercism (thefullarcticfox)",
-        "filename": "anagram.cpp",
-        "language": "cpp",
-        "LLM_results": [
-          {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/anagram_Exercism_thefullarcticfox/gemini/GeminiFlash_anagram_v1.cpp",
-            "log": "",
-            "execution_time_ms": null,
-            "CPU_usage": null,
-            "RAM_usage": null,
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": "Docker exit code: 1"
           }
         ]
       },
@@ -1746,6 +1646,168 @@
             "regressionTestPassed": false,
             "success": false,
             "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_anagram_Exercism (cmccandless)",
+        "filename": "anagram.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/anagram_Exercism_cmccandless/openAI/ChatGPT4_anagram_v1.cpp",
+            "log": "",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "cpp_anagram_Exercism (cmccandless)",
+        "filename": "anagram.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/anagram_Exercism_cmccandless/openAI/ChatGPT4_anagram_v1.cpp",
+            "log": "",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "cpp_anagram_Exercism (MaxyMoos)",
+        "filename": "anagram.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/anagram_Exercism_MaxyMoos/claude/ClaudeSonnet4_anagram_v1.cpp",
+            "log": "",
+            "execution_time_ms": 10.071802,
+            "CPU_usage": "13",
+            "RAM_usage": "10368",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_anagram_Exercism (MaxyMoos)",
+        "filename": "anagram.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/anagram_Exercism_MaxyMoos/openAI/ChatGPT4_anagram_v1.cpp",
+            "log": "",
+            "execution_time_ms": 1.908567,
+            "CPU_usage": "73",
+            "RAM_usage": "10496",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_anagram_Exercism (cmccandless)",
+        "filename": "anagram.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/anagram_Exercism_cmccandless/claude/ClaudeSonnet4_anagram_v1.cpp",
+            "log": "",
+            "execution_time_ms": 5.144737,
+            "CPU_usage": "28",
+            "RAM_usage": "10368",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_anagram_Exercism (MaxyMoos)",
+        "filename": "anagram.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/anagram_Exercism_MaxyMoos/claude/ClaudeSonnet4_anagram_v1.cpp",
+            "log": "",
+            "execution_time_ms": 1.846859,
+            "CPU_usage": "72",
+            "RAM_usage": "10496",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_anagram_Exercism (thefullarcticfox)",
+        "filename": "anagram.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/anagram_Exercism_thefullarcticfox/gemini/GeminiFlash_anagram_v1.cpp",
+            "log": "",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "cpp_anagram_Exercism (thefullarcticfox)",
+        "filename": "anagram.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/anagram_Exercism_thefullarcticfox/gemini/GeminiFlash_anagram_v1.cpp",
+            "log": "",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "cpp_anagram_Exercism (thefullarcticfox)",
+        "filename": "anagram.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/anagram_Exercism_thefullarcticfox/gemini/GeminiFlash_anagram_v1.cpp",
+            "log": "",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
           }
         ]
       }

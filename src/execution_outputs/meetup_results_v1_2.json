@@ -1,11 +1,19 @@
 {
-  "execution_date": "2025-10-07 10:24:33",
+  "execution_date": "2025-10-15 13:02:10",
   "execution_metadata": {
     "total_tests": 18,
     "successful_tests": 18,
     "execution_time": "00h 00m 45s",
     "cluster": "cluster_meetup",
-    "test_type": "llm_v1"
+    "test_type": "llm_v1",
+    "last_updated": "2025-10-15 13:02:10",
+    "selective_execution": {
+      "languages": [
+        "cpp",
+        "c"
+      ],
+      "timestamp": "2025-10-15 13:02:10"
+    }
   },
   "results": {
     "javascript": [
@@ -112,6 +120,46 @@
         ]
       },
       {
+        "id": "cpp_meetup_Exercism (cmccandless)",
+        "filename": "meetup.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_cmccandless/openAI/ChatGPT4_meetup_v1.cpp",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_cmccandless/openAI/output.log",
+            "execution_time_ms": 0,
+            "CPU_usage": 50.0,
+            "RAM_usage": 4352,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_cmccandless/claude/ClaudeSonnet4_meetup_v1.cpp",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_cmccandless/claude/output.log",
+            "execution_time_ms": 0,
+            "CPU_usage": 50.0,
+            "RAM_usage": 4352,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_cmccandless/gemini/GeminiFlash_meetup_v1.cpp",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_cmccandless/gemini/output.log",
+            "execution_time_ms": 0,
+            "CPU_usage": 28.0,
+            "RAM_usage": 4224,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
         "id": "cpp_meetup_Exercism (blogscot)",
         "filename": "meetup.cpp",
         "language": "cpp",
@@ -152,16 +200,16 @@
         ]
       },
       {
-        "id": "cpp_meetup_Exercism (MaxyMoos)",
+        "id": "cpp_meetup_Exercism (blogscot)",
         "filename": "meetup.cpp",
         "language": "cpp",
         "LLM_results": [
           {
             "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_MaxyMoos/openAI/ChatGPT4_meetup_v1.cpp",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_MaxyMoos/openAI/output.log",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_blogscot/openAI/ChatGPT4_meetup_v1.cpp",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_blogscot/openAI/output.log",
             "execution_time_ms": 0,
-            "CPU_usage": 15.0,
+            "CPU_usage": 50.0,
             "RAM_usage": 4224,
             "regressionTestPassed": true,
             "success": null,
@@ -169,10 +217,10 @@
           },
           {
             "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_MaxyMoos/claude/ClaudeSonnet4_meetup_v1.cpp",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_MaxyMoos/claude/output.log",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_blogscot/claude/ClaudeSonnet4_meetup_v1.cpp",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_blogscot/claude/output.log",
             "execution_time_ms": 0,
-            "CPU_usage": 30.0,
+            "CPU_usage": 75.0,
             "RAM_usage": 4352,
             "regressionTestPassed": true,
             "success": null,
@@ -180,11 +228,105 @@
           },
           {
             "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_MaxyMoos/gemini/GeminiFlash_meetup_v1.cpp",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_MaxyMoos/gemini/output.log",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_blogscot/gemini/GeminiFlash_meetup_v1.cpp",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_blogscot/gemini/output.log",
             "execution_time_ms": 0,
-            "CPU_usage": 25.0,
+            "CPU_usage": 100.0,
             "RAM_usage": 4352,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_meetup_Exercism (cmccandless)",
+        "filename": "meetup.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_cmccandless/claude/ClaudeSonnet4_meetup_v1.cpp",
+            "log": "",
+            "execution_time_ms": 12.843991,
+            "CPU_usage": "28",
+            "RAM_usage": "10496",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_meetup_Exercism (blogscot)",
+        "filename": "meetup.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_blogscot/claude/ClaudeSonnet4_meetup_v1.cpp",
+            "log": "",
+            "execution_time_ms": 12.840826,
+            "CPU_usage": "29",
+            "RAM_usage": "10496",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_meetup_Exercism (MaxyMoos)",
+        "filename": "meetup.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_MaxyMoos/openAI/ChatGPT4_meetup_v1.cpp",
+            "log": "",
+            "execution_time_ms": 24.399127,
+            "CPU_usage": "16",
+            "RAM_usage": "10496",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_meetup_Exercism (RockLloque)",
+        "filename": "meetup.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_RockLloque/openAI/ChatGPT4_meetup_v1.cpp",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_RockLloque/openAI/output.log",
+            "execution_time_ms": 0,
+            "CPU_usage": 33.0,
+            "RAM_usage": 4224,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_RockLloque/claude/ClaudeSonnet4_meetup_v1.cpp",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_RockLloque/claude/output.log",
+            "execution_time_ms": 0,
+            "CPU_usage": 16.0,
+            "RAM_usage": 4096,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_RockLloque/gemini/GeminiFlash_meetup_v1.cpp",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_RockLloque/gemini/output.log",
+            "execution_time_ms": 0,
+            "CPU_usage": 0.0,
+            "RAM_usage": 4224,
             "regressionTestPassed": true,
             "success": null,
             "error_message": null
@@ -225,6 +367,140 @@
             "execution_time_ms": 0,
             "CPU_usage": 0.0,
             "RAM_usage": 4224,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_meetup_Exercism (MaxyMoos)",
+        "filename": "meetup.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_MaxyMoos/claude/ClaudeSonnet4_meetup_v1.cpp",
+            "log": "",
+            "execution_time_ms": 3.911626,
+            "CPU_usage": "82",
+            "RAM_usage": "10496",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_meetup_Exercism (MaxyMoos)",
+        "filename": "meetup.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_MaxyMoos/gemini/GeminiFlash_meetup_v1.cpp",
+            "log": "",
+            "execution_time_ms": 3.699774,
+            "CPU_usage": "85",
+            "RAM_usage": "10496",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_meetup_Exercism (RockLloque)",
+        "filename": "meetup.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_RockLloque/claude/ClaudeSonnet4_meetup_v1.cpp",
+            "log": "",
+            "execution_time_ms": 3.343828,
+            "CPU_usage": "35",
+            "RAM_usage": "10496",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_meetup_Exercism (thefullarcticfox)",
+        "filename": "meetup.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_thefullarcticfox/openAI/ChatGPT4_meetup_v1.cpp",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_thefullarcticfox/openAI/output.log",
+            "execution_time_ms": 0,
+            "CPU_usage": 16.0,
+            "RAM_usage": 4096,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_thefullarcticfox/claude/ClaudeSonnet4_meetup_v1.cpp",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_thefullarcticfox/claude/output.log",
+            "execution_time_ms": 0,
+            "CPU_usage": 9.0,
+            "RAM_usage": 4096,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_thefullarcticfox/gemini/GeminiFlash_meetup_v1.cpp",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_thefullarcticfox/gemini/output.log",
+            "execution_time_ms": 0,
+            "CPU_usage": 50.0,
+            "RAM_usage": 4096,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_meetup_Exercism (thefullarcticfox)",
+        "filename": "meetup.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_thefullarcticfox/openAI/ChatGPT4_meetup_v1.cpp",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_thefullarcticfox/openAI/output.log",
+            "execution_time_ms": 0,
+            "CPU_usage": 16.0,
+            "RAM_usage": 4096,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_thefullarcticfox/claude/ClaudeSonnet4_meetup_v1.cpp",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_thefullarcticfox/claude/output.log",
+            "execution_time_ms": 0,
+            "CPU_usage": 9.0,
+            "RAM_usage": 4096,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_thefullarcticfox/gemini/GeminiFlash_meetup_v1.cpp",
+            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/meetup_Exercism_thefullarcticfox/gemini/output.log",
+            "execution_time_ms": 0,
+            "CPU_usage": 50.0,
+            "RAM_usage": 4096,
             "regressionTestPassed": true,
             "success": null,
             "error_message": null
@@ -401,65 +677,11 @@
         "language": "c",
         "LLM_results": [
           {
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/meetup_Exercism_ThomasZumsteg/openAI/ChatGPT4_meetup_v1.c",
-            "log": "",
-            "execution_time_ms": 0,
-            "CPU_usage": 22.0,
-            "RAM_usage": 3456,
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": "Docker exit code: 255"
-          }
-        ]
-      },
-      {
-        "id": "c_meetup_Exercism (ThomasZumsteg)",
-        "filename": "meetup.c",
-        "language": "c",
-        "LLM_results": [
-          {
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/meetup_Exercism_ThomasZumsteg/claude/ClaudeSonnet4_meetup_v1.c",
-            "log": "",
-            "execution_time_ms": 0,
-            "CPU_usage": 28.0,
-            "RAM_usage": 3456,
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": "Docker exit code: 255"
-          }
-        ]
-      },
-      {
-        "id": "c_meetup_Exercism (ThomasZumsteg)",
-        "filename": "meetup.c",
-        "language": "c",
-        "LLM_results": [
-          {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/meetup_Exercism_ThomasZumsteg/gemini/GeminiFlash_meetup_v1.c",
             "log": "",
             "execution_time_ms": 10,
             "CPU_usage": 6.0,
-            "RAM_usage": 3456,
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": "Docker exit code: 255"
-          }
-        ]
-      },
-      {
-        "id": "c_meetup_Exercism (vlzware)",
-        "filename": "meetup.c",
-        "language": "c",
-        "LLM_results": [
-          {
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/meetup_Exercism_vlzware/claude/ClaudeSonnet4_meetup_v1.c",
-            "log": "",
-            "execution_time_ms": 0,
-            "CPU_usage": 28.0,
             "RAM_usage": 3456,
             "regressionTestPassed": false,
             "success": false,
@@ -500,6 +722,114 @@
             "regressionTestPassed": false,
             "success": false,
             "error_message": "Docker exit code: 255"
+          }
+        ]
+      },
+      {
+        "id": "c_meetup_Exercism (vlzware)",
+        "filename": "meetup.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/meetup_Exercism_vlzware/openAI/ChatGPT4_meetup_v1.c",
+            "log": "",
+            "execution_time_ms": 2.257745,
+            "CPU_usage": "16",
+            "RAM_usage": "8576",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "c_meetup_Exercism (ThomasZumsteg)",
+        "filename": "meetup.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/meetup_Exercism_ThomasZumsteg/gemini/GeminiFlash_meetup_v1.c",
+            "log": "",
+            "execution_time_ms": 0.698775,
+            "CPU_usage": "68",
+            "RAM_usage": "8576",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "c_meetup_Exercism (ThomasZumsteg)",
+        "filename": "meetup.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/meetup_Exercism_ThomasZumsteg/claude/ClaudeSonnet4_meetup_v1.c",
+            "log": "",
+            "execution_time_ms": 1.056722,
+            "CPU_usage": "46",
+            "RAM_usage": "8576",
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "c_meetup_Exercism (ThomasZumsteg)",
+        "filename": "meetup.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/meetup_Exercism_ThomasZumsteg/openAI/ChatGPT4_meetup_v1.c",
+            "log": "",
+            "execution_time_ms": 0.730551,
+            "CPU_usage": "67",
+            "RAM_usage": "8576",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "c_meetup_Exercism (vlzware)",
+        "filename": "meetup.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/meetup_Exercism_vlzware/claude/ClaudeSonnet4_meetup_v1.c",
+            "log": "",
+            "execution_time_ms": 4.357279,
+            "CPU_usage": "6",
+            "RAM_usage": "8576",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "c_meetup_Exercism (vlzware)",
+        "filename": "meetup.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/meetup_Exercism_vlzware/gemini/GeminiFlash_meetup_v1.c",
+            "log": "",
+            "execution_time_ms": 1.068382,
+            "CPU_usage": "26",
+            "RAM_usage": "8576",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
           }
         ]
       }

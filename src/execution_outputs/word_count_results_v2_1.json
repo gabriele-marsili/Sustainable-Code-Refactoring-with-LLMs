@@ -1,11 +1,19 @@
 {
-  "execution_date": "2025-10-07 13:32:13",
+  "execution_date": "2025-10-15 12:54:02",
   "execution_metadata": {
     "total_tests": 18,
     "successful_tests": 18,
     "execution_time": "00h 00m 54s",
     "cluster": "cluster_word_count",
-    "test_type": "llm_v2"
+    "test_type": "llm_v2",
+    "last_updated": "2025-10-15 12:54:02",
+    "selective_execution": {
+      "languages": [
+        "cpp",
+        "c"
+      ],
+      "timestamp": "2025-10-15 12:54:02"
+    }
   },
   "results": {
     "python": [
@@ -350,6 +358,60 @@
     ],
     "c": [
       {
+        "id": "c_word_count_Exercism (paddydoyle)",
+        "filename": "word_count.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/word_count_Exercism_paddydoyle/openAI/ChatGPT4_word_count_v2.c",
+            "log": "",
+            "execution_time_ms": 1.298777,
+            "CPU_usage": "29",
+            "RAM_usage": "8576",
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "c_word_count_Exercism (ThomasZumsteg)",
+        "filename": "word_count.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/word_count_Exercism_ThomasZumsteg/gemini/GeminiFlash_word_count_v2.c",
+            "log": "",
+            "execution_time_ms": 0.533678,
+            "CPU_usage": "57",
+            "RAM_usage": "8576",
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "c_word_count_Exercism (ThomasZumsteg)",
+        "filename": "word_count.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/word_count_Exercism_ThomasZumsteg/claude/ClaudeSonnet4_word_count_v2.c",
+            "log": "",
+            "execution_time_ms": 2.347923,
+            "CPU_usage": "18",
+            "RAM_usage": "8576",
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
         "id": "c_word_count_Exercism (ThomasZumsteg)",
         "filename": "word_count.c",
         "language": "c",
@@ -358,33 +420,11 @@
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/word_count_Exercism_ThomasZumsteg/openAI/ChatGPT4_word_count_v2.c",
             "log": "",
-            "execution_time_ms": 0,
-            "CPU_usage": 7.0,
-            "RAM_usage": 2944,
-            "regressionTestPassed": false,
-            "success": null,
-            "error_message": null
-          },
-          {
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/word_count_Exercism_ThomasZumsteg/claude/ClaudeSonnet4_word_count_v2.c",
-            "log": "",
-            "execution_time_ms": 0,
-            "CPU_usage": 7.0,
-            "RAM_usage": 3328,
-            "regressionTestPassed": false,
-            "success": null,
-            "error_message": null
-          },
-          {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/word_count_Exercism_ThomasZumsteg/gemini/GeminiFlash_word_count_v2.c",
-            "log": "",
-            "execution_time_ms": 0,
-            "CPU_usage": 8.0,
-            "RAM_usage": 3328,
-            "regressionTestPassed": false,
-            "success": null,
+            "execution_time_ms": 1.343569,
+            "CPU_usage": "22",
+            "RAM_usage": "8576",
+            "regressionTestPassed": true,
+            "success": true,
             "error_message": null
           }
         ]
@@ -395,42 +435,78 @@
         "language": "c",
         "LLM_results": [
           {
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/word_count_Exercism_paddydoyle/openAI/ChatGPT4_word_count_v2.c",
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/word_count_Exercism_paddydoyle/gemini/GeminiFlash_word_count_v2.c",
             "log": "",
-            "execution_time_ms": 0,
-            "CPU_usage": 0.0,
-            "RAM_usage": 1280,
-            "regressionTestPassed": false,
-            "success": null,
+            "execution_time_ms": 1.462738,
+            "CPU_usage": "26",
+            "RAM_usage": "8576",
+            "regressionTestPassed": true,
+            "success": true,
             "error_message": null
-          },
+          }
+        ]
+      },
+      {
+        "id": "c_word_count_Exercism (paddydoyle)",
+        "filename": "word_count.c",
+        "language": "c",
+        "LLM_results": [
           {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/word_count_Exercism_paddydoyle/claude/ClaudeSonnet4_word_count_v2.c",
             "log": "",
-            "execution_time_ms": 0,
-            "CPU_usage": 0.0,
-            "RAM_usage": 1280,
-            "regressionTestPassed": false,
-            "success": null,
-            "error_message": null
-          },
-          {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/word_count_Exercism_paddydoyle/gemini/GeminiFlash_word_count_v2.c",
-            "log": "",
-            "execution_time_ms": 0,
-            "CPU_usage": 0.0,
-            "RAM_usage": 1280,
-            "regressionTestPassed": false,
-            "success": null,
+            "execution_time_ms": 1.19115,
+            "CPU_usage": "32",
+            "RAM_usage": "8576",
+            "regressionTestPassed": true,
+            "success": true,
             "error_message": null
           }
         ]
       }
     ],
     "cpp": [
+      {
+        "id": "cpp_word_count_Exercism (johnngugi)",
+        "filename": "word_count.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/word_count_Exercism_johnngugi/gemini/GeminiFlash_word_count_v2.cpp",
+            "log": "",
+            "execution_time_ms": 0,
+            "CPU_usage": 5.0,
+            "RAM_usage": 3968,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/word_count_Exercism_johnngugi/openAI/ChatGPT4_word_count_v2.cpp",
+            "log": "",
+            "execution_time_ms": 0,
+            "CPU_usage": 5.0,
+            "RAM_usage": 3968,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/word_count_Exercism_johnngugi/claude/ClaudeSonnet4_word_count_v2.cpp",
+            "log": "",
+            "execution_time_ms": 0,
+            "CPU_usage": 5.0,
+            "RAM_usage": 3968,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
       {
         "id": "cpp_word_count_Exercism (johnngugi)",
         "filename": "word_count.cpp",
@@ -512,6 +588,82 @@
         ]
       },
       {
+        "id": "cpp_word_count_Exercism (cmccandless)",
+        "filename": "word_count.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/word_count_Exercism_cmccandless/openAI/ChatGPT4_word_count_v2.cpp",
+            "log": "",
+            "execution_time_ms": 0,
+            "CPU_usage": 5.0,
+            "RAM_usage": 4224,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/word_count_Exercism_cmccandless/claude/ClaudeSonnet4_word_count_v2.cpp",
+            "log": "",
+            "execution_time_ms": 0,
+            "CPU_usage": 4.0,
+            "RAM_usage": 4224,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/word_count_Exercism_cmccandless/gemini/GeminiFlash_word_count_v2.cpp",
+            "log": "",
+            "execution_time_ms": 0,
+            "CPU_usage": 4.0,
+            "RAM_usage": 4224,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_word_count_Exercism (johnngugi)",
+        "filename": "word_count.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/word_count_Exercism_johnngugi/gemini/GeminiFlash_word_count_v2.cpp",
+            "log": "",
+            "execution_time_ms": 2.819724,
+            "CPU_usage": "56",
+            "RAM_usage": "10496",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_word_count_Exercism (cmccandless)",
+        "filename": "word_count.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/word_count_Exercism_cmccandless/gemini/GeminiFlash_word_count_v2.cpp",
+            "log": "",
+            "execution_time_ms": 4.023499,
+            "CPU_usage": "36",
+            "RAM_usage": "10496",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
         "id": "cpp_word_count_Exercism (thefullarcticfox)",
         "filename": "word_count.cpp",
         "language": "cpp",
@@ -548,6 +700,42 @@
             "regressionTestPassed": true,
             "success": null,
             "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_word_count_Exercism (thefullarcticfox)",
+        "filename": "word_count.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/word_count_Exercism_thefullarcticfox/claude/ClaudeSonnet4_word_count_v2.cpp",
+            "log": "",
+            "execution_time_ms": 2.097001,
+            "CPU_usage": "68",
+            "RAM_usage": "10496",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 42"
+          }
+        ]
+      },
+      {
+        "id": "cpp_word_count_Exercism (thefullarcticfox)",
+        "filename": "word_count.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/word_count_Exercism_thefullarcticfox/gemini/GeminiFlash_word_count_v2.cpp",
+            "log": "",
+            "execution_time_ms": 1.777119,
+            "CPU_usage": "74",
+            "RAM_usage": "10496",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 42"
           }
         ]
       }

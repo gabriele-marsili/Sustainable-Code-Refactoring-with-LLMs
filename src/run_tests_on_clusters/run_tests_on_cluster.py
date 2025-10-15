@@ -1919,13 +1919,15 @@ class ClusterRunner:
             raise Exception("0 base task 0 llm task 0 base results and 0 llm results")
 
         # filter for languages :
+        #print(f"selected_languages:\n{selected_languages}")
         if len(selected_languages) > 0 and selected_languages[0] != "all":
 
             def check_task_language(task):
-                return task.language in selected_languages
+                #print(f"task:\n{task}")
+                return task['language'] in selected_languages
 
-            base_tasks = filter(check_task_language, base_tasks)
-            llm_tasks = filter(check_task_language, llm_tasks)
+            base_tasks = list(filter(check_task_language, base_tasks))
+            llm_tasks = list(filter(check_task_language, llm_tasks))
 
         # Execute base tests first if needed
         if base_tasks:
@@ -2434,7 +2436,7 @@ def main():
                             full=False,
                             run_number=run_num,
                             cluster_name=args.cluster_name,
-                            selected_languages=selected_languages
+                            selected_languages=list(selected_languages)
                         )
 
                         elapsed = time.time() - start_time
@@ -2452,7 +2454,7 @@ def main():
                         merged_data, lang_report = merger.merge_results(
                             existing_data=existing_data,
                             new_results=filtered_llm_results,
-                            selected_languages=selected_languages,
+                            selected_languages=list(selected_languages),
                             is_llm=True,
                         )
 
@@ -2510,7 +2512,7 @@ def main():
                         full=False,
                         run_number=run_num,
                         cluster_name=args.cluster_name,
-                        selected_languages=selected_languages
+                        selected_languages=list(selected_languages)
                     )
 
                     elapsed = time.time() - start_time
@@ -2528,7 +2530,7 @@ def main():
                     merged_data, lang_report = merger.merge_results(
                         existing_data=existing_data,
                         new_results=filtered_base_results,
-                        selected_languages=selected_languages,
+                        selected_languages=list(selected_languages),
                         is_llm=False,
                     )
 
@@ -2672,7 +2674,7 @@ def main():
                             full=full,
                             run_number=run_num,
                             cluster_name=cluster_name,
-                            selected_languages=selected_languages
+                            selected_languages=list(selected_languages)
                         )
 
                         elapsed = time.time() - start_time
@@ -2809,7 +2811,7 @@ def main():
                         full=args.full,
                         run_number=run_num,
                         cluster_name=cluster_name,
-                        selected_languages=selected_languages
+                        selected_languages=list(selected_languages)
                     )
 
                     elapsed = time.time() - start_time

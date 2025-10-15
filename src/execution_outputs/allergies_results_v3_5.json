@@ -1,11 +1,19 @@
 {
-  "execution_date": "2025-10-13 20:37:03",
+  "execution_date": "2025-10-15 12:49:47",
   "execution_metadata": {
     "total_tests": 49,
     "successful_tests": 41,
     "execution_time": "00h 00m 09s",
     "cluster": "cluster_allergies",
-    "test_type": "llm_v3"
+    "test_type": "llm_v3",
+    "last_updated": "2025-10-15 12:49:47",
+    "selective_execution": {
+      "languages": [
+        "c",
+        "cpp"
+      ],
+      "timestamp": "2025-10-15 12:49:47"
+    }
   },
   "results": {
     "javascript": [
@@ -698,6 +706,42 @@
             "error_message": "Docker exit code: 1"
           }
         ]
+      },
+      {
+        "id": "c_allergies_Exercism (m3g4d1v3r)",
+        "filename": "allergies.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/allergies_Exercism_m3g4d1v3r/openAI/ChatGPT4_allergies_v3.c",
+            "log": "",
+            "execution_time_ms": 0.913684,
+            "CPU_usage": "35",
+            "RAM_usage": "8576",
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "c_allergies_Exercism (m3g4d1v3r)",
+        "filename": "allergies.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/allergies_Exercism_m3g4d1v3r/claude/ClaudeSonnet4_allergies_v3.c",
+            "log": "",
+            "execution_time_ms": 2.587176,
+            "CPU_usage": "11",
+            "RAM_usage": "8576",
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
       }
     ],
     "cpp": [
@@ -738,13 +782,49 @@
         ]
       },
       {
+        "id": "cpp_allergies_Exercism (thefullarcticfox)",
+        "filename": "allergies.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/allergies_Exercism_thefullarcticfox/gemini/GeminiFlash_allergies_v3.cpp",
+            "log": "",
+            "execution_time_ms": 2.054145,
+            "CPU_usage": "69",
+            "RAM_usage": "10368",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_allergies_Exercism (thefullarcticfox)",
+        "filename": "allergies.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/allergies_Exercism_thefullarcticfox/claude/ClaudeSonnet4_allergies_v3.cpp",
+            "log": "",
+            "execution_time_ms": 1.674599,
+            "CPU_usage": "73",
+            "RAM_usage": "10368",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
         "id": "cpp_allergies_Exercism (johnngugi)",
         "filename": "allergies.cpp",
         "language": "cpp",
         "LLM_results": [
           {
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/allergies_Exercism_johnngugi/openAI/ChatGPT4_allergies_v3.cpp",
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/allergies_Exercism_johnngugi/gemini/GeminiFlash_allergies_v3.cpp",
             "log": "",
             "execution_time_ms": null,
             "CPU_usage": null,
@@ -761,8 +841,8 @@
         "language": "cpp",
         "LLM_results": [
           {
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/allergies_Exercism_johnngugi/claude/ClaudeSonnet4_allergies_v3.cpp",
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/allergies_Exercism_johnngugi/gemini/GeminiFlash_allergies_v3.cpp",
             "log": "",
             "execution_time_ms": null,
             "CPU_usage": null,
@@ -797,29 +877,11 @@
         "language": "cpp",
         "LLM_results": [
           {
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/allergies_Exercism_thefullarcticfox/openAI/ChatGPT4_allergies_v3.cpp",
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/allergies_Exercism_thefullarcticfox/claude/ClaudeSonnet4_allergies_v3.cpp",
             "log": "",
-            "execution_time_ms": null,
-            "CPU_usage": null,
-            "RAM_usage": null,
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": "Docker exit code: 1"
-          }
-        ]
-      },
-      {
-        "id": "cpp_allergies_Exercism (thefullarcticfox)",
-        "filename": "allergies.cpp",
-        "language": "cpp",
-        "LLM_results": [
-          {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/allergies_Exercism_thefullarcticfox/gemini/GeminiFlash_allergies_v3.cpp",
-            "log": "",
-            "execution_time_ms": 2.054145,
-            "CPU_usage": "69",
+            "execution_time_ms": 1.674599,
+            "CPU_usage": "73",
             "RAM_usage": "10368",
             "regressionTestPassed": false,
             "success": false,
@@ -836,9 +898,27 @@
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/allergies_Exercism_thefullarcticfox/claude/ClaudeSonnet4_allergies_v3.cpp",
             "log": "",
-            "execution_time_ms": 1.674599,
-            "CPU_usage": "73",
-            "RAM_usage": "10368",
+            "execution_time_ms": 3.069894,
+            "CPU_usage": "44",
+            "RAM_usage": "10496",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_allergies_Exercism (thefullarcticfox)",
+        "filename": "allergies.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/allergies_Exercism_thefullarcticfox/gemini/GeminiFlash_allergies_v3.cpp",
+            "log": "",
+            "execution_time_ms": 1.967289,
+            "CPU_usage": "65",
+            "RAM_usage": "10496",
             "regressionTestPassed": false,
             "success": false,
             "error_message": null
