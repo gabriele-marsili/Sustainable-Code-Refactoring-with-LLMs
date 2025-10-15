@@ -1,6 +1,7 @@
 #include "raindrops.h"
 #include <string.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 char *convert(char result[], int drops)
 {

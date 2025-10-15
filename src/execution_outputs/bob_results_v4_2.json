@@ -1,1126 +1,1392 @@
 {
-    "execution_date": "2025-08-20 18:51:08",
-    "results": {
-        "python": [
-            {
-                "id": "bob_4",
-                "filename": "bob.py",
-                "language": "python",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 40,
-                        "CPU_usage": 44.0,
-                        "RAM_usage": 13824,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "python/bob/openAI/ChatGPT4_bob_v4.py",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/bob/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 40,
-                        "CPU_usage": 51.0,
-                        "RAM_usage": 13952,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "python/bob/claude/ClaudeSonnet4_bob_v4.py",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/bob/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 80,
-                        "CPU_usage": 68.0,
-                        "RAM_usage": 13952,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "python/bob/gemini/GeminiFlash_bob_v4.py",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/bob/gemini/output.log"
-                    }
-                ]
-            }
-        ],
-        "javascript": [
-            {
-                "id": "javascript_bob_exercism-javascript-ffflorian",
-                "filename": "bob.js",
-                "language": "javascript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 510,
-                        "CPU_usage": 35.0,
-                        "RAM_usage": 81080,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "javascript/bob_exercism-javascript-ffflorian/openAI/ChatGPT4_bob_v4.js",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-ffflorian/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 330,
-                        "CPU_usage": 40.0,
-                        "RAM_usage": 80984,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "javascript/bob_exercism-javascript-ffflorian/claude/ClaudeSonnet4_bob_v4.js",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-ffflorian/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 350,
-                        "CPU_usage": 35.0,
-                        "RAM_usage": 82052,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "javascript/bob_exercism-javascript-ffflorian/gemini/GeminiFlash_bob_v4.js",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-ffflorian/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "javascript_bob_exercism-javascript-irvingbennett",
-                "filename": "bob.js",
-                "language": "javascript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 490,
-                        "CPU_usage": 35.0,
-                        "RAM_usage": 82428,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "javascript/bob_exercism-javascript-irvingbennett/openAI/ChatGPT4_bob_v4.js",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-irvingbennett/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 330,
-                        "CPU_usage": 47.0,
-                        "RAM_usage": 81244,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "javascript/bob_exercism-javascript-irvingbennett/claude/ClaudeSonnet4_bob_v4.js",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-irvingbennett/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 330,
-                        "CPU_usage": 45.0,
-                        "RAM_usage": 81328,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "javascript/bob_exercism-javascript-irvingbennett/gemini/GeminiFlash_bob_v4.js",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-irvingbennett/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "javascript_bob_exercism-javascript-bearguns",
-                "filename": "bob.js",
-                "language": "javascript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 580,
-                        "CPU_usage": 45.0,
-                        "RAM_usage": 82600,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "javascript/bob_exercism-javascript-bearguns/openAI/ChatGPT4_bob_v4.js",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-bearguns/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 350,
-                        "CPU_usage": 38.0,
-                        "RAM_usage": 82680,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "javascript/bob_exercism-javascript-bearguns/claude/ClaudeSonnet4_bob_v4.js",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-bearguns/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 330,
-                        "CPU_usage": 39.0,
-                        "RAM_usage": 82060,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "javascript/bob_exercism-javascript-bearguns/gemini/GeminiFlash_bob_v4.js",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-bearguns/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "javascript_bob_exercism-javascript-bearguns_bearguns",
-                "filename": "bob.js",
-                "language": "javascript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 290,
-                        "CPU_usage": 40.0,
-                        "RAM_usage": 82908,
-                        "regressionTestPassed": false,
-                        "LLM_type": "openAI",
-                        "path": "javascript/bob_exercism-javascript-PhymasSC/openAI/ChatGPT4_bob_v1.js",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-PhymasSC/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 310,
-                        "CPU_usage": 51.0,
-                        "RAM_usage": 82532,
-                        "regressionTestPassed": false,
-                        "LLM_type": "claude",
-                        "path": "javascript/bob_exercism-javascript-PhymasSC/claude/ClaudeSonnet4_bob_v1.js",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-PhymasSC/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 320,
-                        "CPU_usage": 42.0,
-                        "RAM_usage": 83720,
-                        "regressionTestPassed": false,
-                        "LLM_type": "gemini",
-                        "path": "javascript/bob_exercism-javascript-PhymasSC/gemini/GeminiFlash_bob_v1.js",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-PhymasSC/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "javascript_bob_exercism-javascript-PhymasSC_PhymasSC",
-                "filename": "bob.js",
-                "language": "javascript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 320,
-                        "CPU_usage": 45.0,
-                        "RAM_usage": 83108,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "javascript/bob_exercism-javascript-PhymasSC/openAI/ChatGPT4_bob_v4.js",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-PhymasSC/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 320,
-                        "CPU_usage": 47.0,
-                        "RAM_usage": 82956,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "javascript/bob_exercism-javascript-PhymasSC/claude/ClaudeSonnet4_bob_v4.js",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-PhymasSC/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 320,
-                        "CPU_usage": 44.0,
-                        "RAM_usage": 82608,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "javascript/bob_exercism-javascript-PhymasSC/gemini/GeminiFlash_bob_v4.js",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-PhymasSC/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "javascript_bob_exercism-javascript-irvingbennett_irvingbennett",
-                "filename": "bob.js",
-                "language": "javascript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 350,
-                        "CPU_usage": 37.0,
-                        "RAM_usage": 83360,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "javascript/bob_exercism-javascript-irvingbennett/openAI/ChatGPT4_bob_v4.js",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-irvingbennett/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 320,
-                        "CPU_usage": 38.0,
-                        "RAM_usage": 81464,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "javascript/bob_exercism-javascript-irvingbennett/claude/ClaudeSonnet4_bob_v4.js",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-irvingbennett/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 380,
-                        "CPU_usage": 31.0,
-                        "RAM_usage": 82560,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "javascript/bob_exercism-javascript-irvingbennett/gemini/GeminiFlash_bob_v4.js",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-irvingbennett/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "javascript_bob_exercism-javascript-ffflorian_ffflorian",
-                "filename": "bob.js",
-                "language": "javascript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 320,
-                        "CPU_usage": 56.0,
-                        "RAM_usage": 82760,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "javascript/bob_exercism-javascript-ffflorian/openAI/ChatGPT4_bob_v4.js",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-ffflorian/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 320,
-                        "CPU_usage": 43.0,
-                        "RAM_usage": 82388,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "javascript/bob_exercism-javascript-ffflorian/claude/ClaudeSonnet4_bob_v4.js",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-ffflorian/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 320,
-                        "CPU_usage": 43.0,
-                        "RAM_usage": 80532,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "javascript/bob_exercism-javascript-ffflorian/gemini/GeminiFlash_bob_v4.js",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-ffflorian/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "javascript_bob_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
-                "filename": "bob.js",
-                "language": "javascript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 330,
-                        "CPU_usage": 36.0,
-                        "RAM_usage": 81880,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "javascript/bob_exercism-javascript-ThomasZumsteg/openAI/ChatGPT4_bob_v4.js",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-ThomasZumsteg/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 390,
-                        "CPU_usage": 33.0,
-                        "RAM_usage": 82364,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "javascript/bob_exercism-javascript-ThomasZumsteg/claude/ClaudeSonnet4_bob_v4.js",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-ThomasZumsteg/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 310,
-                        "CPU_usage": 41.0,
-                        "RAM_usage": 82444,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "javascript/bob_exercism-javascript-ThomasZumsteg/gemini/GeminiFlash_bob_v4.js",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-ThomasZumsteg/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "javascript_bob_exercism-javascript-shyvum_shyvum",
-                "filename": "bob.js",
-                "language": "javascript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 340,
-                        "CPU_usage": 30.0,
-                        "RAM_usage": 81496,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "javascript/bob_exercism-javascript-shyvum/openAI/ChatGPT4_bob_v4.js",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-shyvum/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 370,
-                        "CPU_usage": 31.0,
-                        "RAM_usage": 80132,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "javascript/bob_exercism-javascript-shyvum/claude/ClaudeSonnet4_bob_v4.js",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-shyvum/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 500,
-                        "CPU_usage": 29.0,
-                        "RAM_usage": 80044,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "javascript/bob_exercism-javascript-shyvum/gemini/GeminiFlash_bob_v4.js",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-shyvum/gemini/output.log"
-                    }
-                ]
-            }
-        ],
-        "typescript": [
-            {
-                "id": "typescript_bob_exercism-javascript-samajammin",
-                "filename": "bob.ts",
-                "language": "typescript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 2481,
-                        "CPU_usage": 56.0,
-                        "RAM_usage": 219832,
-                        "success": true,
-                        "passed_tests": 17,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "typescript/bob_exercism-javascript-samajammin/openAI/ChatGPT4_bob_v4.ts",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_exercism-javascript-samajammin/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 2794,
-                        "CPU_usage": 45.0,
-                        "RAM_usage": 226828,
-                        "success": false,
-                        "passed_tests": 16,
-                        "failed_tests": 1,
-                        "regressionTestPassed": false,
-                        "LLM_type": "claude",
-                        "path": "typescript/bob_exercism-javascript-samajammin/claude/ClaudeSonnet4_bob_v4.ts",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_exercism-javascript-samajammin/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 2576,
-                        "CPU_usage": 47.0,
-                        "RAM_usage": 221896,
-                        "success": true,
-                        "passed_tests": 17,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "typescript/bob_exercism-javascript-samajammin/gemini/GeminiFlash_bob_v4.ts",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_exercism-javascript-samajammin/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "typescript_bob_Exercism-typescript-chriswilding",
-                "filename": "bob.ts",
-                "language": "typescript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 2969,
-                        "CPU_usage": 51.0,
-                        "RAM_usage": 225612,
-                        "success": true,
-                        "passed_tests": 24,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "typescript/bob_Exercism-typescript-chriswilding/openAI/ChatGPT4_bob_v4.ts",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-chriswilding/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 3104,
-                        "CPU_usage": 43.0,
-                        "RAM_usage": 227464,
-                        "success": true,
-                        "passed_tests": 24,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "typescript/bob_Exercism-typescript-chriswilding/claude/ClaudeSonnet4_bob_v4.ts",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-chriswilding/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 2966,
-                        "CPU_usage": 43.0,
-                        "RAM_usage": 225076,
-                        "success": true,
-                        "passed_tests": 24,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "typescript/bob_Exercism-typescript-chriswilding/gemini/GeminiFlash_bob_v4.ts",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-chriswilding/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "typescript_bob_Exercism-typescript-uzilan_uzilan",
-                "filename": "bob.ts",
-                "language": "typescript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 34930,
-                        "CPU_usage": 39.0,
-                        "RAM_usage": 215288,
-                        "success": true,
-                        "passed_tests": 24,
-                        "failed_tests": 0,
-                        "regressionTestPassed": false,
-                        "LLM_type": "openAI",
-                        "path": "typescript/bob_Exercism-typescript-uzilan/openAI/ChatGPT4_bob_v4.ts",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-uzilan/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 34930,
-                        "CPU_usage": 39.0,
-                        "RAM_usage": 215288,
-                        "success": true,
-                        "passed_tests": 24,
-                        "failed_tests": 0,
-                        "regressionTestPassed": false,
-                        "LLM_type": "claude",
-                        "path": "typescript/bob_Exercism-typescript-uzilan/claude/ClaudeSonnet4_bob_v4.ts",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-uzilan/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 34930,
-                        "CPU_usage": 39.0,
-                        "RAM_usage": 215288,
-                        "success": true,
-                        "passed_tests": 24,
-                        "failed_tests": 0,
-                        "regressionTestPassed": false,
-                        "LLM_type": "gemini",
-                        "path": "typescript/bob_Exercism-typescript-uzilan/gemini/GeminiFlash_bob_v4.ts",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-uzilan/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "typescript_bob_Exercism-typescript-thewanionly_thewanionly",
-                "filename": "bob.ts",
-                "language": "typescript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 32664,
-                        "CPU_usage": 42.0,
-                        "RAM_usage": 218088,
-                        "success": true,
-                        "passed_tests": 24,
-                        "failed_tests": 0,
-                        "regressionTestPassed": false,
-                        "LLM_type": "openAI",
-                        "path": "typescript/bob_Exercism-typescript-thewanionly/openAI/ChatGPT4_bob_v4.ts",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-thewanionly/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 32664,
-                        "CPU_usage": 42.0,
-                        "RAM_usage": 218088,
-                        "success": true,
-                        "passed_tests": 24,
-                        "failed_tests": 0,
-                        "regressionTestPassed": false,
-                        "LLM_type": "claude",
-                        "path": "typescript/bob_Exercism-typescript-thewanionly/claude/ClaudeSonnet4_bob_v4.ts",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-thewanionly/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 32664,
-                        "CPU_usage": 42.0,
-                        "RAM_usage": 218088,
-                        "success": true,
-                        "passed_tests": 24,
-                        "failed_tests": 0,
-                        "regressionTestPassed": false,
-                        "LLM_type": "gemini",
-                        "path": "typescript/bob_Exercism-typescript-thewanionly/gemini/GeminiFlash_bob_v4.ts",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-thewanionly/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "typescript_bob_Exercism-typescript-shybyte_shybyte",
-                "filename": "bob.ts",
-                "language": "typescript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 3112,
-                        "CPU_usage": 44.0,
-                        "RAM_usage": 221956,
-                        "success": true,
-                        "passed_tests": 17,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "typescript/bob_Exercism-typescript-shybyte/openAI/ChatGPT4_bob_v4.ts",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-shybyte/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 2642,
-                        "CPU_usage": 49.0,
-                        "RAM_usage": 222104,
-                        "success": true,
-                        "passed_tests": 17,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "typescript/bob_Exercism-typescript-shybyte/claude/ClaudeSonnet4_bob_v4.ts",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-shybyte/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 3356,
-                        "CPU_usage": 42.0,
-                        "RAM_usage": 221540,
-                        "success": true,
-                        "passed_tests": 17,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "typescript/bob_Exercism-typescript-shybyte/gemini/GeminiFlash_bob_v4.ts",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-shybyte/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "typescript_bob_Exercism-typescript-chriswilding_chriswilding",
-                "filename": "bob.ts",
-                "language": "typescript"
-            },
-            {
-                "id": "typescript_bob_Exercism-typescript-FilipeCerejo_FilipeCerejo",
-                "filename": "bob.ts",
-                "language": "typescript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 2680,
-                        "CPU_usage": 45.0,
-                        "RAM_usage": 221444,
-                        "success": true,
-                        "passed_tests": 1,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "typescript/bob_Exercism-typescript-FilipeCerejo/openAI/ChatGPT4_bob_v4.ts",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-FilipeCerejo/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 2529,
-                        "CPU_usage": 48.0,
-                        "RAM_usage": 221280,
-                        "success": true,
-                        "passed_tests": 1,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "typescript/bob_Exercism-typescript-FilipeCerejo/claude/ClaudeSonnet4_bob_v4.ts",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-FilipeCerejo/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 2305,
-                        "CPU_usage": 53.0,
-                        "RAM_usage": 220276,
-                        "success": true,
-                        "passed_tests": 1,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "typescript/bob_Exercism-typescript-FilipeCerejo/gemini/GeminiFlash_bob_v4.ts",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-FilipeCerejo/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "typescript_bob_Exercism-typescript-alemarr_alemarr",
-                "filename": "bob.ts",
-                "language": "typescript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 2947,
-                        "CPU_usage": 44.0,
-                        "RAM_usage": 220288,
-                        "success": true,
-                        "passed_tests": 24,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "typescript/bob_Exercism-typescript-alemarr/openAI/ChatGPT4_bob_v4.ts",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-alemarr/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 2673,
-                        "CPU_usage": 48.0,
-                        "RAM_usage": 225728,
-                        "success": true,
-                        "passed_tests": 24,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "typescript/bob_Exercism-typescript-alemarr/claude/ClaudeSonnet4_bob_v4.ts",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-alemarr/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 1616,
-                        "CPU_usage": 69.0,
-                        "RAM_usage": 222660,
-                        "success": true,
-                        "passed_tests": 24,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "typescript/bob_Exercism-typescript-alemarr/gemini/GeminiFlash_bob_v4.ts",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-alemarr/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "typescript_bob_exercism-javascript-samajammin_samajammin",
-                "filename": "bob.ts",
-                "language": "typescript",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 2533,
-                        "CPU_usage": 48.0,
-                        "RAM_usage": 224504,
-                        "success": true,
-                        "passed_tests": 17,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "typescript/bob_exercism-javascript-samajammin/openAI/ChatGPT4_bob_v4.ts",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_exercism-javascript-samajammin/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 2219,
-                        "CPU_usage": 54.0,
-                        "RAM_usage": 226168,
-                        "success": false,
-                        "passed_tests": 16,
-                        "failed_tests": 1,
-                        "regressionTestPassed": false,
-                        "LLM_type": "claude",
-                        "path": "typescript/bob_exercism-javascript-samajammin/claude/ClaudeSonnet4_bob_v4.ts",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_exercism-javascript-samajammin/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 1064,
-                        "CPU_usage": 107.0,
-                        "RAM_usage": 222748,
-                        "success": true,
-                        "passed_tests": 17,
-                        "failed_tests": 0,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "typescript/bob_exercism-javascript-samajammin/gemini/GeminiFlash_bob_v4.ts",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_exercism-javascript-samajammin/gemini/output.log"
-                    }
-                ]
-            }
-        ],
-        "java": [
-            {
-                "id": "Java_bob_exercism-java-blogscot",
-                "filename": "bob.java",
-                "language": "Java"
-            },
-            {
-                "id": "Java_bob_exercism-java-blogscot_blogscot",
-                "filename": "bob.java",
-                "language": "Java"
-            },
-            {
-                "id": "Java_bob_exercism-java-ThomasZumsteg_ThomasZumsteg",
-                "filename": "bob.java",
-                "language": "Java",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 2730,
-                        "CPU_usage": 52.0,
-                        "RAM_usage": 48080,
-                        "regressionTestPassed": false,
-                        "LLM_type": "openAI",
-                        "path": "Java/bob_exercism-java-ThomasZumsteg/openAI/ChatGPT4_bob_v4.java",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/bob_exercism-java-ThomasZumsteg/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 2730,
-                        "CPU_usage": 52.0,
-                        "RAM_usage": 48080,
-                        "regressionTestPassed": false,
-                        "LLM_type": "claude",
-                        "path": "Java/bob_exercism-java-ThomasZumsteg/claude/ClaudeSonnet4_bob_v4.java",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/bob_exercism-java-ThomasZumsteg/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 2730,
-                        "CPU_usage": 52.0,
-                        "RAM_usage": 48080,
-                        "regressionTestPassed": false,
-                        "LLM_type": "gemini",
-                        "path": "Java/bob_exercism-java-ThomasZumsteg/gemini/GeminiFlash_bob_v4.java",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/bob_exercism-java-ThomasZumsteg/gemini/output.log"
-                    }
-                ]
-            }
-        ],
-        "c": [
-            {
-                "id": "c_bob_Exercism (ThomasZumsteg)",
-                "filename": "bob.c",
-                "language": "c",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 0.0,
-                        "RAM_usage": 3456,
-                        "regressionTestPassed": false,
-                        "LLM_type": "openAI",
-                        "path": "c/bob_Exercism_ThomasZumsteg/openAI/ChatGPT4_bob_v4.c",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/bob_Exercism_ThomasZumsteg/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 12.0,
-                        "RAM_usage": 3456,
-                        "regressionTestPassed": false,
-                        "LLM_type": "claude",
-                        "path": "c/bob_Exercism_ThomasZumsteg/claude/ClaudeSonnet4_bob_v4.c",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/bob_Exercism_ThomasZumsteg/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 25.0,
-                        "RAM_usage": 3456,
-                        "regressionTestPassed": false,
-                        "LLM_type": "gemini",
-                        "path": "c/bob_Exercism_ThomasZumsteg/gemini/GeminiFlash_bob_v4.c",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/bob_Exercism_ThomasZumsteg/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "c_bob_Exercism (m3g4d1v3r)",
-                "filename": "bob.c",
-                "language": "c",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 50.0,
-                        "RAM_usage": 3456,
-                        "regressionTestPassed": false,
-                        "LLM_type": "openAI",
-                        "path": "c/bob_Exercism_m3g4d1v3r/openAI/ChatGPT4_bob_v4.c",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/bob_Exercism_m3g4d1v3r/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 33.0,
-                        "RAM_usage": 3456,
-                        "regressionTestPassed": false,
-                        "LLM_type": "claude",
-                        "path": "c/bob_Exercism_m3g4d1v3r/claude/ClaudeSonnet4_bob_v4.c",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/bob_Exercism_m3g4d1v3r/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 0.0,
-                        "RAM_usage": 3456,
-                        "regressionTestPassed": false,
-                        "LLM_type": "gemini",
-                        "path": "c/bob_Exercism_m3g4d1v3r/gemini/GeminiFlash_bob_v4.c",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/bob_Exercism_m3g4d1v3r/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "c_bob_Exercism (attilahorvath)",
-                "filename": "bob.c",
-                "language": "c",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 0.0,
-                        "RAM_usage": 3456,
-                        "regressionTestPassed": false,
-                        "LLM_type": "openAI",
-                        "path": "c/bob_Exercism_attilahorvath/openAI/ChatGPT4_bob_v4.c",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/bob_Exercism_attilahorvath/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 33.0,
-                        "RAM_usage": 3456,
-                        "regressionTestPassed": false,
-                        "LLM_type": "claude",
-                        "path": "c/bob_Exercism_attilahorvath/claude/ClaudeSonnet4_bob_v4.c",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/bob_Exercism_attilahorvath/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 50.0,
-                        "RAM_usage": 3456,
-                        "regressionTestPassed": false,
-                        "LLM_type": "gemini",
-                        "path": "c/bob_Exercism_attilahorvath/gemini/GeminiFlash_bob_v4.c",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/bob_Exercism_attilahorvath/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "c_bob_Exercism (vlzware)",
-                "filename": "bob.c",
-                "language": "c",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 0.0,
-                        "RAM_usage": 3456,
-                        "regressionTestPassed": false,
-                        "LLM_type": "openAI",
-                        "path": "c/bob_Exercism_vlzware/openAI/ChatGPT4_bob_v4.c",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/bob_Exercism_vlzware/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 14.0,
-                        "RAM_usage": 3456,
-                        "regressionTestPassed": false,
-                        "LLM_type": "claude",
-                        "path": "c/bob_Exercism_vlzware/claude/ClaudeSonnet4_bob_v4.c",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/bob_Exercism_vlzware/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 0.0,
-                        "RAM_usage": 3456,
-                        "regressionTestPassed": false,
-                        "LLM_type": "gemini",
-                        "path": "c/bob_Exercism_vlzware/gemini/GeminiFlash_bob_v4.c",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/bob_Exercism_vlzware/gemini/output.log"
-                    }
-                ]
-            }
-        ],
-        "cpp": [
-            {
-                "id": "cpp_bob_Exercism (johnngugi)",
-                "filename": "bob.cpp",
-                "language": "cpp",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 25.0,
-                        "RAM_usage": 4096,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "cpp/bob_Exercism_johnngugi/openAI/ChatGPT4_bob_v4.cpp",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/bob_Exercism_johnngugi/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 100.0,
-                        "RAM_usage": 4096,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "cpp/bob_Exercism_johnngugi/claude/ClaudeSonnet4_bob_v4.cpp",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/bob_Exercism_johnngugi/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 16.0,
-                        "RAM_usage": 4096,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "cpp/bob_Exercism_johnngugi/gemini/GeminiFlash_bob_v4.cpp",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/bob_Exercism_johnngugi/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "cpp_bob_Exercism (ThomasZumsteg)",
-                "filename": "bob.cpp",
-                "language": "cpp",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 25.0,
-                        "RAM_usage": 4096,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "cpp/bob_Exercism_ThomasZumsteg/openAI/ChatGPT4_bob_v4.cpp",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/bob_Exercism_ThomasZumsteg/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 12.0,
-                        "RAM_usage": 4096,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "cpp/bob_Exercism_ThomasZumsteg/claude/ClaudeSonnet4_bob_v4.cpp",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/bob_Exercism_ThomasZumsteg/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 20.0,
-                        "RAM_usage": 4096,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "cpp/bob_Exercism_ThomasZumsteg/gemini/GeminiFlash_bob_v4.cpp",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/bob_Exercism_ThomasZumsteg/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "cpp_bob_Exercism (cmccandless)",
-                "filename": "bob.cpp",
-                "language": "cpp",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 33.0,
-                        "RAM_usage": 4096,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "cpp/bob_Exercism_cmccandless/openAI/ChatGPT4_bob_v4.cpp",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/bob_Exercism_cmccandless/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 100.0,
-                        "RAM_usage": 4096,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "cpp/bob_Exercism_cmccandless/claude/ClaudeSonnet4_bob_v4.cpp",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/bob_Exercism_cmccandless/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 33.0,
-                        "RAM_usage": 4096,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "cpp/bob_Exercism_cmccandless/gemini/GeminiFlash_bob_v4.cpp",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/bob_Exercism_cmccandless/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "cpp_bob_Exercism (thefullarcticfox)",
-                "filename": "bob.cpp",
-                "language": "cpp",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 20.0,
-                        "RAM_usage": 3968,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "cpp/bob_Exercism_thefullarcticfox/openAI/ChatGPT4_bob_v4.cpp",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/bob_Exercism_thefullarcticfox/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 12.0,
-                        "RAM_usage": 3968,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "cpp/bob_Exercism_thefullarcticfox/claude/ClaudeSonnet4_bob_v4.cpp",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/bob_Exercism_thefullarcticfox/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 0,
-                        "CPU_usage": 12.0,
-                        "RAM_usage": 3968,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "cpp/bob_Exercism_thefullarcticfox/gemini/GeminiFlash_bob_v4.cpp",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/bob_Exercism_thefullarcticfox/gemini/output.log"
-                    }
-                ]
-            }
-        ],
-        "go": [
-            {
-                "id": "go_bob_Exercism (go_rootulp)",
-                "filename": "bob.go",
-                "language": "go",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 6720,
-                        "CPU_usage": 51.0,
-                        "RAM_usage": 233620,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "go/bob_Exercism_go_rootulp/openAI/ChatGPT4_bob_v4.go",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bob_Exercism_go_rootulp/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 6160,
-                        "CPU_usage": 50.0,
-                        "RAM_usage": 227072,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "go/bob_Exercism_go_rootulp/claude/ClaudeSonnet4_bob_v4.go",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bob_Exercism_go_rootulp/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 6070,
-                        "CPU_usage": 61.0,
-                        "RAM_usage": 215508,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "go/bob_Exercism_go_rootulp/gemini/GeminiFlash_bob_v4.go",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bob_Exercism_go_rootulp/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "go_bob_Exercism (go_ThomasZumsteg)",
-                "filename": "bob.go",
-                "language": "go",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 6580,
-                        "CPU_usage": 50.0,
-                        "RAM_usage": 217380,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "go/bob_Exercism_go_ThomasZumsteg/openAI/ChatGPT4_bob_v4.go",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bob_Exercism_go_ThomasZumsteg/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 6090,
-                        "CPU_usage": 49.0,
-                        "RAM_usage": 222180,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "go/bob_Exercism_go_ThomasZumsteg/claude/ClaudeSonnet4_bob_v4.go",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bob_Exercism_go_ThomasZumsteg/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 6029,
-                        "CPU_usage": 67.0,
-                        "RAM_usage": 211628,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "go/bob_Exercism_go_ThomasZumsteg/gemini/GeminiFlash_bob_v4.go",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bob_Exercism_go_ThomasZumsteg/gemini/output.log"
-                    }
-                ]
-            },
-            {
-                "id": "go_bob_Exercism (go_drapala)",
-                "filename": "bob.go",
-                "language": "go",
-                "LLM_results": [
-                    {
-                        "execution_time_ms": 6490,
-                        "CPU_usage": 48.0,
-                        "RAM_usage": 226032,
-                        "regressionTestPassed": true,
-                        "LLM_type": "openAI",
-                        "path": "go/bob_Exercism_go_drapala/openAI/ChatGPT4_bob_v4.go",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bob_Exercism_go_drapala/openAI/output.log"
-                    },
-                    {
-                        "execution_time_ms": 6180,
-                        "CPU_usage": 50.0,
-                        "RAM_usage": 218480,
-                        "regressionTestPassed": true,
-                        "LLM_type": "claude",
-                        "path": "go/bob_Exercism_go_drapala/claude/ClaudeSonnet4_bob_v4.go",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bob_Exercism_go_drapala/claude/output.log"
-                    },
-                    {
-                        "execution_time_ms": 5860,
-                        "CPU_usage": 81.0,
-                        "RAM_usage": 224764,
-                        "regressionTestPassed": true,
-                        "LLM_type": "gemini",
-                        "path": "go/bob_Exercism_go_drapala/gemini/GeminiFlash_bob_v4.go",
-                        "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bob_Exercism_go_drapala/gemini/output.log"
-                    }
-                ]
-            }
+  "execution_date": "2025-10-13 21:18:54",
+  "execution_metadata": {
+    "total_tests": 51,
+    "successful_tests": 51,
+    "execution_time": "00h 00m 08s",
+    "cluster": "cluster_bob",
+    "test_type": "llm_v4"
+  },
+  "results": {
+    "python": [
+      {
+        "id": "bob_4",
+        "filename": "bob.py",
+        "language": "python",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "python/bob/openAI/ChatGPT4_bob_v4.py",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/bob/openAI/output.log",
+            "execution_time_ms": 40,
+            "CPU_usage": 44.0,
+            "RAM_usage": 13824,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "python/bob/claude/ClaudeSonnet4_bob_v4.py",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/bob/claude/output.log",
+            "execution_time_ms": 40,
+            "CPU_usage": 51.0,
+            "RAM_usage": 13952,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "python/bob/gemini/GeminiFlash_bob_v4.py",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/bob/gemini/output.log",
+            "execution_time_ms": 80,
+            "CPU_usage": 68.0,
+            "RAM_usage": 13952,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
         ]
-    }
+      }
+    ],
+    "javascript": [
+      {
+        "id": "javascript_bob_exercism-javascript-ffflorian",
+        "filename": "bob.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "javascript/bob_exercism-javascript-ffflorian/openAI/ChatGPT4_bob_v4.js",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-ffflorian/openAI/output.log",
+            "execution_time_ms": 510,
+            "CPU_usage": 35.0,
+            "RAM_usage": 81080,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "javascript/bob_exercism-javascript-ffflorian/claude/ClaudeSonnet4_bob_v4.js",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-ffflorian/claude/output.log",
+            "execution_time_ms": 330,
+            "CPU_usage": 40.0,
+            "RAM_usage": 80984,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "javascript/bob_exercism-javascript-ffflorian/gemini/GeminiFlash_bob_v4.js",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-ffflorian/gemini/output.log",
+            "execution_time_ms": 350,
+            "CPU_usage": 35.0,
+            "RAM_usage": 82052,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_bob_exercism-javascript-irvingbennett",
+        "filename": "bob.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "javascript/bob_exercism-javascript-irvingbennett/openAI/ChatGPT4_bob_v4.js",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-irvingbennett/openAI/output.log",
+            "execution_time_ms": 490,
+            "CPU_usage": 35.0,
+            "RAM_usage": 82428,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "javascript/bob_exercism-javascript-irvingbennett/claude/ClaudeSonnet4_bob_v4.js",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-irvingbennett/claude/output.log",
+            "execution_time_ms": 330,
+            "CPU_usage": 47.0,
+            "RAM_usage": 81244,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "javascript/bob_exercism-javascript-irvingbennett/gemini/GeminiFlash_bob_v4.js",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-irvingbennett/gemini/output.log",
+            "execution_time_ms": 330,
+            "CPU_usage": 45.0,
+            "RAM_usage": 81328,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_bob_exercism-javascript-bearguns",
+        "filename": "bob.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "javascript/bob_exercism-javascript-bearguns/openAI/ChatGPT4_bob_v4.js",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-bearguns/openAI/output.log",
+            "execution_time_ms": 580,
+            "CPU_usage": 45.0,
+            "RAM_usage": 82600,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "javascript/bob_exercism-javascript-bearguns/claude/ClaudeSonnet4_bob_v4.js",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-bearguns/claude/output.log",
+            "execution_time_ms": 350,
+            "CPU_usage": 38.0,
+            "RAM_usage": 82680,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "javascript/bob_exercism-javascript-bearguns/gemini/GeminiFlash_bob_v4.js",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-bearguns/gemini/output.log",
+            "execution_time_ms": 330,
+            "CPU_usage": 39.0,
+            "RAM_usage": 82060,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_bob_exercism-javascript-bearguns_bearguns",
+        "filename": "bob.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "javascript/bob_exercism-javascript-PhymasSC/openAI/ChatGPT4_bob_v1.js",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-PhymasSC/openAI/output.log",
+            "execution_time_ms": 290,
+            "CPU_usage": 40.0,
+            "RAM_usage": 82908,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "javascript/bob_exercism-javascript-PhymasSC/claude/ClaudeSonnet4_bob_v1.js",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-PhymasSC/claude/output.log",
+            "execution_time_ms": 310,
+            "CPU_usage": 51.0,
+            "RAM_usage": 82532,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "javascript/bob_exercism-javascript-PhymasSC/gemini/GeminiFlash_bob_v1.js",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-PhymasSC/gemini/output.log",
+            "execution_time_ms": 320,
+            "CPU_usage": 42.0,
+            "RAM_usage": 83720,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_bob_exercism-javascript-PhymasSC_PhymasSC",
+        "filename": "bob.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "javascript/bob_exercism-javascript-PhymasSC/openAI/ChatGPT4_bob_v4.js",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-PhymasSC/openAI/output.log",
+            "execution_time_ms": 320,
+            "CPU_usage": 45.0,
+            "RAM_usage": 83108,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "javascript/bob_exercism-javascript-PhymasSC/claude/ClaudeSonnet4_bob_v4.js",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-PhymasSC/claude/output.log",
+            "execution_time_ms": 320,
+            "CPU_usage": 47.0,
+            "RAM_usage": 82956,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "javascript/bob_exercism-javascript-PhymasSC/gemini/GeminiFlash_bob_v4.js",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-PhymasSC/gemini/output.log",
+            "execution_time_ms": 320,
+            "CPU_usage": 44.0,
+            "RAM_usage": 82608,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_bob_exercism-javascript-irvingbennett_irvingbennett",
+        "filename": "bob.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "javascript/bob_exercism-javascript-irvingbennett/openAI/ChatGPT4_bob_v4.js",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-irvingbennett/openAI/output.log",
+            "execution_time_ms": 350,
+            "CPU_usage": 37.0,
+            "RAM_usage": 83360,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "javascript/bob_exercism-javascript-irvingbennett/claude/ClaudeSonnet4_bob_v4.js",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-irvingbennett/claude/output.log",
+            "execution_time_ms": 320,
+            "CPU_usage": 38.0,
+            "RAM_usage": 81464,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "javascript/bob_exercism-javascript-irvingbennett/gemini/GeminiFlash_bob_v4.js",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-irvingbennett/gemini/output.log",
+            "execution_time_ms": 380,
+            "CPU_usage": 31.0,
+            "RAM_usage": 82560,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_bob_exercism-javascript-ffflorian_ffflorian",
+        "filename": "bob.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "javascript/bob_exercism-javascript-ffflorian/openAI/ChatGPT4_bob_v4.js",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-ffflorian/openAI/output.log",
+            "execution_time_ms": 320,
+            "CPU_usage": 56.0,
+            "RAM_usage": 82760,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "javascript/bob_exercism-javascript-ffflorian/claude/ClaudeSonnet4_bob_v4.js",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-ffflorian/claude/output.log",
+            "execution_time_ms": 320,
+            "CPU_usage": 43.0,
+            "RAM_usage": 82388,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "javascript/bob_exercism-javascript-ffflorian/gemini/GeminiFlash_bob_v4.js",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-ffflorian/gemini/output.log",
+            "execution_time_ms": 320,
+            "CPU_usage": 43.0,
+            "RAM_usage": 80532,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_bob_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
+        "filename": "bob.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "javascript/bob_exercism-javascript-ThomasZumsteg/openAI/ChatGPT4_bob_v4.js",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-ThomasZumsteg/openAI/output.log",
+            "execution_time_ms": 330,
+            "CPU_usage": 36.0,
+            "RAM_usage": 81880,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "javascript/bob_exercism-javascript-ThomasZumsteg/claude/ClaudeSonnet4_bob_v4.js",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-ThomasZumsteg/claude/output.log",
+            "execution_time_ms": 390,
+            "CPU_usage": 33.0,
+            "RAM_usage": 82364,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "javascript/bob_exercism-javascript-ThomasZumsteg/gemini/GeminiFlash_bob_v4.js",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-ThomasZumsteg/gemini/output.log",
+            "execution_time_ms": 310,
+            "CPU_usage": 41.0,
+            "RAM_usage": 82444,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "javascript_bob_exercism-javascript-shyvum_shyvum",
+        "filename": "bob.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "javascript/bob_exercism-javascript-shyvum/openAI/ChatGPT4_bob_v4.js",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-shyvum/openAI/output.log",
+            "execution_time_ms": 340,
+            "CPU_usage": 30.0,
+            "RAM_usage": 81496,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "javascript/bob_exercism-javascript-shyvum/claude/ClaudeSonnet4_bob_v4.js",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-shyvum/claude/output.log",
+            "execution_time_ms": 370,
+            "CPU_usage": 31.0,
+            "RAM_usage": 80132,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "javascript/bob_exercism-javascript-shyvum/gemini/GeminiFlash_bob_v4.js",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bob_exercism-javascript-shyvum/gemini/output.log",
+            "execution_time_ms": 500,
+            "CPU_usage": 29.0,
+            "RAM_usage": 80044,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      }
+    ],
+    "typescript": [
+      {
+        "id": "typescript_bob_exercism-javascript-samajammin",
+        "filename": "bob.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "typescript/bob_exercism-javascript-samajammin/openAI/ChatGPT4_bob_v4.ts",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_exercism-javascript-samajammin/openAI/output.log",
+            "execution_time_ms": 2481,
+            "CPU_usage": 56.0,
+            "RAM_usage": 219832,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "typescript/bob_exercism-javascript-samajammin/claude/ClaudeSonnet4_bob_v4.ts",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_exercism-javascript-samajammin/claude/output.log",
+            "execution_time_ms": 2794,
+            "CPU_usage": 45.0,
+            "RAM_usage": 226828,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "typescript/bob_exercism-javascript-samajammin/gemini/GeminiFlash_bob_v4.ts",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_exercism-javascript-samajammin/gemini/output.log",
+            "execution_time_ms": 2576,
+            "CPU_usage": 47.0,
+            "RAM_usage": 221896,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_bob_Exercism-typescript-chriswilding",
+        "filename": "bob.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "typescript/bob_Exercism-typescript-chriswilding/openAI/ChatGPT4_bob_v4.ts",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-chriswilding/openAI/output.log",
+            "execution_time_ms": 2969,
+            "CPU_usage": 51.0,
+            "RAM_usage": 225612,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "typescript/bob_Exercism-typescript-chriswilding/claude/ClaudeSonnet4_bob_v4.ts",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-chriswilding/claude/output.log",
+            "execution_time_ms": 3104,
+            "CPU_usage": 43.0,
+            "RAM_usage": 227464,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "typescript/bob_Exercism-typescript-chriswilding/gemini/GeminiFlash_bob_v4.ts",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-chriswilding/gemini/output.log",
+            "execution_time_ms": 2966,
+            "CPU_usage": 43.0,
+            "RAM_usage": 225076,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_bob_Exercism-typescript-uzilan_uzilan",
+        "filename": "bob.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "typescript/bob_Exercism-typescript-uzilan/openAI/ChatGPT4_bob_v4.ts",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-uzilan/openAI/output.log",
+            "execution_time_ms": 34930,
+            "CPU_usage": 39.0,
+            "RAM_usage": 215288,
+            "regressionTestPassed": false,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "typescript/bob_Exercism-typescript-uzilan/claude/ClaudeSonnet4_bob_v4.ts",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-uzilan/claude/output.log",
+            "execution_time_ms": 34930,
+            "CPU_usage": 39.0,
+            "RAM_usage": 215288,
+            "regressionTestPassed": false,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "typescript/bob_Exercism-typescript-uzilan/gemini/GeminiFlash_bob_v4.ts",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-uzilan/gemini/output.log",
+            "execution_time_ms": 34930,
+            "CPU_usage": 39.0,
+            "RAM_usage": 215288,
+            "regressionTestPassed": false,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_bob_Exercism-typescript-thewanionly_thewanionly",
+        "filename": "bob.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "typescript/bob_Exercism-typescript-thewanionly/openAI/ChatGPT4_bob_v4.ts",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-thewanionly/openAI/output.log",
+            "execution_time_ms": 32664,
+            "CPU_usage": 42.0,
+            "RAM_usage": 218088,
+            "regressionTestPassed": false,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "typescript/bob_Exercism-typescript-thewanionly/claude/ClaudeSonnet4_bob_v4.ts",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-thewanionly/claude/output.log",
+            "execution_time_ms": 32664,
+            "CPU_usage": 42.0,
+            "RAM_usage": 218088,
+            "regressionTestPassed": false,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "typescript/bob_Exercism-typescript-thewanionly/gemini/GeminiFlash_bob_v4.ts",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-thewanionly/gemini/output.log",
+            "execution_time_ms": 32664,
+            "CPU_usage": 42.0,
+            "RAM_usage": 218088,
+            "regressionTestPassed": false,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_bob_Exercism-typescript-shybyte_shybyte",
+        "filename": "bob.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "typescript/bob_Exercism-typescript-shybyte/openAI/ChatGPT4_bob_v4.ts",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-shybyte/openAI/output.log",
+            "execution_time_ms": 3112,
+            "CPU_usage": 44.0,
+            "RAM_usage": 221956,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "typescript/bob_Exercism-typescript-shybyte/claude/ClaudeSonnet4_bob_v4.ts",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-shybyte/claude/output.log",
+            "execution_time_ms": 2642,
+            "CPU_usage": 49.0,
+            "RAM_usage": 222104,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "typescript/bob_Exercism-typescript-shybyte/gemini/GeminiFlash_bob_v4.ts",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-shybyte/gemini/output.log",
+            "execution_time_ms": 3356,
+            "CPU_usage": 42.0,
+            "RAM_usage": 221540,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_bob_Exercism-typescript-chriswilding_chriswilding",
+        "filename": "bob.ts",
+        "language": "typescript",
+        "LLM_results": []
+      },
+      {
+        "id": "typescript_bob_Exercism-typescript-FilipeCerejo_FilipeCerejo",
+        "filename": "bob.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "typescript/bob_Exercism-typescript-FilipeCerejo/openAI/ChatGPT4_bob_v4.ts",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-FilipeCerejo/openAI/output.log",
+            "execution_time_ms": 2680,
+            "CPU_usage": 45.0,
+            "RAM_usage": 221444,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "typescript/bob_Exercism-typescript-FilipeCerejo/claude/ClaudeSonnet4_bob_v4.ts",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-FilipeCerejo/claude/output.log",
+            "execution_time_ms": 2529,
+            "CPU_usage": 48.0,
+            "RAM_usage": 221280,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "typescript/bob_Exercism-typescript-FilipeCerejo/gemini/GeminiFlash_bob_v4.ts",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-FilipeCerejo/gemini/output.log",
+            "execution_time_ms": 2305,
+            "CPU_usage": 53.0,
+            "RAM_usage": 220276,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_bob_Exercism-typescript-alemarr_alemarr",
+        "filename": "bob.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "typescript/bob_Exercism-typescript-alemarr/openAI/ChatGPT4_bob_v4.ts",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-alemarr/openAI/output.log",
+            "execution_time_ms": 2947,
+            "CPU_usage": 44.0,
+            "RAM_usage": 220288,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "typescript/bob_Exercism-typescript-alemarr/claude/ClaudeSonnet4_bob_v4.ts",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-alemarr/claude/output.log",
+            "execution_time_ms": 2673,
+            "CPU_usage": 48.0,
+            "RAM_usage": 225728,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "typescript/bob_Exercism-typescript-alemarr/gemini/GeminiFlash_bob_v4.ts",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_Exercism-typescript-alemarr/gemini/output.log",
+            "execution_time_ms": 1616,
+            "CPU_usage": 69.0,
+            "RAM_usage": 222660,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_bob_exercism-javascript-samajammin_samajammin",
+        "filename": "bob.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "typescript/bob_exercism-javascript-samajammin/openAI/ChatGPT4_bob_v4.ts",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_exercism-javascript-samajammin/openAI/output.log",
+            "execution_time_ms": 2533,
+            "CPU_usage": 48.0,
+            "RAM_usage": 224504,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "typescript/bob_exercism-javascript-samajammin/claude/ClaudeSonnet4_bob_v4.ts",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_exercism-javascript-samajammin/claude/output.log",
+            "execution_time_ms": 2219,
+            "CPU_usage": 54.0,
+            "RAM_usage": 226168,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "typescript/bob_exercism-javascript-samajammin/gemini/GeminiFlash_bob_v4.ts",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bob_exercism-javascript-samajammin/gemini/output.log",
+            "execution_time_ms": 1064,
+            "CPU_usage": 107.0,
+            "RAM_usage": 222748,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      }
+    ],
+    "Java": [
+      {
+        "id": "Java_bob_exercism-java-blogscot",
+        "filename": "bob.java",
+        "language": "Java",
+        "LLM_results": []
+      },
+      {
+        "id": "Java_bob_exercism-java-blogscot_blogscot",
+        "filename": "bob.java",
+        "language": "Java",
+        "LLM_results": []
+      },
+      {
+        "id": "Java_bob_exercism-java-ThomasZumsteg_ThomasZumsteg",
+        "filename": "bob.java",
+        "language": "Java",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "Java/bob_exercism-java-ThomasZumsteg/openAI/ChatGPT4_bob_v4.java",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/bob_exercism-java-ThomasZumsteg/openAI/output.log",
+            "execution_time_ms": 2730,
+            "CPU_usage": 52.0,
+            "RAM_usage": 48080,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "Java/bob_exercism-java-ThomasZumsteg/claude/ClaudeSonnet4_bob_v4.java",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/bob_exercism-java-ThomasZumsteg/claude/output.log",
+            "execution_time_ms": 2730,
+            "CPU_usage": 52.0,
+            "RAM_usage": 48080,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "Java/bob_exercism-java-ThomasZumsteg/gemini/GeminiFlash_bob_v4.java",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/bob_exercism-java-ThomasZumsteg/gemini/output.log",
+            "execution_time_ms": 2730,
+            "CPU_usage": 52.0,
+            "RAM_usage": 48080,
+            "regressionTestPassed": false,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      }
+    ],
+    "go": [
+      {
+        "id": "go_bob_Exercism (go_rootulp)",
+        "filename": "bob.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "go/bob_Exercism_go_rootulp/openAI/ChatGPT4_bob_v4.go",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bob_Exercism_go_rootulp/openAI/output.log",
+            "execution_time_ms": 6720,
+            "CPU_usage": 51.0,
+            "RAM_usage": 233620,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "go/bob_Exercism_go_rootulp/claude/ClaudeSonnet4_bob_v4.go",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bob_Exercism_go_rootulp/claude/output.log",
+            "execution_time_ms": 6160,
+            "CPU_usage": 50.0,
+            "RAM_usage": 227072,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "go/bob_Exercism_go_rootulp/gemini/GeminiFlash_bob_v4.go",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bob_Exercism_go_rootulp/gemini/output.log",
+            "execution_time_ms": 6070,
+            "CPU_usage": 61.0,
+            "RAM_usage": 215508,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_bob_Exercism (go_ThomasZumsteg)",
+        "filename": "bob.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "go/bob_Exercism_go_ThomasZumsteg/openAI/ChatGPT4_bob_v4.go",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bob_Exercism_go_ThomasZumsteg/openAI/output.log",
+            "execution_time_ms": 6580,
+            "CPU_usage": 50.0,
+            "RAM_usage": 217380,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "go/bob_Exercism_go_ThomasZumsteg/claude/ClaudeSonnet4_bob_v4.go",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bob_Exercism_go_ThomasZumsteg/claude/output.log",
+            "execution_time_ms": 6090,
+            "CPU_usage": 49.0,
+            "RAM_usage": 222180,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "go/bob_Exercism_go_ThomasZumsteg/gemini/GeminiFlash_bob_v4.go",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bob_Exercism_go_ThomasZumsteg/gemini/output.log",
+            "execution_time_ms": 6029,
+            "CPU_usage": 67.0,
+            "RAM_usage": 211628,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_bob_Exercism (go_drapala)",
+        "filename": "bob.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "go/bob_Exercism_go_drapala/openAI/ChatGPT4_bob_v4.go",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bob_Exercism_go_drapala/openAI/output.log",
+            "execution_time_ms": 6490,
+            "CPU_usage": 48.0,
+            "RAM_usage": 226032,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "claude",
+            "path": "go/bob_Exercism_go_drapala/claude/ClaudeSonnet4_bob_v4.go",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bob_Exercism_go_drapala/claude/output.log",
+            "execution_time_ms": 6180,
+            "CPU_usage": 50.0,
+            "RAM_usage": 218480,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          },
+          {
+            "LLM_type": "gemini",
+            "path": "go/bob_Exercism_go_drapala/gemini/GeminiFlash_bob_v4.go",
+            "log": "/Users/piccoletto/Desktop/everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bob_Exercism_go_drapala/gemini/output.log",
+            "execution_time_ms": 5860,
+            "CPU_usage": 81.0,
+            "RAM_usage": 224764,
+            "regressionTestPassed": true,
+            "success": null,
+            "error_message": null
+          }
+        ]
+      }
+    ],
+    "c": [
+      {
+        "id": "c_bob_Exercism (ThomasZumsteg)",
+        "filename": "bob.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/bob_Exercism_ThomasZumsteg/claude/ClaudeSonnet4_bob_v4.c",
+            "log": "",
+            "execution_time_ms": 0.925546,
+            "CPU_usage": "38",
+            "RAM_usage": "8576",
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "c_bob_Exercism (ThomasZumsteg)",
+        "filename": "bob.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/bob_Exercism_ThomasZumsteg/gemini/GeminiFlash_bob_v4.c",
+            "log": "",
+            "execution_time_ms": 3.459223,
+            "CPU_usage": "8",
+            "RAM_usage": "8576",
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "c_bob_Exercism (m3g4d1v3r)",
+        "filename": "bob.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/bob_Exercism_m3g4d1v3r/openAI/ChatGPT4_bob_v4.c",
+            "log": "",
+            "execution_time_ms": 0.478877,
+            "CPU_usage": "53",
+            "RAM_usage": "8576",
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "c_bob_Exercism (ThomasZumsteg)",
+        "filename": "bob.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/bob_Exercism_ThomasZumsteg/openAI/ChatGPT4_bob_v4.c",
+            "log": "",
+            "execution_time_ms": 0.659795,
+            "CPU_usage": "43",
+            "RAM_usage": "8576",
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "c_bob_Exercism (m3g4d1v3r)",
+        "filename": "bob.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/bob_Exercism_m3g4d1v3r/claude/ClaudeSonnet4_bob_v4.c",
+            "log": "",
+            "execution_time_ms": 0.805129,
+            "CPU_usage": "31",
+            "RAM_usage": "8576",
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "c_bob_Exercism (m3g4d1v3r)",
+        "filename": "bob.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/bob_Exercism_m3g4d1v3r/gemini/GeminiFlash_bob_v4.c",
+            "log": "",
+            "execution_time_ms": 1.778424,
+            "CPU_usage": "12",
+            "RAM_usage": "8704",
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "c_bob_Exercism (attilahorvath)",
+        "filename": "bob.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/bob_Exercism_attilahorvath/openAI/ChatGPT4_bob_v4.c",
+            "log": "",
+            "execution_time_ms": 1.195964,
+            "CPU_usage": "29",
+            "RAM_usage": "8576",
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "c_bob_Exercism (attilahorvath)",
+        "filename": "bob.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/bob_Exercism_attilahorvath/claude/ClaudeSonnet4_bob_v4.c",
+            "log": "",
+            "execution_time_ms": 3.728599,
+            "CPU_usage": "9",
+            "RAM_usage": "8576",
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "c_bob_Exercism (attilahorvath)",
+        "filename": "bob.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/bob_Exercism_attilahorvath/gemini/GeminiFlash_bob_v4.c",
+            "log": "",
+            "execution_time_ms": 1.621174,
+            "CPU_usage": "13",
+            "RAM_usage": "8576",
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "c_bob_Exercism (vlzware)",
+        "filename": "bob.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/bob_Exercism_vlzware/openAI/ChatGPT4_bob_v4.c",
+            "log": "",
+            "execution_time_ms": 1.335839,
+            "CPU_usage": "21",
+            "RAM_usage": "8576",
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "c_bob_Exercism (vlzware)",
+        "filename": "bob.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/bob_Exercism_vlzware/claude/ClaudeSonnet4_bob_v4.c",
+            "log": "",
+            "execution_time_ms": 0.51471,
+            "CPU_usage": "52",
+            "RAM_usage": "8576",
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "c_bob_Exercism (vlzware)",
+        "filename": "bob.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/bob_Exercism_vlzware/gemini/GeminiFlash_bob_v4.c",
+            "log": "",
+            "execution_time_ms": 0.509461,
+            "CPU_usage": "53",
+            "RAM_usage": "8576",
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      }
+    ],
+    "cpp": [
+      {
+        "id": "cpp_bob_Exercism (johnngugi)",
+        "filename": "bob.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/bob_Exercism_johnngugi/claude/ClaudeSonnet4_bob_v4.cpp",
+            "log": "",
+            "execution_time_ms": 6.182109,
+            "CPU_usage": "32",
+            "RAM_usage": "10496",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 201"
+          }
+        ]
+      },
+      {
+        "id": "cpp_bob_Exercism (johnngugi)",
+        "filename": "bob.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/bob_Exercism_johnngugi/gemini/GeminiFlash_bob_v4.cpp",
+            "log": "",
+            "execution_time_ms": 8.905537,
+            "CPU_usage": "16",
+            "RAM_usage": "10624",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_bob_Exercism (johnngugi)",
+        "filename": "bob.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/bob_Exercism_johnngugi/openAI/ChatGPT4_bob_v4.cpp",
+            "log": "",
+            "execution_time_ms": 25.599566,
+            "CPU_usage": "7",
+            "RAM_usage": "10240",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_bob_Exercism (ThomasZumsteg)",
+        "filename": "bob.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/bob_Exercism_ThomasZumsteg/claude/ClaudeSonnet4_bob_v4.cpp",
+            "log": "",
+            "execution_time_ms": 2.240301,
+            "CPU_usage": "75",
+            "RAM_usage": "10240",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_bob_Exercism (ThomasZumsteg)",
+        "filename": "bob.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/bob_Exercism_ThomasZumsteg/gemini/GeminiFlash_bob_v4.cpp",
+            "log": "",
+            "execution_time_ms": 2.07355,
+            "CPU_usage": "65",
+            "RAM_usage": "10496",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_bob_Exercism (ThomasZumsteg)",
+        "filename": "bob.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/bob_Exercism_ThomasZumsteg/openAI/ChatGPT4_bob_v4.cpp",
+            "log": "",
+            "execution_time_ms": 3.328306,
+            "CPU_usage": "42",
+            "RAM_usage": "10496",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_bob_Exercism (cmccandless)",
+        "filename": "bob.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/bob_Exercism_cmccandless/claude/ClaudeSonnet4_bob_v4.cpp",
+            "log": "",
+            "execution_time_ms": 5.524815,
+            "CPU_usage": "26",
+            "RAM_usage": "10496",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_bob_Exercism (cmccandless)",
+        "filename": "bob.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/bob_Exercism_cmccandless/openAI/ChatGPT4_bob_v4.cpp",
+            "log": "",
+            "execution_time_ms": 3.907517,
+            "CPU_usage": "36",
+            "RAM_usage": "10496",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_bob_Exercism (cmccandless)",
+        "filename": "bob.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/bob_Exercism_cmccandless/gemini/GeminiFlash_bob_v4.cpp",
+            "log": "",
+            "execution_time_ms": 7.280948,
+            "CPU_usage": "20",
+            "RAM_usage": "10496",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_bob_Exercism (thefullarcticfox)",
+        "filename": "bob.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/bob_Exercism_thefullarcticfox/gemini/GeminiFlash_bob_v4.cpp",
+            "log": "",
+            "execution_time_ms": 3.341472,
+            "CPU_usage": "51",
+            "RAM_usage": "10368",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_bob_Exercism (thefullarcticfox)",
+        "filename": "bob.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/bob_Exercism_thefullarcticfox/claude/ClaudeSonnet4_bob_v4.cpp",
+            "log": "",
+            "execution_time_ms": 2.531718,
+            "CPU_usage": "51",
+            "RAM_usage": "10496",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_bob_Exercism (thefullarcticfox)",
+        "filename": "bob.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/bob_Exercism_thefullarcticfox/claude/ClaudeSonnet4_bob_v4.cpp",
+            "log": "",
+            "execution_time_ms": 2.690049,
+            "CPU_usage": "54",
+            "RAM_usage": "10368",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_bob_Exercism (thefullarcticfox)",
+        "filename": "bob.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/bob_Exercism_thefullarcticfox/openAI/ChatGPT4_bob_v4.cpp",
+            "log": "",
+            "execution_time_ms": 4.360012,
+            "CPU_usage": "31",
+            "RAM_usage": "10496",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_bob_Exercism (thefullarcticfox)",
+        "filename": "bob.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/bob_Exercism_thefullarcticfox/gemini/GeminiFlash_bob_v4.cpp",
+            "log": "",
+            "execution_time_ms": 1.977672,
+            "CPU_usage": "64",
+            "RAM_usage": "10496",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      }
+    ]
+  }
 }

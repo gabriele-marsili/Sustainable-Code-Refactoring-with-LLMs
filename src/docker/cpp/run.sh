@@ -1,10 +1,10 @@
 #!/bin/bash
 set -e
 
-echo "🔧 Compilazione con make..."
+> output.log
 
-# Pulisci prima
-make clean
+echo "🧹 Pulizia file precedenti..."
+make clean || true
 
 # Controlla se ci sono file sorgente
 if ! ls src/*.cpp >/dev/null 2>&1 && ! ls src/*.c >/dev/null 2>&1; then
@@ -45,7 +45,7 @@ fi
 
 # Prova a compilare
 echo "🔨 Iniziando compilazione..."
-if ! make; then
+if ! make 2>&1 | tee -a output.log; then
     echo "❌ Compilazione fallita"
     # Mostra gli errori di compilazione nel log
     echo "=== ERRORI DI COMPILAZIONE ===" > output.log
@@ -69,35 +69,27 @@ chmod +x ./test_exec
 
 echo "🧪 Esecuzione test con misurazione risorse..."
 
-# Esegui i test con timeout e gestione errori migliorata
-if timeout 300 /usr/bin/time -v ./test_exec > output.log 2>&1; then
+# Usa file temporanei per separare output test e metriche time
+TEST_OUTPUT=$(mktemp)
+TIME_METRICS=$(mktemp)
+
+# Usa Python wrapper per timing preciso al nanosecondo
+if timeout 300 python3 /usr/local/bin/time_wrapper.py ./test_exec > output.log 2>&1; then
     echo "✅ Test eseguiti con successo"
     
-    # Mostra un estratto dell'output per debug
-    echo "📄 Output dei test (prime 20 righe):"
-    head -20 output.log || true
-    
-    # Verifica se ci sono stati fallimenti nei test
-    if grep -i "failed\|error\|failure" output.log >/dev/null 2>&1; then
-        echo "⚠️  Possibili fallimenti nei test rilevati"
-        echo "🔍 Righe con errori/fallimenti:"
-        grep -i "failed\|error\|failure" output.log || true
-    fi
+    # Mostra estratto dell'output per debug
+    echo "📄 Metriche raccolte:"
+    grep -E "User time|System time|Maximum resident|Percent of CPU|Elapsed" output.log || true
 else
     EXIT_CODE=$?
-    echo "❌ Test falliti (exit code: $EXIT_CODE)"
+    echo "❌ Test falliti (exit code: $EXIT_CODE)" | tee -a output.log
     
-    # Mostra l'output anche in caso di fallimento
-    echo "📄 Output completo:"
-    cat output.log || echo "Impossibile leggere output.log"
-    
-    # Se il processo è terminato per timeout
+    # Se timeout
     if [ $EXIT_CODE -eq 124 ]; then
-        echo "⏰ Test terminati per timeout (300 secondi)"
-        echo "TIMEOUT" >> output.log
+        echo "⏰ Test terminati per timeout (300 secondi)" | tee -a output.log
     fi
     
-    exit 1
+    exit $EXIT_CODE
 fi
 
 echo "🎉 Tutti i controlli completati"

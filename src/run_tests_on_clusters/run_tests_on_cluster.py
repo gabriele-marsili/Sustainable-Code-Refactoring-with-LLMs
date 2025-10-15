@@ -21,10 +21,26 @@ from collections import defaultdict
 import argparse
 import tempfile
 import sys
+
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from utility_dir import utility_paths, general_utils
 from discordInteraction import create_webhook_reporter
 from dotenv import load_dotenv
+
+# Import language-selective runner module
+try:
+    from language_selective_runner import (
+        LanguageSelectiveResultMerger,
+        SelectiveExecutionReport,
+        LanguageExecutionReport,
+        parse_language_selection,
+        get_available_languages,
+    )
+
+    SELECTIVE_RUNNER_AVAILABLE = True
+except ImportError as e:
+    print(f"Warning: Language-selective runner not available: {e}")
+    SELECTIVE_RUNNER_AVAILABLE = False
 
 
 # Global configuration
@@ -61,6 +77,8 @@ class LLMresult:
             and self.CPU_usage is not None
             and self.RAM_usage is not None
             and self.regressionTestPassed is not None
+            and self.RAM_usage != 0
+            and self.execution_time_ms != 0
         )
 
     def to_json(self) -> Dict[str, Any]:
@@ -151,6 +169,8 @@ class BaseEntryResult:
             and self.CPU_usage is not None
             and self.RAM_usage is not None
             and self.regressionTestPassed is not None
+            and self.RAM_usage != 0
+            and self.execution_time_ms != 0
         )
 
     def to_json(self) -> Dict[str, Any]:
@@ -235,6 +255,8 @@ class ExecutionMetrics:
             and self.cpu_usage is not None
             and self.ram_usage is not None
             and self.regression_test_passed is not None
+            and self.ram_usage != 0
+            and self.execution_time_ms != 0
         )
 
     def to_dict(self) -> Dict[str, Any]:
@@ -406,6 +428,102 @@ class MetricsParser:
         except Exception as e:
             metrics.error_message = f"Parsing error: {str(e)}"
             logger.error(f"Metrics parsing failed: {e}", exc_info=True)
+
+        return metrics
+
+    @staticmethod
+    def parse_c_or_cpp(log_content: str) -> ExecutionMetrics:
+        logger = logging.getLogger(__name__ + ".MetricsParser")
+
+        metrics = ExecutionMetrics()
+        # user_match = re.search(r"User time \(seconds\): ([\d.]+)", log_content)
+
+        elapsed_ns_match = re.search(r"Elapsed_ns: (\d+)", log_content)
+
+        system_match = re.search(r"System time \(seconds\): ([\d.]+)", log_content)
+        ram_match = re.search(
+            r"Maximum resident set size \(kbytes\): (\d+)", log_content
+        )
+        cpu_match = re.search(r"Percent of CPU this job got: (\d+)%", log_content)
+
+        if elapsed_ns_match:
+            elapsed_ns = int(elapsed_ns_match.group(1))
+            # elapsed_us = elapsed_ns / 1_000
+            elapsed_ms = elapsed_ns / 1_000_000
+
+            metrics.execution_time_ms = elapsed_ms
+        else:
+            metrics.execution_time_ms = system_match.group(1) if system_match else None
+
+        metrics.cpu_usage = cpu_match.group(1) if cpu_match else None
+        metrics.ram_usage = ram_match.group(1) if ram_match else None
+
+        test_failed = False
+        test_passed = False
+
+        # Pattern per fallimenti
+        failure_patterns = [
+            (r"Tests:\s+\d+\s+failed", "jest_summary_fail"),
+            (r"FAIL\s+", "jest_fail_marker"),
+            (r"● .* ›", "jest_test_fail"),  # Correzione carattere
+            (r"(\d+) failed", "count_failed"),
+            (r"Test Suites:.*failed", "jest_suite_fail"),
+        ]
+
+        for pattern, pattern_name in failure_patterns:
+            if re.search(pattern, log_content, re.IGNORECASE):
+                logger.debug(f"Test failure detected: {pattern_name}")
+                test_failed = True
+                break
+
+        # Pattern per successi - SOLO se non ci sono fallimenti
+        if not test_failed:
+            success_patterns = [
+                (r"Tests:\s+(\d+)\s+passed,\s+\d+\s+total", "jest_passed"),
+                (r"Test Suites:.*(\d+)\s+passed", "jest_suites_passed"),
+                (r"PASS\s+", "pass_marker"),
+            ]
+
+            for pattern, pattern_name in success_patterns:
+                match = re.search(pattern, log_content, re.IGNORECASE)
+                if match:
+                    # Verifica che ci siano test passati
+                    if pattern_name == "jest_passed":
+                        passed_count = int(match.group(1))
+                        if passed_count > 0:
+                            test_passed = True
+                            logger.debug(f"Success: {passed_count} tests passed")
+                            break
+                    else:
+                        test_passed = True
+                        logger.debug(f"Success pattern: {pattern_name}")
+                        break
+
+            # Se non abbiamo trovato né successi né fallimenti, controlla exit code
+        if not test_failed and not test_passed:
+            # Cerca indicatori di errore generale
+            error_indicators = [
+                "Error:",
+                "Exception:",
+                "SyntaxError:",
+                "TypeError:",
+            ]
+            for indicator in error_indicators:
+                if indicator in log_content:
+                    test_failed = True
+                    logger.debug(f"Error indicator found: {indicator}")
+                    break
+
+        metrics.regression_test_passed = test_passed and not test_failed
+        metrics.success = metrics.is_valid() and metrics.regression_test_passed
+
+        logger.info(
+            f"👀 Parsing complete - Metrics are valid: {metrics.is_valid()}, "
+            f"Tests passed: {metrics.regression_test_passed}, "
+            f"Time: {metrics.execution_time_ms}ms, "
+            f"CPU: {metrics.cpu_usage}%, "
+            f"RAM: {metrics.ram_usage}KB"
+        )
 
         return metrics
 
@@ -702,6 +820,7 @@ class TestExecutor:
     def __init__(self, container_manager: ContainerManager):
         self.container_manager = container_manager
         self.logger = logging.getLogger(__name__ + ".TestExecutor")
+
         # Lock per linguaggio per evitare rebuild concorrenti
         self.language_locks = {}
         self.general_lock = threading.RLock()
@@ -835,6 +954,17 @@ class TestExecutor:
 
     def _setup_cpp_or_c(self, dockerfile_path: Path, mount_path: Path):
         """Setup C/C++ environment"""
+
+        # Copy time_wrapper.py (se esiste)
+        wrapper_src = dockerfile_path / "time_wrapper.py"
+        if wrapper_src.exists():
+            wrapper_dest = mount_path / "time_wrapper.py"
+            shutil.copy2(wrapper_src, wrapper_dest)
+            wrapper_dest.chmod(0o755)
+            print(f"Copied timing wrapper: {wrapper_dest}")
+        else:
+            print(f"wrapper_src does not exists : {wrapper_src}")
+
         # Copy Makefile
         makefile_src = dockerfile_path / "Makefile"
         if makefile_src.exists():
@@ -920,7 +1050,7 @@ class TestExecutor:
     """
 
     def _substitute_llm_code_in_temp(
-        self, entry: Dict, llm_info: Dict, temp_path: Path
+        self, entry: Dict, llm_info: Dict, temp_path: Path, debug=False
     ):
         """Substitute LLM code in temporary directory (no backup needed)"""
         try:
@@ -936,7 +1066,24 @@ class TestExecutor:
                 return
 
             # Determinare il file target nella directory temporanea
+
+            if debug:  # manual change default args value to enable
+                print(f"temp_path = {temp_path}")
+                for f in os.scandir(temp_path):
+
+                    def print_content(dir_entry: os.DirEntry[str]):
+                        name = "Dir" if dir_entry.is_dir() else "File"
+                        print(f"{name} {dir_entry.name}")
+                        if dir_entry.is_dir():
+                            print(f"Content in {dir_entry.name}:")
+                            for f in os.scandir(dir_entry.path):
+                                print_content(f)
+
+                    print_content(f)
+
             target_file = temp_path / entry["filename"]
+            if language in ["c", "cpp"]:
+                target_file = temp_path / "src" / entry["filename"]
 
             if not target_file.exists():
                 self.logger.warning(f"Target file not found in temp: {target_file}")
@@ -1127,12 +1274,14 @@ class TestExecutor:
 
         if test_files:
             self.logger.debug(f"Test files found: {[f.name for f in test_files]}")
-            
+
             # DEBUG: Verifica contenuto e path assoluti
             for tf in test_files:
                 self.logger.debug(f"Test file absolute path: {tf.absolute()}")
-                self.logger.debug(f"Test file relative to test_path: {tf.relative_to(test_path)}")
-            
+                self.logger.debug(
+                    f"Test file relative to test_path: {tf.relative_to(test_path)}"
+                )
+
             # --- DEBUG BLOCK: Print content of the test file before execution ---
             """
             for target_file_path in testFiles:
@@ -1173,7 +1322,9 @@ class TestExecutor:
             # Lista contenuto directory per debug
             if test_path.exists():
                 all_files = list(test_path.rglob("*"))
-                self.logger.error(f"Directory contents: {[str(f.relative_to(test_path)) for f in all_files if f.is_file()]}")
+                self.logger.error(
+                    f"Directory contents: {[str(f.relative_to(test_path)) for f in all_files if f.is_file()]}"
+                )
             return False
 
         self.logger.warning(f"Code file exists but no test files found in {test_path}")
@@ -1368,6 +1519,10 @@ class TestExecutor:
             else:
                 self.logger.debug("Parsing JavaScript as text")
                 metrics = MetricsParser.parse_time_output(log_content)
+
+        elif language == "c" or language == "cpp":
+            metrics = MetricsParser.parse_c_or_cpp(log_content)
+
         else:
             # Altri linguaggi
             metrics = MetricsParser.parse_time_output(log_content)
@@ -1403,10 +1558,10 @@ class TestExecutor:
         self.logger.debug(f"Container: {container_name}")
 
         if language in ["typescript", "javascript"]:
-                self.logger.debug("Directory structure before test execution:")
-                for item in mount_path.rglob("*"):
-                    if item.is_file():
-                        self.logger.debug(f"  {item.relative_to(mount_path)}")
+            self.logger.debug("Directory structure before test execution:")
+            for item in mount_path.rglob("*"):
+                if item.is_file():
+                    self.logger.debug(f"  {item.relative_to(mount_path)}")
 
         # Verifica che run.sh esista e sia eseguibile
         run_sh = mount_path / "run.sh"
@@ -1609,6 +1764,7 @@ class ClusterRunner:
         full: bool = False,
         run_number: int = 1,
         cluster_name="",
+        selected_languages=["all"],
     ) -> Tuple[List[BaseEntryResult], List[LLMentryResult]]:
         """Run all tests for a cluster with comprehensive error handling
 
@@ -1761,6 +1917,15 @@ class ClusterRunner:
             and len(llm_results) == 0
         ):
             raise Exception("0 base task 0 llm task 0 base results and 0 llm results")
+
+        # filter for languages :
+        if len(selected_languages) > 0 and selected_languages[0] != "all":
+
+            def check_task_language(task):
+                return task.language in selected_languages
+
+            base_tasks = filter(check_task_language, base_tasks)
+            llm_tasks = filter(check_task_language, llm_tasks)
 
         # Execute base tests first if needed
         if base_tasks:
@@ -2135,6 +2300,25 @@ def main():
     )
     parser.add_argument("--silent", action="store_true", help="Reduce output verbosity")
 
+    # Language-selective execution (NEW FEATURE)
+    parser.add_argument(
+        "--languages",
+        type=str,
+        default="all",
+        help="Comma-separated list of languages to execute (e.g., 'c,cpp') or 'all' for all languages (default: all)",
+    )
+    parser.add_argument(
+        "--selective-rerun",
+        action="store_true",
+        help="Enable selective re-execution mode: only runs specified languages and merges with existing results",
+    )
+    parser.add_argument(
+        "--execution-report-dir",
+        type=Path,
+        default=OUTPUT_DIR,
+        help="Directory to save selective execution reports",
+    )
+
     args = parser.parse_args()
 
     # Setup logging level
@@ -2151,6 +2335,234 @@ def main():
     # Initialize managers
     cluster_manager = ClusterManager(args.clusters_dir, args.output_dir)
     test_runner = ClusterRunner(max_workers=args.max_workers)
+
+    # Handle selective re-execution mode
+    if args.selective_rerun:
+        if not SELECTIVE_RUNNER_AVAILABLE:
+            print("Error: Language-selective runner module not available.")
+            print(
+                "Please ensure language_selective_runner.py is in the same directory."
+            )
+            return 1
+
+        print("\n" + "=" * 80)
+        print("SELECTIVE RE-EXECUTION MODE")
+        print("=" * 80)
+
+        # Parse selected languages
+        selected_languages = parse_language_selection(args.languages)
+        print(f"Selected languages: {', '.join(sorted(selected_languages))}")
+
+        # Validate we have a specific cluster
+        if not args.cluster_name:
+            print("Error: --cluster-name is required for selective re-execution")
+            return 1
+
+        cluster_path = args.clusters_dir / f"cluster_{args.cluster_name}.json"
+        if not cluster_path.exists():
+            print(f"Error: Cluster file not found: {cluster_path}")
+            return 1
+
+        # Initialize selective execution components
+        merger = LanguageSelectiveResultMerger(logger=logging.getLogger(__name__))
+        report = SelectiveExecutionReport(
+            cluster_name=args.cluster_name,
+            execution_timestamp=time.strftime("%Y-%m-%d %H:%M:%S"),
+            selected_languages=list(selected_languages),
+        )
+
+        # Determine test type
+        if args.full:
+            test_types = ["base", "llm"]
+        elif args.base_only:
+            test_types = ["base"]
+        elif args.llm_only:
+            test_types = ["llm"]
+        else:
+            print("Error: Must specify one of --base-only, --llm-only, or --full")
+            return 1
+
+        # Process each test type
+        for test_type in test_types:
+            is_llm = test_type == "llm"
+
+            if is_llm:
+                # Process each prompt version
+                prompt_versions = (
+                    range(1, 5) if args.prompt_version == -1 else [args.prompt_version]
+                )
+
+                for p_v in prompt_versions:
+                    print(f"\nProcessing LLM results (prompt v{p_v})...")
+
+                    # Process each run
+                    for run_num in range(1, args.run_quantity + 1):
+                        print(f"  Run {run_num}/{args.run_quantity}")
+
+                        # Determine output file path
+                        output_filename = (
+                            f"{args.cluster_name}_results_v{p_v}_{run_num}.json"
+                        )
+                        output_path = args.output_dir / output_filename
+
+                        # Load existing results
+                        existing_data = merger.load_existing_results(output_path)
+
+                        if existing_data is None:
+                            print(
+                                f"    Warning: No existing results found at {output_path}"
+                            )
+                            print("    Skipping this run - will execute fresh tests")
+                            # Fall back to normal execution
+                            continue
+
+                        # Create backup
+                        backup_path = merger.create_backup(output_path)
+                        if backup_path:
+                            report.backup_file = str(backup_path)
+
+                        # Execute tests for selected languages only
+                        print("    Executing tests for selected languages...")
+                        start_time = time.time()
+
+                        _, llm_results = test_runner.run_cluster_tests(
+                            cluster_path=cluster_path,
+                            base_only=False,
+                            llm_only=True,
+                            prompt_version=p_v,
+                            use_cache=not args.no_cache,
+                            full=False,
+                            run_number=run_num,
+                            cluster_name=args.cluster_name,
+                            selected_languages=selected_languages
+                        )
+
+                        elapsed = time.time() - start_time
+
+                        # Filter results to only selected languages
+                        filtered_llm_results = [
+                            r for r in llm_results if r.language in selected_languages
+                        ]
+
+                        print(
+                            f"    Executed {len(filtered_llm_results)} entries in {elapsed:.1f}s"
+                        )
+
+                        # Merge results
+                        merged_data, lang_report = merger.merge_results(
+                            existing_data=existing_data,
+                            new_results=filtered_llm_results,
+                            selected_languages=selected_languages,
+                            is_llm=True,
+                        )
+
+                        # Save merged results
+                        merger.save_merged_results(merged_data, output_path)
+                        print(f"    ✓ Saved merged results: {output_path.name}")
+                        print(
+                            f"      Valid new: {lang_report.valid_new_results}, "
+                            f"Preserved old: {lang_report.preserved_old_results}, "
+                            f"Invalid new: {lang_report.invalid_new_results}"
+                        )
+
+                        # Add to report
+                        report.add_language_report(lang_report)
+
+                        # Reset state for next run
+                        test_runner.execution_state = ExecutionState()
+
+            else:  # base code execution
+                print("\nProcessing base code results...")
+
+                # Process each run
+                for run_num in range(1, args.run_quantity + 1):
+                    print(f"  Run {run_num}/{args.run_quantity}")
+
+                    # Determine output file path
+                    output_filename = f"{args.cluster_name}_results_{run_num}.json"
+                    output_path = args.output_dir / output_filename
+
+                    # Load existing results
+                    existing_data = merger.load_existing_results(output_path)
+
+                    if existing_data is None:
+                        print(
+                            f"    Warning: No existing results found at {output_path}"
+                        )
+                        print("    Skipping this run - will execute fresh tests")
+                        continue
+
+                    # Create backup
+                    backup_path = merger.create_backup(output_path)
+                    if backup_path:
+                        report.backup_file = str(backup_path)
+
+                    # Execute tests for selected languages only
+                    print("    Executing tests for selected languages...")
+                    start_time = time.time()
+
+                    base_results, _ = test_runner.run_cluster_tests(
+                        cluster_path=cluster_path,
+                        base_only=True,
+                        llm_only=False,
+                        prompt_version=args.prompt_version,
+                        use_cache=not args.no_cache,
+                        full=False,
+                        run_number=run_num,
+                        cluster_name=args.cluster_name,
+                        selected_languages=selected_languages
+                    )
+
+                    elapsed = time.time() - start_time
+
+                    # Filter results to only selected languages
+                    filtered_base_results = [
+                        r for r in base_results if r.language in selected_languages
+                    ]
+
+                    print(
+                        f"    Executed {len(filtered_base_results)} entries in {elapsed:.1f}s"
+                    )
+
+                    # Merge results
+                    merged_data, lang_report = merger.merge_results(
+                        existing_data=existing_data,
+                        new_results=filtered_base_results,
+                        selected_languages=selected_languages,
+                        is_llm=False,
+                    )
+
+                    # Save merged results
+                    merger.save_merged_results(merged_data, output_path)
+                    print(f"    ✓ Saved merged results: {output_path.name}")
+                    print(
+                        f"      Valid new: {lang_report.valid_new_results}, "
+                        f"Preserved old: {lang_report.preserved_old_results}, "
+                        f"Invalid new: {lang_report.invalid_new_results}"
+                    )
+
+                    # Add to report
+                    report.add_language_report(lang_report)
+
+                    # Reset state for next run
+                    test_runner.execution_state = ExecutionState()
+
+        # Save execution report
+        report_filename = (
+            f"{args.cluster_name}_selective_execution_{int(time.time())}.json"
+        )
+        report_path = args.execution_report_dir / report_filename
+        report.save_to_file(report_path)
+
+        # Print summary
+        report.print_summary()
+        print(f"\n✓ Execution report saved to: {report_path}")
+
+        print("\n" + "=" * 80)
+        print("SELECTIVE RE-EXECUTION COMPLETED")
+        print("=" * 80)
+
+        return 0
 
     try:
         # Determine clusters to process
@@ -2194,42 +2606,44 @@ def main():
         test_type_desc = (
             "base" if args.base_only else f"LLM {v}" if args.llm_only else "full"
         )
-        
-        #re-run
+
+        # re-run
         to_rerun_cluster_list = [
-            'accumulate',
-            'acronym',
-            'allergies',
-            'alphametics',
-            'anagram',
-            'annalyns_infiltration',
-            'atbash_cipher',
-            'bank_account',
-            'beer_song',
-            'binary',
-            'binary_search',
-            'binary_search_tree',
-            'bird_watcher',
-            'bob',
-            'bracket_push',
-            'circular_buffer',
-            'clock',
-            'coordinate_transformation',
-            'darts',
-            'diamond',
-            'difference_of_squares'
+            "accumulate",
+            "acronym",
+            "allergies",
+            "alphametics",
+            "anagram",
+            "annalyns_infiltration",
+            "atbash_cipher",
+            "bank_account",
+            "beer_song",
+            "binary",
+            "binary_search",
+            "binary_search_tree",
+            "bird_watcher",
+            "bob",
+            "bracket_push",
+            "circular_buffer",
+            "clock",
+            "coordinate_transformation",
+            "darts",
+            "diamond",
+            "difference_of_squares",
         ]
-        
-        #print(f"Processing {len(clusters_to_process)} {test_type_desc} clusters...")
-        
-        #re-run
+
+        # print(f"Processing {len(clusters_to_process)} {test_type_desc} clusters...")
+
+        # re-run
         print(f"Processing {len(to_rerun_cluster_list)} {test_type_desc} clusters...")
 
         # Process each cluster
-        #for cluster_path in clusters_to_process:
+        # for cluster_path in clusters_to_process:
         #    cluster_name = cluster_path.stem.replace("cluster_", "")
         for cluster_name in to_rerun_cluster_list:
-            cluster_path = utility_paths.CLUSTERS_DIR_FILEPATH / f"cluster_{cluster_name}.json"
+            cluster_path = (
+                utility_paths.CLUSTERS_DIR_FILEPATH / f"cluster_{cluster_name}.json"
+            )
 
             print(f"\nProcessing cluster: {cluster_name}")
 
@@ -2258,6 +2672,7 @@ def main():
                             full=full,
                             run_number=run_num,
                             cluster_name=cluster_name,
+                            selected_languages=selected_languages
                         )
 
                         elapsed = time.time() - start_time
@@ -2394,6 +2809,7 @@ def main():
                         full=args.full,
                         run_number=run_num,
                         cluster_name=cluster_name,
+                        selected_languages=selected_languages
                     )
 
                     elapsed = time.time() - start_time
@@ -2556,4 +2972,5 @@ if __name__ == "__main__":
 # python3 run_tests_on_cluster.py --full --webhook --max-workers 6 --not-check-pending --prompt-version -1
 
 
+# run all (base + LLM) (5 times each) (every prompt v of LLMs) with check pending before:
 # python3 run_tests_on_cluster.py --full --webhook --max-workers 6 --prompt-version -1

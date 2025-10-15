@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y \
     valgrind \
     time \
     git \
+    python3 \
     cmake \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -40,5 +41,8 @@ RUN ldconfig
 
 # Copia i file di configurazione
 COPY . .
+COPY time_wrapper.py /usr/local/bin/time_wrapper.py
 
-ENTRYPOINT ["bash", "run.sh"]
+RUN chmod +x /usr/local/bin/time_wrapper.py
+
+#ENTRYPOINT ["bash", "run.sh"]
