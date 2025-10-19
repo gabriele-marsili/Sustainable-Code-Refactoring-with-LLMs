@@ -1,12 +1,4 @@
 {
-  "execution_date": "2025-10-13 22:23:35",
-  "execution_metadata": {
-    "total_tests": 42,
-    "successful_tests": 38,
-    "execution_time": "00h 00m 11s",
-    "cluster": "cluster_difference_of_squares",
-    "test_type": "llm_v1"
-  },
   "results": {
     "python": [
       {
@@ -17,86 +9,54 @@
           {
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/difference-of-squares/openAI/ChatGPT4_difference-of-squares_v1.py",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/difference-of-squares/openAI/output.log",
-            "execution_time_ms": 20,
-            "CPU_usage": 54.0,
-            "RAM_usage": 13824,
-            "regressionTestPassed": true,
-            "success": null,
+            "log": "",
+            "execution_time_ms": 30,
+            "CPU_usage": 40.0,
+            "RAM_usage": 13952,
+            "regressionTestPassed": false,
+            "success": false,
             "error_message": null
-          },
-          {
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/difference-of-squares/claude/ClaudeSonnet4_difference-of-squares_v1.py",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/difference-of-squares/claude/output.log",
-            "execution_time_ms": 40,
-            "CPU_usage": 49.0,
-            "RAM_usage": 13824,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          },
+          }
+        ]
+      },
+      {
+        "id": "difference-of-squares_10",
+        "filename": "difference-of-squares.py",
+        "language": "python",
+        "LLM_results": [
           {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/difference-of-squares/gemini/GeminiFlash_difference-of-squares_v1.py",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/difference-of-squares/gemini/output.log",
+            "log": "",
             "execution_time_ms": 30,
-            "CPU_usage": 58.0,
-            "RAM_usage": 13952,
-            "regressionTestPassed": true,
-            "success": null,
+            "CPU_usage": 41.0,
+            "RAM_usage": 13824,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "difference-of-squares_10",
+        "filename": "difference-of-squares.py",
+        "language": "python",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/difference-of-squares/claude/ClaudeSonnet4_difference-of-squares_v1.py",
+            "log": "",
+            "execution_time_ms": 40,
+            "CPU_usage": 44.0,
+            "RAM_usage": 13696,
+            "regressionTestPassed": false,
+            "success": false,
             "error_message": null
           }
         ]
       }
     ],
     "javascript": [
-      {
-        "id": "javascript_difference-of-squares_exercism-javascript-programmiri_programmiri",
-        "filename": "difference-of-squares.js",
-        "language": "javascript",
-        "LLM_results": []
-      },
-      {
-        "id": "javascript_difference-of-squares_exercism-javascript-ffflorian_ffflorian",
-        "filename": "difference-of-squares.js",
-        "language": "javascript",
-        "LLM_results": [
-          {
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/difference-of-squares_exercism-javascript-ffflorian/openAI/ChatGPT4_difference-of-squares_v1.js",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/difference-of-squares_exercism-javascript-ffflorian/openAI/output.log",
-            "execution_time_ms": 310,
-            "CPU_usage": 75.0,
-            "RAM_usage": 81384,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          },
-          {
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/difference-of-squares_exercism-javascript-ffflorian/claude/ClaudeSonnet4_difference-of-squares_v1.js",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/difference-of-squares_exercism-javascript-ffflorian/claude/output.log",
-            "execution_time_ms": 340,
-            "CPU_usage": 71.0,
-            "RAM_usage": 81312,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          },
-          {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/difference-of-squares_exercism-javascript-ffflorian/gemini/GeminiFlash_difference-of-squares_v1.js",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/difference-of-squares_exercism-javascript-ffflorian/gemini/output.log",
-            "execution_time_ms": 339,
-            "CPU_usage": 62.0,
-            "RAM_usage": 81444,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          }
-        ]
-      },
       {
         "id": "javascript_difference-of-squares_exercism-javascript-programmiri",
         "filename": "difference-of-squares.js",
@@ -106,9 +66,45 @@
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/difference-of-squares_exercism-javascript-programmiri/openAI/ChatGPT4_difference-of-squares_v1.js",
             "log": "",
+            "execution_time_ms": 200,
+            "CPU_usage": 35.0,
+            "RAM_usage": 67344,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "javascript_difference-of-squares_exercism-javascript-programmiri",
+        "filename": "difference-of-squares.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/difference-of-squares_exercism-javascript-programmiri/claude/ClaudeSonnet4_difference-of-squares_v1.js",
+            "log": "",
             "execution_time_ms": 180,
-            "CPU_usage": 53.0,
-            "RAM_usage": 65944,
+            "CPU_usage": 37.0,
+            "RAM_usage": 67548,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "javascript_difference-of-squares_exercism-javascript-programmiri_programmiri",
+        "filename": "difference-of-squares.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/difference-of-squares_exercism-javascript-programmiri/openAI/ChatGPT4_difference-of-squares_v1.js",
+            "log": "",
+            "execution_time_ms": 190,
+            "CPU_usage": 32.0,
+            "RAM_usage": 65736,
             "regressionTestPassed": false,
             "success": false,
             "error_message": "Docker exit code: 1"
@@ -125,8 +121,8 @@
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/difference-of-squares_exercism-javascript-programmiri/gemini/GeminiFlash_difference-of-squares_v1.js",
             "log": "",
             "execution_time_ms": 190,
-            "CPU_usage": 68.0,
-            "RAM_usage": 65968,
+            "CPU_usage": 29.0,
+            "RAM_usage": 66996,
             "regressionTestPassed": false,
             "success": false,
             "error_message": "Docker exit code: 1"
@@ -134,7 +130,7 @@
         ]
       },
       {
-        "id": "javascript_difference-of-squares_exercism-javascript-programmiri",
+        "id": "javascript_difference-of-squares_exercism-javascript-programmiri_programmiri",
         "filename": "difference-of-squares.js",
         "language": "javascript",
         "LLM_results": [
@@ -142,9 +138,81 @@
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/difference-of-squares_exercism-javascript-programmiri/claude/ClaudeSonnet4_difference-of-squares_v1.js",
             "log": "",
+            "execution_time_ms": 190,
+            "CPU_usage": 35.0,
+            "RAM_usage": 65532,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "javascript_difference-of-squares_exercism-javascript-programmiri_programmiri",
+        "filename": "difference-of-squares.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/difference-of-squares_exercism-javascript-programmiri/gemini/GeminiFlash_difference-of-squares_v1.js",
+            "log": "",
+            "execution_time_ms": 190,
+            "CPU_usage": 26.0,
+            "RAM_usage": 65616,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "javascript_difference-of-squares_exercism-javascript-ffflorian_ffflorian",
+        "filename": "difference-of-squares.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/difference-of-squares_exercism-javascript-ffflorian/openAI/ChatGPT4_difference-of-squares_v1.js",
+            "log": "",
+            "execution_time_ms": 180,
+            "CPU_usage": 28.0,
+            "RAM_usage": 67356,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "javascript_difference-of-squares_exercism-javascript-ffflorian_ffflorian",
+        "filename": "difference-of-squares.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/difference-of-squares_exercism-javascript-ffflorian/claude/ClaudeSonnet4_difference-of-squares_v1.js",
+            "log": "",
+            "execution_time_ms": 180,
+            "CPU_usage": 34.0,
+            "RAM_usage": 67316,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "javascript_difference-of-squares_exercism-javascript-ffflorian_ffflorian",
+        "filename": "difference-of-squares.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/difference-of-squares_exercism-javascript-ffflorian/gemini/GeminiFlash_difference-of-squares_v1.js",
+            "log": "",
             "execution_time_ms": 170,
-            "CPU_usage": 57.0,
-            "RAM_usage": 65840,
+            "CPU_usage": 36.0,
+            "RAM_usage": 65948,
             "regressionTestPassed": false,
             "success": false,
             "error_message": "Docker exit code: 1"
@@ -157,7 +225,109 @@
         "id": "typescript_difference-of-squares_Exercism-typescript-thewanionly",
         "filename": "difference-of-squares.ts",
         "language": "typescript",
-        "LLM_results": []
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-thewanionly/openAI/ChatGPT4_difference-of-squares_v1.js",
+            "log": "",
+            "execution_time_ms": 429,
+            "CPU_usage": 50.0,
+            "RAM_usage": 124876,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_difference-of-squares_Exercism-typescript-thewanionly",
+        "filename": "difference-of-squares.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-thewanionly/openAI/ChatGPT4_difference-of-squares_v1.ts",
+            "log": "",
+            "execution_time_ms": 456,
+            "CPU_usage": 45.0,
+            "RAM_usage": 124668,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_difference-of-squares_Exercism-typescript-thewanionly",
+        "filename": "difference-of-squares.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-thewanionly/claude/ClaudeSonnet4_difference-of-squares_v1.ts",
+            "log": "",
+            "execution_time_ms": 370,
+            "CPU_usage": 52.0,
+            "RAM_usage": 124936,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_difference-of-squares_Exercism-typescript-thewanionly",
+        "filename": "difference-of-squares.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-thewanionly/claude/ClaudeSonnet4_difference-of-squares_v1.js",
+            "log": "",
+            "execution_time_ms": 348,
+            "CPU_usage": 70.0,
+            "RAM_usage": 124988,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_difference-of-squares_Exercism-typescript-thewanionly",
+        "filename": "difference-of-squares.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-thewanionly/gemini/GeminiFlash_difference-of-squares_v1.js",
+            "log": "",
+            "execution_time_ms": 294,
+            "CPU_usage": 60.0,
+            "RAM_usage": 124104,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_difference-of-squares_Exercism-typescript-thewanionly",
+        "filename": "difference-of-squares.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-thewanionly/gemini/GeminiFlash_difference-of-squares_v1.ts",
+            "log": "",
+            "execution_time_ms": 380,
+            "CPU_usage": 60.0,
+            "RAM_usage": 124164,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
       },
       {
         "id": "typescript_difference-of-squares_Exercism-typescript-thewanionly_thewanionly",
@@ -167,32 +337,100 @@
           {
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-thewanionly/openAI/ChatGPT4_difference-of-squares_v1.ts",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-thewanionly/openAI/output.log",
-            "execution_time_ms": 2046,
-            "CPU_usage": 57.0,
-            "RAM_usage": 217776,
+            "log": "",
+            "execution_time_ms": 478,
+            "CPU_usage": 55.0,
+            "RAM_usage": 122692,
             "regressionTestPassed": true,
             "success": true,
             "error_message": null
-          },
+          }
+        ]
+      },
+      {
+        "id": "typescript_difference-of-squares_Exercism-typescript-thewanionly_thewanionly",
+        "filename": "difference-of-squares.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-thewanionly/openAI/ChatGPT4_difference-of-squares_v1.js",
+            "log": "",
+            "execution_time_ms": 357,
+            "CPU_usage": 50.0,
+            "RAM_usage": 124040,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_difference-of-squares_Exercism-typescript-thewanionly_thewanionly",
+        "filename": "difference-of-squares.ts",
+        "language": "typescript",
+        "LLM_results": [
           {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-thewanionly/claude/ClaudeSonnet4_difference-of-squares_v1.ts",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-thewanionly/claude/output.log",
-            "execution_time_ms": 1399,
-            "CPU_usage": 82.0,
-            "RAM_usage": 220412,
+            "log": "",
+            "execution_time_ms": 463,
+            "CPU_usage": 47.0,
+            "RAM_usage": 123428,
             "regressionTestPassed": true,
             "success": true,
             "error_message": null
-          },
+          }
+        ]
+      },
+      {
+        "id": "typescript_difference-of-squares_Exercism-typescript-thewanionly_thewanionly",
+        "filename": "difference-of-squares.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-thewanionly/claude/ClaudeSonnet4_difference-of-squares_v1.js",
+            "log": "",
+            "execution_time_ms": 384,
+            "CPU_usage": 47.0,
+            "RAM_usage": 122476,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_difference-of-squares_Exercism-typescript-thewanionly_thewanionly",
+        "filename": "difference-of-squares.ts",
+        "language": "typescript",
+        "LLM_results": [
           {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-thewanionly/gemini/GeminiFlash_difference-of-squares_v1.ts",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-thewanionly/gemini/output.log",
-            "execution_time_ms": 1953,
-            "CPU_usage": 57.0,
-            "RAM_usage": 222956,
+            "log": "",
+            "execution_time_ms": 448,
+            "CPU_usage": 51.0,
+            "RAM_usage": 123136,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_difference-of-squares_Exercism-typescript-thewanionly_thewanionly",
+        "filename": "difference-of-squares.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-thewanionly/gemini/GeminiFlash_difference-of-squares_v1.js",
+            "log": "",
+            "execution_time_ms": 473,
+            "CPU_usage": 55.0,
+            "RAM_usage": 123928,
             "regressionTestPassed": true,
             "success": true,
             "error_message": null
@@ -207,32 +445,100 @@
           {
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-chriswilding/openAI/ChatGPT4_difference-of-squares_v1.ts",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-chriswilding/openAI/output.log",
-            "execution_time_ms": 1270,
-            "CPU_usage": 88.0,
-            "RAM_usage": 221612,
+            "log": "",
+            "execution_time_ms": 314,
+            "CPU_usage": 53.0,
+            "RAM_usage": 123752,
             "regressionTestPassed": true,
             "success": true,
             "error_message": null
-          },
+          }
+        ]
+      },
+      {
+        "id": "typescript_difference-of-squares_Exercism-typescript-chriswilding_chriswilding",
+        "filename": "difference-of-squares.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-chriswilding/openAI/ChatGPT4_difference-of-squares_v1.js",
+            "log": "",
+            "execution_time_ms": 405,
+            "CPU_usage": 54.0,
+            "RAM_usage": 124848,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_difference-of-squares_Exercism-typescript-chriswilding_chriswilding",
+        "filename": "difference-of-squares.ts",
+        "language": "typescript",
+        "LLM_results": [
           {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-chriswilding/claude/ClaudeSonnet4_difference-of-squares_v1.ts",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-chriswilding/claude/output.log",
-            "execution_time_ms": 1842,
-            "CPU_usage": 61.0,
-            "RAM_usage": 220248,
+            "log": "",
+            "execution_time_ms": 461,
+            "CPU_usage": 49.0,
+            "RAM_usage": 124108,
             "regressionTestPassed": true,
             "success": true,
             "error_message": null
-          },
+          }
+        ]
+      },
+      {
+        "id": "typescript_difference-of-squares_Exercism-typescript-chriswilding_chriswilding",
+        "filename": "difference-of-squares.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-chriswilding/claude/ClaudeSonnet4_difference-of-squares_v1.js",
+            "log": "",
+            "execution_time_ms": 511,
+            "CPU_usage": 48.0,
+            "RAM_usage": 123896,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_difference-of-squares_Exercism-typescript-chriswilding_chriswilding",
+        "filename": "difference-of-squares.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-chriswilding/gemini/GeminiFlash_difference-of-squares_v1.js",
+            "log": "",
+            "execution_time_ms": 312,
+            "CPU_usage": 62.0,
+            "RAM_usage": 123664,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_difference-of-squares_Exercism-typescript-chriswilding_chriswilding",
+        "filename": "difference-of-squares.ts",
+        "language": "typescript",
+        "LLM_results": [
           {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-chriswilding/gemini/GeminiFlash_difference-of-squares_v1.ts",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-chriswilding/gemini/output.log",
-            "execution_time_ms": 2411,
-            "CPU_usage": 47.0,
-            "RAM_usage": 224784,
+            "log": "",
+            "execution_time_ms": 362,
+            "CPU_usage": 52.0,
+            "RAM_usage": 123652,
             "regressionTestPassed": true,
             "success": true,
             "error_message": null
@@ -247,32 +553,118 @@
           {
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-FilipeCerejo/openAI/ChatGPT4_difference-of-squares_v1.ts",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-FilipeCerejo/openAI/output.log",
-            "execution_time_ms": 1854,
-            "CPU_usage": 58.0,
-            "RAM_usage": 220988,
+            "log": "",
+            "execution_time_ms": 312,
+            "CPU_usage": 74.0,
+            "RAM_usage": 124328,
             "regressionTestPassed": true,
             "success": true,
             "error_message": null
-          },
+          }
+        ]
+      },
+      {
+        "id": "typescript_difference-of-squares_Exercism-typescript-FilipeCerejo_FilipeCerejo",
+        "filename": "difference-of-squares.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-FilipeCerejo/openAI/ChatGPT4_difference-of-squares_v1.js",
+            "log": "",
+            "execution_time_ms": 440,
+            "CPU_usage": 46.0,
+            "RAM_usage": 122692,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_difference-of-squares_Exercism-typescript-FilipeCerejo_FilipeCerejo",
+        "filename": "difference-of-squares.ts",
+        "language": "typescript",
+        "LLM_results": [
           {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-FilipeCerejo/claude/ClaudeSonnet4_difference-of-squares_v1.ts",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-FilipeCerejo/claude/output.log",
-            "execution_time_ms": 2449,
-            "CPU_usage": 48.0,
-            "RAM_usage": 220448,
+            "log": "",
+            "execution_time_ms": 411,
+            "CPU_usage": 44.0,
+            "RAM_usage": 121848,
             "regressionTestPassed": true,
             "success": true,
             "error_message": null
-          },
+          }
+        ]
+      },
+      {
+        "id": "typescript_difference-of-squares_Exercism-typescript-FilipeCerejo_FilipeCerejo",
+        "filename": "difference-of-squares.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-FilipeCerejo/claude/ClaudeSonnet4_difference-of-squares_v1.js",
+            "log": "",
+            "execution_time_ms": 475,
+            "CPU_usage": 47.0,
+            "RAM_usage": 123232,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_difference-of-squares_Exercism-typescript-FilipeCerejo_FilipeCerejo",
+        "filename": "difference-of-squares.ts",
+        "language": "typescript",
+        "LLM_results": [
           {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-FilipeCerejo/gemini/GeminiFlash_difference-of-squares_v1.ts",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-FilipeCerejo/gemini/output.log",
-            "execution_time_ms": 2145,
-            "CPU_usage": 56.0,
-            "RAM_usage": 224204,
+            "log": "",
+            "execution_time_ms": 284,
+            "CPU_usage": 60.0,
+            "RAM_usage": 122384,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_difference-of-squares_Exercism-typescript-FilipeCerejo_FilipeCerejo",
+        "filename": "difference-of-squares.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-FilipeCerejo/gemini/GeminiFlash_difference-of-squares_v1.js",
+            "log": "",
+            "execution_time_ms": 426,
+            "CPU_usage": 50.0,
+            "RAM_usage": 123364,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_difference-of-squares_Exercism-typescript-alemarr_alemarr",
+        "filename": "difference-of-squares.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-alemarr/openAI/ChatGPT4_difference-of-squares_v1.js",
+            "log": "",
+            "execution_time_ms": 466,
+            "CPU_usage": 46.0,
+            "RAM_usage": 122572,
             "regressionTestPassed": true,
             "success": true,
             "error_message": null
@@ -287,32 +679,46 @@
           {
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-alemarr/openAI/ChatGPT4_difference-of-squares_v1.ts",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-alemarr/openAI/output.log",
-            "execution_time_ms": 2245,
-            "CPU_usage": 48.0,
-            "RAM_usage": 222084,
+            "log": "",
+            "execution_time_ms": 362,
+            "CPU_usage": 47.0,
+            "RAM_usage": 123872,
             "regressionTestPassed": true,
             "success": true,
             "error_message": null
-          },
+          }
+        ]
+      },
+      {
+        "id": "typescript_difference-of-squares_Exercism-typescript-alemarr_alemarr",
+        "filename": "difference-of-squares.ts",
+        "language": "typescript",
+        "LLM_results": [
           {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-alemarr/claude/ClaudeSonnet4_difference-of-squares_v1.ts",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-alemarr/claude/output.log",
-            "execution_time_ms": 1945,
-            "CPU_usage": 56.0,
-            "RAM_usage": 221356,
+            "log": "",
+            "execution_time_ms": 395,
+            "CPU_usage": 47.0,
+            "RAM_usage": 121228,
             "regressionTestPassed": true,
             "success": true,
             "error_message": null
-          },
+          }
+        ]
+      },
+      {
+        "id": "typescript_difference-of-squares_Exercism-typescript-alemarr_alemarr",
+        "filename": "difference-of-squares.ts",
+        "language": "typescript",
+        "LLM_results": [
           {
             "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-alemarr/gemini/GeminiFlash_difference-of-squares_v1.ts",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-alemarr/gemini/output.log",
-            "execution_time_ms": 1811,
-            "CPU_usage": 62.0,
-            "RAM_usage": 222068,
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-alemarr/gemini/GeminiFlash_difference-of-squares_v1.js",
+            "log": "",
+            "execution_time_ms": 780,
+            "CPU_usage": 32.0,
+            "RAM_usage": 123336,
             "regressionTestPassed": true,
             "success": true,
             "error_message": null
@@ -327,238 +733,144 @@
           {
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_exercism-javascript-samajammin/openAI/ChatGPT4_difference-of-squares_v1.ts",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_exercism-javascript-samajammin/openAI/output.log",
-            "execution_time_ms": 2195,
-            "CPU_usage": 50.0,
-            "RAM_usage": 219632,
+            "log": "",
+            "execution_time_ms": 831,
+            "CPU_usage": 31.0,
+            "RAM_usage": 125700,
             "regressionTestPassed": true,
             "success": true,
             "error_message": null
-          },
+          }
+        ]
+      },
+      {
+        "id": "typescript_difference-of-squares_Exercism-typescript-alemarr_alemarr",
+        "filename": "difference-of-squares.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-alemarr/claude/ClaudeSonnet4_difference-of-squares_v1.js",
+            "log": "",
+            "execution_time_ms": 852,
+            "CPU_usage": 31.0,
+            "RAM_usage": 120820,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_difference-of-squares_Exercism-typescript-alemarr_alemarr",
+        "filename": "difference-of-squares.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_Exercism-typescript-alemarr/gemini/GeminiFlash_difference-of-squares_v1.ts",
+            "log": "",
+            "execution_time_ms": 847,
+            "CPU_usage": 29.0,
+            "RAM_usage": 123468,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_difference-of-squares_exercism-javascript-samajammin_samajammin",
+        "filename": "difference-of-squares.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_exercism-javascript-samajammin/openAI/ChatGPT4_difference-of-squares_v1.js",
+            "log": "",
+            "execution_time_ms": 997,
+            "CPU_usage": 29.0,
+            "RAM_usage": 123160,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_difference-of-squares_exercism-javascript-samajammin_samajammin",
+        "filename": "difference-of-squares.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_exercism-javascript-samajammin/claude/ClaudeSonnet4_difference-of-squares_v1.js",
+            "log": "",
+            "execution_time_ms": 1044,
+            "CPU_usage": 27.0,
+            "RAM_usage": 122732,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_difference-of-squares_exercism-javascript-samajammin_samajammin",
+        "filename": "difference-of-squares.ts",
+        "language": "typescript",
+        "LLM_results": [
           {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_exercism-javascript-samajammin/claude/ClaudeSonnet4_difference-of-squares_v1.ts",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_exercism-javascript-samajammin/claude/output.log",
-            "execution_time_ms": 2035,
-            "CPU_usage": 57.0,
-            "RAM_usage": 219624,
+            "log": "",
+            "execution_time_ms": 1069,
+            "CPU_usage": 26.0,
+            "RAM_usage": 123752,
             "regressionTestPassed": true,
             "success": true,
             "error_message": null
-          },
+          }
+        ]
+      },
+      {
+        "id": "typescript_difference-of-squares_exercism-javascript-samajammin_samajammin",
+        "filename": "difference-of-squares.ts",
+        "language": "typescript",
+        "LLM_results": [
           {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_exercism-javascript-samajammin/gemini/GeminiFlash_difference-of-squares_v1.ts",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_exercism-javascript-samajammin/gemini/output.log",
-            "execution_time_ms": 1856,
-            "CPU_usage": 58.0,
-            "RAM_usage": 220604,
+            "log": "",
+            "execution_time_ms": 731,
+            "CPU_usage": 28.0,
+            "RAM_usage": 123588,
             "regressionTestPassed": true,
             "success": true,
             "error_message": null
           }
         ]
-      }
-    ],
-    "go": [
-      {
-        "id": "go_difference_of_squares_Exercism (go_rootulp)",
-        "filename": "difference_of_squares.go",
-        "language": "go",
-        "LLM_results": [
-          {
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_rootulp/openAI/ChatGPT4_difference_of_squares_v1.go",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_rootulp/openAI/output.log",
-            "execution_time_ms": 6080,
-            "CPU_usage": 62.0,
-            "RAM_usage": 218016,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          },
-          {
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_rootulp/claude/ClaudeSonnet4_difference_of_squares_v1.go",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_rootulp/claude/output.log",
-            "execution_time_ms": 6220,
-            "CPU_usage": 45.0,
-            "RAM_usage": 218944,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          },
-          {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_rootulp/gemini/GeminiFlash_difference_of_squares_v1.go",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_rootulp/gemini/output.log",
-            "execution_time_ms": 5880,
-            "CPU_usage": 48.0,
-            "RAM_usage": 216684,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          }
-        ]
       },
       {
-        "id": "go_difference_of_squares_Exercism (go_ThomasZumsteg)",
-        "filename": "difference_of_squares.go",
-        "language": "go",
+        "id": "typescript_difference-of-squares_exercism-javascript-samajammin_samajammin",
+        "filename": "difference-of-squares.ts",
+        "language": "typescript",
         "LLM_results": [
           {
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_ThomasZumsteg/openAI/ChatGPT4_difference_of_squares_v1.go",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_ThomasZumsteg/openAI/output.log",
-            "execution_time_ms": 6060,
-            "CPU_usage": 60.0,
-            "RAM_usage": 223664,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          },
-          {
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_ThomasZumsteg/claude/ClaudeSonnet4_difference_of_squares_v1.go",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_ThomasZumsteg/claude/output.log",
-            "execution_time_ms": 6150,
-            "CPU_usage": 43.0,
-            "RAM_usage": 213668,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          },
-          {
             "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_ThomasZumsteg/gemini/GeminiFlash_difference_of_squares_v1.go",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_ThomasZumsteg/gemini/output.log",
-            "execution_time_ms": 5920,
-            "CPU_usage": 48.0,
-            "RAM_usage": 218128,
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/difference-of-squares_exercism-javascript-samajammin/gemini/GeminiFlash_difference-of-squares_v1.js",
+            "log": "",
+            "execution_time_ms": 267,
+            "CPU_usage": 64.0,
+            "RAM_usage": 125444,
             "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          }
-        ]
-      },
-      {
-        "id": "go_difference_of_squares_Exercism (go_thinkverse)",
-        "filename": "difference_of_squares.go",
-        "language": "go",
-        "LLM_results": [
-          {
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_thinkverse/openAI/ChatGPT4_difference_of_squares_v1.go",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_thinkverse/openAI/output.log",
-            "execution_time_ms": 6279,
-            "CPU_usage": 45.0,
-            "RAM_usage": 226672,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          },
-          {
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_thinkverse/claude/ClaudeSonnet4_difference_of_squares_v1.go",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_thinkverse/claude/output.log",
-            "execution_time_ms": 5960,
-            "CPU_usage": 47.0,
-            "RAM_usage": 213644,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          },
-          {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_thinkverse/gemini/GeminiFlash_difference_of_squares_v1.go",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_thinkverse/gemini/output.log",
-            "execution_time_ms": 5760,
-            "CPU_usage": 96.0,
-            "RAM_usage": 218272,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          }
-        ]
-      },
-      {
-        "id": "go_difference_of_squares_Exercism (go_drapala)",
-        "filename": "difference_of_squares.go",
-        "language": "go",
-        "LLM_results": [
-          {
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_drapala/openAI/ChatGPT4_difference_of_squares_v1.go",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_drapala/openAI/output.log",
-            "execution_time_ms": 5910,
-            "CPU_usage": 48.0,
-            "RAM_usage": 219800,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          },
-          {
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_drapala/claude/ClaudeSonnet4_difference_of_squares_v1.go",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_drapala/claude/output.log",
-            "execution_time_ms": 5820,
-            "CPU_usage": 97.0,
-            "RAM_usage": 209564,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          },
-          {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_drapala/gemini/GeminiFlash_difference_of_squares_v1.go",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_drapala/gemini/output.log",
-            "execution_time_ms": 5550,
-            "CPU_usage": 179.0,
-            "RAM_usage": 207452,
-            "regressionTestPassed": true,
-            "success": null,
+            "success": true,
             "error_message": null
           }
         ]
       }
     ],
     "c": [
-      {
-        "id": "c_difference_of_squares_Exercism (chriswilding)",
-        "filename": "difference_of_squares.c",
-        "language": "c",
-        "LLM_results": [
-          {
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/difference_of_squares_Exercism_chriswilding/openAI/ChatGPT4_difference_of_squares_v1.c",
-            "log": "",
-            "execution_time_ms": 10,
-            "CPU_usage": 9.0,
-            "RAM_usage": 3456,
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": "Docker exit code: 255"
-          }
-        ]
-      },
-      {
-        "id": "c_difference_of_squares_Exercism (ThomasZumsteg)",
-        "filename": "difference_of_squares.c",
-        "language": "c",
-        "LLM_results": [
-          {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/difference_of_squares_Exercism_ThomasZumsteg/gemini/GeminiFlash_difference_of_squares_v1.c",
-            "log": "",
-            "execution_time_ms": 0.878875,
-            "CPU_usage": "25",
-            "RAM_usage": "8576",
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null
-          }
-        ]
-      },
       {
         "id": "c_difference_of_squares_Exercism (HeitorMP)",
         "filename": "difference_of_squares.c",
@@ -568,26 +880,8 @@
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/difference_of_squares_Exercism_HeitorMP/openAI/ChatGPT4_difference_of_squares_v1.c",
             "log": "",
-            "execution_time_ms": 0.511084,
-            "CPU_usage": "54",
-            "RAM_usage": "8576",
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null
-          }
-        ]
-      },
-      {
-        "id": "c_difference_of_squares_Exercism (ThomasZumsteg)",
-        "filename": "difference_of_squares.c",
-        "language": "c",
-        "LLM_results": [
-          {
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/difference_of_squares_Exercism_ThomasZumsteg/claude/ClaudeSonnet4_difference_of_squares_v1.c",
-            "log": "",
-            "execution_time_ms": 4.134502,
-            "CPU_usage": "8",
+            "execution_time_ms": 1.417843,
+            "CPU_usage": "14",
             "RAM_usage": "8576",
             "regressionTestPassed": true,
             "success": true,
@@ -604,44 +898,8 @@
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/difference_of_squares_Exercism_HeitorMP/claude/ClaudeSonnet4_difference_of_squares_v1.c",
             "log": "",
-            "execution_time_ms": 1.920043,
-            "CPU_usage": "13",
-            "RAM_usage": "8704",
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null
-          }
-        ]
-      },
-      {
-        "id": "c_difference_of_squares_Exercism (chriswilding)",
-        "filename": "difference_of_squares.c",
-        "language": "c",
-        "LLM_results": [
-          {
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/difference_of_squares_Exercism_chriswilding/openAI/ChatGPT4_difference_of_squares_v1.c",
-            "log": "",
-            "execution_time_ms": 0.924959,
-            "CPU_usage": "22",
-            "RAM_usage": "8704",
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": "Docker exit code: 3"
-          }
-        ]
-      },
-      {
-        "id": "c_difference_of_squares_Exercism (chriswilding)",
-        "filename": "difference_of_squares.c",
-        "language": "c",
-        "LLM_results": [
-          {
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/difference_of_squares_Exercism_chriswilding/claude/ClaudeSonnet4_difference_of_squares_v1.c",
-            "log": "",
-            "execution_time_ms": 0.442125,
-            "CPU_usage": "52",
+            "execution_time_ms": 2.461101,
+            "CPU_usage": "9",
             "RAM_usage": "8576",
             "regressionTestPassed": true,
             "success": true,
@@ -658,8 +916,8 @@
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/difference_of_squares_Exercism_HeitorMP/gemini/GeminiFlash_difference_of_squares_v1.c",
             "log": "",
-            "execution_time_ms": 0.53175,
-            "CPU_usage": "51",
+            "execution_time_ms": 0.568546,
+            "CPU_usage": "49",
             "RAM_usage": "8576",
             "regressionTestPassed": true,
             "success": true,
@@ -668,70 +926,16 @@
         ]
       },
       {
-        "id": "c_difference_of_squares_Exercism (chriswilding)",
-        "filename": "difference_of_squares.c",
-        "language": "c",
-        "LLM_results": [
-          {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/difference_of_squares_Exercism_chriswilding/gemini/GeminiFlash_difference_of_squares_v1.c",
-            "log": "",
-            "execution_time_ms": 0.635042,
-            "CPU_usage": "47",
-            "RAM_usage": "8576",
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null
-          }
-        ]
-      },
-      {
-        "id": "c_difference_of_squares_Exercism (vlzware)",
-        "filename": "difference_of_squares.c",
-        "language": "c",
-        "LLM_results": [
-          {
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/difference_of_squares_Exercism_vlzware/openAI/ChatGPT4_difference_of_squares_v1.c",
-            "log": "",
-            "execution_time_ms": 0.630625,
-            "CPU_usage": "54",
-            "RAM_usage": "8576",
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null
-          }
-        ]
-      },
-      {
-        "id": "c_difference_of_squares_Exercism (vlzware)",
+        "id": "c_difference_of_squares_Exercism (ThomasZumsteg)",
         "filename": "difference_of_squares.c",
         "language": "c",
         "LLM_results": [
           {
             "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/difference_of_squares_Exercism_vlzware/claude/ClaudeSonnet4_difference_of_squares_v1.c",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/difference_of_squares_Exercism_ThomasZumsteg/claude/ClaudeSonnet4_difference_of_squares_v1.c",
             "log": "",
-            "execution_time_ms": 0.996542,
-            "CPU_usage": "21",
-            "RAM_usage": "8576",
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null
-          }
-        ]
-      },
-      {
-        "id": "c_difference_of_squares_Exercism (vlzware)",
-        "filename": "difference_of_squares.c",
-        "language": "c",
-        "LLM_results": [
-          {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/difference_of_squares_Exercism_vlzware/gemini/GeminiFlash_difference_of_squares_v1.c",
-            "log": "",
-            "execution_time_ms": 1.305126,
-            "CPU_usage": "20",
+            "execution_time_ms": 0.756752,
+            "CPU_usage": "42",
             "RAM_usage": "8576",
             "regressionTestPassed": true,
             "success": true,
@@ -766,7 +970,79 @@
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/difference_of_squares_Exercism_ThomasZumsteg/gemini/GeminiFlash_difference_of_squares_v1.c",
             "log": "",
-            "execution_time_ms": 4.359357,
+            "execution_time_ms": 0.480378,
+            "CPU_usage": "54",
+            "RAM_usage": "8576",
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "c_difference_of_squares_Exercism (chriswilding)",
+        "filename": "difference_of_squares.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/difference_of_squares_Exercism_chriswilding/openAI/ChatGPT4_difference_of_squares_v1.c",
+            "log": "",
+            "execution_time_ms": 0.570337,
+            "CPU_usage": "44",
+            "RAM_usage": "8576",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 3"
+          }
+        ]
+      },
+      {
+        "id": "c_difference_of_squares_Exercism (chriswilding)",
+        "filename": "difference_of_squares.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/difference_of_squares_Exercism_chriswilding/claude/ClaudeSonnet4_difference_of_squares_v1.c",
+            "log": "",
+            "execution_time_ms": 1.138008,
+            "CPU_usage": "26",
+            "RAM_usage": "8576",
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "c_difference_of_squares_Exercism (vlzware)",
+        "filename": "difference_of_squares.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/difference_of_squares_Exercism_vlzware/openAI/ChatGPT4_difference_of_squares_v1.c",
+            "log": "",
+            "execution_time_ms": 0.481295,
+            "CPU_usage": "51",
+            "RAM_usage": "8576",
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "c_difference_of_squares_Exercism (chriswilding)",
+        "filename": "difference_of_squares.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/difference_of_squares_Exercism_chriswilding/gemini/GeminiFlash_difference_of_squares_v1.c",
+            "log": "",
+            "execution_time_ms": 4.5517,
             "CPU_usage": "6",
             "RAM_usage": "8576",
             "regressionTestPassed": true,
@@ -776,16 +1052,34 @@
         ]
       },
       {
-        "id": "c_difference_of_squares_Exercism (ThomasZumsteg)",
+        "id": "c_difference_of_squares_Exercism (vlzware)",
+        "filename": "difference_of_squares.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/difference_of_squares_Exercism_vlzware/gemini/GeminiFlash_difference_of_squares_v1.c",
+            "log": "",
+            "execution_time_ms": 2.052931,
+            "CPU_usage": "12",
+            "RAM_usage": "8576",
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "c_difference_of_squares_Exercism (vlzware)",
         "filename": "difference_of_squares.c",
         "language": "c",
         "LLM_results": [
           {
             "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/difference_of_squares_Exercism_ThomasZumsteg/claude/ClaudeSonnet4_difference_of_squares_v1.c",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/difference_of_squares_Exercism_vlzware/claude/ClaudeSonnet4_difference_of_squares_v1.c",
             "log": "",
-            "execution_time_ms": 0.493486,
-            "CPU_usage": "45",
+            "execution_time_ms": 0.785381,
+            "CPU_usage": "28",
             "RAM_usage": "8576",
             "regressionTestPassed": true,
             "success": true,
@@ -796,96 +1090,6 @@
     ],
     "cpp": [
       {
-        "id": "cpp_difference_of_squares_Exercism (MaxyMoos)",
-        "filename": "difference_of_squares.cpp",
-        "language": "cpp",
-        "LLM_results": [
-          {
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/difference_of_squares_Exercism_MaxyMoos/openAI/ChatGPT4_difference_of_squares_v1.cpp",
-            "log": "",
-            "execution_time_ms": 9.165837,
-            "CPU_usage": "17",
-            "RAM_usage": "10240",
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": null
-          }
-        ]
-      },
-      {
-        "id": "cpp_difference_of_squares_Exercism (MaxyMoos)",
-        "filename": "difference_of_squares.cpp",
-        "language": "cpp",
-        "LLM_results": [
-          {
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/difference_of_squares_Exercism_MaxyMoos/claude/ClaudeSonnet4_difference_of_squares_v1.cpp",
-            "log": "",
-            "execution_time_ms": 6.14896,
-            "CPU_usage": "18",
-            "RAM_usage": "10496",
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": null
-          }
-        ]
-      },
-      {
-        "id": "cpp_difference_of_squares_Exercism (MaxyMoos)",
-        "filename": "difference_of_squares.cpp",
-        "language": "cpp",
-        "LLM_results": [
-          {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/difference_of_squares_Exercism_MaxyMoos/gemini/GeminiFlash_difference_of_squares_v1.cpp",
-            "log": "",
-            "execution_time_ms": 3.631668,
-            "CPU_usage": "30",
-            "RAM_usage": "10496",
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": null
-          }
-        ]
-      },
-      {
-        "id": "cpp_difference_of_squares_Exercism (thefullarcticfox)",
-        "filename": "difference_of_squares.cpp",
-        "language": "cpp",
-        "LLM_results": [
-          {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/difference_of_squares_Exercism_thefullarcticfox/gemini/GeminiFlash_difference_of_squares_v1.cpp",
-            "log": "",
-            "execution_time_ms": 3.407084,
-            "CPU_usage": "37",
-            "RAM_usage": "10368",
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": null
-          }
-        ]
-      },
-      {
-        "id": "cpp_difference_of_squares_Exercism (thefullarcticfox)",
-        "filename": "difference_of_squares.cpp",
-        "language": "cpp",
-        "LLM_results": [
-          {
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/difference_of_squares_Exercism_thefullarcticfox/openAI/ChatGPT4_difference_of_squares_v1.cpp",
-            "log": "",
-            "execution_time_ms": 3.452501,
-            "CPU_usage": "36",
-            "RAM_usage": "10112",
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": null
-          }
-        ]
-      },
-      {
         "id": "cpp_difference_of_squares_Exercism (johnngugi)",
         "filename": "difference_of_squares.cpp",
         "language": "cpp",
@@ -893,24 +1097,6 @@
           {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/difference_of_squares_Exercism_johnngugi/claude/ClaudeSonnet4_difference_of_squares_v1.cpp",
-            "log": "",
-            "execution_time_ms": null,
-            "CPU_usage": null,
-            "RAM_usage": null,
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": "Docker exit code: 1"
-          }
-        ]
-      },
-      {
-        "id": "cpp_difference_of_squares_Exercism (johnngugi)",
-        "filename": "difference_of_squares.cpp",
-        "language": "cpp",
-        "LLM_results": [
-          {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/difference_of_squares_Exercism_johnngugi/gemini/GeminiFlash_difference_of_squares_v1.cpp",
             "log": "",
             "execution_time_ms": null,
             "CPU_usage": null,
@@ -940,17 +1126,71 @@
         ]
       },
       {
-        "id": "cpp_difference_of_squares_Exercism (thefullarcticfox)",
+        "id": "cpp_difference_of_squares_Exercism (johnngugi)",
+        "filename": "difference_of_squares.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/difference_of_squares_Exercism_johnngugi/gemini/GeminiFlash_difference_of_squares_v1.cpp",
+            "log": "",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "cpp_difference_of_squares_Exercism (MaxyMoos)",
         "filename": "difference_of_squares.cpp",
         "language": "cpp",
         "LLM_results": [
           {
             "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/difference_of_squares_Exercism_thefullarcticfox/openAI/ChatGPT4_difference_of_squares_v1.cpp",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/difference_of_squares_Exercism_MaxyMoos/openAI/ChatGPT4_difference_of_squares_v1.cpp",
             "log": "",
-            "execution_time_ms": 5.59719,
-            "CPU_usage": "25",
+            "execution_time_ms": 6.867258,
+            "CPU_usage": "22",
+            "RAM_usage": "10496",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_difference_of_squares_Exercism (MaxyMoos)",
+        "filename": "difference_of_squares.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/difference_of_squares_Exercism_MaxyMoos/claude/ClaudeSonnet4_difference_of_squares_v1.cpp",
+            "log": "",
+            "execution_time_ms": 6.021002,
+            "CPU_usage": "19",
             "RAM_usage": "10368",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_difference_of_squares_Exercism (MaxyMoos)",
+        "filename": "difference_of_squares.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/difference_of_squares_Exercism_MaxyMoos/gemini/GeminiFlash_difference_of_squares_v1.cpp",
+            "log": "",
+            "execution_time_ms": 3.4794,
+            "CPU_usage": "33",
+            "RAM_usage": "10496",
             "regressionTestPassed": false,
             "success": false,
             "error_message": null
@@ -963,12 +1203,12 @@
         "language": "cpp",
         "LLM_results": [
           {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/difference_of_squares_Exercism_thefullarcticfox/gemini/GeminiFlash_difference_of_squares_v1.cpp",
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/difference_of_squares_Exercism_thefullarcticfox/openAI/ChatGPT4_difference_of_squares_v1.cpp",
             "log": "",
-            "execution_time_ms": 1.769101,
-            "CPU_usage": "63",
-            "RAM_usage": "10496",
+            "execution_time_ms": 3.600859,
+            "CPU_usage": "39",
+            "RAM_usage": "10368",
             "regressionTestPassed": false,
             "success": false,
             "error_message": null
@@ -984,11 +1224,247 @@
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/difference_of_squares_Exercism_thefullarcticfox/claude/ClaudeSonnet4_difference_of_squares_v1.cpp",
             "log": "",
-            "execution_time_ms": 1.652624,
-            "CPU_usage": "69",
+            "execution_time_ms": 11.41529,
+            "CPU_usage": "10",
             "RAM_usage": "10496",
             "regressionTestPassed": false,
             "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_difference_of_squares_Exercism (thefullarcticfox)",
+        "filename": "difference_of_squares.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/difference_of_squares_Exercism_thefullarcticfox/gemini/GeminiFlash_difference_of_squares_v1.cpp",
+            "log": "",
+            "execution_time_ms": 6.44088,
+            "CPU_usage": "18",
+            "RAM_usage": "10496",
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      }
+    ],
+    "go": [
+      {
+        "id": "go_difference_of_squares_Exercism (go_rootulp)",
+        "filename": "difference_of_squares.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_rootulp/openAI/ChatGPT4_difference_of_squares_v1.go",
+            "log": "",
+            "execution_time_ms": 6229,
+            "CPU_usage": 57.0,
+            "RAM_usage": 223124,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_difference_of_squares_Exercism (go_ThomasZumsteg)",
+        "filename": "difference_of_squares.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_ThomasZumsteg/claude/ClaudeSonnet4_difference_of_squares_v1.go",
+            "log": "",
+            "execution_time_ms": 5900,
+            "CPU_usage": 49.0,
+            "RAM_usage": 223040,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_difference_of_squares_Exercism (go_rootulp)",
+        "filename": "difference_of_squares.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_rootulp/claude/ClaudeSonnet4_difference_of_squares_v1.go",
+            "log": "",
+            "execution_time_ms": 5960,
+            "CPU_usage": 48.0,
+            "RAM_usage": 226236,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_difference_of_squares_Exercism (go_ThomasZumsteg)",
+        "filename": "difference_of_squares.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_ThomasZumsteg/openAI/ChatGPT4_difference_of_squares_v1.go",
+            "log": "",
+            "execution_time_ms": 5890,
+            "CPU_usage": 48.0,
+            "RAM_usage": 216384,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_difference_of_squares_Exercism (go_rootulp)",
+        "filename": "difference_of_squares.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_rootulp/gemini/GeminiFlash_difference_of_squares_v1.go",
+            "log": "",
+            "execution_time_ms": 5970,
+            "CPU_usage": 49.0,
+            "RAM_usage": 222864,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_difference_of_squares_Exercism (go_ThomasZumsteg)",
+        "filename": "difference_of_squares.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_ThomasZumsteg/gemini/GeminiFlash_difference_of_squares_v1.go",
+            "log": "",
+            "execution_time_ms": 5900,
+            "CPU_usage": 50.0,
+            "RAM_usage": 229536,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_difference_of_squares_Exercism (go_thinkverse)",
+        "filename": "difference_of_squares.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_thinkverse/openAI/ChatGPT4_difference_of_squares_v1.go",
+            "log": "",
+            "execution_time_ms": 5850,
+            "CPU_usage": 49.0,
+            "RAM_usage": 217612,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_difference_of_squares_Exercism (go_thinkverse)",
+        "filename": "difference_of_squares.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_thinkverse/claude/ClaudeSonnet4_difference_of_squares_v1.go",
+            "log": "",
+            "execution_time_ms": 5899,
+            "CPU_usage": 49.0,
+            "RAM_usage": 231564,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_difference_of_squares_Exercism (go_thinkverse)",
+        "filename": "difference_of_squares.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_thinkverse/gemini/GeminiFlash_difference_of_squares_v1.go",
+            "log": "",
+            "execution_time_ms": 5890,
+            "CPU_usage": 49.0,
+            "RAM_usage": 228100,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_difference_of_squares_Exercism (go_drapala)",
+        "filename": "difference_of_squares.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_drapala/openAI/ChatGPT4_difference_of_squares_v1.go",
+            "log": "",
+            "execution_time_ms": 5689,
+            "CPU_usage": 66.0,
+            "RAM_usage": 222560,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_difference_of_squares_Exercism (go_drapala)",
+        "filename": "difference_of_squares.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_drapala/claude/ClaudeSonnet4_difference_of_squares_v1.go",
+            "log": "",
+            "execution_time_ms": 5780,
+            "CPU_usage": 66.0,
+            "RAM_usage": 219404,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_difference_of_squares_Exercism (go_drapala)",
+        "filename": "difference_of_squares.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/difference_of_squares_Exercism_go_drapala/gemini/GeminiFlash_difference_of_squares_v1.go",
+            "log": "",
+            "execution_time_ms": 5790,
+            "CPU_usage": 66.0,
+            "RAM_usage": 217916,
+            "regressionTestPassed": true,
+            "success": true,
             "error_message": null
           }
         ]

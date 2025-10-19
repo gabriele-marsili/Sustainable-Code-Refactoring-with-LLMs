@@ -42,6 +42,15 @@ except ImportError as e:
     print(f"Warning: Language-selective runner not available: {e}")
     SELECTIVE_RUNNER_AVAILABLE = False
 
+# Import outlier filter module
+try:
+    from outlier_filter import OutlierFilter, ResultMerger
+
+    OUTLIER_FILTER_AVAILABLE = True
+except ImportError as e:
+    print(f"Warning: Outlier filter module not available: {e}")
+    OUTLIER_FILTER_AVAILABLE = False
+
 
 # Global configuration
 BASE_DIR = utility_paths.SRC_DIR
@@ -1765,8 +1774,13 @@ class ClusterRunner:
         run_number: int = 1,
         cluster_name="",
         selected_languages=["all"],
+        overwrite_results = False,
+        outlier_filter=None
     ) -> Tuple[List[BaseEntryResult], List[LLMentryResult]]:
         """Run all tests for a cluster with comprehensive error handling
+
+        Args:
+            outlier_filter: Optional OutlierFilter instance to filter which entries to execute
 
         Returns:
             Tuple[base_results, llm_results] - Separate results for base and LLM tests
@@ -1787,6 +1801,9 @@ class ClusterRunner:
         base_results: list[BaseEntryResult] = []
         llm_results: list[LLMentryResult] = []
 
+        skip_check_res_base= False
+        skip_check_res_LLM= False
+
         if base_only or full:
             out_base_cluster_results_path = (
                 utility_paths.SRC_DIR
@@ -1800,22 +1817,48 @@ class ClusterRunner:
 
             try:
                 if "results" not in out_base_cluster_content:
-                    raise Exception("results not in out_base_cluster_content")
-                for _lang, entries in out_base_cluster_content["results"].items():
-                    for json_entry in entries:
-                        entry: BaseEntryResult = BaseEntryResult.from_json(json_entry)
-                        if not entry.is_valid():
-                            cluster_base_not_completed_entries_ids.add(entry.id)
-                        else:
-                            base_results.append(entry)
+                    #fallback on backup:
+                    backup_path = utility_paths.SRC_DIR / "backup_executions"
 
-                            # adjust execution state :
-                            with self.lock:
-                                self.execution_state.completed_tests += 1
-                                if entry.regressionTestPassed:
-                                    self.execution_state.successful_tests += 1
-                                else:
-                                    self.execution_state.failed_tests += 1
+                    backup_files = list(backup_path.rglob(f"{cluster_name}_results_{run_number}_backup_*.json"))
+                    
+                    if len(backup_files)>0 : 
+                        out_base_cluster_results_path = backup_files[0]
+                        out_base_cluster_content = general_utils.read_json(
+                            out_base_cluster_results_path
+                        )
+                    else : #fallback cluster non eseguito 
+                        out_base_cluster_content = general_utils.read_json(
+                            utility_paths.CLUSTERS_DIR_FILEPATH / f"cluster_{cluster_name}.json"
+                        )
+
+                        for _lang, entries in out_base_cluster_content.items():
+                            for entry in entries:
+                                cluster_base_not_completed_entries_ids.add(entry['id'])
+
+                        skip_check_res_base = True
+                    
+                
+                
+                if not skip_check_res_base:
+                    if "results" not in out_base_cluster_content : 
+                        raise Exception(f"results not in out_base_cluster_content\nContent:\n{out_base_cluster_content}\n\nPath : {out_base_cluster_results_path}")
+                    
+                    for _lang, entries in out_base_cluster_content["results"].items():
+                        for json_entry in entries:
+                            entry: BaseEntryResult = BaseEntryResult.from_json(json_entry)
+                            if  overwrite_results or not entry.is_valid():
+                                cluster_base_not_completed_entries_ids.add(entry.id)
+                            else:
+                                base_results.append(entry)
+
+                                # adjust execution state :
+                                with self.lock:
+                                    self.execution_state.completed_tests += 1
+                                    if entry.regressionTestPassed:
+                                        self.execution_state.successful_tests += 1
+                                    else:
+                                        self.execution_state.failed_tests += 1
 
             except Exception as e:
                 print(f"exception :\n{e}")
@@ -1834,30 +1877,57 @@ class ClusterRunner:
 
             try:
                 if "results" not in out_LLM_cluster_content:
-                    raise Exception("results not in out_LLM_cluster_content")
+                    #fallback on backup:
+                    backup_path = utility_paths.SRC_DIR / "backup_executions"
 
-                for _lang, entries in out_LLM_cluster_content["results"].items():
-                    for json_entry in entries:
-                        entry: LLMentryResult = LLMentryResult.from_json(json_entry)
-                        if not entry.is_valid():
-                            cluster_LLM_not_completed_entries_ids.add(entry.id)
+                    backup_files = list(backup_path.rglob(f"{cluster_name}_results_v{prompt_version}_{run_number}_backup_*.json"))
+                    
+                    if len(backup_files) > 0 : 
+                        out_LLM_cluster_results_path = backup_files[0]
+                        out_LLM_cluster_content = general_utils.read_json(
+                            out_LLM_cluster_results_path
+                        )
+                    else : #fallback cluster non eseguito 
+                        out_LLM_cluster_content = general_utils.read_json(
+                            utility_paths.CLUSTERS_DIR_FILEPATH / f"cluster_{cluster_name}.json"
+                        )
 
-                        else:
-                            llm_results.append(entry)
+                        for _lang, entries in out_LLM_cluster_content.items():
+                            for entry in entries:                                
+                                cluster_LLM_not_completed_entries_ids.add(entry['id'])
 
-                            for res in entry.LLM_results:
-                                # adjust execution state :
-                                with self.lock:
-                                    self.execution_state.completed_tests += 1
-                                    if res.regressionTestPassed:
-                                        self.execution_state.successful_tests += 1
-                                    else:
-                                        self.execution_state.failed_tests += 1
+                        skip_check_res_LLM = True
+                        
+                    
+                    
+                    
+                if not skip_check_res_LLM:
+                    if "results" not in out_LLM_cluster_content:
+                        raise Exception(f"results not in out_LLM_cluster_content\nContent:\n{out_LLM_cluster_content}\n\nPath : {out_LLM_cluster_results_path}")
+                    
+                    for _lang, entries in out_LLM_cluster_content["results"].items():
+                        for json_entry in entries:
+                            entry: LLMentryResult = LLMentryResult.from_json(json_entry)
+                            if overwrite_results or not entry.is_valid():
+                                cluster_LLM_not_completed_entries_ids.add(entry.id)
+
+                            else:
+                                llm_results.append(entry)
+
+                                for res in entry.LLM_results:
+                                    # adjust execution state :
+                                    with self.lock:
+                                        self.execution_state.completed_tests += 1
+                                        if res.regressionTestPassed:
+                                            self.execution_state.successful_tests += 1
+                                        else:
+                                            self.execution_state.failed_tests += 1
 
             except Exception as e:
                 print(f"exception :\n{e}")
                 raise e
 
+        
         # Validate execution mode
         mode_count = sum([base_only, llm_only, full])
         if mode_count != 1:
@@ -1928,6 +1998,34 @@ class ClusterRunner:
 
             base_tasks = list(filter(check_task_language, base_tasks))
             llm_tasks = list(filter(check_task_language, llm_tasks))
+
+        # Filter for outlier entries ONLY if outlier_filter is provided
+        if outlier_filter is not None:
+            self.logger.info("Applying outlier filter to entries...")
+
+            # Filter base tasks
+            if base_tasks:
+                def is_outlier_base(task):
+                    entry_id = task['entry']['id']
+                    return outlier_filter.should_execute_base_entry(cluster_name, entry_id)
+
+                original_base_count = len(base_tasks)
+                base_tasks = list(filter(is_outlier_base, base_tasks))
+                self.logger.info(f"  Base tasks filtered: {original_base_count} → {len(base_tasks)} (outliers only)")
+
+            # Filter LLM tasks
+            if llm_tasks:
+                def is_outlier_llm(task):
+                    entry_id = task['entry']['id']
+                    # Extract prompt version from filename (e.g., "_v1" -> 1)
+                    llm_info = task.get('llm_info', {})
+                    filename = llm_info.get('filename', '')
+                    # The prompt_version is already set in the method parameters
+                    return outlier_filter.should_execute_llm_entry(cluster_name, entry_id, prompt_version)
+
+                original_llm_count = len(llm_tasks)
+                llm_tasks = list(filter(is_outlier_llm, llm_tasks))
+                self.logger.info(f"  LLM tasks filtered: {original_llm_count} → {len(llm_tasks)} (outliers only)")
 
         # Execute base tests first if needed
         if base_tasks:
@@ -2321,6 +2419,25 @@ def main():
         help="Directory to save selective execution reports",
     )
 
+    parser.add_argument(
+        "--overwrite-results",
+        action="store_true",
+        default=False,
+        help="Force to overwrite results for each entry even if it's valid"
+    )
+
+    # Outlier-selective execution (NEW FEATURE)
+    parser.add_argument(
+        "--outlier-mode",
+        action="store_true",
+        help="Enable outlier-selective execution: only re-runs entries identified as outliers in the report"
+    )
+    parser.add_argument(
+        "--outlier-report",
+        type=str,
+        help="Path to outliers_report_*.json file (required for --outlier-mode)"
+    )
+
     args = parser.parse_args()
 
     # Setup logging level
@@ -2338,6 +2455,258 @@ def main():
     cluster_manager = ClusterManager(args.clusters_dir, args.output_dir)
     test_runner = ClusterRunner(max_workers=args.max_workers)
 
+    selected_languages = parse_language_selection(args.languages)
+
+    overwrite_results = args.overwrite_results
+
+    # Handle outlier-selective execution mode
+    if args.outlier_mode:
+        if not OUTLIER_FILTER_AVAILABLE:
+            print("Error: Outlier filter module not available.")
+            print("Please ensure outlier_filter.py is in the same directory.")
+            return 1
+
+        if not args.outlier_report:
+            print("Error: --outlier-report is required when using --outlier-mode")
+            return 1
+
+        if not args.cluster_name:
+            print("Error: --cluster-name is required for outlier-mode execution")
+            return 1
+
+        print("\n" + "=" * 80)
+        print("OUTLIER-SELECTIVE EXECUTION MODE")
+        print("=" * 80)
+
+        # Load outlier filter
+        outlier_report_path = Path(args.outlier_report)
+        if not outlier_report_path.is_absolute():
+            # Try relative to metrics/outlier_reports directory
+            metrics_dir = BASE_DIR / "metrics" / "outlier_reports"
+            outlier_report_path = metrics_dir / args.outlier_report
+            if not outlier_report_path.exists():
+                # Try as-is relative to current directory
+                outlier_report_path = Path(args.outlier_report)
+
+        if not outlier_report_path.exists():
+            print(f"Error: Outlier report not found: {outlier_report_path}")
+            return 1
+
+        outlier_filter = OutlierFilter(outlier_report_path)
+        if not outlier_filter.load_outlier_report():
+            print("Error: Failed to load outlier report")
+            return 1
+
+        # Check if cluster has outliers
+        if not outlier_filter.has_outliers_for_cluster(args.cluster_name):
+            print(f"\nNo outliers found for cluster '{args.cluster_name}'")
+            print("No execution needed. Exiting.")
+            return 0
+
+        # Print cluster summary
+        outlier_filter.print_cluster_summary(args.cluster_name)
+
+        # Verify cluster file exists
+        cluster_path = args.clusters_dir / f"cluster_{args.cluster_name}.json"
+        if not cluster_path.exists():
+            print(f"Error: Cluster file not found: {cluster_path}")
+            return 1
+
+        # Determine test type
+        if args.full:
+            test_types = ["base", "llm"]
+        elif args.base_only:
+            test_types = ["base"]
+        elif args.llm_only:
+            test_types = ["llm"]
+        else:
+            print("Error: Must specify one of --base-only, --llm-only, or --full")
+            return 1
+
+        merger = ResultMerger()
+        total_entries_executed = 0
+        total_entries_reused = 0
+
+        # Process each test type
+        for test_type in test_types:
+            is_llm = test_type == "llm"
+
+            if is_llm:
+                # Get affected prompt versions
+                affected_versions = outlier_filter.get_affected_prompt_versions(args.cluster_name)
+                prompt_versions = (
+                    sorted(affected_versions)
+                    if args.prompt_version == -1
+                    else [args.prompt_version]
+                )
+
+                print(f"\nProcessing LLM results for prompt versions: {prompt_versions}")
+
+                for p_v in prompt_versions:
+                    # Get outlier entry IDs for this version
+                    outlier_entry_ids = outlier_filter.get_llm_entry_ids_to_execute(
+                        args.cluster_name, p_v
+                    )
+
+                    print(f"\n  Prompt v{p_v}: {len(outlier_entry_ids)} outlier entries to re-execute")
+
+                    # Process each run
+                    for run_num in range(1, args.run_quantity + 1):
+                        print(f"    Run {run_num}/{args.run_quantity}")
+
+                        # Determine output file path
+                        output_filename = f"{args.cluster_name}_results_v{p_v}_{run_num}.json"
+                        output_path = args.output_dir / output_filename
+
+                        # Load existing results
+                        existing_results = merger.load_existing_results(output_path)
+
+                        # Execute tests ONLY for outlier entries
+                        print(f"      Executing {len(outlier_entry_ids)} outlier entries...")
+                        start_time = time.time()
+
+                        _, llm_results = test_runner.run_cluster_tests(
+                            cluster_path=cluster_path,
+                            base_only=False,
+                            llm_only=True,
+                            prompt_version=p_v,
+                            use_cache=not args.no_cache,
+                            full=False,
+                            run_number=run_num,
+                            cluster_name=args.cluster_name,
+                            selected_languages=list(selected_languages),
+                            overwrite_results=overwrite_results,
+                            outlier_filter=outlier_filter  # Pass filter to execution
+                        )
+
+                        elapsed = time.time() - start_time
+
+                        # Filter to only executed outliers
+                        executed_results = [
+                            r for r in llm_results
+                            if r.id in outlier_entry_ids
+                        ]
+
+                        print(f"      Executed {len(executed_results)} entries in {elapsed:.1f}s")
+                        total_entries_executed += len(executed_results)
+
+                        # Merge with existing results
+                        new_results_dicts = [r.to_json() for r in executed_results]
+
+                        if existing_results and existing_results.get('results'):
+                            merged_data = merger.merge_results(
+                                existing_data=existing_results,
+                                new_results=new_results_dicts,
+                                outlier_entry_ids=outlier_entry_ids
+                            )
+                            total_merged = sum(len(entries) for entries in merged_data.get('results', {}).values())
+                            reused_count = total_merged - len(executed_results)
+                            total_entries_reused += reused_count
+                            print(f"      Merged: {len(executed_results)} new + {reused_count} reused = {total_merged} total")
+                        else:
+                            # No existing results - create new data structure
+                            results_by_lang = {}
+                            for r in new_results_dicts:
+                                lang = r.get('language', 'unknown')
+                                if lang not in results_by_lang:
+                                    results_by_lang[lang] = []
+                                results_by_lang[lang].append(r)
+                            merged_data = {"results": results_by_lang}
+                            print(f"      No existing results - saved {len(new_results_dicts)} new entries")
+
+                        # Save merged results
+                        merger.save_merged_results(
+                            merged_data=merged_data,
+                            output_file=output_path,
+                            backup=True
+                        )
+
+            else:  # Base code execution
+                outlier_entry_ids = outlier_filter.get_base_entry_ids_to_execute(args.cluster_name)
+                print(f"\nBase code: {len(outlier_entry_ids)} outlier entries to re-execute")
+
+                # Process each run
+                for run_num in range(1, args.run_quantity + 1):
+                    print(f"  Run {run_num}/{args.run_quantity}")
+
+                    # Determine output file path
+                    output_filename = f"{args.cluster_name}_results_{run_num}.json"
+                    output_path = args.output_dir / output_filename
+
+                    # Load existing results
+                    existing_results = merger.load_existing_results(output_path)
+
+                    # Execute tests ONLY for outlier entries
+                    print(f"    Executing {len(outlier_entry_ids)} outlier entries...")
+                    start_time = time.time()
+
+                    base_results, _ = test_runner.run_cluster_tests(
+                        cluster_path=cluster_path,
+                        base_only=True,
+                        llm_only=False,
+                        prompt_version=-1,
+                        use_cache=not args.no_cache,
+                        full=False,
+                        run_number=run_num,
+                        cluster_name=args.cluster_name,
+                        selected_languages=list(selected_languages),
+                        overwrite_results=overwrite_results,
+                        outlier_filter=outlier_filter  # Pass filter to execution
+                    )
+
+                    elapsed = time.time() - start_time
+
+                    # Filter to only executed outliers
+                    executed_results = [
+                        r for r in base_results
+                        if r.id in outlier_entry_ids
+                    ]
+
+                    print(f"    Executed {len(executed_results)} entries in {elapsed:.1f}s")
+                    total_entries_executed += len(executed_results)
+
+                    # Merge with existing results
+                    new_results_dicts = [r.to_json() for r in executed_results]
+
+                    if existing_results and existing_results.get('results'):
+                        merged_data = merger.merge_results(
+                            existing_data=existing_results,
+                            new_results=new_results_dicts,
+                            outlier_entry_ids=outlier_entry_ids
+                        )
+                        total_merged = sum(len(entries) for entries in merged_data.get('results', {}).values())
+                        reused_count = total_merged - len(executed_results)
+                        total_entries_reused += reused_count
+                        print(f"    Merged: {len(executed_results)} new + {reused_count} reused = {total_merged} total")
+                    else:
+                        # No existing results - create new data structure
+                        results_by_lang = {}
+                        for r in new_results_dicts:
+                            lang = r.get('language', 'unknown')
+                            if lang not in results_by_lang:
+                                results_by_lang[lang] = []
+                            results_by_lang[lang].append(r)
+                        merged_data = {"results": results_by_lang}
+                        print(f"    No existing results - saved {len(new_results_dicts)} new entries")
+
+                    # Save merged results
+                    merger.save_merged_results(
+                        merged_data=merged_data,
+                        output_file=output_path,
+                        backup=True
+                    )
+
+        # Print final summary
+        print("\n" + "=" * 80)
+        print("OUTLIER-SELECTIVE EXECUTION COMPLETE")
+        print("=" * 80)
+        print(f"Total entries executed: {total_entries_executed}")
+        print(f"Total entries reused: {total_entries_reused}")
+        print(f"Time saved by reusing: ~{total_entries_reused * 100 / max(total_entries_executed + total_entries_reused, 1):.1f}%")
+        print("=" * 80)
+
+        return 0
+
     # Handle selective re-execution mode
     if args.selective_rerun:
         if not SELECTIVE_RUNNER_AVAILABLE:
@@ -2352,7 +2721,7 @@ def main():
         print("=" * 80)
 
         # Parse selected languages
-        selected_languages = parse_language_selection(args.languages)
+        
         print(f"Selected languages: {', '.join(sorted(selected_languages))}")
 
         # Validate we have a specific cluster
@@ -2436,7 +2805,8 @@ def main():
                             full=False,
                             run_number=run_num,
                             cluster_name=args.cluster_name,
-                            selected_languages=list(selected_languages)
+                            selected_languages=list(selected_languages),
+                            overwrite_results = overwrite_results
                         )
 
                         elapsed = time.time() - start_time
@@ -2512,7 +2882,8 @@ def main():
                         full=False,
                         run_number=run_num,
                         cluster_name=args.cluster_name,
-                        selected_languages=list(selected_languages)
+                        selected_languages=list(selected_languages),
+                        overwrite_results = overwrite_results
                     )
 
                     elapsed = time.time() - start_time
@@ -2674,7 +3045,8 @@ def main():
                             full=full,
                             run_number=run_num,
                             cluster_name=cluster_name,
-                            selected_languages=list(selected_languages)
+                            selected_languages=list(selected_languages),
+                            overwrite_results = overwrite_results
                         )
 
                         elapsed = time.time() - start_time
@@ -2811,7 +3183,8 @@ def main():
                         full=args.full,
                         run_number=run_num,
                         cluster_name=cluster_name,
-                        selected_languages=list(selected_languages)
+                        selected_languages=list(selected_languages),
+                        overwrite_results = overwrite_results
                     )
 
                     elapsed = time.time() - start_time

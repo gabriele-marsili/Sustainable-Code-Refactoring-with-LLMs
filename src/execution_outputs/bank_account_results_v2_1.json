@@ -1,9 +1,9 @@
 {
-  "execution_date": "2025-10-13 21:09:53",
+  "execution_date": "2025-10-18 13:14:46",
   "execution_metadata": {
-    "total_tests": 34,
-    "successful_tests": 34,
-    "execution_time": "00h 00m 00s",
+    "total_tests": 33,
+    "successful_tests": 33,
+    "execution_time": "00h 00m 46s",
     "cluster": "cluster_bank_account",
     "test_type": "llm_v2"
   },
@@ -11,54 +11,54 @@
     "python": [
       {
         "id": "bank-account_3",
-        "filename": "Filename not found",
-        "language": "python",
-        "LLM_results": [
-          {
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/bank-account/openAI/ChatGPT4_bank-account_v2.py",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_python_persistent_bank-account_3_1759127412.log",
-            "execution_time_ms": 30,
-            "CPU_usage": 59.0,
-            "RAM_usage": 13824,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null
-          }
-        ]
-      },
-      {
-        "id": "bank-account_3",
-        "filename": "Filename not found",
-        "language": "python",
-        "LLM_results": [
-          {
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/bank-account/claude/ClaudeSonnet4_bank-account_v2.py",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_python_persistent_bank-account_3_1759127413.log",
-            "execution_time_ms": 20,
-            "CPU_usage": 91.0,
-            "RAM_usage": 13952,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null
-          }
-        ]
-      },
-      {
-        "id": "bank-account_3",
-        "filename": "Filename not found",
+        "filename": "bank-account.py",
         "language": "python",
         "LLM_results": [
           {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/bank-account/gemini/GeminiFlash_bank-account_v2.py",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_python_persistent_bank-account_3_1759127414.log",
-            "execution_time_ms": 20,
-            "CPU_usage": 89.0,
+            "log": "",
+            "execution_time_ms": 30,
+            "CPU_usage": 33.0,
+            "RAM_usage": 13696,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "bank-account_3",
+        "filename": "bank-account.py",
+        "language": "python",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/bank-account/openAI/ChatGPT4_bank-account_v2.py",
+            "log": "",
+            "execution_time_ms": 30,
+            "CPU_usage": 58.0,
+            "RAM_usage": 13824,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "bank-account_3",
+        "filename": "bank-account.py",
+        "language": "python",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/bank-account/claude/ClaudeSonnet4_bank-account_v2.py",
+            "log": "",
+            "execution_time_ms": 30,
+            "CPU_usage": 62.0,
             "RAM_usage": 13952,
-            "regressionTestPassed": true,
-            "success": true,
+            "regressionTestPassed": false,
+            "success": false,
             "error_message": null
           }
         ]
@@ -67,142 +67,106 @@
     "javascript": [
       {
         "id": "javascript_bank-account_exercism-javascript-ffflorian",
-        "filename": "Filename not found",
+        "filename": "bank-account.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bank-account_exercism-javascript-ffflorian/openAI/ChatGPT4_bank-account_v2.js",
+            "log": "",
+            "execution_time_ms": 190,
+            "CPU_usage": 27.0,
+            "RAM_usage": 67516,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "javascript_bank-account_exercism-javascript-ffflorian",
+        "filename": "bank-account.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bank-account_exercism-javascript-ffflorian/claude/ClaudeSonnet4_bank-account_v2.js",
+            "log": "",
+            "execution_time_ms": 170,
+            "CPU_usage": 43.0,
+            "RAM_usage": 66808,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "javascript_bank-account_exercism-javascript-ffflorian",
+        "filename": "bank-account.js",
         "language": "javascript",
         "LLM_results": [
           {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bank-account_exercism-javascript-ffflorian/gemini/GeminiFlash_bank-account_v2.js",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_bank-account_exercism-javascript-ffflorian_1759127419.log",
-            "execution_time_ms": 410,
-            "CPU_usage": 66.0,
-            "RAM_usage": 83060,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null
+            "log": "",
+            "execution_time_ms": 180,
+            "CPU_usage": 33.0,
+            "RAM_usage": 66264,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
           }
         ]
       },
       {
         "id": "javascript_bank-account_exercism-javascript-irvingbennett_irvingbennett",
-        "filename": "Filename not found",
+        "filename": "bank-account.js",
         "language": "javascript",
         "LLM_results": [
           {
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bank-account_exercism-javascript-irvingbennett/openAI/ChatGPT4_bank-account_v2.js",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_bank-account_exercism-javascript-irvingbennett_irvingbennett_1759127422.log",
-            "execution_time_ms": 280,
-            "CPU_usage": 39.0,
-            "RAM_usage": 82564,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null
+            "log": "",
+            "execution_time_ms": 180,
+            "CPU_usage": 30.0,
+            "RAM_usage": 65408,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
           }
         ]
       },
       {
         "id": "javascript_bank-account_exercism-javascript-irvingbennett_irvingbennett",
-        "filename": "Filename not found",
+        "filename": "bank-account.js",
         "language": "javascript",
         "LLM_results": [
           {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bank-account_exercism-javascript-irvingbennett/claude/ClaudeSonnet4_bank-account_v2.js",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_bank-account_exercism-javascript-irvingbennett_irvingbennett_1759127423.log",
-            "execution_time_ms": 270,
-            "CPU_usage": 45.0,
-            "RAM_usage": 82028,
+            "log": "",
+            "execution_time_ms": 180,
+            "CPU_usage": 36.0,
+            "RAM_usage": 67248,
             "regressionTestPassed": false,
             "success": false,
             "error_message": "Docker exit code: 1"
-          }
-        ]
-      },
-      {
-        "id": "javascript_bank-account_exercism-javascript-ffflorian_ffflorian",
-        "filename": "Filename not found",
-        "language": "javascript",
-        "LLM_results": [
-          {
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bank-account_exercism-javascript-ffflorian/openAI/ChatGPT4_bank-account_v2.js",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_bank-account_exercism-javascript-ffflorian_ffflorian_1759127423.log",
-            "execution_time_ms": 270,
-            "CPU_usage": 59.0,
-            "RAM_usage": 83040,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null
           }
         ]
       },
       {
         "id": "javascript_bank-account_exercism-javascript-irvingbennett_irvingbennett",
-        "filename": "Filename not found",
+        "filename": "bank-account.js",
         "language": "javascript",
         "LLM_results": [
           {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bank-account_exercism-javascript-irvingbennett/gemini/GeminiFlash_bank-account_v2.js",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_bank-account_exercism-javascript-irvingbennett_irvingbennett_1759127424.log",
-            "execution_time_ms": 270,
-            "CPU_usage": 45.0,
-            "RAM_usage": 82028,
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": "Docker exit code: 1"
-          }
-        ]
-      },
-      {
-        "id": "javascript_bank-account_exercism-javascript-ffflorian_ffflorian",
-        "filename": "Filename not found",
-        "language": "javascript",
-        "LLM_results": [
-          {
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bank-account_exercism-javascript-ffflorian/claude/ClaudeSonnet4_bank-account_v2.js",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_bank-account_exercism-javascript-ffflorian_ffflorian_1759127426.log",
-            "execution_time_ms": 270,
-            "CPU_usage": 62.0,
-            "RAM_usage": 81428,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null
-          }
-        ]
-      },
-      {
-        "id": "javascript_bank-account_exercism-javascript-ffflorian_ffflorian",
-        "filename": "Filename not found",
-        "language": "javascript",
-        "LLM_results": [
-          {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bank-account_exercism-javascript-ffflorian/gemini/GeminiFlash_bank-account_v2.js",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_javascript_persistent_javascript_bank-account_exercism-javascript-ffflorian_ffflorian_1759127426.log",
-            "execution_time_ms": 270,
-            "CPU_usage": 62.0,
-            "RAM_usage": 81428,
-            "regressionTestPassed": false,
-            "success": true,
-            "error_message": "Docker exit code: 1"
-          }
-        ]
-      },
-      {
-        "id": "javascript_bank-account_exercism-javascript-ffflorian",
-        "filename": "bank-account.js",
-        "language": "javascript",
-        "LLM_results": [
-          {
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bank-account_exercism-javascript-ffflorian/claude/ClaudeSonnet4_bank-account_v2.js",
             "log": "",
             "execution_time_ms": 180,
-            "CPU_usage": 6.0,
-            "RAM_usage": 65756,
+            "CPU_usage": 33.0,
+            "RAM_usage": 65852,
             "regressionTestPassed": false,
             "success": false,
             "error_message": "Docker exit code: 1"
@@ -210,7 +174,7 @@
         ]
       },
       {
-        "id": "javascript_bank-account_exercism-javascript-ffflorian",
+        "id": "javascript_bank-account_exercism-javascript-ffflorian_ffflorian",
         "filename": "bank-account.js",
         "language": "javascript",
         "LLM_results": [
@@ -218,9 +182,9 @@
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bank-account_exercism-javascript-ffflorian/openAI/ChatGPT4_bank-account_v2.js",
             "log": "",
-            "execution_time_ms": 170,
-            "CPU_usage": 0.0,
-            "RAM_usage": 66704,
+            "execution_time_ms": 180,
+            "CPU_usage": 31.0,
+            "RAM_usage": 68364,
             "regressionTestPassed": false,
             "success": false,
             "error_message": "Docker exit code: 1"
@@ -228,7 +192,25 @@
         ]
       },
       {
-        "id": "javascript_bank-account_exercism-javascript-ffflorian",
+        "id": "javascript_bank-account_exercism-javascript-ffflorian_ffflorian",
+        "filename": "bank-account.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bank-account_exercism-javascript-ffflorian/claude/ClaudeSonnet4_bank-account_v2.js",
+            "log": "",
+            "execution_time_ms": 190,
+            "CPU_usage": 27.0,
+            "RAM_usage": 67512,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "javascript_bank-account_exercism-javascript-ffflorian_ffflorian",
         "filename": "bank-account.js",
         "language": "javascript",
         "LLM_results": [
@@ -236,9 +218,9 @@
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/bank-account_exercism-javascript-ffflorian/gemini/GeminiFlash_bank-account_v2.js",
             "log": "",
-            "execution_time_ms": 170,
-            "CPU_usage": 0.0,
-            "RAM_usage": 66180,
+            "execution_time_ms": 160,
+            "CPU_usage": 40.0,
+            "RAM_usage": 67712,
             "regressionTestPassed": false,
             "success": false,
             "error_message": "Docker exit code: 1"
@@ -249,34 +231,16 @@
     "typescript": [
       {
         "id": "typescript_bank-account_Exercism-typescript-alemarr",
-        "filename": "Filename not found",
+        "filename": "bank-account.ts",
         "language": "typescript",
         "LLM_results": [
           {
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bank-account_Exercism-typescript-alemarr/openAI/ChatGPT4_bank-account_v2.js",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_bank-account_Exercism-typescript-alemarr_1759127432.log",
-            "execution_time_ms": 1298,
-            "CPU_usage": 89.0,
-            "RAM_usage": 223636,
-            "regressionTestPassed": false,
-            "success": true,
-            "error_message": "Docker exit code: 1"
-          }
-        ]
-      },
-      {
-        "id": "typescript_bank-account_Exercism-typescript-alemarr",
-        "filename": "Filename not found",
-        "language": "typescript",
-        "LLM_results": [
-          {
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bank-account_Exercism-typescript-alemarr/openAI/ChatGPT4_bank-account_v2.ts",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_bank-account_Exercism-typescript-alemarr_1759127433.log",
-            "execution_time_ms": 1298,
-            "CPU_usage": 89.0,
-            "RAM_usage": 223636,
+            "log": "",
+            "execution_time_ms": 619,
+            "CPU_usage": 46.0,
+            "RAM_usage": 127752,
             "regressionTestPassed": true,
             "success": true,
             "error_message": null
@@ -285,16 +249,16 @@
       },
       {
         "id": "typescript_bank-account_Exercism-typescript-alemarr",
-        "filename": "Filename not found",
+        "filename": "bank-account.ts",
         "language": "typescript",
         "LLM_results": [
           {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bank-account_Exercism-typescript-alemarr/claude/ClaudeSonnet4_bank-account_v2.ts",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_bank-account_Exercism-typescript-alemarr_1759127434.log",
-            "execution_time_ms": 1298,
-            "CPU_usage": 89.0,
-            "RAM_usage": 223636,
+            "log": "",
+            "execution_time_ms": 309,
+            "CPU_usage": 56.0,
+            "RAM_usage": 128824,
             "regressionTestPassed": true,
             "success": true,
             "error_message": null
@@ -303,88 +267,88 @@
       },
       {
         "id": "typescript_bank-account_Exercism-typescript-alemarr",
-        "filename": "Filename not found",
+        "filename": "bank-account.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bank-account_Exercism-typescript-alemarr/openAI/ChatGPT4_bank-account_v2.ts",
+            "log": "",
+            "execution_time_ms": 479,
+            "CPU_usage": 51.0,
+            "RAM_usage": 128204,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_bank-account_Exercism-typescript-alemarr",
+        "filename": "bank-account.ts",
         "language": "typescript",
         "LLM_results": [
           {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bank-account_Exercism-typescript-alemarr/claude/ClaudeSonnet4_bank-account_v2.js",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_bank-account_Exercism-typescript-alemarr_1759127437.log",
-            "execution_time_ms": 1298,
-            "CPU_usage": 89.0,
-            "RAM_usage": 223636,
-            "regressionTestPassed": false,
+            "log": "",
+            "execution_time_ms": 264,
+            "CPU_usage": 79.0,
+            "RAM_usage": 128980,
+            "regressionTestPassed": true,
             "success": true,
-            "error_message": "Docker exit code: 1"
+            "error_message": null
           }
         ]
       },
       {
         "id": "typescript_bank-account_Exercism-typescript-alemarr",
-        "filename": "Filename not found",
-        "language": "typescript",
-        "LLM_results": [
-          {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bank-account_Exercism-typescript-alemarr/gemini/GeminiFlash_bank-account_v2.ts",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_bank-account_Exercism-typescript-alemarr_1759127438.log",
-            "execution_time_ms": 1298,
-            "CPU_usage": 89.0,
-            "RAM_usage": 223636,
-            "regressionTestPassed": false,
-            "success": true,
-            "error_message": "Docker exit code: 1"
-          }
-        ]
-      },
-      {
-        "id": "typescript_bank-account_Exercism-typescript-alemarr",
-        "filename": "Filename not found",
+        "filename": "bank-account.ts",
         "language": "typescript",
         "LLM_results": [
           {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bank-account_Exercism-typescript-alemarr/gemini/GeminiFlash_bank-account_v2.js",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_bank-account_Exercism-typescript-alemarr_1759127438.log",
-            "execution_time_ms": 1298,
-            "CPU_usage": 89.0,
-            "RAM_usage": 223636,
-            "regressionTestPassed": false,
+            "log": "",
+            "execution_time_ms": 446,
+            "CPU_usage": 51.0,
+            "RAM_usage": 128192,
+            "regressionTestPassed": true,
             "success": true,
-            "error_message": "Docker exit code: 1"
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_bank-account_Exercism-typescript-alemarr",
+        "filename": "bank-account.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bank-account_Exercism-typescript-alemarr/gemini/GeminiFlash_bank-account_v2.ts",
+            "log": "",
+            "execution_time_ms": 472,
+            "CPU_usage": 47.0,
+            "RAM_usage": 127984,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
           }
         ]
       },
       {
         "id": "typescript_bank-account_Exercism-typescript-alemarr_alemarr",
-        "filename": "Filename not found",
+        "filename": "bank-account.ts",
         "language": "typescript",
         "LLM_results": [
           {
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bank-account_Exercism-typescript-alemarr/openAI/ChatGPT4_bank-account_v2.js",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_bank-account_Exercism-typescript-alemarr_alemarr_1759127445.log",
-            "execution_time_ms": 1463,
-            "CPU_usage": 72.0,
-            "RAM_usage": 223204,
-            "regressionTestPassed": false,
-            "success": true,
-            "error_message": "Docker exit code: 1"
-          }
-        ]
-      },
-      {
-        "id": "typescript_bank-account_Exercism-typescript-alemarr_alemarr",
-        "filename": "Filename not found",
-        "language": "typescript",
-        "LLM_results": [
-          {
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bank-account_Exercism-typescript-alemarr/claude/ClaudeSonnet4_bank-account_v2.ts",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_bank-account_Exercism-typescript-alemarr_alemarr_1759127446.log",
-            "execution_time_ms": 1463,
-            "CPU_usage": 72.0,
-            "RAM_usage": 223204,
+            "log": "",
+            "execution_time_ms": 395,
+            "CPU_usage": 46.0,
+            "RAM_usage": 128288,
             "regressionTestPassed": true,
             "success": true,
             "error_message": null
@@ -393,16 +357,16 @@
       },
       {
         "id": "typescript_bank-account_Exercism-typescript-alemarr_alemarr",
-        "filename": "Filename not found",
+        "filename": "bank-account.ts",
         "language": "typescript",
         "LLM_results": [
           {
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bank-account_Exercism-typescript-alemarr/openAI/ChatGPT4_bank-account_v2.ts",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_bank-account_Exercism-typescript-alemarr_alemarr_1759127446.log",
-            "execution_time_ms": 1463,
-            "CPU_usage": 72.0,
-            "RAM_usage": 223204,
+            "log": "",
+            "execution_time_ms": 348,
+            "CPU_usage": 54.0,
+            "RAM_usage": 127624,
             "regressionTestPassed": true,
             "success": true,
             "error_message": null
@@ -411,55 +375,73 @@
       },
       {
         "id": "typescript_bank-account_Exercism-typescript-alemarr_alemarr",
-        "filename": "Filename not found",
+        "filename": "bank-account.ts",
         "language": "typescript",
         "LLM_results": [
           {
             "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bank-account_Exercism-typescript-alemarr/claude/ClaudeSonnet4_bank-account_v2.js",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_bank-account_Exercism-typescript-alemarr_alemarr_1759127450.log",
-            "execution_time_ms": 1463,
-            "CPU_usage": 72.0,
-            "RAM_usage": 223204,
-            "regressionTestPassed": false,
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bank-account_Exercism-typescript-alemarr/claude/ClaudeSonnet4_bank-account_v2.ts",
+            "log": "",
+            "execution_time_ms": 465,
+            "CPU_usage": 61.0,
+            "RAM_usage": 128092,
+            "regressionTestPassed": true,
             "success": true,
-            "error_message": "Docker exit code: 1"
+            "error_message": null
           }
         ]
       },
       {
         "id": "typescript_bank-account_Exercism-typescript-alemarr_alemarr",
-        "filename": "Filename not found",
+        "filename": "bank-account.ts",
         "language": "typescript",
         "LLM_results": [
           {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bank-account_Exercism-typescript-alemarr/gemini/GeminiFlash_bank-account_v2.ts",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_bank-account_Exercism-typescript-alemarr_alemarr_1759127450.log",
-            "execution_time_ms": 1463,
-            "CPU_usage": 72.0,
-            "RAM_usage": 223204,
-            "regressionTestPassed": false,
+            "log": "",
+            "execution_time_ms": 505,
+            "CPU_usage": 47.0,
+            "RAM_usage": 128212,
+            "regressionTestPassed": true,
             "success": true,
-            "error_message": "Docker exit code: 1"
+            "error_message": null
           }
         ]
       },
       {
         "id": "typescript_bank-account_Exercism-typescript-alemarr_alemarr",
-        "filename": "Filename not found",
+        "filename": "bank-account.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bank-account_Exercism-typescript-alemarr/claude/ClaudeSonnet4_bank-account_v2.js",
+            "log": "",
+            "execution_time_ms": 614,
+            "CPU_usage": 43.0,
+            "RAM_usage": 127460,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_bank-account_Exercism-typescript-alemarr_alemarr",
+        "filename": "bank-account.ts",
         "language": "typescript",
         "LLM_results": [
           {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/bank-account_Exercism-typescript-alemarr/gemini/GeminiFlash_bank-account_v2.js",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_typescript_persistent_typescript_bank-account_Exercism-typescript-alemarr_alemarr_1759127451.log",
-            "execution_time_ms": 1463,
-            "CPU_usage": 72.0,
-            "RAM_usage": 223204,
-            "regressionTestPassed": false,
+            "log": "",
+            "execution_time_ms": 394,
+            "CPU_usage": 51.0,
+            "RAM_usage": 129528,
+            "regressionTestPassed": true,
             "success": true,
-            "error_message": "Docker exit code: 1"
+            "error_message": null
           }
         ]
       }
@@ -467,34 +449,16 @@
     "go": [
       {
         "id": "go_bank_account_Exercism (go_rootulp)",
-        "filename": "Filename not found",
+        "filename": "bank_account.go",
         "language": "go",
         "LLM_results": [
           {
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bank_account_Exercism_go_rootulp/openAI/ChatGPT4_bank_account_v2.go",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_bank_account_Exercism (go_rootulp)_1759127475.log",
-            "execution_time_ms": 6130,
-            "CPU_usage": 33.0,
-            "RAM_usage": 227432,
-            "regressionTestPassed": true,
-            "success": true,
-            "error_message": null
-          }
-        ]
-      },
-      {
-        "id": "go_bank_account_Exercism (go_ThomasZumsteg)",
-        "filename": "Filename not found",
-        "language": "go",
-        "LLM_results": [
-          {
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bank_account_Exercism_go_ThomasZumsteg/claude/ClaudeSonnet4_bank_account_v2.go",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_bank_account_Exercism (go_ThomasZumsteg)_1759127477.log",
-            "execution_time_ms": 6020,
-            "CPU_usage": 33.0,
-            "RAM_usage": 227792,
+            "log": "",
+            "execution_time_ms": 5890,
+            "CPU_usage": 52.0,
+            "RAM_usage": 215428,
             "regressionTestPassed": true,
             "success": true,
             "error_message": null
@@ -503,16 +467,16 @@
       },
       {
         "id": "go_bank_account_Exercism (go_rootulp)",
-        "filename": "Filename not found",
+        "filename": "bank_account.go",
         "language": "go",
         "LLM_results": [
           {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bank_account_Exercism_go_rootulp/claude/ClaudeSonnet4_bank_account_v2.go",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_bank_account_Exercism (go_rootulp)_1759127478.log",
-            "execution_time_ms": 6130,
-            "CPU_usage": 33.0,
-            "RAM_usage": 227432,
+            "log": "",
+            "execution_time_ms": 5890,
+            "CPU_usage": 50.0,
+            "RAM_usage": 223380,
             "regressionTestPassed": true,
             "success": true,
             "error_message": null
@@ -521,16 +485,16 @@
       },
       {
         "id": "go_bank_account_Exercism (go_rootulp)",
-        "filename": "Filename not found",
+        "filename": "bank_account.go",
         "language": "go",
         "LLM_results": [
           {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bank_account_Exercism_go_rootulp/gemini/GeminiFlash_bank_account_v2.go",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_bank_account_Exercism (go_rootulp)_1759127478.log",
-            "execution_time_ms": 6130,
-            "CPU_usage": 33.0,
-            "RAM_usage": 227432,
+            "log": "",
+            "execution_time_ms": 5909,
+            "CPU_usage": 49.0,
+            "RAM_usage": 227900,
             "regressionTestPassed": true,
             "success": true,
             "error_message": null
@@ -539,16 +503,16 @@
       },
       {
         "id": "go_bank_account_Exercism (go_ThomasZumsteg)",
-        "filename": "Filename not found",
+        "filename": "bank_account.go",
         "language": "go",
         "LLM_results": [
           {
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bank_account_Exercism_go_ThomasZumsteg/openAI/ChatGPT4_bank_account_v2.go",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_bank_account_Exercism (go_ThomasZumsteg)_1759127478.log",
-            "execution_time_ms": 6020,
-            "CPU_usage": 33.0,
-            "RAM_usage": 227792,
+            "log": "",
+            "execution_time_ms": 5939,
+            "CPU_usage": 49.0,
+            "RAM_usage": 225920,
             "regressionTestPassed": true,
             "success": true,
             "error_message": null
@@ -557,16 +521,16 @@
       },
       {
         "id": "go_bank_account_Exercism (go_ThomasZumsteg)",
-        "filename": "Filename not found",
+        "filename": "bank_account.go",
         "language": "go",
         "LLM_results": [
           {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bank_account_Exercism_go_ThomasZumsteg/gemini/GeminiFlash_bank_account_v2.go",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_bank_account_Exercism (go_ThomasZumsteg)_1759127478.log",
-            "execution_time_ms": 6020,
-            "CPU_usage": 33.0,
-            "RAM_usage": 227792,
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bank_account_Exercism_go_ThomasZumsteg/claude/ClaudeSonnet4_bank_account_v2.go",
+            "log": "",
+            "execution_time_ms": 5989,
+            "CPU_usage": 53.0,
+            "RAM_usage": 224500,
             "regressionTestPassed": true,
             "success": true,
             "error_message": null
@@ -575,16 +539,34 @@
       },
       {
         "id": "go_bank_account_Exercism (go_drapala)",
-        "filename": "Filename not found",
+        "filename": "bank_account.go",
         "language": "go",
         "LLM_results": [
           {
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bank_account_Exercism_go_drapala/openAI/ChatGPT4_bank_account_v2.go",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_bank_account_Exercism (go_drapala)_1759127491.log",
-            "execution_time_ms": 5820,
-            "CPU_usage": 68.0,
-            "RAM_usage": 219272,
+            "log": "",
+            "execution_time_ms": 5920,
+            "CPU_usage": 49.0,
+            "RAM_usage": 222068,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_bank_account_Exercism (go_ThomasZumsteg)",
+        "filename": "bank_account.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bank_account_Exercism_go_ThomasZumsteg/gemini/GeminiFlash_bank_account_v2.go",
+            "log": "",
+            "execution_time_ms": 5910,
+            "CPU_usage": 48.0,
+            "RAM_usage": 229852,
             "regressionTestPassed": true,
             "success": true,
             "error_message": null
@@ -593,16 +575,16 @@
       },
       {
         "id": "go_bank_account_Exercism (go_drapala)",
-        "filename": "Filename not found",
+        "filename": "bank_account.go",
         "language": "go",
         "LLM_results": [
           {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bank_account_Exercism_go_drapala/claude/ClaudeSonnet4_bank_account_v2.go",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_bank_account_Exercism (go_drapala)_1759127493.log",
-            "execution_time_ms": 5820,
-            "CPU_usage": 68.0,
-            "RAM_usage": 219272,
+            "log": "",
+            "execution_time_ms": 5939,
+            "CPU_usage": 49.0,
+            "RAM_usage": 220448,
             "regressionTestPassed": true,
             "success": true,
             "error_message": null
@@ -611,16 +593,16 @@
       },
       {
         "id": "go_bank_account_Exercism (go_drapala)",
-        "filename": "Filename not found",
+        "filename": "bank_account.go",
         "language": "go",
         "LLM_results": [
           {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/bank_account_Exercism_go_drapala/gemini/GeminiFlash_bank_account_v2.go",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/logs/test_runner_go_persistent_go_bank_account_Exercism (go_drapala)_1759127493.log",
-            "execution_time_ms": 5820,
-            "CPU_usage": 68.0,
-            "RAM_usage": 219272,
+            "log": "",
+            "execution_time_ms": 5680,
+            "CPU_usage": 118.0,
+            "RAM_usage": 208712,
             "regressionTestPassed": true,
             "success": true,
             "error_message": null

@@ -5,7 +5,9 @@ from statistics import mean, stdev
 from pathlib import Path
 import re
 import numpy as np
-from utility_dir import utility_paths
+from utility_dir import utility_paths,general_utils
+from typing import List
+
 
 OUTPUT_DIR = utility_paths.SRC_DIR / "stats_dataset"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)  # crea la cartella se non esiste
@@ -874,16 +876,21 @@ class StatsHandler:
             print(f"  ✅ Passed: {passed}/{total} ({pass_rate:.1f}%)")
             print(f"  ❌ Failed: {failed}/{total} ({100 - pass_rate:.1f}%)")
 
+    def get_cluster_files(self) -> List[Path]:
+        """Get cluster files from cluster directory."""
+        return [
+            p
+            for p in utility_paths.CLUSTERS_DIR_FILEPATH.glob("*.json")
+            if "with_metrics" not in p.name
+            and "debug_" not in p.name
+            and "bad_entries" not in p.name
+            and "cluster_" in p.name
+        ]
+    
     def print_dataset_statistics(self):
-        root_dir = Path("dataset")
-        dataset_path = root_dir / "dataset.json"
+        clusters = self.get_cluster_files()
 
-        if not dataset_path.exists():
-            print(f"[ERRORE] File non trovato: {dataset_path}")
-            return
-
-        with open(dataset_path, "r", encoding="utf-8") as f:
-            data = json.load(f)
+      
 
         total_entries = 0
         language_counter = Counter()
@@ -893,17 +900,22 @@ class StatsHandler:
         )  # {language: {filename: [entries]}}
         clusters_cross_language = defaultdict(list)  # {filename_no_ext: [entries]}
 
-        for language, entries in data.items():
-            for entry in entries:
-                total_entries += 1
-                language_counter[language] += 1
-                source_counter[entry.get("source", "Unknown")] += 1
+        
+        for cluster_path in clusters :
+            #cluster_name = cluster_path.stem.replace("cluster_", "").replace(".json", "")
+            data = general_utils.read_json(cluster_path)
 
-                filename = entry.get("filename")
-                if filename:
-                    filename_no_ext = Path(filename).stem
-                    clusters_same_language[language][filename].append(entry)
-                    clusters_cross_language[filename_no_ext].append(entry)
+            for language, entries in data.items():
+                for entry in entries:
+                    total_entries += 1
+                    language_counter[language] += 1
+                    source_counter[entry.get("source", "Unknown")] += 1
+
+                    filename = entry.get("filename")
+                    if filename:
+                        filename_no_ext = Path(filename).stem
+                        clusters_same_language[language][filename].append(entry)
+                        clusters_cross_language[filename_no_ext].append(entry)
 
         print("\n\n== Statistiche del Dataset ==")
         print(f"Totale entry: {total_entries}\n")
@@ -945,7 +957,7 @@ class StatsHandler:
 
         print(f"\nc_names : {c_names}")
         
-        print(f"\nTotal cluster quantity in dataset : {len(sorted_cross_lang_clusters)}")
+        print(f"\nTotal cluster quantity in dataset : {len(clusters)}")
         print(f"\nTotal entries quantity in dataset : {total_entries_quantity}")
 
     def full_analysis(self):

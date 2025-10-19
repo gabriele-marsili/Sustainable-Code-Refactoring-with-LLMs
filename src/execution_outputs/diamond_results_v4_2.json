@@ -1,55 +1,5 @@
 {
-  "execution_date": "2025-10-13 22:20:10",
-  "execution_metadata": {
-    "total_tests": 10,
-    "successful_tests": 10,
-    "execution_time": "00h 00m 00s",
-    "cluster": "cluster_diamond",
-    "test_type": "llm_v4"
-  },
   "results": {
-    "javascript": [
-      {
-        "id": "javascript_diamond_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
-        "filename": "diamond.js",
-        "language": "javascript",
-        "LLM_results": [
-          {
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/diamond_exercism-javascript-ThomasZumsteg/openAI/ChatGPT4_diamond_v4.js",
-            "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          },
-          {
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/diamond_exercism-javascript-ThomasZumsteg/claude/ClaudeSonnet4_diamond_v4.js",
-            "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          },
-          {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/diamond_exercism-javascript-ThomasZumsteg/gemini/GeminiFlash_diamond_v4.js",
-            "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          }
-        ]
-      }
-    ],
     "typescript": [
       {
         "id": "typescript_diamond_Exercism-typescript-FilipeCerejo",
@@ -60,67 +10,102 @@
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/diamond_Exercism-typescript-FilipeCerejo/openAI/ChatGPT4_diamond_v4.ts",
             "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          },
+            "execution_time_ms": 716,
+            "CPU_usage": 39.0,
+            "RAM_usage": 127032,
+            "regressionTestPassed": false,
+            "success": true,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "typescript_diamond_Exercism-typescript-FilipeCerejo",
+        "filename": "diamond.ts",
+        "language": "typescript",
+        "LLM_results": [
           {
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/diamond_Exercism-typescript-FilipeCerejo/openAI/ChatGPT4_diamond_v4.js",
             "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          },
+            "execution_time_ms": 444,
+            "CPU_usage": 47.0,
+            "RAM_usage": 124288,
+            "regressionTestPassed": false,
+            "success": true,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "typescript_diamond_Exercism-typescript-FilipeCerejo",
+        "filename": "diamond.ts",
+        "language": "typescript",
+        "LLM_results": [
           {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/diamond_Exercism-typescript-FilipeCerejo/claude/ClaudeSonnet4_diamond_v4.js",
             "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
+            "execution_time_ms": 449,
+            "CPU_usage": 64.0,
+            "RAM_usage": 123772,
             "regressionTestPassed": true,
-            "success": null,
+            "success": true,
             "error_message": null
-          },
+          }
+        ]
+      },
+      {
+        "id": "typescript_diamond_Exercism-typescript-FilipeCerejo",
+        "filename": "diamond.ts",
+        "language": "typescript",
+        "LLM_results": [
           {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/diamond_Exercism-typescript-FilipeCerejo/claude/ClaudeSonnet4_diamond_v4.ts",
             "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
+            "execution_time_ms": 518,
+            "CPU_usage": 43.0,
+            "RAM_usage": 122596,
             "regressionTestPassed": true,
-            "success": null,
+            "success": true,
             "error_message": null
-          },
-          {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/diamond_Exercism-typescript-FilipeCerejo/gemini/GeminiFlash_diamond_v4.js",
-            "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          },
+          }
+        ]
+      },
+      {
+        "id": "typescript_diamond_Exercism-typescript-FilipeCerejo",
+        "filename": "diamond.ts",
+        "language": "typescript",
+        "LLM_results": [
           {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/diamond_Exercism-typescript-FilipeCerejo/gemini/GeminiFlash_diamond_v4.ts",
             "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
+            "execution_time_ms": 377,
+            "CPU_usage": 46.0,
+            "RAM_usage": 122768,
+            "regressionTestPassed": false,
+            "success": true,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "typescript_diamond_Exercism-typescript-FilipeCerejo",
+        "filename": "diamond.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/diamond_Exercism-typescript-FilipeCerejo/gemini/GeminiFlash_diamond_v4.js",
+            "log": "",
+            "execution_time_ms": 511,
+            "CPU_usage": 43.0,
+            "RAM_usage": 124012,
+            "regressionTestPassed": false,
+            "success": true,
+            "error_message": "Docker exit code: 1"
           }
         ]
       },
@@ -133,67 +118,102 @@
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/diamond_Exercism-typescript-shybyte/openAI/ChatGPT4_diamond_v4.ts",
             "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
+            "execution_time_ms": 268,
+            "CPU_usage": 70.0,
+            "RAM_usage": 121236,
             "regressionTestPassed": true,
-            "success": null,
+            "success": true,
             "error_message": null
-          },
-          {
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/diamond_Exercism-typescript-shybyte/openAI/ChatGPT4_diamond_v4.js",
-            "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          },
+          }
+        ]
+      },
+      {
+        "id": "typescript_diamond_Exercism-typescript-shybyte_shybyte",
+        "filename": "diamond.ts",
+        "language": "typescript",
+        "LLM_results": [
           {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/diamond_Exercism-typescript-shybyte/claude/ClaudeSonnet4_diamond_v4.js",
             "log": "",
-            "execution_time_ms": 1000,
+            "execution_time_ms": 463,
             "CPU_usage": 50.0,
-            "RAM_usage": 80000,
+            "RAM_usage": 121696,
             "regressionTestPassed": true,
-            "success": null,
+            "success": true,
             "error_message": null
-          },
+          }
+        ]
+      },
+      {
+        "id": "typescript_diamond_Exercism-typescript-shybyte_shybyte",
+        "filename": "diamond.ts",
+        "language": "typescript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/diamond_Exercism-typescript-shybyte/openAI/ChatGPT4_diamond_v4.js",
+            "log": "",
+            "execution_time_ms": 554,
+            "CPU_usage": 48.0,
+            "RAM_usage": 121360,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "typescript_diamond_Exercism-typescript-shybyte_shybyte",
+        "filename": "diamond.ts",
+        "language": "typescript",
+        "LLM_results": [
           {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/diamond_Exercism-typescript-shybyte/claude/ClaudeSonnet4_diamond_v4.ts",
             "log": "",
-            "execution_time_ms": 1000,
+            "execution_time_ms": 366,
             "CPU_usage": 50.0,
-            "RAM_usage": 80000,
+            "RAM_usage": 121988,
             "regressionTestPassed": true,
-            "success": null,
+            "success": true,
             "error_message": null
-          },
+          }
+        ]
+      },
+      {
+        "id": "typescript_diamond_Exercism-typescript-shybyte_shybyte",
+        "filename": "diamond.ts",
+        "language": "typescript",
+        "LLM_results": [
           {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/diamond_Exercism-typescript-shybyte/gemini/GeminiFlash_diamond_v4.js",
             "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          },
+            "execution_time_ms": 390,
+            "CPU_usage": 57.0,
+            "RAM_usage": 124840,
+            "regressionTestPassed": false,
+            "success": true,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "typescript_diamond_Exercism-typescript-shybyte_shybyte",
+        "filename": "diamond.ts",
+        "language": "typescript",
+        "LLM_results": [
           {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/diamond_Exercism-typescript-shybyte/gemini/GeminiFlash_diamond_v4.ts",
             "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
+            "execution_time_ms": 476,
+            "CPU_usage": 59.0,
+            "RAM_usage": 124600,
+            "regressionTestPassed": false,
+            "success": true,
+            "error_message": "Docker exit code: 1"
           }
         ]
       },
@@ -206,108 +226,213 @@
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/diamond_Exercism-typescript-FilipeCerejo/openAI/ChatGPT4_diamond_v4.ts",
             "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          },
+            "execution_time_ms": 409,
+            "CPU_usage": 48.0,
+            "RAM_usage": 124020,
+            "regressionTestPassed": false,
+            "success": true,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "typescript_diamond_Exercism-typescript-FilipeCerejo_FilipeCerejo",
+        "filename": "diamond.ts",
+        "language": "typescript",
+        "LLM_results": [
           {
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/diamond_Exercism-typescript-FilipeCerejo/openAI/ChatGPT4_diamond_v4.js",
             "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          },
+            "execution_time_ms": 559,
+            "CPU_usage": 46.0,
+            "RAM_usage": 125384,
+            "regressionTestPassed": false,
+            "success": true,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "typescript_diamond_Exercism-typescript-FilipeCerejo_FilipeCerejo",
+        "filename": "diamond.ts",
+        "language": "typescript",
+        "LLM_results": [
           {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/diamond_Exercism-typescript-FilipeCerejo/claude/ClaudeSonnet4_diamond_v4.js",
             "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
+            "execution_time_ms": 360,
+            "CPU_usage": 47.0,
+            "RAM_usage": 121776,
             "regressionTestPassed": true,
-            "success": null,
+            "success": true,
             "error_message": null
-          },
+          }
+        ]
+      },
+      {
+        "id": "typescript_diamond_Exercism-typescript-FilipeCerejo_FilipeCerejo",
+        "filename": "diamond.ts",
+        "language": "typescript",
+        "LLM_results": [
           {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/diamond_Exercism-typescript-FilipeCerejo/claude/ClaudeSonnet4_diamond_v4.ts",
             "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
+            "execution_time_ms": 267,
+            "CPU_usage": 67.0,
+            "RAM_usage": 125632,
             "regressionTestPassed": true,
-            "success": null,
+            "success": true,
             "error_message": null
-          },
+          }
+        ]
+      },
+      {
+        "id": "typescript_diamond_Exercism-typescript-FilipeCerejo_FilipeCerejo",
+        "filename": "diamond.ts",
+        "language": "typescript",
+        "LLM_results": [
           {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/diamond_Exercism-typescript-FilipeCerejo/gemini/GeminiFlash_diamond_v4.js",
             "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          },
+            "execution_time_ms": 367,
+            "CPU_usage": 58.0,
+            "RAM_usage": 125320,
+            "regressionTestPassed": false,
+            "success": true,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "typescript_diamond_Exercism-typescript-FilipeCerejo_FilipeCerejo",
+        "filename": "diamond.ts",
+        "language": "typescript",
+        "LLM_results": [
           {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/diamond_Exercism-typescript-FilipeCerejo/gemini/GeminiFlash_diamond_v4.ts",
             "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
+            "execution_time_ms": 277,
+            "CPU_usage": 65.0,
+            "RAM_usage": 125148,
+            "regressionTestPassed": false,
+            "success": true,
+            "error_message": "Docker exit code: 1"
           }
         ]
       }
     ],
-    "Java": [
+    "javascript": [
+      {
+        "id": "javascript_diamond_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
+        "filename": "diamond.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/diamond_exercism-javascript-ThomasZumsteg/openAI/ChatGPT4_diamond_v4.js",
+            "log": "",
+            "execution_time_ms": 180,
+            "CPU_usage": 44.0,
+            "RAM_usage": 67460,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "javascript_diamond_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
+        "filename": "diamond.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/diamond_exercism-javascript-ThomasZumsteg/claude/ClaudeSonnet4_diamond_v4.js",
+            "log": "",
+            "execution_time_ms": 180,
+            "CPU_usage": 38.0,
+            "RAM_usage": 65076,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "javascript_diamond_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
+        "filename": "diamond.js",
+        "language": "javascript",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/diamond_exercism-javascript-ThomasZumsteg/gemini/GeminiFlash_diamond_v4.js",
+            "log": "",
+            "execution_time_ms": 190,
+            "CPU_usage": 38.0,
+            "RAM_usage": 64916,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      }
+    ],
+    "java": [
       {
         "id": "Java_diamond_exercism-java-blogscot",
         "filename": "diamond.java",
-        "language": "Java",
+        "language": "java",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/diamond_exercism-java-blogscot/claude/ClaudeSonnet4_diamond_v4.java",
+            "log": "",
+            "execution_time_ms": 99,
+            "CPU_usage": 71.0,
+            "RAM_usage": 45816,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "Java_diamond_exercism-java-blogscot",
+        "filename": "diamond.java",
+        "language": "java",
         "LLM_results": [
           {
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/diamond_exercism-java-blogscot/openAI/ChatGPT4_diamond_v4.java",
             "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regressionTestPassed": true,
-            "success": null,
+            "execution_time_ms": 99,
+            "CPU_usage": 69.0,
+            "RAM_usage": 46048,
+            "regressionTestPassed": false,
+            "success": false,
             "error_message": null
-          },
-          {
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/diamond_exercism-java-blogscot/claude/ClaudeSonnet4_diamond_v4.java",
-            "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          },
+          }
+        ]
+      },
+      {
+        "id": "Java_diamond_exercism-java-blogscot",
+        "filename": "diamond.java",
+        "language": "java",
+        "LLM_results": [
           {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/diamond_exercism-java-blogscot/gemini/GeminiFlash_diamond_v4.java",
             "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regressionTestPassed": true,
-            "success": null,
+            "execution_time_ms": 110,
+            "CPU_usage": 62.0,
+            "RAM_usage": 46024,
+            "regressionTestPassed": false,
+            "success": false,
             "error_message": null
           }
         ]
@@ -315,39 +440,53 @@
       {
         "id": "Java_diamond_exercism-java-blogscot_blogscot",
         "filename": "diamond.java",
-        "language": "Java",
+        "language": "java",
         "LLM_results": [
           {
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/diamond_exercism-java-blogscot/openAI/ChatGPT4_diamond_v4.java",
             "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regressionTestPassed": true,
-            "success": null,
+            "execution_time_ms": 110,
+            "CPU_usage": 68.0,
+            "RAM_usage": 46448,
+            "regressionTestPassed": false,
+            "success": false,
             "error_message": null
-          },
+          }
+        ]
+      },
+      {
+        "id": "Java_diamond_exercism-java-blogscot_blogscot",
+        "filename": "diamond.java",
+        "language": "java",
+        "LLM_results": [
           {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/diamond_exercism-java-blogscot/claude/ClaudeSonnet4_diamond_v4.java",
             "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regressionTestPassed": true,
-            "success": null,
+            "execution_time_ms": 150,
+            "CPU_usage": 39.0,
+            "RAM_usage": 45920,
+            "regressionTestPassed": false,
+            "success": false,
             "error_message": null
-          },
+          }
+        ]
+      },
+      {
+        "id": "Java_diamond_exercism-java-blogscot_blogscot",
+        "filename": "diamond.java",
+        "language": "java",
+        "LLM_results": [
           {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/Java/diamond_exercism-java-blogscot/gemini/GeminiFlash_diamond_v4.java",
             "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regressionTestPassed": true,
-            "success": null,
+            "execution_time_ms": 130,
+            "CPU_usage": 38.0,
+            "RAM_usage": 45920,
+            "regressionTestPassed": false,
+            "success": false,
             "error_message": null
           }
         ]
@@ -363,33 +502,47 @@
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/diamond_Exercism_ThomasZumsteg/openAI/ChatGPT4_diamond_v4.c",
             "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regressionTestPassed": true,
-            "success": null,
+            "execution_time_ms": 0.838335,
+            "CPU_usage": "49",
+            "RAM_usage": "8704",
+            "regressionTestPassed": false,
+            "success": false,
             "error_message": null
-          },
+          }
+        ]
+      },
+      {
+        "id": "c_diamond_Exercism (ThomasZumsteg)",
+        "filename": "diamond.c",
+        "language": "c",
+        "LLM_results": [
           {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/diamond_Exercism_ThomasZumsteg/claude/ClaudeSonnet4_diamond_v4.c",
             "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
+            "execution_time_ms": 18.352201,
+            "CPU_usage": "13",
+            "RAM_usage": "8576",
             "regressionTestPassed": true,
-            "success": null,
+            "success": true,
             "error_message": null
-          },
+          }
+        ]
+      },
+      {
+        "id": "c_diamond_Exercism (ThomasZumsteg)",
+        "filename": "diamond.c",
+        "language": "c",
+        "LLM_results": [
           {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/diamond_Exercism_ThomasZumsteg/gemini/GeminiFlash_diamond_v4.c",
             "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regressionTestPassed": true,
-            "success": null,
+            "execution_time_ms": 6.329901,
+            "CPU_usage": "8",
+            "RAM_usage": "8576",
+            "regressionTestPassed": false,
+            "success": false,
             "error_message": null
           }
         ]
@@ -405,33 +558,29 @@
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/diamond_Exercism_go_rootulp/openAI/ChatGPT4_diamond_v4.go",
             "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regressionTestPassed": true,
-            "success": null,
+            "execution_time_ms": 7170,
+            "CPU_usage": 51.0,
+            "RAM_usage": 219808,
+            "regressionTestPassed": false,
+            "success": false,
             "error_message": null
-          },
-          {
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/diamond_Exercism_go_rootulp/claude/ClaudeSonnet4_diamond_v4.go",
-            "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          },
+          }
+        ]
+      },
+      {
+        "id": "go_diamond_Exercism (go_rootulp)",
+        "filename": "diamond.go",
+        "language": "go",
+        "LLM_results": [
           {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/diamond_Exercism_go_rootulp/gemini/GeminiFlash_diamond_v4.go",
             "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
+            "execution_time_ms": 7070,
+            "CPU_usage": 49.0,
+            "RAM_usage": 227584,
             "regressionTestPassed": true,
-            "success": null,
+            "success": true,
             "error_message": null
           }
         ]
@@ -445,33 +594,29 @@
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/diamond_Exercism_go_ThomasZumsteg/openAI/ChatGPT4_diamond_v4.go",
             "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
+            "execution_time_ms": 6950,
+            "CPU_usage": 49.0,
+            "RAM_usage": 225560,
             "regressionTestPassed": true,
-            "success": null,
+            "success": true,
             "error_message": null
-          },
+          }
+        ]
+      },
+      {
+        "id": "go_diamond_Exercism (go_rootulp)",
+        "filename": "diamond.go",
+        "language": "go",
+        "LLM_results": [
           {
             "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/diamond_Exercism_go_ThomasZumsteg/claude/ClaudeSonnet4_diamond_v4.go",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/diamond_Exercism_go_rootulp/claude/ClaudeSonnet4_diamond_v4.go",
             "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
+            "execution_time_ms": 7160,
+            "CPU_usage": 49.0,
+            "RAM_usage": 219184,
             "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          },
-          {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/diamond_Exercism_go_ThomasZumsteg/gemini/GeminiFlash_diamond_v4.go",
-            "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regressionTestPassed": true,
-            "success": null,
+            "success": true,
             "error_message": null
           }
         ]
@@ -485,33 +630,83 @@
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/diamond_Exercism_go_drapala/openAI/ChatGPT4_diamond_v4.go",
             "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regressionTestPassed": true,
-            "success": null,
+            "execution_time_ms": 7180,
+            "CPU_usage": 47.0,
+            "RAM_usage": 226668,
+            "regressionTestPassed": false,
+            "success": false,
             "error_message": null
-          },
+          }
+        ]
+      },
+      {
+        "id": "go_diamond_Exercism (go_ThomasZumsteg)",
+        "filename": "diamond.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/diamond_Exercism_go_ThomasZumsteg/gemini/GeminiFlash_diamond_v4.go",
+            "log": "",
+            "execution_time_ms": 7340,
+            "CPU_usage": 48.0,
+            "RAM_usage": 226488,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_diamond_Exercism (go_ThomasZumsteg)",
+        "filename": "diamond.go",
+        "language": "go",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/diamond_Exercism_go_ThomasZumsteg/claude/ClaudeSonnet4_diamond_v4.go",
+            "log": "",
+            "execution_time_ms": 7340,
+            "CPU_usage": 48.0,
+            "RAM_usage": 219756,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "go_diamond_Exercism (go_drapala)",
+        "filename": "diamond.go",
+        "language": "go",
+        "LLM_results": [
           {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/diamond_Exercism_go_drapala/claude/ClaudeSonnet4_diamond_v4.go",
             "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regressionTestPassed": true,
-            "success": null,
+            "execution_time_ms": 7330,
+            "CPU_usage": 49.0,
+            "RAM_usage": 225464,
+            "regressionTestPassed": false,
+            "success": false,
             "error_message": null
-          },
+          }
+        ]
+      },
+      {
+        "id": "go_diamond_Exercism (go_drapala)",
+        "filename": "diamond.go",
+        "language": "go",
+        "LLM_results": [
           {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/diamond_Exercism_go_drapala/gemini/GeminiFlash_diamond_v4.go",
             "log": "",
-            "execution_time_ms": 1000,
-            "CPU_usage": 50.0,
-            "RAM_usage": 80000,
-            "regressionTestPassed": true,
-            "success": null,
+            "execution_time_ms": 7340,
+            "CPU_usage": 174.0,
+            "RAM_usage": 203060,
+            "regressionTestPassed": false,
+            "success": false,
             "error_message": null
           }
         ]
