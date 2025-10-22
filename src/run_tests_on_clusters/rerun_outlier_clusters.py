@@ -14,7 +14,7 @@ This script:
 The goal is to obtain fresh, reliable metrics for clusters with anomalous improvements
 (e.g., +2000% degradation or -95% improvement) that may be due to measurement errors.
 
-Author: Senior Python Developer
+
 Date: 2025-10-17
 """
 

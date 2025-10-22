@@ -12,7 +12,7 @@
 #   chmod +x organize_execution_files.sh
 #   ./organize_execution_files.sh
 #
-# Author: Senior Python Developer
+# 
 # Date: 2025-10-15
 ################################################################################
 

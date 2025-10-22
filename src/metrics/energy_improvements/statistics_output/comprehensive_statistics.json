@@ -1,0 +1,270 @@
+{
+  "overall_statistics": {
+    "CPU_usage": {
+      "count": 10317,
+      "mean": -16.555230984787332,
+      "median": -17.491749174917494,
+      "std": 31.085407405405885,
+      "min": -92.2279792746114,
+      "max": 694.4444444444445,
+      "q1": -34.72584856396866,
+      "q3": -1.2224938875305624,
+      "iqr": 33.5033546764381,
+      "reduction_count": 7945,
+      "degradation_count": 2372,
+      "outlier_count": 10
+    },
+    "RAM_usage": {
+      "count": 10317,
+      "mean": -33.555065346280045,
+      "median": -61.978198298904594,
+      "std": 31.55384297181333,
+      "min": -65.02493721976231,
+      "max": 45.355175371019094,
+      "q1": -63.7272433793151,
+      "q3": -0.07046950306415814,
+      "iqr": 63.65677387625094,
+      "reduction_count": 7859,
+      "degradation_count": 2458,
+      "outlier_count": 0
+    },
+    "execution_time_ms": {
+      "count": 10317,
+      "mean": -26.351802733011585,
+      "median": -37.25687037269419,
+      "std": 73.12780869450046,
+      "min": -95.5211231620715,
+      "max": 2666.6465256797583,
+      "q1": -82.8119628738398,
+      "q3": 2.138386648122384,
+      "iqr": 84.95034952196218,
+      "reduction_count": 7379,
+      "degradation_count": 2938,
+      "outlier_count": 34
+    },
+    "regressionTestPassed": {
+      "count": 10317,
+      "mean": 0.0,
+      "median": 0.0,
+      "std": 0.0,
+      "min": -0.0,
+      "max": -0.0,
+      "q1": 0.0,
+      "q3": 0.0,
+      "iqr": 0.0,
+      "reduction_count": 0,
+      "degradation_count": 10317,
+      "outlier_count": 0
+    }
+  },
+  "summary": {
+    "total_entries": 10800,
+    "valid_entries": 10317,
+    "invalid_entries": 483,
+    "outlier_entries": 44
+  },
+  "by_language": {
+    "go": {
+      "language": "go",
+      "count": 4647,
+      "avg_CPU_improvement": -25.25810845889663,
+      "avg_RAM_improvement": -46.84080854246275,
+      "avg_time_improvement": -61.605079278111134,
+      "avg_test_pass_rate": 0.0,
+      "best_llm": "gemini",
+      "best_prompt": "prompt_v1",
+      "cpu_reduction_rate": 88.22896492360663,
+      "ram_reduction_rate": 85.62513449537336,
+      "time_reduction_rate": 88.37959974176889
+    },
+    "typescript": {
+      "language": "typescript",
+      "count": 3177,
+      "avg_CPU_improvement": -12.402601869866887,
+      "avg_RAM_improvement": -40.32772470122693,
+      "avg_time_improvement": -21.439833710151046,
+      "avg_test_pass_rate": 0.0,
+      "best_llm": "gemini",
+      "best_prompt": "prompt_v4",
+      "cpu_reduction_rate": 71.26219704123386,
+      "ram_reduction_rate": 80.92540132200189,
+      "time_reduction_rate": 79.19420837267863
+    },
+    "python": {
+      "language": "python",
+      "count": 961,
+      "avg_CPU_improvement": -3.8236267302952665,
+      "avg_RAM_improvement": 0.04629723283236893,
+      "avg_time_improvement": 13.88988317321366,
+      "avg_test_pass_rate": 0.0,
+      "best_llm": "gemini",
+      "best_prompt": "prompt_v1",
+      "cpu_reduction_rate": 71.27991675338188,
+      "ram_reduction_rate": 31.21748178980229,
+      "time_reduction_rate": 28.92819979188345
+    },
+    "Java": {
+      "language": "Java",
+      "count": 708,
+      "avg_CPU_improvement": -27.680313067708028,
+      "avg_RAM_improvement": -0.8368595586585288,
+      "avg_time_improvement": 74.22603852299741,
+      "avg_test_pass_rate": 0.0,
+      "best_llm": "openAI",
+      "best_prompt": "prompt_v1",
+      "cpu_reduction_rate": 77.40112994350282,
+      "ram_reduction_rate": 83.89830508474576,
+      "time_reduction_rate": 7.4858757062146895
+    },
+    "javascript": {
+      "language": "javascript",
+      "count": 223,
+      "avg_CPU_improvement": 15.569961425611828,
+      "avg_RAM_improvement": -0.8016142261574506,
+      "avg_time_improvement": 36.38146744643419,
+      "avg_test_pass_rate": 0.0,
+      "best_llm": "claude",
+      "best_prompt": "prompt_v4",
+      "cpu_reduction_rate": 17.48878923766816,
+      "ram_reduction_rate": 56.502242152466366,
+      "time_reduction_rate": 34.08071748878923
+    },
+    "c": {
+      "language": "c",
+      "count": 553,
+      "avg_CPU_improvement": 14.053842239657351,
+      "avg_RAM_improvement": -0.38099235149029226,
+      "avg_time_improvement": 13.832821241841698,
+      "avg_test_pass_rate": 0.0,
+      "best_llm": "claude",
+      "best_prompt": "prompt_v1",
+      "cpu_reduction_rate": 48.4629294755877,
+      "ram_reduction_rate": 49.54792043399638,
+      "time_reduction_rate": 57.14285714285714
+    },
+    "java": {
+      "language": "java",
+      "count": 48,
+      "avg_CPU_improvement": -41.55273203504414,
+      "avg_RAM_improvement": 11.255482596597838,
+      "avg_time_improvement": 17.8911648962076,
+      "avg_test_pass_rate": 0.0,
+      "best_llm": "openAI",
+      "best_prompt": "prompt_v1",
+      "cpu_reduction_rate": 85.41666666666666,
+      "ram_reduction_rate": 31.25,
+      "time_reduction_rate": 68.75
+    }
+  },
+  "by_llm": {
+    "openAI": {
+      "llm_name": "openAI",
+      "count": 3406,
+      "avg_CPU_improvement": -17.51519925519388,
+      "avg_RAM_improvement": -33.856128770095616,
+      "avg_time_improvement": -26.647199066215613,
+      "avg_test_pass_rate": 0.0,
+      "best_prompt": "prompt_v1",
+      "success_rate": 100.0,
+      "cpu_reduction_rate": 78.30299471520846,
+      "ram_reduction_rate": 76.68819729888432,
+      "time_reduction_rate": 69.87668819729889,
+      "outlier_rate": 0.2935995302407516
+    },
+    "claude": {
+      "llm_name": "claude",
+      "count": 3462,
+      "avg_CPU_improvement": -16.76309409203477,
+      "avg_RAM_improvement": -33.303355427551125,
+      "avg_time_improvement": -25.49393271371929,
+      "avg_test_pass_rate": 0.0,
+      "best_prompt": "prompt_v1",
+      "success_rate": 100.0,
+      "cpu_reduction_rate": 77.67186597342577,
+      "ram_reduction_rate": 75.85210860774119,
+      "time_reduction_rate": 71.05719237435008,
+      "outlier_rate": 0.635470826112074
+    },
+    "gemini": {
+      "llm_name": "gemini",
+      "count": 3449,
+      "avg_CPU_improvement": -15.398584418740558,
+      "avg_RAM_improvement": -33.51041406101582,
+      "avg_time_improvement": -26.92119272892258,
+      "avg_test_pass_rate": 0.0,
+      "best_prompt": "prompt_v1",
+      "success_rate": 100.0,
+      "cpu_reduction_rate": 75.06523630037692,
+      "ram_reduction_rate": 75.99304146129313,
+      "time_reduction_rate": 73.61554073644535,
+      "outlier_rate": 0.3479269353435779
+    }
+  },
+  "by_prompt": {
+    "prompt_v1": {
+      "prompt_version": "prompt_v1",
+      "count": 2558,
+      "avg_CPU_improvement": -11.424112348634482,
+      "avg_RAM_improvement": -20.18570465560363,
+      "avg_time_improvement": -11.883049195574277,
+      "avg_test_pass_rate": 0.0,
+      "best_llm": "gemini",
+      "cpu_reduction_rate": 68.9601250977326,
+      "ram_reduction_rate": 65.91086786551995,
+      "time_reduction_rate": 61.64972634870993
+    },
+    "prompt_v2": {
+      "prompt_version": "prompt_v2",
+      "count": 2583,
+      "avg_CPU_improvement": -18.37006202157843,
+      "avg_RAM_improvement": -37.94796372433801,
+      "avg_time_improvement": -30.319842985019033,
+      "avg_test_pass_rate": 0.0,
+      "best_llm": "gemini",
+      "cpu_reduction_rate": 79.51993805652342,
+      "ram_reduction_rate": 79.82965543941154,
+      "time_reduction_rate": 75.84204413472706
+    },
+    "prompt_v3": {
+      "prompt_version": "prompt_v3",
+      "count": 2589,
+      "avg_CPU_improvement": -18.26813166175429,
+      "avg_RAM_improvement": -37.90291573910416,
+      "avg_time_improvement": -31.86213733795736,
+      "avg_test_pass_rate": 0.0,
+      "best_llm": "gemini",
+      "cpu_reduction_rate": 79.95365005793744,
+      "ram_reduction_rate": 79.25840092699885,
+      "time_reduction_rate": 74.6620316724604
+    },
+    "prompt_v4": {
+      "prompt_version": "prompt_v4",
+      "count": 2587,
+      "avg_CPU_improvement": -18.102580443844214,
+      "avg_RAM_improvement": -38.037239087758564,
+      "avg_time_improvement": -31.181863531474985,
+      "avg_test_pass_rate": 0.0,
+      "best_llm": "gemini",
+      "cpu_reduction_rate": 79.5129493621956,
+      "ram_reduction_rate": 79.59025898724391,
+      "time_reduction_rate": 73.8306919211442
+    }
+  },
+  "statistical_tests": {
+    "llm_anova_cpu": {
+      "f_statistic": 4.091504003943766,
+      "p_value": 0.01674121248732525,
+      "significant": true
+    },
+    "prompt_anova_cpu": {
+      "f_statistic": 31.19547900391989,
+      "p_value": 4.5687836657894473e-20,
+      "significant": true
+    },
+    "correlations": {
+      "CPU_RAM": 0.3160906196489006,
+      "CPU_Time": -0.0038835108463910585,
+      "RAM_Time": 0.598245081124497
+    }
+  }
+}

@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import List
+from typing import List, Optional
 
 import json
 from pathlib import Path
@@ -11,11 +11,25 @@ from functools import wraps
 from threading import Lock
 import logging
 import enum
+
+
 logger = logging.getLogger(__name__)
 
 
 METRICS = ["CPU_usage", "RAM_usage", "execution_time_ms"]
 LLM_METRICS = ["CPU_usage", "RAM_usage", "execution_time_ms", "regressionTestPassed"]
+
+
+def get_cluster_path_list(CLUSTERS_DIR_FILEPATH:Path) -> List[Path]:
+    """Get the list of all path of the clusters"""
+    return [
+        p
+        for p in CLUSTERS_DIR_FILEPATH.glob("*.json")
+        if "with_metrics" not in p.name
+        and "debug_" not in p.name
+        and "bad_entries" not in p.name
+        and "cluster_" in p.name
+    ]
 
 
 def read_json(path: Path) -> Dict:
@@ -36,6 +50,8 @@ def write_json(path: Path, data) -> None:
         print(f"Error writing {path}:\n{e}")
 
 
+
+#model enties from cluster dir 
 @dataclass
 class LLMEntry:
     type: str
@@ -46,8 +62,6 @@ class LLMEntry:
     fuzzy_score: float
     cosine_similarity_score: float
     similarity_index: float
-
-
 @dataclass
 class CodeEntry:
     id: str
@@ -79,6 +93,168 @@ class CodeEntry:
             licenseType=data.get("licenseType", ""),
             LLMs=llms,
         )
+
+# ---- model entries from results :
+
+
+@dataclass
+class LLMresult:
+    """Model a single LLM res"""
+
+    LLM_type: str
+    path: str
+    log: str
+
+    # metrics :
+    execution_time_ms: Optional[int] = None
+    CPU_usage: Optional[float] = None
+    RAM_usage: Optional[int] = None
+    regressionTestPassed: bool = False
+
+    # metadata on the single exec :
+    success: Optional[bool] = False
+    error_message: Optional[str] = None
+
+    def is_valid(self) -> bool:
+        """Check if metrics are meaningful"""
+        return (
+            self.execution_time_ms is not None
+            and self.CPU_usage is not None
+            and self.RAM_usage is not None
+            and self.regressionTestPassed is not None
+            and self.RAM_usage != 0
+            and self.execution_time_ms != 0
+        )
+
+    def to_json(self) -> Dict[str, Any]:
+        return self.__dict__
+
+    @staticmethod
+    def from_json(data: Dict[str, Any]) -> "LLMresult":
+        data.pop("passed_tests", None)
+        data.pop("failed_tests", None)
+        data.pop("timestamp", None)
+        data.pop("filename", None)
+
+        if "log_path" in data:
+            data["log"] = data["log_path"]
+
+        if "error_message" not in data:
+            data["error_message"] = None
+
+        if "success" not in data:
+            data["success"] = None
+
+        if "log_path" in data:
+            data["log"] = data["log_path"]
+            data.pop("log_path", None)
+
+        if "log" not in data:  # log fallback
+            data["log"] = ""
+
+        return LLMresult(**data)
+
+
+@dataclass
+class LLMentryResult:
+    """Model a LLM entry result"""
+
+    id: str
+    filename: str
+    language: str
+    LLM_results: List[LLMresult]
+
+    def is_valid(self) -> bool:
+        for res in self.LLM_results:
+            if not res.is_valid():
+                return False
+
+        return True
+
+    def to_json(self) -> Dict[str, Any]:
+        data = self.__dict__.copy()
+        # Converte la lista di oggetti LLMExecutionResult nei loro dizionari
+        data["LLM_results"] = [res.to_json() for res in self.LLM_results]
+        return data
+
+    @staticmethod
+    def from_json(data: Dict[str, Any]) -> "LLMentryResult":
+        llm_results = [LLMresult.from_json(res) for res in data.get("LLM_results", [])]
+
+        return LLMentryResult(
+            data["id"],
+            data.get("filename", "Filename not found"),
+            data.get("language", "Language not found"),
+            llm_results,
+        )
+
+
+@dataclass
+class BaseEntryResult:
+    id: str
+    filename: str
+    language: str
+    base_log: str
+
+    # metrics
+    execution_time_ms: Optional[int] = None
+    CPU_usage: Optional[float] = None
+    RAM_usage: Optional[int] = None
+    regressionTestPassed: bool = False
+
+    # exec metadata
+    success: Optional[bool] = None
+    error_message: Optional[str] = None
+    log_path: Optional[str] = None
+
+    def is_valid(self) -> bool:
+        """Check if metrics are meaningful"""
+        return (
+            self.execution_time_ms is not None
+            and self.CPU_usage is not None
+            and self.RAM_usage is not None
+            and self.regressionTestPassed is not None
+            and self.RAM_usage != 0
+            and self.execution_time_ms != 0
+        )
+
+    def to_json(self) -> Dict[str, Any]:
+        """Converte l'istanza in un dizionario per la serializzazione JSON."""
+        # Non serve importare asdict di dataclasses per questa classe semplice
+        return self.__dict__
+
+    def from_json(data: Dict[str, any]) -> "BaseEntryResult":
+        if "timestamp" in data:
+            data.pop("timestamp")
+
+        if "success" not in data:
+            data["success"] = None
+        if "error_message" not in data:
+            data["error_message"] = None
+        if "log_path" not in data:
+            data["log_path"] = None
+
+        if "CPU_usage" not in data:
+            data["CPU_usage"] = None
+        if "RAM_usage" not in data:
+            data["RAM_usage"] = None
+        if "execution_time_ms" not in data:
+            data["execution_time_ms"] = None
+        if "regressionTestPassed" not in data:
+            data["regressionTestPassed"] = None
+
+        if "base_log" not in data:
+            data["base_log"] = None
+
+        if "filename" not in data:
+            data["filename"] = ""
+
+        return BaseEntryResult(**data)
+
+
+
+
+# ---
 
 
 class RateLimiter:
@@ -220,9 +396,6 @@ def check_api_keys() -> Dict[str, bool]:
     return keys_status
 
 
-
-
-
 def setup_github_token():
     """Configurarazione token GitHub"""
     print("=== Configurazione Token GitHub ===")
@@ -231,33 +404,30 @@ def setup_github_token():
     print("2. Crea un nuovo token con scope 'public_repo'")
     print("3. Copia il token generato")
     print()
-    
+
     token = input("Inserisci il token GitHub (premi Enter per saltare): ").strip()
-    
+
     if token:
         # Salva in file di configurazione
         config_file = Path(".github_token")
-        with open(config_file, 'w') as f:
+        with open(config_file, "w") as f:
             f.write(token)
         print(f"Token salvato in {config_file}")
         return token
-    
+
     return None
+
 
 def load_github_token():
     """Carica il token GitHub se disponibile"""
     config_file = Path(".github_token")
     if config_file.exists():
-        with open(config_file, 'r') as f:
+        with open(config_file, "r") as f:
             return f.read().strip()
     return None
 
 
-
-
-
-
-def get_cluster_names(cluster_dir_path:Path)->List[str] : 
+def get_cluster_names(cluster_dir_path: Path) -> List[str]:
     res = []
     for file_path in cluster_dir_path.glob("cluster_*.json"):
         if not any(
@@ -270,7 +440,7 @@ def get_cluster_names(cluster_dir_path:Path)->List[str] :
     return res
 
 
-class LoggerLevel(enum.Enum) : 
+class LoggerLevel(enum.Enum):
     WARNING = "warning"
     INFO = "info"
     ERROR = "error"

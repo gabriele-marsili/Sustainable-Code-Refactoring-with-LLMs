@@ -1,6 +1,9 @@
+#important!
+#create plots in ./execution_stats_plots
+
 import sys
 import os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../.."))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from utility_dir import utility_paths
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -650,7 +653,7 @@ class ExecMetricStatsVisualizator:
             ax.grid(True, alpha=0.3, axis='y')
 
             # Calculate dynamic spacing for text annotations
-            y_range = max(values) - min(values) if values else 1
+            _y_range = max(values) - min(values) if values else 1
             max_val = max(values) if values else 1
 
             # Use adaptive offsets based on scale

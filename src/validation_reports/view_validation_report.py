@@ -11,7 +11,7 @@ Features:
 - Top problematic clusters
 - Interactive filtering and sorting
 
-Author: Senior Python Developer
+
 Date: 2025-10-15
 """
 

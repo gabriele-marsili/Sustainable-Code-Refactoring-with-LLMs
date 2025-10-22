@@ -7,7 +7,7 @@ This script:
 1. Moves all *_backup_*.json files from src/execution_outputs to src/backup_executions
 2. Moves all *_selective_execution_*.json files from src/execution_outputs to src/execution_reports
 
-Author: Senior Python Developer
+
 Date: 2025-10-15
 """
 
