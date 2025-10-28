@@ -1,0 +1,104 @@
+{
+  "metadata": {
+    "generation_date": "2025-10-22T17:25:21.905586",
+    "threshold_percentage": 200.0,
+    "total_outliers": 3,
+    "cluster_name": "summary_ranges"
+  },
+  "outliers": [
+    {
+      "entry_id": "summary_ranges_174",
+      "cluster_name": "summary_ranges",
+      "llm_model": "openAI",
+      "prompt_version": "prompt_v1",
+      "language": "python",
+      "metric_name": "CPU_usage",
+      "improvement_percentage": 444.44444444444446,
+      "base_mean": 14.4,
+      "llm_mean": 78.4,
+      "base_exec_files": [
+        "summary_ranges_results_1.json",
+        "summary_ranges_results_2.json",
+        "summary_ranges_results_3.json",
+        "summary_ranges_results_4.json",
+        "summary_ranges_results_5.json"
+      ],
+      "llm_exec_files": [
+        "summary_ranges_results_v1_1.json",
+        "summary_ranges_results_v1_2.json",
+        "summary_ranges_results_v1_3.json",
+        "summary_ranges_results_v1_4.json",
+        "summary_ranges_results_v1_5.json"
+      ]
+    },
+    {
+      "entry_id": "summary_ranges_174",
+      "cluster_name": "summary_ranges",
+      "llm_model": "claude",
+      "prompt_version": "prompt_v1",
+      "language": "python",
+      "metric_name": "CPU_usage",
+      "improvement_percentage": 452.77777777777766,
+      "base_mean": 14.4,
+      "llm_mean": 79.6,
+      "base_exec_files": [
+        "summary_ranges_results_1.json",
+        "summary_ranges_results_2.json",
+        "summary_ranges_results_3.json",
+        "summary_ranges_results_4.json",
+        "summary_ranges_results_5.json"
+      ],
+      "llm_exec_files": [
+        "summary_ranges_results_v1_1.json",
+        "summary_ranges_results_v1_2.json",
+        "summary_ranges_results_v1_3.json",
+        "summary_ranges_results_v1_4.json",
+        "summary_ranges_results_v1_5.json"
+      ]
+    },
+    {
+      "entry_id": "summary_ranges_174",
+      "cluster_name": "summary_ranges",
+      "llm_model": "gemini",
+      "prompt_version": "prompt_v1",
+      "language": "python",
+      "metric_name": "CPU_usage",
+      "improvement_percentage": 431.9444444444444,
+      "base_mean": 14.4,
+      "llm_mean": 76.6,
+      "base_exec_files": [
+        "summary_ranges_results_1.json",
+        "summary_ranges_results_2.json",
+        "summary_ranges_results_3.json",
+        "summary_ranges_results_4.json",
+        "summary_ranges_results_5.json"
+      ],
+      "llm_exec_files": [
+        "summary_ranges_results_v1_1.json",
+        "summary_ranges_results_v1_2.json",
+        "summary_ranges_results_v1_3.json",
+        "summary_ranges_results_v1_4.json",
+        "summary_ranges_results_v1_5.json"
+      ]
+    }
+  ],
+  "summary": {
+    "by_cluster": {
+      "summary_ranges": 3
+    },
+    "by_llm_model": {
+      "openAI": 1,
+      "claude": 1,
+      "gemini": 1
+    },
+    "by_prompt_version": {
+      "prompt_v1": 3
+    },
+    "by_metric": {
+      "CPU_usage": 3
+    },
+    "by_language": {
+      "python": 3
+    }
+  }
+}

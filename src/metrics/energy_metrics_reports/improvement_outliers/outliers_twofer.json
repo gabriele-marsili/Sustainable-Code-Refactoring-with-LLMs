@@ -1,0 +1,104 @@
+{
+  "metadata": {
+    "generation_date": "2025-10-22T17:25:21.970909",
+    "threshold_percentage": 200.0,
+    "total_outliers": 3,
+    "cluster_name": "twofer"
+  },
+  "outliers": [
+    {
+      "entry_id": "java_two_fer_Schenz",
+      "cluster_name": "twofer",
+      "llm_model": "openAI",
+      "prompt_version": "prompt_v1",
+      "language": "java",
+      "metric_name": "CPU_usage",
+      "improvement_percentage": 1027.659574468085,
+      "base_mean": 9.4,
+      "llm_mean": 106.0,
+      "base_exec_files": [
+        "twofer_results_1.json",
+        "twofer_results_2.json",
+        "twofer_results_3.json",
+        "twofer_results_4.json",
+        "twofer_results_5.json"
+      ],
+      "llm_exec_files": [
+        "twofer_results_v1_1.json",
+        "twofer_results_v1_2.json",
+        "twofer_results_v1_3.json",
+        "twofer_results_v1_4.json",
+        "twofer_results_v1_5.json"
+      ]
+    },
+    {
+      "entry_id": "java_two_fer_Schenz",
+      "cluster_name": "twofer",
+      "llm_model": "claude",
+      "prompt_version": "prompt_v1",
+      "language": "java",
+      "metric_name": "CPU_usage",
+      "improvement_percentage": 1023.4042553191488,
+      "base_mean": 9.4,
+      "llm_mean": 105.6,
+      "base_exec_files": [
+        "twofer_results_1.json",
+        "twofer_results_2.json",
+        "twofer_results_3.json",
+        "twofer_results_4.json",
+        "twofer_results_5.json"
+      ],
+      "llm_exec_files": [
+        "twofer_results_v1_1.json",
+        "twofer_results_v1_2.json",
+        "twofer_results_v1_3.json",
+        "twofer_results_v1_4.json",
+        "twofer_results_v1_5.json"
+      ]
+    },
+    {
+      "entry_id": "java_two_fer_Schenz",
+      "cluster_name": "twofer",
+      "llm_model": "gemini",
+      "prompt_version": "prompt_v1",
+      "language": "java",
+      "metric_name": "CPU_usage",
+      "improvement_percentage": 1087.2340425531913,
+      "base_mean": 9.4,
+      "llm_mean": 111.6,
+      "base_exec_files": [
+        "twofer_results_1.json",
+        "twofer_results_2.json",
+        "twofer_results_3.json",
+        "twofer_results_4.json",
+        "twofer_results_5.json"
+      ],
+      "llm_exec_files": [
+        "twofer_results_v1_1.json",
+        "twofer_results_v1_2.json",
+        "twofer_results_v1_3.json",
+        "twofer_results_v1_4.json",
+        "twofer_results_v1_5.json"
+      ]
+    }
+  ],
+  "summary": {
+    "by_cluster": {
+      "twofer": 3
+    },
+    "by_llm_model": {
+      "openAI": 1,
+      "claude": 1,
+      "gemini": 1
+    },
+    "by_prompt_version": {
+      "prompt_v1": 3
+    },
+    "by_metric": {
+      "CPU_usage": 3
+    },
+    "by_language": {
+      "java": 3
+    }
+  }
+}

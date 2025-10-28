@@ -28,6 +28,7 @@ from utility_dir.general_utils import LLMresult, LLMentryResult, BaseEntryResult
 from discordInteraction import create_webhook_reporter
 from dotenv import load_dotenv
 
+
 # Import language-selective runner module
 try:
     from language_selective_runner import (
@@ -61,6 +62,7 @@ CLUSTERS_DIR = utility_paths.CLUSTERS_DIR_FILEPATH
 DOCKER_DIR = BASE_DIR / "docker"
 LOGS_DIR = BASE_DIR / "logs"
 
+DEBUG_MODE = False
 
 @dataclass
 class ExecutionState:
@@ -95,7 +97,9 @@ class ExecutionState:
 class ExecutionMetrics:
     """Accurate metrics container with validation"""
 
-    execution_time_ms: Optional[int] = None
+    execution_time_ms: Optional[float] = (
+        None  # ✅ CHANGED: float to preserve sub-millisecond precision
+    )
     cpu_usage: Optional[float] = None
     ram_usage: Optional[int] = None
     regression_test_passed: bool = False
@@ -111,7 +115,8 @@ class ExecutionMetrics:
             and self.ram_usage is not None
             and self.regression_test_passed is not None
             and self.ram_usage != 0
-            and self.execution_time_ms != 0
+            and self.execution_time_ms
+            > 0  # ✅ CHANGED: Accept any positive value, not just != 0
         )
 
     def to_dict(self) -> Dict[str, Any]:
@@ -131,10 +136,17 @@ class MetricsParser:
     """Parse and obtains metrics by the log of the executed files"""
 
     @staticmethod
-    def parse_time_output(log_content: str) -> ExecutionMetrics:
+    def parse_time_output(log_content: str, debug_mode=False) -> ExecutionMetrics:
         """Parse time command output with multiple fallback strategies"""
         metrics = ExecutionMetrics()
         logger = logging.getLogger(__name__ + ".MetricsParser")
+
+        if DEBUG_MODE :
+            debug_mode = True
+            
+
+        if debug_mode :
+            logger.level = logging.DEBUG
 
         try:
             # Log del contenuto per debug
@@ -149,10 +161,17 @@ class MetricsParser:
             if user_match and system_match:
                 user_time = float(user_match.group(1))
                 system_time = float(system_match.group(1))
-                metrics.execution_time_ms = int((user_time + system_time) * 1000)
+                metrics.execution_time_ms = (
+                    user_time + system_time
+                ) * 1000  # ✅ FIXED: Keep as float
                 logger.debug(
                     f"Strategy 1 - User+System time: {metrics.execution_time_ms}ms"
                 )
+
+                if debug_mode:
+                    print(
+                        f"Strategy 1 - User+System time: {metrics.execution_time_ms}ms"
+                    )
 
             # Strategy 2: Wall clock time
             if not metrics.execution_time_ms:
@@ -163,10 +182,14 @@ class MetricsParser:
                 if wall_match:
                     minutes = int(wall_match.group(1))
                     seconds = float(wall_match.group(2))
-                    metrics.execution_time_ms = int((minutes * 60 + seconds) * 1000)
+                    metrics.execution_time_ms = (
+                        minutes * 60 + seconds
+                    ) * 1000  # ✅ FIXED: Keep as float
                     logger.debug(
                         f"Strategy 2 - Wall clock: {metrics.execution_time_ms}ms"
                     )
+                    if debug_mode:
+                        print(f"Strategy 2 - Wall clock: {metrics.execution_time_ms}ms")
 
             # Strategy 3: Real time from bash time
             if not metrics.execution_time_ms:
@@ -174,23 +197,33 @@ class MetricsParser:
                 if real_match:
                     minutes = int(real_match.group(1))
                     seconds = float(real_match.group(2))
-                    metrics.execution_time_ms = int((minutes * 60 + seconds) * 1000)
+                    metrics.execution_time_ms = (
+                        minutes * 60 + seconds
+                    ) * 1000  # ✅ FIXED: Keep as float
                     logger.debug(
                         f"Strategy 3 - Real time: {metrics.execution_time_ms}ms"
                     )
+                    if debug_mode:
+                        print(f"Strategy 3 - Real time: {metrics.execution_time_ms}ms")
 
             # Strategy 4: Jest execution time for JS/TS
             if not metrics.execution_time_ms:
                 jest_match = re.search(r"Time:\s+([\d.]+)\s*s", log_content)
                 if jest_match:
                     seconds = float(jest_match.group(1))
-                    metrics.execution_time_ms = int(seconds * 1000)
+                    metrics.execution_time_ms = (
+                        seconds * 1000
+                    )  # ✅ FIXED: Keep as float
                     logger.debug(
                         f"Strategy 4 - Jest time: {metrics.execution_time_ms}ms"
                     )
+                    if debug_mode:
+                        print(f"Strategy 4 - Jest time: {metrics.execution_time_ms}ms")
 
             if not metrics.execution_time_ms:
                 logger.warning("⚠️No execution time found in log")
+                if debug_mode:
+                    print("⚠️No execution time found in log")
 
             # RAM Usage
             ram_match = re.search(
@@ -280,6 +313,9 @@ class MetricsParser:
                 f"RAM: {metrics.ram_usage}KB"
             )
 
+            if not metrics.is_valid() : 
+                logger.warning(f"Log of invalid metrics: {log_content}")
+
         except Exception as e:
             metrics.error_message = f"Parsing error: {str(e)}"
             logger.error(f"Metrics parsing failed: {e}", exc_info=True)
@@ -288,6 +324,7 @@ class MetricsParser:
 
     @staticmethod
     def parse_c_or_cpp(log_content: str) -> ExecutionMetrics:
+        
         logger = logging.getLogger(__name__ + ".MetricsParser")
 
         metrics = ExecutionMetrics()
@@ -306,12 +343,20 @@ class MetricsParser:
             # elapsed_us = elapsed_ns / 1_000
             elapsed_ms = elapsed_ns / 1_000_000
 
-            metrics.execution_time_ms = elapsed_ms
+            metrics.execution_time_ms = elapsed_ms  # ✅ FIXED: Keep as float to preserve precision (e.g., 0.888ms)
         else:
-            metrics.execution_time_ms = system_match.group(1) if system_match else None
+            # Fallback to system time if available
+            if system_match:
+                system_time = float(system_match.group(1))
+                metrics.execution_time_ms = (
+                    system_time * 1000
+                )  # ✅ FIXED: Keep as float
+            else:
+                metrics.execution_time_ms = None
 
-        metrics.cpu_usage = cpu_match.group(1) if cpu_match else None
-        metrics.ram_usage = ram_match.group(1) if ram_match else None
+        # ✅ FIXED: Convert to correct types
+        metrics.cpu_usage = float(cpu_match.group(1)) if cpu_match else None
+        metrics.ram_usage = int(ram_match.group(1)) if ram_match else None
 
         test_failed = False
         test_passed = False
@@ -337,10 +382,17 @@ class MetricsParser:
                 (r"Tests:\s+(\d+)\s+passed,\s+\d+\s+total", "jest_passed"),
                 (r"Test Suites:.*(\d+)\s+passed", "jest_suites_passed"),
                 (r"PASS\s+", "pass_marker"),
+                # ✅ NEW: C Unity test framework patterns
+                (
+                    r"(\d+)\s+Tests\s+0\s+Failures",
+                    "c_unity_success",
+                ),  # "4 Tests 0 Failures 0 Ignored"
+                (r"^OK$", "c_unity_ok"),  # "OK" on separate line
+                (r"Exit_code:\s*0", "exit_code_zero"),  # "Exit_code: 0"
             ]
 
             for pattern, pattern_name in success_patterns:
-                match = re.search(pattern, log_content, re.IGNORECASE)
+                match = re.search(pattern, log_content, re.IGNORECASE | re.MULTILINE)
                 if match:
                     # Verifica che ci siano test passati
                     if pattern_name == "jest_passed":
@@ -348,6 +400,14 @@ class MetricsParser:
                         if passed_count > 0:
                             test_passed = True
                             logger.debug(f"Success: {passed_count} tests passed")
+                            break
+                    elif pattern_name == "c_unity_success":
+                        test_count = int(match.group(1))
+                        if test_count > 0:
+                            test_passed = True
+                            logger.debug(
+                                f"C Unity success: {test_count} tests passed, 0 failures"
+                            )
                             break
                     else:
                         test_passed = True
@@ -379,6 +439,9 @@ class MetricsParser:
             f"CPU: {metrics.cpu_usage}%, "
             f"RAM: {metrics.ram_usage}KB"
         )
+
+        if not metrics.is_valid() : 
+                logger.warning(f"Log of invalid metrics: {log_content}")
 
         return metrics
 
@@ -816,7 +879,7 @@ class TestExecutor:
             wrapper_dest = mount_path / "time_wrapper.py"
             shutil.copy2(wrapper_src, wrapper_dest)
             wrapper_dest.chmod(0o755)
-            print(f"Copied timing wrapper: {wrapper_dest}")
+            #print(f"Copied timing wrapper: {wrapper_dest}")
         else:
             print(f"wrapper_src does not exists : {wrapper_src}")
 
@@ -960,6 +1023,7 @@ class TestExecutor:
         test_type: str = "base",
         llm_info: Optional[Dict] = None,
         use_cache: bool = True,
+        debug_mode: bool = False,
     ) -> BaseEntryResult | LLMentryResult:
         """Execute single test with comprehensive error handling"""
 
@@ -1037,10 +1101,11 @@ class TestExecutor:
                     return self._create_result(entry, language, llm_info, metrics)
 
             # Verifica che i file siano stati copiati
-            copied_files = list(temp_path.rglob("*"))
-            self.logger.debug(
-                f"Files in temp dir: {[f.name for f in copied_files if f.is_file()]} files"
-            )
+            #copied_files = list(temp_path.rglob("*"))
+            #self.logger.debug(
+            #    f"Files in temp dir: {[f.name for f in copied_files if f.is_file()]} files"
+            #)
+           
 
             # Container management con lock
             lang_lock = self._get_language_lock(language)
@@ -1073,12 +1138,17 @@ class TestExecutor:
                     container_name,
                     entry["id"],
                     entry["filename"],
+                    debug_mode,
                 )
+
+                
 
                 return self._create_result(entry, language, llm_info, metrics)
 
             except Exception as e:
                 self.logger.error(f"Test execution failed: {e}", exc_info=True)
+                if debug_mode:
+                    print(f"❌ Test execution failed:\n{e}")
                 metrics = ExecutionMetrics()
                 metrics.error_message = str(e)
                 return self._create_result(entry, language, llm_info, metrics)
@@ -1322,10 +1392,17 @@ class TestExecutor:
             self.logger.error(f"Failed to restore original code: {e}", exc_info=True)
 
     def _parse_metrics_from_log(
-        self, log_file: Path, language: str, result: subprocess.CompletedProcess
+        self,
+        log_file: Path,
+        language: str,
+        result: subprocess.CompletedProcess,
+        debug_mode=False,
     ) -> ExecutionMetrics:
         """Parse metrics from log file with fallback to stdout"""
         metrics = ExecutionMetrics()
+
+        if DEBUG_MODE : 
+            debug_mode = True
 
         log_content = ""
 
@@ -1335,18 +1412,29 @@ class TestExecutor:
                 with open(log_file, "r") as f:
                     log_content = f.read()
                 self.logger.debug(f"Read {len(log_content)} chars from log file")
+                if debug_mode:
+                    print(f"Read {len(log_content)} chars from log file")
             except Exception as e:
                 self.logger.error(f"Failed to read log file: {e}")
+                if debug_mode:
+                    print(f"Failed to read log file: {e}")
 
         # Fallback to stdout if no log content
         if not log_content and result.stdout:
             log_content = result.stdout
             self.logger.debug("Using stdout as log content")
+            if debug_mode:
+                print("Using stdout as log content")
 
         if not log_content:
             self.logger.error("No log content available for parsing")
+            if debug_mode:
+                print("No log content available for parsing")
             metrics.error_message = "No log content generated"
             return metrics
+
+        if debug_mode:
+            print(f"log_content:{log_content}")
 
         # Parse based on language
         if language == "typescript":
@@ -1360,7 +1448,7 @@ class TestExecutor:
                 )
             else:
                 self.logger.debug("Parsing TypeScript output as text")
-                metrics = MetricsParser.parse_time_output(log_content)
+                metrics = MetricsParser.parse_time_output(log_content, debug_mode)
 
         elif language == "javascript":
             stripped = log_content.strip()
@@ -1373,14 +1461,14 @@ class TestExecutor:
                 )
             else:
                 self.logger.debug("Parsing JavaScript as text")
-                metrics = MetricsParser.parse_time_output(log_content)
+                metrics = MetricsParser.parse_time_output(log_content, debug_mode)
 
         elif language == "c" or language == "cpp":
             metrics = MetricsParser.parse_c_or_cpp(log_content)
 
         else:
             # Altri linguaggi
-            metrics = MetricsParser.parse_time_output(log_content)
+            metrics = MetricsParser.parse_time_output(log_content, debug_mode)
 
         return metrics
 
@@ -1392,9 +1480,13 @@ class TestExecutor:
         entry_id: str,
         filename: str,
         llm_dir: str = "",
+        debug_mode=False,
     ) -> ExecutionMetrics:
         """Run container test with comprehensive metrics collection"""
 
+        if DEBUG_MODE :  
+            self.logger.level = logging.DEBUG
+        
         # Prepare log file path
         log_file = mount_path / "output.log"
         if log_file.exists():
@@ -1402,18 +1494,29 @@ class TestExecutor:
                 with open(log_file, "w") as f:
                     f.truncate(0)
                 self.logger.debug(f"Cleared content of stale log file: {log_file.name}")
+                if debug_mode:
+                    print(f"Cleared content of stale log file: {log_file.name}")
             except Exception as e:
                 self.logger.warning(
                     f"Failed to clear content of stale log file {log_file.name}: {e}"
                 )
+                if debug_mode:
+                    print(
+                        f"Failed to clear content of stale log file {log_file.name}:\n{e}"
+                    )
 
         # Log pre-execution info
         self.logger.info(f"Running test for {entry_id} ({language})")
         self.logger.debug(f"Mount path: {mount_path}")
         self.logger.debug(f"Container: {container_name}")
 
+        if debug_mode:
+            print(f"Mount path: {mount_path}")
+            print(f"Container: {container_name}")
+
         if language in ["typescript", "javascript"]:
             self.logger.debug("Directory structure before test execution:")
+
             for item in mount_path.rglob("*"):
                 if item.is_file():
                     self.logger.debug(f"  {item.relative_to(mount_path)}")
@@ -1478,6 +1581,8 @@ class TestExecutor:
             )
 
             self.logger.debug(f"Docker exit code: {result.returncode}")
+            if debug_mode:
+                print(f"Docker exit code: {result.returncode}")
 
             # Log first part of output for debugging
             if result.stdout:
@@ -1485,16 +1590,22 @@ class TestExecutor:
                     f"Docker output (first 500 chars): {result.stdout[:500]}"
                 )
 
+                if debug_mode:
+                    print(f"Docker output (first 500 chars): {result.stdout[:500]}")
+
             # Parse metrics from log
-            metrics = self._parse_metrics_from_log(log_file, language, result)
+            metrics = self._parse_metrics_from_log(
+                log_file, language, result, debug_mode
+            )
 
             if metrics.regression_test_passed and metrics.is_valid():
                 self.logger.info(
-                    f"Tests PASSED for {entry_id} despite exit code {result.returncode}"
+                    f"🟢 Tests PASSED for {entry_id} despite exit code {result.returncode}"
                 )
                 metrics.success = True
             elif result.returncode != 0:
-                self.logger.warning(f"Tests failed with exit code {result.returncode}")
+                self.logger.warning(f"❌ Tests failed with exit code {result.returncode}")
+                self.logger.warning(f"Res {result}")
                 # Non sovrascrivere il flag se è già stato settato dal parsing
                 if not metrics.regression_test_passed:
                     if not metrics.error_message:
@@ -1620,13 +1731,18 @@ class ClusterRunner:
         run_number: int = 1,
         cluster_name="",
         selected_languages=["all"],
-        overwrite_results = False,
-        outlier_filter=None
+        overwrite_results=False,
+        outlier_filter=None,
+        entry_ids_filter: Optional[List[str]] = None,
+        debug_mode=False,
     ) -> Tuple[List[BaseEntryResult], List[LLMentryResult]]:
         """Run all tests for a cluster with comprehensive error handling
 
         Args:
             outlier_filter: Optional OutlierFilter instance to filter which entries to execute
+            entry_ids_filter: Optional list of entry IDs to execute selectively.
+                            If provided, only these entries will be executed.
+                            Useful for re-executing specific problematic entries.
 
         Returns:
             Tuple[base_results, llm_results] - Separate results for base and LLM tests
@@ -1647,8 +1763,8 @@ class ClusterRunner:
         base_results: list[BaseEntryResult] = []
         llm_results: list[LLMentryResult] = []
 
-        skip_check_res_base= False
-        skip_check_res_LLM= False
+        skip_check_res_base = False
+        skip_check_res_LLM = False
 
         if base_only or full:
             out_base_cluster_results_path = (
@@ -1663,37 +1779,44 @@ class ClusterRunner:
 
             try:
                 if "results" not in out_base_cluster_content:
-                    #fallback on backup:
+                    # fallback on backup:
                     backup_path = utility_paths.SRC_DIR / "backup_executions"
 
-                    backup_files = list(backup_path.rglob(f"{cluster_name}_results_{run_number}_backup_*.json"))
-                    
-                    if len(backup_files)>0 : 
+                    backup_files = list(
+                        backup_path.rglob(
+                            f"{cluster_name}_results_{run_number}_backup_*.json"
+                        )
+                    )
+
+                    if len(backup_files) > 0:
                         out_base_cluster_results_path = backup_files[0]
                         out_base_cluster_content = general_utils.read_json(
                             out_base_cluster_results_path
                         )
-                    else : #fallback cluster non eseguito 
+                    else:  # fallback cluster non eseguito
                         out_base_cluster_content = general_utils.read_json(
-                            utility_paths.CLUSTERS_DIR_FILEPATH / f"cluster_{cluster_name}.json"
+                            utility_paths.CLUSTERS_DIR_FILEPATH
+                            / f"cluster_{cluster_name}.json"
                         )
 
                         for _lang, entries in out_base_cluster_content.items():
                             for entry in entries:
-                                cluster_base_not_completed_entries_ids.add(entry['id'])
+                                cluster_base_not_completed_entries_ids.add(entry["id"])
 
                         skip_check_res_base = True
-                    
-                
-                
+
                 if not skip_check_res_base:
-                    if "results" not in out_base_cluster_content : 
-                        raise Exception(f"results not in out_base_cluster_content\nContent:\n{out_base_cluster_content}\n\nPath : {out_base_cluster_results_path}")
-                    
+                    if "results" not in out_base_cluster_content:
+                        raise Exception(
+                            f"results not in out_base_cluster_content\nContent:\n{out_base_cluster_content}\n\nPath : {out_base_cluster_results_path}"
+                        )
+
                     for _lang, entries in out_base_cluster_content["results"].items():
                         for json_entry in entries:
-                            entry: BaseEntryResult = BaseEntryResult.from_json(json_entry)
-                            if  overwrite_results or not entry.is_valid():
+                            entry: BaseEntryResult = BaseEntryResult.from_json(
+                                json_entry
+                            )
+                            if overwrite_results or not entry.is_valid():
                                 cluster_base_not_completed_entries_ids.add(entry.id)
                             else:
                                 base_results.append(entry)
@@ -1723,34 +1846,38 @@ class ClusterRunner:
 
             try:
                 if "results" not in out_LLM_cluster_content:
-                    #fallback on backup:
+                    # fallback on backup:
                     backup_path = utility_paths.SRC_DIR / "backup_executions"
 
-                    backup_files = list(backup_path.rglob(f"{cluster_name}_results_v{prompt_version}_{run_number}_backup_*.json"))
-                    
-                    if len(backup_files) > 0 : 
+                    backup_files = list(
+                        backup_path.rglob(
+                            f"{cluster_name}_results_v{prompt_version}_{run_number}_backup_*.json"
+                        )
+                    )
+
+                    if len(backup_files) > 0:
                         out_LLM_cluster_results_path = backup_files[0]
                         out_LLM_cluster_content = general_utils.read_json(
                             out_LLM_cluster_results_path
                         )
-                    else : #fallback cluster non eseguito 
+                    else:  # fallback cluster non eseguito
                         out_LLM_cluster_content = general_utils.read_json(
-                            utility_paths.CLUSTERS_DIR_FILEPATH / f"cluster_{cluster_name}.json"
+                            utility_paths.CLUSTERS_DIR_FILEPATH
+                            / f"cluster_{cluster_name}.json"
                         )
 
                         for _lang, entries in out_LLM_cluster_content.items():
-                            for entry in entries:                                
-                                cluster_LLM_not_completed_entries_ids.add(entry['id'])
+                            for entry in entries:
+                                cluster_LLM_not_completed_entries_ids.add(entry["id"])
 
                         skip_check_res_LLM = True
-                        
-                    
-                    
-                    
+
                 if not skip_check_res_LLM:
                     if "results" not in out_LLM_cluster_content:
-                        raise Exception(f"results not in out_LLM_cluster_content\nContent:\n{out_LLM_cluster_content}\n\nPath : {out_LLM_cluster_results_path}")
-                    
+                        raise Exception(
+                            f"results not in out_LLM_cluster_content\nContent:\n{out_LLM_cluster_content}\n\nPath : {out_LLM_cluster_results_path}"
+                        )
+
                     for _lang, entries in out_LLM_cluster_content["results"].items():
                         for json_entry in entries:
                             entry: LLMentryResult = LLMentryResult.from_json(json_entry)
@@ -1773,7 +1900,6 @@ class ClusterRunner:
                 print(f"exception :\n{e}")
                 raise e
 
-        
         # Validate execution mode
         mode_count = sum([base_only, llm_only, full])
         if mode_count != 1:
@@ -1785,9 +1911,21 @@ class ClusterRunner:
             f"\nCluster {cluster_path.stem} version : {prompt_version} run# : {run_number}\nCluster path: {cluster_path}\n{len(base_results)} base entries already executed | {len(cluster_base_not_completed_entries_ids)} to execute\n{len(llm_results)} LLM entries already executed | {len(cluster_LLM_not_completed_entries_ids)} to execute\n\n"
         )
 
+        # Log selective execution mode if active
+        if entry_ids_filter is not None:
+            self.logger.info(
+                f"🎯 SELECTIVE EXECUTION MODE: Running only {len(entry_ids_filter)} "
+                f"specific entry IDs: {entry_ids_filter[:5]}{'...' if len(entry_ids_filter) > 5 else ''}"
+            )
+
         # add base and llm task (entries to run)
         for language, entries in cluster_data.items():
             for entry in entries:
+                # Apply entry_ids_filter if provided (selective execution)
+                if entry_ids_filter is not None and entry["id"] not in entry_ids_filter:
+                    # Skip this entry - not in the selective filter
+                    continue
+
                 # Base test tasks
                 if (base_only or full) and entry[
                     "id"
@@ -1799,6 +1937,7 @@ class ClusterRunner:
                             "test_type": "base",
                             "llm_info": None,
                             "use_cache": use_cache,
+                            "debug_mode": debug_mode,
                         }
                     )
 
@@ -1817,6 +1956,7 @@ class ClusterRunner:
                                     "test_type": "llm",
                                     "llm_info": llm,
                                     "use_cache": use_cache,
+                                    "debug_mode": debug_mode,
                                 }
                             )
 
@@ -1835,12 +1975,12 @@ class ClusterRunner:
             raise Exception("0 base task 0 llm task 0 base results and 0 llm results")
 
         # filter for languages :
-        #print(f"selected_languages:\n{selected_languages}")
+        # print(f"selected_languages:\n{selected_languages}")
         if len(selected_languages) > 0 and selected_languages[0] != "all":
 
             def check_task_language(task):
-                #print(f"task:\n{task}")
-                return task['language'] in selected_languages
+                # print(f"task:\n{task}")
+                return task["language"] in selected_languages
 
             base_tasks = list(filter(check_task_language, base_tasks))
             llm_tasks = list(filter(check_task_language, llm_tasks))
@@ -1851,38 +1991,48 @@ class ClusterRunner:
 
             # Filter base tasks
             if base_tasks:
+
                 def is_outlier_base(task):
-                    entry_id = task['entry']['id']
-                    return outlier_filter.should_execute_base_entry(cluster_name, entry_id)
+                    entry_id = task["entry"]["id"]
+                    return outlier_filter.should_execute_base_entry(
+                        cluster_name, entry_id
+                    )
 
                 original_base_count = len(base_tasks)
                 base_tasks = list(filter(is_outlier_base, base_tasks))
-                self.logger.info(f"  Base tasks filtered: {original_base_count} → {len(base_tasks)} (outliers only)")
+                self.logger.info(
+                    f"  Base tasks filtered: {original_base_count} → {len(base_tasks)} (outliers only)"
+                )
 
             # Filter LLM tasks
             if llm_tasks:
+
                 def is_outlier_llm(task):
-                    entry_id = task['entry']['id']
+                    entry_id = task["entry"]["id"]
                     # Extract prompt version from filename (e.g., "_v1" -> 1)
-                    llm_info = task.get('llm_info', {})
-                    filename = llm_info.get('filename', '')
+                    # llm_info = task.get('llm_info', {})
+                    # filename = llm_info.get('filename', '')
                     # The prompt_version is already set in the method parameters
-                    return outlier_filter.should_execute_llm_entry(cluster_name, entry_id, prompt_version)
+                    return outlier_filter.should_execute_llm_entry(
+                        cluster_name, entry_id, prompt_version
+                    )
 
                 original_llm_count = len(llm_tasks)
                 llm_tasks = list(filter(is_outlier_llm, llm_tasks))
-                self.logger.info(f"  LLM tasks filtered: {original_llm_count} → {len(llm_tasks)} (outliers only)")
+                self.logger.info(
+                    f"  LLM tasks filtered: {original_llm_count} → {len(llm_tasks)} (outliers only)"
+                )
 
         # Execute base tests first if needed
         if base_tasks:
             self.logger.info(f"Executing {len(base_tasks)} base tests...")
-            base_results_2 = self._execute_task_batch(base_tasks, "Base")
+            base_results_2 = self._execute_task_batch(base_tasks, "Base", debug_mode)
             base_results.extend(base_results_2)
 
         # Execute LLM tests if needed
         if llm_tasks:
             self.logger.info(f"Executing {len(llm_tasks)} LLM tests...")
-            llm_results_2 = self._execute_task_batch(llm_tasks, "LLM")
+            llm_results_2 = self._execute_task_batch(llm_tasks, "LLM", debug_mode)
             llm_results.extend(llm_results_2)
 
         """
@@ -1903,7 +2053,7 @@ class ClusterRunner:
         return base_results, llm_results  # parsed_llm_results
 
     def _execute_task_batch(
-        self, tasks: List[Dict], batch_name: str
+        self, tasks: List[Dict], batch_name: str, debug_mode=False
     ) -> List[BaseEntryResult | LLMentryResult]:
         """Execute a batch of tasks in parallel"""
         results = []
@@ -1919,6 +2069,7 @@ class ClusterRunner:
                 try:
                     result = future.result(timeout=600)  # 10 minute timeout per test
                     results.append(result)
+                  
 
                     with self.lock:
                         self.execution_state.completed_tests += 1
@@ -1947,6 +2098,7 @@ class ClusterRunner:
             test_type=task["test_type"],
             llm_info=task["llm_info"],
             use_cache=task["use_cache"],
+            debug_mode=task["debug_mode"],
         )
 
     def _report_progress(self, batch_name: str = ""):
@@ -2246,7 +2398,7 @@ def main():
     )
     parser.add_argument("--silent", action="store_true", help="Reduce output verbosity")
 
-    # Language-selective execution (NEW FEATURE)
+    # Language-selective execution
     parser.add_argument(
         "--languages",
         type=str,
@@ -2269,19 +2421,26 @@ def main():
         "--overwrite-results",
         action="store_true",
         default=False,
-        help="Force to overwrite results for each entry even if it's valid"
+        help="Force to overwrite results for each entry even if it's valid",
     )
 
-    # Outlier-selective execution (NEW FEATURE)
+    # Outlier-selective execution
     parser.add_argument(
         "--outlier-mode",
         action="store_true",
-        help="Enable outlier-selective execution: only re-runs entries identified as outliers in the report"
+        help="Enable outlier-selective execution: only re-runs entries identified as outliers in the report",
     )
     parser.add_argument(
         "--outlier-report",
         type=str,
-        help="Path to outliers_report_*.json file (required for --outlier-mode)"
+        help="Path to outliers_report_*.json file (required for --outlier-mode)",
+    )
+
+    parser.add_argument(
+        "--debug-mode",
+        action="store_true",
+        default=False,
+        help="Run in debug mode with verbose prints",
     )
 
     args = parser.parse_args()
@@ -2379,14 +2538,18 @@ def main():
 
             if is_llm:
                 # Get affected prompt versions
-                affected_versions = outlier_filter.get_affected_prompt_versions(args.cluster_name)
+                affected_versions = outlier_filter.get_affected_prompt_versions(
+                    args.cluster_name
+                )
                 prompt_versions = (
                     sorted(affected_versions)
                     if args.prompt_version == -1
                     else [args.prompt_version]
                 )
 
-                print(f"\nProcessing LLM results for prompt versions: {prompt_versions}")
+                print(
+                    f"\nProcessing LLM results for prompt versions: {prompt_versions}"
+                )
 
                 for p_v in prompt_versions:
                     # Get outlier entry IDs for this version
@@ -2394,21 +2557,27 @@ def main():
                         args.cluster_name, p_v
                     )
 
-                    print(f"\n  Prompt v{p_v}: {len(outlier_entry_ids)} outlier entries to re-execute")
+                    print(
+                        f"\n  Prompt v{p_v}: {len(outlier_entry_ids)} outlier entries to re-execute"
+                    )
 
                     # Process each run
                     for run_num in range(1, args.run_quantity + 1):
                         print(f"    Run {run_num}/{args.run_quantity}")
 
                         # Determine output file path
-                        output_filename = f"{args.cluster_name}_results_v{p_v}_{run_num}.json"
+                        output_filename = (
+                            f"{args.cluster_name}_results_v{p_v}_{run_num}.json"
+                        )
                         output_path = args.output_dir / output_filename
 
                         # Load existing results
                         existing_results = merger.load_existing_results(output_path)
 
                         # Execute tests ONLY for outlier entries
-                        print(f"      Executing {len(outlier_entry_ids)} outlier entries...")
+                        print(
+                            f"      Executing {len(outlier_entry_ids)} outlier entries..."
+                        )
                         start_time = time.time()
 
                         _, llm_results = test_runner.run_cluster_tests(
@@ -2422,54 +2591,67 @@ def main():
                             cluster_name=args.cluster_name,
                             selected_languages=list(selected_languages),
                             overwrite_results=overwrite_results,
-                            outlier_filter=outlier_filter  # Pass filter to execution
+                            outlier_filter=outlier_filter,
+                            debug_mode=args.debug_mode,
                         )
 
                         elapsed = time.time() - start_time
 
                         # Filter to only executed outliers
                         executed_results = [
-                            r for r in llm_results
-                            if r.id in outlier_entry_ids
+                            r for r in llm_results if r.id in outlier_entry_ids
                         ]
 
-                        print(f"      Executed {len(executed_results)} entries in {elapsed:.1f}s")
+                        print(
+                            f"      Executed {len(executed_results)} entries in {elapsed:.1f}s"
+                        )
                         total_entries_executed += len(executed_results)
 
                         # Merge with existing results
                         new_results_dicts = [r.to_json() for r in executed_results]
 
-                        if existing_results and existing_results.get('results'):
+                        if existing_results and existing_results.get("results"):
                             merged_data = merger.merge_results(
                                 existing_data=existing_results,
                                 new_results=new_results_dicts,
-                                outlier_entry_ids=outlier_entry_ids
+                                outlier_entry_ids=outlier_entry_ids,
                             )
-                            total_merged = sum(len(entries) for entries in merged_data.get('results', {}).values())
+                            total_merged = sum(
+                                len(entries)
+                                for entries in merged_data.get("results", {}).values()
+                            )
                             reused_count = total_merged - len(executed_results)
                             total_entries_reused += reused_count
-                            print(f"      Merged: {len(executed_results)} new + {reused_count} reused = {total_merged} total")
+                            print(
+                                f"      Merged: {len(executed_results)} new + {reused_count} reused = {total_merged} total"
+                            )
                         else:
                             # No existing results - create new data structure
                             results_by_lang = {}
                             for r in new_results_dicts:
-                                lang = r.get('language', 'unknown')
+                                lang = r.get("language", "unknown")
                                 if lang not in results_by_lang:
                                     results_by_lang[lang] = []
                                 results_by_lang[lang].append(r)
                             merged_data = {"results": results_by_lang}
-                            print(f"      No existing results - saved {len(new_results_dicts)} new entries")
+                            print(
+                                f"      No existing results - saved {len(new_results_dicts)} new entries"
+                            )
 
                         # Save merged results
                         merger.save_merged_results(
                             merged_data=merged_data,
                             output_file=output_path,
-                            backup=True
+                            backup=True,
                         )
 
             else:  # Base code execution
-                outlier_entry_ids = outlier_filter.get_base_entry_ids_to_execute(args.cluster_name)
-                print(f"\nBase code: {len(outlier_entry_ids)} outlier entries to re-execute")
+                outlier_entry_ids = outlier_filter.get_base_entry_ids_to_execute(
+                    args.cluster_name
+                )
+                print(
+                    f"\nBase code: {len(outlier_entry_ids)} outlier entries to re-execute"
+                )
 
                 # Process each run
                 for run_num in range(1, args.run_quantity + 1):
@@ -2497,49 +2679,56 @@ def main():
                         cluster_name=args.cluster_name,
                         selected_languages=list(selected_languages),
                         overwrite_results=overwrite_results,
-                        outlier_filter=outlier_filter  # Pass filter to execution
+                        outlier_filter=outlier_filter,
+                        debug_mode=args.debug_mode,
                     )
 
                     elapsed = time.time() - start_time
 
                     # Filter to only executed outliers
                     executed_results = [
-                        r for r in base_results
-                        if r.id in outlier_entry_ids
+                        r for r in base_results if r.id in outlier_entry_ids
                     ]
 
-                    print(f"    Executed {len(executed_results)} entries in {elapsed:.1f}s")
+                    print(
+                        f"    Executed {len(executed_results)} entries in {elapsed:.1f}s"
+                    )
                     total_entries_executed += len(executed_results)
 
                     # Merge with existing results
                     new_results_dicts = [r.to_json() for r in executed_results]
 
-                    if existing_results and existing_results.get('results'):
+                    if existing_results and existing_results.get("results"):
                         merged_data = merger.merge_results(
                             existing_data=existing_results,
                             new_results=new_results_dicts,
-                            outlier_entry_ids=outlier_entry_ids
+                            outlier_entry_ids=outlier_entry_ids,
                         )
-                        total_merged = sum(len(entries) for entries in merged_data.get('results', {}).values())
+                        total_merged = sum(
+                            len(entries)
+                            for entries in merged_data.get("results", {}).values()
+                        )
                         reused_count = total_merged - len(executed_results)
                         total_entries_reused += reused_count
-                        print(f"    Merged: {len(executed_results)} new + {reused_count} reused = {total_merged} total")
+                        print(
+                            f"    Merged: {len(executed_results)} new + {reused_count} reused = {total_merged} total"
+                        )
                     else:
                         # No existing results - create new data structure
                         results_by_lang = {}
                         for r in new_results_dicts:
-                            lang = r.get('language', 'unknown')
+                            lang = r.get("language", "unknown")
                             if lang not in results_by_lang:
                                 results_by_lang[lang] = []
                             results_by_lang[lang].append(r)
                         merged_data = {"results": results_by_lang}
-                        print(f"    No existing results - saved {len(new_results_dicts)} new entries")
+                        print(
+                            f"    No existing results - saved {len(new_results_dicts)} new entries"
+                        )
 
                     # Save merged results
                     merger.save_merged_results(
-                        merged_data=merged_data,
-                        output_file=output_path,
-                        backup=True
+                        merged_data=merged_data, output_file=output_path, backup=True
                     )
 
         # Print final summary
@@ -2548,7 +2737,9 @@ def main():
         print("=" * 80)
         print(f"Total entries executed: {total_entries_executed}")
         print(f"Total entries reused: {total_entries_reused}")
-        print(f"Time saved by reusing: ~{total_entries_reused * 100 / max(total_entries_executed + total_entries_reused, 1):.1f}%")
+        print(
+            f"Time saved by reusing: ~{total_entries_reused * 100 / max(total_entries_executed + total_entries_reused, 1):.1f}%"
+        )
         print("=" * 80)
 
         return 0
@@ -2567,7 +2758,7 @@ def main():
         print("=" * 80)
 
         # Parse selected languages
-        
+
         print(f"Selected languages: {', '.join(sorted(selected_languages))}")
 
         # Validate we have a specific cluster
@@ -2652,7 +2843,8 @@ def main():
                             run_number=run_num,
                             cluster_name=args.cluster_name,
                             selected_languages=list(selected_languages),
-                            overwrite_results = overwrite_results
+                            overwrite_results=overwrite_results,
+                            debug_mode=args.debug_mode,
                         )
 
                         elapsed = time.time() - start_time
@@ -2729,7 +2921,8 @@ def main():
                         run_number=run_num,
                         cluster_name=args.cluster_name,
                         selected_languages=list(selected_languages),
-                        overwrite_results = overwrite_results
+                        overwrite_results=overwrite_results,
+                        debug_mode=args.debug_mode,
                     )
 
                     elapsed = time.time() - start_time
@@ -2826,45 +3019,20 @@ def main():
             "base" if args.base_only else f"LLM {v}" if args.llm_only else "full"
         )
 
-        # re-run
-        to_rerun_cluster_list = [
-            "accumulate",
-            "acronym",
-            "allergies",
-            "alphametics",
-            "anagram",
-            "annalyns_infiltration",
-            "atbash_cipher",
-            "bank_account",
-            "beer_song",
-            "binary",
-            "binary_search",
-            "binary_search_tree",
-            "bird_watcher",
-            "bob",
-            "bracket_push",
-            "circular_buffer",
-            "clock",
-            "coordinate_transformation",
-            "darts",
-            "diamond",
-            "difference_of_squares",
-        ]
+        total_to_run = len(clusters_to_process)
 
-        # print(f"Processing {len(clusters_to_process)} {test_type_desc} clusters...")
-
-        # re-run
-        print(f"Processing {len(to_rerun_cluster_list)} {test_type_desc} clusters...")
+        print(f"Processing {total_to_run} {test_type_desc} clusters...")
 
         # Process each cluster
-        # for cluster_path in clusters_to_process:
-        #    cluster_name = cluster_path.stem.replace("cluster_", "")
-        for cluster_name in to_rerun_cluster_list:
+        for i, cluster_path in enumerate(clusters_to_process):
+            cluster_name = cluster_path.stem.replace("cluster_", "")
             cluster_path = (
                 utility_paths.CLUSTERS_DIR_FILEPATH / f"cluster_{cluster_name}.json"
             )
 
-            print(f"\nProcessing cluster: {cluster_name}")
+            print(
+                f"\nProcessing cluster: {cluster_name} | {i}/{total_to_run}  ({i / total_to_run * 100} %)"
+            )
 
             for run_num in range(1, args.run_quantity + 1):
                 print(f"Run {run_num}/{args.run_quantity}")
@@ -2892,7 +3060,8 @@ def main():
                             run_number=run_num,
                             cluster_name=cluster_name,
                             selected_languages=list(selected_languages),
-                            overwrite_results = overwrite_results
+                            overwrite_results=overwrite_results,
+                            debug_mode=args.debug_mode,
                         )
 
                         elapsed = time.time() - start_time
@@ -3030,7 +3199,8 @@ def main():
                         run_number=run_num,
                         cluster_name=cluster_name,
                         selected_languages=list(selected_languages),
-                        overwrite_results = overwrite_results
+                        overwrite_results=overwrite_results,
+                        debug_mode=args.debug_mode,
                     )
 
                     elapsed = time.time() - start_time
@@ -3181,6 +3351,7 @@ if __name__ == "__main__":
         full=True,
         run_number=1,
         cluster_name="reverse_string",
+        debug_mode = args.debug_mode
     )
     """
 
@@ -3190,8 +3361,11 @@ if __name__ == "__main__":
 # python3 run_tests_on_cluster.py --llm-only --prompt-version 1 --webhook --max-workers 6 --not-check-pending
 
 # run all base + LLM (5 times each) (every prompt v of LLMs) :
-# python3 run_tests_on_cluster.py --full --webhook --max-workers 6 --not-check-pending --prompt-version -1
+# python3 run_tests_on_cluster.py --full --webhook --max-workers 8 --not-check-pending --prompt-version -1
 
 
 # run all (base + LLM) (5 times each) (every prompt v of LLMs) with check pending before:
 # python3 run_tests_on_cluster.py --full --webhook --max-workers 6 --prompt-version -1
+
+
+# python3 run_tests_on_cluster.py --base-only --webhook --max-workers 4 --prompt-version -1 --cluster-name allergies --debug-mode

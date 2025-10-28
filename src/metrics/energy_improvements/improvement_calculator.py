@@ -102,6 +102,10 @@ class ImprovementCalculator:
         """
         self.outlier_threshold = abs(outlier_threshold)
         self.outliers: List[OutlierInfo] = []
+        self.invalid_base_clusters = 0
+        self.base_clusters = 0
+        self.invalid_LLM_clusters = 0
+        self.LLM_clusters = 0
         print(f"ImprovementCalculator initialized with outlier threshold: ±{self.outlier_threshold}%")
 
     def extract_base_metrics(self, execution_data: Dict) -> Dict[str, List[MetricData]]:
@@ -117,15 +121,18 @@ class ImprovementCalculator:
         metrics_by_entry = defaultdict(list)
 
         if not execution_data or 'results' not in execution_data:
+            print(f"❌ Result not in execution data or execution data not present-> execution_data:\n{execution_data}")
             return metrics_by_entry
 
         results = execution_data['results']
 
         # Iterate through all language sections
         for language, entries in results.items():
-            for entry in entries:
+            quantity = len(entries)
+            for (i,entry) in enumerate(entries):
                 entry_id = entry.get('id')
                 if not entry_id:
+                    print(f"❌ No entry if found for entry:\n{entry}")
                     continue
 
                 metric_data = MetricData(
@@ -140,6 +147,8 @@ class ImprovementCalculator:
 
                 if metric_data.is_valid():
                     metrics_by_entry[entry_id].append(metric_data)
+                else :
+                    print(f"🟡 Metric invalid for entry {i}/{quantity} ({entry_id})")
 
         return metrics_by_entry
 
@@ -215,6 +224,7 @@ class ImprovementCalculator:
         # Calculate means for each entry
         for entry_id, metric_list in all_metrics.items():
             if not metric_list:
+                print(f"🔺 no metric list for entry {entry_id}")
                 continue
 
             cpu_usage_sum = sum(m.CPU_usage for m in metric_list)
@@ -403,7 +413,9 @@ class ImprovementCalculator:
 
         base_means = self.calculate_mean_on_exec_base(cluster_name)
 
+        self.base_clusters += 1
         if not base_means:
+            self.invalid_base_clusters += 1
             print(f"  🔴 No valid base metrics found for {cluster_name}")
             return
 
@@ -417,7 +429,9 @@ class ImprovementCalculator:
             prompt_version = f"v{v}"
             llm_means = self.calculate_mean_on_exec_LLM(cluster_name, prompt_version)
 
+            self.LLM_clusters += 1
             if not llm_means:
+                self.invalid_LLM_clusters += 1
                 print(f"  ⚠️ No valid LLM metrics found for {cluster_name} {prompt_version}")
                 continue
 
@@ -585,7 +599,7 @@ class ImprovementCalculator:
         Returns:
             Dizionario con i dati del improvement
         """
-        if improvement == -999:
+        if improvement <= -999:
             # Valori invalidi
             return {
                 "improvement_percentage": -999,
@@ -720,11 +734,15 @@ class ImprovementCalculator:
             )
             self._save_outliers_report(self.outliers, outliers_path)
 
+            print(f"\nTotal outliers quantity : {len(self.outliers)}")
+            print(f"\nTotal base invalid : {self.invalid_base_clusters}/{self.base_clusters}")
+            print(f"\nTotal LLM invalid : {self.invalid_LLM_clusters}/{self.LLM_clusters}")
             # Stampa summary
-            print("\n" + "="*80)
-            print("OUTLIERS SUMMARY")
-            print("="*80)
+            #print("\n" + "="*80)
+            #print("OUTLIERS SUMMARY")
+            #print("="*80)
 
+            """
             from collections import defaultdict
             by_metric = defaultdict(int)
             by_cluster = defaultdict(int)
@@ -742,6 +760,7 @@ class ImprovementCalculator:
                 print(f"  {cluster}: {count}")
 
             print("\n" + "="*80)
+            """
 
     
 

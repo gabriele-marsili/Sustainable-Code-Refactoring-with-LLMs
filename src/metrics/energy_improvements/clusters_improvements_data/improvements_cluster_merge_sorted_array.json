@@ -1,0 +1,459 @@
+{
+  "merge_sorted_array_169": {
+    "base_5_exec_data": {
+      "exec_quantity": 5,
+      "language": "python",
+      "avg_exec_CPU_usage": 18.2,
+      "avg_exec_RAM_usage": 13926.4,
+      "avg_exec_execution_time_ms": 30.0
+    },
+    "LLM_5_exec_data": {
+      "openAI": {
+        "prompt_v1": {
+          "exec_quantity": 2,
+          "successfully_exec_quantity": 2,
+          "language": "python",
+          "avg_exec_CPU_usage": 17.0,
+          "avg_exec_RAM_usage": 13760.0,
+          "avg_exec_execution_time_ms": 35.0,
+          "avg_exec_regressionTestPassed": 100.0
+        },
+        "prompt_v2": {
+          "exec_quantity": 1,
+          "successfully_exec_quantity": 1,
+          "language": "python",
+          "avg_exec_CPU_usage": 6.0,
+          "avg_exec_RAM_usage": 13824.0,
+          "avg_exec_execution_time_ms": 40.0,
+          "avg_exec_regressionTestPassed": 100.0
+        },
+        "prompt_v3": {
+          "exec_quantity": 1,
+          "successfully_exec_quantity": 1,
+          "language": "python",
+          "avg_exec_CPU_usage": 7.0,
+          "avg_exec_RAM_usage": 13824.0,
+          "avg_exec_execution_time_ms": 30.0,
+          "avg_exec_regressionTestPassed": 100.0
+        },
+        "prompt_v4": {
+          "exec_quantity": 0,
+          "successfully_exec_quantity": 0,
+          "language": "",
+          "avg_exec_CPU_usage": -1,
+          "avg_exec_RAM_usage": -1,
+          "avg_exec_execution_time_ms": -1,
+          "avg_exec_regressionTestPassed": 0
+        }
+      },
+      "gemini": {
+        "prompt_v1": {
+          "exec_quantity": 2,
+          "successfully_exec_quantity": 2,
+          "language": "python",
+          "avg_exec_CPU_usage": 6.0,
+          "avg_exec_RAM_usage": 13760.0,
+          "avg_exec_execution_time_ms": 45.0,
+          "avg_exec_regressionTestPassed": 100.0
+        },
+        "prompt_v2": {
+          "exec_quantity": 1,
+          "successfully_exec_quantity": 1,
+          "language": "python",
+          "avg_exec_CPU_usage": 7.0,
+          "avg_exec_RAM_usage": 13696.0,
+          "avg_exec_execution_time_ms": 30.0,
+          "avg_exec_regressionTestPassed": 100.0
+        },
+        "prompt_v3": {
+          "exec_quantity": 1,
+          "successfully_exec_quantity": 1,
+          "language": "python",
+          "avg_exec_CPU_usage": 6.0,
+          "avg_exec_RAM_usage": 13824.0,
+          "avg_exec_execution_time_ms": 30.0,
+          "avg_exec_regressionTestPassed": 100.0
+        },
+        "prompt_v4": {
+          "exec_quantity": 2,
+          "successfully_exec_quantity": 2,
+          "language": "python",
+          "avg_exec_CPU_usage": 14.0,
+          "avg_exec_RAM_usage": 13824.0,
+          "avg_exec_execution_time_ms": 35.0,
+          "avg_exec_regressionTestPassed": 100.0
+        }
+      },
+      "claude": {
+        "prompt_v1": {
+          "exec_quantity": 2,
+          "successfully_exec_quantity": 2,
+          "language": "python",
+          "avg_exec_CPU_usage": 6.0,
+          "avg_exec_RAM_usage": 13760.0,
+          "avg_exec_execution_time_ms": 40.0,
+          "avg_exec_regressionTestPassed": 100.0
+        },
+        "prompt_v2": {
+          "exec_quantity": 1,
+          "successfully_exec_quantity": 1,
+          "language": "python",
+          "avg_exec_CPU_usage": 11.0,
+          "avg_exec_RAM_usage": 13824.0,
+          "avg_exec_execution_time_ms": 30.0,
+          "avg_exec_regressionTestPassed": 100.0
+        },
+        "prompt_v3": {
+          "exec_quantity": 1,
+          "successfully_exec_quantity": 1,
+          "language": "python",
+          "avg_exec_CPU_usage": 7.0,
+          "avg_exec_RAM_usage": 13824.0,
+          "avg_exec_execution_time_ms": 30.0,
+          "avg_exec_regressionTestPassed": 100.0
+        },
+        "prompt_v4": {
+          "exec_quantity": 2,
+          "successfully_exec_quantity": 2,
+          "language": "python",
+          "avg_exec_CPU_usage": 9.5,
+          "avg_exec_RAM_usage": 13696.0,
+          "avg_exec_execution_time_ms": 35.0,
+          "avg_exec_regressionTestPassed": 100.0
+        }
+      }
+    },
+    "improvements_data": {
+      "openAI": {
+        "prompt_v1": {
+          "LLM_successfully_exec_quantity": 2,
+          "LLM_exec_quantity": 2,
+          "language": "python",
+          "CPU_usage": {
+            "improvement_percentage": -6.5934065934065895,
+            "label": "reduction",
+            "is_outlier": false,
+            "base_value": 18.2,
+            "llm_value": 17.0
+          },
+          "RAM_usage": {
+            "improvement_percentage": -1.1948529411764681,
+            "label": "reduction",
+            "is_outlier": false,
+            "base_value": 13926.4,
+            "llm_value": 13760.0
+          },
+          "execution_time_ms": {
+            "improvement_percentage": 16.666666666666664,
+            "label": "degradation",
+            "is_outlier": false,
+            "base_value": 30.0,
+            "llm_value": 35.0
+          },
+          "regressionTestPassed": -0.0
+        },
+        "prompt_v2": {
+          "LLM_successfully_exec_quantity": 1,
+          "LLM_exec_quantity": 1,
+          "language": "python",
+          "CPU_usage": {
+            "improvement_percentage": -67.03296703296702,
+            "label": "reduction",
+            "is_outlier": false,
+            "base_value": 18.2,
+            "llm_value": 6.0
+          },
+          "RAM_usage": {
+            "improvement_percentage": -0.7352941176470562,
+            "label": "reduction",
+            "is_outlier": false,
+            "base_value": 13926.4,
+            "llm_value": 13824.0
+          },
+          "execution_time_ms": {
+            "improvement_percentage": 33.33333333333333,
+            "label": "degradation",
+            "is_outlier": false,
+            "base_value": 30.0,
+            "llm_value": 40.0
+          },
+          "regressionTestPassed": -0.0
+        },
+        "prompt_v3": {
+          "LLM_successfully_exec_quantity": 1,
+          "LLM_exec_quantity": 1,
+          "language": "python",
+          "CPU_usage": {
+            "improvement_percentage": -61.53846153846154,
+            "label": "reduction",
+            "is_outlier": false,
+            "base_value": 18.2,
+            "llm_value": 7.0
+          },
+          "RAM_usage": {
+            "improvement_percentage": -0.7352941176470562,
+            "label": "reduction",
+            "is_outlier": false,
+            "base_value": 13926.4,
+            "llm_value": 13824.0
+          },
+          "execution_time_ms": {
+            "improvement_percentage": 0.0,
+            "label": "degradation",
+            "is_outlier": false,
+            "base_value": 30.0,
+            "llm_value": 30.0
+          },
+          "regressionTestPassed": -0.0
+        },
+        "prompt_v4": {
+          "LLM_successfully_exec_quantity": 0,
+          "LLM_exec_quantity": 0,
+          "language": "",
+          "CPU_usage": {
+            "improvement_percentage": -999,
+            "label": "invalid",
+            "is_outlier": false,
+            "base_value": -999,
+            "llm_value": -999
+          },
+          "RAM_usage": {
+            "improvement_percentage": -999,
+            "label": "invalid",
+            "is_outlier": false,
+            "base_value": -999,
+            "llm_value": -999
+          },
+          "execution_time_ms": {
+            "improvement_percentage": -999,
+            "label": "invalid",
+            "is_outlier": false,
+            "base_value": -999,
+            "llm_value": -999
+          },
+          "regressionTestPassed": -0.0
+        }
+      },
+      "gemini": {
+        "prompt_v1": {
+          "LLM_successfully_exec_quantity": 2,
+          "LLM_exec_quantity": 2,
+          "language": "python",
+          "CPU_usage": {
+            "improvement_percentage": -67.03296703296702,
+            "label": "reduction",
+            "is_outlier": false,
+            "base_value": 18.2,
+            "llm_value": 6.0
+          },
+          "RAM_usage": {
+            "improvement_percentage": -1.1948529411764681,
+            "label": "reduction",
+            "is_outlier": false,
+            "base_value": 13926.4,
+            "llm_value": 13760.0
+          },
+          "execution_time_ms": {
+            "improvement_percentage": 50.0,
+            "label": "degradation",
+            "is_outlier": false,
+            "base_value": 30.0,
+            "llm_value": 45.0
+          },
+          "regressionTestPassed": -0.0
+        },
+        "prompt_v2": {
+          "LLM_successfully_exec_quantity": 1,
+          "LLM_exec_quantity": 1,
+          "language": "python",
+          "CPU_usage": {
+            "improvement_percentage": -61.53846153846154,
+            "label": "reduction",
+            "is_outlier": false,
+            "base_value": 18.2,
+            "llm_value": 7.0
+          },
+          "RAM_usage": {
+            "improvement_percentage": -1.65441176470588,
+            "label": "reduction",
+            "is_outlier": false,
+            "base_value": 13926.4,
+            "llm_value": 13696.0
+          },
+          "execution_time_ms": {
+            "improvement_percentage": 0.0,
+            "label": "degradation",
+            "is_outlier": false,
+            "base_value": 30.0,
+            "llm_value": 30.0
+          },
+          "regressionTestPassed": -0.0
+        },
+        "prompt_v3": {
+          "LLM_successfully_exec_quantity": 1,
+          "LLM_exec_quantity": 1,
+          "language": "python",
+          "CPU_usage": {
+            "improvement_percentage": -67.03296703296702,
+            "label": "reduction",
+            "is_outlier": false,
+            "base_value": 18.2,
+            "llm_value": 6.0
+          },
+          "RAM_usage": {
+            "improvement_percentage": -0.7352941176470562,
+            "label": "reduction",
+            "is_outlier": false,
+            "base_value": 13926.4,
+            "llm_value": 13824.0
+          },
+          "execution_time_ms": {
+            "improvement_percentage": 0.0,
+            "label": "degradation",
+            "is_outlier": false,
+            "base_value": 30.0,
+            "llm_value": 30.0
+          },
+          "regressionTestPassed": -0.0
+        },
+        "prompt_v4": {
+          "LLM_successfully_exec_quantity": 2,
+          "LLM_exec_quantity": 2,
+          "language": "python",
+          "CPU_usage": {
+            "improvement_percentage": -23.076923076923073,
+            "label": "reduction",
+            "is_outlier": false,
+            "base_value": 18.2,
+            "llm_value": 14.0
+          },
+          "RAM_usage": {
+            "improvement_percentage": -0.7352941176470562,
+            "label": "reduction",
+            "is_outlier": false,
+            "base_value": 13926.4,
+            "llm_value": 13824.0
+          },
+          "execution_time_ms": {
+            "improvement_percentage": 16.666666666666664,
+            "label": "degradation",
+            "is_outlier": false,
+            "base_value": 30.0,
+            "llm_value": 35.0
+          },
+          "regressionTestPassed": -0.0
+        }
+      },
+      "claude": {
+        "prompt_v1": {
+          "LLM_successfully_exec_quantity": 2,
+          "LLM_exec_quantity": 2,
+          "language": "python",
+          "CPU_usage": {
+            "improvement_percentage": -67.03296703296702,
+            "label": "reduction",
+            "is_outlier": false,
+            "base_value": 18.2,
+            "llm_value": 6.0
+          },
+          "RAM_usage": {
+            "improvement_percentage": -1.1948529411764681,
+            "label": "reduction",
+            "is_outlier": false,
+            "base_value": 13926.4,
+            "llm_value": 13760.0
+          },
+          "execution_time_ms": {
+            "improvement_percentage": 33.33333333333333,
+            "label": "degradation",
+            "is_outlier": false,
+            "base_value": 30.0,
+            "llm_value": 40.0
+          },
+          "regressionTestPassed": -0.0
+        },
+        "prompt_v2": {
+          "LLM_successfully_exec_quantity": 1,
+          "LLM_exec_quantity": 1,
+          "language": "python",
+          "CPU_usage": {
+            "improvement_percentage": -39.56043956043956,
+            "label": "reduction",
+            "is_outlier": false,
+            "base_value": 18.2,
+            "llm_value": 11.0
+          },
+          "RAM_usage": {
+            "improvement_percentage": -0.7352941176470562,
+            "label": "reduction",
+            "is_outlier": false,
+            "base_value": 13926.4,
+            "llm_value": 13824.0
+          },
+          "execution_time_ms": {
+            "improvement_percentage": 0.0,
+            "label": "degradation",
+            "is_outlier": false,
+            "base_value": 30.0,
+            "llm_value": 30.0
+          },
+          "regressionTestPassed": -0.0
+        },
+        "prompt_v3": {
+          "LLM_successfully_exec_quantity": 1,
+          "LLM_exec_quantity": 1,
+          "language": "python",
+          "CPU_usage": {
+            "improvement_percentage": -61.53846153846154,
+            "label": "reduction",
+            "is_outlier": false,
+            "base_value": 18.2,
+            "llm_value": 7.0
+          },
+          "RAM_usage": {
+            "improvement_percentage": -0.7352941176470562,
+            "label": "reduction",
+            "is_outlier": false,
+            "base_value": 13926.4,
+            "llm_value": 13824.0
+          },
+          "execution_time_ms": {
+            "improvement_percentage": 0.0,
+            "label": "degradation",
+            "is_outlier": false,
+            "base_value": 30.0,
+            "llm_value": 30.0
+          },
+          "regressionTestPassed": -0.0
+        },
+        "prompt_v4": {
+          "LLM_successfully_exec_quantity": 2,
+          "LLM_exec_quantity": 2,
+          "language": "python",
+          "CPU_usage": {
+            "improvement_percentage": -47.802197802197796,
+            "label": "reduction",
+            "is_outlier": false,
+            "base_value": 18.2,
+            "llm_value": 9.5
+          },
+          "RAM_usage": {
+            "improvement_percentage": -1.65441176470588,
+            "label": "reduction",
+            "is_outlier": false,
+            "base_value": 13926.4,
+            "llm_value": 13696.0
+          },
+          "execution_time_ms": {
+            "improvement_percentage": 16.666666666666664,
+            "label": "degradation",
+            "is_outlier": false,
+            "base_value": 30.0,
+            "llm_value": 35.0
+          },
+          "regressionTestPassed": -0.0
+        }
+      }
+    }
+  }
+}

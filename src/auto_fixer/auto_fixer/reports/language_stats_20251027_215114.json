@@ -1,0 +1,103 @@
+{
+  "analysis_date": "2025-10-27T21:51:14.549251",
+  "summary": {
+    "total_entries": 1768,
+    "problematic_entries": 1940,
+    "entries_to_remove": 1,
+    "removal_rate_percentage": 0.056561085972850686
+  },
+  "by_language": {
+    "python": {
+      "total_entries": 214,
+      "problematic_entries": 3,
+      "removal_impact_percentage": 1.4018691588785046,
+      "critical_issues": 30,
+      "high_issues": 0,
+      "medium_issues": 0,
+      "issues_by_root_cause": {
+        "timeout": 10,
+        "unknown": 10,
+        "metrics_collection_failure": 10
+      }
+    },
+    "javascript": {
+      "total_entries": 323,
+      "problematic_entries": 31,
+      "removal_impact_percentage": 9.597523219814242,
+      "critical_issues": 294,
+      "high_issues": 0,
+      "medium_issues": 0,
+      "issues_by_root_cause": {
+        "unknown": 146,
+        "metrics_collection_failure": 146,
+        "docker_error": 2
+      }
+    },
+    "typescript": {
+      "total_entries": 309,
+      "problematic_entries": 21,
+      "removal_impact_percentage": 6.796116504854369,
+      "critical_issues": 202,
+      "high_issues": 0,
+      "medium_issues": 0,
+      "issues_by_root_cause": {
+        "unknown": 100,
+        "metrics_collection_failure": 100,
+        "docker_error": 2
+      }
+    },
+    "java": {
+      "total_entries": 179,
+      "problematic_entries": 16,
+      "removal_impact_percentage": 8.938547486033519,
+      "critical_issues": 140,
+      "high_issues": 0,
+      "medium_issues": 0,
+      "issues_by_root_cause": {
+        "docker_error": 90,
+        "unknown": 25,
+        "metrics_collection_failure": 25
+      }
+    },
+    "go": {
+      "total_entries": 405,
+      "problematic_entries": 4,
+      "removal_impact_percentage": 0.9876543209876543,
+      "critical_issues": 0,
+      "high_issues": 0,
+      "medium_issues": 20,
+      "issues_by_root_cause": {
+        "metrics_collection_failure": 20
+      }
+    },
+    "c": {
+      "total_entries": 201,
+      "problematic_entries": 124,
+      "removal_impact_percentage": 61.69154228855721,
+      "critical_issues": 720,
+      "high_issues": 109,
+      "medium_issues": 0,
+      "issues_by_root_cause": {
+        "docker_error": 105,
+        "unknown": 360,
+        "metrics_collection_failure": 360,
+        "test_suite_error": 4
+      }
+    },
+    "cpp": {
+      "total_entries": 137,
+      "problematic_entries": 81,
+      "removal_impact_percentage": 59.12408759124088,
+      "critical_issues": 40,
+      "high_issues": 45,
+      "medium_issues": 340,
+      "issues_by_root_cause": {
+        "metrics_collection_failure": 398,
+        "code_bug": 2,
+        "docker_error": 9,
+        "test_suite_error": 1,
+        "unknown": 15
+      }
+    }
+  }
+}

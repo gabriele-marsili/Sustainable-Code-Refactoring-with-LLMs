@@ -1,0 +1,104 @@
+{
+  "metadata": {
+    "generation_date": "2025-10-22T17:25:22.343549",
+    "threshold_percentage": 200.0,
+    "total_outliers": 3,
+    "cluster_name": "protein_translator"
+  },
+  "outliers": [
+    {
+      "entry_id": "java_protein_translation_aaron-contreras",
+      "cluster_name": "protein_translator",
+      "llm_model": "openAI",
+      "prompt_version": "prompt_v1",
+      "language": "java",
+      "metric_name": "CPU_usage",
+      "improvement_percentage": 318.65671641791045,
+      "base_mean": 26.8,
+      "llm_mean": 112.2,
+      "base_exec_files": [
+        "protein_translator_results_1.json",
+        "protein_translator_results_2.json",
+        "protein_translator_results_3.json",
+        "protein_translator_results_4.json",
+        "protein_translator_results_5.json"
+      ],
+      "llm_exec_files": [
+        "protein_translator_results_v1_1.json",
+        "protein_translator_results_v1_2.json",
+        "protein_translator_results_v1_3.json",
+        "protein_translator_results_v1_4.json",
+        "protein_translator_results_v1_5.json"
+      ]
+    },
+    {
+      "entry_id": "java_protein_translation_aaron-contreras",
+      "cluster_name": "protein_translator",
+      "llm_model": "claude",
+      "prompt_version": "prompt_v1",
+      "language": "java",
+      "metric_name": "CPU_usage",
+      "improvement_percentage": 332.08955223880594,
+      "base_mean": 26.8,
+      "llm_mean": 115.8,
+      "base_exec_files": [
+        "protein_translator_results_1.json",
+        "protein_translator_results_2.json",
+        "protein_translator_results_3.json",
+        "protein_translator_results_4.json",
+        "protein_translator_results_5.json"
+      ],
+      "llm_exec_files": [
+        "protein_translator_results_v1_1.json",
+        "protein_translator_results_v1_2.json",
+        "protein_translator_results_v1_3.json",
+        "protein_translator_results_v1_4.json",
+        "protein_translator_results_v1_5.json"
+      ]
+    },
+    {
+      "entry_id": "java_protein_translation_aaron-contreras",
+      "cluster_name": "protein_translator",
+      "llm_model": "gemini",
+      "prompt_version": "prompt_v1",
+      "language": "java",
+      "metric_name": "CPU_usage",
+      "improvement_percentage": 302.23880597014926,
+      "base_mean": 26.8,
+      "llm_mean": 107.8,
+      "base_exec_files": [
+        "protein_translator_results_1.json",
+        "protein_translator_results_2.json",
+        "protein_translator_results_3.json",
+        "protein_translator_results_4.json",
+        "protein_translator_results_5.json"
+      ],
+      "llm_exec_files": [
+        "protein_translator_results_v1_1.json",
+        "protein_translator_results_v1_2.json",
+        "protein_translator_results_v1_3.json",
+        "protein_translator_results_v1_4.json",
+        "protein_translator_results_v1_5.json"
+      ]
+    }
+  ],
+  "summary": {
+    "by_cluster": {
+      "protein_translator": 3
+    },
+    "by_llm_model": {
+      "openAI": 1,
+      "claude": 1,
+      "gemini": 1
+    },
+    "by_prompt_version": {
+      "prompt_v1": 3
+    },
+    "by_metric": {
+      "CPU_usage": 3
+    },
+    "by_language": {
+      "java": 3
+    }
+  }
+}

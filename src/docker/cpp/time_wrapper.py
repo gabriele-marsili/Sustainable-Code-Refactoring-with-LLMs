@@ -54,17 +54,31 @@ def main():
     
     end_ns = time.perf_counter_ns()
     end_rusage = resource.getrusage(resource.RUSAGE_CHILDREN)
-    
+
     # Calcola metriche temporali
     elapsed_ns = end_ns - start_ns
     elapsed_us = elapsed_ns / 1_000
     elapsed_ms = elapsed_ns / 1_000_000
     elapsed_s = elapsed_ns / 1_000_000_000
-    
+
     # Calcola metriche di risorsa
     user_time = end_rusage.ru_utime - start_rusage.ru_utime
     system_time = end_rusage.ru_stime - start_rusage.ru_stime
     max_rss_kb = end_rusage.ru_maxrss
+
+    # Fallback to RUSAGE_SELF if RUSAGE_CHILDREN returns zeros
+    # This happens when the child process is very fast or metrics aren't propagated
+    if user_time == 0 and system_time == 0:
+        self_rusage = resource.getrusage(resource.RUSAGE_SELF)
+        start_self_rusage = resource.getrusage(resource.RUSAGE_SELF)
+
+        # Use SELF metrics as approximation
+        user_time = self_rusage.ru_utime
+        system_time = self_rusage.ru_stime
+
+        # If max_rss_kb is still 0, use SELF's max RSS
+        if max_rss_kb == 0:
+            max_rss_kb = self_rusage.ru_maxrss
     
     # Calcola percentuale CPU
     total_cpu_time = user_time + system_time

@@ -388,299 +388,325 @@ for (i=0; i<n; i++) {
 
 ## Pattern per il linguaggio C
 
-### C1. Eliminazione malloc/free ripetute in loop - Arena allocators
+### C1. Nested loops / O(n²) operations
 
-**Descrizione**: Sostituire chiamate ripetitive a `malloc()`/`free()` con arena/pool allocators o buffer persistenti riutilizzati tra iterazioni.
+**Descrizione**: Identificare loop annidati e algoritmi quadratici che possono essere ottimizzati riducendo la complessità algoritmica o usando strutture dati più efficienti (hash tables, binary search).
 
-**Motivazione**: `malloc`/`free` hanno costi significativi (system calls, lock su heap, metadata management). Tipiche applicazioni spendono 10-15% del tempo in allocation. Allocazioni ripetute causano anche frammentazione heap.
+**Motivazione**: Loop annidati su grandi dataset causano esplosione del tempo di esecuzione. Passare da O(n²) a O(n log n) o O(n) può dare speedup di ordini di grandezza.
 
-**Evidence**: Game development practice documenta 5-15% CPU speso in alloc/dealloc; custom allocators riducono questo a <1%.
+**Evidence**: ACM TOSEM (2022) documenta miglioramenti del 60-90% passando da algoritmi quadratici a lineari/linearitmici.
 
 **Detection**:
 ```c
-// Pattern: malloc in loop body
-for (int i=0; i<n; i++) {
-    char *buf = malloc(size);  // ❌
-    process(buf);
-    free(buf);
+// Pattern: Nested loops
+for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+        // operations
+    }
 }
 ```
-**Regex**: `(for|while)[^{]*{[^}]*malloc\(`
+**Regex**: `for\s*\([^)]+\)\s*\{[^}]*for\s*\([^)]+\)`
 
 ---
 
-### C2. Buffer alignment e sequential access per cache optimization
+### C2. Memory allocation patterns (malloc/calloc/realloc)
 
-**Descrizione**: Allineare strutture dati a boundary cache-friendly (64 bytes per cache line), garantire accessi sequenziali in memoria.
+**Descrizione**: Rilevare pattern di allocazione memoria: preallocation, riduzione chiamate malloc/free, uso di calloc quando appropriato.
 
-**Motivazione**: Cache miss costa ~200 cicli vs ~4 per L1 hit. Alignment evita split loads (dato su 2 cache lines). Sequential access massimizza prefetching hardware.
+**Motivazione**: malloc/free hanno overhead significativo. Allocazioni ripetute causano frammentazione. Preallocare memoria quando possibile riduce overhead del 10-30%.
 
-**Evidence**: Intel optimization manuals documentano 2-4x speedup per codice memory-bound con proper alignment/access patterns.
+**Evidence**: Game development best practices mostrano 5-15% CPU speso in allocazioni; ottimizzazioni portano a <1%.
 
 **Detection**:
 ```c
-// AST: Unaligned struct allocations
-struct Data { char a; int b; };  // Padding issues
-// Look for: __attribute__((aligned(64))) assente
+// Pattern: Dynamic memory allocation
+char *buffer = malloc(size);
+int *array = calloc(n, sizeof(int));
+ptr = realloc(ptr, new_size);
 ```
+**Regex**: `(malloc|calloc|realloc|free)\s*\(`
 
 ---
 
-### C3. Loop optimizations: LICM, unrolling, blocking
+### C3. String operations (strlen, strcpy, strcat, strcmp)
 
-**Descrizione**: Manual LICM quando compiler non può prove safety, loop unrolling per ridurre branch overhead, matrix blocking per cache reuse.
+**Descrizione**: Ottimizzare operazioni su stringhe: evitare strlen ripetuti (caching length), usare strn* variants per safety, preferire memcpy quando appropriato.
 
-**Motivation**: Loop overhead (increment, compare, branch) può dominare per body leggeri. Unrolling: 4x unroll → 75% branch reductions. Blocking: migliora temporal locality.
+**Motivazione**: strlen scansiona l'intera stringa ogni volta (O(n)). Chiamare strlen in loop → O(n²). String operations naive sono più lente di funzioni ottimizzate.
 
-**Evidence**: 36.98% improvement da LICM ottimale (MRTC benchmarks); unrolling mostra 10-30% gains su loop-heavy code.
-
-**Detection**: Regex per loop candidates: `for\s*\([^;]*;[^;]*;[^)]*\)\s*\{[^\}]{1,50}\}` (small body)
-
----
-
-### C4. Uso funzioni ottimizzate: `memcpy`, `memset`, `memmove`
-
-**Descrizione**: Usare libc functions ottimizzate SIMD invece di manual byte-by-byte copy loops.
-
-**Motivazione**: `memcpy` usa SIMD (AVX2/SSE), handles alignment, prefetching - tipicamente 5-10x più veloce di loop naive.
-
-**Evidence**: Benchmarks mostrano `memcpy` a ~20 GB/s vs ~2-4 GB/s per manual loops.
+**Evidence**: Benchmarks mostrano 2-5x speedup usando string functions ottimizzate vs implementazioni manuali.
 
 **Detection**:
 ```c
-// ❌ Manual copy
-for (int i=0; i<n; i++) dst[i] = src[i];
-// ✓ Optimized
-memcpy(dst, src, n * sizeof(type));
+// Pattern: String operations
+strlen(str);
+strcpy(dest, src);
+strcat(dest, src);
+strcmp(s1, s2);
 ```
-**Regex**: `for.*\[[^\]]*\]\s*=\s*[^\[]*\[[^\]]*\]` (array copy pattern)
+**Regex**: `(strlen|strcpy|strcat|strcmp|strncpy|strncat|strncmp)\s*\(`
 
 ---
 
-### C5. Branch optimization per prediction
+### C4. Array indexing and pointer arithmetic
 
-**Descrizione**: Organizzare branches con most-likely case first, usare branchless techniques (conditional moves), evitare data-dependent unpredictable branches.
+**Descrizione**: Ottimizzare accessi ad array: preferire pointer arithmetic quando appropriato, evitare bounds checking ridondante, sequential access per cache locality.
 
-**Motivazione**: Misprediction = 10-25 cycles penalty. Hot loops con unpredictable branches diventano bottleneck.
+**Motivazione**: Pointer arithmetic può essere più efficiente di array indexing (evita calcolo offset ripetuto). Sequential access massimizza cache hit rate.
 
-**Evidence**: Cloudflare benchmarks: 5.5x difference tra good/bad branch patterns.
+**Evidence**: Intel optimization manuals documentano 2-4x speedup per memory-bound code con proper access patterns.
 
-**Detection**: Profile con `perf stat -e branch-misses` o look for branches in small hot loops.
+**Detection**:
+```c
+// Pattern: Array access and pointer usage
+array[index]
+*pointer++
+pointer arithmetic in loops
+```
+**Regex**: `(\w+\[[^\]]+\]|(\*\s*\w+\+\+)|(\w+\s*\+\+))`
+
+---
+
+### C5. Function calls in loops (loop-invariant code motion candidate)
+
+**Descrizione**: Identificare chiamate a funzioni dentro loop che potrebbero essere hoisted fuori se risultato è invariante.
+
+**Motivazione**: Funzioni chiamate ripetutamente con stessi argomenti sprecano CPU. LICM può portare 15-40% miglioramento hoistando computation fuori dal loop.
+
+**Evidence**: MRTC benchmarks mostrano 36.98% improvement con LICM ottimale.
+
+**Detection**:
+```c
+// Pattern: Function call in loop
+for (int i = 0; i < n; i++) {
+    int limit = compute_limit(config);  // Invariant!
+    if (data[i] < limit) process(data[i]);
+}
+```
+**Regex**: `(for|while)\s*\([^)]+\)\s*\{[^}]*\w+\s*\([^)]*\)`
 
 **Riferimenti**:
-[1] Intel Optimization Manual (2024). "Memory and Cache Optimization"
-[2] Game Programming Patterns - Memory allocation strategies
+[1] ACM TOSEM (2022). "Energy-aware algorithm complexity"
+[2] Intel Optimization Manual (2024). "Memory and Cache Optimization"
 [3] ACM TECS - LICM formal verification (36.98% improvement)
 
 ---
 
 ## Pattern per il linguaggio C++
 
-### CPP1. `std::vector::reserve()` per prevenire riallocazioni
+### CPP1. std::vector and container usage
 
-**Descrizione**: Chiamare `.reserve(n)` quando la dimensione finale è nota/stimabile per evitare growth esponenziale che causa multiple riallocazioni e copie.
+**Descrizione**: Ottimizzazioni nell'uso di std::vector e altri container STL: reserve/resize per preallocation, uso appropriato di push_back vs emplace_back, iterators efficien
 
-**Motivazione**: `vector` cresce tipicamente con fattore 1.5-2x. N push_back senza reserve → O(log N) riallocazioni, ognuna copia tutti gli elementi → O(N log N) copie totali. Con reserve: O(1) riallocazioni, O(N) copie.
+ti.
 
-**Evidence**: Stack Overflow benchmarks mostrano 2-10x speedup per vector construction con reserve vs senza.
+**Motivazione**: vector operations hanno costi variabili: push_back senza reserve causa riallocazioni multiple (O(log n)), resize costa più di reserve, copy di oggetti complessi è costoso.
 
-**Detection**:
-```cpp
-// AST: vector construction followed by loop pushes
-std::vector<T> vec;
-for (...) vec.push_back(item);  // ❌ Missing reserve()
-```
-**Regex**: `std::vector<[^>]+>\s+\w+;[^}]*for[^}]*push_back`
-
----
-
-### CPP2. `emplace_back` e move semantics per evitare copie
-
-**Descrizione**: Usare `emplace_back` per construct in-place, `std::move` per trasferire ownership senza copy, perfect forwarding con templates.
-
-**Motivazione**: Copy constructor costa allocazioni + byte-copy. Move: solo pointer swap. Emplace: costruisce direttamente nello storage finale.
-
-**Evidence**: Emplace vs push for complex objects: 20-40% faster evitando temp object creation.
+**Evidence**: Stack Overflow benchmarks mostrano 2-10x speedup con reserve. Emplace vs push per oggetti complessi: 20-40% faster.
 
 **Detection**:
 ```cpp
-vec.push_back(ExpensiveObject(args));  // ❌ Temp + copy
-vec.emplace_back(args);                // ✓ Direct construction
+// Pattern: Vector operations
+std::vector<int> vec;
+vec.push_back(x);
+vec.reserve(n);
+vec.resize(n);
+vec.emplace_back(args);
 ```
-**AST**: Detect `push_back` con constructor call come argomento
+**Regex**: `std::vector<[^>]+>|\.push_back\(|\.emplace_back\(|\.reserve\(|\.resize\(`
 
 ---
 
-### CPP3. Custom allocators / PMR (Polymorphic Memory Resources)
+### CPP2. String operations (std::string, string concatenation)
 
-**Descrizione**: Usare `std::pmr::monotonic_buffer_resource`, pool allocators, o custom allocators per oggetti con similar lifetime patterns.
+**Descrizione**: Ottimizzare operazioni su std::string: evitare concatenazioni ripetute (usare stringstream), reserve per dimensioni note, use string_view per read-only access.
 
-**Motivazione**: Standard allocator ha overhead per general-purpose usage. Custom allocators riducono allocations da O(N) a O(1) bulk, eliminano fragmentation per object pools.
+**Motivazione**: string concatenation ripetuta causa allocazioni multiple. Ogni `s = s + x` alloca nuovo buffer. String copying è costoso per stringhe lunghe.
 
-**Evidence**: Game engines usano frame allocators (reset ogni frame) con 10-100x speedup vs malloc.
-
-**Detection**: Find repeated allocations/deallocations of same-sized objects
-
----
-
-### CPP4. Devirtualization: evitare virtual calls in hot paths
-
-**Descrizione**: Sostituire polymorphism runtime (virtual functions) con compile-time (templates, CRTP) o final-keyword per enable devirtualization.
-
-**Motivazione**: Virtual call: indirect jump via vtable (~5-10 cycle overhead), previene inlining. Direct/inlined call: ~0-1 cycle, compiler può optimize aggressively.
-
-**Evidence**: Devirtualization in hot loops mostra 20-50% improvements per call-heavy code.
+**Evidence**: Benchmarks mostrano 5-10x improvement usando stringstream vs + operator in loops.
 
 **Detection**:
 ```cpp
-// AST: Virtual method calls in loops
-for (auto& obj : objects) {
-    obj->virtualMethod();  // Indirect call ogni iterazione
-}
+// Pattern: String usage
+std::string str;
+str + other_str;
+std::stringstream ss;
+str.append(other);
 ```
-**AST**: Find virtual function declarations + calls in loop bodies
+**Regex**: `std::string\s+\w+|\.append\(|std::stringstream|\+\s*=\s*[^;]*string`
 
 ---
 
-### CPP5. SoA layout transformation per vectorization
+### CPP3. Iterator and range-based loops
 
-**Descrizione**: Riorganizzare struct/class layout da AoS a SoA quando si accede prevalentemente a singoli field su molti elementi.
+**Descrizione**: Preferire range-based for loops e algoritmi STL su loop manuali, usare const references quando non si modifica, auto type deduction.
 
-**Motivazione**: SIMD operations (SSE/AVX) processano dati contigui. AoS: campo `x` stride = sizeof(struct). SoA: `x` array contiguous → SIMD-friendly.
+**Motivazione**: Range-based loops sono più sicuri (no out-of-bounds), più chiari, e permettono migliori ottimizzazioni compiler. Auto evita copie accidentali.
 
-**Evidence**: 2-4x speedup per numeric-heavy code con proper SoA + auto-vectorization.
+**Evidence**: Modern C++ best practices documentano codice più efficiente e sicuro con range-based loops.
 
-**Detection**: Vedere G3 per patterns. C++ specific: struct con multiple fields accessed in loops separately.
+**Detection**:
+```cpp
+// Pattern: Loop patterns
+for (auto& item : container) { }
+for (const auto& item : container) { }
+for (auto it = vec.begin(); it != vec.end(); ++it) { }
+```
+**Regex**: `for\s*\(\s*(const\s+)?auto\s*[&]?\s*\w+\s*:\s*\w+\s*\)|\.begin\(\)|\.end\(\)`
+
+---
+
+### CPP4. Memory management (new/delete, smart pointers)
+
+**Descrizione**: Pattern di gestione memoria: preferire smart pointers (unique_ptr, shared_ptr) a new/delete raw, RAII, evitare memory leaks.
+
+**Motivazione**: Manual new/delete causa leaks se exceptions o early returns. Smart pointers garantiscono cleanup automatico. unique_ptr ha zero overhead vs raw pointer.
+
+**Evidence**: Modern C++ guidelines raccomandano smart pointers per safety con performance identica.
+
+**Detection**:
+```cpp
+// Pattern: Memory management
+new Type();
+delete ptr;
+std::unique_ptr<Type> ptr;
+std::shared_ptr<Type> ptr;
+std::make_unique<Type>();
+```
+**Regex**: `\bnew\s+\w+|delete\s+\w+|std::(unique_ptr|shared_ptr|make_unique|make_shared)`
+
+---
+
+### CPP5. Algorithm library usage (std::sort, std::find, etc.)
+
+**Descrizione**: Preferire algoritmi STL ottimizzati (sort, find, accumulate, transform) a loop manuali.
+
+**Motivazione**: Algoritmi STL sono highly-optimized, usano template specializations, e sono meno error-prone. std::sort usa introsort (O(n log n) guaranteed), manual quicksort può degradare a O(n²).
+
+**Evidence**: STL algorithms sono 1.5-3x più veloci di implementazioni naive grazie a ottimizzazioni specifiche.
+
+**Detection**:
+```cpp
+// Pattern: STL algorithms
+std::sort(vec.begin(), vec.end());
+std::find(vec.begin(), vec.end(), value);
+std::accumulate(vec.begin(), vec.end(), 0);
+std::transform(vec.begin(), vec.end(), result.begin(), func);
+```
+**Regex**: `std::(sort|find|find_if|accumulate|transform|count|copy|fill|remove)\s*\(`
 
 **Riferimenti**:
-[1] Meyers, S. (2014). "Effective Modern C++" - Move semantics, perfect forwarding
+[1] Meyers, S. (2014). "Effective Modern C++"
 [2] Algorithmica. "C++ Memory Optimization Techniques"
-[3] Game Programming Patterns - Custom allocators case studies
+[3] C++ Core Guidelines - Performance section
 
 ---
 
 ## Pattern per il linguaggio Java
 
-### J1. Evitare autoboxing - Usare primitive types
+### J1. Collection operations (ArrayList, HashMap, HashSet)
 
-**Descrizione**: Sostituire wrapper types (`Integer`, `Long`, `Double`) con primitives (`int`, `long`, `double`) in hot paths. Usare primitive-specialized streams (`IntStream`, `LongStream`).
+**Descrizione**: Rilevare uso di Java Collections Framework: ArrayList, HashMap, HashSet, e loro operazioni comuni (add, get, put, contains).
 
-**Motivazione**:
-- Autoboxing crea oggetti heap: `Integer` vs `int` → heap allocation + GC pressure
-- **Memory overhead**: `HashMap<Integer,Integer>` con 1K entries: ~60KB per ~6KB dati effettivi (10x overhead)
-- **Performance**: Primitives sono **2-3x più veloci** di wrapper equivalenti
-- Caching built-in (-128 to +127 per Integer) aiuta ma limitato; Float/Double non hanno cache
+**Motivazione**: Collections hanno costi variabili: ArrayList senza initial capacity causa resizing (O(n) copie), HashMap load factor affects performance, contains su ArrayList è O(n) vs O(1) su HashSet.
 
-**Evidence**:
-- TheServerSide benchmarks: primitives 2-3x faster, significant GC reduction
-- Java autoboxing profiles mostrano rampant GC activity quando usato in loops
+**Evidence**: Java Performance Tuning documenta 2-5x improvement con proper collection choice e sizing.
 
 **Detection**:
 ```java
-// ❌ Autoboxing in loop
-for (Integer i = 0; i < n; i++) { sum += list.get(i); }
-// ✓ Primitives
-for (int i = 0; i < n; i++) { sum += list.get(i); }
+// Pattern: Collection usage
+List<String> list = new ArrayList<>();
+Map<String, Integer> map = new HashMap<>();
+Set<Integer> set = new HashSet<>();
+list.add(item);
+map.put(key, value);
 ```
-**AST**: Find wrapper types in: loop variables, collection generics (`List<Integer>`), method signatures in hot paths
+**Regex**: `(ArrayList|HashMap|HashSet|LinkedList)<[^>]+>|\.add\(|\.put\(|\.get\(|\.contains\(`
 
 ---
 
-### J2. `StringBuilder` per string concatenation
+### J2. String operations (StringBuilder, concatenation)
 
-**Descrizione**: Sostituire concatenazioni `String +` in loop con `StringBuilder.append()`. Per concatenazioni singole fuori loop, il compiler già ottimizza.
+**Descrizione**: Rilevare operazioni su String: concatenazione con +, StringBuilder usage, String.format, split, substring.
 
-**Motivazione**: `String` è immutable → ogni `+` crea nuovo oggetto String. N concatenazioni → O(N²) caratteri copiati + N temp objects. `StringBuilder`: mutable buffer, O(N) complessità, single allocation (con proper initial capacity).
+**Motivazione**: String è immutable - ogni operazione crea nuovo oggetto. String concatenation in loop è O(n²). StringBuilder è O(n) e molto più efficiente.
 
-**Evidence**:
-- JMH benchmarks: `StringBuilder` vs `String+` in loop → 10-100x faster a seconda di N
-- StringBuffer (synchronized) vs StringBuilder: ~10% overhead, usare StringBuilder in single-thread
+**Evidence**: JMH benchmarks mostrano 10-100x improvement usando StringBuilder vs + in loops.
 
 **Detection**:
 ```java
-// ❌ String concatenation in loop
-String result = "";
-for (String s : list) result += s;  // O(N²)
-
-// ✓ StringBuilder
-StringBuilder sb = new StringBuilder(estimatedSize);
-for (String s : list) sb.append(s);  // O(N)
+// Pattern: String operations
+String result = str1 + str2;
+StringBuilder sb = new StringBuilder();
+sb.append(str);
+String.format("%s %d", str, num);
 ```
-**Regex**: `for[^{]*\{[^}]* (\w+) \+= [^;]+;` (string accumulation pattern)
+**Regex**: `StringBuilder|\.append\(|String\.format\(|\+\s*=\s*[^;]*String|\.split\(|\.substring\(`
 
 ---
 
-### J3. Concurrent collections vs synchronized
+### J3. Loop patterns (for, while, enhanced for)
 
-**Descrizione**: Usare `java.util.concurrent` collections (`ConcurrentHashMap`, `ConcurrentLinkedQueue`) invece di `Collections.synchronizedMap()` o explicit `synchronized` blocks.
+**Descrizione**: Identificare pattern di loop: enhanced for-each, traditional for with index, iterator usage, nested loops.
 
-**Motivazione**:
-- Synchronized collection: lock globale → serializzazione totale di accessi
-- ConcurrentHashMap: sharding interno (segments/buckets) → parallel reads + limited lock scope per writes
-- Throughput scaling: quasi-lineare con # threads per concurrent, flat per synchronized
+**Motivazione**: For-each è più leggibile e spesso più efficiente (no bound checking overhead). Nested loops possono indicare complessità quadratica. Iterator reuse evita allocazioni.
 
-**Evidence**: Concurrent collections show 2-10x throughput vs synchronized wrappers under contention.
+**Evidence**: Modern Java best practices favoriscono for-each per readability e performance equivalente/migliore.
 
 **Detection**:
 ```java
-// ❌ Global lock
-Map<K,V> map = Collections.synchronizedMap(new HashMap<>());
-synchronized(map) { map.put(k,v); }
-
-// ✓ Fine-grained concurrency
-ConcurrentHashMap<K,V> map = new ConcurrentHashMap<>();
-map.put(k,v);  // Internal sharding
+// Pattern: Loop types
+for (Type item : collection) { }
+for (int i = 0; i < n; i++) { }
+while (condition) { }
+Iterator<Type> it = collection.iterator();
 ```
+**Regex**: `for\s*\(\s*\w+\s+\w+\s*:\s*\w+\s*\)|for\s*\([^)]+\)|while\s*\([^)]+\)|\.iterator\(\)`
 
 ---
 
-### J4. Primitive arrays/specialized collections (Trove, FastUtil)
+### J4. Stream API usage (Java 8+)
 
-**Descrizione**: Sostituire `List<Integer>` con `int[]` o librerie specializzate (Trove `TIntArrayList`, FastUtil `IntArrayList`) che evitano boxing.
+**Descrizione**: Rilevare uso di Stream API: stream(), filter(), map(), collect(), parallelStream().
 
-**Motivazione**: `List<Integer>` → ogni elemento è object reference (8 bytes) + Integer object (16+ bytes) = ~24 bytes/int. `int[]`: 4 bytes/int diretto. **6x memory savings + cache-friendly + no GC overhead**.
+**Motivazione**: Streams possono essere più performanti con parallelStream per operazioni computazionalmente intensive. Primitive streams (IntStream, LongStream) evitano boxing.
 
-**Evidence**: Primitive collections richiedono ~4x less memory, accessi più rapidi (no indirection).
+**Evidence**: Parallel streams mostrano near-linear scaling per CPU-bound tasks su multi-core.
 
 **Detection**:
 ```java
-// ❌ Boxed collection
-List<Integer> numbers = new ArrayList<>();
-// ✓ Primitive array/collection
-int[] numbers = new int[size];
-// Or: TIntArrayList numbers = new TIntArrayList();
+// Pattern: Stream operations
+list.stream().filter(x -> x > 0).map(x -> x * 2).collect(Collectors.toList());
+numbers.parallelStream().sum();
+IntStream.range(0, n).forEach(i -> process(i));
 ```
+**Regex**: `\.stream\(\)|\.parallelStream\(\)|\.filter\(|\.map\(|\.collect\(|IntStream|LongStream|DoubleStream`
 
 ---
 
-### J5. Evitare reflection in hot paths
+### J5. Array operations and initialization
 
-**Descrizione**: Eliminare `Method.invoke()`, `Class.forName()`, dynamic proxies da performance-critical code. Usare direct calls, code generation, o `MethodHandle` (più veloce di reflection).
+**Descrizione**: Rilevare operazioni su array: dichiarazione, initialization, accesso, loop su array, Arrays utility methods.
 
-**Motivazione**:
-- Reflection bypassa JIT optimizations (no inlining)
-- Overhead: 10-100x slower di direct call
-- Security checks, argument boxing/unboxing, exception wrapping
+**Motivazione**: Arrays sono più efficienti di Collections per dati primitivi (no boxing). Arrays.sort, Arrays.copyOf sono ottimizzati nativamente. Array access è O(1) diretto.
 
-**Evidence**: Reflection call overhead documentato a 10-100x vs direct; MethodHandle ~2-3x vs direct (molto meglio di reflection).
+**Evidence**: Primitive arrays hanno 4-6x less memory overhead rispetto a boxed collections.
 
 **Detection**:
 ```java
-// ❌ Reflection in loop
-for (...) {
-    Method m = cls.getMethod("process");
-    m.invoke(obj, args);
-}
-// ✓ Direct or MethodHandle
-MethodHandle mh = lookup.findVirtual(...);
-for (...) mh.invoke(obj, args);
+// Pattern: Array operations
+int[] array = new int[size];
+String[] strings = {"a", "b", "c"};
+array[index] = value;
+Arrays.sort(array);
+Arrays.copyOf(array, newLength);
 ```
+**Regex**: `\w+\[\]\s+\w+\s*=|new\s+\w+\[[^\]]*\]|Arrays\.(sort|copyOf|fill|equals)`
 
 **Riferimenti**:
-[1] TheServerSide (2024). "Performance Cost of Autoboxing Java Primitive Types"
-[2] Baeldung (2024). "String Performance Hints" - StringBuilder benchmarks
-[3] Java Concurrency in Practice - Goetz et al. (Canonical reference)
-[4] FastUtil/Trove documentation - Primitive collections benchmarks
+[1] Baeldung (2024). "String Performance Hints" and "Java Collections Guide"
+[2] Oracle Java Performance Tuning Guide
+[3] Java Concurrency in Practice - Goetz et al.
 
 ---
 

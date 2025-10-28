@@ -44,7 +44,7 @@ logger = logging.getLogger(__name__)
 # ============================================================================
 
 SIMILARITY_THRESHOLD = 75.0  # Low similarity = significant changes
-IMPROVEMENT_THRESHOLD = 15.0  # Minimum improvement to consider
+IMPROVEMENT_THRESHOLD = -15.0  # Minimum improvement to consider
 MAX_IMPROVEMENT_CLAMP = 200.0
 MIN_IMPROVEMENT_CLAMP = -200.0
 
@@ -91,317 +91,387 @@ class PatternMatch:
 # ============================================================================
 
 
-class EnergyPatternDetector: #to do : refactor con i nuovi patterns individuati.
+class EnergyPatternDetector:
     """
     Detects energy-efficient patterns based on literature review.
     Implements patterns from CHOSEN_PATTERNS.md
+
+    Detection methods:
+    - Regex patterns for syntactic structures
+    - AST analysis for semantic patterns (Python, JavaScript, Java)
+    - Language-specific heuristics
     """
 
     def __init__(self):
         self.patterns = self._initialize_patterns()
 
     def _initialize_patterns(self) -> Dict[str, Dict]:
-        """Initialize pattern definitions from literature"""
+        """
+        Initialize pattern definitions from CHOSEN_PATTERNS.md
+
+        Structure:
+        - Generic patterns (G1-G6): Cross-language algorithmic and architectural patterns
+        - Language-specific patterns: C, C++, Java, JavaScript/TypeScript, Python, Go
+        """
         return {
-            # ===== PYTHON PATTERNS =====
-            "python_list_comprehension": {
-                "regex": r"\[[^\]]+\s+for\s+[^\]]+\s+in\s+[^\]]+\]",
-                "category": "syntax",
-                "impact": "medium",
-                "description": "List comprehension vs manual loop",
+            # ================================================================
+            # GENERIC PATTERNS (Multi-language)
+            # ================================================================
+            "G1_lower_complexity_algorithm": {
+                "regex": r"(\.find\(|\.indexOf\(|\.search\(|in\s+\w+|HashSet|HashMap|dict\(|set\()",
+                "category": "algorithmic",
+                "impact": "high",
+                "description": "G1: Algorithm with lower asymptotic complexity (hash table, binary search)",
+                "detection_method": "regex+ast",
+                "evidence": "Changhee et al. ACM TOSEM 2022 - algorithmic changes show highest improvement",
             },
-            "python_dict_comprehension": {
-                "regex": r"\{[^\}]+:\s*[^\}]+\s+for\s+[^\}]+\s+in\s+[^\}]+\}",
-                "category": "syntax",
-                "impact": "medium",
-                "description": "Dict comprehension",
+            "G1_nested_loops_o_n2": {
+                "regex": r"for\s+[^{]+\{[^}]*for\s+[^{]+\{",
+                "category": "algorithmic",
+                "impact": "high",
+                "description": "G1: Nested loops O(n²) pattern - candidate for optimization",
+                "detection_method": "ast",
+                "evidence": "O(n²) → O(n log n) or O(n) improvements documented",
             },
-            "python_generator_expression": {
-                "regex": r"\([^\)]+\s+for\s+[^\)]+\s+in\s+[^\)]+\)",
+            "G2_reduced_allocations": {
+                "regex": r"\b(new|malloc|calloc|make)\s*\(",
                 "category": "memory",
                 "impact": "high",
-                "description": "Generator for lazy evaluation",
+                "description": "G2: Reduced allocations / Object pooling / Buffer reuse",
+                "detection_method": "ast",
+                "evidence": "MDPI 2022: 87x energy reduction, 10-15% execution time on alloc/dealloc",
             },
-            "python_f_string": {
-                "regex": r"f['\"][^'\"]*\{[^}]+\}[^'\"]*['\"]",
-                "category": "syntax",
-                "impact": "low",
-                "description": "f-string formatting",
-            },
-            "python_builtin_sum": {
-                "regex": r"\bsum\s*\(",
-                "category": "algorithmic",
-                "impact": "medium",
-                "description": "Built-in sum() function",
-            },
-            "python_builtin_min_max": {
-                "regex": r"\b(min|max)\s*\(",
-                "category": "algorithmic",
-                "impact": "medium",
-                "description": "Built-in min/max",
-            },
-            "python_enumerate": {
-                "regex": r"\benumerate\s*\(",
-                "category": "syntax",
-                "impact": "low",
-                "description": "enumerate() vs manual indexing",
-            },
-            "python_zip": {
-                "regex": r"\bzip\s*\(",
-                "category": "syntax",
-                "impact": "low",
-                "description": "zip() for parallel iteration",
-            },
-            "python_any_all": {
-                "regex": r"\b(any|all)\s*\(",
-                "category": "algorithmic",
-                "impact": "medium",
-                "description": "any/all for short-circuit evaluation",
-            },
-            "python_lambda": {
-                "regex": r"\blambda\s+[^:]+:",
-                "category": "syntax",
-                "impact": "low",
-                "description": "Lambda expression",
-            },
-            "python_with_statement": {
-                "regex": r"^\s*with\s+",
+            "G2_allocation_in_loop": {
+                "regex": r"(for|while)\s*[^{]*\{[^}]*(new|malloc|\[\]|\barray\(|\blist\()",
                 "category": "memory",
-                "impact": "medium",
-                "description": "Context manager (with)",
+                "impact": "high",
+                "description": "G2: Allocation inside loop - should be moved outside",
+                "detection_method": "ast",
+                "evidence": "Object pooling reduces GC pressure by 85%",
             },
-            "python_lru_cache": {
-                "regex": r"@(?:functools\.)?lru_cache|@cache",
+            "G3_cache_locality": {
+                "regex": r"(struct|class)\s+\w+\s*\{",
+                "category": "memory",
+                "impact": "high",
+                "description": "G3: Memory access patterns optimization (AoS/SoA, cache blocking)",
+                "detection_method": "ast",
+                "evidence": "ScienceDirect: 59% average improvement with proper memory access",
+            },
+            "G4_memoization": {
+                "regex": r"(@lru_cache|@cache|@memo|Cache|Memoize|\bcache\s*=)",
                 "category": "algorithmic",
                 "impact": "high",
-                "description": "Memoization with lru_cache",
+                "description": "G4: Memoization / caching to eliminate recomputations",
+                "detection_method": "regex",
+                "evidence": "Standard compiler optimization, significant speedups on repeated calls",
             },
-            "python_map_filter": {
-                "regex": r"\b(map|filter|reduce)\s*\(",
+            "G4_loop_invariant_code_motion": {
+                "regex": r"for\s+[^{]+\{",
                 "category": "algorithmic",
                 "impact": "medium",
-                "description": "Functional programming",
+                "description": "G4: Loop-invariant code motion candidate",
+                "detection_method": "ast",
+                "evidence": "MLB-LICM: 36.98% improvement on MRTC benchmarks",
             },
-            "python_numpy_vectorization": {
-                "regex": r"import\s+numpy|from\s+numpy|np\.\w+",
-                "category": "algorithmic",
-                "impact": "high",
-                "description": "NumPy vectorization",
-            },
-            # ===== JAVASCRIPT/TYPESCRIPT PATTERNS =====
-            "js_arrow_function": {
-                "regex": r"(?:\w+\s*=>|=>\s*\w+|\([^)]*\)\s*=>)",
-                "category": "syntax",
-                "impact": "low",
-                "description": "Arrow function",
-            },
-            "js_array_map": {
-                "regex": r"\.map\s*\(",
-                "category": "algorithmic",
-                "impact": "medium",
-                "description": "Array.map() method",
-            },
-            "js_array_filter": {
-                "regex": r"\.filter\s*\(",
-                "category": "algorithmic",
-                "impact": "medium",
-                "description": "Array.filter() method",
-            },
-            "js_array_reduce": {
-                "regex": r"\.reduce\s*\(",
-                "category": "algorithmic",
-                "impact": "medium",
-                "description": "Array.reduce() method",
-            },
-            "js_template_literals": {
-                "regex": r"`[^`]*\$\{[^}]+\}[^`]*`",
-                "category": "syntax",
-                "impact": "low",
-                "description": "Template literals",
-            },
-            "js_destructuring": {
-                "regex": r"(?:const|let|var)\s*(?:\{[^}]+\}|\[[^\]]+\])\s*=",
-                "category": "syntax",
-                "impact": "low",
-                "description": "Destructuring assignment",
-            },
-            "js_spread_operator": {
-                "regex": r"\.\.\.\w+",
-                "category": "syntax",
-                "impact": "medium",
-                "description": "Spread operator",
-            },
-            "js_async_await": {
-                "regex": r"\b(async\s+function|await\s+)",
+            "G5_fine_grained_locking": {
+                "regex": r"(synchronized|lock\(|Lock|Mutex|RWMutex)",
                 "category": "concurrency",
-                "impact": "medium",
-                "description": "Async/await pattern",
+                "impact": "high",
+                "description": "G5: Concurrency optimization - fine-grained locking vs coarse",
+                "detection_method": "ast",
+                "evidence": "ConcurrentHashMap shows 2-10x throughput vs synchronized",
             },
-            "js_optional_chaining": {
-                "regex": r"\?\.",
-                "category": "syntax",
-                "impact": "low",
-                "description": "Optional chaining",
-            },
-            "js_nullish_coalescing": {
-                "regex": r"\?\?",
+            "G6_branch_optimization": {
+                "regex": r"(if|switch|case)\s*\(",
                 "category": "control_flow",
-                "impact": "low",
-                "description": "Nullish coalescing",
+                "impact": "medium",
+                "description": "G6: Branch misprediction mitigation / predicate optimization",
+                "detection_method": "ast",
+                "evidence": "Cloudflare: 5.5x difference between good/bad branch patterns",
             },
-            "js_for_of": {
-                "regex": r"for\s*\(\s*(?:const|let|var)?\s*\w+\s+of\s+",
-                "category": "syntax",
-                "impact": "low",
-                "description": "for-of loop",
-            },
-            # ===== JAVA PATTERNS =====
-            "java_streams": {
-                "regex": r"\.stream\s*\(\)|\.map\s*\(|\.filter\s*\(|\.reduce\s*\(|\.collect\s*\(",
+
+            # ================================================================
+            # PYTHON-SPECIFIC PATTERNS
+            # ================================================================
+            "PY1_builtin_functions": {
+                "regex": r"\b(sum|min|max|any|all|map|filter|sorted|enumerate|zip)\s*\(",
                 "category": "algorithmic",
                 "impact": "high",
-                "description": "Java Streams API",
+                "description": "PY1: Built-in C-native functions (sum, map, filter, etc.)",
+                "detection_method": "regex",
+                "evidence": "2-10x faster than Python loops due to C implementation",
             },
-            "java_lambda": {
-                "regex": r"->\s*",
-                "category": "syntax",
+            "PY1_list_comprehension": {
+                "regex": r"\[[^\]]+\s+for\s+[^\]]+\s+in\s+[^\]]+\]",
+                "category": "algorithmic",
                 "impact": "medium",
-                "description": "Lambda expression",
+                "description": "PY1: List comprehension (C-speed loop)",
+                "detection_method": "ast",
+                "evidence": "2-3x faster than explicit Python loops",
             },
-            "java_method_reference": {
-                "regex": r"::",
-                "category": "syntax",
+            "PY2_local_variable_cache": {
+                "regex": r"^(\w+)\s*=\s*(\w+\.\w+|\w+)\s*$",
+                "category": "algorithmic",
                 "impact": "low",
-                "description": "Method reference",
+                "description": "PY2: Cached local variables (minimize global lookups)",
+                "detection_method": "ast",
+                "evidence": "10-20% speedup in tight loops accessing globals",
             },
-            "java_optional": {
-                "regex": r"\bOptional\.<|Optional\.of|Optional\.empty",
-                "category": "control_flow",
-                "impact": "low",
-                "description": "Optional pattern",
-            },
-            "java_stringbuilder": {
-                "regex": r"\bStringBuilder\b",
-                "category": "memory",
-                "impact": "high",
-                "description": "StringBuilder for concatenation",
-            },
-            "java_enhanced_for": {
-                "regex": r"for\s*\(\s*\w+\s+\w+\s*:\s*\w+\s*\)",
-                "category": "syntax",
-                "impact": "low",
-                "description": "Enhanced for loop",
-            },
-            # ===== C/C++ PATTERNS =====
-            "cpp_auto_keyword": {
-                "regex": r"\bauto\s+\w+\s*=",
-                "category": "syntax",
-                "impact": "low",
-                "description": "Auto keyword",
-            },
-            "cpp_range_for": {
-                "regex": r"for\s*\(\s*(?:const\s+)?(?:auto|[\w:]+)\s*&?\s*\w+\s*:\s*\w+\s*\)",
-                "category": "syntax",
-                "impact": "low",
-                "description": "Range-based for loop",
-            },
-            "cpp_lambda": {
-                "regex": r"\[\s*[^\]]*\]\s*\([^)]*\)\s*(?:->\s*[\w:]+\s*)?\{",
-                "category": "syntax",
-                "impact": "low",
-                "description": "Lambda expression",
-            },
-            "cpp_smart_pointers": {
-                "regex": r"\b(?:std::)?(?:unique_ptr|shared_ptr|weak_ptr)<",
-                "category": "memory",
-                "impact": "high",
-                "description": "Smart pointers",
-            },
-            "cpp_move_semantics": {
-                "regex": r"\bstd::move\s*\(",
-                "category": "memory",
-                "impact": "high",
-                "description": "Move semantics",
-            },
-            "cpp_constexpr": {
-                "regex": r"\bconstexpr\b",
+            "PY3_numpy_vectorization": {
+                "regex": r"(import\s+numpy|from\s+numpy|np\.\w+)",
                 "category": "algorithmic",
                 "impact": "high",
-                "description": "Compile-time computation",
+                "description": "PY3: NumPy vectorization for numeric computation",
+                "detection_method": "regex",
+                "evidence": "9-100x faster than Python loops, Pandas: 82-460x improvements",
             },
-            "cpp_const_correctness": {
-                "regex": r"\bconst\s+\w+|&\s*const\b",
-                "category": "syntax",
-                "impact": "low",
-                "description": "Const correctness",
+            "PY4_string_join": {
+                "regex": r"['\"]\.join\s*\(",
+                "category": "algorithmic",
+                "impact": "medium",
+                "description": "PY4: str.join() vs repeated concatenation",
+                "detection_method": "regex",
+                "evidence": "10-100x faster than repeated + operator",
             },
-            # ===== GO PATTERNS =====
-            "go_goroutine": {
+
+            # ================================================================
+            # JAVASCRIPT/TYPESCRIPT PATTERNS
+            # ================================================================
+            "JS1_monomorphic_objects": {
+                "regex": r"(class\s+\w+|function\s+\w+\s*\(\)|new\s+\w+)",
+                "category": "algorithmic",
+                "impact": "high",
+                "description": "JS1: Object shape stability - monomorphic inline caching",
+                "detection_method": "ast",
+                "evidence": "Monomorphic IC 10-100x faster than megamorphic",
+            },
+            "JS1_delete_property": {
+                "regex": r"\bdelete\s+\w+\.",
+                "category": "algorithmic",
+                "impact": "high",
+                "description": "JS1: Property deletion (breaks object shape) - ANTI-PATTERN",
+                "detection_method": "regex",
+                "evidence": "delete causes deoptimization in V8",
+            },
+            "JS2_temp_allocations_avoided": {
+                "regex": r"(\.\.\.|\{[^}]*\}|\[[^\]]*\])\s*=",
+                "category": "memory",
+                "impact": "medium",
+                "description": "JS2: Avoiding temporary allocations (spread, destructuring in loops)",
+                "detection_method": "ast",
+                "evidence": "Reducing allocations: 82x speedup in similar contexts",
+            },
+            "JS3_dom_batching": {
+                "regex": r"(\.appendChild|\.innerHTML|\.style\.|\.classList)",
+                "category": "algorithmic",
+                "impact": "high",
+                "description": "JS3: DOM manipulation batching to avoid layout thrashing",
+                "detection_method": "ast",
+                "evidence": "DOM batching reduces rendering from seconds to milliseconds",
+            },
+            "JS4_typed_arrays": {
+                "regex": r"(Float32Array|Float64Array|Int8Array|Int16Array|Int32Array|Uint8Array|Uint16Array|Uint32Array|ArrayBuffer)",
+                "category": "memory",
+                "impact": "high",
+                "description": "JS4: TypedArray for numeric computation",
+                "detection_method": "regex",
+                "evidence": "Three.js: 10% reduction, 9-100x faster on large datasets",
+            },
+            "JS5_monomorphic_calls": {
+                "regex": r"function\s+\w+\s*\([^)]*\)",
+                "category": "algorithmic",
+                "impact": "medium",
+                "description": "JS5: Monomorphic call sites (same type arguments)",
+                "detection_method": "ast",
+                "evidence": "Polymorphic functions prevent JIT optimization",
+            },
+
+            # ================================================================
+            # JAVA PATTERNS
+            # ================================================================
+            "J1_collections": {
+                "regex": r"\b(ArrayList|HashMap|HashSet|LinkedList)<[^>]+>|\.add\(|\.put\(|\.get\(|\.contains\(",
+                "category": "memory",
+                "impact": "high",
+                "description": "J1: Java Collections Framework usage (ArrayList, HashMap, HashSet)",
+                "detection_method": "regex",
+                "evidence": "Proper collection choice and sizing: 2-5x improvement",
+            },
+            "J2_string_operations": {
+                "regex": r"\bStringBuilder\b|\.append\(|String\.format\(|\+\s*=.*String|\.split\(|\.substring\(",
+                "category": "memory",
+                "impact": "high",
+                "description": "J2: String operations (StringBuilder, concatenation, formatting)",
+                "detection_method": "regex",
+                "evidence": "StringBuilder 10-100x faster than + in loops",
+            },
+            "J3_loop_patterns": {
+                "regex": r"for\s*\(\s*\w+\s+\w+\s*:\s*\w+\s*\)|for\s*\([^)]+\)|while\s*\([^)]+\)|\.iterator\(\)",
+                "category": "algorithmic",
+                "impact": "medium",
+                "description": "J3: Java loop patterns (for-each, traditional for, while, iterator)",
+                "detection_method": "regex",
+                "evidence": "For-each often more efficient, no bound checking overhead",
+            },
+            "J4_stream_api": {
+                "regex": r"\.stream\(\)|\.parallelStream\(\)|\.filter\(|\.map\(|\.collect\(|\b(IntStream|LongStream|DoubleStream)\b",
+                "category": "algorithmic",
+                "impact": "high",
+                "description": "J4: Stream API usage (Java 8+, parallel streams, primitive streams)",
+                "detection_method": "regex",
+                "evidence": "Parallel streams show near-linear scaling for CPU-bound tasks",
+            },
+            "J5_array_operations": {
+                "regex": r"\w+\[\]\s+\w+\s*=|new\s+\w+\[[^\]]*\]|Arrays\.(sort|copyOf|fill|equals)",
+                "category": "memory",
+                "impact": "high",
+                "description": "J5: Array operations (declaration, initialization, Arrays utilities)",
+                "detection_method": "regex",
+                "evidence": "Primitive arrays 4-6x less memory overhead than boxed collections",
+            },
+
+            # ================================================================
+            # C PATTERNS
+            # ================================================================
+            "C1_nested_loops": {
+                "regex": r"for\s*\([^)]+\)\s*\{[^}]*for\s*\([^)]+\)",
+                "category": "algorithmic",
+                "impact": "high",
+                "description": "C1: Nested loops / O(n²) operations",
+                "detection_method": "regex",
+                "evidence": "ACM TOSEM: 60-90% improvement from O(n²) to O(n log n) or O(n)",
+            },
+            "C2_memory_allocation": {
+                "regex": r"\b(malloc|calloc|realloc|free)\s*\(",
+                "category": "memory",
+                "impact": "high",
+                "description": "C2: Memory allocation patterns (malloc/calloc/realloc/free)",
+                "detection_method": "regex",
+                "evidence": "Preallocation reduces overhead by 10-30%, malloc/free have significant cost",
+            },
+            "C3_string_operations": {
+                "regex": r"\b(strlen|strcpy|strcat|strcmp|strncpy|strncat|strncmp)\s*\(",
+                "category": "algorithmic",
+                "impact": "medium",
+                "description": "C3: String operations (strlen, strcpy, strcat, strcmp)",
+                "detection_method": "regex",
+                "evidence": "strlen in loop = O(n²), optimized string functions 2-5x faster",
+            },
+            "C4_array_pointer": {
+                "regex": r"\w+\[[^\]]+\]|(\*\s*\w+\+\+)|(\w+\s*\+\+)",
+                "category": "algorithmic",
+                "impact": "medium",
+                "description": "C4: Array indexing and pointer arithmetic",
+                "detection_method": "regex",
+                "evidence": "Pointer arithmetic can be more efficient, sequential access improves cache",
+            },
+            "C5_function_in_loop": {
+                "regex": r"(for|while)\s*\([^)]+\)\s*\{[^}]*\w+\s*\([^)]*\)",
+                "category": "algorithmic",
+                "impact": "medium",
+                "description": "C5: Function calls in loops (loop-invariant code motion candidate)",
+                "detection_method": "regex",
+                "evidence": "LICM 15-40% improvement by hoisting invariant computations",
+            },
+
+            # ================================================================
+            # C++ PATTERNS
+            # ================================================================
+            "CPP1_vector_operations": {
+                "regex": r"std::vector<[^>]+>|\.push_back\(|\.emplace_back\(|\.reserve\(|\.resize\(",
+                "category": "memory",
+                "impact": "high",
+                "description": "CPP1: std::vector and container operations",
+                "detection_method": "regex",
+                "evidence": "reserve() 2-10x speedup, emplace_back 20-40% faster than push_back",
+            },
+            "CPP2_string_operations": {
+                "regex": r"std::string\s+\w+|\.append\(|\bstd::stringstream\b|\+\s*=.*string",
+                "category": "memory",
+                "impact": "medium",
+                "description": "CPP2: std::string operations (concatenation, append, stringstream)",
+                "detection_method": "regex",
+                "evidence": "stringstream 5-10x faster than + operator in loops",
+            },
+            "CPP3_iterators_loops": {
+                "regex": r"for\s*\(\s*(const\s+)?auto\s*[&]?\s*\w+\s*:\s*\w+\s*\)|\.begin\(\)|\.end\(\)",
+                "category": "algorithmic",
+                "impact": "medium",
+                "description": "CPP3: Iterator and range-based loops",
+                "detection_method": "regex",
+                "evidence": "Range-based loops safer, clearer, enable better compiler optimizations",
+            },
+            "CPP4_memory_management": {
+                "regex": r"\bnew\s+\w+|delete\s+\w+|std::(unique_ptr|shared_ptr|make_unique|make_shared)",
+                "category": "memory",
+                "impact": "high",
+                "description": "CPP4: Memory management (new/delete, smart pointers)",
+                "detection_method": "regex",
+                "evidence": "Smart pointers provide safety with zero overhead (unique_ptr)",
+            },
+            "CPP5_stl_algorithms": {
+                "regex": r"std::(sort|find|find_if|accumulate|transform|count|copy|fill|remove)\s*\(",
+                "category": "algorithmic",
+                "impact": "high",
+                "description": "CPP5: STL algorithm library usage (sort, find, accumulate, transform)",
+                "detection_method": "regex",
+                "evidence": "STL algorithms 1.5-3x faster than naive implementations",
+            },
+
+            # ================================================================
+            # GO PATTERNS
+            # ================================================================
+            "GO1_stack_allocation": {
+                "regex": r"(&\w+|\breturn\s+&)",
+                "category": "memory",
+                "impact": "high",
+                "description": "GO1: Escape analysis - stack vs heap allocation",
+                "detection_method": "ast",
+                "evidence": "85% GC pressure reduction, pause times from seconds to ms",
+            },
+            "GO2_sync_pool": {
+                "regex": r"\bsync\.Pool\b",
+                "category": "memory",
+                "impact": "high",
+                "description": "GO2: sync.Pool for object reuse",
+                "detection_method": "regex",
+                "evidence": "Drastically reduces allocation rate and GC overhead",
+            },
+            "GO3_interface_boxing_antipattern": {
+                "regex": r"\binterface\{\}",
+                "category": "memory",
+                "impact": "medium",
+                "description": "GO3: interface{} conversions - ANTI-PATTERN (causes heap allocation)",
+                "detection_method": "regex",
+                "evidence": "Boxing to interface{} triggers heap allocation",
+            },
+            "GO4_goroutine_pool": {
                 "regex": r"\bgo\s+\w+\s*\(",
                 "category": "concurrency",
-                "impact": "high",
-                "description": "Goroutine",
-            },
-            "go_channel": {
-                "regex": r"\bchan\s+",
-                "category": "concurrency",
                 "impact": "medium",
-                "description": "Channel",
+                "description": "GO4: Goroutine management - worker pools vs unbounded spawn",
+                "detection_method": "ast",
+                "evidence": "Bounded goroutines prevent memory growth and scheduler overhead",
             },
-            "go_defer": {
-                "regex": r"\bdefer\s+",
-                "category": "memory",
-                "impact": "low",
-                "description": "Defer statement",
-            },
-            "go_range": {
-                "regex": r"for\s+[^{]*\brange\s+",
-                "category": "syntax",
-                "impact": "low",
-                "description": "Range loop",
-            },
-            "go_make": {
-                "regex": r"\bmake\s*\(",
+            "GO5_preallocation": {
+                "regex": r"\bmake\s*\(\s*\[\s*\]",
                 "category": "memory",
                 "impact": "medium",
-                "description": "Make allocation",
+                "description": "GO5: Slice/map preallocation with known capacity",
+                "detection_method": "regex",
+                "evidence": "2-10x speedup similar to C++ vector::reserve",
             },
-            "go_short_declaration": {
-                "regex": r"\w+\s*:=",
-                "category": "syntax",
-                "impact": "low",
-                "description": "Short variable declaration",
-            },
-            # ===== GENERIC PATTERNS (cross-language) =====
+
+            # ================================================================
+            # CROSS-LANGUAGE SYNTAX PATTERNS
+            # ================================================================
             "generic_early_return": {
-                "regex": r"(?:^|\n)\s*(?:if|when)\s*\([^)]+\)\s*\{?\s*(?:return|break)",
+                "regex": r"^\s*(if|when)\s*\([^)]+\)\s*\{?\s*return",
                 "category": "control_flow",
                 "impact": "medium",
-                "description": "Early return pattern",
-            },
-            "generic_guard_clause": {
-                "regex": r"(?:^|\n)\s*(?:if|when)\s*\([^)]+\)\s*\{?\s*(?:return|throw)",
-                "category": "control_flow",
-                "impact": "medium",
-                "description": "Guard clause",
-            },
-            "generic_memoization": {
-                "regex": r"\b(?:memo|cache|cached|memoize|Cache|Memo)\b",
-                "category": "algorithmic",
-                "impact": "high",
-                "description": "Memoization/caching",
-            },
-            "generic_constant_extraction": {
-                "regex": r"(?:const|final|static\s+final|constexpr)\s+\w+\s*=",
-                "category": "memory",
-                "impact": "low",
-                "description": "Constant extraction",
-            },
-            "generic_null_check": {
-                "regex": r"(?:!=|!==)\s*(?:null|None|nil)|(?:null|None|nil)\s*(?:!=|!==)",
-                "category": "control_flow",
-                "impact": "low",
-                "description": "Null/None check",
+                "description": "Early return/guard clause pattern",
+                "detection_method": "regex",
+                "evidence": "Reduces nesting and branch complexity",
             },
         }
 
@@ -411,6 +481,10 @@ class EnergyPatternDetector: #to do : refactor con i nuovi patterns individuati.
         """
         Detect all patterns comparing base and LLM code.
         Returns only patterns introduced by LLM (not present in base).
+
+        Detection methods:
+        1. Regex-based detection for all patterns
+        2. AST-based detection for supported languages (Python, JavaScript, Java)
         """
         if not base_code or not llm_code:
             return []
@@ -418,6 +492,7 @@ class EnergyPatternDetector: #to do : refactor con i nuovi patterns individuati.
         lang_lower = language.lower()
         detected = []
 
+        # ===== REGEX-BASED DETECTION =====
         for pattern_name, pattern_def in self.patterns.items():
             # Check language applicability
             if not self._is_pattern_applicable(pattern_name, lang_lower):
@@ -443,36 +518,78 @@ class EnergyPatternDetector: #to do : refactor con i nuovi patterns individuati.
 
             detected.append(match)
 
+        # ===== AST-BASED DETECTION =====
+        # Add language-specific AST patterns
+        if lang_lower == "python":
+            ast_patterns = self.detect_ast_patterns_python(base_code, llm_code)
+            detected.extend(ast_patterns)
+
         return detected
 
     def _is_pattern_applicable(self, pattern_name: str, language: str) -> bool:
-        """Check if pattern applies to this language"""
-        lang = language.lower()
+        """
+        Check if pattern applies to this language
 
-        # Language-specific patterns
-        if pattern_name.startswith("python_") and lang != "python":
+        Pattern prefixes:
+        - G1-G6: Generic patterns (apply to all languages)
+        - PY: Python-specific
+        - JS: JavaScript/TypeScript-specific
+        - J: Java-specific
+        - C: C-specific
+        - CPP: C++-specific
+        - GO: Go-specific
+        - generic_: Cross-language syntax patterns
+        """
+        # Normalize language to lowercase for comparison
+        lang = language.lower().strip()
+
+        # Python patterns
+        if pattern_name.startswith("PY") and lang != "python":
             return False
-        if pattern_name.startswith("js_") and lang not in (
-            "javascript",
-            "js",
-            "typescript",
-            "ts",
+
+        # JavaScript/TypeScript patterns
+        if pattern_name.startswith("JS") and lang not in (
+            "javascript", "js", "typescript", "ts"
         ):
             return False
-        if pattern_name.startswith("java_") and lang != "java":
-            return False
-        if pattern_name.startswith("cpp_") and lang not in ("c", "cpp", "c++"):
-            return False
-        if pattern_name.startswith("go_") and lang not in ("go", "golang"):
-            return False
 
-        # Generic patterns apply to all
+        # Java patterns (check for J but not JS, not GO, etc.)
+        if pattern_name.startswith("J") and not pattern_name.startswith("JS"):
+            # J1, J2, J3, J4, J5 patterns apply only to Java
+            if lang not in ("java"):
+                return False
+
+        # C patterns (C1, C2, C3, C4, C5 - not CPP or GO patterns)
+        if pattern_name.startswith("C") and not pattern_name.startswith("CPP"):
+            # Must be exactly C language (not C++, not Go which has C in name somewhere)
+            if lang not in ("c"):
+                return False
+
+        # C++ patterns
+        if pattern_name.startswith("CPP"):
+            if lang not in ("c++", "cpp"):
+                return False
+
+        # Go patterns
+        if pattern_name.startswith("GO"):
+            if lang not in ("go", "golang"):
+                return False
+
+        # Generic patterns (G1-G6, generic_*) apply to all languages
         return True
 
     def detect_ast_patterns_python(
         self, base_code: str, llm_code: str
     ) -> List[PatternMatch]:
-        """Detect Python-specific AST patterns"""
+        """
+        Detect Python-specific AST patterns
+
+        Includes:
+        - Nested loops (O(n²) detection)
+        - Allocations in loops
+        - Loop-invariant code motion opportunities
+        - Comprehensions vs explicit loops
+        """
         if not base_code or not llm_code:
             return []
 
@@ -482,35 +599,77 @@ class EnergyPatternDetector: #to do : refactor con i nuovi patterns individuati.
             base_tree = ast.parse(base_code)
             llm_tree = ast.parse(llm_code)
 
-            # Check for specific AST constructs
-            ast_checks = {
-                "python_ast_with": (ast.With, "Context manager with statement"),
-                "python_ast_try": (ast.Try, "Try-except error handling"),
-                "python_ast_async": (ast.AsyncFunctionDef, "Async function"),
-                "python_ast_comprehension": (
-                    (ast.ListComp, ast.DictComp, ast.SetComp, ast.GeneratorExp),
-                    "Comprehension",
-                ),
-                "python_ast_decorator": (
-                    ast.FunctionDef,
-                    "Decorator usage",
-                ),  # Check decorators
-            }
+            # Detect nested loops (O(n²) candidate)
+            def count_nested_loops(tree):
+                """Count nested for/while loops"""
+                nested_count = 0
+                for node in ast.walk(tree):
+                    if isinstance(node, (ast.For, ast.While)):
+                        # Check if this loop contains another loop
+                        for child in ast.walk(node):
+                            if child != node and isinstance(child, (ast.For, ast.While)):
+                                nested_count += 1
+                                break
+                return nested_count
 
-            for pattern_name, (node_types, description) in ast_checks.items():
-                base_has = any(isinstance(n, node_types) for n in ast.walk(base_tree))
-                llm_has = any(isinstance(n, node_types) for n in ast.walk(llm_tree))
+            base_nested = count_nested_loops(base_tree)
+            llm_nested = count_nested_loops(llm_tree)
 
-                patterns.append(
-                    PatternMatch(
-                        name=pattern_name,
-                        category="syntax",
-                        language="python",
-                        energy_impact="medium",
-                        present_in_base=base_has,
-                        present_in_llm=llm_has,
-                    )
+            patterns.append(
+                PatternMatch(
+                    name="PY_AST_nested_loops",
+                    category="algorithmic",
+                    language="python",
+                    energy_impact="high",
+                    present_in_base=base_nested > 0,
+                    present_in_llm=llm_nested > 0,
                 )
+            )
+
+            # Detect allocations in loops (list/dict creation inside loops)
+            def has_allocation_in_loop(tree):
+                """Check for list/dict creation inside loops"""
+                for node in ast.walk(tree):
+                    if isinstance(node, (ast.For, ast.While)):
+                        for child in ast.walk(node):
+                            if isinstance(child, (ast.List, ast.Dict, ast.ListComp, ast.Call)):
+                                if isinstance(child, ast.Call) and hasattr(child.func, 'id'):
+                                    if child.func.id in ('list', 'dict', 'set'):
+                                        return True
+                                elif isinstance(child, (ast.List, ast.Dict)):
+                                    return True
+                return False
+
+            base_alloc = has_allocation_in_loop(base_tree)
+            llm_alloc = has_allocation_in_loop(llm_tree)
+
+            patterns.append(
+                PatternMatch(
+                    name="PY_AST_allocation_in_loop",
+                    category="memory",
+                    language="python",
+                    energy_impact="high",
+                    present_in_base=base_alloc,
+                    present_in_llm=llm_alloc,
+                )
+            )
+
+            # Detect comprehensions
+            base_comp = any(isinstance(n, (ast.ListComp, ast.DictComp, ast.SetComp, ast.GeneratorExp))
+                          for n in ast.walk(base_tree))
+            llm_comp = any(isinstance(n, (ast.ListComp, ast.DictComp, ast.SetComp, ast.GeneratorExp))
+                         for n in ast.walk(llm_tree))
+
+            patterns.append(
+                PatternMatch(
+                    name="PY_AST_comprehension",
+                    category="algorithmic",
+                    language="python",
+                    energy_impact="medium",
+                    present_in_base=base_comp,
+                    present_in_llm=llm_comp,
+                )
+            )
 
         except SyntaxError:
             pass  # Invalid Python code
@@ -535,7 +694,7 @@ class MetricImprovement:
     llm_value: float
 
     def is_valid(self) -> bool:
-        return self.improvement_percentage != -999 and self.label != "invalid"
+        return self.improvement_percentage != -999 and self.label != "invalid" and not self.is_outlier
 
 
 @dataclass
@@ -658,7 +817,12 @@ class PatternPerformanceAnalyzer:
         prompt_v: int,
     ) -> tuple:
         """Find base and LLM code file paths from cluster metadata"""
-        lang_entries = cluster_metadata.get(language, [])
+        # CRITICAL FIX: Normalize language key to lowercase for cluster metadata lookup
+        # The cluster JSON has keys like 'java', 'c', 'cpp' (lowercase)
+        # But the improvements data may have language='Java' (mixed case)
+        lang_key = language.lower().strip()
+
+        lang_entries = cluster_metadata.get(lang_key, [])
 
         for entry in lang_entries:
             if entry.get("id") != entry_id:
@@ -687,7 +851,10 @@ class PatternPerformanceAnalyzer:
         prompt_v: int,
     ) -> Optional[float]:
         """Find similarity index"""
-        lang_entries = cluster_metadata.get(language, [])
+        # CRITICAL FIX: Normalize language key to lowercase for cluster metadata lookup
+        lang_key = language.lower().strip()
+
+        lang_entries = cluster_metadata.get(lang_key, [])
 
         for entry in lang_entries:
             if entry.get("id") != entry_id:
@@ -721,6 +888,29 @@ class PatternPerformanceAnalyzer:
             if not full_llm_path.exists():
                 logger.debug(f"LLM path not found: {full_llm_path}")
                 return []
+
+            # CRITICAL FIX: Handle directories for C/C++
+            # For C/C++, the base path is often a directory, find the main source file
+            if full_base_path.is_dir():
+                lang_lower = language.lower()
+                # Find the main source file
+                source_files = []
+                if lang_lower in ('c', 'cpp', 'c++'):
+                    extensions = ['.c', '.cpp', '.cc', '.cxx'] if lang_lower in ('cpp', 'c++') else ['.c']
+                    for ext in extensions:
+                        source_files.extend(full_base_path.glob(f'*{ext}'))
+
+                    if not source_files:
+                        logger.debug(f"No source files found in directory: {full_base_path}")
+                        return []
+
+                    # Use the first non-test source file
+                    for src in source_files:
+                        if 'test' not in src.name.lower():
+                            full_base_path = src
+                            break
+                    else:
+                        full_base_path = source_files[0]
 
             with open(full_base_path, "r", encoding="utf-8") as f:
                 base_code = f.read()
@@ -857,12 +1047,14 @@ class PatternPerformanceAnalyzer:
         logger.info("STEP 1: Processing all clusters")
         logger.info("-" * 80)
 
+        all_cluster_names = general_utils.get_cluster_names(utility_paths.CLUSTERS_DIR_FILEPATH)
+
         improvement_files = sorted(
             self.improvements_dir.glob("improvements_cluster_*.json")
         )
         total = len(improvement_files)
 
-        logger.info(f"Found {total} clusters to process\n")
+        logger.info(f"Found {total}/{len(all_cluster_names)} clusters to process\n")
 
         for i, filepath in enumerate(improvement_files, 1):
             cluster_name = filepath.stem.replace("improvements_cluster_", "")
@@ -1083,11 +1275,18 @@ class PatternPerformanceAnalyzer:
         # Step 4: Export results
         self.export_results(correlations)
 
-        # Step 5: Create visualizations
+        # Step 5: Create visualizations (V4.0 - REFINED VERSION)
         try:
-            from metrics.patterns.pattern_visualizer import PatternVisualizer
+            from metrics.patterns.pattern_visualizer import PatternVisualizerV4
 
-            visualizer = PatternVisualizer(self.output_dir)
+            visualizer = PatternVisualizerV4(self.output_dir)
+
+            # Set global statistics
+            visualizer.set_statistics(
+                total_clusters=len(self.cluster_stats),
+                total_entries=len(self.entries),
+                total_patterns=sum(len(e.patterns) for e in self.entries)
+            )
 
             # Convert correlations to dict format for visualizer
             corr_dicts = []
@@ -1118,10 +1317,17 @@ class PatternPerformanceAnalyzer:
                     "avg_time_improvement": stats.avg_time_improvement,
                 }
 
-            visualizer.create_all_visualizations(cluster_dict, corr_dicts, selected)
+            # Create all visualizations (v4.0 - refined)
+            visualizer.create_all_visualizations(
+                cluster_dict, corr_dicts, selected,
+                similarity_threshold=SIMILARITY_THRESHOLD,
+                improvement_threshold=IMPROVEMENT_THRESHOLD
+            )
 
         except Exception as e:
             logger.error(f"Error creating visualizations: {e}")
+            import traceback
+            traceback.print_exc()
 
         logger.info("\n" + "=" * 80)
         logger.info("ANALYSIS COMPLETE!")

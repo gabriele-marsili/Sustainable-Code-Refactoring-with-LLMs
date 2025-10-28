@@ -1,0 +1,79 @@
+{
+  "metadata": {
+    "generation_date": "2025-10-22T17:25:22.680114",
+    "threshold_percentage": 200.0,
+    "total_outliers": 2,
+    "cluster_name": "allergies"
+  },
+  "outliers": [
+    {
+      "entry_id": "c_allergies_Exercism (vlzware)",
+      "cluster_name": "allergies",
+      "llm_model": "gemini",
+      "prompt_version": "prompt_v2",
+      "language": "c",
+      "metric_name": "CPU_usage",
+      "improvement_percentage": 202.89855072463766,
+      "base_mean": 13.8,
+      "llm_mean": 41.8,
+      "base_exec_files": [
+        "allergies_results_1.json",
+        "allergies_results_2.json",
+        "allergies_results_3.json",
+        "allergies_results_4.json",
+        "allergies_results_5.json"
+      ],
+      "llm_exec_files": [
+        "allergies_results_v2_1.json",
+        "allergies_results_v2_2.json",
+        "allergies_results_v2_3.json",
+        "allergies_results_v2_4.json",
+        "allergies_results_v2_5.json"
+      ]
+    },
+    {
+      "entry_id": "c_allergies_Exercism (vlzware)",
+      "cluster_name": "allergies",
+      "llm_model": "openAI",
+      "prompt_version": "prompt_v3",
+      "language": "c",
+      "metric_name": "CPU_usage",
+      "improvement_percentage": 207.2463768115942,
+      "base_mean": 13.8,
+      "llm_mean": 42.4,
+      "base_exec_files": [
+        "allergies_results_1.json",
+        "allergies_results_2.json",
+        "allergies_results_3.json",
+        "allergies_results_4.json",
+        "allergies_results_5.json"
+      ],
+      "llm_exec_files": [
+        "allergies_results_v3_1.json",
+        "allergies_results_v3_2.json",
+        "allergies_results_v3_3.json",
+        "allergies_results_v3_4.json",
+        "allergies_results_v3_5.json"
+      ]
+    }
+  ],
+  "summary": {
+    "by_cluster": {
+      "allergies": 2
+    },
+    "by_llm_model": {
+      "gemini": 1,
+      "openAI": 1
+    },
+    "by_prompt_version": {
+      "prompt_v2": 1,
+      "prompt_v3": 1
+    },
+    "by_metric": {
+      "CPU_usage": 2
+    },
+    "by_language": {
+      "c": 2
+    }
+  }
+}
