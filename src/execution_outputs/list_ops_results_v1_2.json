@@ -1,9 +1,9 @@
 {
-  "execution_date": "2025-10-07 01:49:27",
+  "execution_date": "2025-10-28 20:36:48",
   "execution_metadata": {
-    "total_tests": 16,
-    "successful_tests": 16,
-    "execution_time": "00h 00m 50s",
+    "total_tests": 18,
+    "successful_tests": 18,
+    "execution_time": "00h 00m 03s",
     "cluster": "cluster_list_ops",
     "test_type": "llm_v1"
   },
@@ -327,11 +327,11 @@
         "language": "c",
         "LLM_results": [
           {
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/list_ops_Exercism_m3g4d1v3r/claude/ClaudeSonnet4_list_ops_v1.c",
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/list_ops_Exercism_m3g4d1v3r/gemini/GeminiFlash_list_ops_v1.c",
             "log": "",
-            "execution_time_ms": 0,
-            "CPU_usage": 25.0,
+            "execution_time_ms": 50,
+            "CPU_usage": 1.0,
             "RAM_usage": 3456,
             "regressionTestPassed": false,
             "success": false,
@@ -345,15 +345,51 @@
         "language": "c",
         "LLM_results": [
           {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/list_ops_Exercism_m3g4d1v3r/openAI/ChatGPT4_list_ops_v1.c",
+            "log": "",
+            "execution_time_ms": 3.126428,
+            "CPU_usage": 8.0,
+            "RAM_usage": 8704,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 3"
+          }
+        ]
+      },
+      {
+        "id": "c_list_ops_Exercism (m3g4d1v3r)",
+        "filename": "list_ops.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/list_ops_Exercism_m3g4d1v3r/claude/ClaudeSonnet4_list_ops_v1.c",
+            "log": "",
+            "execution_time_ms": 10.755664,
+            "CPU_usage": 3.0,
+            "RAM_usage": 8704,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "c_list_ops_Exercism (m3g4d1v3r)",
+        "filename": "list_ops.c",
+        "language": "c",
+        "LLM_results": [
+          {
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/list_ops_Exercism_m3g4d1v3r/gemini/GeminiFlash_list_ops_v1.c",
             "log": "",
-            "execution_time_ms": 50,
-            "CPU_usage": 1.0,
-            "RAM_usage": 3456,
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": "Docker exit code: 255"
+            "execution_time_ms": 6.438481,
+            "CPU_usage": 4.0,
+            "RAM_usage": 8704,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
           }
         ]
       }

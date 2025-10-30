@@ -1,810 +1,676 @@
 {
-    "c": [
+  "c": [
+    {
+      "id": "c_largest_series_product_Exercism (vlzware)",
+      "filename": "largest_series_product.c",
+      "language": "c",
+      "source": "Exercism (vlzware)",
+      "codeSnippetFilePath": "c/largest_series_product_Exercism_vlzware/src",
+      "testUnitFilePath": "c/largest_series_product_Exercism_vlzware/test",
+      "licenseType": "MIT",
+      "downloadDate": "2025-06-27 12:10:33",
+      "characterQuantity": 587,
+      "wordQuantity": 100,
+      "LLMs": [
         {
-            "id": "c_largest_series_product_Exercism (ThomasZumsteg)",
-            "filename": "largest_series_product.c",
-            "language": "c",
-            "source": "Exercism (ThomasZumsteg)",
-            "codeSnippetFilePath": "c/largest_series_product_Exercism_ThomasZumsteg/src",
-            "testUnitFilePath": "c/largest_series_product_Exercism_ThomasZumsteg/test",
-            "licenseType": "None",
-            "downloadDate": "2025-06-23 17:43:52",
-            "characterQuantity": 627,
-            "wordQuantity": 104,
-            "LLMs": [
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_ThomasZumsteg/openAI/ChatGPT4_largest_series_product_v1.c",
-                    "word_quantity": 104,
-                    "char_quantity": 878,
-                    "filename": "ChatGPT4_largest_series_product_v1.c",
-                    "fuzzy_score": 64.32,
-                    "cosine_similarity_score": 70.45,
-                    "similarity_index": 67.69
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_ThomasZumsteg/openAI/ChatGPT4_largest_series_product_v2.c",
-                    "word_quantity": 113,
-                    "char_quantity": 932,
-                    "filename": "ChatGPT4_largest_series_product_v2.c",
-                    "fuzzy_score": 62.73,
-                    "cosine_similarity_score": 69.85,
-                    "similarity_index": 66.65
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_ThomasZumsteg/openAI/ChatGPT4_largest_series_product_v3.c",
-                    "word_quantity": 105,
-                    "char_quantity": 1056,
-                    "filename": "ChatGPT4_largest_series_product_v3.c",
-                    "fuzzy_score": 59.3,
-                    "cosine_similarity_score": 78.1,
-                    "similarity_index": 69.64
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_ThomasZumsteg/openAI/ChatGPT4_largest_series_product_v4.c",
-                    "word_quantity": 104,
-                    "char_quantity": 878,
-                    "filename": "ChatGPT4_largest_series_product_v4.c",
-                    "fuzzy_score": 61.66,
-                    "cosine_similarity_score": 69.66,
-                    "similarity_index": 66.06
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_ThomasZumsteg/claude/ClaudeSonnet4_largest_series_product_v1.c",
-                    "word_quantity": 91,
-                    "char_quantity": 776,
-                    "filename": "ClaudeSonnet4_largest_series_product_v1.c",
-                    "fuzzy_score": 69.57,
-                    "cosine_similarity_score": 77.93,
-                    "similarity_index": 74.17
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_ThomasZumsteg/claude/ClaudeSonnet4_largest_series_product_v2.c",
-                    "word_quantity": 145,
-                    "char_quantity": 1413,
-                    "filename": "ClaudeSonnet4_largest_series_product_v2.c",
-                    "fuzzy_score": 47.55,
-                    "cosine_similarity_score": 53.3,
-                    "similarity_index": 50.71
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_ThomasZumsteg/claude/ClaudeSonnet4_largest_series_product_v3.c",
-                    "word_quantity": 162,
-                    "char_quantity": 1627,
-                    "filename": "ClaudeSonnet4_largest_series_product_v3.c",
-                    "fuzzy_score": 46.67,
-                    "cosine_similarity_score": 67.64,
-                    "similarity_index": 58.21
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_ThomasZumsteg/claude/ClaudeSonnet4_largest_series_product_v4.c",
-                    "word_quantity": 141,
-                    "char_quantity": 1388,
-                    "filename": "ClaudeSonnet4_largest_series_product_v4.c",
-                    "fuzzy_score": 51.61,
-                    "cosine_similarity_score": 65.79,
-                    "similarity_index": 59.41
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_ThomasZumsteg/gemini/GeminiFlash_largest_series_product_v2.c",
-                    "word_quantity": 112,
-                    "char_quantity": 878,
-                    "filename": "GeminiFlash_largest_series_product_v2.c",
-                    "fuzzy_score": 72.96,
-                    "cosine_similarity_score": 76.48,
-                    "similarity_index": 74.9
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_ThomasZumsteg/gemini/GeminiFlash_largest_series_product_v1.c",
-                    "word_quantity": 110,
-                    "char_quantity": 877,
-                    "filename": "GeminiFlash_largest_series_product_v1.c",
-                    "fuzzy_score": 71.41,
-                    "cosine_similarity_score": 75.69,
-                    "similarity_index": 73.76
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_ThomasZumsteg/gemini/GeminiFlash_largest_series_product_v4.c",
-                    "word_quantity": 106,
-                    "char_quantity": 946,
-                    "filename": "GeminiFlash_largest_series_product_v4.c",
-                    "fuzzy_score": 69.68,
-                    "cosine_similarity_score": 76.01,
-                    "similarity_index": 73.16
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_ThomasZumsteg/gemini/GeminiFlash_largest_series_product_v3.c",
-                    "word_quantity": 113,
-                    "char_quantity": 890,
-                    "filename": "GeminiFlash_largest_series_product_v3.c",
-                    "fuzzy_score": 72.25,
-                    "cosine_similarity_score": 76.73,
-                    "similarity_index": 74.71
-                }
-            ]
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_vlzware/openAI/ChatGPT4_largest_series_product_v1.c",
+          "word_quantity": 93,
+          "char_quantity": 727,
+          "filename": "ChatGPT4_largest_series_product_v1.c",
+          "fuzzy_score": 65.75,
+          "cosine_similarity_score": 65.17,
+          "similarity_index": 65.43
         },
         {
-            "id": "c_largest_series_product_Exercism (vlzware)",
-            "filename": "largest_series_product.c",
-            "language": "c",
-            "source": "Exercism (vlzware)",
-            "codeSnippetFilePath": "c/largest_series_product_Exercism_vlzware/src",
-            "testUnitFilePath": "c/largest_series_product_Exercism_vlzware/test",
-            "licenseType": "MIT",
-            "downloadDate": "2025-06-27 12:10:33",
-            "characterQuantity": 587,
-            "wordQuantity": 100,
-            "LLMs": [
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_vlzware/openAI/ChatGPT4_largest_series_product_v1.c",
-                    "word_quantity": 93,
-                    "char_quantity": 727,
-                    "filename": "ChatGPT4_largest_series_product_v1.c",
-                    "fuzzy_score": 65.75,
-                    "cosine_similarity_score": 65.17,
-                    "similarity_index": 65.43
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_vlzware/openAI/ChatGPT4_largest_series_product_v2.c",
-                    "word_quantity": 94,
-                    "char_quantity": 727,
-                    "filename": "ChatGPT4_largest_series_product_v2.c",
-                    "fuzzy_score": 64.84,
-                    "cosine_similarity_score": 65.45,
-                    "similarity_index": 65.18
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_vlzware/openAI/ChatGPT4_largest_series_product_v3.c",
-                    "word_quantity": 88,
-                    "char_quantity": 862,
-                    "filename": "ChatGPT4_largest_series_product_v3.c",
-                    "fuzzy_score": 56.45,
-                    "cosine_similarity_score": 64.33,
-                    "similarity_index": 60.78
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_vlzware/openAI/ChatGPT4_largest_series_product_v4.c",
-                    "word_quantity": 74,
-                    "char_quantity": 688,
-                    "filename": "ChatGPT4_largest_series_product_v4.c",
-                    "fuzzy_score": 62.75,
-                    "cosine_similarity_score": 66.88,
-                    "similarity_index": 65.02
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_vlzware/claude/ClaudeSonnet4_largest_series_product_v1.c",
-                    "word_quantity": 102,
-                    "char_quantity": 770,
-                    "filename": "ClaudeSonnet4_largest_series_product_v1.c",
-                    "fuzzy_score": 60.87,
-                    "cosine_similarity_score": 68.37,
-                    "similarity_index": 64.99
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_vlzware/claude/ClaudeSonnet4_largest_series_product_v2.c",
-                    "word_quantity": 93,
-                    "char_quantity": 658,
-                    "filename": "ClaudeSonnet4_largest_series_product_v2.c",
-                    "fuzzy_score": 66.18,
-                    "cosine_similarity_score": 83.1,
-                    "similarity_index": 75.49
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_vlzware/claude/ClaudeSonnet4_largest_series_product_v3.c",
-                    "word_quantity": 121,
-                    "char_quantity": 1187,
-                    "filename": "ClaudeSonnet4_largest_series_product_v3.c",
-                    "fuzzy_score": 47.8,
-                    "cosine_similarity_score": 71.76,
-                    "similarity_index": 60.98
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_vlzware/claude/ClaudeSonnet4_largest_series_product_v4.c",
-                    "word_quantity": 122,
-                    "char_quantity": 999,
-                    "filename": "ClaudeSonnet4_largest_series_product_v4.c",
-                    "fuzzy_score": 58.26,
-                    "cosine_similarity_score": 71.96,
-                    "similarity_index": 65.8
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_vlzware/gemini/GeminiFlash_largest_series_product_v2.c",
-                    "word_quantity": 83,
-                    "char_quantity": 647,
-                    "filename": "GeminiFlash_largest_series_product_v2.c",
-                    "fuzzy_score": 66.29,
-                    "cosine_similarity_score": 84.72,
-                    "similarity_index": 76.43
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_vlzware/gemini/GeminiFlash_largest_series_product_v1.c",
-                    "word_quantity": 83,
-                    "char_quantity": 611,
-                    "filename": "GeminiFlash_largest_series_product_v1.c",
-                    "fuzzy_score": 67.61,
-                    "cosine_similarity_score": 84.72,
-                    "similarity_index": 77.02
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_vlzware/gemini/GeminiFlash_largest_series_product_v4.c",
-                    "word_quantity": 83,
-                    "char_quantity": 727,
-                    "filename": "GeminiFlash_largest_series_product_v4.c",
-                    "fuzzy_score": 61.49,
-                    "cosine_similarity_score": 69.04,
-                    "similarity_index": 65.64
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_vlzware/gemini/GeminiFlash_largest_series_product_v3.c",
-                    "word_quantity": 86,
-                    "char_quantity": 752,
-                    "filename": "GeminiFlash_largest_series_product_v3.c",
-                    "fuzzy_score": 57.95,
-                    "cosine_similarity_score": 70.18,
-                    "similarity_index": 64.68
-                }
-            ]
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_vlzware/openAI/ChatGPT4_largest_series_product_v2.c",
+          "word_quantity": 94,
+          "char_quantity": 727,
+          "filename": "ChatGPT4_largest_series_product_v2.c",
+          "fuzzy_score": 64.84,
+          "cosine_similarity_score": 65.45,
+          "similarity_index": 65.18
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_vlzware/openAI/ChatGPT4_largest_series_product_v3.c",
+          "word_quantity": 88,
+          "char_quantity": 862,
+          "filename": "ChatGPT4_largest_series_product_v3.c",
+          "fuzzy_score": 56.45,
+          "cosine_similarity_score": 64.33,
+          "similarity_index": 60.78
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_vlzware/openAI/ChatGPT4_largest_series_product_v4.c",
+          "word_quantity": 74,
+          "char_quantity": 688,
+          "filename": "ChatGPT4_largest_series_product_v4.c",
+          "fuzzy_score": 62.75,
+          "cosine_similarity_score": 66.88,
+          "similarity_index": 65.02
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_vlzware/claude/ClaudeSonnet4_largest_series_product_v1.c",
+          "word_quantity": 102,
+          "char_quantity": 770,
+          "filename": "ClaudeSonnet4_largest_series_product_v1.c",
+          "fuzzy_score": 60.87,
+          "cosine_similarity_score": 68.37,
+          "similarity_index": 64.99
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_vlzware/claude/ClaudeSonnet4_largest_series_product_v2.c",
+          "word_quantity": 93,
+          "char_quantity": 658,
+          "filename": "ClaudeSonnet4_largest_series_product_v2.c",
+          "fuzzy_score": 66.18,
+          "cosine_similarity_score": 83.1,
+          "similarity_index": 75.49
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_vlzware/claude/ClaudeSonnet4_largest_series_product_v3.c",
+          "word_quantity": 121,
+          "char_quantity": 1187,
+          "filename": "ClaudeSonnet4_largest_series_product_v3.c",
+          "fuzzy_score": 47.8,
+          "cosine_similarity_score": 71.76,
+          "similarity_index": 60.98
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_vlzware/claude/ClaudeSonnet4_largest_series_product_v4.c",
+          "word_quantity": 122,
+          "char_quantity": 999,
+          "filename": "ClaudeSonnet4_largest_series_product_v4.c",
+          "fuzzy_score": 58.26,
+          "cosine_similarity_score": 71.96,
+          "similarity_index": 65.8
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_vlzware/gemini/GeminiFlash_largest_series_product_v2.c",
+          "word_quantity": 83,
+          "char_quantity": 647,
+          "filename": "GeminiFlash_largest_series_product_v2.c",
+          "fuzzy_score": 66.29,
+          "cosine_similarity_score": 84.72,
+          "similarity_index": 76.43
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_vlzware/gemini/GeminiFlash_largest_series_product_v1.c",
+          "word_quantity": 83,
+          "char_quantity": 611,
+          "filename": "GeminiFlash_largest_series_product_v1.c",
+          "fuzzy_score": 67.61,
+          "cosine_similarity_score": 84.72,
+          "similarity_index": 77.02
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_vlzware/gemini/GeminiFlash_largest_series_product_v4.c",
+          "word_quantity": 83,
+          "char_quantity": 727,
+          "filename": "GeminiFlash_largest_series_product_v4.c",
+          "fuzzy_score": 61.49,
+          "cosine_similarity_score": 69.04,
+          "similarity_index": 65.64
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/largest_series_product_Exercism_vlzware/gemini/GeminiFlash_largest_series_product_v3.c",
+          "word_quantity": 86,
+          "char_quantity": 752,
+          "filename": "GeminiFlash_largest_series_product_v3.c",
+          "fuzzy_score": 57.95,
+          "cosine_similarity_score": 70.18,
+          "similarity_index": 64.68
         }
-    ],
-    "go": [
+      ]
+    }
+  ],
+  "go": [
+    {
+      "id": "go_largest_series_product_Exercism (go_rootulp)",
+      "filename": "largest_series_product.go",
+      "language": "go",
+      "source": "Exercism (go_rootulp)",
+      "codeSnippetFilePath": "go/largest_series_product_Exercism_go_rootulp/largest_series_product.go",
+      "testUnitFilePath": "go/largest_series_product_Exercism_go_rootulp/largest_series_product_test.go",
+      "licenseType": "MIT",
+      "downloadDate": "2025-06-28 16:31:47",
+      "characterQuantity": 811,
+      "wordQuantity": 128,
+      "LLMs": [
         {
-            "id": "go_largest_series_product_Exercism (go_rootulp)",
-            "filename": "largest_series_product.go",
-            "language": "go",
-            "source": "Exercism (go_rootulp)",
-            "codeSnippetFilePath": "go/largest_series_product_Exercism_go_rootulp/largest_series_product.go",
-            "testUnitFilePath": "go/largest_series_product_Exercism_go_rootulp/largest_series_product_test.go",
-            "licenseType": "MIT",
-            "downloadDate": "2025-06-28 16:31:47",
-            "characterQuantity": 811,
-            "wordQuantity": 128,
-            "LLMs": [
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_rootulp/openAI/ChatGPT4_largest_series_product_v2.go",
-                    "word_quantity": 160,
-                    "char_quantity": 1230,
-                    "filename": "ChatGPT4_largest_series_product_v2.go",
-                    "fuzzy_score": 59.09,
-                    "cosine_similarity_score": 68.01,
-                    "similarity_index": 64.0
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_rootulp/openAI/ChatGPT4_largest_series_product_v3.go",
-                    "word_quantity": 128,
-                    "char_quantity": 1007,
-                    "filename": "ChatGPT4_largest_series_product_v3.go",
-                    "fuzzy_score": 66.12,
-                    "cosine_similarity_score": 79.05,
-                    "similarity_index": 73.23
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_rootulp/openAI/ChatGPT4_largest_series_product_v4.go",
-                    "word_quantity": 131,
-                    "char_quantity": 1008,
-                    "filename": "ChatGPT4_largest_series_product_v4.go",
-                    "fuzzy_score": 62.23,
-                    "cosine_similarity_score": 70.73,
-                    "similarity_index": 66.91
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_rootulp/openAI/ChatGPT4_largest_series_product_v1.go",
-                    "word_quantity": 114,
-                    "char_quantity": 919,
-                    "filename": "ChatGPT4_largest_series_product_v1.go",
-                    "fuzzy_score": 67.98,
-                    "cosine_similarity_score": 70.16,
-                    "similarity_index": 69.18
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_rootulp/claude/ClaudeSonnet4_largest_series_product_v3.go",
-                    "word_quantity": 155,
-                    "char_quantity": 1144,
-                    "filename": "ClaudeSonnet4_largest_series_product_v3.go",
-                    "fuzzy_score": 68.85,
-                    "cosine_similarity_score": 72.03,
-                    "similarity_index": 70.6
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_rootulp/claude/ClaudeSonnet4_largest_series_product_v2.go",
-                    "word_quantity": 102,
-                    "char_quantity": 766,
-                    "filename": "ClaudeSonnet4_largest_series_product_v2.go",
-                    "fuzzy_score": 64.68,
-                    "cosine_similarity_score": 70.88,
-                    "similarity_index": 68.09
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_rootulp/claude/ClaudeSonnet4_largest_series_product_v1.go",
-                    "word_quantity": 108,
-                    "char_quantity": 801,
-                    "filename": "ClaudeSonnet4_largest_series_product_v1.go",
-                    "fuzzy_score": 86.72,
-                    "cosine_similarity_score": 83.2,
-                    "similarity_index": 84.79
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_rootulp/claude/ClaudeSonnet4_largest_series_product_v4.go",
-                    "word_quantity": 114,
-                    "char_quantity": 836,
-                    "filename": "ClaudeSonnet4_largest_series_product_v4.go",
-                    "fuzzy_score": 84.88,
-                    "cosine_similarity_score": 83.81,
-                    "similarity_index": 84.29
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_rootulp/gemini/GeminiFlash_largest_series_product_v2.go",
-                    "word_quantity": 94,
-                    "char_quantity": 686,
-                    "filename": "GeminiFlash_largest_series_product_v2.go",
-                    "fuzzy_score": 63.86,
-                    "cosine_similarity_score": 74.59,
-                    "similarity_index": 69.76
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_rootulp/gemini/GeminiFlash_largest_series_product_v3.go",
-                    "word_quantity": 94,
-                    "char_quantity": 686,
-                    "filename": "GeminiFlash_largest_series_product_v3.go",
-                    "fuzzy_score": 63.99,
-                    "cosine_similarity_score": 74.59,
-                    "similarity_index": 69.82
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_rootulp/gemini/GeminiFlash_largest_series_product_v4.go",
-                    "word_quantity": 111,
-                    "char_quantity": 780,
-                    "filename": "GeminiFlash_largest_series_product_v4.go",
-                    "fuzzy_score": 62.1,
-                    "cosine_similarity_score": 72.09,
-                    "similarity_index": 67.59
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_rootulp/gemini/GeminiFlash_largest_series_product_v1.go",
-                    "word_quantity": 121,
-                    "char_quantity": 866,
-                    "filename": "GeminiFlash_largest_series_product_v1.go",
-                    "fuzzy_score": 81.1,
-                    "cosine_similarity_score": 84.05,
-                    "similarity_index": 82.72
-                }
-            ]
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_rootulp/openAI/ChatGPT4_largest_series_product_v2.go",
+          "word_quantity": 160,
+          "char_quantity": 1230,
+          "filename": "ChatGPT4_largest_series_product_v2.go",
+          "fuzzy_score": 59.09,
+          "cosine_similarity_score": 68.01,
+          "similarity_index": 64.0
         },
         {
-            "id": "go_largest_series_product_Exercism (go_ThomasZumsteg)",
-            "filename": "largest_series_product.go",
-            "language": "go",
-            "source": "Exercism (go_ThomasZumsteg)",
-            "codeSnippetFilePath": "go/largest_series_product_Exercism_go_ThomasZumsteg/largest_series_product.go",
-            "testUnitFilePath": "go/largest_series_product_Exercism_go_ThomasZumsteg/largest_series_product_test.go",
-            "licenseType": "None",
-            "downloadDate": "2025-06-28 16:33:24",
-            "characterQuantity": 922,
-            "wordQuantity": 150,
-            "LLMs": [
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_ThomasZumsteg/openAI/ChatGPT4_largest_series_product_v2.go",
-                    "word_quantity": 162,
-                    "char_quantity": 1173,
-                    "filename": "ChatGPT4_largest_series_product_v2.go",
-                    "fuzzy_score": 73.6,
-                    "cosine_similarity_score": 81.95,
-                    "similarity_index": 78.19
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_ThomasZumsteg/openAI/ChatGPT4_largest_series_product_v3.go",
-                    "word_quantity": 128,
-                    "char_quantity": 958,
-                    "filename": "ChatGPT4_largest_series_product_v3.go",
-                    "fuzzy_score": 59.89,
-                    "cosine_similarity_score": 73.91,
-                    "similarity_index": 67.6
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_ThomasZumsteg/openAI/ChatGPT4_largest_series_product_v4.go",
-                    "word_quantity": 129,
-                    "char_quantity": 962,
-                    "filename": "ChatGPT4_largest_series_product_v4.go",
-                    "fuzzy_score": 59.77,
-                    "cosine_similarity_score": 73.81,
-                    "similarity_index": 67.49
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_ThomasZumsteg/openAI/ChatGPT4_largest_series_product_v1.go",
-                    "word_quantity": 162,
-                    "char_quantity": 1176,
-                    "filename": "ChatGPT4_largest_series_product_v1.go",
-                    "fuzzy_score": 80.46,
-                    "cosine_similarity_score": 83.65,
-                    "similarity_index": 82.21
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_ThomasZumsteg/claude/ClaudeSonnet4_largest_series_product_v3.go",
-                    "word_quantity": 133,
-                    "char_quantity": 917,
-                    "filename": "ClaudeSonnet4_largest_series_product_v3.go",
-                    "fuzzy_score": 61.56,
-                    "cosine_similarity_score": 77.34,
-                    "similarity_index": 70.24
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_ThomasZumsteg/claude/ClaudeSonnet4_largest_series_product_v2.go",
-                    "word_quantity": 163,
-                    "char_quantity": 1077,
-                    "filename": "ClaudeSonnet4_largest_series_product_v2.go",
-                    "fuzzy_score": 77.44,
-                    "cosine_similarity_score": 85.45,
-                    "similarity_index": 81.84
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_ThomasZumsteg/claude/ClaudeSonnet4_largest_series_product_v1.go",
-                    "word_quantity": 213,
-                    "char_quantity": 1443,
-                    "filename": "ClaudeSonnet4_largest_series_product_v1.go",
-                    "fuzzy_score": 66.55,
-                    "cosine_similarity_score": 78.06,
-                    "similarity_index": 72.88
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_ThomasZumsteg/claude/ClaudeSonnet4_largest_series_product_v4.go",
-                    "word_quantity": 150,
-                    "char_quantity": 1020,
-                    "filename": "ClaudeSonnet4_largest_series_product_v4.go",
-                    "fuzzy_score": 58.6,
-                    "cosine_similarity_score": 74.42,
-                    "similarity_index": 67.3
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_ThomasZumsteg/gemini/GeminiFlash_largest_series_product_v2.go",
-                    "word_quantity": 161,
-                    "char_quantity": 1050,
-                    "filename": "GeminiFlash_largest_series_product_v2.go",
-                    "fuzzy_score": 81.14,
-                    "cosine_similarity_score": 89.45,
-                    "similarity_index": 85.71
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_ThomasZumsteg/gemini/GeminiFlash_largest_series_product_v3.go",
-                    "word_quantity": 161,
-                    "char_quantity": 1051,
-                    "filename": "GeminiFlash_largest_series_product_v3.go",
-                    "fuzzy_score": 81.09,
-                    "cosine_similarity_score": 89.45,
-                    "similarity_index": 85.69
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_ThomasZumsteg/gemini/GeminiFlash_largest_series_product_v4.go",
-                    "word_quantity": 161,
-                    "char_quantity": 1050,
-                    "filename": "GeminiFlash_largest_series_product_v4.go",
-                    "fuzzy_score": 81.14,
-                    "cosine_similarity_score": 89.45,
-                    "similarity_index": 85.71
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_ThomasZumsteg/gemini/GeminiFlash_largest_series_product_v1.go",
-                    "word_quantity": 161,
-                    "char_quantity": 1052,
-                    "filename": "GeminiFlash_largest_series_product_v1.go",
-                    "fuzzy_score": 81.05,
-                    "cosine_similarity_score": 89.45,
-                    "similarity_index": 85.67
-                }
-            ]
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_rootulp/openAI/ChatGPT4_largest_series_product_v3.go",
+          "word_quantity": 128,
+          "char_quantity": 1007,
+          "filename": "ChatGPT4_largest_series_product_v3.go",
+          "fuzzy_score": 66.12,
+          "cosine_similarity_score": 79.05,
+          "similarity_index": 73.23
         },
         {
-            "id": "go_largest_series_product_Exercism (go_thinkverse)",
-            "filename": "largest_series_product.go",
-            "language": "go",
-            "source": "Exercism (go_thinkverse)",
-            "codeSnippetFilePath": "go/largest_series_product_Exercism_go_thinkverse/largest_series_product.go",
-            "testUnitFilePath": "go/largest_series_product_Exercism_go_thinkverse/largest_series_product_test.go",
-            "licenseType": "None",
-            "downloadDate": "2025-06-28 16:34:23",
-            "characterQuantity": 150,
-            "wordQuantity": 16,
-            "LLMs": [
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_thinkverse/openAI/ChatGPT4_largest_series_product_v2.go",
-                    "word_quantity": 114,
-                    "char_quantity": 896,
-                    "filename": "ChatGPT4_largest_series_product_v2.go",
-                    "fuzzy_score": 26.77,
-                    "cosine_similarity_score": 21.34,
-                    "similarity_index": 23.78
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_thinkverse/openAI/ChatGPT4_largest_series_product_v3.go",
-                    "word_quantity": 119,
-                    "char_quantity": 925,
-                    "filename": "ChatGPT4_largest_series_product_v3.go",
-                    "fuzzy_score": 26.05,
-                    "cosine_similarity_score": 20.95,
-                    "similarity_index": 23.24
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_thinkverse/openAI/ChatGPT4_largest_series_product_v4.go",
-                    "word_quantity": 114,
-                    "char_quantity": 896,
-                    "filename": "ChatGPT4_largest_series_product_v4.go",
-                    "fuzzy_score": 26.77,
-                    "cosine_similarity_score": 21.34,
-                    "similarity_index": 23.78
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_thinkverse/openAI/ChatGPT4_largest_series_product_v1.go",
-                    "word_quantity": 98,
-                    "char_quantity": 677,
-                    "filename": "ChatGPT4_largest_series_product_v1.go",
-                    "fuzzy_score": 33.37,
-                    "cosine_similarity_score": 24.09,
-                    "similarity_index": 28.27
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_thinkverse/claude/ClaudeSonnet4_largest_series_product_v3.go",
-                    "word_quantity": 104,
-                    "char_quantity": 743,
-                    "filename": "ClaudeSonnet4_largest_series_product_v3.go",
-                    "fuzzy_score": 31.35,
-                    "cosine_similarity_score": 21.62,
-                    "similarity_index": 26.0
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_thinkverse/claude/ClaudeSonnet4_largest_series_product_v2.go",
-                    "word_quantity": 134,
-                    "char_quantity": 968,
-                    "filename": "ClaudeSonnet4_largest_series_product_v2.go",
-                    "fuzzy_score": 25.04,
-                    "cosine_similarity_score": 19.47,
-                    "similarity_index": 21.98
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_thinkverse/claude/ClaudeSonnet4_largest_series_product_v1.go",
-                    "word_quantity": 133,
-                    "char_quantity": 940,
-                    "filename": "ClaudeSonnet4_largest_series_product_v1.go",
-                    "fuzzy_score": 25.87,
-                    "cosine_similarity_score": 19.49,
-                    "similarity_index": 22.36
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_thinkverse/claude/ClaudeSonnet4_largest_series_product_v4.go",
-                    "word_quantity": 115,
-                    "char_quantity": 846,
-                    "filename": "ClaudeSonnet4_largest_series_product_v4.go",
-                    "fuzzy_score": 28.11,
-                    "cosine_similarity_score": 19.67,
-                    "similarity_index": 23.47
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_thinkverse/gemini/GeminiFlash_largest_series_product_v2.go",
-                    "word_quantity": 101,
-                    "char_quantity": 713,
-                    "filename": "GeminiFlash_largest_series_product_v2.go",
-                    "fuzzy_score": 32.44,
-                    "cosine_similarity_score": 23.94,
-                    "similarity_index": 27.77
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_thinkverse/gemini/GeminiFlash_largest_series_product_v3.go",
-                    "word_quantity": 103,
-                    "char_quantity": 721,
-                    "filename": "GeminiFlash_largest_series_product_v3.go",
-                    "fuzzy_score": 31.92,
-                    "cosine_similarity_score": 23.08,
-                    "similarity_index": 27.06
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_thinkverse/gemini/GeminiFlash_largest_series_product_v4.go",
-                    "word_quantity": 99,
-                    "char_quantity": 697,
-                    "filename": "GeminiFlash_largest_series_product_v4.go",
-                    "fuzzy_score": 32.82,
-                    "cosine_similarity_score": 21.98,
-                    "similarity_index": 26.86
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_thinkverse/gemini/GeminiFlash_largest_series_product_v1.go",
-                    "word_quantity": 99,
-                    "char_quantity": 697,
-                    "filename": "GeminiFlash_largest_series_product_v1.go",
-                    "fuzzy_score": 32.82,
-                    "cosine_similarity_score": 21.98,
-                    "similarity_index": 26.86
-                }
-            ]
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_rootulp/openAI/ChatGPT4_largest_series_product_v4.go",
+          "word_quantity": 131,
+          "char_quantity": 1008,
+          "filename": "ChatGPT4_largest_series_product_v4.go",
+          "fuzzy_score": 62.23,
+          "cosine_similarity_score": 70.73,
+          "similarity_index": 66.91
         },
         {
-            "id": "go_largest_series_product_Exercism (go_drapala)",
-            "filename": "largest_series_product.go",
-            "language": "go",
-            "source": "Exercism (go_drapala)",
-            "codeSnippetFilePath": "go/largest_series_product_Exercism_go_drapala/largest_series_product.go",
-            "testUnitFilePath": "go/largest_series_product_Exercism_go_drapala/largest_series_product_test.go",
-            "licenseType": "None",
-            "downloadDate": "2025-06-28 16:35:37",
-            "characterQuantity": 1008,
-            "wordQuantity": 163,
-            "LLMs": [
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_drapala/openAI/ChatGPT4_largest_series_product_v2.go",
-                    "word_quantity": 123,
-                    "char_quantity": 961,
-                    "filename": "ChatGPT4_largest_series_product_v2.go",
-                    "fuzzy_score": 51.6,
-                    "cosine_similarity_score": 62.0,
-                    "similarity_index": 57.32
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_drapala/openAI/ChatGPT4_largest_series_product_v3.go",
-                    "word_quantity": 132,
-                    "char_quantity": 1029,
-                    "filename": "ChatGPT4_largest_series_product_v3.go",
-                    "fuzzy_score": 69.71,
-                    "cosine_similarity_score": 76.98,
-                    "similarity_index": 73.71
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_drapala/openAI/ChatGPT4_largest_series_product_v4.go",
-                    "word_quantity": 135,
-                    "char_quantity": 1056,
-                    "filename": "ChatGPT4_largest_series_product_v4.go",
-                    "fuzzy_score": 68.31,
-                    "cosine_similarity_score": 74.34,
-                    "similarity_index": 71.63
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_drapala/openAI/ChatGPT4_largest_series_product_v1.go",
-                    "word_quantity": 137,
-                    "char_quantity": 1048,
-                    "filename": "ChatGPT4_largest_series_product_v1.go",
-                    "fuzzy_score": 70.53,
-                    "cosine_similarity_score": 76.08,
-                    "similarity_index": 73.58
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_drapala/claude/ClaudeSonnet4_largest_series_product_v3.go",
-                    "word_quantity": 157,
-                    "char_quantity": 1150,
-                    "filename": "ClaudeSonnet4_largest_series_product_v3.go",
-                    "fuzzy_score": 75.9,
-                    "cosine_similarity_score": 84.9,
-                    "similarity_index": 80.85
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_drapala/claude/ClaudeSonnet4_largest_series_product_v2.go",
-                    "word_quantity": 172,
-                    "char_quantity": 1323,
-                    "filename": "ClaudeSonnet4_largest_series_product_v2.go",
-                    "fuzzy_score": 64.69,
-                    "cosine_similarity_score": 74.38,
-                    "similarity_index": 70.02
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_drapala/claude/ClaudeSonnet4_largest_series_product_v1.go",
-                    "word_quantity": 164,
-                    "char_quantity": 1185,
-                    "filename": "ClaudeSonnet4_largest_series_product_v1.go",
-                    "fuzzy_score": 79.16,
-                    "cosine_similarity_score": 83.16,
-                    "similarity_index": 81.36
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_drapala/claude/ClaudeSonnet4_largest_series_product_v4.go",
-                    "word_quantity": 146,
-                    "char_quantity": 1044,
-                    "filename": "ClaudeSonnet4_largest_series_product_v4.go",
-                    "fuzzy_score": 76.61,
-                    "cosine_similarity_score": 86.31,
-                    "similarity_index": 81.94
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_drapala/gemini/GeminiFlash_largest_series_product_v2.go",
-                    "word_quantity": 95,
-                    "char_quantity": 667,
-                    "filename": "GeminiFlash_largest_series_product_v2.go",
-                    "fuzzy_score": 56.12,
-                    "cosine_similarity_score": 74.7,
-                    "similarity_index": 66.34
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_drapala/gemini/GeminiFlash_largest_series_product_v3.go",
-                    "word_quantity": 114,
-                    "char_quantity": 804,
-                    "filename": "GeminiFlash_largest_series_product_v3.go",
-                    "fuzzy_score": 77.48,
-                    "cosine_similarity_score": 79.0,
-                    "similarity_index": 78.32
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_drapala/gemini/GeminiFlash_largest_series_product_v4.go",
-                    "word_quantity": 119,
-                    "char_quantity": 840,
-                    "filename": "GeminiFlash_largest_series_product_v4.go",
-                    "fuzzy_score": 59.2,
-                    "cosine_similarity_score": 80.6,
-                    "similarity_index": 70.97
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_drapala/gemini/GeminiFlash_largest_series_product_v1.go",
-                    "word_quantity": 118,
-                    "char_quantity": 827,
-                    "filename": "GeminiFlash_largest_series_product_v1.go",
-                    "fuzzy_score": 59.4,
-                    "cosine_similarity_score": 77.75,
-                    "similarity_index": 69.49
-                }
-            ]
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_rootulp/openAI/ChatGPT4_largest_series_product_v1.go",
+          "word_quantity": 114,
+          "char_quantity": 919,
+          "filename": "ChatGPT4_largest_series_product_v1.go",
+          "fuzzy_score": 67.98,
+          "cosine_similarity_score": 70.16,
+          "similarity_index": 69.18
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_rootulp/claude/ClaudeSonnet4_largest_series_product_v3.go",
+          "word_quantity": 155,
+          "char_quantity": 1144,
+          "filename": "ClaudeSonnet4_largest_series_product_v3.go",
+          "fuzzy_score": 68.85,
+          "cosine_similarity_score": 72.03,
+          "similarity_index": 70.6
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_rootulp/claude/ClaudeSonnet4_largest_series_product_v2.go",
+          "word_quantity": 102,
+          "char_quantity": 766,
+          "filename": "ClaudeSonnet4_largest_series_product_v2.go",
+          "fuzzy_score": 64.68,
+          "cosine_similarity_score": 70.88,
+          "similarity_index": 68.09
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_rootulp/claude/ClaudeSonnet4_largest_series_product_v1.go",
+          "word_quantity": 108,
+          "char_quantity": 801,
+          "filename": "ClaudeSonnet4_largest_series_product_v1.go",
+          "fuzzy_score": 86.72,
+          "cosine_similarity_score": 83.2,
+          "similarity_index": 84.79
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_rootulp/claude/ClaudeSonnet4_largest_series_product_v4.go",
+          "word_quantity": 114,
+          "char_quantity": 836,
+          "filename": "ClaudeSonnet4_largest_series_product_v4.go",
+          "fuzzy_score": 84.88,
+          "cosine_similarity_score": 83.81,
+          "similarity_index": 84.29
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_rootulp/gemini/GeminiFlash_largest_series_product_v2.go",
+          "word_quantity": 94,
+          "char_quantity": 686,
+          "filename": "GeminiFlash_largest_series_product_v2.go",
+          "fuzzy_score": 63.86,
+          "cosine_similarity_score": 74.59,
+          "similarity_index": 69.76
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_rootulp/gemini/GeminiFlash_largest_series_product_v3.go",
+          "word_quantity": 94,
+          "char_quantity": 686,
+          "filename": "GeminiFlash_largest_series_product_v3.go",
+          "fuzzy_score": 63.99,
+          "cosine_similarity_score": 74.59,
+          "similarity_index": 69.82
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_rootulp/gemini/GeminiFlash_largest_series_product_v4.go",
+          "word_quantity": 111,
+          "char_quantity": 780,
+          "filename": "GeminiFlash_largest_series_product_v4.go",
+          "fuzzy_score": 62.1,
+          "cosine_similarity_score": 72.09,
+          "similarity_index": 67.59
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_rootulp/gemini/GeminiFlash_largest_series_product_v1.go",
+          "word_quantity": 121,
+          "char_quantity": 866,
+          "filename": "GeminiFlash_largest_series_product_v1.go",
+          "fuzzy_score": 81.1,
+          "cosine_similarity_score": 84.05,
+          "similarity_index": 82.72
         }
-    ]
+      ]
+    },
+    {
+      "id": "go_largest_series_product_Exercism (go_ThomasZumsteg)",
+      "filename": "largest_series_product.go",
+      "language": "go",
+      "source": "Exercism (go_ThomasZumsteg)",
+      "codeSnippetFilePath": "go/largest_series_product_Exercism_go_ThomasZumsteg/largest_series_product.go",
+      "testUnitFilePath": "go/largest_series_product_Exercism_go_ThomasZumsteg/largest_series_product_test.go",
+      "licenseType": "None",
+      "downloadDate": "2025-06-28 16:33:24",
+      "characterQuantity": 922,
+      "wordQuantity": 150,
+      "LLMs": [
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_ThomasZumsteg/openAI/ChatGPT4_largest_series_product_v2.go",
+          "word_quantity": 162,
+          "char_quantity": 1173,
+          "filename": "ChatGPT4_largest_series_product_v2.go",
+          "fuzzy_score": 73.6,
+          "cosine_similarity_score": 81.95,
+          "similarity_index": 78.19
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_ThomasZumsteg/openAI/ChatGPT4_largest_series_product_v3.go",
+          "word_quantity": 128,
+          "char_quantity": 958,
+          "filename": "ChatGPT4_largest_series_product_v3.go",
+          "fuzzy_score": 59.89,
+          "cosine_similarity_score": 73.91,
+          "similarity_index": 67.6
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_ThomasZumsteg/openAI/ChatGPT4_largest_series_product_v4.go",
+          "word_quantity": 129,
+          "char_quantity": 962,
+          "filename": "ChatGPT4_largest_series_product_v4.go",
+          "fuzzy_score": 59.77,
+          "cosine_similarity_score": 73.81,
+          "similarity_index": 67.49
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_ThomasZumsteg/openAI/ChatGPT4_largest_series_product_v1.go",
+          "word_quantity": 162,
+          "char_quantity": 1176,
+          "filename": "ChatGPT4_largest_series_product_v1.go",
+          "fuzzy_score": 80.46,
+          "cosine_similarity_score": 83.65,
+          "similarity_index": 82.21
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_ThomasZumsteg/claude/ClaudeSonnet4_largest_series_product_v3.go",
+          "word_quantity": 133,
+          "char_quantity": 917,
+          "filename": "ClaudeSonnet4_largest_series_product_v3.go",
+          "fuzzy_score": 61.56,
+          "cosine_similarity_score": 77.34,
+          "similarity_index": 70.24
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_ThomasZumsteg/claude/ClaudeSonnet4_largest_series_product_v2.go",
+          "word_quantity": 163,
+          "char_quantity": 1077,
+          "filename": "ClaudeSonnet4_largest_series_product_v2.go",
+          "fuzzy_score": 77.44,
+          "cosine_similarity_score": 85.45,
+          "similarity_index": 81.84
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_ThomasZumsteg/claude/ClaudeSonnet4_largest_series_product_v1.go",
+          "word_quantity": 213,
+          "char_quantity": 1443,
+          "filename": "ClaudeSonnet4_largest_series_product_v1.go",
+          "fuzzy_score": 66.55,
+          "cosine_similarity_score": 78.06,
+          "similarity_index": 72.88
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_ThomasZumsteg/claude/ClaudeSonnet4_largest_series_product_v4.go",
+          "word_quantity": 150,
+          "char_quantity": 1020,
+          "filename": "ClaudeSonnet4_largest_series_product_v4.go",
+          "fuzzy_score": 58.6,
+          "cosine_similarity_score": 74.42,
+          "similarity_index": 67.3
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_ThomasZumsteg/gemini/GeminiFlash_largest_series_product_v2.go",
+          "word_quantity": 161,
+          "char_quantity": 1050,
+          "filename": "GeminiFlash_largest_series_product_v2.go",
+          "fuzzy_score": 81.14,
+          "cosine_similarity_score": 89.45,
+          "similarity_index": 85.71
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_ThomasZumsteg/gemini/GeminiFlash_largest_series_product_v3.go",
+          "word_quantity": 161,
+          "char_quantity": 1051,
+          "filename": "GeminiFlash_largest_series_product_v3.go",
+          "fuzzy_score": 81.09,
+          "cosine_similarity_score": 89.45,
+          "similarity_index": 85.69
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_ThomasZumsteg/gemini/GeminiFlash_largest_series_product_v4.go",
+          "word_quantity": 161,
+          "char_quantity": 1050,
+          "filename": "GeminiFlash_largest_series_product_v4.go",
+          "fuzzy_score": 81.14,
+          "cosine_similarity_score": 89.45,
+          "similarity_index": 85.71
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_ThomasZumsteg/gemini/GeminiFlash_largest_series_product_v1.go",
+          "word_quantity": 161,
+          "char_quantity": 1052,
+          "filename": "GeminiFlash_largest_series_product_v1.go",
+          "fuzzy_score": 81.05,
+          "cosine_similarity_score": 89.45,
+          "similarity_index": 85.67
+        }
+      ]
+    },
+    {
+      "id": "go_largest_series_product_Exercism (go_thinkverse)",
+      "filename": "largest_series_product.go",
+      "language": "go",
+      "source": "Exercism (go_thinkverse)",
+      "codeSnippetFilePath": "go/largest_series_product_Exercism_go_thinkverse/largest_series_product.go",
+      "testUnitFilePath": "go/largest_series_product_Exercism_go_thinkverse/largest_series_product_test.go",
+      "licenseType": "None",
+      "downloadDate": "2025-06-28 16:34:23",
+      "characterQuantity": 150,
+      "wordQuantity": 16,
+      "LLMs": [
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_thinkverse/openAI/ChatGPT4_largest_series_product_v2.go",
+          "word_quantity": 114,
+          "char_quantity": 896,
+          "filename": "ChatGPT4_largest_series_product_v2.go",
+          "fuzzy_score": 26.77,
+          "cosine_similarity_score": 21.34,
+          "similarity_index": 23.78
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_thinkverse/openAI/ChatGPT4_largest_series_product_v3.go",
+          "word_quantity": 119,
+          "char_quantity": 925,
+          "filename": "ChatGPT4_largest_series_product_v3.go",
+          "fuzzy_score": 26.05,
+          "cosine_similarity_score": 20.95,
+          "similarity_index": 23.24
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_thinkverse/openAI/ChatGPT4_largest_series_product_v4.go",
+          "word_quantity": 114,
+          "char_quantity": 896,
+          "filename": "ChatGPT4_largest_series_product_v4.go",
+          "fuzzy_score": 26.77,
+          "cosine_similarity_score": 21.34,
+          "similarity_index": 23.78
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_thinkverse/openAI/ChatGPT4_largest_series_product_v1.go",
+          "word_quantity": 98,
+          "char_quantity": 677,
+          "filename": "ChatGPT4_largest_series_product_v1.go",
+          "fuzzy_score": 33.37,
+          "cosine_similarity_score": 24.09,
+          "similarity_index": 28.27
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_thinkverse/claude/ClaudeSonnet4_largest_series_product_v3.go",
+          "word_quantity": 104,
+          "char_quantity": 743,
+          "filename": "ClaudeSonnet4_largest_series_product_v3.go",
+          "fuzzy_score": 31.35,
+          "cosine_similarity_score": 21.62,
+          "similarity_index": 26.0
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_thinkverse/claude/ClaudeSonnet4_largest_series_product_v2.go",
+          "word_quantity": 134,
+          "char_quantity": 968,
+          "filename": "ClaudeSonnet4_largest_series_product_v2.go",
+          "fuzzy_score": 25.04,
+          "cosine_similarity_score": 19.47,
+          "similarity_index": 21.98
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_thinkverse/claude/ClaudeSonnet4_largest_series_product_v1.go",
+          "word_quantity": 133,
+          "char_quantity": 940,
+          "filename": "ClaudeSonnet4_largest_series_product_v1.go",
+          "fuzzy_score": 25.87,
+          "cosine_similarity_score": 19.49,
+          "similarity_index": 22.36
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_thinkverse/claude/ClaudeSonnet4_largest_series_product_v4.go",
+          "word_quantity": 115,
+          "char_quantity": 846,
+          "filename": "ClaudeSonnet4_largest_series_product_v4.go",
+          "fuzzy_score": 28.11,
+          "cosine_similarity_score": 19.67,
+          "similarity_index": 23.47
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_thinkverse/gemini/GeminiFlash_largest_series_product_v2.go",
+          "word_quantity": 101,
+          "char_quantity": 713,
+          "filename": "GeminiFlash_largest_series_product_v2.go",
+          "fuzzy_score": 32.44,
+          "cosine_similarity_score": 23.94,
+          "similarity_index": 27.77
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_thinkverse/gemini/GeminiFlash_largest_series_product_v3.go",
+          "word_quantity": 103,
+          "char_quantity": 721,
+          "filename": "GeminiFlash_largest_series_product_v3.go",
+          "fuzzy_score": 31.92,
+          "cosine_similarity_score": 23.08,
+          "similarity_index": 27.06
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_thinkverse/gemini/GeminiFlash_largest_series_product_v4.go",
+          "word_quantity": 99,
+          "char_quantity": 697,
+          "filename": "GeminiFlash_largest_series_product_v4.go",
+          "fuzzy_score": 32.82,
+          "cosine_similarity_score": 21.98,
+          "similarity_index": 26.86
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_thinkverse/gemini/GeminiFlash_largest_series_product_v1.go",
+          "word_quantity": 99,
+          "char_quantity": 697,
+          "filename": "GeminiFlash_largest_series_product_v1.go",
+          "fuzzy_score": 32.82,
+          "cosine_similarity_score": 21.98,
+          "similarity_index": 26.86
+        }
+      ]
+    },
+    {
+      "id": "go_largest_series_product_Exercism (go_drapala)",
+      "filename": "largest_series_product.go",
+      "language": "go",
+      "source": "Exercism (go_drapala)",
+      "codeSnippetFilePath": "go/largest_series_product_Exercism_go_drapala/largest_series_product.go",
+      "testUnitFilePath": "go/largest_series_product_Exercism_go_drapala/largest_series_product_test.go",
+      "licenseType": "None",
+      "downloadDate": "2025-06-28 16:35:37",
+      "characterQuantity": 1008,
+      "wordQuantity": 163,
+      "LLMs": [
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_drapala/openAI/ChatGPT4_largest_series_product_v2.go",
+          "word_quantity": 123,
+          "char_quantity": 961,
+          "filename": "ChatGPT4_largest_series_product_v2.go",
+          "fuzzy_score": 51.6,
+          "cosine_similarity_score": 62.0,
+          "similarity_index": 57.32
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_drapala/openAI/ChatGPT4_largest_series_product_v3.go",
+          "word_quantity": 132,
+          "char_quantity": 1029,
+          "filename": "ChatGPT4_largest_series_product_v3.go",
+          "fuzzy_score": 69.71,
+          "cosine_similarity_score": 76.98,
+          "similarity_index": 73.71
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_drapala/openAI/ChatGPT4_largest_series_product_v4.go",
+          "word_quantity": 135,
+          "char_quantity": 1056,
+          "filename": "ChatGPT4_largest_series_product_v4.go",
+          "fuzzy_score": 68.31,
+          "cosine_similarity_score": 74.34,
+          "similarity_index": 71.63
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_drapala/openAI/ChatGPT4_largest_series_product_v1.go",
+          "word_quantity": 137,
+          "char_quantity": 1048,
+          "filename": "ChatGPT4_largest_series_product_v1.go",
+          "fuzzy_score": 70.53,
+          "cosine_similarity_score": 76.08,
+          "similarity_index": 73.58
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_drapala/claude/ClaudeSonnet4_largest_series_product_v3.go",
+          "word_quantity": 157,
+          "char_quantity": 1150,
+          "filename": "ClaudeSonnet4_largest_series_product_v3.go",
+          "fuzzy_score": 75.9,
+          "cosine_similarity_score": 84.9,
+          "similarity_index": 80.85
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_drapala/claude/ClaudeSonnet4_largest_series_product_v2.go",
+          "word_quantity": 172,
+          "char_quantity": 1323,
+          "filename": "ClaudeSonnet4_largest_series_product_v2.go",
+          "fuzzy_score": 64.69,
+          "cosine_similarity_score": 74.38,
+          "similarity_index": 70.02
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_drapala/claude/ClaudeSonnet4_largest_series_product_v1.go",
+          "word_quantity": 164,
+          "char_quantity": 1185,
+          "filename": "ClaudeSonnet4_largest_series_product_v1.go",
+          "fuzzy_score": 79.16,
+          "cosine_similarity_score": 83.16,
+          "similarity_index": 81.36
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_drapala/claude/ClaudeSonnet4_largest_series_product_v4.go",
+          "word_quantity": 146,
+          "char_quantity": 1044,
+          "filename": "ClaudeSonnet4_largest_series_product_v4.go",
+          "fuzzy_score": 76.61,
+          "cosine_similarity_score": 86.31,
+          "similarity_index": 81.94
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_drapala/gemini/GeminiFlash_largest_series_product_v2.go",
+          "word_quantity": 95,
+          "char_quantity": 667,
+          "filename": "GeminiFlash_largest_series_product_v2.go",
+          "fuzzy_score": 56.12,
+          "cosine_similarity_score": 74.7,
+          "similarity_index": 66.34
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_drapala/gemini/GeminiFlash_largest_series_product_v3.go",
+          "word_quantity": 114,
+          "char_quantity": 804,
+          "filename": "GeminiFlash_largest_series_product_v3.go",
+          "fuzzy_score": 77.48,
+          "cosine_similarity_score": 79.0,
+          "similarity_index": 78.32
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_drapala/gemini/GeminiFlash_largest_series_product_v4.go",
+          "word_quantity": 119,
+          "char_quantity": 840,
+          "filename": "GeminiFlash_largest_series_product_v4.go",
+          "fuzzy_score": 59.2,
+          "cosine_similarity_score": 80.6,
+          "similarity_index": 70.97
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/largest_series_product_Exercism_go_drapala/gemini/GeminiFlash_largest_series_product_v1.go",
+          "word_quantity": 118,
+          "char_quantity": 827,
+          "filename": "GeminiFlash_largest_series_product_v1.go",
+          "fuzzy_score": 59.4,
+          "cosine_similarity_score": 77.75,
+          "similarity_index": 69.49
+        }
+      ]
+    }
+  ]
 }

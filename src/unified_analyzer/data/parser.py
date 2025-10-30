@@ -1,8 +1,7 @@
 """Parsing utilities for filenames and data structures"""
 
 import re
-from pathlib import Path
-from typing import Dict, Optional, Tuple
+from typing import Dict, Optional
 
 
 class FilenameParser:
@@ -13,9 +12,11 @@ class FilenameParser:
         """
         Parse output filename to extract metadata
 
-        Formats:
-        - Base: {cluster_name}_results_{exec_number}.json
-        - LLM: {cluster_name}_results_v{prompt_version}_{exec_number}.json
+        Formats (handles ALL naming conventions):
+        - Base with prefix: a####cluster_name_results_{exec_number}.json
+        - Base no prefix: cluster_name_results_{exec_number}.json
+        - LLM with prefix: a####cluster_name_results_v{prompt_version}_{exec_number}.json
+        - LLM no prefix: cluster_name_results_v{prompt_version}_{exec_number}.json
 
         Args:
             filename: Name of the output file
@@ -26,9 +27,10 @@ class FilenameParser:
         # Remove .json extension
         name = filename.replace('.json', '')
 
-        # Pattern for LLM: {cluster_name}_results_v{version}_{exec_num}
+        # Enhanced patterns to capture optional a#### prefix AS PART of cluster name
+        # Pattern for LLM: (a####cluster_name)_results_v{version}_{exec_num}
         llm_pattern = r'^(.+)_results_v(\d+)_(\d+)$'
-        # Pattern for base: {cluster_name}_results_{exec_num}
+        # Pattern for base: (a####cluster_name)_results_{exec_num}
         base_pattern = r'^(.+)_results_(\d+)$'
 
         llm_match = re.match(llm_pattern, name)

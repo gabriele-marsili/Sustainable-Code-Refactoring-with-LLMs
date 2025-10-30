@@ -1,1472 +1,1204 @@
 {
-    "python": [
+  "python": [
+    {
+      "id": "perfect-numbers_27",
+      "filename": "perfect-numbers.py",
+      "language": "python",
+      "source": "exercism_solutions",
+      "codeSnippetFilePath": "python/perfect-numbers/perfect-numbers.py",
+      "testUnitFilePath": "python/perfect-numbers/perfect-numbers_testSuite.py",
+      "downloadDate": "2025-06-03 19:17:14",
+      "characterQuantity": 495,
+      "wordQuantity": 70,
+      "licenseType": "None",
+      "LLMs": [
         {
-            "id": "perfect-numbers_27",
-            "filename": "perfect-numbers.py",
-            "language": "python",
-            "source": "exercism_solutions",
-            "codeSnippetFilePath": "python/perfect-numbers/perfect-numbers.py",
-            "testUnitFilePath": "python/perfect-numbers/perfect-numbers_testSuite.py",
-            "downloadDate": "2025-06-03 19:17:14",
-            "characterQuantity": 495,
-            "wordQuantity": 70,
-            "licenseType": "None",
-            "LLMs": [
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/perfect-numbers/openAI/ChatGPT4_perfect-numbers_v3.py",
-                    "word_quantity": 62,
-                    "char_quantity": 493,
-                    "filename": "ChatGPT4_perfect-numbers_v3.py",
-                    "fuzzy_score": 79.15,
-                    "cosine_similarity_score": 86.06,
-                    "similarity_index": 82.95
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/perfect-numbers/openAI/ChatGPT4_perfect-numbers_v2.py",
-                    "word_quantity": 93,
-                    "char_quantity": 664,
-                    "filename": "ChatGPT4_perfect-numbers_v2.py",
-                    "fuzzy_score": 71.79,
-                    "cosine_similarity_score": 80.52,
-                    "similarity_index": 76.59
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/perfect-numbers/openAI/ChatGPT4_perfect-numbers_v1.py",
-                    "word_quantity": 93,
-                    "char_quantity": 664,
-                    "filename": "ChatGPT4_perfect-numbers_v1.py",
-                    "fuzzy_score": 71.79,
-                    "cosine_similarity_score": 80.52,
-                    "similarity_index": 76.59
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/perfect-numbers/openAI/ChatGPT4_perfect-numbers_v4.py",
-                    "word_quantity": 80,
-                    "char_quantity": 508,
-                    "filename": "ChatGPT4_perfect-numbers_v4.py",
-                    "fuzzy_score": 78.17,
-                    "cosine_similarity_score": 79.27,
-                    "similarity_index": 78.77
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/perfect-numbers/claude/ClaudeSonnet4_perfect-numbers_v1.py",
-                    "word_quantity": 81,
-                    "char_quantity": 644,
-                    "filename": "ClaudeSonnet4_perfect-numbers_v1.py",
-                    "fuzzy_score": 72.7,
-                    "cosine_similarity_score": 84.07,
-                    "similarity_index": 78.95
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/perfect-numbers/claude/ClaudeSonnet4_perfect-numbers_v4.py",
-                    "word_quantity": 63,
-                    "char_quantity": 533,
-                    "filename": "ClaudeSonnet4_perfect-numbers_v4.py",
-                    "fuzzy_score": 78.4,
-                    "cosine_similarity_score": 83.11,
-                    "similarity_index": 80.99
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/perfect-numbers/claude/ClaudeSonnet4_perfect-numbers_v3.py",
-                    "word_quantity": 63,
-                    "char_quantity": 533,
-                    "filename": "ClaudeSonnet4_perfect-numbers_v3.py",
-                    "fuzzy_score": 78.4,
-                    "cosine_similarity_score": 83.11,
-                    "similarity_index": 80.99
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/perfect-numbers/claude/ClaudeSonnet4_perfect-numbers_v2.py",
-                    "word_quantity": 81,
-                    "char_quantity": 644,
-                    "filename": "ClaudeSonnet4_perfect-numbers_v2.py",
-                    "fuzzy_score": 72.7,
-                    "cosine_similarity_score": 84.07,
-                    "similarity_index": 78.95
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/perfect-numbers/gemini/GeminiFlash_perfect-numbers_v4.py",
-                    "word_quantity": 64,
-                    "char_quantity": 538,
-                    "filename": "GeminiFlash_perfect-numbers_v4.py",
-                    "fuzzy_score": 75.7,
-                    "cosine_similarity_score": 69.22,
-                    "similarity_index": 72.14
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/perfect-numbers/gemini/GeminiFlash_perfect-numbers_v1.py",
-                    "word_quantity": 63,
-                    "char_quantity": 477,
-                    "filename": "GeminiFlash_perfect-numbers_v1.py",
-                    "fuzzy_score": 79.42,
-                    "cosine_similarity_score": 86.81,
-                    "similarity_index": 83.49
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/perfect-numbers/gemini/GeminiFlash_perfect-numbers_v2.py",
-                    "word_quantity": 73,
-                    "char_quantity": 573,
-                    "filename": "GeminiFlash_perfect-numbers_v2.py",
-                    "fuzzy_score": 74.72,
-                    "cosine_similarity_score": 81.63,
-                    "similarity_index": 78.52
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/perfect-numbers/gemini/GeminiFlash_perfect-numbers_v3.py",
-                    "word_quantity": 67,
-                    "char_quantity": 540,
-                    "filename": "GeminiFlash_perfect-numbers_v3.py",
-                    "fuzzy_score": 76.71,
-                    "cosine_similarity_score": 70.02,
-                    "similarity_index": 73.03
-                }
-            ]
-        }
-    ],
-    "javascript": [
-        {
-            "id": "javascript_perfect-numbers_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
-            "filename": "perfect-numbers.js",
-            "language": "javascript",
-            "source": "exercism-javascript-ThomasZumsteg",
-            "codeSnippetFilePath": "javascript/perfect-numbers_exercism-javascript-ThomasZumsteg/perfect-numbers.js",
-            "testUnitFilePath": "javascript/perfect-numbers_exercism-javascript-ThomasZumsteg/perfect-numbers_testSuite.js",
-            "licenseType": "None",
-            "downloadDate": "2025-06-25 13:04:00",
-            "characterQuantity": 755,
-            "wordQuantity": 97,
-            "LLMs": [
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/perfect-numbers_exercism-javascript-ThomasZumsteg/openAI/ChatGPT4_perfect-numbers_v3.js",
-                    "word_quantity": 77,
-                    "char_quantity": 751,
-                    "filename": "ChatGPT4_perfect-numbers_v3.js",
-                    "fuzzy_score": 83.46,
-                    "cosine_similarity_score": 84.92,
-                    "similarity_index": 84.26
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/perfect-numbers_exercism-javascript-ThomasZumsteg/openAI/ChatGPT4_perfect-numbers_v2.js",
-                    "word_quantity": 77,
-                    "char_quantity": 735,
-                    "filename": "ChatGPT4_perfect-numbers_v2.js",
-                    "fuzzy_score": 80.46,
-                    "cosine_similarity_score": 84.92,
-                    "similarity_index": 82.91
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/perfect-numbers_exercism-javascript-ThomasZumsteg/openAI/ChatGPT4_perfect-numbers_v1.js",
-                    "word_quantity": 77,
-                    "char_quantity": 735,
-                    "filename": "ChatGPT4_perfect-numbers_v1.js",
-                    "fuzzy_score": 80.46,
-                    "cosine_similarity_score": 84.92,
-                    "similarity_index": 82.91
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/perfect-numbers_exercism-javascript-ThomasZumsteg/openAI/ChatGPT4_perfect-numbers_v4.js",
-                    "word_quantity": 77,
-                    "char_quantity": 703,
-                    "filename": "ChatGPT4_perfect-numbers_v4.js",
-                    "fuzzy_score": 80.03,
-                    "cosine_similarity_score": 84.92,
-                    "similarity_index": 82.72
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/perfect-numbers_exercism-javascript-ThomasZumsteg/claude/ClaudeSonnet4_perfect-numbers_v1.js",
-                    "word_quantity": 103,
-                    "char_quantity": 1154,
-                    "filename": "ClaudeSonnet4_perfect-numbers_v1.js",
-                    "fuzzy_score": 72.75,
-                    "cosine_similarity_score": 78.52,
-                    "similarity_index": 75.92
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/perfect-numbers_exercism-javascript-ThomasZumsteg/claude/ClaudeSonnet4_perfect-numbers_v4.js",
-                    "word_quantity": 103,
-                    "char_quantity": 1154,
-                    "filename": "ClaudeSonnet4_perfect-numbers_v4.js",
-                    "fuzzy_score": 72.75,
-                    "cosine_similarity_score": 78.52,
-                    "similarity_index": 75.92
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/perfect-numbers_exercism-javascript-ThomasZumsteg/claude/ClaudeSonnet4_perfect-numbers_v3.js",
-                    "word_quantity": 103,
-                    "char_quantity": 1154,
-                    "filename": "ClaudeSonnet4_perfect-numbers_v3.js",
-                    "fuzzy_score": 72.75,
-                    "cosine_similarity_score": 78.52,
-                    "similarity_index": 75.92
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/perfect-numbers_exercism-javascript-ThomasZumsteg/claude/ClaudeSonnet4_perfect-numbers_v2.js",
-                    "word_quantity": 72,
-                    "char_quantity": 779,
-                    "filename": "ClaudeSonnet4_perfect-numbers_v2.js",
-                    "fuzzy_score": 86.5,
-                    "cosine_similarity_score": 78.94,
-                    "similarity_index": 82.34
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/perfect-numbers_exercism-javascript-ThomasZumsteg/gemini/GeminiFlash_perfect-numbers_v4.js",
-                    "word_quantity": 92,
-                    "char_quantity": 968,
-                    "filename": "GeminiFlash_perfect-numbers_v4.js",
-                    "fuzzy_score": 81.42,
-                    "cosine_similarity_score": 83.76,
-                    "similarity_index": 82.71
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/perfect-numbers_exercism-javascript-ThomasZumsteg/gemini/GeminiFlash_perfect-numbers_v1.js",
-                    "word_quantity": 85,
-                    "char_quantity": 905,
-                    "filename": "GeminiFlash_perfect-numbers_v1.js",
-                    "fuzzy_score": 83.91,
-                    "cosine_similarity_score": 89.08,
-                    "similarity_index": 86.75
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/perfect-numbers_exercism-javascript-ThomasZumsteg/gemini/GeminiFlash_perfect-numbers_v2.js",
-                    "word_quantity": 92,
-                    "char_quantity": 976,
-                    "filename": "GeminiFlash_perfect-numbers_v2.js",
-                    "fuzzy_score": 80.92,
-                    "cosine_similarity_score": 83.76,
-                    "similarity_index": 82.49
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/perfect-numbers_exercism-javascript-ThomasZumsteg/gemini/GeminiFlash_perfect-numbers_v3.js",
-                    "word_quantity": 102,
-                    "char_quantity": 1120,
-                    "filename": "GeminiFlash_perfect-numbers_v3.js",
-                    "fuzzy_score": 74.49,
-                    "cosine_similarity_score": 86.13,
-                    "similarity_index": 80.9
-                }
-            ]
-        }
-    ],
-    "typescript": [
-        {
-            "id": "typescript_perfect-numbers_Exercism-typescript-shybyte_shybyte",
-            "filename": "perfect-numbers.ts",
-            "language": "typescript",
-            "source": "Exercism-typescript-shybyte",
-            "codeSnippetFilePath": "typescript/perfect-numbers_Exercism-typescript-shybyte/perfect-numbers.ts",
-            "testUnitFilePath": "typescript/perfect-numbers_Exercism-typescript-shybyte/perfect-numbers.test.ts",
-            "licenseType": "None",
-            "downloadDate": "2025-06-25 12:58:24",
-            "characterQuantity": 592,
-            "wordQuantity": 84,
-            "LLMs": [
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/openAI/ChatGPT4_perfect-numbers_v3.js",
-                    "word_quantity": 79,
-                    "char_quantity": 739,
-                    "filename": "ChatGPT4_perfect-numbers_v3.js",
-                    "fuzzy_score": 67.92,
-                    "cosine_similarity_score": 83.74,
-                    "similarity_index": 76.62
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/openAI/ChatGPT4_perfect-numbers_v2.js",
-                    "word_quantity": 94,
-                    "char_quantity": 917,
-                    "filename": "ChatGPT4_perfect-numbers_v2.js",
-                    "fuzzy_score": 73.96,
-                    "cosine_similarity_score": 86.95,
-                    "similarity_index": 81.1
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/openAI/ChatGPT4_perfect-numbers_v4.ts",
-                    "word_quantity": 76,
-                    "char_quantity": 713,
-                    "filename": "ChatGPT4_perfect-numbers_v4.ts",
-                    "fuzzy_score": 73.72,
-                    "cosine_similarity_score": 89.4,
-                    "similarity_index": 82.34
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/openAI/ChatGPT4_perfect-numbers_v1.ts",
-                    "word_quantity": 99,
-                    "char_quantity": 869,
-                    "filename": "ChatGPT4_perfect-numbers_v1.ts",
-                    "fuzzy_score": 80.63,
-                    "cosine_similarity_score": 89.73,
-                    "similarity_index": 85.63
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/openAI/ChatGPT4_perfect-numbers_v2.ts",
-                    "word_quantity": 89,
-                    "char_quantity": 829,
-                    "filename": "ChatGPT4_perfect-numbers_v2.ts",
-                    "fuzzy_score": 82.9,
-                    "cosine_similarity_score": 91.92,
-                    "similarity_index": 87.86
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/openAI/ChatGPT4_perfect-numbers_v3.ts",
-                    "word_quantity": 74,
-                    "char_quantity": 651,
-                    "filename": "ChatGPT4_perfect-numbers_v3.ts",
-                    "fuzzy_score": 77.39,
-                    "cosine_similarity_score": 89.19,
-                    "similarity_index": 83.88
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/openAI/ChatGPT4_perfect-numbers_v1.js",
-                    "word_quantity": 106,
-                    "char_quantity": 965,
-                    "filename": "ChatGPT4_perfect-numbers_v1.js",
-                    "fuzzy_score": 72.06,
-                    "cosine_similarity_score": 85.15,
-                    "similarity_index": 79.26
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/openAI/ChatGPT4_perfect-numbers_v4.js",
-                    "word_quantity": 79,
-                    "char_quantity": 755,
-                    "filename": "ChatGPT4_perfect-numbers_v4.js",
-                    "fuzzy_score": 67.11,
-                    "cosine_similarity_score": 83.74,
-                    "similarity_index": 76.26
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/claude/ClaudeSonnet4_perfect-numbers_v2.ts",
-                    "word_quantity": 88,
-                    "char_quantity": 838,
-                    "filename": "ClaudeSonnet4_perfect-numbers_v2.ts",
-                    "fuzzy_score": 82.38,
-                    "cosine_similarity_score": 90.63,
-                    "similarity_index": 86.92
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/claude/ClaudeSonnet4_perfect-numbers_v3.ts",
-                    "word_quantity": 82,
-                    "char_quantity": 841,
-                    "filename": "ClaudeSonnet4_perfect-numbers_v3.ts",
-                    "fuzzy_score": 82.21,
-                    "cosine_similarity_score": 91.08,
-                    "similarity_index": 87.09
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/claude/ClaudeSonnet4_perfect-numbers_v1.js",
-                    "word_quantity": 95,
-                    "char_quantity": 943,
-                    "filename": "ClaudeSonnet4_perfect-numbers_v1.js",
-                    "fuzzy_score": 72.7,
-                    "cosine_similarity_score": 86.05,
-                    "similarity_index": 80.04
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/claude/ClaudeSonnet4_perfect-numbers_v4.js",
-                    "word_quantity": 87,
-                    "char_quantity": 906,
-                    "filename": "ClaudeSonnet4_perfect-numbers_v4.js",
-                    "fuzzy_score": 74.5,
-                    "cosine_similarity_score": 86.2,
-                    "similarity_index": 80.94
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/claude/ClaudeSonnet4_perfect-numbers_v3.js",
-                    "word_quantity": 87,
-                    "char_quantity": 908,
-                    "filename": "ClaudeSonnet4_perfect-numbers_v3.js",
-                    "fuzzy_score": 74.4,
-                    "cosine_similarity_score": 86.2,
-                    "similarity_index": 80.89
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/claude/ClaudeSonnet4_perfect-numbers_v2.js",
-                    "word_quantity": 95,
-                    "char_quantity": 944,
-                    "filename": "ClaudeSonnet4_perfect-numbers_v2.js",
-                    "fuzzy_score": 72.66,
-                    "cosine_similarity_score": 86.05,
-                    "similarity_index": 80.02
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/claude/ClaudeSonnet4_perfect-numbers_v4.ts",
-                    "word_quantity": 82,
-                    "char_quantity": 851,
-                    "filename": "ClaudeSonnet4_perfect-numbers_v4.ts",
-                    "fuzzy_score": 81.64,
-                    "cosine_similarity_score": 91.08,
-                    "similarity_index": 86.83
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/claude/ClaudeSonnet4_perfect-numbers_v1.ts",
-                    "word_quantity": 88,
-                    "char_quantity": 837,
-                    "filename": "ClaudeSonnet4_perfect-numbers_v1.ts",
-                    "fuzzy_score": 82.44,
-                    "cosine_similarity_score": 90.63,
-                    "similarity_index": 86.94
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/gemini/GeminiFlash_perfect-numbers_v4.js",
-                    "word_quantity": 83,
-                    "char_quantity": 842,
-                    "filename": "GeminiFlash_perfect-numbers_v4.js",
-                    "fuzzy_score": 77.82,
-                    "cosine_similarity_score": 91.21,
-                    "similarity_index": 85.19
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/gemini/GeminiFlash_perfect-numbers_v1.js",
-                    "word_quantity": 83,
-                    "char_quantity": 842,
-                    "filename": "GeminiFlash_perfect-numbers_v1.js",
-                    "fuzzy_score": 77.82,
-                    "cosine_similarity_score": 91.21,
-                    "similarity_index": 85.19
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/gemini/GeminiFlash_perfect-numbers_v3.ts",
-                    "word_quantity": 76,
-                    "char_quantity": 733,
-                    "filename": "GeminiFlash_perfect-numbers_v3.ts",
-                    "fuzzy_score": 88.91,
-                    "cosine_similarity_score": 96.66,
-                    "similarity_index": 93.17
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/gemini/GeminiFlash_perfect-numbers_v2.ts",
-                    "word_quantity": 73,
-                    "char_quantity": 713,
-                    "filename": "GeminiFlash_perfect-numbers_v2.ts",
-                    "fuzzy_score": 90.42,
-                    "cosine_similarity_score": 97.85,
-                    "similarity_index": 94.5
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/gemini/GeminiFlash_perfect-numbers_v1.ts",
-                    "word_quantity": 76,
-                    "char_quantity": 734,
-                    "filename": "GeminiFlash_perfect-numbers_v1.ts",
-                    "fuzzy_score": 88.84,
-                    "cosine_similarity_score": 96.66,
-                    "similarity_index": 93.14
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/gemini/GeminiFlash_perfect-numbers_v4.ts",
-                    "word_quantity": 76,
-                    "char_quantity": 738,
-                    "filename": "GeminiFlash_perfect-numbers_v4.ts",
-                    "fuzzy_score": 88.57,
-                    "cosine_similarity_score": 96.66,
-                    "similarity_index": 93.02
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/gemini/GeminiFlash_perfect-numbers_v2.js",
-                    "word_quantity": 80,
-                    "char_quantity": 817,
-                    "filename": "GeminiFlash_perfect-numbers_v2.js",
-                    "fuzzy_score": 79.35,
-                    "cosine_similarity_score": 92.24,
-                    "similarity_index": 86.44
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/gemini/GeminiFlash_perfect-numbers_v3.js",
-                    "word_quantity": 83,
-                    "char_quantity": 842,
-                    "filename": "GeminiFlash_perfect-numbers_v3.js",
-                    "fuzzy_score": 77.82,
-                    "cosine_similarity_score": 91.21,
-                    "similarity_index": 85.19
-                }
-            ]
-        }
-    ],
-    "c": [
-        {
-            "id": "c_perfect_numbers_Exercism (ThomasZumsteg)",
-            "filename": "perfect_numbers.c",
-            "language": "c",
-            "source": "Exercism (ThomasZumsteg)",
-            "codeSnippetFilePath": "c/perfect_numbers_Exercism_ThomasZumsteg/src",
-            "testUnitFilePath": "c/perfect_numbers_Exercism_ThomasZumsteg/test",
-            "licenseType": "None",
-            "downloadDate": "2025-06-23 17:44:18",
-            "characterQuantity": 503,
-            "wordQuantity": 85,
-            "LLMs": [
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_ThomasZumsteg/openAI/ChatGPT4_perfect_numbers_v2.c",
-                    "word_quantity": 97,
-                    "char_quantity": 750,
-                    "filename": "ChatGPT4_perfect_numbers_v2.c",
-                    "fuzzy_score": 66.56,
-                    "cosine_similarity_score": 83.43,
-                    "similarity_index": 75.84
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_ThomasZumsteg/openAI/ChatGPT4_perfect_numbers_v1.c",
-                    "word_quantity": 89,
-                    "char_quantity": 691,
-                    "filename": "ChatGPT4_perfect_numbers_v1.c",
-                    "fuzzy_score": 71.52,
-                    "cosine_similarity_score": 87.93,
-                    "similarity_index": 80.55
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_ThomasZumsteg/openAI/ChatGPT4_perfect_numbers_v4.c",
-                    "word_quantity": 72,
-                    "char_quantity": 569,
-                    "filename": "ChatGPT4_perfect_numbers_v4.c",
-                    "fuzzy_score": 76.49,
-                    "cosine_similarity_score": 88.6,
-                    "similarity_index": 83.15
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_ThomasZumsteg/openAI/ChatGPT4_perfect_numbers_v3.c",
-                    "word_quantity": 72,
-                    "char_quantity": 571,
-                    "filename": "ChatGPT4_perfect_numbers_v3.c",
-                    "fuzzy_score": 77.28,
-                    "cosine_similarity_score": 89.07,
-                    "similarity_index": 83.77
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_ThomasZumsteg/claude/ClaudeSonnet4_perfect_numbers_v4.c",
-                    "word_quantity": 84,
-                    "char_quantity": 739,
-                    "filename": "ClaudeSonnet4_perfect_numbers_v4.c",
-                    "fuzzy_score": 70.69,
-                    "cosine_similarity_score": 80.63,
-                    "similarity_index": 76.16
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_ThomasZumsteg/claude/ClaudeSonnet4_perfect_numbers_v3.c",
-                    "word_quantity": 79,
-                    "char_quantity": 711,
-                    "filename": "ClaudeSonnet4_perfect_numbers_v3.c",
-                    "fuzzy_score": 72.32,
-                    "cosine_similarity_score": 80.22,
-                    "similarity_index": 76.67
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_ThomasZumsteg/claude/ClaudeSonnet4_perfect_numbers_v2.c",
-                    "word_quantity": 89,
-                    "char_quantity": 815,
-                    "filename": "ClaudeSonnet4_perfect_numbers_v2.c",
-                    "fuzzy_score": 66.62,
-                    "cosine_similarity_score": 86.21,
-                    "similarity_index": 77.39
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_ThomasZumsteg/claude/ClaudeSonnet4_perfect_numbers_v1.c",
-                    "word_quantity": 92,
-                    "char_quantity": 830,
-                    "filename": "ClaudeSonnet4_perfect_numbers_v1.c",
-                    "fuzzy_score": 65.87,
-                    "cosine_similarity_score": 85.72,
-                    "similarity_index": 76.79
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_ThomasZumsteg/gemini/GeminiFlash_perfect_numbers_v1.c",
-                    "word_quantity": 72,
-                    "char_quantity": 640,
-                    "filename": "GeminiFlash_perfect_numbers_v1.c",
-                    "fuzzy_score": 68.77,
-                    "cosine_similarity_score": 55.54,
-                    "similarity_index": 61.49
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_ThomasZumsteg/gemini/GeminiFlash_perfect_numbers_v2.c",
-                    "word_quantity": 72,
-                    "char_quantity": 640,
-                    "filename": "GeminiFlash_perfect_numbers_v2.c",
-                    "fuzzy_score": 68.77,
-                    "cosine_similarity_score": 55.54,
-                    "similarity_index": 61.49
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_ThomasZumsteg/gemini/GeminiFlash_perfect_numbers_v3.c",
-                    "word_quantity": 75,
-                    "char_quantity": 611,
-                    "filename": "GeminiFlash_perfect_numbers_v3.c",
-                    "fuzzy_score": 74.69,
-                    "cosine_similarity_score": 95.26,
-                    "similarity_index": 86.0
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_ThomasZumsteg/gemini/GeminiFlash_perfect_numbers_v4.c",
-                    "word_quantity": 74,
-                    "char_quantity": 627,
-                    "filename": "GeminiFlash_perfect_numbers_v4.c",
-                    "fuzzy_score": 72.74,
-                    "cosine_similarity_score": 90.45,
-                    "similarity_index": 82.48
-                }
-            ]
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/perfect-numbers/openAI/ChatGPT4_perfect-numbers_v3.py",
+          "word_quantity": 62,
+          "char_quantity": 493,
+          "filename": "ChatGPT4_perfect-numbers_v3.py",
+          "fuzzy_score": 79.15,
+          "cosine_similarity_score": 86.06,
+          "similarity_index": 82.95
         },
         {
-            "id": "c_perfect_numbers_Exercism (chriswilding)",
-            "filename": "perfect_numbers.c",
-            "language": "c",
-            "source": "Exercism (chriswilding)",
-            "codeSnippetFilePath": "c/perfect_numbers_Exercism_chriswilding/src",
-            "testUnitFilePath": "c/perfect_numbers_Exercism_chriswilding/test",
-            "licenseType": "MIT",
-            "downloadDate": "2025-06-27 11:50:34",
-            "characterQuantity": 351,
-            "wordQuantity": 61,
-            "LLMs": [
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_chriswilding/openAI/ChatGPT4_perfect_numbers_v2.c",
-                    "word_quantity": 70,
-                    "char_quantity": 526,
-                    "filename": "ChatGPT4_perfect_numbers_v2.c",
-                    "fuzzy_score": 75.26,
-                    "cosine_similarity_score": 87.5,
-                    "similarity_index": 81.99
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_chriswilding/openAI/ChatGPT4_perfect_numbers_v1.c",
-                    "word_quantity": 70,
-                    "char_quantity": 520,
-                    "filename": "ChatGPT4_perfect_numbers_v1.c",
-                    "fuzzy_score": 76.69,
-                    "cosine_similarity_score": 87.86,
-                    "similarity_index": 82.83
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_chriswilding/openAI/ChatGPT4_perfect_numbers_v4.c",
-                    "word_quantity": 56,
-                    "char_quantity": 438,
-                    "filename": "ChatGPT4_perfect_numbers_v4.c",
-                    "fuzzy_score": 82.89,
-                    "cosine_similarity_score": 90.96,
-                    "similarity_index": 87.33
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_chriswilding/openAI/ChatGPT4_perfect_numbers_v3.c",
-                    "word_quantity": 70,
-                    "char_quantity": 514,
-                    "filename": "ChatGPT4_perfect_numbers_v3.c",
-                    "fuzzy_score": 77.23,
-                    "cosine_similarity_score": 87.86,
-                    "similarity_index": 83.07
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_chriswilding/claude/ClaudeSonnet4_perfect_numbers_v4.c",
-                    "word_quantity": 65,
-                    "char_quantity": 534,
-                    "filename": "ClaudeSonnet4_perfect_numbers_v4.c",
-                    "fuzzy_score": 74.58,
-                    "cosine_similarity_score": 94.08,
-                    "similarity_index": 85.31
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_chriswilding/claude/ClaudeSonnet4_perfect_numbers_v3.c",
-                    "word_quantity": 64,
-                    "char_quantity": 577,
-                    "filename": "ClaudeSonnet4_perfect_numbers_v3.c",
-                    "fuzzy_score": 67.46,
-                    "cosine_similarity_score": 84.32,
-                    "similarity_index": 76.73
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_chriswilding/claude/ClaudeSonnet4_perfect_numbers_v2.c",
-                    "word_quantity": 75,
-                    "char_quantity": 661,
-                    "filename": "ClaudeSonnet4_perfect_numbers_v2.c",
-                    "fuzzy_score": 65.81,
-                    "cosine_similarity_score": 85.01,
-                    "similarity_index": 76.37
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_chriswilding/claude/ClaudeSonnet4_perfect_numbers_v1.c",
-                    "word_quantity": 71,
-                    "char_quantity": 577,
-                    "filename": "ClaudeSonnet4_perfect_numbers_v1.c",
-                    "fuzzy_score": 70.91,
-                    "cosine_similarity_score": 95.04,
-                    "similarity_index": 84.18
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_chriswilding/gemini/GeminiFlash_perfect_numbers_v1.c",
-                    "word_quantity": 44,
-                    "char_quantity": 347,
-                    "filename": "GeminiFlash_perfect_numbers_v1.c",
-                    "fuzzy_score": 94.27,
-                    "cosine_similarity_score": 99.02,
-                    "similarity_index": 96.88
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_chriswilding/gemini/GeminiFlash_perfect_numbers_v2.c",
-                    "word_quantity": 58,
-                    "char_quantity": 468,
-                    "filename": "GeminiFlash_perfect_numbers_v2.c",
-                    "fuzzy_score": 83.03,
-                    "cosine_similarity_score": 94.69,
-                    "similarity_index": 89.44
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_chriswilding/gemini/GeminiFlash_perfect_numbers_v3.c",
-                    "word_quantity": 60,
-                    "char_quantity": 505,
-                    "filename": "GeminiFlash_perfect_numbers_v3.c",
-                    "fuzzy_score": 78.27,
-                    "cosine_similarity_score": 94.43,
-                    "similarity_index": 87.16
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_chriswilding/gemini/GeminiFlash_perfect_numbers_v4.c",
-                    "word_quantity": 44,
-                    "char_quantity": 347,
-                    "filename": "GeminiFlash_perfect_numbers_v4.c",
-                    "fuzzy_score": 94.56,
-                    "cosine_similarity_score": 99.02,
-                    "similarity_index": 97.01
-                }
-            ]
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/perfect-numbers/openAI/ChatGPT4_perfect-numbers_v2.py",
+          "word_quantity": 93,
+          "char_quantity": 664,
+          "filename": "ChatGPT4_perfect-numbers_v2.py",
+          "fuzzy_score": 71.79,
+          "cosine_similarity_score": 80.52,
+          "similarity_index": 76.59
         },
         {
-            "id": "c_perfect_numbers_Exercism (m3g4d1v3r)",
-            "filename": "perfect_numbers.c",
-            "language": "c",
-            "source": "Exercism (m3g4d1v3r)",
-            "codeSnippetFilePath": "c/perfect_numbers_Exercism_m3g4d1v3r/src",
-            "testUnitFilePath": "c/perfect_numbers_Exercism_m3g4d1v3r/test",
-            "licenseType": "None",
-            "downloadDate": "2025-06-27 11:55:40",
-            "characterQuantity": 589,
-            "wordQuantity": 72,
-            "LLMs": [
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_m3g4d1v3r/openAI/ChatGPT4_perfect_numbers_v2.c",
-                    "word_quantity": 81,
-                    "char_quantity": 799,
-                    "filename": "ChatGPT4_perfect_numbers_v2.c",
-                    "fuzzy_score": 77.95,
-                    "cosine_similarity_score": 95.89,
-                    "similarity_index": 87.82
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_m3g4d1v3r/openAI/ChatGPT4_perfect_numbers_v1.c",
-                    "word_quantity": 81,
-                    "char_quantity": 799,
-                    "filename": "ChatGPT4_perfect_numbers_v1.c",
-                    "fuzzy_score": 77.95,
-                    "cosine_similarity_score": 95.89,
-                    "similarity_index": 87.82
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_m3g4d1v3r/openAI/ChatGPT4_perfect_numbers_v4.c",
-                    "word_quantity": 71,
-                    "char_quantity": 658,
-                    "filename": "ChatGPT4_perfect_numbers_v4.c",
-                    "fuzzy_score": 80.99,
-                    "cosine_similarity_score": 75.2,
-                    "similarity_index": 77.81
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_m3g4d1v3r/openAI/ChatGPT4_perfect_numbers_v3.c",
-                    "word_quantity": 71,
-                    "char_quantity": 658,
-                    "filename": "ChatGPT4_perfect_numbers_v3.c",
-                    "fuzzy_score": 80.99,
-                    "cosine_similarity_score": 75.2,
-                    "similarity_index": 77.81
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_m3g4d1v3r/claude/ClaudeSonnet4_perfect_numbers_v4.c",
-                    "word_quantity": 82,
-                    "char_quantity": 916,
-                    "filename": "ClaudeSonnet4_perfect_numbers_v4.c",
-                    "fuzzy_score": 69.5,
-                    "cosine_similarity_score": 75.41,
-                    "similarity_index": 72.75
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_m3g4d1v3r/claude/ClaudeSonnet4_perfect_numbers_v3.c",
-                    "word_quantity": 82,
-                    "char_quantity": 916,
-                    "filename": "ClaudeSonnet4_perfect_numbers_v3.c",
-                    "fuzzy_score": 69.5,
-                    "cosine_similarity_score": 75.41,
-                    "similarity_index": 72.75
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_m3g4d1v3r/claude/ClaudeSonnet4_perfect_numbers_v2.c",
-                    "word_quantity": 95,
-                    "char_quantity": 963,
-                    "filename": "ClaudeSonnet4_perfect_numbers_v2.c",
-                    "fuzzy_score": 68.04,
-                    "cosine_similarity_score": 72.59,
-                    "similarity_index": 70.54
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_m3g4d1v3r/claude/ClaudeSonnet4_perfect_numbers_v1.c",
-                    "word_quantity": 95,
-                    "char_quantity": 963,
-                    "filename": "ClaudeSonnet4_perfect_numbers_v1.c",
-                    "fuzzy_score": 68.04,
-                    "cosine_similarity_score": 72.59,
-                    "similarity_index": 70.54
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_m3g4d1v3r/gemini/GeminiFlash_perfect_numbers_v1.c",
-                    "word_quantity": 75,
-                    "char_quantity": 750,
-                    "filename": "GeminiFlash_perfect_numbers_v1.c",
-                    "fuzzy_score": 73.94,
-                    "cosine_similarity_score": 72.49,
-                    "similarity_index": 73.14
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_m3g4d1v3r/gemini/GeminiFlash_perfect_numbers_v2.c",
-                    "word_quantity": 75,
-                    "char_quantity": 752,
-                    "filename": "GeminiFlash_perfect_numbers_v2.c",
-                    "fuzzy_score": 73.83,
-                    "cosine_similarity_score": 72.49,
-                    "similarity_index": 73.09
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_m3g4d1v3r/gemini/GeminiFlash_perfect_numbers_v3.c",
-                    "word_quantity": 79,
-                    "char_quantity": 759,
-                    "filename": "GeminiFlash_perfect_numbers_v3.c",
-                    "fuzzy_score": 74.18,
-                    "cosine_similarity_score": 73.62,
-                    "similarity_index": 73.87
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_m3g4d1v3r/gemini/GeminiFlash_perfect_numbers_v4.c",
-                    "word_quantity": 72,
-                    "char_quantity": 699,
-                    "filename": "GeminiFlash_perfect_numbers_v4.c",
-                    "fuzzy_score": 76.24,
-                    "cosine_similarity_score": 72.12,
-                    "similarity_index": 73.98
-                }
-            ]
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/perfect-numbers/openAI/ChatGPT4_perfect-numbers_v1.py",
+          "word_quantity": 93,
+          "char_quantity": 664,
+          "filename": "ChatGPT4_perfect-numbers_v1.py",
+          "fuzzy_score": 71.79,
+          "cosine_similarity_score": 80.52,
+          "similarity_index": 76.59
         },
         {
-            "id": "c_perfect_numbers_Exercism (leleah)",
-            "filename": "perfect_numbers.c",
-            "language": "c",
-            "source": "Exercism (leleah)",
-            "codeSnippetFilePath": "c/perfect_numbers_Exercism_leleah/src",
-            "testUnitFilePath": "c/perfect_numbers_Exercism_leleah/test",
-            "licenseType": "None",
-            "downloadDate": "2025-06-27 12:05:50",
-            "characterQuantity": 434,
-            "wordQuantity": 52,
-            "LLMs": [
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_leleah/openAI/ChatGPT4_perfect_numbers_v2.c",
-                    "word_quantity": 64,
-                    "char_quantity": 487,
-                    "filename": "ChatGPT4_perfect_numbers_v2.c",
-                    "fuzzy_score": 69.71,
-                    "cosine_similarity_score": 85.78,
-                    "similarity_index": 78.55
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_leleah/openAI/ChatGPT4_perfect_numbers_v1.c",
-                    "word_quantity": 64,
-                    "char_quantity": 487,
-                    "filename": "ChatGPT4_perfect_numbers_v1.c",
-                    "fuzzy_score": 69.71,
-                    "cosine_similarity_score": 85.78,
-                    "similarity_index": 78.55
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_leleah/openAI/ChatGPT4_perfect_numbers_v4.c",
-                    "word_quantity": 58,
-                    "char_quantity": 449,
-                    "filename": "ChatGPT4_perfect_numbers_v4.c",
-                    "fuzzy_score": 71.35,
-                    "cosine_similarity_score": 87.61,
-                    "similarity_index": 80.29
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_leleah/openAI/ChatGPT4_perfect_numbers_v3.c",
-                    "word_quantity": 41,
-                    "char_quantity": 302,
-                    "filename": "ChatGPT4_perfect_numbers_v3.c",
-                    "fuzzy_score": 66.85,
-                    "cosine_similarity_score": 90.51,
-                    "similarity_index": 79.86
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_leleah/claude/ClaudeSonnet4_perfect_numbers_v4.c",
-                    "word_quantity": 63,
-                    "char_quantity": 602,
-                    "filename": "ClaudeSonnet4_perfect_numbers_v4.c",
-                    "fuzzy_score": 65.64,
-                    "cosine_similarity_score": 82.24,
-                    "similarity_index": 74.77
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_leleah/claude/ClaudeSonnet4_perfect_numbers_v3.c",
-                    "word_quantity": 57,
-                    "char_quantity": 586,
-                    "filename": "ClaudeSonnet4_perfect_numbers_v3.c",
-                    "fuzzy_score": 70.78,
-                    "cosine_similarity_score": 83.03,
-                    "similarity_index": 77.52
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_leleah/claude/ClaudeSonnet4_perfect_numbers_v2.c",
-                    "word_quantity": 62,
-                    "char_quantity": 639,
-                    "filename": "ClaudeSonnet4_perfect_numbers_v2.c",
-                    "fuzzy_score": 67.29,
-                    "cosine_similarity_score": 79.26,
-                    "similarity_index": 73.87
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_leleah/claude/ClaudeSonnet4_perfect_numbers_v1.c",
-                    "word_quantity": 92,
-                    "char_quantity": 863,
-                    "filename": "ClaudeSonnet4_perfect_numbers_v1.c",
-                    "fuzzy_score": 57.05,
-                    "cosine_similarity_score": 79.18,
-                    "similarity_index": 69.22
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_leleah/gemini/GeminiFlash_perfect_numbers_v1.c",
-                    "word_quantity": 57,
-                    "char_quantity": 489,
-                    "filename": "GeminiFlash_perfect_numbers_v1.c",
-                    "fuzzy_score": 70.64,
-                    "cosine_similarity_score": 88.16,
-                    "similarity_index": 80.28
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_leleah/gemini/GeminiFlash_perfect_numbers_v2.c",
-                    "word_quantity": 53,
-                    "char_quantity": 454,
-                    "filename": "GeminiFlash_perfect_numbers_v2.c",
-                    "fuzzy_score": 72.75,
-                    "cosine_similarity_score": 89.67,
-                    "similarity_index": 82.06
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_leleah/gemini/GeminiFlash_perfect_numbers_v3.c",
-                    "word_quantity": 50,
-                    "char_quantity": 434,
-                    "filename": "GeminiFlash_perfect_numbers_v3.c",
-                    "fuzzy_score": 74.42,
-                    "cosine_similarity_score": 89.24,
-                    "similarity_index": 82.57
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_leleah/gemini/GeminiFlash_perfect_numbers_v4.c",
-                    "word_quantity": 50,
-                    "char_quantity": 434,
-                    "filename": "GeminiFlash_perfect_numbers_v4.c",
-                    "fuzzy_score": 74.42,
-                    "cosine_similarity_score": 89.24,
-                    "similarity_index": 82.57
-                }
-            ]
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/perfect-numbers/openAI/ChatGPT4_perfect-numbers_v4.py",
+          "word_quantity": 80,
+          "char_quantity": 508,
+          "filename": "ChatGPT4_perfect-numbers_v4.py",
+          "fuzzy_score": 78.17,
+          "cosine_similarity_score": 79.27,
+          "similarity_index": 78.77
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/perfect-numbers/claude/ClaudeSonnet4_perfect-numbers_v1.py",
+          "word_quantity": 81,
+          "char_quantity": 644,
+          "filename": "ClaudeSonnet4_perfect-numbers_v1.py",
+          "fuzzy_score": 72.7,
+          "cosine_similarity_score": 84.07,
+          "similarity_index": 78.95
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/perfect-numbers/claude/ClaudeSonnet4_perfect-numbers_v4.py",
+          "word_quantity": 63,
+          "char_quantity": 533,
+          "filename": "ClaudeSonnet4_perfect-numbers_v4.py",
+          "fuzzy_score": 78.4,
+          "cosine_similarity_score": 83.11,
+          "similarity_index": 80.99
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/perfect-numbers/claude/ClaudeSonnet4_perfect-numbers_v3.py",
+          "word_quantity": 63,
+          "char_quantity": 533,
+          "filename": "ClaudeSonnet4_perfect-numbers_v3.py",
+          "fuzzy_score": 78.4,
+          "cosine_similarity_score": 83.11,
+          "similarity_index": 80.99
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/perfect-numbers/claude/ClaudeSonnet4_perfect-numbers_v2.py",
+          "word_quantity": 81,
+          "char_quantity": 644,
+          "filename": "ClaudeSonnet4_perfect-numbers_v2.py",
+          "fuzzy_score": 72.7,
+          "cosine_similarity_score": 84.07,
+          "similarity_index": 78.95
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/perfect-numbers/gemini/GeminiFlash_perfect-numbers_v4.py",
+          "word_quantity": 64,
+          "char_quantity": 538,
+          "filename": "GeminiFlash_perfect-numbers_v4.py",
+          "fuzzy_score": 75.7,
+          "cosine_similarity_score": 69.22,
+          "similarity_index": 72.14
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/perfect-numbers/gemini/GeminiFlash_perfect-numbers_v1.py",
+          "word_quantity": 63,
+          "char_quantity": 477,
+          "filename": "GeminiFlash_perfect-numbers_v1.py",
+          "fuzzy_score": 79.42,
+          "cosine_similarity_score": 86.81,
+          "similarity_index": 83.49
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/perfect-numbers/gemini/GeminiFlash_perfect-numbers_v2.py",
+          "word_quantity": 73,
+          "char_quantity": 573,
+          "filename": "GeminiFlash_perfect-numbers_v2.py",
+          "fuzzy_score": 74.72,
+          "cosine_similarity_score": 81.63,
+          "similarity_index": 78.52
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/python/perfect-numbers/gemini/GeminiFlash_perfect-numbers_v3.py",
+          "word_quantity": 67,
+          "char_quantity": 540,
+          "filename": "GeminiFlash_perfect-numbers_v3.py",
+          "fuzzy_score": 76.71,
+          "cosine_similarity_score": 70.02,
+          "similarity_index": 73.03
         }
-    ],
-    "go": [
+      ]
+    }
+  ],
+  "javascript": [
+    {
+      "id": "javascript_perfect-numbers_exercism-javascript-ThomasZumsteg_ThomasZumsteg",
+      "filename": "perfect-numbers.js",
+      "language": "javascript",
+      "source": "exercism-javascript-ThomasZumsteg",
+      "codeSnippetFilePath": "javascript/perfect-numbers_exercism-javascript-ThomasZumsteg/perfect-numbers.js",
+      "testUnitFilePath": "javascript/perfect-numbers_exercism-javascript-ThomasZumsteg/perfect-numbers_testSuite.js",
+      "licenseType": "None",
+      "downloadDate": "2025-06-25 13:04:00",
+      "characterQuantity": 755,
+      "wordQuantity": 97,
+      "LLMs": [
         {
-            "id": "go_perfect_numbers_Exercism (go_rootulp)",
-            "filename": "perfect_numbers.go",
-            "language": "go",
-            "source": "Exercism (go_rootulp)",
-            "codeSnippetFilePath": "go/perfect_numbers_Exercism_go_rootulp/perfect_numbers.go",
-            "testUnitFilePath": "go/perfect_numbers_Exercism_go_rootulp/perfect_numbers_test.go",
-            "licenseType": "MIT",
-            "downloadDate": "2025-06-28 16:32:08",
-            "characterQuantity": 1012,
-            "wordQuantity": 135,
-            "LLMs": [
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_rootulp/openAI/ChatGPT4_perfect_numbers_v3.go",
-                    "word_quantity": 92,
-                    "char_quantity": 816,
-                    "filename": "ChatGPT4_perfect_numbers_v3.go",
-                    "fuzzy_score": 81.29,
-                    "cosine_similarity_score": 64.88,
-                    "similarity_index": 72.27
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_rootulp/openAI/ChatGPT4_perfect_numbers_v2.go",
-                    "word_quantity": 90,
-                    "char_quantity": 814,
-                    "filename": "ChatGPT4_perfect_numbers_v2.go",
-                    "fuzzy_score": 80.07,
-                    "cosine_similarity_score": 64.27,
-                    "similarity_index": 71.38
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_rootulp/openAI/ChatGPT4_perfect_numbers_v1.go",
-                    "word_quantity": 92,
-                    "char_quantity": 816,
-                    "filename": "ChatGPT4_perfect_numbers_v1.go",
-                    "fuzzy_score": 81.29,
-                    "cosine_similarity_score": 64.88,
-                    "similarity_index": 72.27
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_rootulp/openAI/ChatGPT4_perfect_numbers_v4.go",
-                    "word_quantity": 90,
-                    "char_quantity": 814,
-                    "filename": "ChatGPT4_perfect_numbers_v4.go",
-                    "fuzzy_score": 80.07,
-                    "cosine_similarity_score": 64.27,
-                    "similarity_index": 71.38
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_rootulp/claude/ClaudeSonnet4_perfect_numbers_v1.go",
-                    "word_quantity": 173,
-                    "char_quantity": 1295,
-                    "filename": "ClaudeSonnet4_perfect_numbers_v1.go",
-                    "fuzzy_score": 78.11,
-                    "cosine_similarity_score": 66.47,
-                    "similarity_index": 71.71
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_rootulp/claude/ClaudeSonnet4_perfect_numbers_v4.go",
-                    "word_quantity": 153,
-                    "char_quantity": 1228,
-                    "filename": "ClaudeSonnet4_perfect_numbers_v4.go",
-                    "fuzzy_score": 79.73,
-                    "cosine_similarity_score": 66.11,
-                    "similarity_index": 72.24
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_rootulp/claude/ClaudeSonnet4_perfect_numbers_v3.go",
-                    "word_quantity": 139,
-                    "char_quantity": 1129,
-                    "filename": "ClaudeSonnet4_perfect_numbers_v3.go",
-                    "fuzzy_score": 82.86,
-                    "cosine_similarity_score": 67.06,
-                    "similarity_index": 74.17
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_rootulp/claude/ClaudeSonnet4_perfect_numbers_v2.go",
-                    "word_quantity": 120,
-                    "char_quantity": 970,
-                    "filename": "ClaudeSonnet4_perfect_numbers_v2.go",
-                    "fuzzy_score": 80.83,
-                    "cosine_similarity_score": 70.31,
-                    "similarity_index": 75.04
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_rootulp/gemini/GeminiFlash_perfect_numbers_v4.go",
-                    "word_quantity": 95,
-                    "char_quantity": 831,
-                    "filename": "GeminiFlash_perfect_numbers_v4.go",
-                    "fuzzy_score": 83.34,
-                    "cosine_similarity_score": 68.53,
-                    "similarity_index": 75.2
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_rootulp/gemini/GeminiFlash_perfect_numbers_v1.go",
-                    "word_quantity": 97,
-                    "char_quantity": 839,
-                    "filename": "GeminiFlash_perfect_numbers_v1.go",
-                    "fuzzy_score": 82.98,
-                    "cosine_similarity_score": 71.48,
-                    "similarity_index": 76.66
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_rootulp/gemini/GeminiFlash_perfect_numbers_v2.go",
-                    "word_quantity": 87,
-                    "char_quantity": 768,
-                    "filename": "GeminiFlash_perfect_numbers_v2.go",
-                    "fuzzy_score": 71.12,
-                    "cosine_similarity_score": 63.7,
-                    "similarity_index": 67.04
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_rootulp/gemini/GeminiFlash_perfect_numbers_v3.go",
-                    "word_quantity": 97,
-                    "char_quantity": 840,
-                    "filename": "GeminiFlash_perfect_numbers_v3.go",
-                    "fuzzy_score": 84.56,
-                    "cosine_similarity_score": 71.48,
-                    "similarity_index": 77.37
-                }
-            ]
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/perfect-numbers_exercism-javascript-ThomasZumsteg/openAI/ChatGPT4_perfect-numbers_v3.js",
+          "word_quantity": 77,
+          "char_quantity": 751,
+          "filename": "ChatGPT4_perfect-numbers_v3.js",
+          "fuzzy_score": 83.46,
+          "cosine_similarity_score": 84.92,
+          "similarity_index": 84.26
         },
         {
-            "id": "go_perfect_numbers_Exercism (go_ThomasZumsteg)",
-            "filename": "perfect_numbers.go",
-            "language": "go",
-            "source": "Exercism (go_ThomasZumsteg)",
-            "codeSnippetFilePath": "go/perfect_numbers_Exercism_go_ThomasZumsteg/perfect_numbers.go",
-            "testUnitFilePath": "go/perfect_numbers_Exercism_go_ThomasZumsteg/perfect_numbers_test.go",
-            "licenseType": "None",
-            "downloadDate": "2025-06-28 16:33:34",
-            "characterQuantity": 832,
-            "wordQuantity": 126,
-            "LLMs": [
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_ThomasZumsteg/openAI/ChatGPT4_perfect_numbers_v3.go",
-                    "word_quantity": 85,
-                    "char_quantity": 827,
-                    "filename": "ChatGPT4_perfect_numbers_v3.go",
-                    "fuzzy_score": 85.23,
-                    "cosine_similarity_score": 53.64,
-                    "similarity_index": 67.86
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_ThomasZumsteg/openAI/ChatGPT4_perfect_numbers_v2.go",
-                    "word_quantity": 98,
-                    "char_quantity": 898,
-                    "filename": "ChatGPT4_perfect_numbers_v2.go",
-                    "fuzzy_score": 84.86,
-                    "cosine_similarity_score": 87.42,
-                    "similarity_index": 86.26
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_ThomasZumsteg/openAI/ChatGPT4_perfect_numbers_v1.go",
-                    "word_quantity": 84,
-                    "char_quantity": 779,
-                    "filename": "ChatGPT4_perfect_numbers_v1.go",
-                    "fuzzy_score": 84.42,
-                    "cosine_similarity_score": 82.15,
-                    "similarity_index": 83.17
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_ThomasZumsteg/openAI/ChatGPT4_perfect_numbers_v4.go",
-                    "word_quantity": 81,
-                    "char_quantity": 764,
-                    "filename": "ChatGPT4_perfect_numbers_v4.go",
-                    "fuzzy_score": 81.95,
-                    "cosine_similarity_score": 77.7,
-                    "similarity_index": 79.62
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_ThomasZumsteg/claude/ClaudeSonnet4_perfect_numbers_v1.go",
-                    "word_quantity": 93,
-                    "char_quantity": 844,
-                    "filename": "ClaudeSonnet4_perfect_numbers_v1.go",
-                    "fuzzy_score": 84.13,
-                    "cosine_similarity_score": 76.47,
-                    "similarity_index": 79.92
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_ThomasZumsteg/claude/ClaudeSonnet4_perfect_numbers_v4.go",
-                    "word_quantity": 91,
-                    "char_quantity": 833,
-                    "filename": "ClaudeSonnet4_perfect_numbers_v4.go",
-                    "fuzzy_score": 83.36,
-                    "cosine_similarity_score": 72.67,
-                    "similarity_index": 77.48
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_ThomasZumsteg/claude/ClaudeSonnet4_perfect_numbers_v3.go",
-                    "word_quantity": 91,
-                    "char_quantity": 833,
-                    "filename": "ClaudeSonnet4_perfect_numbers_v3.go",
-                    "fuzzy_score": 83.36,
-                    "cosine_similarity_score": 72.67,
-                    "similarity_index": 77.48
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_ThomasZumsteg/claude/ClaudeSonnet4_perfect_numbers_v2.go",
-                    "word_quantity": 93,
-                    "char_quantity": 841,
-                    "filename": "ClaudeSonnet4_perfect_numbers_v2.go",
-                    "fuzzy_score": 87.39,
-                    "cosine_similarity_score": 85.14,
-                    "similarity_index": 86.15
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_ThomasZumsteg/gemini/GeminiFlash_perfect_numbers_v4.go",
-                    "word_quantity": 80,
-                    "char_quantity": 732,
-                    "filename": "GeminiFlash_perfect_numbers_v4.go",
-                    "fuzzy_score": 85.93,
-                    "cosine_similarity_score": 89.56,
-                    "similarity_index": 87.93
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_ThomasZumsteg/gemini/GeminiFlash_perfect_numbers_v1.go",
-                    "word_quantity": 86,
-                    "char_quantity": 786,
-                    "filename": "GeminiFlash_perfect_numbers_v1.go",
-                    "fuzzy_score": 87.39,
-                    "cosine_similarity_score": 71.65,
-                    "similarity_index": 78.73
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_ThomasZumsteg/gemini/GeminiFlash_perfect_numbers_v2.go",
-                    "word_quantity": 80,
-                    "char_quantity": 731,
-                    "filename": "GeminiFlash_perfect_numbers_v2.go",
-                    "fuzzy_score": 88.29,
-                    "cosine_similarity_score": 89.56,
-                    "similarity_index": 88.99
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_ThomasZumsteg/gemini/GeminiFlash_perfect_numbers_v3.go",
-                    "word_quantity": 80,
-                    "char_quantity": 722,
-                    "filename": "GeminiFlash_perfect_numbers_v3.go",
-                    "fuzzy_score": 83.91,
-                    "cosine_similarity_score": 75.74,
-                    "similarity_index": 79.42
-                }
-            ]
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/perfect-numbers_exercism-javascript-ThomasZumsteg/openAI/ChatGPT4_perfect-numbers_v2.js",
+          "word_quantity": 77,
+          "char_quantity": 735,
+          "filename": "ChatGPT4_perfect-numbers_v2.js",
+          "fuzzy_score": 80.46,
+          "cosine_similarity_score": 84.92,
+          "similarity_index": 82.91
         },
         {
-            "id": "go_perfect_numbers_Exercism (go_drapala)",
-            "filename": "perfect_numbers.go",
-            "language": "go",
-            "source": "Exercism (go_drapala)",
-            "codeSnippetFilePath": "go/perfect_numbers_Exercism_go_drapala/perfect_numbers.go",
-            "testUnitFilePath": "go/perfect_numbers_Exercism_go_drapala/perfect_numbers_test.go",
-            "licenseType": "None",
-            "downloadDate": "2025-06-28 16:35:58",
-            "characterQuantity": 1134,
-            "wordQuantity": 164,
-            "LLMs": [
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_drapala/openAI/ChatGPT4_perfect_numbers_v3.go",
-                    "word_quantity": 114,
-                    "char_quantity": 961,
-                    "filename": "ChatGPT4_perfect_numbers_v3.go",
-                    "fuzzy_score": 85.06,
-                    "cosine_similarity_score": 86.39,
-                    "similarity_index": 85.79
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_drapala/openAI/ChatGPT4_perfect_numbers_v2.go",
-                    "word_quantity": 115,
-                    "char_quantity": 974,
-                    "filename": "ChatGPT4_perfect_numbers_v2.go",
-                    "fuzzy_score": 79.41,
-                    "cosine_similarity_score": 82.33,
-                    "similarity_index": 81.02
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_drapala/openAI/ChatGPT4_perfect_numbers_v1.go",
-                    "word_quantity": 117,
-                    "char_quantity": 979,
-                    "filename": "ChatGPT4_perfect_numbers_v1.go",
-                    "fuzzy_score": 83.48,
-                    "cosine_similarity_score": 86.7,
-                    "similarity_index": 85.25
-                },
-                {
-                    "type": "openAI",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_drapala/openAI/ChatGPT4_perfect_numbers_v4.go",
-                    "word_quantity": 80,
-                    "char_quantity": 762,
-                    "filename": "ChatGPT4_perfect_numbers_v4.go",
-                    "fuzzy_score": 67.72,
-                    "cosine_similarity_score": 44.68,
-                    "similarity_index": 55.05
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_drapala/claude/ClaudeSonnet4_perfect_numbers_v1.go",
-                    "word_quantity": 138,
-                    "char_quantity": 1104,
-                    "filename": "ClaudeSonnet4_perfect_numbers_v1.go",
-                    "fuzzy_score": 68.9,
-                    "cosine_similarity_score": 56.36,
-                    "similarity_index": 62.01
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_drapala/claude/ClaudeSonnet4_perfect_numbers_v4.go",
-                    "word_quantity": 153,
-                    "char_quantity": 1207,
-                    "filename": "ClaudeSonnet4_perfect_numbers_v4.go",
-                    "fuzzy_score": 79.28,
-                    "cosine_similarity_score": 84.16,
-                    "similarity_index": 81.97
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_drapala/claude/ClaudeSonnet4_perfect_numbers_v3.go",
-                    "word_quantity": 170,
-                    "char_quantity": 1320,
-                    "filename": "ClaudeSonnet4_perfect_numbers_v3.go",
-                    "fuzzy_score": 84.92,
-                    "cosine_similarity_score": 88.76,
-                    "similarity_index": 87.03
-                },
-                {
-                    "type": "claude",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_drapala/claude/ClaudeSonnet4_perfect_numbers_v2.go",
-                    "word_quantity": 128,
-                    "char_quantity": 1038,
-                    "filename": "ClaudeSonnet4_perfect_numbers_v2.go",
-                    "fuzzy_score": 70.26,
-                    "cosine_similarity_score": 56.95,
-                    "similarity_index": 62.94
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_drapala/gemini/GeminiFlash_perfect_numbers_v4.go",
-                    "word_quantity": 97,
-                    "char_quantity": 852,
-                    "filename": "GeminiFlash_perfect_numbers_v4.go",
-                    "fuzzy_score": 72.1,
-                    "cosine_similarity_score": 49.92,
-                    "similarity_index": 59.9
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_drapala/gemini/GeminiFlash_perfect_numbers_v1.go",
-                    "word_quantity": 92,
-                    "char_quantity": 812,
-                    "filename": "GeminiFlash_perfect_numbers_v1.go",
-                    "fuzzy_score": 72.46,
-                    "cosine_similarity_score": 53.75,
-                    "similarity_index": 62.17
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_drapala/gemini/GeminiFlash_perfect_numbers_v2.go",
-                    "word_quantity": 89,
-                    "char_quantity": 806,
-                    "filename": "GeminiFlash_perfect_numbers_v2.go",
-                    "fuzzy_score": 72.99,
-                    "cosine_similarity_score": 53.78,
-                    "similarity_index": 62.42
-                },
-                {
-                    "type": "gemini",
-                    "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_drapala/gemini/GeminiFlash_perfect_numbers_v3.go",
-                    "word_quantity": 87,
-                    "char_quantity": 787,
-                    "filename": "GeminiFlash_perfect_numbers_v3.go",
-                    "fuzzy_score": 72.05,
-                    "cosine_similarity_score": 53.38,
-                    "similarity_index": 61.78
-                }
-            ]
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/perfect-numbers_exercism-javascript-ThomasZumsteg/openAI/ChatGPT4_perfect-numbers_v1.js",
+          "word_quantity": 77,
+          "char_quantity": 735,
+          "filename": "ChatGPT4_perfect-numbers_v1.js",
+          "fuzzy_score": 80.46,
+          "cosine_similarity_score": 84.92,
+          "similarity_index": 82.91
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/perfect-numbers_exercism-javascript-ThomasZumsteg/openAI/ChatGPT4_perfect-numbers_v4.js",
+          "word_quantity": 77,
+          "char_quantity": 703,
+          "filename": "ChatGPT4_perfect-numbers_v4.js",
+          "fuzzy_score": 80.03,
+          "cosine_similarity_score": 84.92,
+          "similarity_index": 82.72
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/perfect-numbers_exercism-javascript-ThomasZumsteg/claude/ClaudeSonnet4_perfect-numbers_v1.js",
+          "word_quantity": 103,
+          "char_quantity": 1154,
+          "filename": "ClaudeSonnet4_perfect-numbers_v1.js",
+          "fuzzy_score": 72.75,
+          "cosine_similarity_score": 78.52,
+          "similarity_index": 75.92
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/perfect-numbers_exercism-javascript-ThomasZumsteg/claude/ClaudeSonnet4_perfect-numbers_v4.js",
+          "word_quantity": 103,
+          "char_quantity": 1154,
+          "filename": "ClaudeSonnet4_perfect-numbers_v4.js",
+          "fuzzy_score": 72.75,
+          "cosine_similarity_score": 78.52,
+          "similarity_index": 75.92
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/perfect-numbers_exercism-javascript-ThomasZumsteg/claude/ClaudeSonnet4_perfect-numbers_v3.js",
+          "word_quantity": 103,
+          "char_quantity": 1154,
+          "filename": "ClaudeSonnet4_perfect-numbers_v3.js",
+          "fuzzy_score": 72.75,
+          "cosine_similarity_score": 78.52,
+          "similarity_index": 75.92
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/perfect-numbers_exercism-javascript-ThomasZumsteg/claude/ClaudeSonnet4_perfect-numbers_v2.js",
+          "word_quantity": 72,
+          "char_quantity": 779,
+          "filename": "ClaudeSonnet4_perfect-numbers_v2.js",
+          "fuzzy_score": 86.5,
+          "cosine_similarity_score": 78.94,
+          "similarity_index": 82.34
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/perfect-numbers_exercism-javascript-ThomasZumsteg/gemini/GeminiFlash_perfect-numbers_v4.js",
+          "word_quantity": 92,
+          "char_quantity": 968,
+          "filename": "GeminiFlash_perfect-numbers_v4.js",
+          "fuzzy_score": 81.42,
+          "cosine_similarity_score": 83.76,
+          "similarity_index": 82.71
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/perfect-numbers_exercism-javascript-ThomasZumsteg/gemini/GeminiFlash_perfect-numbers_v1.js",
+          "word_quantity": 85,
+          "char_quantity": 905,
+          "filename": "GeminiFlash_perfect-numbers_v1.js",
+          "fuzzy_score": 83.91,
+          "cosine_similarity_score": 89.08,
+          "similarity_index": 86.75
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/perfect-numbers_exercism-javascript-ThomasZumsteg/gemini/GeminiFlash_perfect-numbers_v2.js",
+          "word_quantity": 92,
+          "char_quantity": 976,
+          "filename": "GeminiFlash_perfect-numbers_v2.js",
+          "fuzzy_score": 80.92,
+          "cosine_similarity_score": 83.76,
+          "similarity_index": 82.49
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/perfect-numbers_exercism-javascript-ThomasZumsteg/gemini/GeminiFlash_perfect-numbers_v3.js",
+          "word_quantity": 102,
+          "char_quantity": 1120,
+          "filename": "GeminiFlash_perfect-numbers_v3.js",
+          "fuzzy_score": 74.49,
+          "cosine_similarity_score": 86.13,
+          "similarity_index": 80.9
         }
-    ]
+      ]
+    }
+  ],
+  "typescript": [
+    {
+      "id": "typescript_perfect-numbers_Exercism-typescript-shybyte_shybyte",
+      "filename": "perfect-numbers.ts",
+      "language": "typescript",
+      "source": "Exercism-typescript-shybyte",
+      "codeSnippetFilePath": "typescript/perfect-numbers_Exercism-typescript-shybyte/perfect-numbers.ts",
+      "testUnitFilePath": "typescript/perfect-numbers_Exercism-typescript-shybyte/perfect-numbers.test.ts",
+      "licenseType": "None",
+      "downloadDate": "2025-06-25 12:58:24",
+      "characterQuantity": 592,
+      "wordQuantity": 84,
+      "LLMs": [
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/openAI/ChatGPT4_perfect-numbers_v3.js",
+          "word_quantity": 79,
+          "char_quantity": 739,
+          "filename": "ChatGPT4_perfect-numbers_v3.js",
+          "fuzzy_score": 67.92,
+          "cosine_similarity_score": 83.74,
+          "similarity_index": 76.62
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/openAI/ChatGPT4_perfect-numbers_v2.js",
+          "word_quantity": 94,
+          "char_quantity": 917,
+          "filename": "ChatGPT4_perfect-numbers_v2.js",
+          "fuzzy_score": 73.96,
+          "cosine_similarity_score": 86.95,
+          "similarity_index": 81.1
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/openAI/ChatGPT4_perfect-numbers_v4.ts",
+          "word_quantity": 76,
+          "char_quantity": 713,
+          "filename": "ChatGPT4_perfect-numbers_v4.ts",
+          "fuzzy_score": 73.72,
+          "cosine_similarity_score": 89.4,
+          "similarity_index": 82.34
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/openAI/ChatGPT4_perfect-numbers_v1.ts",
+          "word_quantity": 99,
+          "char_quantity": 869,
+          "filename": "ChatGPT4_perfect-numbers_v1.ts",
+          "fuzzy_score": 80.63,
+          "cosine_similarity_score": 89.73,
+          "similarity_index": 85.63
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/openAI/ChatGPT4_perfect-numbers_v2.ts",
+          "word_quantity": 89,
+          "char_quantity": 829,
+          "filename": "ChatGPT4_perfect-numbers_v2.ts",
+          "fuzzy_score": 82.9,
+          "cosine_similarity_score": 91.92,
+          "similarity_index": 87.86
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/openAI/ChatGPT4_perfect-numbers_v3.ts",
+          "word_quantity": 74,
+          "char_quantity": 651,
+          "filename": "ChatGPT4_perfect-numbers_v3.ts",
+          "fuzzy_score": 77.39,
+          "cosine_similarity_score": 89.19,
+          "similarity_index": 83.88
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/openAI/ChatGPT4_perfect-numbers_v1.js",
+          "word_quantity": 106,
+          "char_quantity": 965,
+          "filename": "ChatGPT4_perfect-numbers_v1.js",
+          "fuzzy_score": 72.06,
+          "cosine_similarity_score": 85.15,
+          "similarity_index": 79.26
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/openAI/ChatGPT4_perfect-numbers_v4.js",
+          "word_quantity": 79,
+          "char_quantity": 755,
+          "filename": "ChatGPT4_perfect-numbers_v4.js",
+          "fuzzy_score": 67.11,
+          "cosine_similarity_score": 83.74,
+          "similarity_index": 76.26
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/claude/ClaudeSonnet4_perfect-numbers_v2.ts",
+          "word_quantity": 88,
+          "char_quantity": 838,
+          "filename": "ClaudeSonnet4_perfect-numbers_v2.ts",
+          "fuzzy_score": 82.38,
+          "cosine_similarity_score": 90.63,
+          "similarity_index": 86.92
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/claude/ClaudeSonnet4_perfect-numbers_v3.ts",
+          "word_quantity": 82,
+          "char_quantity": 841,
+          "filename": "ClaudeSonnet4_perfect-numbers_v3.ts",
+          "fuzzy_score": 82.21,
+          "cosine_similarity_score": 91.08,
+          "similarity_index": 87.09
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/claude/ClaudeSonnet4_perfect-numbers_v1.js",
+          "word_quantity": 95,
+          "char_quantity": 943,
+          "filename": "ClaudeSonnet4_perfect-numbers_v1.js",
+          "fuzzy_score": 72.7,
+          "cosine_similarity_score": 86.05,
+          "similarity_index": 80.04
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/claude/ClaudeSonnet4_perfect-numbers_v4.js",
+          "word_quantity": 87,
+          "char_quantity": 906,
+          "filename": "ClaudeSonnet4_perfect-numbers_v4.js",
+          "fuzzy_score": 74.5,
+          "cosine_similarity_score": 86.2,
+          "similarity_index": 80.94
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/claude/ClaudeSonnet4_perfect-numbers_v3.js",
+          "word_quantity": 87,
+          "char_quantity": 908,
+          "filename": "ClaudeSonnet4_perfect-numbers_v3.js",
+          "fuzzy_score": 74.4,
+          "cosine_similarity_score": 86.2,
+          "similarity_index": 80.89
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/claude/ClaudeSonnet4_perfect-numbers_v2.js",
+          "word_quantity": 95,
+          "char_quantity": 944,
+          "filename": "ClaudeSonnet4_perfect-numbers_v2.js",
+          "fuzzy_score": 72.66,
+          "cosine_similarity_score": 86.05,
+          "similarity_index": 80.02
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/claude/ClaudeSonnet4_perfect-numbers_v4.ts",
+          "word_quantity": 82,
+          "char_quantity": 851,
+          "filename": "ClaudeSonnet4_perfect-numbers_v4.ts",
+          "fuzzy_score": 81.64,
+          "cosine_similarity_score": 91.08,
+          "similarity_index": 86.83
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/claude/ClaudeSonnet4_perfect-numbers_v1.ts",
+          "word_quantity": 88,
+          "char_quantity": 837,
+          "filename": "ClaudeSonnet4_perfect-numbers_v1.ts",
+          "fuzzy_score": 82.44,
+          "cosine_similarity_score": 90.63,
+          "similarity_index": 86.94
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/gemini/GeminiFlash_perfect-numbers_v4.js",
+          "word_quantity": 83,
+          "char_quantity": 842,
+          "filename": "GeminiFlash_perfect-numbers_v4.js",
+          "fuzzy_score": 77.82,
+          "cosine_similarity_score": 91.21,
+          "similarity_index": 85.19
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/gemini/GeminiFlash_perfect-numbers_v1.js",
+          "word_quantity": 83,
+          "char_quantity": 842,
+          "filename": "GeminiFlash_perfect-numbers_v1.js",
+          "fuzzy_score": 77.82,
+          "cosine_similarity_score": 91.21,
+          "similarity_index": 85.19
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/gemini/GeminiFlash_perfect-numbers_v3.ts",
+          "word_quantity": 76,
+          "char_quantity": 733,
+          "filename": "GeminiFlash_perfect-numbers_v3.ts",
+          "fuzzy_score": 88.91,
+          "cosine_similarity_score": 96.66,
+          "similarity_index": 93.17
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/gemini/GeminiFlash_perfect-numbers_v2.ts",
+          "word_quantity": 73,
+          "char_quantity": 713,
+          "filename": "GeminiFlash_perfect-numbers_v2.ts",
+          "fuzzy_score": 90.42,
+          "cosine_similarity_score": 97.85,
+          "similarity_index": 94.5
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/gemini/GeminiFlash_perfect-numbers_v1.ts",
+          "word_quantity": 76,
+          "char_quantity": 734,
+          "filename": "GeminiFlash_perfect-numbers_v1.ts",
+          "fuzzy_score": 88.84,
+          "cosine_similarity_score": 96.66,
+          "similarity_index": 93.14
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/gemini/GeminiFlash_perfect-numbers_v4.ts",
+          "word_quantity": 76,
+          "char_quantity": 738,
+          "filename": "GeminiFlash_perfect-numbers_v4.ts",
+          "fuzzy_score": 88.57,
+          "cosine_similarity_score": 96.66,
+          "similarity_index": 93.02
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/gemini/GeminiFlash_perfect-numbers_v2.js",
+          "word_quantity": 80,
+          "char_quantity": 817,
+          "filename": "GeminiFlash_perfect-numbers_v2.js",
+          "fuzzy_score": 79.35,
+          "cosine_similarity_score": 92.24,
+          "similarity_index": 86.44
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/typescript/perfect-numbers_Exercism-typescript-shybyte/gemini/GeminiFlash_perfect-numbers_v3.js",
+          "word_quantity": 83,
+          "char_quantity": 842,
+          "filename": "GeminiFlash_perfect-numbers_v3.js",
+          "fuzzy_score": 77.82,
+          "cosine_similarity_score": 91.21,
+          "similarity_index": 85.19
+        }
+      ]
+    }
+  ],
+  "c": [
+    {
+      "id": "c_perfect_numbers_Exercism (m3g4d1v3r)",
+      "filename": "perfect_numbers.c",
+      "language": "c",
+      "source": "Exercism (m3g4d1v3r)",
+      "codeSnippetFilePath": "c/perfect_numbers_Exercism_m3g4d1v3r/src",
+      "testUnitFilePath": "c/perfect_numbers_Exercism_m3g4d1v3r/test",
+      "licenseType": "None",
+      "downloadDate": "2025-06-27 11:55:40",
+      "characterQuantity": 589,
+      "wordQuantity": 72,
+      "LLMs": [
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_m3g4d1v3r/openAI/ChatGPT4_perfect_numbers_v2.c",
+          "word_quantity": 81,
+          "char_quantity": 799,
+          "filename": "ChatGPT4_perfect_numbers_v2.c",
+          "fuzzy_score": 77.95,
+          "cosine_similarity_score": 95.89,
+          "similarity_index": 87.82
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_m3g4d1v3r/openAI/ChatGPT4_perfect_numbers_v1.c",
+          "word_quantity": 81,
+          "char_quantity": 799,
+          "filename": "ChatGPT4_perfect_numbers_v1.c",
+          "fuzzy_score": 77.95,
+          "cosine_similarity_score": 95.89,
+          "similarity_index": 87.82
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_m3g4d1v3r/openAI/ChatGPT4_perfect_numbers_v4.c",
+          "word_quantity": 71,
+          "char_quantity": 658,
+          "filename": "ChatGPT4_perfect_numbers_v4.c",
+          "fuzzy_score": 80.99,
+          "cosine_similarity_score": 75.2,
+          "similarity_index": 77.81
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_m3g4d1v3r/openAI/ChatGPT4_perfect_numbers_v3.c",
+          "word_quantity": 71,
+          "char_quantity": 658,
+          "filename": "ChatGPT4_perfect_numbers_v3.c",
+          "fuzzy_score": 80.99,
+          "cosine_similarity_score": 75.2,
+          "similarity_index": 77.81
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_m3g4d1v3r/claude/ClaudeSonnet4_perfect_numbers_v4.c",
+          "word_quantity": 82,
+          "char_quantity": 916,
+          "filename": "ClaudeSonnet4_perfect_numbers_v4.c",
+          "fuzzy_score": 69.5,
+          "cosine_similarity_score": 75.41,
+          "similarity_index": 72.75
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_m3g4d1v3r/claude/ClaudeSonnet4_perfect_numbers_v3.c",
+          "word_quantity": 82,
+          "char_quantity": 916,
+          "filename": "ClaudeSonnet4_perfect_numbers_v3.c",
+          "fuzzy_score": 69.5,
+          "cosine_similarity_score": 75.41,
+          "similarity_index": 72.75
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_m3g4d1v3r/claude/ClaudeSonnet4_perfect_numbers_v2.c",
+          "word_quantity": 95,
+          "char_quantity": 963,
+          "filename": "ClaudeSonnet4_perfect_numbers_v2.c",
+          "fuzzy_score": 68.04,
+          "cosine_similarity_score": 72.59,
+          "similarity_index": 70.54
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_m3g4d1v3r/claude/ClaudeSonnet4_perfect_numbers_v1.c",
+          "word_quantity": 95,
+          "char_quantity": 963,
+          "filename": "ClaudeSonnet4_perfect_numbers_v1.c",
+          "fuzzy_score": 68.04,
+          "cosine_similarity_score": 72.59,
+          "similarity_index": 70.54
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_m3g4d1v3r/gemini/GeminiFlash_perfect_numbers_v1.c",
+          "word_quantity": 75,
+          "char_quantity": 750,
+          "filename": "GeminiFlash_perfect_numbers_v1.c",
+          "fuzzy_score": 73.94,
+          "cosine_similarity_score": 72.49,
+          "similarity_index": 73.14
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_m3g4d1v3r/gemini/GeminiFlash_perfect_numbers_v2.c",
+          "word_quantity": 75,
+          "char_quantity": 752,
+          "filename": "GeminiFlash_perfect_numbers_v2.c",
+          "fuzzy_score": 73.83,
+          "cosine_similarity_score": 72.49,
+          "similarity_index": 73.09
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_m3g4d1v3r/gemini/GeminiFlash_perfect_numbers_v3.c",
+          "word_quantity": 79,
+          "char_quantity": 759,
+          "filename": "GeminiFlash_perfect_numbers_v3.c",
+          "fuzzy_score": 74.18,
+          "cosine_similarity_score": 73.62,
+          "similarity_index": 73.87
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_m3g4d1v3r/gemini/GeminiFlash_perfect_numbers_v4.c",
+          "word_quantity": 72,
+          "char_quantity": 699,
+          "filename": "GeminiFlash_perfect_numbers_v4.c",
+          "fuzzy_score": 76.24,
+          "cosine_similarity_score": 72.12,
+          "similarity_index": 73.98
+        }
+      ]
+    },
+    {
+      "id": "c_perfect_numbers_Exercism (leleah)",
+      "filename": "perfect_numbers.c",
+      "language": "c",
+      "source": "Exercism (leleah)",
+      "codeSnippetFilePath": "c/perfect_numbers_Exercism_leleah/src",
+      "testUnitFilePath": "c/perfect_numbers_Exercism_leleah/test",
+      "licenseType": "None",
+      "downloadDate": "2025-06-27 12:05:50",
+      "characterQuantity": 434,
+      "wordQuantity": 52,
+      "LLMs": [
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_leleah/openAI/ChatGPT4_perfect_numbers_v2.c",
+          "word_quantity": 64,
+          "char_quantity": 487,
+          "filename": "ChatGPT4_perfect_numbers_v2.c",
+          "fuzzy_score": 69.71,
+          "cosine_similarity_score": 85.78,
+          "similarity_index": 78.55
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_leleah/openAI/ChatGPT4_perfect_numbers_v1.c",
+          "word_quantity": 64,
+          "char_quantity": 487,
+          "filename": "ChatGPT4_perfect_numbers_v1.c",
+          "fuzzy_score": 69.71,
+          "cosine_similarity_score": 85.78,
+          "similarity_index": 78.55
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_leleah/openAI/ChatGPT4_perfect_numbers_v4.c",
+          "word_quantity": 58,
+          "char_quantity": 449,
+          "filename": "ChatGPT4_perfect_numbers_v4.c",
+          "fuzzy_score": 71.35,
+          "cosine_similarity_score": 87.61,
+          "similarity_index": 80.29
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_leleah/openAI/ChatGPT4_perfect_numbers_v3.c",
+          "word_quantity": 41,
+          "char_quantity": 302,
+          "filename": "ChatGPT4_perfect_numbers_v3.c",
+          "fuzzy_score": 66.85,
+          "cosine_similarity_score": 90.51,
+          "similarity_index": 79.86
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_leleah/claude/ClaudeSonnet4_perfect_numbers_v4.c",
+          "word_quantity": 63,
+          "char_quantity": 602,
+          "filename": "ClaudeSonnet4_perfect_numbers_v4.c",
+          "fuzzy_score": 65.64,
+          "cosine_similarity_score": 82.24,
+          "similarity_index": 74.77
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_leleah/claude/ClaudeSonnet4_perfect_numbers_v3.c",
+          "word_quantity": 57,
+          "char_quantity": 586,
+          "filename": "ClaudeSonnet4_perfect_numbers_v3.c",
+          "fuzzy_score": 70.78,
+          "cosine_similarity_score": 83.03,
+          "similarity_index": 77.52
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_leleah/claude/ClaudeSonnet4_perfect_numbers_v2.c",
+          "word_quantity": 62,
+          "char_quantity": 639,
+          "filename": "ClaudeSonnet4_perfect_numbers_v2.c",
+          "fuzzy_score": 67.29,
+          "cosine_similarity_score": 79.26,
+          "similarity_index": 73.87
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_leleah/claude/ClaudeSonnet4_perfect_numbers_v1.c",
+          "word_quantity": 92,
+          "char_quantity": 863,
+          "filename": "ClaudeSonnet4_perfect_numbers_v1.c",
+          "fuzzy_score": 57.05,
+          "cosine_similarity_score": 79.18,
+          "similarity_index": 69.22
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_leleah/gemini/GeminiFlash_perfect_numbers_v1.c",
+          "word_quantity": 57,
+          "char_quantity": 489,
+          "filename": "GeminiFlash_perfect_numbers_v1.c",
+          "fuzzy_score": 70.64,
+          "cosine_similarity_score": 88.16,
+          "similarity_index": 80.28
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_leleah/gemini/GeminiFlash_perfect_numbers_v2.c",
+          "word_quantity": 53,
+          "char_quantity": 454,
+          "filename": "GeminiFlash_perfect_numbers_v2.c",
+          "fuzzy_score": 72.75,
+          "cosine_similarity_score": 89.67,
+          "similarity_index": 82.06
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_leleah/gemini/GeminiFlash_perfect_numbers_v3.c",
+          "word_quantity": 50,
+          "char_quantity": 434,
+          "filename": "GeminiFlash_perfect_numbers_v3.c",
+          "fuzzy_score": 74.42,
+          "cosine_similarity_score": 89.24,
+          "similarity_index": 82.57
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/perfect_numbers_Exercism_leleah/gemini/GeminiFlash_perfect_numbers_v4.c",
+          "word_quantity": 50,
+          "char_quantity": 434,
+          "filename": "GeminiFlash_perfect_numbers_v4.c",
+          "fuzzy_score": 74.42,
+          "cosine_similarity_score": 89.24,
+          "similarity_index": 82.57
+        }
+      ]
+    }
+  ],
+  "go": [
+    {
+      "id": "go_perfect_numbers_Exercism (go_rootulp)",
+      "filename": "perfect_numbers.go",
+      "language": "go",
+      "source": "Exercism (go_rootulp)",
+      "codeSnippetFilePath": "go/perfect_numbers_Exercism_go_rootulp/perfect_numbers.go",
+      "testUnitFilePath": "go/perfect_numbers_Exercism_go_rootulp/perfect_numbers_test.go",
+      "licenseType": "MIT",
+      "downloadDate": "2025-06-28 16:32:08",
+      "characterQuantity": 1012,
+      "wordQuantity": 135,
+      "LLMs": [
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_rootulp/openAI/ChatGPT4_perfect_numbers_v3.go",
+          "word_quantity": 92,
+          "char_quantity": 816,
+          "filename": "ChatGPT4_perfect_numbers_v3.go",
+          "fuzzy_score": 81.29,
+          "cosine_similarity_score": 64.88,
+          "similarity_index": 72.27
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_rootulp/openAI/ChatGPT4_perfect_numbers_v2.go",
+          "word_quantity": 90,
+          "char_quantity": 814,
+          "filename": "ChatGPT4_perfect_numbers_v2.go",
+          "fuzzy_score": 80.07,
+          "cosine_similarity_score": 64.27,
+          "similarity_index": 71.38
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_rootulp/openAI/ChatGPT4_perfect_numbers_v1.go",
+          "word_quantity": 92,
+          "char_quantity": 816,
+          "filename": "ChatGPT4_perfect_numbers_v1.go",
+          "fuzzy_score": 81.29,
+          "cosine_similarity_score": 64.88,
+          "similarity_index": 72.27
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_rootulp/openAI/ChatGPT4_perfect_numbers_v4.go",
+          "word_quantity": 90,
+          "char_quantity": 814,
+          "filename": "ChatGPT4_perfect_numbers_v4.go",
+          "fuzzy_score": 80.07,
+          "cosine_similarity_score": 64.27,
+          "similarity_index": 71.38
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_rootulp/claude/ClaudeSonnet4_perfect_numbers_v1.go",
+          "word_quantity": 173,
+          "char_quantity": 1295,
+          "filename": "ClaudeSonnet4_perfect_numbers_v1.go",
+          "fuzzy_score": 78.11,
+          "cosine_similarity_score": 66.47,
+          "similarity_index": 71.71
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_rootulp/claude/ClaudeSonnet4_perfect_numbers_v4.go",
+          "word_quantity": 153,
+          "char_quantity": 1228,
+          "filename": "ClaudeSonnet4_perfect_numbers_v4.go",
+          "fuzzy_score": 79.73,
+          "cosine_similarity_score": 66.11,
+          "similarity_index": 72.24
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_rootulp/claude/ClaudeSonnet4_perfect_numbers_v3.go",
+          "word_quantity": 139,
+          "char_quantity": 1129,
+          "filename": "ClaudeSonnet4_perfect_numbers_v3.go",
+          "fuzzy_score": 82.86,
+          "cosine_similarity_score": 67.06,
+          "similarity_index": 74.17
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_rootulp/claude/ClaudeSonnet4_perfect_numbers_v2.go",
+          "word_quantity": 120,
+          "char_quantity": 970,
+          "filename": "ClaudeSonnet4_perfect_numbers_v2.go",
+          "fuzzy_score": 80.83,
+          "cosine_similarity_score": 70.31,
+          "similarity_index": 75.04
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_rootulp/gemini/GeminiFlash_perfect_numbers_v4.go",
+          "word_quantity": 95,
+          "char_quantity": 831,
+          "filename": "GeminiFlash_perfect_numbers_v4.go",
+          "fuzzy_score": 83.34,
+          "cosine_similarity_score": 68.53,
+          "similarity_index": 75.2
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_rootulp/gemini/GeminiFlash_perfect_numbers_v1.go",
+          "word_quantity": 97,
+          "char_quantity": 839,
+          "filename": "GeminiFlash_perfect_numbers_v1.go",
+          "fuzzy_score": 82.98,
+          "cosine_similarity_score": 71.48,
+          "similarity_index": 76.66
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_rootulp/gemini/GeminiFlash_perfect_numbers_v2.go",
+          "word_quantity": 87,
+          "char_quantity": 768,
+          "filename": "GeminiFlash_perfect_numbers_v2.go",
+          "fuzzy_score": 71.12,
+          "cosine_similarity_score": 63.7,
+          "similarity_index": 67.04
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_rootulp/gemini/GeminiFlash_perfect_numbers_v3.go",
+          "word_quantity": 97,
+          "char_quantity": 840,
+          "filename": "GeminiFlash_perfect_numbers_v3.go",
+          "fuzzy_score": 84.56,
+          "cosine_similarity_score": 71.48,
+          "similarity_index": 77.37
+        }
+      ]
+    },
+    {
+      "id": "go_perfect_numbers_Exercism (go_ThomasZumsteg)",
+      "filename": "perfect_numbers.go",
+      "language": "go",
+      "source": "Exercism (go_ThomasZumsteg)",
+      "codeSnippetFilePath": "go/perfect_numbers_Exercism_go_ThomasZumsteg/perfect_numbers.go",
+      "testUnitFilePath": "go/perfect_numbers_Exercism_go_ThomasZumsteg/perfect_numbers_test.go",
+      "licenseType": "None",
+      "downloadDate": "2025-06-28 16:33:34",
+      "characterQuantity": 832,
+      "wordQuantity": 126,
+      "LLMs": [
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_ThomasZumsteg/openAI/ChatGPT4_perfect_numbers_v3.go",
+          "word_quantity": 85,
+          "char_quantity": 827,
+          "filename": "ChatGPT4_perfect_numbers_v3.go",
+          "fuzzy_score": 85.23,
+          "cosine_similarity_score": 53.64,
+          "similarity_index": 67.86
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_ThomasZumsteg/openAI/ChatGPT4_perfect_numbers_v2.go",
+          "word_quantity": 98,
+          "char_quantity": 898,
+          "filename": "ChatGPT4_perfect_numbers_v2.go",
+          "fuzzy_score": 84.86,
+          "cosine_similarity_score": 87.42,
+          "similarity_index": 86.26
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_ThomasZumsteg/openAI/ChatGPT4_perfect_numbers_v1.go",
+          "word_quantity": 84,
+          "char_quantity": 779,
+          "filename": "ChatGPT4_perfect_numbers_v1.go",
+          "fuzzy_score": 84.42,
+          "cosine_similarity_score": 82.15,
+          "similarity_index": 83.17
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_ThomasZumsteg/openAI/ChatGPT4_perfect_numbers_v4.go",
+          "word_quantity": 81,
+          "char_quantity": 764,
+          "filename": "ChatGPT4_perfect_numbers_v4.go",
+          "fuzzy_score": 81.95,
+          "cosine_similarity_score": 77.7,
+          "similarity_index": 79.62
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_ThomasZumsteg/claude/ClaudeSonnet4_perfect_numbers_v1.go",
+          "word_quantity": 93,
+          "char_quantity": 844,
+          "filename": "ClaudeSonnet4_perfect_numbers_v1.go",
+          "fuzzy_score": 84.13,
+          "cosine_similarity_score": 76.47,
+          "similarity_index": 79.92
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_ThomasZumsteg/claude/ClaudeSonnet4_perfect_numbers_v4.go",
+          "word_quantity": 91,
+          "char_quantity": 833,
+          "filename": "ClaudeSonnet4_perfect_numbers_v4.go",
+          "fuzzy_score": 83.36,
+          "cosine_similarity_score": 72.67,
+          "similarity_index": 77.48
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_ThomasZumsteg/claude/ClaudeSonnet4_perfect_numbers_v3.go",
+          "word_quantity": 91,
+          "char_quantity": 833,
+          "filename": "ClaudeSonnet4_perfect_numbers_v3.go",
+          "fuzzy_score": 83.36,
+          "cosine_similarity_score": 72.67,
+          "similarity_index": 77.48
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_ThomasZumsteg/claude/ClaudeSonnet4_perfect_numbers_v2.go",
+          "word_quantity": 93,
+          "char_quantity": 841,
+          "filename": "ClaudeSonnet4_perfect_numbers_v2.go",
+          "fuzzy_score": 87.39,
+          "cosine_similarity_score": 85.14,
+          "similarity_index": 86.15
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_ThomasZumsteg/gemini/GeminiFlash_perfect_numbers_v4.go",
+          "word_quantity": 80,
+          "char_quantity": 732,
+          "filename": "GeminiFlash_perfect_numbers_v4.go",
+          "fuzzy_score": 85.93,
+          "cosine_similarity_score": 89.56,
+          "similarity_index": 87.93
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_ThomasZumsteg/gemini/GeminiFlash_perfect_numbers_v1.go",
+          "word_quantity": 86,
+          "char_quantity": 786,
+          "filename": "GeminiFlash_perfect_numbers_v1.go",
+          "fuzzy_score": 87.39,
+          "cosine_similarity_score": 71.65,
+          "similarity_index": 78.73
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_ThomasZumsteg/gemini/GeminiFlash_perfect_numbers_v2.go",
+          "word_quantity": 80,
+          "char_quantity": 731,
+          "filename": "GeminiFlash_perfect_numbers_v2.go",
+          "fuzzy_score": 88.29,
+          "cosine_similarity_score": 89.56,
+          "similarity_index": 88.99
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_ThomasZumsteg/gemini/GeminiFlash_perfect_numbers_v3.go",
+          "word_quantity": 80,
+          "char_quantity": 722,
+          "filename": "GeminiFlash_perfect_numbers_v3.go",
+          "fuzzy_score": 83.91,
+          "cosine_similarity_score": 75.74,
+          "similarity_index": 79.42
+        }
+      ]
+    },
+    {
+      "id": "go_perfect_numbers_Exercism (go_drapala)",
+      "filename": "perfect_numbers.go",
+      "language": "go",
+      "source": "Exercism (go_drapala)",
+      "codeSnippetFilePath": "go/perfect_numbers_Exercism_go_drapala/perfect_numbers.go",
+      "testUnitFilePath": "go/perfect_numbers_Exercism_go_drapala/perfect_numbers_test.go",
+      "licenseType": "None",
+      "downloadDate": "2025-06-28 16:35:58",
+      "characterQuantity": 1134,
+      "wordQuantity": 164,
+      "LLMs": [
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_drapala/openAI/ChatGPT4_perfect_numbers_v3.go",
+          "word_quantity": 114,
+          "char_quantity": 961,
+          "filename": "ChatGPT4_perfect_numbers_v3.go",
+          "fuzzy_score": 85.06,
+          "cosine_similarity_score": 86.39,
+          "similarity_index": 85.79
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_drapala/openAI/ChatGPT4_perfect_numbers_v2.go",
+          "word_quantity": 115,
+          "char_quantity": 974,
+          "filename": "ChatGPT4_perfect_numbers_v2.go",
+          "fuzzy_score": 79.41,
+          "cosine_similarity_score": 82.33,
+          "similarity_index": 81.02
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_drapala/openAI/ChatGPT4_perfect_numbers_v1.go",
+          "word_quantity": 117,
+          "char_quantity": 979,
+          "filename": "ChatGPT4_perfect_numbers_v1.go",
+          "fuzzy_score": 83.48,
+          "cosine_similarity_score": 86.7,
+          "similarity_index": 85.25
+        },
+        {
+          "type": "openAI",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_drapala/openAI/ChatGPT4_perfect_numbers_v4.go",
+          "word_quantity": 80,
+          "char_quantity": 762,
+          "filename": "ChatGPT4_perfect_numbers_v4.go",
+          "fuzzy_score": 67.72,
+          "cosine_similarity_score": 44.68,
+          "similarity_index": 55.05
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_drapala/claude/ClaudeSonnet4_perfect_numbers_v1.go",
+          "word_quantity": 138,
+          "char_quantity": 1104,
+          "filename": "ClaudeSonnet4_perfect_numbers_v1.go",
+          "fuzzy_score": 68.9,
+          "cosine_similarity_score": 56.36,
+          "similarity_index": 62.01
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_drapala/claude/ClaudeSonnet4_perfect_numbers_v4.go",
+          "word_quantity": 153,
+          "char_quantity": 1207,
+          "filename": "ClaudeSonnet4_perfect_numbers_v4.go",
+          "fuzzy_score": 79.28,
+          "cosine_similarity_score": 84.16,
+          "similarity_index": 81.97
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_drapala/claude/ClaudeSonnet4_perfect_numbers_v3.go",
+          "word_quantity": 170,
+          "char_quantity": 1320,
+          "filename": "ClaudeSonnet4_perfect_numbers_v3.go",
+          "fuzzy_score": 84.92,
+          "cosine_similarity_score": 88.76,
+          "similarity_index": 87.03
+        },
+        {
+          "type": "claude",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_drapala/claude/ClaudeSonnet4_perfect_numbers_v2.go",
+          "word_quantity": 128,
+          "char_quantity": 1038,
+          "filename": "ClaudeSonnet4_perfect_numbers_v2.go",
+          "fuzzy_score": 70.26,
+          "cosine_similarity_score": 56.95,
+          "similarity_index": 62.94
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_drapala/gemini/GeminiFlash_perfect_numbers_v4.go",
+          "word_quantity": 97,
+          "char_quantity": 852,
+          "filename": "GeminiFlash_perfect_numbers_v4.go",
+          "fuzzy_score": 72.1,
+          "cosine_similarity_score": 49.92,
+          "similarity_index": 59.9
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_drapala/gemini/GeminiFlash_perfect_numbers_v1.go",
+          "word_quantity": 92,
+          "char_quantity": 812,
+          "filename": "GeminiFlash_perfect_numbers_v1.go",
+          "fuzzy_score": 72.46,
+          "cosine_similarity_score": 53.75,
+          "similarity_index": 62.17
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_drapala/gemini/GeminiFlash_perfect_numbers_v2.go",
+          "word_quantity": 89,
+          "char_quantity": 806,
+          "filename": "GeminiFlash_perfect_numbers_v2.go",
+          "fuzzy_score": 72.99,
+          "cosine_similarity_score": 53.78,
+          "similarity_index": 62.42
+        },
+        {
+          "type": "gemini",
+          "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/go/perfect_numbers_Exercism_go_drapala/gemini/GeminiFlash_perfect_numbers_v3.go",
+          "word_quantity": 87,
+          "char_quantity": 787,
+          "filename": "GeminiFlash_perfect_numbers_v3.go",
+          "fuzzy_score": 72.05,
+          "cosine_similarity_score": 53.38,
+          "similarity_index": 61.78
+        }
+      ]
+    }
+  ]
 }

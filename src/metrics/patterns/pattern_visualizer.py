@@ -1,5 +1,18 @@
 #!/usr/bin/env python3
+"""
+Advanced Pattern Visualizer
+============================
 
+Crea visualizzazioni avanzate per l'analisi pattern-performance con:
+- Box plots per distribuzione miglioramenti per pattern
+- Detection e visualizzazione outliers
+- Heatmap correlazioni pattern-metrica
+- Scatter plots similarity vs improvement
+- Distribuzione pattern per categoria e linguaggio
+
+
+Date: 2025-10-22
+"""
 
 import logging
 from pathlib import Path
@@ -284,15 +297,22 @@ class PatternVisualizerV4:
         logger.info("✓ Fig1: Cluster selection (simplified)")
 
     # ========================================================================
-    # FIG2-4: BOX PLOTS - ALL PATTERNS
+    # FIG2-4: BOX PLOTS - ALL PATTERNS (MODIFICATA)
     # ========================================================================
 
     def plot_all_patterns_boxplots(self, correlations: List[Dict]):
         """
         Box plots showing ALL detected patterns (not just top N)
         One figure per metric
+        
+        MODIFICATA:
+        - Grafico orizzontale (vert=False) per evitare sovrapposizione etichette.
+        - Asse Y ora mostra i pattern, Asse X i valori di improvement.
+        - Linee di riferimento e griglia aggiornate per l'orientamento orizzontale.
+        - Etichette degli assi scambiate.
+        - Dati invertiti per mostrare i migliori (più negativi) in alto.
         """
-        logger.info("Creating box plots for ALL detected patterns...")
+        logger.info("Creating box plots for ALL detected patterns (horizontal)...")
 
         metrics = [
             ('cpu', 'CPU Usage', 'cpu_avg_improvement', 'cpu_std', 'cpu_sample_size'),
@@ -308,13 +328,14 @@ class PatternVisualizerV4:
                 logger.warning(f"No patterns for {metric_label}")
                 continue
 
-            # Sort by average improvement
+            # Sort by average improvement (ascending: best are first)
             valid.sort(key=lambda x: x[avg_key] if x[avg_key] is not None else 999)
 
             # Create figure (size based on number of patterns)
             n_patterns = len(valid)
-            fig_height = max(8, n_patterns * 0.35)
-            fig, ax = plt.subplots(figsize=(12, fig_height))
+            # <--- MODIFICA: Altezza figura dipende da n_patterns, larghezza fissa
+            fig_height = max(8, n_patterns * 0.4) # Aumentato leggermente lo spazio per etichetta
+            fig, ax = plt.subplots(figsize=(12, fig_height)) # Larghezza fissa 12, altezza dinamica
 
             # Prepare data
             labels = []
@@ -335,8 +356,7 @@ class PatternVisualizerV4:
 
                 # Format label
                 name = format_pattern_name(pattern['pattern'])
-                if len(name) > 45:
-                    name = name[:42] + '...'
+                # Non c'è più bisogno di troncare il nome, c'è spazio
                 labels.append(f"{name}\n(n={size})")
 
                 # Color by improvement level
@@ -352,8 +372,15 @@ class PatternVisualizerV4:
             if not data_points:
                 continue
 
-            # Create box plot
+            # <--- MODIFICA: Inverti i dati per plottare i migliori in alto
+            labels.reverse()
+            data_points.reverse()
+            colors_list.reverse()
+            # --->
+
+            # <--- MODIFICA: Grafico orizzontale con vert=False
             bp = ax.boxplot(data_points, labels=labels, patch_artist=True,
+                           vert=False,  # <-- CAMBIATO A ORIZZONTALE
                            showfliers=True,
                            flierprops=dict(marker='o', markersize=4, alpha=0.5,
                                          markerfacecolor='red', markeredgecolor='none'),
@@ -361,26 +388,37 @@ class PatternVisualizerV4:
                            boxprops=dict(linewidth=0.8),
                            whiskerprops=dict(linewidth=0.8),
                            capprops=dict(linewidth=0.8))
+            # --->
 
             # Color boxes
             for patch, color_val in zip(bp['boxes'], colors_list):
                 patch.set_facecolor(color_val)
                 patch.set_alpha(0.7)
 
-            # Reference lines
-            ax.axhline(0, color='black', linestyle='--', linewidth=1, alpha=0.4)
-            ax.axhline(-10, color='green', linestyle=':', linewidth=1, alpha=0.3)
+            # <--- MODIFICA: Linee di riferimento verticali (axvline)
+            ax.axvline(0, color='black', linestyle='--', linewidth=1, alpha=0.4)
+            ax.axvline(-10, color='green', linestyle=':', linewidth=1, alpha=0.3)
+            # --->
 
-            # Labels
-            ax.set_ylabel(f'{metric_label} Improvement (%)', fontweight='bold', fontsize=13)
+            # <--- MODIFICA: Etichette assi scambiate
+            ax.set_xlabel(f'{metric_label} Improvement (%)', fontweight='bold', fontsize=13)
+            # L'etichetta Y (nomi pattern) è gestita da boxplot
+            # --->
+            
             ax.set_title(
                 f'{metric_label} - All Detected Patterns (n={n_patterns})\n'
                 f'Negative values = reduction = improvement',
                 fontweight='bold', fontsize=14, pad=15
             )
 
-            ax.tick_params(axis='x', rotation=45, labelsize=9)
-            ax.grid(axis='y', alpha=0.3)
+            # <--- MODIFICA: tick_params per l'asse 'y' (etichette pattern)
+            ax.tick_params(axis='y', labelsize=9) # Rimossa rotazione
+            # --->
+            
+            # <--- MODIFICA: Griglia sull'asse X (valori numerici)
+            ax.grid(axis='x', alpha=0.3)
+            # --->
+            
             ax.set_axisbelow(True)
 
             # Legend
@@ -393,11 +431,11 @@ class PatternVisualizerV4:
             ax.legend(handles=legend_elements, loc='upper right', fontsize=10, framealpha=0.95)
 
             plt.tight_layout()
-            plt.savefig(self.output_dir / f'Fig{fig_num}_{metric_key}_all_patterns.png',
+            plt.savefig(self.output_dir / f'F{fig_num}_{metric_key}_all_patterns.png',
                        dpi=300, bbox_inches='tight')
             plt.close()
 
-            logger.info(f"✓ Fig{fig_num}: {metric_label} - all {n_patterns} patterns")
+            logger.info(f"✓ F{fig_num}: {metric_label} - all {n_patterns} patterns")
 
     # ========================================================================
     # FIG5: PATTERN DISTRIBUTION (NO SHADOW + LANGUAGE BREAKDOWN)
@@ -559,7 +597,7 @@ class PatternVisualizerV4:
                 self._create_clear_heatmap(
                     patterns,
                     f"{lang} Patterns",
-                    f"Fig{fig_num}_{lang.lower().replace('/', '_')}_heatmap",
+                    f"F{fig_num}_{lang.lower().replace('/', '_')}_heatmap",
                     fig_num
                 )
                 fig_num += 1
@@ -637,7 +675,7 @@ class PatternVisualizerV4:
         plt.savefig(self.output_dir / f'{filename}.png', dpi=300, bbox_inches='tight')
         plt.close()
 
-        logger.info(f"✓ Fig{fig_num}: {title}")
+        logger.info(f"✓ F{fig_num}: {title}")
 
     # ========================================================================
     # FIG13: TOP PATTERNS COMPARISON (SIMPLIFIED)
@@ -768,4 +806,3 @@ class PatternVisualizerV4:
         logger.info(f"All figures saved to: {self.output_dir}")
         logger.info("Format: PNG (300 DPI)")
         logger.info("=" * 80)
-

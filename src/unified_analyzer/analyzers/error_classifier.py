@@ -7,9 +7,13 @@ from typing import List, Dict, Optional
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 
-from unified_analyzer.core.models import Anomaly
+from unified_analyzer.core.models import (
+    Anomaly,
+    ClassifiedError,
+    ErrorCategory,
+    FixAction
+)
 from unified_analyzer.core.enums import RootCause
-from .models import ClassifiedError, ErrorCategory, FixAction
 
 logger = logging.getLogger(__name__)
 

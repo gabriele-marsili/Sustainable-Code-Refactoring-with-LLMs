@@ -7,9 +7,16 @@ import sys
 import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from utility_dir import general_utils
-from exec_metrics_calculator import ExecMetricCalculator
-from execMetricStatsVisualizator import ExecMetricStatsVisualizator
 import logging
+
+# Try relative imports first, fallback to absolute
+try:
+    from .exec_metrics_calculator import ExecMetricCalculator
+    from .execMetricStatsVisualizator import ExecMetricStatsVisualizator
+except ImportError:
+    # Fallback for direct execution
+    from exec_metrics_calculator import ExecMetricCalculator
+    from execMetricStatsVisualizator import ExecMetricStatsVisualizator
 
 
 def main():

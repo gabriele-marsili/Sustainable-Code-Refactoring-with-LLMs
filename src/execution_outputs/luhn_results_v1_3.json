@@ -1,12 +1,4 @@
 {
-  "execution_date": "2025-10-07 02:04:52",
-  "execution_metadata": {
-    "total_tests": 43,
-    "successful_tests": 43,
-    "execution_time": "00h 01m 51s",
-    "cluster": "cluster_luhn",
-    "test_type": "llm_v1"
-  },
   "results": {
     "python": [
       {
@@ -109,12 +101,12 @@
         "language": "javascript",
         "LLM_results": [
           {
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/luhn_exercism-javascript-ThomasZumsteg/openAI/ChatGPT4_luhn_v1.js",
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/javascript/luhn_exercism-javascript-ThomasZumsteg/gemini/GeminiFlash_luhn_v1.js",
             "log": "",
-            "execution_time_ms": 180,
+            "execution_time_ms": 190,
             "CPU_usage": 6.0,
-            "RAM_usage": 67500,
+            "RAM_usage": 66824,
             "regressionTestPassed": false,
             "success": false,
             "error_message": "Docker exit code: 1"
@@ -578,48 +570,6 @@
         "LLM_results": []
       }
     ],
-    "cpp": [
-      {
-        "id": "cpp_luhn_Exercism (thefullarcticfox)",
-        "filename": "luhn.cpp",
-        "language": "cpp",
-        "LLM_results": [
-          {
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/luhn_Exercism_thefullarcticfox/openAI/ChatGPT4_luhn_v1.cpp",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/luhn_Exercism_thefullarcticfox/openAI/output.log",
-            "execution_time_ms": 0,
-            "CPU_usage": 0.0,
-            "RAM_usage": 3968,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          },
-          {
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/luhn_Exercism_thefullarcticfox/claude/ClaudeSonnet4_luhn_v1.cpp",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/luhn_Exercism_thefullarcticfox/claude/output.log",
-            "execution_time_ms": 0,
-            "CPU_usage": 12.0,
-            "RAM_usage": 4096,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          },
-          {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/luhn_Exercism_thefullarcticfox/gemini/GeminiFlash_luhn_v1.cpp",
-            "log": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/luhn_Exercism_thefullarcticfox/gemini/output.log",
-            "execution_time_ms": 0,
-            "CPU_usage": 25.0,
-            "RAM_usage": 3968,
-            "regressionTestPassed": true,
-            "success": null,
-            "error_message": null
-          }
-        ]
-      }
-    ],
     "go": [
       {
         "id": "go_luhn_Exercism (go_rootulp)",
@@ -784,70 +734,16 @@
     ],
     "c": [
       {
-        "id": "c_luhn_Exercism (HeitorMP)",
-        "filename": "luhn.c",
-        "language": "c",
-        "LLM_results": [
-          {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/luhn_Exercism_HeitorMP/gemini/GeminiFlash_luhn_v1.c",
-            "log": "",
-            "execution_time_ms": 80,
-            "CPU_usage": 1.0,
-            "RAM_usage": 3456,
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": "Docker exit code: 255"
-          }
-        ]
-      },
-      {
-        "id": "c_luhn_Exercism (HeitorMP)",
-        "filename": "luhn.c",
-        "language": "c",
-        "LLM_results": [
-          {
-            "LLM_type": "openAI",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/luhn_Exercism_HeitorMP/openAI/ChatGPT4_luhn_v1.c",
-            "log": "",
-            "execution_time_ms": 40,
-            "CPU_usage": 2.0,
-            "RAM_usage": 3328,
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": "Docker exit code: 255"
-          }
-        ]
-      },
-      {
-        "id": "c_luhn_Exercism (HeitorMP)",
-        "filename": "luhn.c",
-        "language": "c",
-        "LLM_results": [
-          {
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/luhn_Exercism_HeitorMP/claude/ClaudeSonnet4_luhn_v1.c",
-            "log": "",
-            "execution_time_ms": 20,
-            "CPU_usage": 4.0,
-            "RAM_usage": 3456,
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": "Docker exit code: 255"
-          }
-        ]
-      },
-      {
         "id": "c_luhn_Exercism (chriswilding)",
         "filename": "luhn.c",
         "language": "c",
         "LLM_results": [
           {
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/luhn_Exercism_chriswilding/claude/ClaudeSonnet4_luhn_v1.c",
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/luhn_Exercism_chriswilding/gemini/GeminiFlash_luhn_v1.c",
             "log": "",
-            "execution_time_ms": 70,
-            "CPU_usage": 1.0,
+            "execution_time_ms": 30,
+            "CPU_usage": 3.0,
             "RAM_usage": 3328,
             "regressionTestPassed": false,
             "success": false,
@@ -897,33 +793,15 @@
         "language": "c",
         "LLM_results": [
           {
-            "LLM_type": "gemini",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/luhn_Exercism_m3g4d1v3r/gemini/GeminiFlash_luhn_v1.c",
-            "log": "",
-            "execution_time_ms": 0,
-            "CPU_usage": 20.0,
-            "RAM_usage": 3456,
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": "Docker exit code: 255"
-          }
-        ]
-      },
-      {
-        "id": "c_luhn_Exercism (m3g4d1v3r)",
-        "filename": "luhn.c",
-        "language": "c",
-        "LLM_results": [
-          {
             "LLM_type": "claude",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/luhn_Exercism_m3g4d1v3r/claude/ClaudeSonnet4_luhn_v1.c",
             "log": "",
-            "execution_time_ms": 0,
-            "CPU_usage": 0.0,
-            "RAM_usage": 3456,
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": "Docker exit code: 255"
+            "execution_time_ms": 7.174193,
+            "CPU_usage": 3.0,
+            "RAM_usage": 8704,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
           }
         ]
       },
@@ -936,12 +814,86 @@
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/luhn_Exercism_m3g4d1v3r/openAI/ChatGPT4_luhn_v1.c",
             "log": "",
-            "execution_time_ms": 0,
-            "CPU_usage": 12.0,
-            "RAM_usage": 3456,
+            "execution_time_ms": 23.603629,
+            "CPU_usage": 1.0,
+            "RAM_usage": 8576,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "c_luhn_Exercism (m3g4d1v3r)",
+        "filename": "luhn.c",
+        "language": "c",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/luhn_Exercism_m3g4d1v3r/claude/ClaudeSonnet4_luhn_v1.c",
+            "log": "",
+            "execution_time_ms": 7.174193,
+            "CPU_usage": 3.0,
+            "RAM_usage": 8704,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      }
+    ],
+    "cpp": [
+      {
+        "id": "cpp_luhn_Exercism (thefullarcticfox)",
+        "filename": "luhn.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/luhn_Exercism_thefullarcticfox/claude/ClaudeSonnet4_luhn_v1.cpp",
+            "log": "",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
             "regressionTestPassed": false,
             "success": false,
-            "error_message": "Docker exit code: 255"
+            "error_message": "Docker exit code: 1"
+          }
+        ]
+      },
+      {
+        "id": "cpp_luhn_Exercism (thefullarcticfox)",
+        "filename": "luhn.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "gemini",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/luhn_Exercism_thefullarcticfox/gemini/GeminiFlash_luhn_v1.cpp",
+            "log": "",
+            "execution_time_ms": 44.08783,
+            "CPU_usage": 3.0,
+            "RAM_usage": 10368,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
+          }
+        ]
+      },
+      {
+        "id": "cpp_luhn_Exercism (thefullarcticfox)",
+        "filename": "luhn.cpp",
+        "language": "cpp",
+        "LLM_results": [
+          {
+            "LLM_type": "openAI",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/cpp/luhn_Exercism_thefullarcticfox/openAI/ChatGPT4_luhn_v1.cpp",
+            "log": "",
+            "execution_time_ms": 24.286465,
+            "CPU_usage": 4.0,
+            "RAM_usage": 10496,
+            "regressionTestPassed": true,
+            "success": true,
+            "error_message": null
           }
         ]
       }

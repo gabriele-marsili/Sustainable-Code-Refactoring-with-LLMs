@@ -86,19 +86,32 @@ class AnomalyDetector:
             if issues:
                 severity = self._determine_severity_for_invalid(entry, issues)
 
+                # Enhanced diagnostic info with all available data
+                diagnostic_info = {
+                    'execution_time_ms': entry.execution_time_ms,
+                    'cpu_usage': entry.cpu_usage,
+                    'ram_usage': entry.ram_usage,
+                    'test_passed': entry.regression_test_passed,
+                    'success': entry.success,
+                    'has_error_message': entry.error_message is not None,
+                    'error_message': entry.error_message[:200] if entry.error_message else None,
+                }
+
+                # Add diagnostic fields if available
+                if hasattr(entry, 'docker_exit_code') and entry.docker_exit_code is not None:
+                    diagnostic_info['docker_exit_code'] = entry.docker_exit_code
+                if hasattr(entry, 'error_category') and entry.error_category:
+                    diagnostic_info['error_category'] = entry.error_category
+                if hasattr(entry, 'docker_stderr_preview') and entry.docker_stderr_preview:
+                    diagnostic_info['docker_stderr_preview'] = entry.docker_stderr_preview[:200]
+
                 anomaly = Anomaly(
                     anomaly_id=self._generate_anomaly_id(),
                     entry=entry,
                     anomaly_type=AnomalyType.INVALID_VALUE,
                     severity=severity,
                     detected_issues=issues,
-                    diagnostic_info={
-                        'execution_time_ms': entry.execution_time_ms,
-                        'cpu_usage': entry.cpu_usage,
-                        'ram_usage': entry.ram_usage,
-                        'test_passed': entry.regression_test_passed,
-                        'has_error_message': entry.error_message is not None
-                    }
+                    diagnostic_info=diagnostic_info
                 )
 
                 anomalies.append(anomaly)
@@ -252,13 +265,13 @@ class AnomalyDetector:
 
         # Extract metric values
         values = []
-        entry_value_map = {}
+        entry_value_map = {}  # Map entry_id -> (entry, value)
 
         for entry in entries:
             value = entry.get_metric(metric_name)
             if value is not None and value > 0:
                 values.append(value)
-                entry_value_map[entry] = value
+                entry_value_map[entry.id] = (entry, value)
 
         if len(values) < 4:
             return outliers
@@ -270,7 +283,7 @@ class AnomalyDetector:
                  (sorted_values[n // 2 - 1] + sorted_values[n // 2]) / 2
 
         # Find outliers based on percentage deviation from median
-        for entry, value in entry_value_map.items():
+        for entry_id, (entry, value) in entry_value_map.items():
             deviation_pct = abs((value - median) / median * 100)
 
             if deviation_pct > threshold_percentage:

@@ -120,6 +120,11 @@ class DataLoader:
         """
         Find execution output files for a cluster
 
+        Handles all naming conventions:
+        - a####cluster_name_results_X.json
+        - cluster_name_results_X.json
+        - cluster_cluster_name_results_X.json (legacy)
+
         Args:
             cluster_name: Name of the cluster
 
@@ -139,13 +144,18 @@ class DataLoader:
 
             filename = output_file.name
 
-            # Check if belongs to this cluster
-            if not filename.startswith(f"{cluster_name}_results_"):
-                continue
-
-            # Parse filename to determine type
+            # Parse filename using enhanced parser (handles all naming patterns)
             parsed = self.parser.parse_output_filename(filename)
 
+            # Skip if couldn't parse
+            if parsed['cluster_name'] is None:
+                continue
+
+            # Check if belongs to this cluster
+            if parsed['cluster_name'] != cluster_name:
+                continue
+
+            # Categorize by type
             if parsed['test_type'] == 'base':
                 base_files.append(output_file)
             elif parsed['test_type'] == 'llm':
@@ -153,6 +163,8 @@ class DataLoader:
 
         base_files.sort()
         llm_files.sort()
+
+        logger.debug(f"Found {len(base_files)} base files and {len(llm_files)} LLM files for cluster {cluster_name}")
 
         return (base_files, llm_files)
 

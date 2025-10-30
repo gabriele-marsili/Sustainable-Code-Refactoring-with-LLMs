@@ -95,7 +95,7 @@ class ExecutionState:
 
 @dataclass
 class ExecutionMetrics:
-    """Accurate metrics container with validation"""
+    """Accurate metrics container with validation and diagnostic info"""
 
     execution_time_ms: Optional[float] = (
         None  # ✅ CHANGED: float to preserve sub-millisecond precision
@@ -106,6 +106,14 @@ class ExecutionMetrics:
     success: bool = False
     error_message: Optional[str] = None
     log_path: Optional[str] = None
+
+    # ✅ NEW: Enhanced diagnostic fields
+    docker_exit_code: Optional[int] = None
+    docker_stdout: Optional[str] = None
+    docker_stderr: Optional[str] = None
+    error_category: Optional[str] = None  # compilation, import, timeout, assertion, docker, unknown
+    raw_log_content: Optional[str] = None
+    test_framework_output: Optional[str] = None
 
     def is_valid(self) -> bool:
         """Check if metrics are meaningful"""
@@ -121,7 +129,7 @@ class ExecutionMetrics:
 
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary for JSON serialization"""
-        return {
+        base_dict = {
             "execution_time_ms": self.execution_time_ms,
             "CPU_usage": self.cpu_usage,
             "RAM_usage": self.ram_usage,
@@ -131,9 +139,111 @@ class ExecutionMetrics:
             "log_path": self.log_path,
         }
 
+        # ✅ NEW: Add diagnostic info if available (only when there's an error)
+        if not self.success or not self.is_valid():
+            diagnostic_dict = {
+                "docker_exit_code": self.docker_exit_code,
+                "error_category": self.error_category,
+                "docker_stdout_preview": self.docker_stdout[:1000] if self.docker_stdout else None,
+                "docker_stderr_preview": self.docker_stderr[:1000] if self.docker_stderr else None,
+                "raw_log_preview": self.raw_log_content[:1000] if self.raw_log_content else None,
+            }
+            base_dict.update({k: v for k, v in diagnostic_dict.items() if v is not None})
+
+        return base_dict
+
 
 class MetricsParser:
     """Parse and obtains metrics by the log of the executed files"""
+
+    @staticmethod
+    def categorize_error(log_content: str, docker_stdout: str = "", docker_exit_code: int = 0) -> str:
+        """Categorize error based on log content and docker output
+
+        Returns one of: compilation, import, timeout, assertion, docker, metrics_parse_failure, unknown
+        """
+        combined_output = f"{log_content}\n{docker_stdout}".lower()
+
+        # Compilation errors (C, C++, Java, TypeScript)
+        compilation_patterns = [
+            r"error:\s*(undefined reference|multiple definition)",  # C/C++ linker
+            r"fatal error:.*\.h.*no such file",  # C/C++ missing headers
+            r"compilation terminated",
+            r"collect2: error: ld returned",  # Linker errors
+            r"error: expected.*before",  # C/C++ syntax
+            r"javac.*error:",  # Java compilation
+            r"tsc.*error ts\d+:",  # TypeScript compilation
+            r"cannot find symbol",  # Java
+            r"incompatible types",  # Java
+        ]
+
+        # Import/Module errors
+        import_patterns = [
+            r"modulenotfounderror:",
+            r"importerror:",
+            r"cannot find module",
+            r"module.*not found",
+            r"no module named",
+            r"error: cannot find package",  # Go
+            r"use of undeclared identifier",  # C/C++
+        ]
+
+        # Timeout errors
+        timeout_patterns = [
+            r"timeout",
+            r"timed out",
+            r"time limit exceeded",
+        ]
+
+        # Test assertion failures
+        assertion_patterns = [
+            r"assertion.*failed",
+            r"assert.*error",
+            r"expected.*but got",
+            r"test.*failed",
+            r"\d+ failed.*\d+ passed",  # Jest/pytest
+            r"failures:\s*\d+",  # Unity C
+        ]
+
+        # Docker-specific errors
+        docker_patterns = [
+            r"docker: error",
+            r"cannot connect to.*docker",
+            r"permission denied.*docker",
+            r"oci runtime error",
+            r"container.*not found",
+        ]
+
+        # Check patterns in order of specificity
+        for pattern in compilation_patterns:
+            if re.search(pattern, combined_output, re.IGNORECASE):
+                return "compilation"
+
+        for pattern in import_patterns:
+            if re.search(pattern, combined_output, re.IGNORECASE):
+                return "import"
+
+        for pattern in timeout_patterns:
+            if re.search(pattern, combined_output, re.IGNORECASE):
+                return "timeout"
+
+        for pattern in assertion_patterns:
+            if re.search(pattern, combined_output, re.IGNORECASE):
+                return "assertion"
+
+        for pattern in docker_patterns:
+            if re.search(pattern, combined_output, re.IGNORECASE):
+                return "docker"
+
+        # If no metrics were found but docker exited non-zero
+        if docker_exit_code != 0 and not any([
+            re.search(r"execution.*time", log_content, re.IGNORECASE),
+            re.search(r"cpu.*usage", log_content, re.IGNORECASE),
+            re.search(r"ram.*usage", log_content, re.IGNORECASE),
+        ]):
+            return "metrics_parse_failure"
+
+        return "unknown"
 
     @staticmethod
     def parse_time_output(log_content: str, debug_mode=False) -> ExecutionMetrics:
@@ -1398,11 +1508,16 @@ class TestExecutor:
         result: subprocess.CompletedProcess,
         debug_mode=False,
     ) -> ExecutionMetrics:
-        """Parse metrics from log file with fallback to stdout"""
+        """Parse metrics from log file with fallback to stdout and enhanced diagnostics"""
         metrics = ExecutionMetrics()
 
-        if DEBUG_MODE : 
+        if DEBUG_MODE :
             debug_mode = True
+
+        # ✅ NEW: Store docker output for diagnostics
+        metrics.docker_exit_code = result.returncode
+        metrics.docker_stdout = result.stdout if result.stdout else ""
+        # Note: stderr is merged with stdout in subprocess call
 
         log_content = ""
 
@@ -1426,11 +1541,18 @@ class TestExecutor:
             if debug_mode:
                 print("Using stdout as log content")
 
+        # ✅ NEW: Store raw log content for diagnostics
+        metrics.raw_log_content = log_content
+
         if not log_content:
             self.logger.error("No log content available for parsing")
             if debug_mode:
                 print("No log content available for parsing")
             metrics.error_message = "No log content generated"
+            # ✅ NEW: Categorize error
+            metrics.error_category = MetricsParser.categorize_error(
+                log_content, metrics.docker_stdout, metrics.docker_exit_code
+            )
             return metrics
 
         if debug_mode:
@@ -1469,6 +1591,13 @@ class TestExecutor:
         else:
             # Altri linguaggi
             metrics = MetricsParser.parse_time_output(log_content, debug_mode)
+
+        # ✅ NEW: Categorize errors for failed tests
+        if not metrics.is_valid() or not metrics.regression_test_passed or metrics.docker_exit_code != 0:
+            metrics.error_category = MetricsParser.categorize_error(
+                log_content, metrics.docker_stdout, metrics.docker_exit_code
+            )
+            self.logger.info(f"Error categorized as: {metrics.error_category}")
 
         return metrics
 
@@ -1611,7 +1740,7 @@ class TestExecutor:
                     if not metrics.error_message:
                         metrics.error_message = f"Docker exit code: {result.returncode}"
 
-            # Archive log
+            # Archive log with enhanced diagnostics for failures
             if log_file.exists():
                 log_archive = (
                     LOGS_DIR / f"{container_name}_{entry_id}_{int(time.time())}.log"
@@ -1620,6 +1749,32 @@ class TestExecutor:
                 shutil.copy2(log_file, log_archive)
                 metrics.log_path = str(log_archive)
                 self.logger.debug(f"Log archived to: {log_archive}")
+
+                # ✅ NEW: Save detailed diagnostic log for failures
+                if not metrics.is_valid() or not metrics.regression_test_passed:
+                    diagnostic_log = log_archive.parent / f"{log_archive.stem}_diagnostic.json"
+                    diagnostic_data = {
+                        "entry_id": entry_id,
+                        "language": language,
+                        "container": container_name,
+                        "docker_exit_code": result.returncode,
+                        "error_category": metrics.error_category,
+                        "error_message": metrics.error_message,
+                        "docker_stdout_full": result.stdout,
+                        "raw_log_content": metrics.raw_log_content[:5000] if metrics.raw_log_content else None,
+                        "metrics_found": {
+                            "execution_time_ms": metrics.execution_time_ms,
+                            "cpu_usage": metrics.cpu_usage,
+                            "ram_usage": metrics.ram_usage,
+                        }
+                    }
+                    try:
+                        with open(diagnostic_log, "w") as f:
+                            json.dump(diagnostic_data, f, indent=2)
+                        self.logger.info(f"Diagnostic log saved to: {diagnostic_log}")
+                    except Exception as diag_err:
+                        self.logger.warning(f"Could not save diagnostic log: {diag_err}")
+
             else:
                 self.logger.warning(f"No output.log found at {log_file}")
                 # Salva stdout come log
@@ -1631,14 +1786,20 @@ class TestExecutor:
                     log_archive.parent.mkdir(parents=True, exist_ok=True)
                     with open(log_archive, "w") as f:
                         f.write(result.stdout)
+                    metrics.log_path = str(log_archive)
                     self.logger.debug(f"Docker stdout saved to: {log_archive}")
 
             return metrics
 
-        except subprocess.TimeoutExpired:
+        except subprocess.TimeoutExpired as timeout_err:
             self.logger.error(f"Test timeout for {entry_id}")
             metrics = ExecutionMetrics()
-            metrics.error_message = "Test execution timeout"
+            metrics.error_message = "Test execution timeout (300s)"
+            metrics.error_category = "timeout"
+            metrics.docker_exit_code = -1
+            # Save timeout diagnostic
+            if timeout_err.stdout:
+                metrics.docker_stdout = timeout_err.stdout
             return metrics
 
         except Exception as e:
@@ -1647,6 +1808,7 @@ class TestExecutor:
             )
             metrics = ExecutionMetrics()
             metrics.error_message = str(e)
+            metrics.error_category = "unknown"
             return metrics
 
 
@@ -1994,9 +2156,14 @@ class ClusterRunner:
 
                 def is_outlier_base(task):
                     entry_id = task["entry"]["id"]
-                    return outlier_filter.should_execute_base_entry(
-                        cluster_name, entry_id
-                    )
+                    # For RerunFilter, use should_execute_entry which checks if entry_id is in the set
+                    if hasattr(outlier_filter, 'should_execute_base_entry'):
+                        return outlier_filter.should_execute_base_entry(
+                            cluster_name, entry_id
+                        )
+                    else:
+                        # RerunFilter only has should_execute_entry
+                        return outlier_filter.should_execute_entry(entry_id, test_type="base")
 
                 original_base_count = len(base_tasks)
                 base_tasks = list(filter(is_outlier_base, base_tasks))
@@ -2013,9 +2180,14 @@ class ClusterRunner:
                     # llm_info = task.get('llm_info', {})
                     # filename = llm_info.get('filename', '')
                     # The prompt_version is already set in the method parameters
-                    return outlier_filter.should_execute_llm_entry(
-                        cluster_name, entry_id, prompt_version
-                    )
+                    # For RerunFilter, use should_execute_entry which checks if entry_id is in the set
+                    if hasattr(outlier_filter, 'should_execute_llm_entry'):
+                        return outlier_filter.should_execute_llm_entry(
+                            cluster_name, entry_id, prompt_version
+                        )
+                    else:
+                        # RerunFilter only has should_execute_entry
+                        return outlier_filter.should_execute_entry(entry_id, test_type="llm")
 
                 original_llm_count = len(llm_tasks)
                 llm_tasks = list(filter(is_outlier_llm, llm_tasks))
@@ -2436,6 +2608,13 @@ def main():
         help="Path to outliers_report_*.json file (required for --outlier-mode)",
     )
 
+    # Rerun-queue selective execution (for pipeline)
+    parser.add_argument(
+        "--rerun-file",
+        type=str,
+        help="Path to rerun_queue.json file generated by pipeline analysis",
+    )
+
     parser.add_argument(
         "--debug-mode",
         action="store_true",
@@ -2740,6 +2919,252 @@ def main():
         print(
             f"Time saved by reusing: ~{total_entries_reused * 100 / max(total_entries_executed + total_entries_reused, 1):.1f}%"
         )
+        print("=" * 80)
+
+        return 0
+
+    # Handle rerun-file execution mode (for pipeline)
+    if args.rerun_file:
+        print("\n" + "=" * 80)
+        print("RERUN-FILE EXECUTION MODE (Pipeline Analysis)")
+        print("=" * 80)
+
+        rerun_file_path = Path(args.rerun_file)
+        if not rerun_file_path.is_absolute():
+            # Try relative to src/rerun_queues directory
+            rerun_file_path = BASE_DIR / "rerun_queues" / args.rerun_file
+            if not rerun_file_path.exists():
+                # Try as-is relative to current directory
+                rerun_file_path = Path(args.rerun_file)
+
+        if not rerun_file_path.exists():
+            print(f"Error: Rerun file not found: {rerun_file_path}")
+            return 1
+
+        # Load rerun queue
+        try:
+            with open(rerun_file_path, 'r', encoding='utf-8') as f:
+                rerun_queue = json.load(f)
+        except Exception as e:
+            print(f"Error loading rerun file: {e}")
+            return 1
+
+        entries = rerun_queue.get("entries", [])
+        if not entries:
+            print("No entries to rerun in queue file")
+            return 0
+
+        print(f"Loaded rerun queue with {len(entries)} entries")
+        print(f"Generated at: {rerun_queue.get('generated_at', 'unknown')}")
+
+        # Group entries by cluster and test type
+        from collections import defaultdict
+        entries_by_cluster = defaultdict(lambda: defaultdict(list))
+
+        for entry in entries:
+            cluster_name = entry.get("cluster_name")
+            test_type = entry.get("test_type", "base")
+            entry_id = entry.get("entry_id")
+            entries_by_cluster[cluster_name][test_type].append(entry_id)
+
+        print(f"\nClusters affected: {len(entries_by_cluster)}")
+
+        # Display summary
+        for cluster_name, types in entries_by_cluster.items():
+            total_entries = sum(len(ids) for ids in types.values())
+            print(f"  - {cluster_name}: {total_entries} entries")
+            for test_type, entry_ids in types.items():
+                print(f"      {test_type}: {len(entry_ids)} entries")
+
+        merger = ResultMerger()
+        total_entries_executed = 0
+
+        # Process each cluster
+        for cluster_name, types_dict in entries_by_cluster.items():
+            print(f"\n{'='*80}")
+            print(f"Processing cluster: {cluster_name}")
+            print(f"{'='*80}")
+
+            cluster_path = args.clusters_dir / f"cluster_{cluster_name}.json"
+            if not cluster_path.exists():
+                print(f"Warning: Cluster file not found: {cluster_path}")
+                print("Skipping this cluster")
+                continue
+
+            # Process each test type
+            for test_type, entry_ids in types_dict.items():
+                print(f"\nTest type: {test_type}")
+                print(f"Entry IDs to rerun: {len(entry_ids)}")
+
+                # Determine if base or LLM
+                is_llm = test_type.startswith("llm")
+
+                if is_llm:
+                    # Extract prompt version from test_type (e.g., "llm_v1" -> 1)
+                    try:
+                        prompt_version = int(test_type.split("_v")[1]) if "_v" in test_type else 1
+                    except (IndexError, ValueError):
+                        prompt_version = 1
+
+                    # Process each run
+                    for run_num in range(1, args.run_quantity + 1):
+                        print(f"  Run {run_num}/{args.run_quantity}")
+
+                        output_filename = f"{cluster_name}_results_v{prompt_version}_{run_num}.json"
+                        output_path = args.output_dir / output_filename
+
+                        # Load existing results (if any)
+                        existing_results = merger.load_existing_results(output_path)
+
+                        # Execute tests for these specific entry IDs
+                        print(f"    Executing {len(entry_ids)} entries...")
+                        start_time = time.time()
+
+                        # Create a simple filter object for entry_ids
+                        class RerunFilter:
+                            def __init__(self, entry_ids):
+                                self.entry_ids = set(entry_ids)
+
+                            def should_execute_entry(self, entry_id, test_type="base"):
+                                return entry_id in self.entry_ids
+
+                        rerun_filter = RerunFilter(entry_ids)
+
+                        _, llm_results = test_runner.run_cluster_tests(
+                            cluster_path=cluster_path,
+                            base_only=False,
+                            llm_only=True,
+                            prompt_version=prompt_version,
+                            use_cache=not args.no_cache,
+                            full=False,
+                            run_number=run_num,
+                            cluster_name=cluster_name,
+                            selected_languages=list(selected_languages),
+                            overwrite_results=overwrite_results,
+                            outlier_filter=rerun_filter,
+                            debug_mode=args.debug_mode,
+                        )
+
+                        elapsed = time.time() - start_time
+
+                        # Filter to only executed entries
+                        executed_results = [r for r in llm_results if r.id in entry_ids]
+
+                        print(f"    Executed {len(executed_results)} entries in {elapsed:.1f}s")
+                        total_entries_executed += len(executed_results)
+
+                        # Merge with existing results
+                        new_results_dicts = [r.to_json() for r in executed_results]
+
+                        if existing_results and existing_results.get("results"):
+                            merged_data = merger.merge_results(
+                                existing_data=existing_results,
+                                new_results=new_results_dicts,
+                                outlier_entry_ids=entry_ids,
+                            )
+                            total_merged = sum(len(e) for e in merged_data.get("results", {}).values())
+                            print(f"    Merged: {len(executed_results)} new, {total_merged} total")
+                        else:
+                            # No existing results - create new
+                            results_by_lang = {}
+                            for r in new_results_dicts:
+                                lang = r.get("language", "unknown")
+                                if lang not in results_by_lang:
+                                    results_by_lang[lang] = []
+                                results_by_lang[lang].append(r)
+                            merged_data = {"results": results_by_lang}
+                            print(f"    No existing results - saved {len(new_results_dicts)} new entries")
+
+                        # Save merged results
+                        merger.save_merged_results(
+                            merged_data=merged_data,
+                            output_file=output_path,
+                            backup=True,
+                        )
+
+                else:  # Base code execution
+                    # Process each run
+                    for run_num in range(1, args.run_quantity + 1):
+                        print(f"  Run {run_num}/{args.run_quantity}")
+
+                        output_filename = f"{cluster_name}_results_{run_num}.json"
+                        output_path = args.output_dir / output_filename
+
+                        # Load existing results
+                        existing_results = merger.load_existing_results(output_path)
+
+                        # Execute tests
+                        print(f"    Executing {len(entry_ids)} entries...")
+                        start_time = time.time()
+
+                        # Create filter
+                        class RerunFilter:
+                            def __init__(self, entry_ids):
+                                self.entry_ids = set(entry_ids)
+
+                            def should_execute_entry(self, entry_id, test_type="base"):
+                                return entry_id in self.entry_ids
+
+                        rerun_filter = RerunFilter(entry_ids)
+
+                        base_results, _ = test_runner.run_cluster_tests(
+                            cluster_path=cluster_path,
+                            base_only=True,
+                            llm_only=False,
+                            prompt_version=-1,
+                            use_cache=not args.no_cache,
+                            full=False,
+                            run_number=run_num,
+                            cluster_name=cluster_name,
+                            selected_languages=list(selected_languages),
+                            overwrite_results=overwrite_results,
+                            outlier_filter=rerun_filter,
+                            debug_mode=args.debug_mode,
+                        )
+
+                        elapsed = time.time() - start_time
+
+                        # Filter to only executed entries
+                        executed_results = [r for r in base_results if r.id in entry_ids]
+
+                        print(f"    Executed {len(executed_results)} entries in {elapsed:.1f}s")
+                        total_entries_executed += len(executed_results)
+
+                        # Merge with existing
+                        new_results_dicts = [r.to_json() for r in executed_results]
+
+                        if existing_results and existing_results.get("results"):
+                            merged_data = merger.merge_results(
+                                existing_data=existing_results,
+                                new_results=new_results_dicts,
+                                outlier_entry_ids=entry_ids,
+                            )
+                            total_merged = sum(len(e) for e in merged_data.get("results", {}).values())
+                            print(f"    Merged: {len(executed_results)} new, {total_merged} total")
+                        else:
+                            # No existing results
+                            results_by_lang = {}
+                            for r in new_results_dicts:
+                                lang = r.get("language", "unknown")
+                                if lang not in results_by_lang:
+                                    results_by_lang[lang] = []
+                                results_by_lang[lang].append(r)
+                            merged_data = {"results": results_by_lang}
+                            print(f"    No existing results - saved {len(new_results_dicts)} new entries")
+
+                        # Save merged results
+                        merger.save_merged_results(
+                            merged_data=merged_data,
+                            output_file=output_path,
+                            backup=True
+                        )
+
+        # Print final summary
+        print("\n" + "=" * 80)
+        print("RERUN-FILE EXECUTION COMPLETE")
+        print("=" * 80)
+        print(f"Total entries executed: {total_entries_executed}")
+        print(f"Clusters processed: {len(entries_by_cluster)}")
         print("=" * 80)
 
         return 0
