@@ -558,13 +558,18 @@ class GitHubIngestor:
             char_count = len(content) if content else 0
             word_count = len(content.split()) if content else 0
 
+            # Reject entries with empty source files
+            if char_count == 0:
+                logger.error(f"Source file is empty for {entry.exercise_name}. Skipping.")
+                return False
+
             new_entry = {
                 "id": entry.get_unique_id(),
                 "filename": main_source_file['name'],
                 "language": entry.language,
                 "source": f"exercism-{source_clean}",
-                "codeSnippetFilePath": f"{entry.language}/{entry_dir_name}/src/{main_source_file['name']}",
-                "testUnitFilePath": f"{entry.language}/{entry_dir_name}/test/{main_test_file['name']}",
+                "codeSnippetFilePath": f"{entry.language}/{entry_dir_name}/src",
+                "testUnitFilePath": f"{entry.language}/{entry_dir_name}/test",
                 "downloadDate": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 "characterQuantity": char_count,
                 "wordQuantity": word_count,

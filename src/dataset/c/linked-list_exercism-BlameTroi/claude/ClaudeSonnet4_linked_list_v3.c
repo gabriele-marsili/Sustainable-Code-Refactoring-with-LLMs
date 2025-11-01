@@ -1,0 +1,140 @@
+#include "linked_list.h"
+#include <stdlib.h>
+
+typedef struct list_node {
+    struct list_node *prev, *next;
+    ll_data_t data;
+} list_node;
+
+struct list {
+    list_node *first, *last;
+    size_t count;
+};
+
+static list_node *newNodeWithData(ll_data_t item_data) {
+    list_node *ln = malloc(sizeof(list_node));
+    if (!ln) return NULL;
+    ln->data = item_data;
+    ln->prev = NULL;
+    ln->next = NULL;
+    return ln;
+}
+
+struct list *list_create(void) {
+    struct list *l = malloc(sizeof(struct list));
+    if (!l) return NULL;
+    l->first = NULL;
+    l->last = NULL;
+    l->count = 0;
+    return l;
+}
+
+size_t list_count(const struct list *list) {
+    return list ? list->count : 0;
+}
+
+void list_push(struct list *list, ll_data_t item_data) {
+    if (!list) return;
+    
+    list_node *ln = newNodeWithData(item_data);
+    if (!ln) return;
+
+    if (!list->last) {
+        list->first = list->last = ln;
+    } else {
+        ln->prev = list->last;
+        list->last->next = ln;
+        list->last = ln;
+    }
+    list->count++;
+}
+
+ll_data_t list_pop(struct list *list) {
+    if (!list || !list->last) return 0;
+
+    list_node *ln = list->last;
+    ll_data_t d = ln->data;
+
+    list->last = ln->prev;
+    if (list->last) {
+        list->last->next = NULL;
+    } else {
+        list->first = NULL;
+    }
+
+    free(ln);
+    list->count--;
+    return d;
+}
+
+void list_unshift(struct list *list, ll_data_t item_data) {
+    if (!list) return;
+    
+    list_node *ln = newNodeWithData(item_data);
+    if (!ln) return;
+
+    if (!list->first) {
+        list->first = list->last = ln;
+    } else {
+        ln->next = list->first;
+        list->first->prev = ln;
+        list->first = ln;
+    }
+    list->count++;
+}
+
+ll_data_t list_shift(struct list *list) {
+    if (!list || !list->first) return 0;
+
+    list_node *ln = list->first;
+    ll_data_t d = ln->data;
+
+    if (list->first == list->last) {
+        list->first = list->last = NULL;
+    } else {
+        list->first = ln->next;
+        list->first->prev = NULL;
+    }
+
+    free(ln);
+    list->count--;
+    return d;
+}
+
+void list_delete(struct list *list, ll_data_t data) {
+    if (!list || !list->first) return;
+
+    list_node *ln = list->first;
+    while (ln && ln->data != data) {
+        ln = ln->next;
+    }
+
+    if (!ln) return;
+
+    if (ln->prev) {
+        ln->prev->next = ln->next;
+    } else {
+        list->first = ln->next;
+    }
+
+    if (ln->next) {
+        ln->next->prev = ln->prev;
+    } else {
+        list->last = ln->prev;
+    }
+
+    free(ln);
+    list->count--;
+}
+
+void list_destroy(struct list *list) {
+    if (!list) return;
+    
+    list_node *current = list->first;
+    while (current) {
+        list_node *next = current->next;
+        free(current);
+        current = next;
+    }
+    free(list);
+}

@@ -159,10 +159,24 @@ class MetricsParser:
     @staticmethod
     def categorize_error(log_content: str, docker_stdout: str = "", docker_exit_code: int = 0) -> str:
         """Categorize error based on log content and docker output
-
-        Returns one of: compilation, import, timeout, assertion, docker, metrics_parse_failure, unknown
+        
+        Returns one of: compilation, import, timeout, assertion, docker, 
+                        metrics_parse_failure, type_mismatch, unknown
         """
         combined_output = f"{log_content}\n{docker_stdout}".lower()
+
+        # Type mismatch errors (most specific, check first)
+        type_mismatch_patterns = [
+            r"ambiguating new declaration",  # C++ type conflicts
+            r"conflicting types for",  # C type conflicts
+            r"incompatible types",
+            r"error: no viable conversion",
+            r"cannot convert.*to",
+        ]
+        
+        for pattern in type_mismatch_patterns:
+            if re.search(pattern, combined_output, re.IGNORECASE):
+                return "type_mismatch"
 
         # Compilation errors (C, C++, Java, TypeScript)
         compilation_patterns = [
@@ -174,7 +188,9 @@ class MetricsParser:
             r"javac.*error:",  # Java compilation
             r"tsc.*error ts\d+:",  # TypeScript compilation
             r"cannot find symbol",  # Java
-            r"incompatible types",  # Java
+            r"cmake.*error",  # CMake configuration errors
+            r"make.*error",  # Make build errors
+            r"compilation_error:",  # Our custom marker
         ]
 
         # Import/Module errors
@@ -193,6 +209,7 @@ class MetricsParser:
             r"timeout",
             r"timed out",
             r"time limit exceeded",
+            r"test_error: timeout",  # Our custom marker
         ]
 
         # Test assertion failures
@@ -244,6 +261,7 @@ class MetricsParser:
             return "metrics_parse_failure"
 
         return "unknown"
+
 
     @staticmethod
     def parse_time_output(log_content: str, debug_mode=False) -> ExecutionMetrics:
@@ -499,6 +517,9 @@ class MetricsParser:
                 ),  # "4 Tests 0 Failures 0 Ignored"
                 (r"^OK$", "c_unity_ok"),  # "OK" on separate line
                 (r"Exit_code:\s*0", "exit_code_zero"),  # "Exit_code: 0"
+                # ✅ NEW: Catch2 test framework patterns
+                (r"All tests passed \((\d+) assertion", "catch2_success"),  # "All tests passed (1 assertion in 1 test case)"
+                (r"test cases?:\s*\d+\s*\|\s*\d+\s*passed", "catch2_passed"),  # Alternative Catch2 format
             ]
 
             for pattern, pattern_name in success_patterns:
@@ -517,6 +538,14 @@ class MetricsParser:
                             test_passed = True
                             logger.debug(
                                 f"C Unity success: {test_count} tests passed, 0 failures"
+                            )
+                            break
+                    elif pattern_name == "catch2_success":
+                        assertion_count = int(match.group(1))
+                        if assertion_count > 0:
+                            test_passed = True
+                            logger.debug(
+                                f"Catch2 success: {assertion_count} assertions passed"
                             )
                             break
                     else:
@@ -993,10 +1022,26 @@ class TestExecutor:
         else:
             print(f"wrapper_src does not exists : {wrapper_src}")
 
-        # Copy Makefile
-        makefile_src = dockerfile_path / "Makefile"
-        if makefile_src.exists():
-            shutil.copy2(makefile_src, mount_path / "Makefile")
+        # Copy universal Makefile as fallback (always copy, never overwrite)
+        universal_makefile = dockerfile_path / "Makefile.universal"
+        if universal_makefile.exists():
+            fallback_dest = mount_path / "Makefile.fallback"
+            shutil.copy2(universal_makefile, fallback_dest)
+            self.logger.debug(f"Copied universal Makefile as fallback: {fallback_dest}")
+
+        # Copy framework-specific Makefile only if no Makefile exists
+        # This prevents overwriting project-specific Makefiles
+        makefile_dest = mount_path / "Makefile"
+        if not makefile_dest.exists():
+            # Try Catch2 Makefile first, then Boost
+            for makefile_name in ["Makefile.catch", "Makefile.boost", "Makefile"]:
+                makefile_src = dockerfile_path / makefile_name
+                if makefile_src.exists():
+                    shutil.copy2(makefile_src, makefile_dest)
+                    self.logger.debug(f"Copied {makefile_name} as Makefile")
+                    break
+        else:
+            self.logger.debug(f"Makefile already exists, not overwriting: {makefile_dest}")
 
     """
     def execute_test(
@@ -1681,17 +1726,35 @@ class TestExecutor:
             "docker",
             "run",
             "--rm",
-            "--memory=4g",
+            "--memory=8g",  # Increased to 8GB for C/C++ compilation with Catch2
             "--cpus=2.0",
             "-v",
             f"{mount_path}:/app",
             "-w",
             "/app",
+        ]
+
+        # For C/C++ Exercism entries, extract exercise name and pass as env var
+        # Entry ID format: cpp_01-hello-world_exercism-USER or cpp_01-hello-world_ARPIT73881
+        if language.lower() in ["c", "cpp"]:
+            # Extract exercise name from ID
+            # Format: lang_exercise-name_source
+            parts = entry_id.split("_")
+            if len(parts) >= 3:
+                # Exercise name is the second part (index 1)
+                exercise_name = parts[1]
+                # Remove number prefix if present (e.g., "01-hello-world" -> "hello-world")
+                import re
+                exercise_name = re.sub(r'^\d+-', '', exercise_name)
+                docker_cmd.extend(["-e", f"EXERCISM_EXERCISE_NAME={exercise_name}"])
+                self.logger.debug(f"Passing exercise name to Docker: {exercise_name}")
+
+        docker_cmd.extend([
             container_name,
             "/bin/sh",
             "-c",
             "chmod +x ./run.sh && ./run.sh",
-        ]
+        ])
 
         # Per Java, passa il filename come argomento
         if language.lower() == "java":

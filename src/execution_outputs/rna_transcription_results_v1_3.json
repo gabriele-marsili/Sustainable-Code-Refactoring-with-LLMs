@@ -1,9 +1,9 @@
 {
-  "execution_date": "2025-10-07 11:34:28",
+  "execution_date": "2025-10-31 15:47:34",
   "execution_metadata": {
-    "total_tests": 58,
-    "successful_tests": 58,
-    "execution_time": "00h 01m 37s",
+    "total_tests": 36,
+    "successful_tests": 33,
+    "execution_time": "00h 00m 02s",
     "cluster": "cluster_rna_transcription",
     "test_type": "llm_v1"
   },
@@ -586,7 +586,6 @@
         ]
       }
     ],
-    "cpp": [],
     "go": [
       {
         "id": "go_rna_transcription_Exercism (go_rootulp)",
@@ -880,15 +879,33 @@
         "language": "c",
         "LLM_results": [
           {
+            "LLM_type": "claude",
+            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/rna_transcription_Exercism_m3g4d1v3r/claude/ClaudeSonnet4_rna_transcription_v1.c",
+            "log": "",
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
+            "regressionTestPassed": false,
+            "success": false,
+            "error_message": "Docker exit code: 2"
+          }
+        ]
+      },
+      {
+        "id": "c_rna_transcription_Exercism (m3g4d1v3r)",
+        "filename": "rna_transcription.c",
+        "language": "c",
+        "LLM_results": [
+          {
             "LLM_type": "openAI",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/rna_transcription_Exercism_m3g4d1v3r/openAI/ChatGPT4_rna_transcription_v1.c",
             "log": "",
-            "execution_time_ms": 0,
-            "CPU_usage": 0.0,
-            "RAM_usage": 3456,
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
             "regressionTestPassed": false,
             "success": false,
-            "error_message": "Docker exit code: 255"
+            "error_message": "Docker exit code: 2"
           }
         ]
       },
@@ -901,30 +918,12 @@
             "LLM_type": "gemini",
             "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/rna_transcription_Exercism_m3g4d1v3r/gemini/GeminiFlash_rna_transcription_v1.c",
             "log": "",
-            "execution_time_ms": 0,
-            "CPU_usage": 16.0,
-            "RAM_usage": 3456,
+            "execution_time_ms": null,
+            "CPU_usage": null,
+            "RAM_usage": null,
             "regressionTestPassed": false,
             "success": false,
-            "error_message": "Docker exit code: 255"
-          }
-        ]
-      },
-      {
-        "id": "c_rna_transcription_Exercism (m3g4d1v3r)",
-        "filename": "rna_transcription.c",
-        "language": "c",
-        "LLM_results": [
-          {
-            "LLM_type": "claude",
-            "path": "/Users/piccoletto/Desktop/Everything/pisa/tesi/Sustainable-Code-Refactoring-with-LLMs/src/dataset/c/rna_transcription_Exercism_m3g4d1v3r/claude/ClaudeSonnet4_rna_transcription_v1.c",
-            "log": "",
-            "execution_time_ms": 0,
-            "CPU_usage": 50.0,
-            "RAM_usage": 3456,
-            "regressionTestPassed": false,
-            "success": false,
-            "error_message": "Docker exit code: 255"
+            "error_message": "Docker exit code: 2"
           }
         ]
       }

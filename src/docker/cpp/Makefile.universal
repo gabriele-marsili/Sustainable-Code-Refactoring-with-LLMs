@@ -1,0 +1,156 @@
+# ============================================================================
+# UNIVERSAL MAKEFILE FOR C++ PROJECTS
+# ============================================================================
+# Auto-detects project structure, test framework, and compiles accordingly
+# Designed to work with any C++ project regardless of directory structure
+# ============================================================================
+
+# Compiler and flags
+CXX = g++
+CXXFLAGS = -std=c++17 -Wall -Wextra -O0 -g0
+
+# ============================================================================
+# AUTO-DETECTION: Find all source and test files
+# ============================================================================
+
+# Find all .cpp files, excluding build directories and common excludes
+ALL_CPP_FILES = $(shell find . -type f -name "*.cpp" 2>/dev/null | \
+                grep -v "/build/" | \
+                grep -v "/obj/" | \
+                grep -v "/.git/" | \
+                grep -v "/node_modules/" | \
+                grep -v "catch_amalgamated")
+
+# Separate source files from test files
+TEST_FILES = $(filter %test.cpp %_test.cpp %-test.cpp %Test.cpp, $(ALL_CPP_FILES))
+SRC_FILES = $(filter-out $(TEST_FILES), $(ALL_CPP_FILES))
+
+# Find all header directories
+HEADER_DIRS = $(shell find . -type f -name "*.h" -o -name "*.hpp" 2>/dev/null | \
+              xargs -r dirname | sort -u | \
+              grep -v "/build/" | \
+              grep -v "/obj/" | \
+              grep -v "/.git/")
+
+# Add include paths for all directories containing headers
+INCLUDE_FLAGS = $(foreach dir,$(HEADER_DIRS),-I$(dir))
+
+# Always include common directories
+INCLUDE_FLAGS += -I. -I./src -I./test -I./include -I/usr/local/include
+
+# Update CXXFLAGS with include paths
+CXXFLAGS += $(INCLUDE_FLAGS)
+
+# ============================================================================
+# AUTO-DETECTION: Test Framework
+# ============================================================================
+
+# Check which test framework is being used
+HAS_CATCH2 = $(shell grep -l "catch.hpp\|catch2.hpp\|catch2/catch.hpp" $(TEST_FILES) 2>/dev/null)
+HAS_BOOST = $(shell grep -l "boost/test\|BOOST_TEST" $(TEST_FILES) 2>/dev/null)
+HAS_GTEST = $(shell grep -l "gtest/gtest.h\|googletest" $(TEST_FILES) 2>/dev/null)
+
+# Determine framework and add appropriate flags
+ifneq ($(HAS_CATCH2),)
+    TEST_FRAMEWORK = catch2
+    # Catch2 v2 is installed system-wide
+    LDFLAGS += -L/usr/local/lib
+else ifneq ($(HAS_BOOST),)
+    TEST_FRAMEWORK = boost
+    LDFLAGS += -lboost_unit_test_framework
+else ifneq ($(HAS_GTEST),)
+    TEST_FRAMEWORK = gtest
+    LDFLAGS += -lgtest -lgtest_main -lpthread
+else
+    TEST_FRAMEWORK = none
+endif
+
+# ============================================================================
+# OBJECT FILES
+# ============================================================================
+
+OBJ_DIR = obj
+SRC_OBJ = $(patsubst ./%.cpp, $(OBJ_DIR)/%.o, $(SRC_FILES))
+TEST_OBJ = $(patsubst ./%.cpp, $(OBJ_DIR)/%.o, $(TEST_FILES))
+
+# ============================================================================
+# MAIN TARGET
+# ============================================================================
+
+TARGET = test_exec
+
+.PHONY: all clean info
+
+all: $(TARGET)
+
+# ============================================================================
+# LINKING
+# ============================================================================
+
+$(TARGET): $(OBJ_DIR) $(SRC_OBJ) $(TEST_OBJ)
+	@echo "🔗 Linking executable with $(TEST_FRAMEWORK) framework..."
+	@echo "   Source objects: $(words $(SRC_OBJ))"
+	@echo "   Test objects: $(words $(TEST_OBJ))"
+	$(CXX) $(CXXFLAGS) $(SRC_OBJ) $(TEST_OBJ) $(LDFLAGS) -o $@
+	@echo "✅ Build complete: $(TARGET)"
+
+# ============================================================================
+# COMPILATION RULES
+# ============================================================================
+
+# Create object directory structure
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
+	@# Create subdirectories for nested source files
+	@for file in $(SRC_FILES) $(TEST_FILES); do \
+		objfile=$$(echo $$file | sed 's|^\./||'); \
+		objdir=$$(dirname "$(OBJ_DIR)/$$objfile"); \
+		mkdir -p "$$objdir"; \
+	done
+
+# Generic rule to compile any .cpp file to .o file
+$(OBJ_DIR)/%.o: ./%.cpp
+	@echo "🔨 Compiling $<..."
+	@mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# ============================================================================
+# UTILITY TARGETS
+# ============================================================================
+
+info:
+	@echo "============================================================"
+	@echo "UNIVERSAL MAKEFILE - PROJECT INFO"
+	@echo "============================================================"
+	@echo "Test Framework: $(TEST_FRAMEWORK)"
+	@echo ""
+	@echo "Source Files ($(words $(SRC_FILES))):"
+	@$(foreach file,$(SRC_FILES),echo "  - $(file)";)
+	@echo ""
+	@echo "Test Files ($(words $(TEST_FILES))):"
+	@$(foreach file,$(TEST_FILES),echo "  - $(file)";)
+	@echo ""
+	@echo "Header Directories:"
+	@$(foreach dir,$(HEADER_DIRS),echo "  - $(dir)";)
+	@echo ""
+	@echo "Compiler Flags:"
+	@echo "  $(CXXFLAGS)"
+	@echo ""
+	@echo "Linker Flags:"
+	@echo "  $(LDFLAGS)"
+	@echo "============================================================"
+
+clean:
+	@echo "🧹 Cleaning build artifacts..."
+	rm -rf $(OBJ_DIR) $(TARGET)
+	@echo "✅ Clean complete"
+
+# Debug target to check detection
+debug:
+	@echo "ALL_CPP_FILES: $(ALL_CPP_FILES)"
+	@echo "SRC_FILES: $(SRC_FILES)"
+	@echo "TEST_FILES: $(TEST_FILES)"
+	@echo "HAS_CATCH2: $(HAS_CATCH2)"
+	@echo "HAS_BOOST: $(HAS_BOOST)"
+	@echo "HAS_GTEST: $(HAS_GTEST)"
+	@echo "TEST_FRAMEWORK: $(TEST_FRAMEWORK)"

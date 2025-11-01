@@ -1,0 +1,24 @@
+{
+  "hardware_constants": {
+    "TDP_CPU_WATT": 95.0,
+    "POWER_PER_GB_RAM_WATT": 0.375,
+    "PUE_FACTOR": 1.5,
+    "description": "TDP_CPU_WATT: Thermal Design Power of the CPU in Watts (typical desktop CPU), POWER_PER_GB_RAM_WATT: Power consumption per GB of RAM (DDR4 average), PUE_FACTOR: Power Usage Effectiveness (data center efficiency multiplier)"
+  },
+  "carbon_intensity": {
+    "CARBON_INTENSITY_GCO2_PER_KWH": 400.0,
+    "region": "EU-average",
+    "description": "Carbon intensity in grams of CO2 equivalent per kWh. EU average is ~400 gCO2eq/kWh. Adjust based on your region (e.g., France: ~60, Germany: ~400, Poland: ~700, USA: ~400, Global avg: ~475)"
+  },
+  "conversion_factors": {
+    "JOULES_TO_KWH": 3600000.0,
+    "KB_TO_GB": 1048576.0,
+    "MS_TO_SEC": 1000.0,
+    "description": "Conversion factors: 1 kWh = 3,600,000 Joules, 1 GB = 1,048,576 KB (1024^2), 1 second = 1000 milliseconds"
+  },
+  "metadata": {
+    "version": "1.0",
+    "last_updated": "2025-11-01",
+    "notes": "These coefficients are based on average values from Green Computing literature. For more accurate analysis, adjust TDP based on your specific hardware and carbon intensity based on your electricity grid region."
+  }
+}

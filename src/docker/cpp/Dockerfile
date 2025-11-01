@@ -22,12 +22,12 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Installa Catch2 (versione 3.x)
+# Installa Catch2 (versione 2.x per compatibility con exercism tests)
 RUN cd /tmp && \
     git clone https://github.com/catchorg/Catch2.git && \
     cd Catch2 && \
-    git checkout v3.4.0 && \
-    cmake -B build -S . -DBUILD_TESTING=OFF && \
+    git checkout v2.13.10 && \
+    cmake -B build -S . -DBUILD_TESTING=OFF -DCATCH_INSTALL_DOCS=OFF && \
     cmake --build build/ --target install && \
     cd / && rm -rf /tmp/Catch2
 
@@ -42,6 +42,7 @@ RUN ldconfig
 # Copia i file di configurazione
 COPY . .
 COPY time_wrapper.py /usr/local/bin/time_wrapper.py
+COPY Makefile.universal /usr/local/share/Makefile.universal
 
 RUN chmod +x /usr/local/bin/time_wrapper.py
 

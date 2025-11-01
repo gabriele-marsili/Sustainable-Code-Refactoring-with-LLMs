@@ -1,0 +1,22 @@
+#include "darts.h"
+
+uint8_t score(coordinate_t landing_position)
+{
+    float x = landing_position.x;
+    float y = landing_position.y;
+    float distance_squared = x * x + y * y;
+
+    if (distance_squared <= 1.0f)
+    {
+        return 10;
+    }
+    else if (distance_squared <= 25.0f)
+    {
+        return 5;
+    }
+    else if (distance_squared <= 100.0f)
+    {
+        return 1;
+    }
+    return 0;
+}

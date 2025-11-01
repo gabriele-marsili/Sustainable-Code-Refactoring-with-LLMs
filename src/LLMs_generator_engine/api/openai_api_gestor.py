@@ -80,7 +80,7 @@ class OpenAIApiGestor:
                 t = self.openai_config.get("temperature",0.1)
                 #print(f"temperature = {t}")
                 
-                print(f"OpenAI Prompt : \n{prompt}")
+                #print(f"OpenAI Prompt : \n{prompt}")
 
                 response = self.client.chat.completions.create(
                     model="gpt-4o",
@@ -93,9 +93,9 @@ class OpenAIApiGestor:
                     timeout=self.openai_config["timeout"]
                 )
                 
-                print(f"OpenAI api response:\n{response}")
-                print(f"response.choices[0].message:\n{response.choices[0].message}")
-                print(f"response.choices[0].message.content:\n{response.choices[0].message.content}")
+                #print(f"OpenAI api response:\n{response}")
+                #print(f"response.choices[0].message:\n{response.choices[0].message}")
+                #print(f"response.choices[0].message.content:\n{response.choices[0].message.content}")
                 
                 generated_code = response.choices[0].message.content.strip()
                 return self._clean_markdown(generated_code)
@@ -142,7 +142,7 @@ class OpenAIApiGestor:
 
         # 3. Chiamata API
         generated_code = self.make_api_call(final_prompt)
-        print(f"🧠 Output API (prima della regex):\n{generated_code}")
+        #print(f"🧠 Output API (prima della regex):\n{generated_code}")
 
         if generated_code is None:
             print("❌ La chiamata API non ha prodotto un risultato valido.")
@@ -150,7 +150,7 @@ class OpenAIApiGestor:
 
         # 4. Prova a estrarre codice da blocco markdown (```) se esiste
         code_match = re.search(r'```(?:\w+)?\n(.*?)```', generated_code, re.DOTALL)
-        print(f"🧠 Output API (code_match):\n{generated_code}")
+        #print(f"🧠 Output API (code_match):\n{generated_code}")
 
         if code_match:
             extracted_code = code_match.group(1).strip()
